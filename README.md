@@ -5,14 +5,18 @@ which will be stored in the build/libs folder.
 Make sure to edit the main class attribute the build.gradle file, you'll need to change it in order to obtain
 a working jar file.
 
-#Requirements
-##Java Development Kit (JDK) version 17.x
+# Requirements
+## Java Development Kit (JDK) version 17.x
 This starter code was developed using JDK17 which can be acquired at this [link](https://www.oracle.com/java/technologies/downloads/#java17 "JDK Download")
 <br>Your submitted programs are expected to be written using this JDK and should not use other JDKs unless otherwise specified
-##MaterialFX
+## MaterialFX
 MaterialFX is a JavaFX (JFX) module library for pre-made components. 
 <br>The MaterialFX Github page can be found [here](https://github.com/palexdev/MaterialFX "MaterialFX GitHub") and the corresponding Wiki with component examples can be found [here](https://github.com/palexdev/MaterialFX/wiki "MaterialFX GitHub Wiki") 
 <br>The library is a great <i>starting point</i> for UI design during the early iterations. Customizing the style and look of the application should enhance its professionalism and "polish"
+## Oracle Database Express
+Oracle Database Express (Oracle) was used as the client-server database solution in this example. 
+<br> The example is set to expect an Oracle instance on the `localhost:1521` with the SID of `XE`
+
 
 
 # Important Files
