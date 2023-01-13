@@ -1,2 +1,0 @@
-[ ]Update the gradle dependencies to include Oracle server?
-[X]Switch from JFoenix to MaterialFX because of Java version incompatibilities.
