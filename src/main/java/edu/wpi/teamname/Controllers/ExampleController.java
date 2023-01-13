@@ -39,9 +39,10 @@ public class ExampleController {
 
     try {
       Class.forName(
-          "org.apache.derby.jdbc.ClientDriver"); // .getDeclaredConstructor().newInstance();
+          "org.apache.derby.jdbc.ClientDriver"); // Check that proper driver is packaged for Apache
+      // Derby
     } catch (Exception e) {
-      e.printStackTrace(); // Does not get executed!
+      e.printStackTrace();
       System.out.println("NO DRIVER");
       return false;
     }
@@ -49,7 +50,9 @@ public class ExampleController {
       // create Connection at specified URL
       this.connection =
           DriverManager.getConnection(
-              "jdbc:derby://localhost:1527/testDB;create=true", "app", "derbypass");
+              "jdbc:derby://localhost:1527/testDB;create=true",
+              "app",
+              "derbypass"); // This will change for each team as their DB is developed
       if (this.connection != null) {
         System.out.println("Connected to the database!");
       } else {
@@ -57,10 +60,10 @@ public class ExampleController {
       }
     } catch (SQLException e) {
       System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-      //      return false;
+      return false;
     } catch (Exception e) {
       e.printStackTrace();
-      //      return false;
+      return false;
     }
 
     // connection successful, return true
