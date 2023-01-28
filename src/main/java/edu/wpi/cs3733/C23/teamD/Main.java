@@ -1,4 +1,4 @@
-package edu.wpi.csS3733.C23.teamD;
+package edu.wpi.cs3733.C23.teamD;
 
 public class Main {
 

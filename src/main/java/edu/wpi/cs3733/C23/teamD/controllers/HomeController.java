@@ -1,7 +1,7 @@
-package edu.wpi.csS3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.csS3733.C23.teamD.navigation.Navigation;
-import edu.wpi.csS3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 

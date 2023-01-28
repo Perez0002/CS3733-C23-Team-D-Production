@@ -1,4 +1,4 @@
-package edu.wpi.csS3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers;
 
 import javafx.fxml.FXML;
 

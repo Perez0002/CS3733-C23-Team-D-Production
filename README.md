@@ -23,7 +23,7 @@ This is the gradle configuration file. Modify this file to add dependencies to y
   modification you will need to make when you begin the project
   
   - `mainClassName`
-    - Modifiy this variable to point to your main class. By default it is `edu.wpi.csS3733.C23.teamD.Main
+    - Modifiy this variable to point to your main class. By default it is `edu.wpi.cs3733.C23.teamD.Main
     `, but once you update your teamname package to your team letter you will need to update this
      path.
      
