@@ -2,7 +2,7 @@
 /* DO NOT DELETE THIS TEST */
 /*-------------------------*/
 
-package edu.wpi.teamname;
+package edu.wpi.csS3733.C23.teamD;
 
 import org.junit.jupiter.api.Test;
 
