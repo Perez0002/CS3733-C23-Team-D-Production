@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="648.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationRequestController">
+   <children>
+      <VBox prefHeight="469.0" prefWidth="383.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <MFXButton fx:id="buttonHelp" onAction="#displayHelp" prefHeight="3.0" prefWidth="10.0" text="?" />
+            <Text fx:id="textHelp" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Request Form" wrappingWidth="197.68865776062012">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="textReason" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin></Text>
+            <MFXTextField fx:id="fieldReason" borderGap="0.0">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <Text fx:id="textLocation" strokeType="OUTSIDE" strokeWidth="0.0" text="Location">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin></Text>
+            <MFXTextField fx:id="fieldLocation">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin></MFXTextField>
+            <Text fx:id="textBiohazardLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin></Text>
+            <MFXRadioButton fx:id="radioBSL1" prefHeight="18.0" prefWidth="83.0" text="BSL-1 - Minimal Hazards">
+               <toggleGroup>
+                  <ToggleGroup fx:id="BSL" />
+               </toggleGroup>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </MFXRadioButton>
+            <MFXRadioButton fx:id="radioBSL2" text="BSL-2 - Moderate Hazards" toggleGroup="$BSL">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </MFXRadioButton>
+            <MFXRadioButton fx:id="radioBSL3" text="BSL-3 - Serious Hazards" toggleGroup="$BSL">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+               </VBox.margin></MFXRadioButton>
+            <MFXRadioButton fx:id="radioBSL4" text="BSL-4 - Most Complex" toggleGroup="$BSL">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+               </VBox.margin></MFXRadioButton>
+            <Text fx:id="textHelp" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason, location, and biohazard level then press submit" visible="false" />
+            <MFXButton fx:id="buttonClear" onAction="#clearFields" text="Clear all" />
+            <Text fx:id="formSubmittedText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted." visible="false" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <MFXButton fx:id="buttonSubmit" alignment="BOTTOM_CENTER" layoutX="289.0" layoutY="10.0" onAction="#submit" rippleColor="#a1a1a1" style="-fx-background-color: #7be075;" text="Submit">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="buttonCancel" layoutX="213.0" layoutY="9.0" onAction="#openHomeController" text="Cancel">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </MFXButton>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
