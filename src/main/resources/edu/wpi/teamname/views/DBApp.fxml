@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:controller="edu.wpi.teamname.controllers.DBcontroller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="table" prefHeight="200.0" prefWidth="595.0">
+              <columns>
+                <TableColumn fx:id="nodeID" prefWidth="75.0" text="nodeID" />
+                <TableColumn prefWidth="75.0" text="x Coord" fx:id="xCoord" />
+                  <TableColumn fx:id="yCoord" prefWidth="75.0" text="y Coord" />
+                  <TableColumn fx:id="building" prefWidth="75.0" text="building" />
+                  <TableColumn fx:id="floor" prefWidth="75.0" text="floor" />
+                  <TableColumn fx:id="longName" prefWidth="75.0" text="longName" />
+                  <TableColumn fx:id="shortName" prefWidth="75.0" text="shortName" />
+                  <TableColumn fx:id="locationType" prefWidth="75.0" text="locationType" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
