@@ -14,11 +14,17 @@ import javafx.scene.text.Text;
 public class PathfindingController {
   @FXML private MFXButton cancelButton;
 
+  @FXML private Text endRoomHelpText;
+
+  @FXML private Text startRoomHelpText;
+
   @FXML private MFXTextField endRoom;
 
   @FXML private MFXTextField startRoom;
 
   @FXML private Text pathResultText;
+
+  private boolean helpVisible = false;
 
   @FXML
   public void initialize() {
@@ -26,10 +32,17 @@ public class PathfindingController {
   }
 
   @FXML
-  void clearFields() {}
+  void clearFields() {
+    endRoom.clear();
+    startRoom.clear();
+  }
 
   @FXML
-  void displayHelp() {}
+  void displayHelp() {
+    helpVisible = !helpVisible;
+    endRoomHelpText.setVisible(helpVisible);
+    startRoomHelpText.setVisible((helpVisible));
+  }
 
   @FXML
   void submit() {

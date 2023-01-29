@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,10 +10,20 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <MFXTextField fx:id="startRoom" floatingText="Enter the starting room" />
-            <MFXTextField fx:id="endRoom" floatingText="Enter the destination" />
+            <VBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="600.0">
+               <children>
+                  <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the room you will start from." visible="false" />
+                  <MFXTextField fx:id="startRoom" borderGap="0.0" floatingText="Enter the starting room" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="600.0">
+               <children>
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the room you want directions to." visible="false" />
+                  <MFXTextField fx:id="endRoom" floatingText="Enter the destination" prefWidth="200.0" />
+               </children>
+            </VBox>
             <Text fx:id="pathResultText" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
