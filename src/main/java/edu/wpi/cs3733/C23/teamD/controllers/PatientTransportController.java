@@ -1,17 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.io.IOException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PatientTransportController {
@@ -134,25 +130,6 @@ public class PatientTransportController {
     submittedFormText.setVisible(false);
     // System.out.println("clearFields"); // for debugging purposes
   } // end clearFields()
-
-  @FXML
-  /*
-  openHomeController()
-  @param void
-  @return void
-  linked to "Home" button on SceneBuilder page, when selected
-  reverts to "Homepage" scene
-  */
-  public void openHomeController() {
-    // System.out.println("openHomeController"); // for debugging purposes
-    try {
-      Parent root =
-          FXMLLoader.load(getClass().getResource("/edu/wpi/teamname/views/Homepage.fxml"));
-      App.getPrimaryStage().getScene().setRoot(root);
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  } // end openHomeController()
 
   @FXML
   /*

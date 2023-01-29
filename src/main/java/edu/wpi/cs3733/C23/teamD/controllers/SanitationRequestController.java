@@ -1,13 +1,12 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequestData;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class SanitationRequestController {
@@ -21,6 +20,12 @@ public class SanitationRequestController {
   @FXML private MFXTextField fieldReason;
   @FXML private MFXTextField fieldLocation;
   @FXML private Text formSubmittedText;
+  @FXML MFXButton buttonCancel;
+
+  @FXML
+  public void initialize() {
+    buttonCancel.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  }
 
   @FXML
   public void submit() {
@@ -58,17 +63,6 @@ public class SanitationRequestController {
     radioBSL4.setSelected(false);
     formSubmittedText.setVisible(false);
     System.out.print("Fields Cleared\n");
-  }
-
-  @FXML
-  public void openHomeController() {
-    try {
-      Parent root =
-          FXMLLoader.load(getClass().getResource("/edu/wpi/teamname/views/Homepage.fxml"));
-      App.getPrimaryStage().getScene().setRoot(root);
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    } // for debugging purposes
   }
 
   @FXML

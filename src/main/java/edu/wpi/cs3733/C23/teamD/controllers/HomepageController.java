@@ -1,14 +1,10 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
@@ -51,34 +47,6 @@ public class HomepageController {
     } else {
       serviceRequestHelpText.setText("");
       bottomHelpText.setText("");
-    }
-  }
-
-  @FXML
-  public void openPatientTransportRequestForm() {
-    // System.out.println("openHomeController"); // for debugging purposes
-    try {
-      Parent root =
-          FXMLLoader.load(
-              getClass()
-                  .getResource(
-                      "/edu/wpi/teamname/views/InternalPatientTransportationRequestForm.fxml"));
-      App.getPrimaryStage().getScene().setRoot(root);
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
-
-  @FXML
-  public void openSanitationServicesRequestForm() {
-    // System.out.println("openHomeController"); // for debugging purposes
-    try {
-      Parent root =
-          FXMLLoader.load(
-              getClass().getResource("/edu/wpi/teamname/views/SanitationRequestForm.fxml"));
-      App.getPrimaryStage().getScene().setRoot(root);
-    } catch (IOException ex) {
-      ex.printStackTrace();
     }
   }
 }
