@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +16,21 @@ public class HomepageController {
 
   @FXML private Label bottomHelpText;
 
+  @FXML MFXButton internalPatientTransportationRequestFormButton;
+
+  @FXML MFXButton sanitationServiceRequestFormButton;
+
   @FXML private BorderPane homepageBorderPane;
 
   @FXML private Label serviceRequestHelpText;
+
+  @FXML
+  public void initialize() {
+    internalPatientTransportationRequestFormButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST));
+    sanitationServiceRequestFormButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.SANITATION_FORM));
+  }
 
   @FXML
   /** user open menubutton, clicks Exit, and it closes the window. */

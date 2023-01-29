@@ -2,6 +2,9 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
@@ -31,6 +34,13 @@ public class PatientTransportController {
   @FXML private MFXCheckbox testCheck3;
   @FXML private MFXCheckbox testCheck4;
   // end attributes
+
+  @FXML MFXButton cancelButton;
+
+  @FXML
+  public void initialize() {
+    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  }
 
   @FXML
   /*
