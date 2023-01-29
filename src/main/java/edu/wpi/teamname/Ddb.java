@@ -1,7 +1,5 @@
 package edu.wpi.teamname;
 
-import oracle.ucp.proxy.annotation.Pre;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,9 +12,10 @@ public class Ddb {
   private static final File logFile = new File("logfile.txt");
   /**
    * Establishes the connection to the database
+   *
    * @return A connection object which is used to access the database
    */
-  protected static Connection makeConnection() {
+  public static Connection makeConnection() {
     Connection conn = null;
     final String url =
         "jdbc:postgresql://wpi-softeng-postgres-db.coyfss2f91ba.us-east-1.rds.amazonaws.com:2112/dbd";
@@ -52,16 +51,13 @@ public class Ddb {
         Edge tempEdge = new Edge();
         tempEdge.setStartNode(rset.getString("startnode"));
         tempEdge.setEndNode(rset.getString("endnode"));
-        startExists=false;
-        endExists=false;
+        startExists = false;
+        endExists = false;
         for (Node node : Nodes) {
-          if (tempEdge.getEndNode().equals(node.getNodeID()))
-            endExists=true;
-          else if (tempEdge.getStartNode().equals(node.getNodeID()))
-            startExists=true;
+          if (tempEdge.getEndNode().equals(node.getNodeID())) endExists = true;
+          else if (tempEdge.getStartNode().equals(node.getNodeID())) startExists = true;
         }
-        if(startExists && endExists)
-        edgeList.add(tempEdge);
+        if (startExists && endExists) edgeList.add(tempEdge);
       }
       rset.close();
       return edgeList;
@@ -77,7 +73,7 @@ public class Ddb {
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the nodes in the database
    */
-  protected static ArrayList<Node> createJavaNodes(Connection conn) {
+  public static ArrayList<Node> createJavaNodes(Connection conn) {
     ResultSet rset = null;
     ArrayList<Node> nodeList = new ArrayList<Node>();
     String statement = "SELECT * FROM Nodes";
@@ -101,13 +97,13 @@ public class Ddb {
   }
 
   /**
-   * Creates the list of moves from the database where each move has nodeID,
-   * longName and moveDate fields
+   * Creates the list of moves from the database where each move has nodeID, longName and moveDate
+   * fields
    *
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the moves in the database
    */
-  protected ArrayList<Move> createJavaMoves(Connection conn){
+  protected ArrayList<Move> createJavaMoves(Connection conn) {
     ResultSet rset = null;
     ArrayList<Move> moveList = new ArrayList<Move>();
     String statement = "SELECT * FROM Moves";
@@ -119,8 +115,7 @@ public class Ddb {
         tempMove.setLongName(rset.getString("nodeID"));
         tempMove.setNodeID(rset.getString("longName"));
         Date checkDate = rset.getDate("moveDate");
-        if(!checkDate.equals(tempMove.getMoveDate()))
-          tempMove.setMoveDate(checkDate);
+        if (!checkDate.equals(tempMove.getMoveDate())) tempMove.setMoveDate(checkDate);
         moveList.add(tempMove);
       }
       rset.close();
@@ -130,13 +125,13 @@ public class Ddb {
     }
   }
   /**
-   * Creates the list of locationNames from the database where each locationName has
-   * longName, locationType and shortName fields
+   * Creates the list of locationNames from the database where each locationName has longName,
+   * locationType and shortName fields
    *
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the locationNames in the database
    */
-  protected ArrayList<locationName> createJavaLocat(Connection conn){
+  protected ArrayList<locationName> createJavaLocat(Connection conn) {
     ResultSet rset = null;
     ArrayList<locationName> locationList = new ArrayList<locationName>();
     String statement = "SELECT * FROM LocationNames";
@@ -202,7 +197,8 @@ public class Ddb {
    * @param name The new name that
    * @return true if updating the database succeeded and false if it failed
    */
-  protected static boolean updateNameOfLocation(Connection conn, String nodeID, locationName curLoc, String name) {
+  protected static boolean updateNameOfLocation(
+      Connection conn, String nodeID, locationName curLoc, String name) {
     String statement = "UPDATE locationNames SET longname= ? WHERE longName = ?";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
@@ -245,7 +241,7 @@ public class Ddb {
       for (Edge edge : Edges) {
         String deleteEdge = "DELETE FROM Edges WHERE (startNode = ? AND endNode = ?)";
         pstmt = conn.prepareStatement(deleteEdge);
-        String startNode= edge.getStartNode();
+        String startNode = edge.getStartNode();
         String endNode = edge.getEndNode();
         if (startNode.equals(node.getNodeID())) {
           pstmt.setString(1, edge.getStartNode());
@@ -258,11 +254,7 @@ public class Ddb {
           pstmt.executeUpdate();
           Edges.remove(edge);
         }
-        updateLogFile(
-                "Deleted edge between"
-                        + startNode
-                        + " & "
-                        + endNode);
+        updateLogFile("Deleted edge between" + startNode + " & " + endNode);
       }
       updateLogFile("Deleted " + " " + node.getAll());
       Nodes.remove(node);
@@ -281,7 +273,8 @@ public class Ddb {
    * @param Edges The list of all the edges in the database, contained locally in a list
    * @return true if updating the database succeeded and false if it failed
    */
-  protected static boolean deleteEdge(Connection conn, String startNode, String endNode, ArrayList<Edge> Edges) {
+  protected static boolean deleteEdge(
+      Connection conn, String startNode, String endNode, ArrayList<Edge> Edges) {
     String deleteEdge = "DELETE FROM Edges WHERE (startNode = ? AND endNode = ?)";
     try {
       PreparedStatement pstmt = conn.prepareStatement(deleteEdge);
@@ -290,11 +283,7 @@ public class Ddb {
       pstmt.executeUpdate();
       for (Edge edge : Edges) {
         if (edge.getStartNode().equals(startNode) && edge.getEndNode().equals(endNode)) {
-          updateLogFile(
-                  "Deleted edge between"
-                          + startNode
-                          + " & "
-                          + endNode);
+          updateLogFile("Deleted edge between" + startNode + " & " + endNode);
           Edges.remove(edge);
           return true;
         }
@@ -323,7 +312,7 @@ public class Ddb {
     }
   }
 
-  protected ArrayList<PatientTransportData> getJavaPatientForms(Connection conn){
+  protected ArrayList<PatientTransportData> getJavaPatientForms(Connection conn) {
     ResultSet rset = null;
     ArrayList<PatientTransportData> formList = new ArrayList<PatientTransportData>();
     String statement = "SELECT * FROM PatientTransportData";
@@ -347,17 +336,17 @@ public class Ddb {
     }
   }
 
-  protected boolean insertNewForm(Connection conn, ArrayList<Object> values){
-    String statement = "INSERT INTO PatientTransportData PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo) VALUES(?,?,?,?,?,?)";
+  protected boolean insertNewForm(Connection conn, ArrayList<Object> values) {
+    String statement =
+        "INSERT INTO PatientTransportData PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo) VALUES(?,?,?,?,?,?)";
     try {
       PreparedStatement pstmnt = conn.prepareStatement(statement);
-      for(int i=0; i<values.size();i++){
-        if(values.isEmpty()) {
+      for (int i = 0; i < values.size(); i++) {
+        if (values.isEmpty()) {
           System.out.println("No values found");
           return true;
         }
-        pstmnt.setObject(i,values.get(i));
-
+        pstmnt.setObject(i, values.get(i));
       }
       pstmnt.executeUpdate();
       return true;

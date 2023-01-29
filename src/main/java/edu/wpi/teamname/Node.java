@@ -1,77 +1,74 @@
 package edu.wpi.teamname;
+
 public class Node {
-    private String nodeID;
-    private int xcoord;
-    private int ycoord;
-    private String floor;
-    private String building;
+  private String nodeID;
+  private int xcoord;
+  private int ycoord;
+  private String floor;
+  private String building;
 
-    public Node(
-            int xcoord,
-            int ycoord,
-            String floor,
-            String building) {
-        this.nodeID = floor+xcoord+ycoord;
-        this.xcoord = xcoord;
-        this.ycoord = ycoord;
-        this.floor = floor;
-        this.building = building;
-    }
-    public Node() {
-        this.nodeID = "";
-        this.xcoord = 0;
-        this.ycoord = 0;
-        this.floor = "";
-        this.building = "";
-    }
+  public Node(int xcoord, int ycoord, String floor, String building) {
+    this.nodeID = floor + xcoord + ycoord;
+    this.xcoord = xcoord;
+    this.ycoord = ycoord;
+    this.floor = floor;
+    this.building = building;
+  }
 
-    public String getAll() {
-        return nodeID + " " + xcoord + " " + ycoord + " " + floor + " " + building;
-    }
+  public Node() {
+    this.nodeID = "";
+    this.xcoord = 0;
+    this.ycoord = 0;
+    this.floor = "";
+    this.building = "";
+  }
 
-    public boolean nodeEquals(Node node2) {
-        if (this.nodeID.equals(node2.nodeID)) return true;
-        else return false;
-    }
+  public String getAll() {
+    return nodeID + " " + xcoord + " " + ycoord + " " + floor + " " + building;
+  }
 
-    public int getXcoord() {
-        return xcoord;
-    }
+  public boolean nodeEquals(Node node2) {
+    if (this.nodeID.equals(node2.nodeID)) return true;
+    else return false;
+  }
 
-    public void setXcoord(int xcoord) {
-        this.xcoord = xcoord;
-    }
+  public int getXcoord() {
+    return xcoord;
+  }
 
-    public int getYcoord() {
-        return ycoord;
-    }
+  public void setXcoord(int xcoord) {
+    this.xcoord = xcoord;
+  }
 
-    public void setYcoord(int ycoord) {
-        this.ycoord = ycoord;
-    }
+  public int getYcoord() {
+    return ycoord;
+  }
 
-    public String getFloor() {
-        return floor;
-    }
+  public void setYcoord(int ycoord) {
+    this.ycoord = ycoord;
+  }
 
-    public void setFloor(String floor) {
-        this.floor = floor;
-    }
+  public String getFloor() {
+    return floor;
+  }
 
-    public String getBuilding() {
-        return building;
-    }
+  public void setFloor(String floor) {
+    this.floor = floor;
+  }
 
-    public void setBuilding(String building) {
-        this.building = building;
-    }
+  public String getBuilding() {
+    return building;
+  }
 
-    public String getNodeID() {
-        return nodeID;
-    }
+  public void setBuilding(String building) {
+    this.building = building;
+  }
 
-    public void setNodeID(String nodeID) {
-        this.nodeID = nodeID;
-    }
+  public String getNodeID() {
+    return nodeID;
+  }
 
+  public void setNodeID(String nodeID) {
+    this.nodeID = nodeID;
+  }
 }
