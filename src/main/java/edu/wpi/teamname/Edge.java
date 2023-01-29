@@ -4,6 +4,8 @@ public class Edge {
   private String startNode;
   private String endNode;
 
+  private double cost;
+
   public Edge(String startNode, String endNode) {
     this.startNode = startNode;
     this.endNode = endNode;
@@ -28,5 +30,13 @@ public class Edge {
 
   public void setEndNode(String endNode) {
     this.endNode = endNode;
+  }
+
+  public double getCost() {
+    return cost;
+  }
+
+  public void setCost(double cost) {
+    this.cost = cost;
   }
 }

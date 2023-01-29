@@ -103,7 +103,7 @@ public class Ddb {
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the moves in the database
    */
-  protected ArrayList<Move> createJavaMoves(Connection conn) {
+  protected static ArrayList<Move> createJavaMoves(Connection conn) {
     ResultSet rset = null;
     ArrayList<Move> moveList = new ArrayList<Move>();
     String statement = "SELECT * FROM Moves";

@@ -6,6 +6,7 @@ public class Node {
   private int ycoord;
   private String floor;
   private String building;
+  private locationName location;
 
   public Node(int xcoord, int ycoord, String floor, String building) {
     this.nodeID = floor + xcoord + ycoord;
@@ -70,5 +71,13 @@ public class Node {
 
   public void setNodeID(String nodeID) {
     this.nodeID = nodeID;
+  }
+
+  public locationName getLocation() {
+    return location;
+  }
+
+  public void setLocation(locationName location) {
+    this.location = location;
   }
 }
