@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="homepageBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
+   <bottom>
+      <HBox fx:id="bottomVbox" alignment="CENTER" fillHeight="false" spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton fx:id="exitButtonMenu" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Exit Program" textFill="#19158c">
+              <items>
+                <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
+              </items>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </MenuButton>
+            <Label fx:id="bottomHelpText" prefHeight="40.0" prefWidth="280.0" textFill="#dc3333" wrapText="true" />
+            <MFXButton fx:id="homepageHelpButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" onAction="#toggleHelpText" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10em; -fx-min-height: 40; -fx-min-width: 40; -fx-max-height: 40; -fx-max-width: 40;" text="?" textAlignment="CENTER" textFill="#7b7b7b">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </MFXButton>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="40.0" right="40.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox fx:id="serviceRequestButtonVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="225.0" prefWidth="500.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="serviceRequestHelpText" prefHeight="15.0" prefWidth="300.0" textAlignment="CENTER" textFill="#dc3333" />
+            <MFXButton fx:id="internalPatientTransportationRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="200.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="Internal Patient Transportation Request Form" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </VBox.margin>
+            </MFXButton>
+            <MFXButton fx:id="sanitationServiceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #19158c;" text="Sanitation Service Request Form" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </VBox.margin>
+            </MFXButton>
+            <MFXButton fx:id="pathfindingButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="200.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="Pathfinding Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </MFXButton>
+            <Label fx:id="aboutLabel" prefHeight="69.0" prefWidth="400.0" text="This homepage was created by Olivia P. The Internal Patient Transportation Request Form was created by Annie Z and Mike W. The Santiation Services Request Form was created by Wyatt H and Gibson P." textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets left="50.0" right="50.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="50.0" prefWidth="350.0" text="Hospital Website Homepage" textAlignment="CENTER" textFill="#19158c" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+</BorderPane>
