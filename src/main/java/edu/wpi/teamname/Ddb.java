@@ -332,13 +332,13 @@ public class Ddb {
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
       while (rset.next()) {
-        tempform.patientID(rset.getString("patientID"));
+        tempform.setPatientID(rset.getString("patientID"));
         tempform.setStartRoom(rset.getString("startRoom"));
         tempform.setEndRoom(rset.getString("endRoom"));
-        tempform.setEquipment(rset.getString("equipment"));
+        tempform.setEquipment((ArrayList<String>) rset.getObject("equipment"));
         tempform.setReason(rset.getString("reason"));
-        tempform.setSendTo(rset.getString("sendTo"));
-        tempform.add(formList);
+        tempform.setSendTo((String[]) rset.getObject("sendTo"));
+        formList.add(tempform);
       }
       rset.close();
       return formList;
