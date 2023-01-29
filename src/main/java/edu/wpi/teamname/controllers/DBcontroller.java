@@ -25,42 +25,48 @@ public class DBcontroller extends Application implements Initializable {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Connection conn = Ddb.makeConnection();
-    ObservableList<Node> nodeList = FXCollections.observableArrayList(Ddb.createJavaNodes(conn));
     Parent root = FXMLLoader.load(getClass().getResource("/edu/wpi/teamname/views/DBApp.fxml"));
     primaryStage.setTitle("NodeTable");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
-    // table.setItems(nodeList);
   }
 
   @FXML private TableColumn<Node, String> building;
 
   @FXML private TableColumn<Node, String> floor;
 
-  @FXML private TableColumn<Node, String> locationType;
-
-  @FXML private TableColumn<Node, String> longName;
-
   @FXML private TableColumn<Node, String> nodeID;
 
-  @FXML private TableColumn<Node, String> shortName;
-
-  @FXML private TableView<Node> table;
+  @FXML private TableView<Node> nodeTableView;
 
   @FXML private TableColumn<Node, Integer> xCoord;
 
   @FXML private TableColumn<Node, Integer> yCoord;
 
+  @FXML private TableColumn<locationName, String> shortName;
+
+  @FXML private TableColumn<locationName, String> longName;
+
+  @FXML private TableColumn<locationName, String> locationType;
+
+  @FXML private TableView<locationName> locationNameTableView;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    yCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("yCoord"));
-    xCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("xCoord"));
-    building.setCellValueFactory(new PropertyValueFactory<Node, String>("building"));
-    locationType.setCellValueFactory(new PropertyValueFactory<Node, String>("locationType"));
-    shortName.setCellValueFactory(new PropertyValueFactory<Node, String>("shortName"));
-    longName.setCellValueFactory(new PropertyValueFactory<Node, String>("longName"));
+    Connection conn = Ddb.makeConnection();
+    ObservableList<Node> nodeList = FXCollections.observableArrayList(Ddb.createJavaNodes(conn));
+    ObservableList<locationName> locList =
+        FXCollections.observableArrayList(Ddb.createJavaLocat(conn));
     nodeID.setCellValueFactory(new PropertyValueFactory<Node, String>("nodeID"));
+    xCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Xcoord"));
+    yCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Ycoord"));
     floor.setCellValueFactory(new PropertyValueFactory<Node, String>("floor"));
+    building.setCellValueFactory(new PropertyValueFactory<Node, String>("building"));
+    longName.setCellValueFactory(new PropertyValueFactory<locationName, String>("longName"));
+    shortName.setCellValueFactory(new PropertyValueFactory<locationName, String>("shortName"));
+    locationType.setCellValueFactory(
+        new PropertyValueFactory<locationName, String>("locationType"));
+    nodeTableView.setItems(nodeList);
+    locationNameTableView.setItems(locList);
   }
 }

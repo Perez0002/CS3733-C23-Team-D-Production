@@ -76,7 +76,7 @@ public class Ddb {
   public static ArrayList<Node> createJavaNodes(Connection conn) {
     ResultSet rset = null;
     ArrayList<Node> nodeList = new ArrayList<Node>();
-    String statement = "SELECT * FROM Nodes";
+    String statement = "SELECT * FROM Node";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
@@ -131,10 +131,10 @@ public class Ddb {
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the locationNames in the database
    */
-  protected ArrayList<locationName> createJavaLocat(Connection conn) {
+  public static ArrayList<locationName> createJavaLocat(Connection conn) {
     ResultSet rset = null;
     ArrayList<locationName> locationList = new ArrayList<locationName>();
-    String statement = "SELECT * FROM LocationNames";
+    String statement = "SELECT * FROM LocationName";
     try {
       locationName tempLoc = new locationName();
       PreparedStatement pstmt = conn.prepareStatement(statement);
