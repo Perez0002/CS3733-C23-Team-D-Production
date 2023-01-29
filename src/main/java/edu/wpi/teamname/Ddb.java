@@ -1,5 +1,7 @@
 package edu.wpi.teamname;
 
+import oracle.ucp.proxy.annotation.Pre;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -37,7 +39,7 @@ public class Ddb {
    * @param Nodes The list of all the nodes in the database, contained locally in a list
    * @return A list of all the edges in the database
    */
-  private static ArrayList<Edge> createJavaEdges(Connection conn, ArrayList<Node> Nodes) {
+  protected static ArrayList<Edge> createJavaEdges(Connection conn, ArrayList<Node> Nodes) {
     ResultSet rset = null;
     ArrayList<Edge> edgeList = new ArrayList<Edge>();
     String statement = "SELECT * FROM Edges";
@@ -61,6 +63,7 @@ public class Ddb {
         if(startExists && endExists)
         edgeList.add(tempEdge);
       }
+      rset.close();
       return edgeList;
     } catch (SQLException e) {
       return edgeList;
@@ -74,7 +77,7 @@ public class Ddb {
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the nodes in the database
    */
-  private static ArrayList<Node> createJavaNodes(Connection conn) {
+  protected static ArrayList<Node> createJavaNodes(Connection conn) {
     ResultSet rset = null;
     ArrayList<Node> nodeList = new ArrayList<Node>();
     String statement = "SELECT * FROM Nodes";
@@ -90,6 +93,7 @@ public class Ddb {
         tempNode.setBuilding(rset.getString("building"));
         nodeList.add(tempNode);
       }
+      rset.close();
       return nodeList;
     } catch (SQLException e) {
       return nodeList;
@@ -162,7 +166,7 @@ public class Ddb {
    * @param ycoord The new ycoord value
    * @return true if updating the database succeeded and false if it failed
    */
-  private static boolean updateNodeCoords(Connection conn, Node node, int xcoord, int ycoord) {
+  protected static boolean updateNodeCoords(Connection conn, Node node, int xcoord, int ycoord) {
     String statement = "UPDATE Nodes SET xcoord= ?, ycoord= ?WHERE nodeID = ?";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
@@ -198,7 +202,7 @@ public class Ddb {
    * @param name The new name that
    * @return true if updating the database succeeded and false if it failed
    */
-  private static boolean updateNameOfLocation(Connection conn, String nodeID, locationName curLoc, String name) {
+  protected static boolean updateNameOfLocation(Connection conn, String nodeID, locationName curLoc, String name) {
     String statement = "UPDATE locationNames SET longname= ? WHERE longName = ?";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
@@ -230,7 +234,7 @@ public class Ddb {
    * @param Edges The list of all the edges in the database, contained locally in a list
    * @return true if updating the database succeeded and false if it failed
    */
-  private static boolean deleteNode(
+  protected static boolean deleteNode(
       Connection conn, Node node, ArrayList<Node> Nodes, ArrayList<Edge> Edges) {
     String deleteNode = "DELETE FROM Nodes WHERE nodeID = ?";
     ArrayList<String> edgesToRemove = new ArrayList<String>();
@@ -277,7 +281,7 @@ public class Ddb {
    * @param Edges The list of all the edges in the database, contained locally in a list
    * @return true if updating the database succeeded and false if it failed
    */
-  private static boolean deleteEdge(Connection conn, String startNode, String endNode, ArrayList<Edge> Edges) {
+  protected static boolean deleteEdge(Connection conn, String startNode, String endNode, ArrayList<Edge> Edges) {
     String deleteEdge = "DELETE FROM Edges WHERE (startNode = ? AND endNode = ?)";
     try {
       PreparedStatement pstmt = conn.prepareStatement(deleteEdge);
@@ -316,6 +320,49 @@ public class Ddb {
       logStream.close();
     } catch (IOException e) {
       System.out.println("failed to create file");
+    }
+  }
+
+  protected ArrayList<PatientTransportData> getJavaPatientForms(Connection conn){
+    ResultSet rset = null;
+    ArrayList<PatientTransportData> formList = new ArrayList<PatientTransportData>();
+    String statement = "SELECT * FROM PatientTransportData";
+    try {
+      PatientTransportData tempform = new PatientTransportData();
+      PreparedStatement pstmt = conn.prepareStatement(statement);
+      rset = pstmt.executeQuery();
+      while (rset.next()) {
+        tempform.patientID(rset.getString("patientID"));
+        tempform.setStartRoom(rset.getString("startRoom"));
+        tempform.setEndRoom(rset.getString("endRoom"));
+        tempform.setEquipment(rset.getString("equipment"));
+        tempform.setReason(rset.getString("reason"));
+        tempform.setSendTo(rset.getString("sendTo"));
+        tempform.add(formList);
+      }
+      rset.close();
+      return formList;
+    } catch (SQLException e) {
+      return formList;
+    }
+  }
+
+  protected boolean insertNewForm(Connection conn, ArrayList<Object> values){
+    String statement = "INSERT INTO PatientTransportData PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo) VALUES(?,?,?,?,?,?)";
+    try {
+      PreparedStatement pstmnt = conn.prepareStatement(statement);
+      for(int i=0; i<values.size();i++){
+        if(values.isEmpty()) {
+          System.out.println("No values found");
+          return true;
+        }
+        pstmnt.setObject(i,values.get(i));
+
+      }
+      pstmnt.executeUpdate();
+      return true;
+    } catch (SQLException e) {
+      return false;
     }
   }
 }
