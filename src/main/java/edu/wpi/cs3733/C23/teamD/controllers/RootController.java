@@ -22,4 +22,9 @@ public class RootController {
   void openSanitationForm() {
     Navigation.navigate(Screen.SANITATION_FORM);
   }
+
+  @FXML
+  void openPatientTransport() {
+    Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST);
+  }
 }
