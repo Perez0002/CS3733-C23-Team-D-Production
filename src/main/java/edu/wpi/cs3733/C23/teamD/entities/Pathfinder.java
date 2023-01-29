@@ -1,102 +1,94 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-import javafx.util.Pair;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import javafx.util.Pair;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+public class Pathfinder {
+  private GraphMap fullMap;
 
-public class Pathfinder
-{
-   private GraphMap fullMap;
-   public Pathfinder(GraphMap fullMap)
-   {
-      this.fullMap = fullMap;
-   }
-   public void init()
-   {
-      this.fullMap.init();
-   }
+  public Pathfinder(GraphMap fullMap) {
+    this.fullMap = fullMap;
+  }
 
-   public void initFromCSV(String nodePath, String edgePath)
-   {
-      this.fullMap.initFromCSV(nodePath, edgePath);
-   }
+  public void init() {
+    this.fullMap.init();
+  }
 
-   private class PathCostPair extends Pair<ArrayList<PathNode>, Double>
-   {
-      public PathCostPair(ArrayList<PathNode> n, double c) {
-         super(n, c);
-      }
-   }
+  public void initFromCSV(String nodePath, String edgePath) {
+    this.fullMap.initFromCSV(nodePath, edgePath);
+  }
 
-   private class PathCostPairComparator implements Comparator<PathCostPair>
-   {
-      public int compare(PathCostPair i, PathCostPair p) {
-         return i.getValue().compareTo(p.getValue());
-      }
-   }
+  private class PathCostPair extends Pair<ArrayList<PathNode>, Double> {
+    public PathCostPair(ArrayList<PathNode> n, double c) {
+      super(n, c);
+    }
+  }
 
-   private double getHeuristic(PathNode currentNode, PathNode goalNode) {
-      double heuristic =
-              sqrt(
-                      pow(currentNode.getNodeX() - goalNode.getNodeX(), 2)
-                              + pow(currentNode.getNodeY() - goalNode.getNodeY(), 2));
-      return heuristic;
-   }
+  private class PathCostPairComparator implements Comparator<PathCostPair> {
+    public int compare(PathCostPair i, PathCostPair p) {
+      return i.getValue().compareTo(p.getValue());
+    }
+  }
 
-   public ArrayList<PathNode> aStarSearch(PathNode startNode, PathNode endNode)
-   {
-      // init variables
-      ArrayList<PathNode> path = new ArrayList<PathNode>();
-      HashMap<String, PathNode> beenNodes = new HashMap<String, PathNode>();
-      PriorityQueue<PathCostPair> queue =
-              new PriorityQueue<PathCostPair>(5, new PathCostPairComparator());
+  private double getHeuristic(PathNode currentNode, PathNode goalNode) {
+    double heuristic =
+        sqrt(
+            pow(currentNode.getNodeX() - goalNode.getNodeX(), 2)
+                + pow(currentNode.getNodeY() - goalNode.getNodeY(), 2));
+    return heuristic;
+  }
 
-      // add starting Node to beginning of path
-      path.add(startNode);
+  public ArrayList<PathNode> aStarSearch(PathNode startNode, PathNode endNode) {
+    // init variables
+    ArrayList<PathNode> path = new ArrayList<PathNode>();
+    HashMap<String, PathNode> beenNodes = new HashMap<String, PathNode>();
+    PriorityQueue<PathCostPair> queue =
+        new PriorityQueue<PathCostPair>(5, new PathCostPairComparator());
 
-      PathCostPair currentPath = null;
+    // add starting Node to beginning of path
+    path.add(startNode);
 
-      queue.add(new PathCostPair(path, 0));
+    PathCostPair currentPath = null;
 
-      // Loop as long as something is in the queue
-      while (!queue.isEmpty()) {
+    queue.add(new PathCostPair(path, 0));
 
-         // remove and get the first 'path' in the queue
-         currentPath = queue.poll();
+    // Loop as long as something is in the queue
+    while (!queue.isEmpty()) {
 
-         PathNode currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
+      // remove and get the first 'path' in the queue
+      currentPath = queue.poll();
 
-         // Put the Node we are at right now into list of Nodes we have been to
-         beenNodes.put(currentNode.getNodeID(), currentNode);
+      PathNode currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
 
-         if (currentNode.equals(endNode)) {
-            // if the current Node is our target Node, we are done, exit loop
-            return currentPath.getKey();
-         }
+      // Put the Node we are at right now into list of Nodes we have been to
+      beenNodes.put(currentNode.getNodeID(), currentNode);
 
-         // for every connection in our current Node, add  those we have not been too to the queue
-         for (PathEdge e : currentNode.getNodeEdges()) {
-            if (!beenNodes.containsKey(e.getToNode())) {
-               ArrayList<PathNode> temp = (ArrayList)currentPath.getKey().clone();
-               temp.add(e.getToNode());
-               queue.add(
-                       new PathCostPair(
-                               temp,
-                               currentPath.getValue()
-                                       + e.getCost()
-                                       + getHeuristic(e.getToNode(), endNode)));
-            }
-         }
+      if (currentNode.equals(endNode)) {
+        // if the current Node is our target Node, we are done, exit loop
+        return currentPath.getKey();
       }
 
-      // In the event a Node could not be found, return default path
-      System.out.println("Could not find Node!");
-      return path;
-   }
+      // for every connection in our current Node, add  those we have not been too to the queue
+      for (PathEdge e : currentNode.getNodeEdges()) {
+        if (!beenNodes.containsKey(e.getToNode())) {
+          ArrayList<PathNode> temp = (ArrayList) currentPath.getKey().clone();
+          temp.add(e.getToNode());
+          queue.add(
+              new PathCostPair(
+                  temp,
+                  currentPath.getValue() + e.getCost() + getHeuristic(e.getToNode(), endNode)));
+        }
+      }
+    }
+
+    // In the event a Node could not be found, return default path
+    System.out.println("Could not find Node!");
+    return path;
+  }
 }
