@@ -36,5 +36,6 @@ public class PathNode
       this.nodeType = nodeType;
       this.longName = longName;
       this.shortName = shortName;
+      this.nodeEdges = new ArrayList<PathEdge>();
    }
 }
