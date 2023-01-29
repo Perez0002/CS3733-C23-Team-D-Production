@@ -1,4 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
+
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
@@ -34,7 +35,8 @@ public class PathfindingController {
   void submit() {
     GraphMap mainMap = new GraphMap();
     System.out.println("hi");
-
+    mainMap.initFromCSV("data/L1Nodes.csv", "data/L1Edges.csv");
+    System.out.println("hi");
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
     ArrayList<PathNode> Path = new ArrayList<PathNode>();
     System.out.println(startRoom.getText());

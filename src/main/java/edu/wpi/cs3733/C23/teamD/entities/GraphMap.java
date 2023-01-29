@@ -8,8 +8,10 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class GraphMap {
-  private HashMap<String, PathNode> nodeMap;
-  private HashMap<String, PathEdge> edgeMap;
+  // private HashMap<String, PathNode> nodeMap;
+  // private HashMap<String, PathEdge> edgeMap;
+  private HashMap<String, PathNode> nodeMap = new HashMap<String, PathNode>();
+  private HashMap<String, PathEdge> edgeMap = new HashMap<String, PathEdge>();
 
   public void init() {
     // do something lol;
