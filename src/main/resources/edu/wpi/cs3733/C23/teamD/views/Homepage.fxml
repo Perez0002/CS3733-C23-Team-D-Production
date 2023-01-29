@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="homepageBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
+<BorderPane fx:id="homepageBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
    <bottom>
       <HBox fx:id="bottomVbox" alignment="CENTER" fillHeight="false" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
@@ -52,6 +57,11 @@
                <VBox.margin>
                   <Insets left="100.0" right="100.0" />
                </VBox.margin>
+            </MFXButton>
+            <MFXButton fx:id="pathfindingButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="200.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="Pathfinding Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
             </MFXButton>
             <Label fx:id="aboutLabel" prefHeight="69.0" prefWidth="400.0" text="This homepage was created by Olivia P. The Internal Patient Transportation Request Form was created by Annie Z and Mike W. The Santiation Services Request Form was created by Wyatt H and Gibson P." textAlignment="CENTER" wrapText="true">
                <VBox.margin>

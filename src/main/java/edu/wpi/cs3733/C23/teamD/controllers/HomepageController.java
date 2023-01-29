@@ -16,6 +16,8 @@ public class HomepageController {
 
   @FXML MFXButton sanitationServiceRequestFormButton;
 
+  @FXML MFXButton pathfindingButton;
+
   @FXML private BorderPane homepageBorderPane;
 
   @FXML private Label serviceRequestHelpText;
@@ -26,6 +28,7 @@ public class HomepageController {
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST));
     sanitationServiceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SANITATION_FORM));
+    pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
   }
 
   @FXML
