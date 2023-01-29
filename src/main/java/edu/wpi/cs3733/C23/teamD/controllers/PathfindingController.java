@@ -58,7 +58,11 @@ public class PathfindingController {
     Path =
         PathfinderAStar.aStarSearch(
             mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
-    System.out.println(Path.toString());
-    pathResultText.setText(Path.toString());
+    String out = "";
+    out += "[";
+    for (PathNode n : Path) {
+      out += " " + n.getShortName() + ",";
+    }
+    pathResultText.setText(out);
   }
 }
