@@ -22,6 +22,11 @@ public class Pathfinder
       this.fullMap.init();
    }
 
+   public void initFromCSV(String nodePath, String edgePath)
+   {
+      this.fullMap.initFromCSV(nodePath, edgePath);
+   }
+
    private class PathCostPair extends Pair<ArrayList<PathNode>, Double>
    {
       public PathCostPair(ArrayList<PathNode> n, double c) {
