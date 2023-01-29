@@ -14,7 +14,6 @@
          <children>
             <MFXTextField fx:id="startRoom" text="Enter the starting room" />
             <MFXTextField fx:id="endRoom" text="Enter the destination" />
-            <Text fx:id="pathText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
                   <MFXButton onAction="#submit" text="Submit Request" />
