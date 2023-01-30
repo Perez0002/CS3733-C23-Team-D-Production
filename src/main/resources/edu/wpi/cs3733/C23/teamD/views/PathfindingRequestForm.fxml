@@ -16,7 +16,7 @@
             <VBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="600.0">
                <children>
                   <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the room you will start from." visible="false" />
-                  <MFXComboBox fx:id="startRoomComboBox" />
+                  <fx:include fx:id="roomPicker" source="RoomPickComboBox.fxml"  />
                   <MFXTextField fx:id="startRoom" borderGap="0.0" floatingText="Enter the starting room" prefWidth="200.0" />
                </children>
             </VBox>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+
+
+<MFXFilterComboBox fx:id="mfxFilterComboBox" floatingText="Pick a room" xmlns="http://javafx.com/javafx/19" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController" xmlns:fx="http://javafx.com/fxml/1" />

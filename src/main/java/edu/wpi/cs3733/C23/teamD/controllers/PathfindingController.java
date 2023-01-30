@@ -6,18 +6,17 @@ import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
-import java.util.HashMap;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PathfindingController {
   @FXML private MFXButton cancelButton;
 
-  @FXML private MFXComboBox<String> startRoomComboBox;
+  @FXML private Parent roomPicker;
+  @FXML private RoomPickComboBoxController roomPickerController;
   @FXML private Text endRoomHelpText;
 
   @FXML private Text startRoomHelpText;
@@ -30,16 +29,11 @@ public class PathfindingController {
 
   private boolean helpVisible = false;
 
-  private HashMap<String, String> hTable = new HashMap<>();
-
   @FXML
   public void initialize() {
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-
-    hTable.put("some room", "CCONF001L1");
-    hTable.put("some other room", "CCONF002L1");
-
-    startRoomComboBox.setItems(FXCollections.observableArrayList(hTable.values()));
+    System.out.println(roomPicker.getClass());
+    System.out.println(roomPickerController.getValue());
   }
 
   @FXML
@@ -57,6 +51,7 @@ public class PathfindingController {
 
   @FXML
   void submit() {
+    System.out.println(roomPickerController.getValue());
     GraphMap mainMap = new GraphMap();
     System.out.println("hi");
     mainMap.initFromCSV("data/L1Nodes.csv", "data/L1Edges.csv");
@@ -65,8 +60,7 @@ public class PathfindingController {
     ArrayList<PathNode> Path = new ArrayList<PathNode>();
     System.out.println(startRoom.getText());
     System.out.println(endRoom.getText());
-    System.out.println(this.hTable.get(startRoomComboBox.getValue()));
-
+    System.out.println();
     Path =
         PathfinderAStar.aStarSearch(
             mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
