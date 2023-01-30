@@ -61,7 +61,7 @@ public class PathfindingController {
     String out = "";
     out += "[";
     for (Node n : Path) {
-      out += " " + n.getLocation().getShortName() + ",";
+      out += " " + n.getNodeID() + ",";
     }
     pathResultText.setText(out);
   }

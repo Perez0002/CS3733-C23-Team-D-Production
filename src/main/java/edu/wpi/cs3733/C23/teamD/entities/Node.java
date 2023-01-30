@@ -12,7 +12,7 @@ public class Node {
   private ArrayList<Edge> nodeEdges;
 
   public Node(int xcoord, int ycoord, String floor, String building) {
-    this.nodeID = floor + xcoord + ycoord;
+    this.nodeID = floor +"X"+ xcoord + "Y" +ycoord;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
