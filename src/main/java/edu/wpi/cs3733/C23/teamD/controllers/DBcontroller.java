@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 public class DBcontroller extends Application implements Initializable {
 
@@ -56,19 +59,37 @@ public class DBcontroller extends Application implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    tableinit();
+  }
+
+  public void tableinit() {
+    nodeTableView.setEditable(true);
+    locationNameTableView.setEditable(true);
     Connection conn = Ddb.makeConnection();
     ObservableList<Node> nodeList = FXCollections.observableArrayList(Ddb.createJavaNodes(conn));
     ObservableList<locationName> locList =
         FXCollections.observableArrayList(Ddb.createJavaLocat(conn));
     nodeID.setCellValueFactory(new PropertyValueFactory<Node, String>("nodeID"));
     xCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Xcoord"));
+    xCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     yCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Ycoord"));
+    yCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     floor.setCellValueFactory(new PropertyValueFactory<Node, String>("floor"));
+    floor.setCellFactory(TextFieldTableCell.forTableColumn());
     building.setCellValueFactory(new PropertyValueFactory<Node, String>("building"));
+    building.setCellFactory(TextFieldTableCell.forTableColumn());
     longName.setCellValueFactory(new PropertyValueFactory<locationName, String>("longName"));
+    longName.setCellFactory(TextFieldTableCell.forTableColumn());
     shortName.setCellValueFactory(new PropertyValueFactory<locationName, String>("shortName"));
+    shortName.setCellFactory(TextFieldTableCell.forTableColumn());
     locationType.setCellValueFactory(
         new PropertyValueFactory<locationName, String>("locationType"));
+    locationType.setCellFactory(TextFieldTableCell.forTableColumn());
+    locationType.setOnEditCommit(
+        new EventHandler<TableColumn.CellEditEvent<locationName, String>>() {
+          @Override
+          public void handle(TableColumn.CellEditEvent<locationName, String> event) {}
+        });
     nodeTableView.setItems(nodeList);
     locationNameTableView.setItems(locList);
   }

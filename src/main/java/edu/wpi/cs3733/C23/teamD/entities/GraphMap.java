@@ -2,7 +2,6 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,16 +70,16 @@ public class GraphMap {
     Connection conn = makeConnection();
     ArrayList<Node> nodeList = createJavaNodes(conn);
     ArrayList<Edge> edgeList = createJavaEdges(conn, nodeList);
-    ArrayList<locationName> locList = Ddb.createJavaLocat(conn);
+    ArrayList<locationName> locList = createJavaLocat(conn);
     for (Node node : nodeList) {
       nodeMap.put(node.getNodeID(), node);
-      ResultSet rset = null;
+      ResultSet rset;
       String curName = "";
       try {
         PreparedStatement pstmnt = conn.prepareStatement("SELECT * FROM Move where nodeID = ?");
         pstmnt.setString(1, node.getNodeID());
         rset = pstmnt.executeQuery();
-        curName = rset.getString("longName");
+        if (rset.next()) curName = rset.getString("longName");
         for (locationName loc : locList) {
           if (loc.getLongName().equals(curName)) {
             node.setLocation(loc);
