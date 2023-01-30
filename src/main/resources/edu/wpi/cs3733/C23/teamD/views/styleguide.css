@@ -8,15 +8,17 @@
     -fx-background-repeat: no-repeat;
 }
 
-.MFXButton{
-    -fx-border-radius: 15px;
+.button {
+    -fx-background-color: #123486; /* Blue */
+    -fx-border: none;
     -fx-color: #ffffff;
-    -fx-background: #123486;
+    -fx-border-radius: 15px;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-font-size: 14pt;
 }
 
-.MenuButton{
-    -fx-border-radius: 15px;
-    -fx-color: #ffffff;
-    -fx-background: #123486;
-    -fx-color: #ffffff;
+#hospitalname{
+    -fx-color: #123486;
 }
