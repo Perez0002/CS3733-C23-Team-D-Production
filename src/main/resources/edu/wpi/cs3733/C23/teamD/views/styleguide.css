@@ -1,0 +1,22 @@
+.root{
+    -fx-font-size: 16pt;
+    -fx-font-family: "Open Sans";
+    -fx-base: #123486;
+    -fx-background: #f5f5f5;
+    -fx-background-size: cover;
+    -fx-background-image: url('Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+}
+
+.MFXButton{
+    -fx-border-radius: 15px;
+    -fx-color: #ffffff;
+    -fx-background: #123486;
+}
+
+.MenuButton{
+    -fx-border-radius: 15px;
+    -fx-color: #ffffff;
+    -fx-background: #123486;
+    -fx-color: #ffffff;
+}
