@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
-import edu.wpi.cs3733.C23.teamD.entities.PathNode;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -48,10 +48,10 @@ public class PathfindingController {
   void submit() {
     GraphMap mainMap = new GraphMap();
     System.out.println("hi");
-    mainMap.initFromCSV("data/L1Nodes.csv", "data/L1Edges.csv");
+    mainMap.initFromDB();
     System.out.println("hi");
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
-    ArrayList<PathNode> Path = new ArrayList<PathNode>();
+    ArrayList<Node> Path = new ArrayList<Node>();
     System.out.println(startRoom.getText());
     System.out.println(endRoom.getText());
 
@@ -60,8 +60,8 @@ public class PathfindingController {
             mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
     String out = "";
     out += "[";
-    for (PathNode n : Path) {
-      out += " " + n.getShortName() + ",";
+    for (Node n : Path) {
+      out += " " + n.getLocation().getShortName() + ",";
     }
     pathResultText.setText(out);
   }

@@ -8,6 +8,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
@@ -64,6 +65,11 @@ public class PatientTransportController {
               PatientTransportData.status.PROCESSING); // creates PatientTransportData object
       Connection conn = Ddb.makeConnection();
       Ddb.insertNewForm(conn, patientInformation);
+      try {
+        conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
       // patientInformation.printInformation(); // for debeugging purposes
       submittedFormText.setVisible(true);
     }

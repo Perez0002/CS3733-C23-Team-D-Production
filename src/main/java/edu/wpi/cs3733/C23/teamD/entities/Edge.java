@@ -1,35 +1,51 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
 public class Edge {
-  private String startNode;
-  private String endNode;
+  private String edgeID;
+  private Node fromNode;
+  private Node toNode;
 
   private double cost;
 
-  public Edge(String startNode, String endNode) {
-    this.startNode = startNode;
-    this.endNode = endNode;
+  public Edge(Node fromNode, Node toNode) {
+    this.fromNode = fromNode;
+    this.toNode = toNode;
+    edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
+    cost =
+        Math.sqrt(
+            Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
+                + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
   }
 
   public Edge() {
-    this.startNode = "";
-    this.endNode = "";
+    this.toNode = new Node();
+    this.fromNode = new Node();
+    edgeID = "";
+    cost = 0;
   }
 
-  public String getStartNode() {
-    return startNode;
+  public String getEdgeID() {
+    return edgeID;
   }
 
-  public void setStartNode(String startNode) {
-    this.startNode = startNode;
+  public void setEdgeID(String edgeID) {
+    this.edgeID = edgeID;
   }
 
-  public String getEndNode() {
-    return endNode;
+  public Node getFromNode() {
+    return fromNode;
   }
 
-  public void setEndNode(String endNode) {
-    this.endNode = endNode;
+  public void setFromNode(Node fromNode) {
+    this.fromNode = fromNode;
+  }
+
+  public Node getToNode() {
+    return toNode;
+  }
+
+  public void setToNode(Node toNode) {
+    this.toNode = toNode;
   }
 
   public double getCost() {
