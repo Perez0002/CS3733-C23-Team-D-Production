@@ -1,14 +1,13 @@
 package edu.wpi.teamname;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
 
 public class Ddb {
-
   private static final File logFile = new File("logfile.txt");
   /**
    * Establishes the connection to the database
@@ -136,10 +135,10 @@ public class Ddb {
     ArrayList<locationName> locationList = new ArrayList<locationName>();
     String statement = "SELECT * FROM LocationName";
     try {
-      locationName tempLoc = new locationName();
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
       while (rset.next()) {
+        locationName tempLoc = new locationName();
         tempLoc.setLongName(rset.getString("longName"));
         tempLoc.setShortName(rset.getString("shortName"));
         tempLoc.setLocationType(rset.getString("locationType"));
@@ -162,7 +161,7 @@ public class Ddb {
    * @return true if updating the database succeeded and false if it failed
    */
   protected static boolean updateNodeCoords(Connection conn, Node node, int xcoord, int ycoord) {
-    String statement = "UPDATE Nodes SET xcoord= ?, ycoord= ?WHERE nodeID = ?";
+    String statement = "UPDATE Node SET xcoord= ?, ycoord= ?WHERE nodeID = ?";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
       pstmt.setInt(1, xcoord);
@@ -182,6 +181,13 @@ public class Ddb {
               + ycoord);
       node.setXcoord(xcoord);
       node.setYcoord(ycoord);
+      statement = "INSERT Move SET nodeID= ?, longName= ? movedate = ?";
+      pstmt = conn.prepareStatement(statement);
+      pstmt.setString(1, node.getNodeID());
+      pstmt.setString(2, node.getLocation().getLongName());
+      java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+      pstmt.setDate(3, date);
+      pstmt.executeUpdate();
       return true;
     } catch (SQLException e) {
       return false;
@@ -199,7 +205,7 @@ public class Ddb {
    */
   protected static boolean updateNameOfLocation(
       Connection conn, String nodeID, locationName curLoc, String name) {
-    String statement = "UPDATE locationNames SET longname= ? WHERE longName = ?";
+    String statement = "UPDATE locationName SET longname= ? WHERE longName = ?";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
       pstmt.setString(1, name);
@@ -230,9 +236,9 @@ public class Ddb {
    * @param Edges The list of all the edges in the database, contained locally in a list
    * @return true if updating the database succeeded and false if it failed
    */
-  protected static boolean deleteNode(
+  private static boolean deleteNode(
       Connection conn, Node node, ArrayList<Node> Nodes, ArrayList<Edge> Edges) {
-    String deleteNode = "DELETE FROM Nodes WHERE nodeID = ?";
+    String deleteNode = "DELETE FROM Node WHERE nodeID = ?";
     ArrayList<String> edgesToRemove = new ArrayList<String>();
     try {
       PreparedStatement pstmt = conn.prepareStatement(deleteNode);
@@ -273,7 +279,7 @@ public class Ddb {
    * @param Edges The list of all the edges in the database, contained locally in a list
    * @return true if updating the database succeeded and false if it failed
    */
-  protected static boolean deleteEdge(
+  private static boolean deleteEdge(
       Connection conn, String startNode, String endNode, ArrayList<Edge> Edges) {
     String deleteEdge = "DELETE FROM Edges WHERE (startNode = ? AND endNode = ?)";
     try {
@@ -311,47 +317,137 @@ public class Ddb {
       System.out.println("failed to create file");
     }
   }
+  /*
 
-  protected ArrayList<PatientTransportData> getJavaPatientForms(Connection conn) {
-    ResultSet rset = null;
-    ArrayList<PatientTransportData> formList = new ArrayList<PatientTransportData>();
-    String statement = "SELECT * FROM PatientTransportData";
-    try {
-      PatientTransportData tempform = new PatientTransportData();
-      PreparedStatement pstmt = conn.prepareStatement(statement);
-      rset = pstmt.executeQuery();
-      while (rset.next()) {
-        tempform.setPatientID(rset.getString("patientID"));
-        tempform.setStartRoom(rset.getString("startRoom"));
-        tempform.setEndRoom(rset.getString("endRoom"));
-        tempform.setEquipment((ArrayList<String>) rset.getObject("equipment"));
-        tempform.setReason(rset.getString("reason"));
-        tempform.setSendTo((String[]) rset.getObject("sendTo"));
-        formList.add(tempform);
-      }
-      rset.close();
-      return formList;
-    } catch (SQLException e) {
-      return formList;
-    }
-  }
-
-  protected boolean insertNewForm(Connection conn, ArrayList<Object> values) {
+  protected static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
-        "INSERT INTO PatientTransportData PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo) VALUES(?,?,?,?,?,?)";
+        "INSERT INTO PatientTransportData PatientTransportData(startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,CAST(? AS status))";
     try {
       PreparedStatement pstmnt = conn.prepareStatement(statement);
-      for (int i = 0; i < values.size(); i++) {
-        if (values.isEmpty()) {
-          System.out.println("No values found");
-          return true;
-        }
-        pstmnt.setObject(i, values.get(i));
-      }
+      pstmnt.setString(1, form.getStartRoom());
+      pstmnt.setString(2, form.getEndRoom());
+      pstmnt.setString(3, String.join(",", form.getEquipment()));
+      pstmnt.setString(4, form.getReason());
+      pstmnt.setString(5,String.join(",", form.getSendTo()));
+      pstmnt.setString(6, form.getStat().toString());
       pstmnt.executeUpdate();
       return true;
     } catch (SQLException e) {
       return false;
+    }
+  }
+*/
+  protected static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
+    String statement = "SELECT * FROM PatientTransportData";
+    ArrayList<PatientTransportData> transportList = new ArrayList<PatientTransportData>();
+    try {
+      PreparedStatement pstmnt = conn.prepareStatement(statement);
+      ResultSet rset = pstmnt.executeQuery();
+      while (rset.next()) {
+        PatientTransportData transportForm = new PatientTransportData();
+        transportForm.setPatientTransportID(rset.getInt("patienttransportid"));
+        transportForm.setStartRoom(rset.getString("startroom"));
+        transportForm.setEndRoom(rset.getString("endroom"));
+        List<String> stringList = Arrays.asList((rset.getString("equipment")).split(","));
+        ArrayList<String> strings = new ArrayList<>(stringList);
+        transportForm.setEquipment(strings);
+        transportForm.setSendTo((rset.getString("sendTo")).split(","));
+        transportForm.setReason(rset.getString("reason"));
+        transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
+      }
+      return transportList;
+    } catch (SQLException e) {
+      return null;
+    }
+  }
+
+  public static void csv2DBInsertions(String tablename, String csvFilePath) {
+    Connection conn = makeConnection();
+    try {
+      conn.setAutoCommit(false);
+      String sql = "";
+      if (tablename.equals("Node")) {
+        sql = "INSERT INTO node values (?, ?, ?, ?, ?)";
+      } else if (tablename.equals("Edge")) {
+        sql = "INSERT INTO edge values (?, ?)";
+      } else if (tablename.equals("LocationName")) {
+        sql = "INSERT INTO locationname values (?, ?, ?)";
+      } else {
+        System.out.println("The table does not exist.");
+      }
+
+      PreparedStatement statement = conn.prepareStatement(sql);
+      BufferedReader lineReader = new BufferedReader(new FileReader(csvFilePath));
+      String lineText = null;
+      int count = 0;
+      lineReader.readLine(); // skip header line
+
+      while ((lineText = lineReader.readLine()) != null) {
+        String[] data = lineText.split(",");
+        if (tablename.equals("Node")) {
+          String nodeID = data[0];
+          String xcoord = data[1];
+          String ycoord = data[2];
+          String floor = data[3];
+          String building = data[4];
+
+          statement.setString(1, nodeID);
+          statement.setInt(2, Integer.parseInt(xcoord));
+          statement.setInt(3, Integer.parseInt(ycoord));
+          statement.setString(4, floor);
+          statement.setString(5, building);
+
+          statement.addBatch();
+
+          if (count % 20 == 0) {
+            statement.executeBatch();
+          }
+        } else if (tablename.equals("Edge")) {
+          String node1 = data[0];
+          String node2 = data[1];
+
+          statement.setString(1, node1);
+          statement.setString(2, node2);
+
+          statement.addBatch();
+
+          if (count % 20 == 0) {
+            statement.executeBatch();
+          }
+        } else if (tablename.equals("LocationName")) {
+          String longName = data[6];
+          String shortName = data[7];
+          String nodeType = data[5];
+
+          statement.setString(1, longName);
+          statement.setString(2, shortName);
+          statement.setString(3, nodeType);
+
+          statement.addBatch();
+
+          if (count % 20 == 0) {
+            statement.executeBatch();
+          }
+        }
+      }
+      lineReader.close();
+      // execute the remaining queries
+      statement.executeBatch();
+      System.out.println("Data entered successfully.");
+
+      // closing connection
+      conn.commit();
+      conn.close();
+
+    } catch (IOException ex) {
+      System.err.println(ex);
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+      try {
+        conn.rollback();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
   }
 }
