@@ -1,9 +1,8 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.*;
 import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.Node;
-import edu.wpi.cs3733.C23.teamD.locationName;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
+import edu.wpi.cs3733.C23.teamD.entities.locationName;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;

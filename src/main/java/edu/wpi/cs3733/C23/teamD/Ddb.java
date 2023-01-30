@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -319,7 +320,7 @@ public class Ddb {
     }
   }
 
-  protected static boolean insertNewForm(Connection conn, PatientTransportData form) {
+  public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
         "INSERT INTO PatientTransportData(startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,CAST(? AS STAT))";
     try {

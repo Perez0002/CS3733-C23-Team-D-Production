@@ -1,5 +1,8 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
+import edu.wpi.cs3733.C23.teamD.entities.locationName;
 import java.sql.*;
 import java.util.ArrayList;
 
