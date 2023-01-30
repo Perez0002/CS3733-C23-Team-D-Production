@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Ddb {
+
   private static final File logFile = new File("logfile.txt");
   /**
    * Establishes the connection to the database
@@ -48,9 +49,12 @@ public class Ddb {
       while (rset.next()) {
         Edge tempEdge = new Edge();
         for (Node node : Nodes) {
-          if (node.getNodeID().equals(rset.getString("startnode"))) tempEdge.setFromNode(node);
-          else if (node.getNodeID().equals(rset.getString("endnode"))) tempEdge.setToNode(node);
+          if (node.getNodeID().equals(rset.getString("startnode")))
+            tempEdge.setFromNode(node);
+          else if (node.getNodeID().equals(rset.getString("endnode")))
+            tempEdge.setToNode(node);
         }
+        edgeList.add(tempEdge);
       }
       rset.close();
       return edgeList;
@@ -101,10 +105,10 @@ public class Ddb {
     ArrayList<Move> moveList = new ArrayList<Move>();
     String statement = "SELECT * FROM Move";
     try {
-      Move tempMove = new Move();
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
       while (rset.next()) {
+        Move tempMove = new Move();
         tempMove.setLongName(rset.getString("nodeID"));
         tempMove.setNodeID(rset.getString("longName"));
         Date checkDate = rset.getDate("moveDate");
