@@ -1,84 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="648.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationRequestController">
-   <children>
-      <VBox prefHeight="469.0" prefWidth="383.0" AnchorPane.leftAnchor="0.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="903.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationRequestController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="BOTTOM_LEFT">
          <children>
-            <MFXButton fx:id="buttonHelp" onAction="#displayHelp" prefHeight="3.0" prefWidth="10.0" text="?" />
-            <Text fx:id="textHelp" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Request Form" wrappingWidth="197.68865776062012">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Text>
-            <Text fx:id="textReason" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason">
-               <VBox.margin>
-                  <Insets left="10.0" top="20.0" />
-               </VBox.margin></Text>
-            <MFXTextField fx:id="fieldReason" borderGap="0.0">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <Text fx:id="textLocation" strokeType="OUTSIDE" strokeWidth="0.0" text="Location">
-               <VBox.margin>
-                  <Insets left="10.0" top="20.0" />
-               </VBox.margin></Text>
-            <MFXTextField fx:id="fieldLocation">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin></MFXTextField>
-            <Text fx:id="textBiohazardLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level">
-               <VBox.margin>
-                  <Insets left="10.0" top="20.0" />
-               </VBox.margin></Text>
-            <MFXRadioButton fx:id="radioBSL1" prefHeight="18.0" prefWidth="83.0" text="BSL-1 - Minimal Hazards">
-               <toggleGroup>
-                  <ToggleGroup fx:id="BSL" />
-               </toggleGroup>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </MFXRadioButton>
-            <MFXRadioButton fx:id="radioBSL2" text="BSL-2 - Moderate Hazards" toggleGroup="$BSL">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </MFXRadioButton>
-            <MFXRadioButton fx:id="radioBSL3" text="BSL-3 - Serious Hazards" toggleGroup="$BSL">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-               </VBox.margin></MFXRadioButton>
-            <MFXRadioButton fx:id="radioBSL4" text="BSL-4 - Most Complex" toggleGroup="$BSL">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-               </VBox.margin></MFXRadioButton>
-            <Text fx:id="textHelp" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason, location, and biohazard level then press submit" visible="false" />
-            <MFXButton fx:id="buttonClear" onAction="#clearFields" text="Clear all" />
-            <Text fx:id="formSubmittedText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted." visible="false" />
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Text fx:id="incompleteForm" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MFXButton fx:id="buttonSubmit" alignment="BOTTOM_CENTER" layoutX="289.0" layoutY="10.0" onAction="#submit" rippleColor="#a1a1a1" style="-fx-background-color: #7be075;" text="Submit">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </MFXButton>
-                  <MFXButton fx:id="buttonCancel" layoutX="213.0" layoutY="9.0" text="Cancel">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </MFXButton>
+                  <MFXTextField fx:id="fieldLocation" floatingText="Location" prefWidth="200.0" />
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." visible="false" wrappingWidth="220.88671875" />
                </children>
-            </Pane>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MFXTextField fx:id="fieldReason" floatingText="Reason for Request" prefWidth="200.0" />
+                  <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for transporting this patient" visible="false" wrappingWidth="208.091796875" />
+               </children>
+            </HBox>
+            <Text fx:id="submittedFormText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <MFXButton fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" />
+                  <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
+                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submit" text="Submit" />
+                  <MFXButton fx:id="buttonHelp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
       </VBox>
-   </children>
-</AnchorPane>
+   </center>
+   <top>
+      <Label text="Sanitation Request Form" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <right>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level:" />
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <MFXRadioButton fx:id="radioBSL1" prefHeight="18.0" prefWidth="83.0" text="BSL-1 - Minimal Hazards">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="BSL" />
+                     </toggleGroup>
+                  </MFXRadioButton>
+                  <MFXRadioButton fx:id="radioBSL2" text="BSL-2 - Moderate Hazards">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="BSL" />
+                     </toggleGroup>
+                  </MFXRadioButton>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <MFXRadioButton fx:id="radioBSL3" text="BSL-3 - Serious Hazards">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="BSL1" />
+                     </toggleGroup>
+                  </MFXRadioButton>
+                  <MFXRadioButton fx:id="radioBSL4" text="BSL-4 - Most Complex">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="BSL1" />
+                     </toggleGroup>
+                  </MFXRadioButton>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="-100.0" right="175.0" top="200.0" />
+         </padding>
+      </HBox>
+   </right>
+</BorderPane>

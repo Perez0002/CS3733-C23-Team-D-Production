@@ -20,11 +20,11 @@ public class SanitationRequestController {
   @FXML private MFXTextField fieldReason;
   @FXML private MFXTextField fieldLocation;
   @FXML private Text formSubmittedText;
-  @FXML MFXButton buttonCancel;
+  @FXML MFXButton cancelButton;
 
   @FXML
   public void initialize() {
-    buttonCancel.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
