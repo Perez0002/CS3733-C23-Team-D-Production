@@ -34,6 +34,12 @@ public class App extends Application {
     App.rootPane = root;
 
     final Scene scene = new Scene(root);
+
+    // style sheet
+    String css = this.getClass().getResource("views/styleguide.css").toExternalForm();
+    scene.getStylesheets().add(css);
+    // end style sheet
+
     primaryStage.setScene(scene);
     primaryStage.setMaximized(true);
     primaryStage.show();
