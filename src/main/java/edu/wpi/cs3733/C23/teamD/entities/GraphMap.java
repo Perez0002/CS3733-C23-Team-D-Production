@@ -83,7 +83,6 @@ public class GraphMap {
         curName = rset.getString("longName");
         for (locationName loc : locList) {
           if (loc.getLongName().equals(curName)) {
-            System.out.println("works");
             node.setLocation(loc);
             break;
           }
@@ -96,6 +95,8 @@ public class GraphMap {
     for (Edge edge : edgeList) {
       edgeMap.put(edge.getEdgeID(), edge);
       Edge tempEdge = new Edge(edge.getToNode(), edge.getFromNode());
+      edge.getFromNode().getNodeEdges().add(edge);
+      edge.getToNode().getNodeEdges().add(tempEdge);
       edgeMap.put(tempEdge.getEdgeID(), tempEdge);
     }
   }
