@@ -9,7 +9,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Ddb {
-
   private static final File logFile = new File("logfile.txt");
   /**
    * Establishes the connection to the database
@@ -97,10 +96,10 @@ public class Ddb {
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the moves in the database
    */
-  protected static ArrayList<Move> createJavaMoves(Connection conn) {
+  public static ArrayList<Move> createJavaMoves(Connection conn) {
     ResultSet rset = null;
     ArrayList<Move> moveList = new ArrayList<Move>();
-    String statement = "SELECT * FROM Moves";
+    String statement = "SELECT * FROM Move";
     try {
       Move tempMove = new Move();
       PreparedStatement pstmt = conn.prepareStatement(statement);
