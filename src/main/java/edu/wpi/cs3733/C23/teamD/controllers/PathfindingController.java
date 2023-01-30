@@ -54,15 +54,19 @@ public class PathfindingController {
     ArrayList<Node> Path = new ArrayList<Node>();
     System.out.println(startRoom.getText());
     System.out.println(endRoom.getText());
-
-    Path =
-        PathfinderAStar.aStarSearch(
-            mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
-    String out = "";
-    out += "[";
-    for (Node n : Path) {
-      out += " " + n.getNodeID() + ",";
+    if (mainMap.getNode(startRoom.getText()) != null
+        && mainMap.getNode(endRoom.getText()) != null) {
+      Path =
+          PathfinderAStar.aStarSearch(
+              mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
+      String out = "";
+      out += "[";
+      for (Node n : Path) {
+        out += " " + n.getNodeID() + ",";
+      }
+      pathResultText.setText(out);
+    } else {
+      pathResultText.setText("Incorrect Node Data Entered");
     }
-    pathResultText.setText(out);
-  }
+  } // L1X2445Y1043 : L1X2220Y0904
 }
