@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.C23.teamD;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,15 +40,15 @@ public class PatientTransportData {
       ArrayList<String> equipment,
       String reason,
       String[] sendTo,
-      status stat) { // should endRoom be in the constructor
+      status stat) {
     this.patientTransportID = patientTransportID;
-    this.endRoom = endRoom; // how are we getting the startRoom
+    this.endRoom = endRoom;
     this.equipment = equipment;
     this.reason = reason;
     this.sendTo = sendTo;
-    this.startRoom = startRoom; // for debugging purposes
+    this.startRoom = startRoom;
     this.stat = stat;
-  } // end PatientTransportData()
+  }
 
   public PatientTransportData() { // should endRoom be in the constructor
     this.patientTransportID = 0;

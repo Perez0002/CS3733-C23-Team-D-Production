@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.C23.teamD;
 
 import java.io.*;
 import java.sql.*;
@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Ddb {
+
   private static final File logFile = new File("logfile.txt");
   /**
    * Establishes the connection to the database
@@ -317,26 +318,29 @@ public class Ddb {
       System.out.println("failed to create file");
     }
   }
-  /*
 
   protected static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
-        "INSERT INTO PatientTransportData PatientTransportData(startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,CAST(? AS status))";
+        "INSERT INTO PatientTransportData(startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,CAST(? AS STAT))";
     try {
-      PreparedStatement pstmnt = conn.prepareStatement(statement);
+      PreparedStatement pstmnt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
       pstmnt.setString(1, form.getStartRoom());
       pstmnt.setString(2, form.getEndRoom());
       pstmnt.setString(3, String.join(",", form.getEquipment()));
       pstmnt.setString(4, form.getReason());
-      pstmnt.setString(5,String.join(",", form.getSendTo()));
+      pstmnt.setString(5, String.join(",", form.getSendTo()));
       pstmnt.setString(6, form.getStat().toString());
       pstmnt.executeUpdate();
+      ResultSet id = pstmnt.getGeneratedKeys();
+      id.next();
+      form.setPatientTransportID(id.getInt(1));
       return true;
     } catch (SQLException e) {
+      e.printStackTrace();
       return false;
     }
   }
-*/
+
   protected static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
     String statement = "SELECT * FROM PatientTransportData";
     ArrayList<PatientTransportData> transportList = new ArrayList<PatientTransportData>();
@@ -354,6 +358,7 @@ public class Ddb {
         transportForm.setSendTo((rset.getString("sendTo")).split(","));
         transportForm.setReason(rset.getString("reason"));
         transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
+        transportList.add(transportForm);
       }
       return transportList;
     } catch (SQLException e) {

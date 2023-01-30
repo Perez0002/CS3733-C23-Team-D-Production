@@ -1,6 +1,9 @@
-package edu.wpi.teamname.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.teamname.*;
+import edu.wpi.cs3733.C23.teamD.*;
+import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.Node;
+import edu.wpi.cs3733.C23.teamD.locationName;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -25,7 +28,8 @@ public class DBcontroller extends Application implements Initializable {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("/edu/wpi/teamname/views/DBApp.fxml"));
+    Parent root =
+        FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/DBApp.fxml"));
     primaryStage.setTitle("NodeTable");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
