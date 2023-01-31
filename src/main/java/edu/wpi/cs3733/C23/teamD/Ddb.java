@@ -326,7 +326,7 @@ public class Ddb {
    */
   public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
-        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status,staff) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
+        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
     try {
       PreparedStatement pstmnt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
       pstmnt.setString(1, form.getPatientID());

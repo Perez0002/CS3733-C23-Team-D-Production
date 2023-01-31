@@ -183,12 +183,6 @@ public class PatientTransportController {
     }
     return true;
   } // end checkPatientID()
-
-  private boolean checkStaffID() {
-    final String ID = patientID.getText();
-    if (!patientID.getText().equals("")) return true;
-    else return false;
-  }
   /*
     checkEndRoom
     @param void
