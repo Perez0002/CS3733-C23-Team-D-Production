@@ -10,12 +10,22 @@ creates an entity object containing data for use on frontend PatientTransport UI
 public class PatientTransportData {
 
   // Attributes of PatientTransportData class
-  String patientID;
-  String startRoom;
-  String endRoom;
-  ArrayList<String> equipment; // equipment necessary based on form contents
-  String reason;
-  String[] sendTo; // individuals to notify based on form contents
+  private int patientTransportID;
+  private String startRoom;
+  private String endRoom;
+  private ArrayList<String> equipment; // equipment necessary based on form contents
+  private String reason;
+  private String[] sendTo; // individuals to notify based on form contents
+
+  private String patientID;
+
+  public enum status {
+    BLANK,
+    PROCESSING,
+    DONE;
+  }
+
+  private status stat;
 
   /*
   PatientTransportData()
@@ -27,18 +37,32 @@ public class PatientTransportData {
   */
   public PatientTransportData(
       String patientID,
+      int patientTransportID,
+      String startRoom,
       String endRoom,
       ArrayList<String> equipment,
       String reason,
-      String[] sendTo) { // should endRoom be in the constructor
+      String[] sendTo,
+      status stat) {
     this.patientID = patientID;
-    this.endRoom = endRoom; // how are we getting the startRoom
+    this.patientTransportID = patientTransportID;
+    this.endRoom = endRoom;
     this.equipment = equipment;
     this.reason = reason;
     this.sendTo = sendTo;
-    this.startRoom = "test"; // for debugging purposes
-  } // end PatientTransportData()
+    this.startRoom = startRoom;
+    this.stat = stat;
+  }
 
+  public PatientTransportData() { // should endRoom be in the constructor
+    this.patientTransportID = 0;
+    this.endRoom = null;
+    this.equipment = null;
+    this.reason = null;
+    this.sendTo = null;
+    this.startRoom = "";
+    this.stat = status.BLANK;
+  }
   /*
   printInformation()
   @param void
@@ -46,7 +70,7 @@ public class PatientTransportData {
   prints information from PatientTransportData for debugging purposes
   */
   public void printInformation() { // for debugging purposes
-    System.out.println("The patientID is " + this.patientID);
+    System.out.println("The patientID is " + this.patientTransportID);
     System.out.println("The endRoom " + this.endRoom);
     System.out.println("The equipment required is " + this.equipment);
     System.out.println("The reason is " + this.reason);
@@ -61,8 +85,8 @@ public class PatientTransportData {
   each get function returns a String containing information from PatientTransportData object
   */
 
-  public String getPatientID() {
-    return patientID;
+  public int getPatientTransportID() {
+    return patientTransportID;
   } // end getPatientID()
 
   public String getStartRoom() {
@@ -79,5 +103,49 @@ public class PatientTransportData {
 
   public String[] getSendTo() {
     return sendTo;
+  }
+
+  public void setPatientTransportID(int patientTransportID) {
+    this.patientTransportID = patientTransportID;
+  }
+
+  public void setStartRoom(String startRoom) {
+    this.startRoom = startRoom;
+  }
+
+  public void setEndRoom(String endRoom) {
+    this.endRoom = endRoom;
+  }
+
+  public void setEquipment(ArrayList<String> equipment) {
+    this.equipment = equipment;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+  public void setSendTo(String[] sendTo) {
+    this.sendTo = sendTo;
+  }
+
+  public status getStat() {
+    return stat;
+  }
+
+  public void setStat(status stat) {
+    this.stat = stat;
+  }
+
+  public String getEndRoom() {
+    return endRoom;
+  }
+
+  public String getPatientID() {
+    return patientID;
+  }
+
+  public void setPatientID(String patientID) {
+    this.patientID = patientID;
   }
 }

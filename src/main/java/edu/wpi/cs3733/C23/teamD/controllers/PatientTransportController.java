@@ -1,11 +1,14 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
@@ -53,11 +56,20 @@ public class PatientTransportController {
       PatientTransportData patientInformation =
           new PatientTransportData(
               patientID.getText(),
+              0,
+              "startRoom",
               endRoom.getText(),
               checkSelectedEquipment(),
               reason.getText(),
-              sendTo.getText().split(";")); // creates PatientTransportData object
-
+              sendTo.getText().split(";"),
+              PatientTransportData.status.PROCESSING); // creates PatientTransportData object
+      Connection conn = Ddb.makeConnection();
+      Ddb.insertNewForm(conn, patientInformation);
+      try {
+        conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
       // patientInformation.printInformation(); // for debeugging purposes
       submittedFormText.setVisible(true);
     }
