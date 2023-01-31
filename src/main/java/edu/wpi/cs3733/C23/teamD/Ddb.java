@@ -367,8 +367,8 @@ public class Ddb {
         List<String> stringList = Arrays.asList((rset.getString("equipment")).split(","));
         ArrayList<String> strings = new ArrayList<>(stringList);
         transportForm.setEquipment(strings);
-        transportForm.setSendTo((rset.getString("sendTo")).split(","));
-        System.out.println(transportForm.getSendTo().toString());
+        String sendTo = rset.getString("sendTo");
+        transportForm.setSendTo(sendTo.split(","));
         transportForm.setReason(rset.getString("reason"));
         transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
         transportForm.setStaff(rset.getString("staff"));
