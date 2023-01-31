@@ -366,6 +366,30 @@ public class Ddb {
     }
   }
 
+  public static void updateObjString(Connection conn, String stmnt, String pk, String newThing) {
+    try {
+      PreparedStatement pstmnt;
+      pstmnt = conn.prepareStatement(stmnt);
+      pstmnt.setString(1, newThing);
+      pstmnt.setString(2, pk);
+      pstmnt.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void updateObjInt(Connection conn, String stmnt, String pk, int newThing) {
+    try {
+      PreparedStatement pstmnt;
+      pstmnt = conn.prepareStatement(stmnt);
+      pstmnt.setInt(1, newThing);
+      pstmnt.setString(2, pk);
+      pstmnt.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public static void csv2DBInsertions(String tablename, String csvFilePath) {
     Connection conn = makeConnection();
     try {
