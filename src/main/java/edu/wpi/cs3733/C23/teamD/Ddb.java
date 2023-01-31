@@ -24,9 +24,8 @@ public class Ddb {
     final String pass = "7Lcge2CRNGTYWRgLD57vmz9SBFIfq2C3";
     try {
       conn = DriverManager.getConnection(url, user, pass);
-      System.out.println("Success");
     } catch (SQLException e) {
-      System.out.println("failed");
+      e.printStackTrace();
     }
     return conn;
   }
@@ -327,7 +326,7 @@ public class Ddb {
    */
   public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
-        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
+        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status,staff) VALUES(?,?,?,?,?,?,CAST(? AS STAT),?)";
     try {
       PreparedStatement pstmnt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
       pstmnt.setString(1, form.getPatientID());
@@ -337,10 +336,11 @@ public class Ddb {
       pstmnt.setString(5, form.getReason());
       pstmnt.setString(6, String.join(",", form.getSendTo()));
       pstmnt.setString(7, form.getStat().toString());
+      pstmnt.setString(8, form.getStaff());
       pstmnt.executeUpdate();
       ResultSet id = pstmnt.getGeneratedKeys();
       id.next();
-      form.setPatientTransportID(id.getInt(1));
+      form.setPatientTransportID(id.getInt(2));
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -352,7 +352,7 @@ public class Ddb {
    * @param conn
    * @return
    */
-  protected static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
+  public static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
     String statement = "SELECT * FROM PatientTransportData";
     ArrayList<PatientTransportData> transportList = new ArrayList<PatientTransportData>();
     try {
@@ -374,6 +374,7 @@ public class Ddb {
       }
       return transportList;
     } catch (SQLException e) {
+      e.printStackTrace();
       return null;
     }
   }

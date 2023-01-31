@@ -45,7 +45,8 @@ public class PatientTransportData {
       ArrayList<String> equipment,
       String reason,
       String[] sendTo,
-      status stat, String staff) {
+      status stat,
+      String staff) {
     this.patientID = patientID;
     this.patientTransportID = patientTransportID;
     this.endRoom = endRoom;

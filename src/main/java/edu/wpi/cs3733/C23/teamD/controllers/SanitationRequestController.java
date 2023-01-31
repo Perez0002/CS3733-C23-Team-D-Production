@@ -6,7 +6,6 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +15,8 @@ public class SanitationRequestController {
 
   private boolean helpDisplayed = false;
 
-  public ObservableList<SanitationRequestData> sanitationList = FXCollections.observableArrayList();
+  public static ObservableList<SanitationRequestData> sanitationList =
+      FXCollections.observableArrayList();
   @FXML private Text textHelp;
   @FXML private MFXRadioButton radioBSL1;
   @FXML private MFXRadioButton radioBSL2;
@@ -51,7 +51,12 @@ public class SanitationRequestController {
       }
       formSubmittedText.setVisible(true);
       SanitationRequestData requestData =
-          new SanitationRequestData(fieldLocation.getText(), fieldReason.getText(), i,  fieldStaffIDSanitation.getText(), SanitationRequestData.status.DONE);
+          new SanitationRequestData(
+              fieldLocation.getText(),
+              fieldReason.getText(),
+              i,
+              fieldStaffIDSanitation.getText(),
+              SanitationRequestData.status.DONE);
       sanitationList.add(requestData);
       requestData.printSanititationInfo();
     } else {
@@ -81,12 +86,20 @@ public class SanitationRequestController {
   }
 
   private boolean isFieldsSaturated() {
-    return (((fieldReason.getText() != "" && fieldLocation.getText() != "" &&fieldStaffIDSanitation.getText() != ""))
+    return (((fieldReason.getText() != ""
+            && fieldLocation.getText() != ""
+            && fieldStaffIDSanitation.getText() != ""))
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()
             || radioBSL3.isSelected()
             || radioBSL4.isSelected()));
   }
 
+  public static ObservableList<SanitationRequestData> getSanitationList() {
+    return sanitationList;
+  }
 
+  public void setSanitationList(ObservableList<SanitationRequestData> sanitationList) {
+    this.sanitationList = sanitationList;
+  }
 }

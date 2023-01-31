@@ -62,7 +62,8 @@ public class PatientTransportController {
               checkSelectedEquipment(),
               reason.getText(),
               sendTo.getText().split(";"),
-              PatientTransportData.status.PROCESSING,fieldStaffIDPatientTransportRequest.getText()); // creates PatientTransportData object
+              PatientTransportData.status.PROCESSING,
+              fieldStaffIDPatientTransportRequest.getText()); // creates PatientTransportData object
       Connection conn = Ddb.makeConnection();
       Ddb.insertNewForm(conn, patientInformation);
       try {
@@ -83,7 +84,7 @@ public class PatientTransportController {
   ensures all necessary fields are filled before submission
   */
   private boolean checkFields() {
-    if (checkPatientID() && checkEndRoom() ) {
+    if (checkPatientID() && checkEndRoom()) {
       return true;
     } else {
       if (!helpVisible) {
@@ -182,12 +183,11 @@ public class PatientTransportController {
     }
     return true;
   } // end checkPatientID()
+
   private boolean checkStaffID() {
     final String ID = patientID.getText();
-    if( !patientID.getText().equals(""))
-    return true;
-    else
-      return false;
+    if (!patientID.getText().equals("")) return true;
+    else return false;
   }
   /*
     checkEndRoom

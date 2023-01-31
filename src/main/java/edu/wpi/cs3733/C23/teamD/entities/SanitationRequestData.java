@@ -29,7 +29,8 @@ public class SanitationRequestData {
     return bioLevel;
   }
 
-  public SanitationRequestData(String location, String reason, int bioLevel, String staff, status stat) {
+  public SanitationRequestData(
+      String location, String reason, int bioLevel, String staff, status stat) {
     this.location = location;
     this.reason = reason;
     this.bioLevel = bioLevel;
@@ -74,5 +75,13 @@ public class SanitationRequestData {
 
   public void setStaff(String staff) {
     this.staff = staff;
+  }
+
+  public status getStat() {
+    return stat;
+  }
+
+  public void setStat(status stat) {
+    this.stat = stat;
   }
 }
