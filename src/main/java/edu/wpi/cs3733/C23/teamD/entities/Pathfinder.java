@@ -57,7 +57,6 @@ public class Pathfinder {
     PathCostPair currentPath = null;
 
     queue.add(new PathCostPair(path, 0));
-
     // Loop as long as something is in the queue
     while (!queue.isEmpty()) {
 
@@ -76,7 +75,7 @@ public class Pathfinder {
 
       // for every connection in our current Node, add  those we have not been too to the queue
       for (Edge e : currentNode.getNodeEdges()) {
-        if (!beenNodes.containsKey(e.getToNode())) {
+        if (!beenNodes.containsKey(e.getToNode().getNodeID())) {
           ArrayList<Node> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());
           queue.add(

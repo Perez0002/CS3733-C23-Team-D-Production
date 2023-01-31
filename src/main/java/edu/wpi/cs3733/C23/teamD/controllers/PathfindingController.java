@@ -47,22 +47,27 @@ public class PathfindingController {
   @FXML
   void submit() {
     GraphMap mainMap = new GraphMap();
-    System.out.println("hi");
+
     mainMap.initFromDB();
-    System.out.println("hi");
+
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
     ArrayList<Node> Path = new ArrayList<Node>();
-    System.out.println(startRoom.getText());
-    System.out.println(endRoom.getText());
 
-    Path =
-        PathfinderAStar.aStarSearch(
-            mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
-    String out = "";
-    out += "[";
-    for (Node n : Path) {
-      out += " " + n.getNodeID() + ",";
+    if (mainMap.getNode(startRoom.getText()) != null
+        && mainMap.getNode(endRoom.getText()) != null) {
+      Path =
+          PathfinderAStar.aStarSearch(
+              mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
+      String out = "";
+      out += "[";
+      for (Node n : Path) {
+        out += " " + n.getNodeID() + ",";
+      }
+      out = out.substring(0, out.length() - 2) + " ]";
+      pathResultText.setText(out);
+
+    } else {
+      pathResultText.setText("Incorrect Node Data Entered");
     }
-    pathResultText.setText(out);
   }
 }

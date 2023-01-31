@@ -71,10 +71,13 @@ public class GraphMap {
     ArrayList<Node> nodeList = createJavaNodes(conn);
     ArrayList<Edge> edgeList = createJavaEdges(conn, nodeList);
     ArrayList<locationName> locList = createJavaLocat(conn);
+
     for (Node node : nodeList) {
+      System.out.println(node.getNodeID());
       nodeMap.put(node.getNodeID(), node);
       ResultSet rset;
       String curName = "";
+
       try {
         PreparedStatement pstmnt = conn.prepareStatement("SELECT * FROM Move where nodeID = ?");
         pstmnt.setString(1, node.getNodeID());
@@ -83,7 +86,7 @@ public class GraphMap {
         for (locationName loc : locList) {
           if (loc.getLongName().equals(curName)) {
             node.setLocation(loc);
-            break;
+            continue;
           }
         }
       } catch (SQLException e) {
@@ -91,6 +94,7 @@ public class GraphMap {
         return;
       }
     }
+
     for (Edge edge : edgeList) {
       edgeMap.put(edge.getEdgeID(), edge);
       Edge tempEdge = new Edge(edge.getToNode(), edge.getFromNode());
@@ -109,5 +113,4 @@ public class GraphMap {
   public Edge getEdge(String edgeID) {
     return edgeMap.get(edgeID);
   }
-  // hlep.
 }
