@@ -48,7 +48,13 @@
    <left>
       <VBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
+            <Text fx:id="textHelp" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MFXTextField fx:id="staffIDTextField" floatingText="Staff ID" prefHeight="49.0" prefWidth="200.0" />
+                  <Text fx:id="staffIDHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the staff member who will carry out this request" visible="false" wrappingWidth="198.478515625" />
+               </children>
+            </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <MFXTextField fx:id="fieldLocation" floatingText="Location" prefHeight="49.0" prefWidth="200.0" />
@@ -63,7 +69,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
-            <Text fx:id="submitConfirmationText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
+            <Text fx:id="formSubmittedText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
                   <MFXButton fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" />

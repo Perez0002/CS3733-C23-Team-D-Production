@@ -24,13 +24,12 @@ public class SanitationRequestController {
   @FXML private MFXRadioButton radioBSL4;
   @FXML private MFXTextField fieldReason;
   @FXML private MFXTextField fieldLocation;
-
-  @FXML private MFXTextField fieldStaffIDSanitation;
-
   @FXML private Text formSubmittedText;
   @FXML MFXButton cancelButton;
   @FXML Text locationHelpText;
   @FXML Text reasonHelpText;
+  @FXML Text staffIDHelpText;
+  @FXML MFXTextField staffIDTextField;
 
   @FXML
   public void initialize() {
@@ -40,7 +39,7 @@ public class SanitationRequestController {
   @FXML
   public void submitSanitationRequest() {
     if (isFieldsSaturated()) {
-      System.out.print("Submit Success: ");
+      // System.out.print("Submit Success: ");
       int i = 0;
       if (radioBSL1.isSelected()) {
         i = 1;
@@ -58,12 +57,16 @@ public class SanitationRequestController {
               fieldLocation.getText(),
               fieldReason.getText(),
               i,
-              fieldStaffIDSanitation.getText(),
+              staffIDTextField.getText(),
               SanitationRequestData.status.DONE);
       sanitationList.add(requestData);
       requestData.printSanititationInfo();
+      textHelp.setVisible(false);
+      formSubmittedText.setVisible(true);
     } else {
       helpDisplayed = false;
+      formSubmittedText.setVisible(false);
+      textHelp.setVisible(true);
       formSubmittedText.setVisible(false);
       displayHelp();
       // System.out.println("Please fill in the appropriate response. ");
@@ -74,12 +77,14 @@ public class SanitationRequestController {
   public void clearFields() {
     fieldLocation.clear();
     fieldReason.clear();
+    staffIDTextField.clear();
     radioBSL1.setSelected(false);
     radioBSL2.setSelected(false);
     radioBSL3.setSelected(false);
     radioBSL4.setSelected(false);
     formSubmittedText.setVisible(false);
-    System.out.print("Fields Cleared\n");
+    formSubmittedText.setVisible(false);
+    // System.out.print("Fields Cleared\n");
   }
 
   @FXML
@@ -87,12 +92,13 @@ public class SanitationRequestController {
     helpDisplayed = !helpDisplayed; // if help is already displayed, turns off (toggle feature)
     reasonHelpText.setVisible(helpDisplayed);
     locationHelpText.setVisible(helpDisplayed);
+    staffIDHelpText.setVisible(helpDisplayed);
   }
 
   private boolean isFieldsSaturated() {
-    return (((fieldReason.getText() != ""
-            && fieldLocation.getText() != ""
-            && fieldStaffIDSanitation.getText() != ""))
+    return (fieldReason.getText() != ""
+        && fieldLocation.getText() != ""
+        && staffIDTextField.getText() != ""
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()
             || radioBSL3.isSelected()
