@@ -368,8 +368,10 @@ public class Ddb {
         ArrayList<String> strings = new ArrayList<>(stringList);
         transportForm.setEquipment(strings);
         transportForm.setSendTo((rset.getString("sendTo")).split(","));
+        System.out.println(transportForm.getSendTo().toString());
         transportForm.setReason(rset.getString("reason"));
         transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
+        transportForm.setStaff(rset.getString("staff"));
         transportList.add(transportForm);
       }
       return transportList;
