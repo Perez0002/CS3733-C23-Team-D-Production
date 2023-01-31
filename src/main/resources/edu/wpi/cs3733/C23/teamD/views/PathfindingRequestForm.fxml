@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,18 +9,18 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="600.0">
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="600.0" snapToPixel="false">
                <children>
-                  <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the room you will start from." visible="false" />
-                  <MFXTextField fx:id="startRoom" borderGap="0.0" floatingText="Enter the starting room" prefWidth="200.0" />
+                  <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the starting room." visible="false" />
+                  <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="600.0">
                <children>
-                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the room you want directions to." visible="false" />
-                  <MFXTextField fx:id="endRoom" floatingText="Enter the destination" prefWidth="200.0" />
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want directions to." visible="false" />
+                  <fx:include fx:id="endRoomComboBox" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <Text fx:id="pathResultText" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" />

@@ -6,9 +6,9 @@ import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PathfindingController {
@@ -18,9 +18,13 @@ public class PathfindingController {
 
   @FXML private Text startRoomHelpText;
 
-  @FXML private MFXTextField endRoom;
+  @FXML private Parent startRoomComboBox;
 
-  @FXML private MFXTextField startRoom;
+  @FXML private RoomPickComboBoxController startRoomComboBoxController;
+
+  @FXML private Parent endRoomComboBox;
+
+  @FXML private RoomPickComboBoxController endRoomComboBoxController;
 
   @FXML private Text pathResultText;
 
@@ -37,10 +41,7 @@ public class PathfindingController {
   }
 
   @FXML
-  void clearFields() {
-    endRoom.clear();
-    startRoom.clear();
-  }
+  void clearFields() {}
 
   @FXML
   void displayHelp() {
@@ -54,11 +55,11 @@ public class PathfindingController {
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
     ArrayList<Node> Path = new ArrayList<Node>();
 
-    if (mainMap.getNode(startRoom.getText()) != null
-        && mainMap.getNode(endRoom.getText()) != null) {
-      Path =
-          PathfinderAStar.aStarSearch(
-              mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
+    String startNode = startRoomComboBoxController.getNodeValue();
+    String endNode = endRoomComboBoxController.getNodeValue();
+
+    if (startNode != null && endNode != null) {
+      Path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
       String out = "";
       out += "[";
       for (Node n : Path) {
