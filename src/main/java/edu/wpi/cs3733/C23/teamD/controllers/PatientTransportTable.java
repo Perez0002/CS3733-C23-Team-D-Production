@@ -10,6 +10,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
@@ -67,7 +68,7 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Connection con = Ddb.makeConnection();
+    Connection con = Ddb.makeConnection(); /*
     ArrayList<String> equipment = new ArrayList<>();
     equipment.add("defib");
     equipment.add("giga");
@@ -85,7 +86,7 @@ public class PatientTransportTable extends Application implements Initializable 
             giga3,
             PatientTransportData.status.DONE,
             "giga4");
-    Ddb.insertNewForm(con, giga);
+    Ddb.insertNewForm(con, giga);*/
     tablehandling(con);
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
@@ -93,7 +94,6 @@ public class PatientTransportTable extends Application implements Initializable 
   public void tablehandling(Connection conn) {
     ObservableList<PatientTransportData> transportList =
         FXCollections.observableArrayList(Ddb.getPatientTransportData(conn));
-    System.out.println(Ddb.getPatientTransportData(conn).get(0).getSendTo());
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("endRoom"));
@@ -137,8 +137,8 @@ public class PatientTransportTable extends Application implements Initializable 
             public ObservableValue<String> call(
                 TableColumn.CellDataFeatures<PatientTransportData, String> param) {
               String[] sendTo = param.getValue().getSendTo();
-              if (sendTo != null && sendTo.length != 0)
-                return new SimpleStringProperty(sendTo.toString());
+              if (sendTo != null)
+                return new SimpleStringProperty(Arrays.toString(param.getValue().getSendTo()));
               else return new SimpleStringProperty("<no value>");
             }
           });
