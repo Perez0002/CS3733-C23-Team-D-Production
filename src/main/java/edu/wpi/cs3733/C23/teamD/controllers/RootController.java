@@ -32,4 +32,14 @@ public class RootController {
   void openDatabase() {
     Navigation.navigate(Screen.DATABASE_EDIT);
   }
+
+  @FXML
+  void openPatientTransportTable() {
+    Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE);
+  }
+
+  @FXML
+  void openSanitationTable() {
+    Navigation.navigate(Screen.SANITATION_TABLE);
+  }
 }

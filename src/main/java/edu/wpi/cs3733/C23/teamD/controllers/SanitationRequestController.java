@@ -52,6 +52,7 @@ public class SanitationRequestController {
       formSubmittedText.setVisible(true);
       SanitationRequestData requestData =
           new SanitationRequestData(
+              0,
               fieldLocation.getText(),
               fieldReason.getText(),
               i,

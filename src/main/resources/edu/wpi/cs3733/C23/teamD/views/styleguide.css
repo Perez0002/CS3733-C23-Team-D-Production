@@ -22,3 +22,7 @@
 #hospitalname{
     -fx-color: #123486;
 }
+
+#aboutLabel{
+    -fx-font-size: 12pt;
+}

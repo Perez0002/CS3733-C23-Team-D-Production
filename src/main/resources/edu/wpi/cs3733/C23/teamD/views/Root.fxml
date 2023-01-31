@@ -19,22 +19,28 @@
                   <Font name="Open Sans Bold" size="18.0" />
                </font>
             </Text>
-            <HBox fx:id="menuBar" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="484.0">
+            <HBox fx:id="menuBar" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="700.0">
                <children>
                   <MFXButton onAction="#openHomepage" prefHeight="33.0" prefWidth="119.0" text="Home">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </MFXButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="116.0" text="Forms">
+                  <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Forms">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" text="Pathfinding Form" />
                       <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" text="Sanitation Form" />
                         <MenuItem mnemonicParsing="false" onAction="#openPatientTransport" text="Patient Transport Form" />
                     </items>
                   </MenuButton>
-                  <MFXButton onAction="#openDatabase" prefHeight="33.0" prefWidth="110.0" text="Database" />
-                  <MFXButton prefHeight="33.0" text="Help" />
+                  <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="250.0" text="Database">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#openDatabase" text="Edit Database" />
+                        <MenuItem mnemonicParsing="false" onAction="#openPatientTransportTable" text="View Patient Transport Requests" />
+                        <MenuItem mnemonicParsing="false" onAction="#openSanitationTable" text="View Sanitation Requests" />
+                     </items>
+                  </MenuButton>
+                  <MFXButton prefHeight="33.0" prefWidth="119.0" text="Help" />
                   <MFXButton prefHeight="33.0" prefWidth="126.0" text="Exit" />
                </children>
                <opaqueInsets>
