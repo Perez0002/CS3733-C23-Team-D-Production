@@ -51,9 +51,12 @@ public class SanitationRequestController {
         i = 4;
       }
       formSubmittedText.setVisible(true);
+      int formID = 0;
+      if (sanitationList.size() > 0)
+        formID = sanitationList.get(sanitationList.size() - 1).getSanitationRequestID() + 1;
       SanitationRequestData requestData =
           new SanitationRequestData(
-              0,
+              formID,
               fieldLocation.getText(),
               fieldReason.getText(),
               i,

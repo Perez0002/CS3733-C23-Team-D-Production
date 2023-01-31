@@ -12,11 +12,11 @@ public class HomepageController {
 
   @FXML private Label bottomHelpText;
 
-  @FXML MFXButton internalPatientTransportationRequestFormButton;
+  @FXML private MFXButton internalPatientTransportationRequestFormButton;
 
-  @FXML MFXButton sanitationServiceRequestFormButton;
+  @FXML private MFXButton sanitationServiceRequestFormButton;
 
-  @FXML MFXButton pathfindingButton;
+  @FXML private MFXButton pathfindingButton;
 
   @FXML private BorderPane homepageBorderPane;
 
