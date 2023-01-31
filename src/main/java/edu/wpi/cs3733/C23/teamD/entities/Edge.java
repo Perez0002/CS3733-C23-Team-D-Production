@@ -56,6 +56,7 @@ public class Edge {
     this.cost = cost;
   }
 
+  /** generates and sets the cost of a node to the euclidian distance between its two nodes */
   public void genCost() {
     this.cost =
         Math.sqrt(
@@ -63,6 +64,9 @@ public class Edge {
                 + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
   }
 
+  /**
+   * generates an EdgeID based on the nodeID's of an Edge's node and sets it to the EdgeID attribute
+   */
   public void genEdgeID() {
     this.edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
   }
