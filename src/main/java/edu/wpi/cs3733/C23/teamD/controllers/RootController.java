@@ -27,4 +27,9 @@ public class RootController {
   void openPatientTransport() {
     Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST);
   }
+
+  @FXML
+  void openDatabase() {
+    Navigation.navigate(Screen.DATABASE_EDIT);
+  }
 }

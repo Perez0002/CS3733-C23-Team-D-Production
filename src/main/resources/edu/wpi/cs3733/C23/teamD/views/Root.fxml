@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.MenuButton?>
@@ -32,7 +33,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#openPatientTransport" text="Patient Transport Form" />
                     </items>
                   </MenuButton>
-                  <MFXButton prefHeight="33.0" prefWidth="110.0" text="Database" />
+                  <MFXButton onAction="#openDatabase" prefHeight="33.0" prefWidth="110.0" text="Database" />
                   <MFXButton prefHeight="33.0" text="Help" />
                   <MFXButton prefHeight="33.0" prefWidth="126.0" text="Exit" />
                </children>

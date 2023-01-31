@@ -21,6 +21,7 @@ public class HomepageController {
   @FXML private BorderPane homepageBorderPane;
 
   @FXML private Label serviceRequestHelpText;
+  @FXML private MFXButton DBAppButton;
 
   @FXML
   public void initialize() {
@@ -28,6 +29,7 @@ public class HomepageController {
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST));
     sanitationServiceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SANITATION_FORM));
+    DBAppButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDIT));
     pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
   }
 
