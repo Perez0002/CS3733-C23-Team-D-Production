@@ -2,34 +2,33 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController">
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+
+<Pane fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="35.0" layoutY="76.0" prefHeight="275.0" prefWidth="530.0">
          <children>
-            <MFXTextField fx:id="startRoom" text="Enter the starting room" />
-            <MFXTextField fx:id="endRoom" text="Enter the destination" />
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
-               <children>
-                  <MFXButton onAction="#submit" text="Submit Request" />
-                  <MFXButton onAction="#clearFields" text="clear" />
-                  <MFXButton fx:id="cancelButton" text="Cancel" />
-                  <MFXButton onAction="#displayHelp" text="help" />
-               </children>
-            </HBox>
+            <MFXTextField fx:id="startRoom" prefHeight="50.0" prefWidth="155.0" text="Enter the starting room" />
+            <MFXTextField fx:id="endRoom" prefHeight="50.0" prefWidth="155.0" text="Enter the destination" />
          </children>
       </VBox>
-   </center>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding Request Form" BorderPane.alignment="CENTER">
+      <Text layoutX="93.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding Request Form">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-   </top>
-</BorderPane>
+      <HBox alignment="TOP_CENTER" layoutX="35.0" layoutY="360.0" prefHeight="26.0" prefWidth="530.0" spacing="15.0">
+         <children>
+            <MFXButton onAction="#submit" text="Submit Request" />
+            <MFXButton onAction="#clearFields" text="clear" />
+            <MFXButton fx:id="cancelButton" text="Cancel" />
+            <MFXButton onAction="#displayHelp" text="help" />
+         </children>
+      </HBox>
+   </children>
+</Pane>

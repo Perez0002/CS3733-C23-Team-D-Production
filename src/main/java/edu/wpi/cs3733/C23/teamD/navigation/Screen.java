@@ -6,7 +6,7 @@ public enum Screen {
   PATIENT_TRANSPORT_REQUEST("views/InternalPatientTransportationRequestForm.fxml"),
   SANITATION_FORM("views/SanitationRequestForm.fxml"),
   PATHFINDING_REQUEST("views/PathfindingRequestForm.fxml"),
-  SERVICE_REQUEST("views/ServiceRequest.fxml");
+  SERVICE_REQUEST("views/Example - ServiceRequest.fxml");
 
   private final String filename;
 
