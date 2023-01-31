@@ -31,7 +31,7 @@ public class DBcontroller extends Application implements Initializable {
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root =
-        FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/DBApp.fxml"));
+            FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/DBApp.fxml"));
     primaryStage.setTitle("NodeTable");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();
@@ -68,7 +68,7 @@ public class DBcontroller extends Application implements Initializable {
     Connection conn = Ddb.makeConnection();
     ObservableList<Node> nodeList = FXCollections.observableArrayList(Ddb.createJavaNodes(conn));
     ObservableList<locationName> locList =
-        FXCollections.observableArrayList(Ddb.createJavaLocat(conn));
+            FXCollections.observableArrayList(Ddb.createJavaLocat(conn));
     nodeID.setCellValueFactory(new PropertyValueFactory<Node, String>("nodeID"));
     xCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Xcoord"));
     xCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -83,16 +83,16 @@ public class DBcontroller extends Application implements Initializable {
     shortName.setCellValueFactory(new PropertyValueFactory<locationName, String>("shortName"));
     shortName.setCellFactory(TextFieldTableCell.forTableColumn());
     locationType.setCellValueFactory(
-        new PropertyValueFactory<locationName, String>("locationType"));
+            new PropertyValueFactory<locationName, String>("locationType"));
     locationType.setCellFactory(TextFieldTableCell.forTableColumn());
     locationType.setOnEditCommit(
-        new EventHandler<TableColumn.CellEditEvent<locationName, String>>() {
-          @Override
-          public void handle(TableColumn.CellEditEvent<locationName, String> event) {
-            locationName name = event.getRowValue();
-            String stmnt = "UPDATE locationName SET locationType = ? WHERE longName = ?";
-          }
-        });
+            new EventHandler<TableColumn.CellEditEvent<locationName, String>>() {
+              @Override
+              public void handle(TableColumn.CellEditEvent<locationName, String> event) {
+                locationName name = event.getRowValue();
+                String stmnt = "UPDATE locationName SET locationType = ? WHERE longName = ?";
+              }
+            });
     nodeTableView.setItems(nodeList);
     locationNameTableView.setItems(locList);
   }

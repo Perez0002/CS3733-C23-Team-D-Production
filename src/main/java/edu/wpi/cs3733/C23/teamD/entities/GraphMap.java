@@ -72,7 +72,6 @@ public class GraphMap {
     ArrayList<Edge> edgeList = createJavaEdges(conn, nodeList);
     ArrayList<locationName> locList = createJavaLocat(conn);
 
-    System.out.println(edgeList.size());
     for (Node node : nodeList) {
       System.out.println(node.getNodeID());
       nodeMap.put(node.getNodeID(), node);
@@ -99,6 +98,8 @@ public class GraphMap {
     for (Edge edge : edgeList) {
       edgeMap.put(edge.getEdgeID(), edge);
       Edge tempEdge = new Edge(edge.getToNode(), edge.getFromNode());
+      tempEdge.genEdgeID();
+      tempEdge.genCost();
       edge.getFromNode().getNodeEdges().add(edge);
       edge.getToNode().getNodeEdges().add(tempEdge);
       edgeMap.put(tempEdge.getEdgeID(), tempEdge);
