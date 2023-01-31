@@ -26,8 +26,13 @@ public class PathfindingController {
 
   private boolean helpVisible = false;
 
+  private GraphMap mainMap;
+
   @FXML
   public void initialize() {
+    this.mainMap = new GraphMap();
+    mainMap.initFromDB();
+
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
@@ -46,10 +51,6 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    GraphMap mainMap = new GraphMap();
-
-    mainMap.initFromDB();
-
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
     ArrayList<Node> Path = new ArrayList<Node>();
 
