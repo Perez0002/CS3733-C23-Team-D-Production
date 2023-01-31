@@ -28,6 +28,8 @@ public class PathfindingController {
 
   @FXML private Text pathResultText;
 
+  private RoomPickComboBoxController comboBox;
+
   private boolean helpVisible = false;
 
   private GraphMap mainMap;

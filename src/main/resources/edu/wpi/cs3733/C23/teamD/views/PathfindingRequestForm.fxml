@@ -27,7 +27,7 @@
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
                   <MFXButton onAction="#submit" text="Submit Request" />
-                  <MFXButton onAction="#clearFields" text="Clear" />
+                  <MFXButton text="Clear" />
                   <MFXButton fx:id="cancelButton" text="Cancel" />
                   <MFXButton onAction="#displayHelp" text="Help" />
                </children>
