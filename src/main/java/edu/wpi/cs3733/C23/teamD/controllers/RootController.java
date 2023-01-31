@@ -45,6 +45,11 @@ public class RootController {
   }
 
   @FXML
+  void openHelpPage() {
+    Navigation.navigate(Screen.HELP_PAGE);
+  }
+
+  @FXML
   void exit() {
     Platform.exit();
   }
