@@ -10,8 +10,8 @@ public class Edge {
   public Edge(Node fromNode, Node toNode) {
     this.fromNode = fromNode;
     this.toNode = toNode;
-    edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
-    cost =
+    this.edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
+    this.cost =
         Math.sqrt(
             Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
                 + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
@@ -54,5 +54,16 @@ public class Edge {
 
   public void setCost(double cost) {
     this.cost = cost;
+  }
+
+  public void genCost() {
+    this.cost =
+        Math.sqrt(
+            Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
+                + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
+  }
+
+  public void genEdgeID() {
+    this.edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
   }
 }

@@ -71,6 +71,7 @@ public class GraphMap {
     ArrayList<Node> nodeList = createJavaNodes(conn);
     ArrayList<Edge> edgeList = createJavaEdges(conn, nodeList);
     ArrayList<locationName> locList = createJavaLocat(conn);
+    System.out.println(edgeList.size());
     for (Node node : nodeList) {
       nodeMap.put(node.getNodeID(), node);
       ResultSet rset;
