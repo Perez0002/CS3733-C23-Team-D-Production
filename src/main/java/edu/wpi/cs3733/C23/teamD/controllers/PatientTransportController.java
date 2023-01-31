@@ -33,7 +33,7 @@ public class PatientTransportController {
   @FXML private MFXCheckbox testCheck3;
   @FXML private MFXCheckbox testCheck4;
   // end attributes
-  @FXML private MFXCheckbox fieldStaffIDPatientTransportRequest;
+  @FXML private MFXTextField fieldStaffIDPatientTransportRequest;
   @FXML MFXButton cancelButton;
 
   @FXML
