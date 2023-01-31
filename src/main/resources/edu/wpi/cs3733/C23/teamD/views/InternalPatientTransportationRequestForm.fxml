@@ -5,134 +5,88 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PatientTransportController">
-   <children>
-      <VBox fillWidth="false" layoutX="90.0" layoutY="40.0" prefHeight="442.0" prefWidth="344.0" style="-fx-background-color: white;">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="903.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PatientTransportController">
+   <top>
+      <Label text="Patient Transport Request" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <right>
+      <HBox prefHeight="594.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" text="Patient Transport Request">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" />
-               </VBox.margin>
-            </Label>
-            <MFXTextField fx:id="fieldStaffIDPatientTransportRequest" floatMode="BORDER" floatingText="Staff ID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="122.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" />
-               </VBox.margin>
-            </MFXTextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Required equipment:" />
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <MFXCheckbox fx:id="testCheck" text="Wheel Chair" />
+                  <MFXCheckbox fx:id="testCheck2" text="Sanitation Supplies" />
+                  <MFXCheckbox fx:id="testCheck4" text="First aid kit" />
+                  <MFXCheckbox fx:id="testCheck3" text="Stretcher" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets right="175.0" top="200.0" />
+         </padding>
+      </HBox>
+   </right>
+   <left>
+      <VBox spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
             <Text fx:id="incompleteForm" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
-            <HBox prefHeight="200.0" prefWidth="247.0" spacing="8.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="150.0">
-                     <children>
-                        <Text fx:id="patientIDHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter The ID of the patient. It should be 8 characters with no spaces." wrappingWidth="138.478515625">
-                           <font>
-                              <Font size="10.0" />
-                           </font></Text>
-                        <MFXTextField fx:id="patientID" floatMode="ABOVE" floatingText="Enter Patient ID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
-                           <font>
-                              <Font size="10.0" />
-                           </font></MFXTextField>
-                        <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for transporting this patient" wrappingWidth="89.69183349609375">
-                           <font>
-                              <Font size="10.0" />
-                           </font></Text>
-                        <MFXTextField fx:id="reason" floatingText="Reason for Request" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
-                           <font>
-                              <Font size="10.0" />
-                           </font></MFXTextField>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." wrappingWidth="160.086669921875">
-                           <font>
-                              <Font size="10.0" />
-                           </font></Text>
-                        <MFXTextField fx:id="endRoom" floatMode="BORDER" floatingText="Enter End Room" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
-                           <font>
-                              <Font size="10.0" />
-                           </font></MFXTextField>
-                        <Text fx:id="sendToHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of anyone who should be notified of this patient transport" wrappingWidth="141.830078125">
-                           <font>
-                              <Font size="10.0" />
-                           </font></Text>
-                        <MFXTextField fx:id="sendTo" floatingText="Notification Contacts" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
-                           <font>
-                              <Font size="10.0" />
-                           </font></MFXTextField>
-                     </children>
-                  </VBox>
+                  <MFXTextField fx:id="patientID" floatingText="Enter Patient ID" prefHeight="49.0" prefWidth="200.0" />
+                  <Text fx:id="patientIDHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter The ID of the patient. It should be 8 characters with no spaces." visible="false" wrappingWidth="198.478515625" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" />
-               </VBox.margin>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Required equipment:">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin></Text>
-            <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="294.0" spacing="10.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" spacing="10.0">
-                     <children>
-                        <MFXCheckbox fx:id="testCheck" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" snapToPixel="false" text="Wheel Chair">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </MFXCheckbox>
-                        <MFXCheckbox fx:id="testCheck2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Sanitation Supplies">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </MFXCheckbox>
-                     </children>
-                  </VBox>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" spacing="10.0">
-                     <children>
-                        <MFXCheckbox fx:id="testCheck4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="First aid kit">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </MFXCheckbox>
-                        <MFXCheckbox fx:id="testCheck3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Stretcher">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </MFXCheckbox>
-                     </children>
-                  </VBox>
+                  <MFXTextField fx:id="endRoom" floatingText="Enter End Room" prefWidth="200.0" />
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." visible="false" wrappingWidth="220.88671875" />
                </children>
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
             </HBox>
-            <HBox fx:id="paneNavButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="310.0" spacing="40.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MFXButton fx:id="cancelButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" textFill="WHITE" />
-                  <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" textFill="WHITE" />
-                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submit" text="Submit" textFill="WHITE" />
-                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" textFill="WHITE" />
+                  <MFXTextField fx:id="reason" floatingText="Reason for Request" prefWidth="200.0" />
+                  <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for transporting this patient" visible="false" wrappingWidth="208.091796875" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MFXTextField fx:id="sendTo" floatingText="Notification Contacts" prefWidth="200.0" />
+                  <Text fx:id="sendToHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of anyone who should be notified of this patient transport" visible="false" wrappingWidth="205.830078125" />
+               </children>
+            </HBox>
+            <Text fx:id="submittedFormText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <MFXButton fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" />
+                  <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
+                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitPatientTransport" text="Submit" />
+                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
                </children>
                <padding>
                   <Insets top="10.0" />
                </padding>
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
       </VBox>
-   </children>
-</Pane>
+   </left>
+</BorderPane>

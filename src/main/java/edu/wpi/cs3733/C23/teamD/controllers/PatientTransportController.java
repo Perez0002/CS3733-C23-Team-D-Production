@@ -33,8 +33,9 @@ public class PatientTransportController {
   @FXML private MFXCheckbox testCheck3;
   @FXML private MFXCheckbox testCheck4;
   // end attributes
-  @FXML private MFXTextField fieldStaffIDPatientTransportRequest;
-  @FXML MFXButton cancelButton;
+  @FXML private MFXCheckbox fieldStaffIDPatientTransportRequest;
+  @FXML private MFXButton cancelButton;
+  @FXML private MFXButton submitButton;
 
   @FXML
   public void initialize() {
@@ -49,7 +50,7 @@ public class PatientTransportController {
   linked to "submit" button on SceneBuilder page, when selected
   submits information filled out in forms
   */
-  public void submit() {
+  public void submitPatientTransport() {
     if (checkFields()) {
       // System.out.println(patientID.getText() + " will be moved to " + endRoom.getText()); // for
       // debugging purposes
