@@ -21,12 +21,17 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <MFXTextField fx:id="fieldStaffIDSanitation" floatMode="BORDER" prefHeight="45.0" prefWidth="135.0" promptText="Staff ID">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </MFXTextField>
             <HBox prefHeight="47.0" prefWidth="586.0">
                <children>
                   <MFXTextField fx:id="fieldLocation" prefWidth="200.0" promptText="Location" />
-                  <MFXTextField fx:id="fieldReason" maxHeight="600.0" maxWidth="600.0" minHeight="0.0" minWidth="-Infinity" prefHeight="85.0" prefWidth="363.0" promptText="Reason for Request">
+                  <MFXTextField fx:id="fieldReason" maxHeight="600.0" maxWidth="600.0" minHeight="0.0" minWidth="-Infinity" prefHeight="85.0" prefWidth="300.0" promptText="Reason for Request">
                      <HBox.margin>
-                        <Insets right="30.0" />
+                        <Insets />
                      </HBox.margin></MFXTextField>
                </children>
             </HBox>
