@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,30 +39,27 @@ public class Ddb {
    * @param Nodes The list of all the nodes in the database, contained locally in a list
    * @return A list of all the edges in the database
    */
-  protected static ArrayList<Edge> createJavaEdges(Connection conn, ArrayList<Node> Nodes) {
+  public static ArrayList<Edge> createJavaEdges(Connection conn, ArrayList<Node> Nodes) {
     ResultSet rset = null;
     ArrayList<Edge> edgeList = new ArrayList<Edge>();
-    String statement = "SELECT * FROM Edges";
-    boolean startExists;
-    boolean endExists;
+    String statement = "SELECT * FROM Edge";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
       while (rset.next()) {
         Edge tempEdge = new Edge();
-        tempEdge.setStartNode(rset.getString("startnode"));
-        tempEdge.setEndNode(rset.getString("endnode"));
-        startExists = false;
-        endExists = false;
         for (Node node : Nodes) {
-          if (tempEdge.getEndNode().equals(node.getNodeID())) endExists = true;
-          else if (tempEdge.getStartNode().equals(node.getNodeID())) startExists = true;
+          if (node.getNodeID().equals(rset.getString("node1"))) tempEdge.setFromNode(node);
+          else if (node.getNodeID().equals(rset.getString("node2"))) tempEdge.setToNode(node);
         }
-        if (startExists && endExists) edgeList.add(tempEdge);
+        tempEdge.genCost();
+        tempEdge.genEdgeID();
+        edgeList.add(tempEdge);
       }
       rset.close();
       return edgeList;
     } catch (SQLException e) {
+      e.printStackTrace();
       return edgeList;
     }
   }
@@ -103,15 +101,15 @@ public class Ddb {
    * @param conn The connection to the DB which allows for queries and updates
    * @return A list of all the moves in the database
    */
-  protected static ArrayList<Move> createJavaMoves(Connection conn) {
+  public static ArrayList<Move> createJavaMoves(Connection conn) {
     ResultSet rset = null;
     ArrayList<Move> moveList = new ArrayList<Move>();
-    String statement = "SELECT * FROM Moves";
+    String statement = "SELECT * FROM Move";
     try {
-      Move tempMove = new Move();
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
       while (rset.next()) {
+        Move tempMove = new Move();
         tempMove.setLongName(rset.getString("nodeID"));
         tempMove.setNodeID(rset.getString("longName"));
         Date checkDate = rset.getDate("moveDate");
@@ -248,16 +246,16 @@ public class Ddb {
       for (Edge edge : Edges) {
         String deleteEdge = "DELETE FROM Edges WHERE (startNode = ? AND endNode = ?)";
         pstmt = conn.prepareStatement(deleteEdge);
-        String startNode = edge.getStartNode();
-        String endNode = edge.getEndNode();
+        String startNode = edge.getFromNode().getNodeID();
+        String endNode = edge.getToNode().getNodeID();
         if (startNode.equals(node.getNodeID())) {
-          pstmt.setString(1, edge.getStartNode());
-          pstmt.setString(2, edge.getEndNode());
+          pstmt.setString(1, startNode);
+          pstmt.setString(2, endNode);
           pstmt.executeUpdate();
           Edges.remove(edge);
         } else if (endNode.equals(node.getNodeID())) {
-          pstmt.setString(1, edge.getStartNode());
-          pstmt.setString(2, edge.getEndNode());
+          pstmt.setString(1, startNode);
+          pstmt.setString(2, endNode);
           pstmt.executeUpdate();
           Edges.remove(edge);
         }
@@ -289,7 +287,7 @@ public class Ddb {
       pstmt.setString(1, endNode);
       pstmt.executeUpdate();
       for (Edge edge : Edges) {
-        if (edge.getStartNode().equals(startNode) && edge.getEndNode().equals(endNode)) {
+        if (edge.getFromNode().equals(startNode) && edge.getToNode().equals(endNode)) {
           updateLogFile("Deleted edge between" + startNode + " & " + endNode);
           Edges.remove(edge);
           return true;
@@ -319,17 +317,18 @@ public class Ddb {
     }
   }
 
-  protected static boolean insertNewForm(Connection conn, PatientTransportData form) {
+  public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
-        "INSERT INTO PatientTransportData(startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,CAST(? AS STAT))";
+        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
     try {
       PreparedStatement pstmnt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
-      pstmnt.setString(1, form.getStartRoom());
-      pstmnt.setString(2, form.getEndRoom());
-      pstmnt.setString(3, String.join(",", form.getEquipment()));
-      pstmnt.setString(4, form.getReason());
-      pstmnt.setString(5, String.join(",", form.getSendTo()));
-      pstmnt.setString(6, form.getStat().toString());
+      pstmnt.setString(1, form.getPatientID());
+      pstmnt.setString(2, form.getStartRoom());
+      pstmnt.setString(3, form.getEndRoom());
+      pstmnt.setString(4, String.join(",", form.getEquipment()));
+      pstmnt.setString(5, form.getReason());
+      pstmnt.setString(6, String.join(",", form.getSendTo()));
+      pstmnt.setString(7, form.getStat().toString());
       pstmnt.executeUpdate();
       ResultSet id = pstmnt.getGeneratedKeys();
       id.next();
@@ -349,6 +348,7 @@ public class Ddb {
       ResultSet rset = pstmnt.executeQuery();
       while (rset.next()) {
         PatientTransportData transportForm = new PatientTransportData();
+        transportForm.setPatientID(rset.getString("patientID"));
         transportForm.setPatientTransportID(rset.getInt("patienttransportid"));
         transportForm.setStartRoom(rset.getString("startroom"));
         transportForm.setEndRoom(rset.getString("endroom"));
@@ -363,6 +363,30 @@ public class Ddb {
       return transportList;
     } catch (SQLException e) {
       return null;
+    }
+  }
+
+  public static void updateObjString(Connection conn, String stmnt, String pk, String newThing) {
+    try {
+      PreparedStatement pstmnt;
+      pstmnt = conn.prepareStatement(stmnt);
+      pstmnt.setString(1, newThing);
+      pstmnt.setString(2, pk);
+      pstmnt.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void updateObjInt(Connection conn, String stmnt, String pk, int newThing) {
+    try {
+      PreparedStatement pstmnt;
+      pstmnt = conn.prepareStatement(stmnt);
+      pstmnt.setInt(1, newThing);
+      pstmnt.setString(2, pk);
+      pstmnt.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 

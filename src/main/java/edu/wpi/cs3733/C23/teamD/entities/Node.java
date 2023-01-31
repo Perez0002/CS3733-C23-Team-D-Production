@@ -1,4 +1,6 @@
-package edu.wpi.cs3733.C23.teamD;
+package edu.wpi.cs3733.C23.teamD.entities;
+
+import java.util.ArrayList;
 
 public class Node {
   private String nodeID;
@@ -7,13 +9,15 @@ public class Node {
   private String floor;
   private String building;
   private locationName location;
+  private ArrayList<Edge> nodeEdges;
 
   public Node(int xcoord, int ycoord, String floor, String building) {
-    this.nodeID = floor + xcoord + ycoord;
+    this.nodeID = floor + "X" + xcoord + "Y" + ycoord;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
+    this.nodeEdges = new ArrayList<Edge>();
   }
 
   public Node() {
@@ -22,6 +26,7 @@ public class Node {
     this.ycoord = 0;
     this.floor = "";
     this.building = "";
+    this.nodeEdges = new ArrayList<Edge>();
   }
 
   public String getAll() {
@@ -79,5 +84,13 @@ public class Node {
 
   public void setLocation(locationName location) {
     this.location = location;
+  }
+
+  public ArrayList<Edge> getNodeEdges() {
+    return nodeEdges;
+  }
+
+  public void setNodeEdges(ArrayList<Edge> nodeEdges) {
+    this.nodeEdges = nodeEdges;
   }
 }

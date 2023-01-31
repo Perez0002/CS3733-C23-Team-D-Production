@@ -21,11 +21,11 @@ public class Pathfinder {
   }
 
   public void initFromCSV(String nodePath, String edgePath) {
-    this.fullMap.initFromCSV(nodePath, edgePath);
+    this.fullMap.initFromDB();
   }
 
-  private class PathCostPair extends Pair<ArrayList<PathNode>, Double> {
-    public PathCostPair(ArrayList<PathNode> n, double c) {
+  private class PathCostPair extends Pair<ArrayList<Node>, Double> {
+    public PathCostPair(ArrayList<Node> n, double c) {
       super(n, c);
     }
   }
@@ -36,18 +36,18 @@ public class Pathfinder {
     }
   }
 
-  private double getHeuristic(PathNode currentNode, PathNode goalNode) {
+  private double getHeuristic(Node currentNode, Node goalNode) {
     double heuristic =
         sqrt(
-            pow(currentNode.getNodeX() - goalNode.getNodeX(), 2)
-                + pow(currentNode.getNodeY() - goalNode.getNodeY(), 2));
+            pow(currentNode.getXcoord() - goalNode.getXcoord(), 2)
+                + pow(currentNode.getYcoord() - goalNode.getYcoord(), 2));
     return heuristic;
   }
 
-  public ArrayList<PathNode> aStarSearch(PathNode startNode, PathNode endNode) {
+  public ArrayList<Node> aStarSearch(Node startNode, Node endNode) {
     // init variables
-    ArrayList<PathNode> path = new ArrayList<PathNode>();
-    HashMap<String, PathNode> beenNodes = new HashMap<String, PathNode>();
+    ArrayList<Node> path = new ArrayList<Node>();
+    HashMap<String, Node> beenNodes = new HashMap<String, Node>();
     PriorityQueue<PathCostPair> queue =
         new PriorityQueue<PathCostPair>(5, new PathCostPairComparator());
 
@@ -57,14 +57,13 @@ public class Pathfinder {
     PathCostPair currentPath = null;
 
     queue.add(new PathCostPair(path, 0));
-
     // Loop as long as something is in the queue
     while (!queue.isEmpty()) {
 
       // remove and get the first 'path' in the queue
       currentPath = queue.poll();
 
-      PathNode currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
+      Node currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
 
       // Put the Node we are at right now into list of Nodes we have been to
       beenNodes.put(currentNode.getNodeID(), currentNode);
@@ -75,9 +74,9 @@ public class Pathfinder {
       }
 
       // for every connection in our current Node, add  those we have not been too to the queue
-      for (PathEdge e : currentNode.getNodeEdges()) {
-        if (!beenNodes.containsKey(e.getToNode())) {
-          ArrayList<PathNode> temp = (ArrayList) currentPath.getKey().clone();
+      for (Edge e : currentNode.getNodeEdges()) {
+        if (!beenNodes.containsKey(e.getToNode().getNodeID())) {
+          ArrayList<Node> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());
           queue.add(
               new PathCostPair(

@@ -1,22 +1,24 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-import edu.wpi.cs3733.C23.teamD.App;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import static edu.wpi.cs3733.C23.teamD.Ddb.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GraphMap {
-  // private HashMap<String, PathNode> nodeMap;
-  // private HashMap<String, PathEdge> edgeMap;
-  private HashMap<String, PathNode> nodeMap = new HashMap<String, PathNode>();
-  private HashMap<String, PathEdge> edgeMap = new HashMap<String, PathEdge>();
+  // private HashMap<String, Node> nodeMap;
+  // private HashMap<String, Edge> edgeMap;
+  private HashMap<String, Node> nodeMap = new HashMap<String, Node>();
+  private HashMap<String, Edge> edgeMap = new HashMap<String, Edge>();
 
   public void init() {
     // do something lol;
   }
-
+  /*
   public void initFromCSV(String nodePath, String edgePath) {
     try (InputStream in = App.class.getResourceAsStream(nodePath)) {
       assert in != null;
@@ -27,7 +29,7 @@ public class GraphMap {
         String[] nodeValues = line.split(",");
         nodeMap.put(
             nodeValues[0],
-            new PathNode(
+            new Node(
                 Integer.parseInt(nodeValues[1]),
                 Integer.parseInt(nodeValues[2]),
                 nodeValues[3],
@@ -48,8 +50,8 @@ public class GraphMap {
       String line = reader.readLine();
       while ((line = reader.readLine()) != null) {
         String[] edgeValues = line.split(",");
-        PathEdge base = new PathEdge(nodeMap.get(edgeValues[1]), nodeMap.get(edgeValues[0]));
-        PathEdge reverse = new PathEdge(nodeMap.get(edgeValues[0]), nodeMap.get(edgeValues[1]));
+        Edge base = new Edge(nodeMap.get(edgeValues[1]), nodeMap.get(edgeValues[0]));
+        Edge reverse = new Edge(nodeMap.get(edgeValues[0]), nodeMap.get(edgeValues[1]));
 
         edgeMap.put(base.getEdgeID(), base);
         edgeMap.put(reverse.getEdgeID(), reverse);
@@ -63,13 +65,52 @@ public class GraphMap {
       System.err.println("Could not find file for Edges!");
     }
   }
+  */
+  public void initFromDB() {
+    Connection conn = makeConnection();
+    ArrayList<Node> nodeList = createJavaNodes(conn);
+    ArrayList<Edge> edgeList = createJavaEdges(conn, nodeList);
+    ArrayList<locationName> locList = createJavaLocat(conn);
 
-  public PathNode getNode(String nodeID) {
+    for (Node node : nodeList) {
+      System.out.println(node.getNodeID());
+      nodeMap.put(node.getNodeID(), node);
+      ResultSet rset;
+      String curName = "";
+
+      try {
+        PreparedStatement pstmnt = conn.prepareStatement("SELECT * FROM Move where nodeID = ?");
+        pstmnt.setString(1, node.getNodeID());
+        rset = pstmnt.executeQuery();
+        if (rset.next()) curName = rset.getString("longName");
+        for (locationName loc : locList) {
+          if (loc.getLongName().equals(curName)) {
+            node.setLocation(loc);
+            continue;
+          }
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    for (Edge edge : edgeList) {
+      edgeMap.put(edge.getEdgeID(), edge);
+      Edge tempEdge = new Edge(edge.getToNode(), edge.getFromNode());
+      tempEdge.genEdgeID();
+      tempEdge.genCost();
+      edge.getFromNode().getNodeEdges().add(edge);
+      edge.getToNode().getNodeEdges().add(tempEdge);
+      edgeMap.put(tempEdge.getEdgeID(), tempEdge);
+    }
+  }
+
+  public Node getNode(String nodeID) {
     return nodeMap.get(nodeID);
   }
 
-  public PathEdge getEdge(String edgeID) {
+  public Edge getEdge(String edgeID) {
     return edgeMap.get(edgeID);
   }
-  // hlep.
 }

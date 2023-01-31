@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
-import edu.wpi.cs3733.C23.teamD.entities.PathNode;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -26,8 +26,13 @@ public class PathfindingController {
 
   private boolean helpVisible = false;
 
+  private GraphMap mainMap;
+
   @FXML
   public void initialize() {
+    this.mainMap = new GraphMap();
+    mainMap.initFromDB();
+
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
@@ -46,23 +51,24 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    GraphMap mainMap = new GraphMap();
-    System.out.println("hi");
-    mainMap.initFromCSV("data/L1Nodes.csv", "data/L1Edges.csv");
-    System.out.println("hi");
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
-    ArrayList<PathNode> Path = new ArrayList<PathNode>();
-    System.out.println(startRoom.getText());
-    System.out.println(endRoom.getText());
+    ArrayList<Node> Path = new ArrayList<Node>();
 
-    Path =
-        PathfinderAStar.aStarSearch(
-            mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
-    String out = "";
-    out += "[";
-    for (PathNode n : Path) {
-      out += " " + n.getShortName() + ",";
+    if (mainMap.getNode(startRoom.getText()) != null
+        && mainMap.getNode(endRoom.getText()) != null) {
+      Path =
+          PathfinderAStar.aStarSearch(
+              mainMap.getNode(startRoom.getText()), mainMap.getNode(endRoom.getText()));
+      String out = "";
+      out += "[";
+      for (Node n : Path) {
+        out += " " + n.getNodeID() + ",";
+      }
+      out = out.substring(0, out.length() - 2) + " ]";
+      pathResultText.setText(out);
+
+    } else {
+      pathResultText.setText("Incorrect Node Data Entered");
     }
-    pathResultText.setText(out);
   }
 }
