@@ -3,6 +3,8 @@ package edu.wpi.cs3733.C23.teamD;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.*;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -430,6 +432,8 @@ public class Ddb {
         sql = "INSERT INTO edge values (?, ?)";
       } else if (tablename.equals("LocationName")) {
         sql = "INSERT INTO locationname values (?, ?, ?)";
+      } else if (tablename.equals("Move")) {
+        sql = "INSERT INTO move values (?, ?, ?)";
       } else {
         System.out.println("The table does not exist.");
       }
@@ -481,6 +485,24 @@ public class Ddb {
           statement.setString(2, shortName);
           statement.setString(3, nodeType);
 
+          statement.addBatch();
+
+          if (count % 20 == 0) {
+            statement.executeBatch();
+          }
+        } else if (tablename.equals("Move")) {
+          String nodeID = data[0];
+          String locationName = data[1];
+
+          LocalTime localTime = LocalTime.now();
+          LocalDate localDate = LocalDate.of(2023, 01, 01);
+
+          // convert LocalTime to Timestamp
+          Timestamp timestamp = Timestamp.valueOf(localTime.atDate(localDate));
+
+          statement.setString(1, nodeID);
+          statement.setString(2, locationName);
+          statement.setTimestamp(3, timestamp);
           statement.addBatch();
 
           if (count % 20 == 0) {
