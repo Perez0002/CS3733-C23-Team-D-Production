@@ -44,7 +44,7 @@
                   <MFXButton onAction="#exit" prefHeight="33.0" prefWidth="126.0" text="Exit" />
                </children>
                <opaqueInsets>
-                  <Insets right="-10.0" />
+                  <Insets />
                </opaqueInsets>
             </HBox>
          </items>
