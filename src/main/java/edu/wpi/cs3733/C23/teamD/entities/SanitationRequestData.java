@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.entities;
 public class SanitationRequestData {
 
   // attributes
+  int sanitationRequestID;
   String location;
   String reason;
   int bioLevel;
@@ -30,7 +31,8 @@ public class SanitationRequestData {
   }
 
   public SanitationRequestData(
-      String location, String reason, int bioLevel, String staff, status stat) {
+      int formID, String location, String reason, int bioLevel, String staff, status stat) {
+    sanitationRequestID = formID;
     this.location = location;
     this.reason = reason;
     this.bioLevel = bioLevel;
@@ -39,6 +41,7 @@ public class SanitationRequestData {
   }
 
   public SanitationRequestData() {
+    this.sanitationRequestID = 0;
     this.location = "";
     this.reason = "";
     this.bioLevel = 0;
@@ -55,6 +58,14 @@ public class SanitationRequestData {
             + this.reason
             + "\nBio Hazard Level: "
             + this.bioLevel);
+  }
+
+  public int getSanitationRequestID() {
+    return sanitationRequestID;
+  }
+
+  public void setSanitationRequestID(int sanitationRequestID) {
+    this.sanitationRequestID = sanitationRequestID;
   }
 
   public void setLocation(String location) {

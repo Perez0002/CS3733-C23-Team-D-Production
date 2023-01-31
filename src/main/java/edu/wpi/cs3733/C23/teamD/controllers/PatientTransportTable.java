@@ -68,25 +68,7 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Connection con = Ddb.makeConnection(); /*
-    ArrayList<String> equipment = new ArrayList<>();
-    equipment.add("defib");
-    equipment.add("giga");
-    String[] giga3 = new String[2];
-    giga3[0] = "giga";
-    giga3[1] = "giga2";
-    PatientTransportData giga =
-        new PatientTransportData(
-            "GigaPatientofHell",
-            1,
-            "room1",
-            "room2",
-            equipment,
-            "cause i feel like it",
-            giga3,
-            PatientTransportData.status.DONE,
-            "giga4");
-    Ddb.insertNewForm(con, giga);*/
+    Connection con = Ddb.makeConnection();
     tablehandling(con);
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
