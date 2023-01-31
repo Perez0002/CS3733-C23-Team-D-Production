@@ -36,7 +36,7 @@ public class SanitationRequestController {
   }
 
   @FXML
-  public void submit() {
+  public void submitSanitationRequest() {
     if (isFieldsSaturated()) {
       System.out.print("Submit Success: ");
       int i = 0;
@@ -81,7 +81,7 @@ public class SanitationRequestController {
 
   @FXML
   public void displayHelp() {
-    helpDisplayed = !helpDisplayed;
+    helpDisplayed = !helpDisplayed; // if help is already displayed, turns off (toggle feature)
     textHelp.setVisible(helpDisplayed);
   }
 

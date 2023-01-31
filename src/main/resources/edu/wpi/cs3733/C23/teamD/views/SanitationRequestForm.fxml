@@ -6,117 +6,86 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationRequestController">
-   <children>
-      <VBox prefHeight="459.0" prefWidth="491.0" spacing="5.0" style="-fx-background-color: white;">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="903.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationRequestController">
+   <top>
+      <Label text="Sanitation Request Form" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <right>
+      <HBox prefHeight="594.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Sanitation Request Form">
-               <font>
-                  <Font size="28.0" />
-               </font>
-               <padding>
-                  <Insets bottom="10.0" top="5.0" />
-               </padding>
-            </Label>
-            <HBox prefHeight="47.0" prefWidth="586.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level:" />
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <MFXTextField fx:id="fieldLocation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="140.0" promptText="Location">
-                     <HBox.margin>
-                        <Insets right="8.0" />
-                     </HBox.margin></MFXTextField>
-                  <MFXTextField fx:id="fieldReason" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="363.0" promptText="Reason for Request">
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin></MFXTextField>
+                  <MFXRadioButton fx:id="radioBSL21" text="BSL-1 - Minimal Hazards">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="Button" />
+                  </toggleGroup>
+                  </MFXRadioButton>
+                  <MFXRadioButton fx:id="radioBSL2" text="BSL-2 - Moderate Hazards" toggleGroup="$Button" />
+                  <MFXRadioButton fx:id="radioBSL3" text="BSL-3 - Serious Hazards" toggleGroup="$Button" />
+                  <MFXRadioButton fx:id="radioBSL4" text="BSL-4 - Most Complex" toggleGroup="$Button" />
                </children>
-            </HBox>
-            <HBox prefHeight="30.0" prefWidth="586.0">
-               <children>
-                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." wrappingWidth="140.0">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text fx:id="incompleteForm" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <VBox prefHeight="113.0" prefWidth="586.0" spacing="10.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level:">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin></Text>
-                  <HBox prefHeight="74.0" prefWidth="586.0">
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <MFXRadioButton fx:id="radioBSL21" text="BSL-1 - Minimal Hazards">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="Button" />
-                                 </toggleGroup>
-                                 <VBox.margin>
-                                    <Insets right="15.0" />
-                                 </VBox.margin>
-                              </MFXRadioButton>
-                              <MFXRadioButton fx:id="radioBSL2" text="BSL-2 - Moderate Hazards" toggleGroup="$Button">
-                                 <VBox.margin>
-                                    <Insets right="15.0" />
-                                 </VBox.margin>
-                              </MFXRadioButton>
-                              <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for transporting this patient" wrappingWidth="208.091796875">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <MFXRadioButton fx:id="radioBSL3" text="BSL-3 - Serious Hazards" toggleGroup="$Button" />
-                              <MFXRadioButton fx:id="radioBSL4" text="BSL-4 - Most Complex" toggleGroup="$Button" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets right="30.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </VBox>
          </children>
          <padding>
-            <Insets bottom="15.0" left="30.0" />
+            <Insets right="175.0" top="200.0" />
+         </padding>
+      </HBox>
+   </right>
+   <left>
+      <VBox spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MFXTextField fx:id="fieldLocation" floatingText="Location" prefHeight="49.0" prefWidth="200.0" />
+                  <Text fx:id="patientIDHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter location of Sanitation Request. It should be 8 characters with no spaces." visible="false" wrappingWidth="198.478515625" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MFXTextField fx:id="fieldReason" floatingText="Reason" prefHeight="107.0" prefWidth="200.0" />
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for Sanitation Request." visible="false" wrappingWidth="220.88671875" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="sendToHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of anyone who should be notified of this patient transport" visible="false" wrappingWidth="205.830078125" />
+               </children>
+            </HBox>
+            <Text fx:id="helpText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <MFXButton fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" />
+                  <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Clear" />
+                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitSanitationRequest" text="Submit" />
+                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="30.0" />
          </padding>
       </VBox>
-      <HBox alignment="BOTTOM_CENTER" layoutX="30.0" layoutY="390.0" prefHeight="46.0" prefWidth="431.0" spacing="40.0">
-         <children>
-            <MFXButton fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" />
-            <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
-            <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submit" text="Submit" />
-            <MFXButton fx:id="buttonHelp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
-         </children>
-      </HBox>
-   </children>
-</Pane>
+   </left>
+</BorderPane>
