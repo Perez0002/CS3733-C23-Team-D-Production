@@ -19,6 +19,8 @@ public class PatientTransportData {
 
   private String patientID;
 
+  private String staff;
+
   public enum status {
     BLANK,
     PROCESSING,
@@ -43,7 +45,7 @@ public class PatientTransportData {
       ArrayList<String> equipment,
       String reason,
       String[] sendTo,
-      status stat) {
+      status stat, String staff) {
     this.patientID = patientID;
     this.patientTransportID = patientTransportID;
     this.endRoom = endRoom;
@@ -52,6 +54,7 @@ public class PatientTransportData {
     this.sendTo = sendTo;
     this.startRoom = startRoom;
     this.stat = stat;
+    this.staff = staff;
   }
 
   public PatientTransportData() { // should endRoom be in the constructor
@@ -62,6 +65,7 @@ public class PatientTransportData {
     this.sendTo = null;
     this.startRoom = "";
     this.stat = status.BLANK;
+    this.staff = "";
   }
   /*
   printInformation()
@@ -147,5 +151,13 @@ public class PatientTransportData {
 
   public void setPatientID(String patientID) {
     this.patientID = patientID;
+  }
+
+  public String getStaff() {
+    return staff;
+  }
+
+  public void setStaff(String staff) {
+    this.staff = staff;
   }
 }

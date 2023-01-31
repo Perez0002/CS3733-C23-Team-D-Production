@@ -317,6 +317,14 @@ public class Ddb {
     }
   }
 
+  /**
+   * Inserts a new patientTransportForm with the attributes from the given form into the
+   * PatientTransportData
+   *
+   * @param conn
+   * @param form
+   * @return
+   */
   public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
         "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
@@ -340,6 +348,10 @@ public class Ddb {
     }
   }
 
+  /**
+   * @param conn
+   * @return
+   */
   protected static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
     String statement = "SELECT * FROM PatientTransportData";
     ArrayList<PatientTransportData> transportList = new ArrayList<PatientTransportData>();
@@ -366,6 +378,12 @@ public class Ddb {
     }
   }
 
+  /**
+   * @param conn
+   * @param stmnt
+   * @param pk
+   * @param newThing
+   */
   public static void updateObjString(Connection conn, String stmnt, String pk, String newThing) {
     try {
       PreparedStatement pstmnt;
@@ -378,6 +396,12 @@ public class Ddb {
     }
   }
 
+  /**
+   * @param conn
+   * @param stmnt
+   * @param pk
+   * @param newThing
+   */
   public static void updateObjInt(Connection conn, String stmnt, String pk, int newThing) {
     try {
       PreparedStatement pstmnt;
@@ -390,6 +414,10 @@ public class Ddb {
     }
   }
 
+  /**
+   * @param tablename
+   * @param csvFilePath
+   */
   public static void csv2DBInsertions(String tablename, String csvFilePath) {
     Connection conn = makeConnection();
     try {
