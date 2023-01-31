@@ -62,8 +62,8 @@ public class SanitationTable extends Application implements Initializable {
     SanitationRequestData data =
         new SanitationRequestData(
             0, "hallway", "cause", 1, "me", SanitationRequestData.status.DONE);
-    if(SanitationRequestController.getSanitationList().size() == 0)
-    SanitationRequestController.getSanitationList().add(data);
+    if (SanitationRequestController.getSanitationList().size() == 0)
+      SanitationRequestController.getSanitationList().add(data);
     tablehandling();
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }

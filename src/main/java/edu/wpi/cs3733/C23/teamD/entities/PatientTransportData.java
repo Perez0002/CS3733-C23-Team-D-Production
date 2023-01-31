@@ -19,7 +19,6 @@ public class PatientTransportData {
 
   private String patientID;
 
-
   public enum status {
     BLANK,
     PROCESSING,
@@ -149,5 +148,4 @@ public class PatientTransportData {
   public void setPatientID(String patientID) {
     this.patientID = patientID;
   }
-
 }

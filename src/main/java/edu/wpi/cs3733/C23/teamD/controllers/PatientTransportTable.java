@@ -55,9 +55,6 @@ public class PatientTransportTable extends Application implements Initializable 
   @FXML private TableColumn<PatientTransportData, String> patientID;
 
   @FXML private TableColumn<PatientTransportData, String> reason;
-
-  @FXML private TableColumn<PatientTransportData, String> staff;
-
   @FXML private TableColumn<PatientTransportData, String> startRoom;
 
   @FXML private TableColumn<PatientTransportData, String> status;
@@ -110,7 +107,6 @@ public class PatientTransportTable extends Application implements Initializable 
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
-      staff.setCellValueFactory(new PropertyValueFactory<PatientTransportData, String>("staff"));
       sendTo.setCellValueFactory(
           new Callback<
               TableColumn.CellDataFeatures<PatientTransportData, String>,

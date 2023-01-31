@@ -19,7 +19,6 @@
                   <TableColumn fx:id="reason" prefWidth="58.0" text="Reason" />
                   <TableColumn fx:id="startRoom" prefWidth="76.6666259765625" text="startRoom" />
                   <TableColumn fx:id="status" prefWidth="72.00003051757812" text="status" />
-                  <TableColumn fx:id="staff" minWidth="0.0" prefWidth="60.0" text="staff" />
                   <TableColumn fx:id="sendTo" minWidth="0.0" prefWidth="60.0" text="Contact" />
               </columns>
             </TableView>

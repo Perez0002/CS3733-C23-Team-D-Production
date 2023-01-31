@@ -326,7 +326,7 @@ public class Ddb {
    */
   public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
-        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status,staff) VALUES(?,?,?,?,?,?,CAST(? AS STAT),?)";
+        "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status,staff) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
     try {
       PreparedStatement pstmnt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
       pstmnt.setString(1, form.getPatientID());
@@ -336,7 +336,6 @@ public class Ddb {
       pstmnt.setString(5, form.getReason());
       pstmnt.setString(6, String.join(",", form.getSendTo()));
       pstmnt.setString(7, form.getStat().toString());
-      pstmnt.setString(8, form.getStaff());
       pstmnt.executeUpdate();
       ResultSet id = pstmnt.getGeneratedKeys();
       id.next();
@@ -371,7 +370,6 @@ public class Ddb {
         transportForm.setSendTo(sendTo.split(","));
         transportForm.setReason(rset.getString("reason"));
         transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
-        transportForm.setStaff(rset.getString("staff"));
         transportList.add(transportForm);
       }
       return transportList;
