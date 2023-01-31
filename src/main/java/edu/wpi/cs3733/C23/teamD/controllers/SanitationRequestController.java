@@ -29,6 +29,8 @@ public class SanitationRequestController {
 
   @FXML private Text formSubmittedText;
   @FXML MFXButton cancelButton;
+  @FXML Text locationHelpText;
+  @FXML Text reasonHelpText;
 
   @FXML
   public void initialize() {
@@ -83,7 +85,8 @@ public class SanitationRequestController {
   @FXML
   public void displayHelp() {
     helpDisplayed = !helpDisplayed; // if help is already displayed, turns off (toggle feature)
-    textHelp.setVisible(helpDisplayed);
+    reasonHelpText.setVisible(helpDisplayed);
+    locationHelpText.setVisible(helpDisplayed);
   }
 
   private boolean isFieldsSaturated() {
