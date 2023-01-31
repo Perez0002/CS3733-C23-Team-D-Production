@@ -9,11 +9,14 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PathfindingController {
   @FXML private MFXButton cancelButton;
 
+  @FXML private Parent roomPicker;
+  @FXML private RoomPickComboBoxController roomPickerController;
   @FXML private Text endRoomHelpText;
 
   @FXML private Text startRoomHelpText;
@@ -34,6 +37,8 @@ public class PathfindingController {
     mainMap.initFromDB();
 
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    System.out.println(roomPicker.getClass());
+    System.out.println(roomPickerController.getValue());
   }
 
   @FXML
