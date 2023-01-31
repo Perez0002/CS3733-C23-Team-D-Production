@@ -88,7 +88,10 @@ public class DBcontroller extends Application implements Initializable {
     locationType.setOnEditCommit(
         new EventHandler<TableColumn.CellEditEvent<locationName, String>>() {
           @Override
-          public void handle(TableColumn.CellEditEvent<locationName, String> event) {}
+          public void handle(TableColumn.CellEditEvent<locationName, String> event) {
+            locationName name = event.getRowValue();
+            String stmnt = "UPDATE locationName SET locationType = ? WHERE longName = ?";
+          }
         });
     nodeTableView.setItems(nodeList);
     locationNameTableView.setItems(locList);

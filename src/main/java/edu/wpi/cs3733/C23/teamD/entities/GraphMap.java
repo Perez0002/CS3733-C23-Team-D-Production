@@ -70,9 +70,9 @@ public class GraphMap {
     Connection conn = makeConnection();
     ArrayList<Node> nodeList = createJavaNodes(conn);
     ArrayList<Edge> edgeList = createJavaEdges(conn, nodeList);
-    System.out.println("Edge list size: " + edgeList.size());
     ArrayList<locationName> locList = createJavaLocat(conn);
 
+    System.out.println(edgeList.size());
     for (Node node : nodeList) {
       System.out.println(node.getNodeID());
       nodeMap.put(node.getNodeID(), node);

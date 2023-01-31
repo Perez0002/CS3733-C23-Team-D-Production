@@ -42,23 +42,24 @@ public class Ddb {
   public static ArrayList<Edge> createJavaEdges(Connection conn, ArrayList<Node> Nodes) {
     ResultSet rset = null;
     ArrayList<Edge> edgeList = new ArrayList<Edge>();
-    String statement = "SELECT * FROM Edges";
+    String statement = "SELECT * FROM Edge";
     try {
       PreparedStatement pstmt = conn.prepareStatement(statement);
       rset = pstmt.executeQuery();
       while (rset.next()) {
         Edge tempEdge = new Edge();
         for (Node node : Nodes) {
-          if (node.getNodeID().equals(rset.getString("startnode")))
-            tempEdge.setFromNode(node);
-          else if (node.getNodeID().equals(rset.getString("endnode")))
-            tempEdge.setToNode(node);
+          if (node.getNodeID().equals(rset.getString("node1"))) tempEdge.setFromNode(node);
+          else if (node.getNodeID().equals(rset.getString("node2"))) tempEdge.setToNode(node);
         }
+        tempEdge.genCost();
+        tempEdge.genEdgeID();
         edgeList.add(tempEdge);
       }
       rset.close();
       return edgeList;
     } catch (SQLException e) {
+      e.printStackTrace();
       return edgeList;
     }
   }
