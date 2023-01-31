@@ -63,8 +63,7 @@ public class PatientTransportController {
               checkSelectedEquipment(),
               reason.getText(),
               sendTo.getText().split(";"),
-              PatientTransportData.status.PROCESSING,
-              fieldStaffIDPatientTransportRequest.getText()); // creates PatientTransportData object
+              PatientTransportData.status.DONE); // creates PatientTransportData object
       Connection conn = Ddb.makeConnection();
       Ddb.insertNewForm(conn, patientInformation);
       try {
