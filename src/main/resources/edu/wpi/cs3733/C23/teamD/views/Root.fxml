@@ -40,8 +40,8 @@
                         <MenuItem mnemonicParsing="false" onAction="#openSanitationTable" text="View Sanitation Requests" />
                      </items>
                   </MenuButton>
-                  <MFXButton prefHeight="33.0" prefWidth="119.0" text="Help" />
-                  <MFXButton prefHeight="33.0" onAction="#exit" prefWidth="126.0" text="Exit" />
+                  <MFXButton fx:id="helpPageButton" onAction="#openHelpPage" prefHeight="33.0" prefWidth="119.0" text="Help" />
+                  <MFXButton onAction="#exit" prefHeight="33.0" prefWidth="126.0" text="Exit" />
                </children>
                <opaqueInsets>
                   <Insets right="-10.0" />
