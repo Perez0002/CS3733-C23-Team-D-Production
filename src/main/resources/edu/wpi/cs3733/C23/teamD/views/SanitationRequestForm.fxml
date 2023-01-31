@@ -18,40 +18,50 @@
          <children>
             <Label text="Sanitation Request Form">
                <font>
-                  <Font size="24.0" />
+                  <Font size="28.0" />
                </font>
+               <padding>
+                  <Insets bottom="10.0" top="5.0" />
+               </padding>
             </Label>
-            <MFXTextField fx:id="fieldStaffIDSanitation" floatMode="BORDER" prefHeight="45.0" prefWidth="135.0" promptText="Staff ID">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </MFXTextField>
             <HBox prefHeight="47.0" prefWidth="586.0">
                <children>
-                  <MFXTextField fx:id="fieldLocation" prefWidth="200.0" promptText="Location" />
-                  <MFXTextField fx:id="fieldReason" maxHeight="600.0" maxWidth="600.0" minHeight="0.0" minWidth="-Infinity" prefHeight="85.0" prefWidth="300.0" promptText="Reason for Request">
+                  <MFXTextField fx:id="fieldLocation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="140.0" promptText="Location">
                      <HBox.margin>
-                        <Insets />
+                        <Insets right="8.0" />
+                     </HBox.margin></MFXTextField>
+                  <MFXTextField fx:id="fieldReason" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="363.0" promptText="Reason for Request">
+                     <HBox.margin>
+                        <Insets right="30.0" />
                      </HBox.margin></MFXTextField>
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="586.0">
                <children>
-                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." wrappingWidth="213.68670654296875">
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." wrappingWidth="140.0">
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
                   </Text>
                   <Text fx:id="incompleteForm" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly">
                      <font>
                         <Font size="10.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Text>
                </children>
             </HBox>
             <VBox prefHeight="113.0" prefWidth="586.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level:" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level:">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin></Text>
                   <HBox prefHeight="74.0" prefWidth="586.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -95,11 +105,6 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-            <Text fx:id="submittedFormText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
          </children>
          <padding>
             <Insets bottom="15.0" left="30.0" />
