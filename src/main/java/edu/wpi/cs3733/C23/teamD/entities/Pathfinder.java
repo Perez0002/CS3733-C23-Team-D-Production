@@ -66,12 +66,6 @@ public class Pathfinder {
 
       Node currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
 
-      System.out.print("Possible Locations: ");
-      for (Edge e : currentNode.getNodeEdges()) {
-        System.out.print(e.getEdgeID() + ", ");
-      }
-      System.out.println();
-
       // Put the Node we are at right now into list of Nodes we have been to
       beenNodes.put(currentNode.getNodeID(), currentNode);
 

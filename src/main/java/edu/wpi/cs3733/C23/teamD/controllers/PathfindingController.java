@@ -47,13 +47,12 @@ public class PathfindingController {
   @FXML
   void submit() {
     GraphMap mainMap = new GraphMap();
-    System.out.println("hi");
+
     mainMap.initFromDB();
-    System.out.println("hi");
+
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
     ArrayList<Node> Path = new ArrayList<Node>();
-    System.out.println(startRoom.getText());
-    System.out.println(endRoom.getText());
+
     if (mainMap.getNode(startRoom.getText()) != null
         && mainMap.getNode(endRoom.getText()) != null) {
       Path =
@@ -64,9 +63,11 @@ public class PathfindingController {
       for (Node n : Path) {
         out += " " + n.getNodeID() + ",";
       }
+      out = out.substring(0, out.length() - 2) + " ]";
       pathResultText.setText(out);
+
     } else {
       pathResultText.setText("Incorrect Node Data Entered");
     }
-  } // L1X2445Y1043 : L1X2220Y0904
+  }
 }
