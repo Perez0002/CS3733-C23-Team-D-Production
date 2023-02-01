@@ -62,7 +62,7 @@ public class PatientTransportController {
           new PatientTransportData(
               patientID.getText(),
               0,
-              "startRoom",
+              "L1X2255Y0849",
               endRoomController.getNodeValue(),
               checkSelectedEquipment(),
               reason.getText(),
