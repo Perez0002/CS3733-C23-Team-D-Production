@@ -180,13 +180,10 @@ public class PatientTransportController {
   */
   private boolean checkPatientID() {
     final String ID = patientID.getText();
-    if (ID.length() != 8) { // (1)
-      return false;
+    if (ID.matches("\\d\\d\\d\\d\\d\\d\\d\\d")) {
+      return true;
     }
-    if (ID.contains(" ")) { // (2)
-      return false;
-    }
-    return true;
+    return false;
   } // end checkPatientID()
   /*
     checkEndRoom
