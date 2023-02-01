@@ -61,7 +61,7 @@ public class SanitationTable extends Application implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     SanitationRequestData data =
         new SanitationRequestData(
-            0, "hallway", "cause", 1, "me", SanitationRequestData.status.DONE);
+            0, "hallway", "cause", 1, "me", SanitationRequestData.Status.DONE);
     if (SanitationRequestController.getSanitationList().size() == 0)
       SanitationRequestController.getSanitationList().add(data);
     tablehandling();

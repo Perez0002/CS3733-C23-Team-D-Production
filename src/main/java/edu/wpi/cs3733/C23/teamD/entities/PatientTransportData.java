@@ -19,13 +19,13 @@ public class PatientTransportData {
 
   private String patientID;
 
-  public enum status {
+  public enum Status {
     BLANK,
     PROCESSING,
     DONE;
   }
 
-  private status stat;
+  private Status stat;
 
   /*
   PatientTransportData()
@@ -43,7 +43,7 @@ public class PatientTransportData {
       ArrayList<String> equipment,
       String reason,
       String[] sendTo,
-      status stat) {
+      Status stat) {
     this.patientID = patientID;
     this.patientTransportID = patientTransportID;
     this.endRoom = endRoom;
@@ -61,7 +61,7 @@ public class PatientTransportData {
     this.reason = null;
     this.sendTo = null;
     this.startRoom = "";
-    this.stat = status.BLANK;
+    this.stat = Status.BLANK;
   }
   /*
   printInformation()
@@ -129,11 +129,11 @@ public class PatientTransportData {
     this.sendTo = sendTo;
   }
 
-  public status getStat() {
+  public Status getStat() {
     return stat;
   }
 
-  public void setStat(status stat) {
+  public void setStat(Status stat) {
     this.stat = stat;
   }
 

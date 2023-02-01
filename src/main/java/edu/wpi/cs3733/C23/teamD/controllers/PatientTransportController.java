@@ -67,7 +67,7 @@ public class PatientTransportController {
               checkSelectedEquipment(),
               reason.getText(),
               sendTo.getText().split(";"),
-              PatientTransportData.status.DONE); // creates PatientTransportData object
+              PatientTransportData.Status.DONE); // creates PatientTransportData object
       Connection conn = Ddb.makeConnection();
       Ddb.insertNewForm(conn, patientInformation);
       try {

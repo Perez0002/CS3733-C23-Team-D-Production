@@ -66,7 +66,7 @@ public class SanitationRequestController {
               fieldReason.getText(),
               i,
               staffIDTextField.getText(),
-              SanitationRequestData.status.DONE);
+              SanitationRequestData.Status.DONE);
       sanitationList.add(requestData);
       requestData.printSanititationInfo();
       textHelp.setVisible(false);

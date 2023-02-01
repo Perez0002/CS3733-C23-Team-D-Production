@@ -10,13 +10,13 @@ public class SanitationRequestData {
 
   String staff;
 
-  public enum status {
+  public enum Status {
     BLANK,
     PROCESSING,
     DONE;
   }
 
-  private SanitationRequestData.status stat;
+  private SanitationRequestData.Status stat;
 
   public String getLocation() {
     return location;
@@ -31,7 +31,7 @@ public class SanitationRequestData {
   }
 
   public SanitationRequestData(
-      int formID, String location, String reason, int bioLevel, String staff, status stat) {
+      int formID, String location, String reason, int bioLevel, String staff, Status stat) {
     sanitationRequestID = formID;
     this.location = location;
     this.reason = reason;
@@ -46,7 +46,7 @@ public class SanitationRequestData {
     this.reason = "";
     this.bioLevel = 0;
     this.staff = "";
-    this.stat = status.BLANK;
+    this.stat = Status.BLANK;
   }
 
   // for debugging
@@ -88,11 +88,11 @@ public class SanitationRequestData {
     this.staff = staff;
   }
 
-  public status getStat() {
+  public Status getStat() {
     return stat;
   }
 
-  public void setStat(status stat) {
+  public void setStat(Status stat) {
     this.stat = stat;
   }
 }

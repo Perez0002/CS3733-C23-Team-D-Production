@@ -371,7 +371,7 @@ public class Ddb {
         String sendTo = rset.getString("sendTo");
         transportForm.setSendTo(sendTo.split(","));
         transportForm.setReason(rset.getString("reason"));
-        transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
+        transportForm.setStat(PatientTransportData.Status.valueOf(rset.getString("status")));
         transportList.add(transportForm);
       }
       return transportList;
