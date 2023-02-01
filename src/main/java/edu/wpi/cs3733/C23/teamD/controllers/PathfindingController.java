@@ -43,7 +43,10 @@ public class PathfindingController {
   }
 
   @FXML
-  void clearFields() {}
+  void clearFields() {
+    startRoomComboBoxController.clearForm();
+    endRoomComboBoxController.clearForm();
+  }
 
   @FXML
   void displayHelp() {

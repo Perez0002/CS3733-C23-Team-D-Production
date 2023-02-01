@@ -35,4 +35,8 @@ public class RoomPickComboBoxController {
     System.out.println(nodeToRoomMap.get(mfxFilterComboBox.getValue()));
     return nodeToRoomMap.get(mfxFilterComboBox.getValue());
   }
+
+  public void clearForm() {
+    mfxFilterComboBox.setValue(null);
+  }
 }
