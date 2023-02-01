@@ -53,7 +53,7 @@ public class HomepageController {
     if (serviceRequestHelpText.getText().equals("") || bottomHelpText.getText().equals("")) {
       serviceRequestHelpText.setText("Click the buttons below to fill out service request forms!");
       bottomHelpText.setText(
-          "<-Use the leftmost button to exit the program    Click the rightmost button to remove the help text->");
+          "<-Use the leftmost button to exit the program  \n  Click the rightmost button to remove the help text->");
     } else {
       serviceRequestHelpText.setText("");
       bottomHelpText.setText("");
