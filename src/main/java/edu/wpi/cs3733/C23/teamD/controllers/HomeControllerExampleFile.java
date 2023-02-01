@@ -5,7 +5,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
-public class HomeController {
+public class HomeControllerExampleFile {
 
   @FXML MFXButton navigateButton;
 

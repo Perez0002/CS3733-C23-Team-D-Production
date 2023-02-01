@@ -12,15 +12,18 @@ public class HomepageController {
 
   @FXML private Label bottomHelpText;
 
-  @FXML MFXButton internalPatientTransportationRequestFormButton;
+  @FXML private MFXButton internalPatientTransportationRequestFormButton;
 
-  @FXML MFXButton sanitationServiceRequestFormButton;
+  @FXML private MFXButton sanitationServiceRequestFormButton;
 
-  @FXML MFXButton pathfindingButton;
+  @FXML private MFXButton pathfindingButton;
 
   @FXML private BorderPane homepageBorderPane;
 
   @FXML private Label serviceRequestHelpText;
+  @FXML private MFXButton DBAppButton;
+  @FXML private MFXButton patientTransportTableButton;
+  @FXML private MFXButton sanitationTableButton;
 
   @FXML
   public void initialize() {
@@ -28,7 +31,11 @@ public class HomepageController {
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST));
     sanitationServiceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SANITATION_FORM));
+    DBAppButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDIT));
     pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
+    patientTransportTableButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
+    sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
   }
 
   @FXML
@@ -46,7 +53,7 @@ public class HomepageController {
     if (serviceRequestHelpText.getText().equals("") || bottomHelpText.getText().equals("")) {
       serviceRequestHelpText.setText("Click the buttons below to fill out service request forms!");
       bottomHelpText.setText(
-          "<-Use the leftmost button to exit the program    Click the rightmost button to remove the help text->");
+          "<-Use the leftmost button to exit the program  \n  Click the rightmost button to remove the help text->");
     } else {
       serviceRequestHelpText.setText("");
       bottomHelpText.setText("");

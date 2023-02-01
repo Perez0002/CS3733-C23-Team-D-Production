@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PatientTransportController {
@@ -25,7 +26,6 @@ public class PatientTransportController {
   @FXML private Text reasonHelpText;
   @FXML private Text sendToHelpText;
   @FXML private MFXTextField patientID;
-  @FXML private MFXTextField endRoom;
   @FXML private MFXTextField reason;
   @FXML private MFXTextField sendTo;
   @FXML private MFXCheckbox testCheck;
@@ -33,8 +33,13 @@ public class PatientTransportController {
   @FXML private MFXCheckbox testCheck3;
   @FXML private MFXCheckbox testCheck4;
   // end attributes
+  @FXML private MFXCheckbox fieldStaffIDPatientTransportRequest;
+  @FXML private MFXButton cancelButton;
+  @FXML private MFXButton submitButton;
 
-  @FXML MFXButton cancelButton;
+  @FXML private Parent endRoom;
+
+  @FXML private RoomPickComboBoxController endRoomController;
 
   @FXML
   public void initialize() {
@@ -49,7 +54,7 @@ public class PatientTransportController {
   linked to "submit" button on SceneBuilder page, when selected
   submits information filled out in forms
   */
-  public void submit() {
+  public void submitPatientTransport() {
     if (checkFields()) {
       // System.out.println(patientID.getText() + " will be moved to " + endRoom.getText()); // for
       // debugging purposes
@@ -58,11 +63,11 @@ public class PatientTransportController {
               patientID.getText(),
               0,
               "startRoom",
-              endRoom.getText(),
+              endRoomController.getNodeValue(),
               checkSelectedEquipment(),
               reason.getText(),
               sendTo.getText().split(";"),
-              PatientTransportData.status.PROCESSING); // creates PatientTransportData object
+              PatientTransportData.Status.DONE); // creates PatientTransportData object
       Connection conn = Ddb.makeConnection();
       Ddb.insertNewForm(conn, patientInformation);
       try {
@@ -131,8 +136,9 @@ public class PatientTransportController {
   linked to "Clear" button on SceneBuilder page
   */
   public void clearFields() {
+
     patientID.clear();
-    endRoom.clear();
+    endRoomController.clearForm();
     reason.clear();
     sendTo.clear();
     testCheck.setSelected(false);
@@ -174,15 +180,11 @@ public class PatientTransportController {
   */
   private boolean checkPatientID() {
     final String ID = patientID.getText();
-    if (ID.length() != 8) { // (1)
-      return false;
+    if (ID.matches("\\d\\d\\d\\d\\d\\d\\d\\d")) {
+      return true;
     }
-    if (ID.contains(" ")) { // (2)
-      return false;
-    }
-    return true;
+    return false;
   } // end checkPatientID()
-
   /*
     checkEndRoom
     @param void
@@ -193,11 +195,7 @@ public class PatientTransportController {
     (2) endRoom must not contain a space
   */
   private boolean checkEndRoom() {
-    final String room = endRoom.getText();
-    if (room.length() != 10) {
-      return false;
-    }
-    if (room.contains(" ")) {
+    if (endRoomController.getNodeValue() == null) {
       return false;
     }
     return true;

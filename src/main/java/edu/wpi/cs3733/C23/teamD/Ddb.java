@@ -3,6 +3,8 @@ package edu.wpi.cs3733.C23.teamD;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.*;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -24,9 +26,8 @@ public class Ddb {
     final String pass = "7Lcge2CRNGTYWRgLD57vmz9SBFIfq2C3";
     try {
       conn = DriverManager.getConnection(url, user, pass);
-      System.out.println("Success");
     } catch (SQLException e) {
-      System.out.println("failed");
+      e.printStackTrace();
     }
     return conn;
   }
@@ -317,6 +318,14 @@ public class Ddb {
     }
   }
 
+  /**
+   * Inserts a new patientTransportForm with the attributes from the given form into the
+   * PatientTransportData
+   *
+   * @param conn
+   * @param form
+   * @return
+   */
   public static boolean insertNewForm(Connection conn, PatientTransportData form) {
     String statement =
         "INSERT INTO PatientTransportData(patientID,startRoom,endRoom,equipment,reason,sendTo,status) VALUES(?,?,?,?,?,?,CAST(? AS STAT))";
@@ -332,7 +341,7 @@ public class Ddb {
       pstmnt.executeUpdate();
       ResultSet id = pstmnt.getGeneratedKeys();
       id.next();
-      form.setPatientTransportID(id.getInt(1));
+      form.setPatientTransportID(id.getInt(2));
       return true;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -340,7 +349,11 @@ public class Ddb {
     }
   }
 
-  protected static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
+  /**
+   * @param conn
+   * @return
+   */
+  public static ArrayList<PatientTransportData> getPatientTransportData(Connection conn) {
     String statement = "SELECT * FROM PatientTransportData";
     ArrayList<PatientTransportData> transportList = new ArrayList<PatientTransportData>();
     try {
@@ -355,17 +368,25 @@ public class Ddb {
         List<String> stringList = Arrays.asList((rset.getString("equipment")).split(","));
         ArrayList<String> strings = new ArrayList<>(stringList);
         transportForm.setEquipment(strings);
-        transportForm.setSendTo((rset.getString("sendTo")).split(","));
+        String sendTo = rset.getString("sendTo");
+        transportForm.setSendTo(sendTo.split(","));
         transportForm.setReason(rset.getString("reason"));
-        transportForm.setStat(PatientTransportData.status.valueOf(rset.getString("status")));
+        transportForm.setStat(PatientTransportData.Status.valueOf(rset.getString("status")));
         transportList.add(transportForm);
       }
       return transportList;
     } catch (SQLException e) {
+      e.printStackTrace();
       return null;
     }
   }
 
+  /**
+   * @param conn
+   * @param stmnt
+   * @param pk
+   * @param newThing
+   */
   public static void updateObjString(Connection conn, String stmnt, String pk, String newThing) {
     try {
       PreparedStatement pstmnt;
@@ -378,6 +399,12 @@ public class Ddb {
     }
   }
 
+  /**
+   * @param conn
+   * @param stmnt
+   * @param pk
+   * @param newThing
+   */
   public static void updateObjInt(Connection conn, String stmnt, String pk, int newThing) {
     try {
       PreparedStatement pstmnt;
@@ -390,6 +417,10 @@ public class Ddb {
     }
   }
 
+  /**
+   * @param tablename
+   * @param csvFilePath
+   */
   public static void csv2DBInsertions(String tablename, String csvFilePath) {
     Connection conn = makeConnection();
     try {
@@ -401,6 +432,8 @@ public class Ddb {
         sql = "INSERT INTO edge values (?, ?)";
       } else if (tablename.equals("LocationName")) {
         sql = "INSERT INTO locationname values (?, ?, ?)";
+      } else if (tablename.equals("Move")) {
+        sql = "INSERT INTO move values (?, ?, ?)";
       } else {
         System.out.println("The table does not exist.");
       }
@@ -452,6 +485,24 @@ public class Ddb {
           statement.setString(2, shortName);
           statement.setString(3, nodeType);
 
+          statement.addBatch();
+
+          if (count % 20 == 0) {
+            statement.executeBatch();
+          }
+        } else if (tablename.equals("Move")) {
+          String nodeID = data[0];
+          String locationName = data[1];
+
+          LocalTime localTime = LocalTime.now();
+          LocalDate localDate = LocalDate.of(2023, 01, 01);
+
+          // convert LocalTime to Timestamp
+          Timestamp timestamp = Timestamp.valueOf(localTime.atDate(localDate));
+
+          statement.setString(1, nodeID);
+          statement.setString(2, locationName);
+          statement.setTimestamp(3, timestamp);
           statement.addBatch();
 
           if (count % 20 == 0) {
