@@ -44,8 +44,6 @@ public class PathfindingController {
     mainMap.initFromDB();
 
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    System.out.println(roomPicker.getClass());
-    System.out.println(roomPickerController.getValue());
   }
 
   @FXML
