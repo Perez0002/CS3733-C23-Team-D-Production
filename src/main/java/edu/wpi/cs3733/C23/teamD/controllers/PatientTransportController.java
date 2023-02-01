@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PatientTransportController {
@@ -25,7 +26,6 @@ public class PatientTransportController {
   @FXML private Text reasonHelpText;
   @FXML private Text sendToHelpText;
   @FXML private MFXTextField patientID;
-  @FXML private MFXTextField endRoom;
   @FXML private MFXTextField reason;
   @FXML private MFXTextField sendTo;
   @FXML private MFXCheckbox testCheck;
@@ -36,6 +36,10 @@ public class PatientTransportController {
   @FXML private MFXCheckbox fieldStaffIDPatientTransportRequest;
   @FXML private MFXButton cancelButton;
   @FXML private MFXButton submitButton;
+
+  @FXML private Parent endRoom;
+
+  @FXML private RoomPickComboBoxController endRoomController;
 
   @FXML
   public void initialize() {
@@ -59,7 +63,7 @@ public class PatientTransportController {
               patientID.getText(),
               0,
               "startRoom",
-              endRoom.getText(),
+              endRoomController.getNodeValue(),
               checkSelectedEquipment(),
               reason.getText(),
               sendTo.getText().split(";"),
@@ -132,8 +136,9 @@ public class PatientTransportController {
   linked to "Clear" button on SceneBuilder page
   */
   public void clearFields() {
+
     patientID.clear();
-    endRoom.clear();
+    endRoomController.clearForm();
     reason.clear();
     sendTo.clear();
     testCheck.setSelected(false);
@@ -193,7 +198,7 @@ public class PatientTransportController {
     (2) endRoom must not contain a space
   */
   private boolean checkEndRoom() {
-    if (endRoom.getText() == null) {
+    if (endRoomController.getNodeValue() == null) {
       return false;
     }
     return true;

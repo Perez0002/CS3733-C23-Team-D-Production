@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class SanitationRequestController {
@@ -23,13 +24,17 @@ public class SanitationRequestController {
   @FXML private MFXRadioButton radioBSL3;
   @FXML private MFXRadioButton radioBSL4;
   @FXML private MFXTextField fieldReason;
-  @FXML private MFXTextField fieldLocation;
+  //  @FXML private MFXTextField fieldLocation;
   @FXML private Text formSubmittedText;
   @FXML MFXButton cancelButton;
   @FXML Text locationHelpText;
   @FXML Text reasonHelpText;
   @FXML Text staffIDHelpText;
   @FXML MFXTextField staffIDTextField;
+
+  @FXML private Parent fieldLocation;
+
+  @FXML private RoomPickComboBoxController fieldLocationController;
 
   @FXML
   public void initialize() {
@@ -57,7 +62,7 @@ public class SanitationRequestController {
       SanitationRequestData requestData =
           new SanitationRequestData(
               formID,
-              fieldLocation.getText(),
+              fieldLocationController.getNodeValue(),
               fieldReason.getText(),
               i,
               staffIDTextField.getText(),
@@ -78,7 +83,7 @@ public class SanitationRequestController {
 
   @FXML
   public void clearFields() {
-    fieldLocation.clear();
+    fieldLocationController.clearForm();
     fieldReason.clear();
     staffIDTextField.clear();
     radioBSL1.setSelected(false);
@@ -99,8 +104,9 @@ public class SanitationRequestController {
   }
 
   private boolean isFieldsSaturated() {
+    // System.out.print("Submit Success2: ");
     return (fieldReason.getText() != ""
-        && fieldLocation.getText() != ""
+        && (fieldLocationController.getNodeValue() != null)
         && staffIDTextField.getText() != ""
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()
