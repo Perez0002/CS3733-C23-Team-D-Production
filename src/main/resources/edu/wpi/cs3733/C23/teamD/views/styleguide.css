@@ -5,7 +5,6 @@
     -fx-background-size: cover;
     -fx-background-image: url('Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
-    -fx-font-size: 16pt;
 }
 
 .button { /* it controls all button customization */
@@ -15,7 +14,19 @@
     -fx-text-align: center;
     -fx-text-decoration: none;
     -fx-display: inline-block;
+    -fx-font-size: 16pt;
+    -fx-text-fill: ffffff;
 }
+
+.menu-button {
+    -fx-font-size: 16pt;
+    -fx-text-fill: ffffff;
+}
+
+.table-view {
+    -fx-font-size: 16pt;
+}
+
 
 #hospitalname{
     -fx-color: #123486;
