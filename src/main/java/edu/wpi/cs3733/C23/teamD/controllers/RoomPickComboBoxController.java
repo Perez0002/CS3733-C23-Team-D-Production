@@ -1,16 +1,12 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
 
-public class RoomPickComboBoxController {
-  @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
   private HashMap<String, String> nodeToRoomMap;
 
   public RoomPickComboBoxController() {
