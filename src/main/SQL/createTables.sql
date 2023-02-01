@@ -48,6 +48,5 @@ create table PatientTransportData(
                                      reason varchar(255) NOT NULL,
                                      sendTo varchar(255) NOT NULL,
                                      status stat NOT NULL,
-                                     staff varchar(255) NOT NULL
 );
 
