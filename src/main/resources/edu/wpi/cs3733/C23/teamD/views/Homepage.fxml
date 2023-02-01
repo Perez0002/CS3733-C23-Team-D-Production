@@ -49,29 +49,32 @@
                <children>
                   <VBox prefHeight="275.0" prefWidth="250.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="sanitationServiceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #19158c;" text="Sanitation Service Request Form" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <MFXButton fx:id="sanitationServiceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Sanitation Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="internalPatientTransportationRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Patient Transport Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="internalPatientTransportationRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="Internal Patient Transportation Request Form" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </MFXButton>
-                        <MFXButton fx:id="pathfindingButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="Pathfinding Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <MFXButton fx:id="pathfindingButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Pathfinding Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox prefHeight="275.0" prefWidth="250.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="DBAppButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="Update Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                        <MFXButton fx:id="patientTransportTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="View Patient Transport Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                        <MFXButton fx:id="sanitationTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" text="View Sanitation Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <MFXButton fx:id="DBAppButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Update Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <MFXButton fx:id="patientTransportTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Patient Transport Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <MFXButton fx:id="sanitationTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="View Sanitation Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <Label fx:id="aboutLabel" prefHeight="200.0" prefWidth="450.0" text="This homepage was created by Olivia P. The Internal Patient Transportation Request Form was created by Annie Z and Mike W. The Santiation Services Request Form was created by Wyatt H and Gibson P." textAlignment="CENTER" wrapText="true">
+            <Label fx:id="aboutLabel" prefHeight="200.0" prefWidth="450.0" text="This homepage was created by Olivia, the Internal Patient Transportation Request Form by Annie and Mike, the Santiation Services Request Form by Wyatt and Gibson, the Pathtfinding Page by Mike and Olivia, the Navigation Bar by Annie, and the database pages by Bryce." textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>

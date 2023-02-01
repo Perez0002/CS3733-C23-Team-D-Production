@@ -27,12 +27,14 @@
     -fx-font-size: 16pt;
 }
 
-
+.homePageButton {
+    -fx-font-size: 12pt;
+}
 #hospitalname{
     -fx-color: #123486;
     -fx-font-size: 30pt;
 }
 
 #aboutLabel{
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
 }
