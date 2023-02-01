@@ -43,7 +43,7 @@
    <left>
       <VBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="incompleteForm" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
+            <Text fx:id="incompleteForm" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly." visible="false" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <MFXTextField fx:id="patientID" floatingText="Enter Patient ID" prefHeight="49.0" prefWidth="200.0" />
@@ -53,19 +53,19 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <fx:include fx:id="endRoom" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
-                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." visible="false" wrappingWidth="220.88671875" />
+                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Use the dropdown to select the new room for this patient." visible="false" wrappingWidth="220.88671875" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <MFXTextField fx:id="reason" floatingText="Reason for Request" prefWidth="200.0" />
-                  <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for transporting this patient" visible="false" wrappingWidth="208.091796875" />
+                  <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for transporting this patient." visible="false" wrappingWidth="208.091796875" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <MFXTextField fx:id="sendTo" floatingText="Notification Contacts" prefWidth="200.0" />
-                  <Text fx:id="sendToHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of anyone who should be notified of this patient transport" visible="false" wrappingWidth="205.830078125" />
+                  <Text fx:id="sendToHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the email of anyone who should be notified of this patient transport." visible="false" wrappingWidth="205.830078125" />
                </children>
             </HBox>
             <Text fx:id="submittedFormText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />

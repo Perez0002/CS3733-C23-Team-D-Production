@@ -34,6 +34,8 @@ public class PathfindingController {
 
   private GraphMap mainMap;
 
+  public PathfindingController() {}
+
   @FXML
   public void initialize() {
     this.mainMap = new GraphMap();

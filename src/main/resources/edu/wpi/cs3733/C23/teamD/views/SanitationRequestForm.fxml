@@ -24,7 +24,7 @@
       </Label>
    </top>
    <right>
-      <HBox prefHeight="594.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="594.0" prefWidth="367.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Biohazard Level:" />
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -52,13 +52,13 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <MFXTextField fx:id="staffIDTextField" floatingText="Staff ID" prefHeight="49.0" prefWidth="200.0" />
-                  <Text fx:id="staffIDHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the staff member who will carry out this request" visible="false" wrappingWidth="198.478515625" />
+                  <Text fx:id="staffIDHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the staff member who will carry out this request." visible="false" wrappingWidth="198.478515625" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MFXTextField fx:id="fieldLocation" floatingText="Location" prefHeight="49.0" prefWidth="200.0" />
-                  <Text fx:id="locationHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter location of Sanitation Request. It should be 8 characters with no spaces." visible="false" wrappingWidth="198.478515625" />
+                  <fx:include fx:id="fieldLocation" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
+                  <Text fx:id="locationHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Use dropdown to select location for sanitation request." visible="false" wrappingWidth="198.478515625" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
