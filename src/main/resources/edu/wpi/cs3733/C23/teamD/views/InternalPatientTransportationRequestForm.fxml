@@ -52,7 +52,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MFXTextField fx:id="endRoom" floatingText="Enter End Room" prefWidth="200.0" />
+                  <fx:include fx:id="endRoom" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
                   <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the new room for the patient. It should be 10 characters with no spaces." visible="false" wrappingWidth="220.88671875" />
                </children>
             </HBox>

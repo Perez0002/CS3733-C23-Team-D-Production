@@ -193,11 +193,7 @@ public class PatientTransportController {
     (2) endRoom must not contain a space
   */
   private boolean checkEndRoom() {
-    final String room = endRoom.getText();
-    if (room.length() != 10) {
-      return false;
-    }
-    if (room.contains(" ")) {
+    if (endRoom.getText() == null) {
       return false;
     }
     return true;

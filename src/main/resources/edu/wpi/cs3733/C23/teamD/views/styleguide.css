@@ -11,9 +11,7 @@
 .button { /* it controls all button customization */
     -fx-background-color: #123486; /* Blue */
     -fx-border: none;
-    -fx-color: #fffffff;
     -fx-border-radius: 15px;
-    -fx-text-fill: #ffffff;
     -fx-text-align: center;
     -fx-text-decoration: none;
     -fx-display: inline-block;
