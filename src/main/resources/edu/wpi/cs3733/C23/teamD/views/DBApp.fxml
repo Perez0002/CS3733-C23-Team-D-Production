@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.DBcontroller">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="nodeTableView" prefHeight="200.0" prefWidth="595.0">
+              <columns>
+                <TableColumn fx:id="nodeID" prefWidth="75.0" text="nodeID" />
+                <TableColumn prefWidth="75.0" text="x Coord" fx:id="xCoord" />
+                  <TableColumn fx:id="yCoord" prefWidth="75.0" text="y Coord" />
+                  <TableColumn fx:id="building" prefWidth="75.0" text="building" />
+                  <TableColumn fx:id="floor" prefWidth="75.0" text="floor" />
+              </columns>
+            </TableView>
+            <TableView fx:id="locationNameTableView" prefHeight="200.0" prefWidth="595.0">
+               <columns>
+                  <TableColumn fx:id="longName" prefWidth="75.0" text="longName" />
+                  <TableColumn fx:id="shortName" prefWidth="75.0" text="shortName" />
+                  <TableColumn fx:id="locationType" prefWidth="87.99993896484375" text="locationType" />
+               </columns>
+            </TableView>
+            <MFXButton fx:id="cancelButton" text="Cancel" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
