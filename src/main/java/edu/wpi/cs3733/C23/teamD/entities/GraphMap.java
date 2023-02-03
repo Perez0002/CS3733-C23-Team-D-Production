@@ -73,7 +73,7 @@ public class GraphMap {
     ArrayList<locationName> locList = createJavaLocat(conn);
 
     for (Node node : nodeList) {
-      System.out.println(node.getNodeID());
+//      System.out.println(node.getNodeID());
       nodeMap.put(node.getNodeID(), node);
       ResultSet rset;
       String curName = "";

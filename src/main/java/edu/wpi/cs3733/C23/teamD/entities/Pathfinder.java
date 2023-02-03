@@ -87,7 +87,7 @@ public class Pathfinder {
     }
 
     // In the event a Node could not be found, return default path
-    System.out.println("Could not find Node!");
+//    System.out.println("Could not find Node!");
     return path;
   }
 }

@@ -68,7 +68,7 @@ public class SanitationRequestController {
               staffIDTextField.getText(),
               SanitationRequestData.Status.DONE);
       sanitationList.add(requestData);
-      requestData.printSanititationInfo();
+//      requestData.printSanititationInfo();
       textHelp.setVisible(false);
       formSubmittedText.setVisible(true);
     } else {
