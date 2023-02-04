@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapEditorController;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -17,6 +18,8 @@ public class HomepageController {
   @FXML private MFXButton sanitationServiceRequestFormButton;
 
   @FXML private MFXButton pathfindingButton;
+
+  @FXML private MFXButton mapEditorButton1;
 
   @FXML private BorderPane homepageBorderPane;
 
@@ -36,6 +39,7 @@ public class HomepageController {
     patientTransportTableButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
     sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
+    mapEditorButton1.setOnMouseClicked(event -> new MapEditorController());
   }
 
   @FXML

@@ -63,6 +63,7 @@
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="pathfindingButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Pathfinding Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <MFXButton fx:id="mapEditorButton1" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" layoutX="10.0" layoutY="120.0" prefHeight="45.0" prefWidth="240.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Map Editor" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox prefHeight="275.0" prefWidth="250.0" spacing="10.0">
@@ -70,6 +71,7 @@
                         <MFXButton fx:id="DBAppButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Update Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                         <MFXButton fx:id="patientTransportTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="Patient Transport Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                         <MFXButton fx:id="sanitationTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" text="View Sanitation Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <MFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" layoutX="10.0" layoutY="120.0" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" style="-fx-background-color: #19158c;" styleClass="homePageButton" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
                </children>
