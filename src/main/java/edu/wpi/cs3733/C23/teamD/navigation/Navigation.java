@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.navigation;
 import edu.wpi.cs3733.C23.teamD.App;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 
 public class Navigation {
 
@@ -15,6 +16,14 @@ public class Navigation {
 
       App.getRootPane().setCenter(loader.load());
     } catch (IOException | NullPointerException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void navigate(final Node scene) {
+    try {
+      App.getRootPane().setCenter(scene);
+    } catch (NullPointerException e) {
       e.printStackTrace();
     }
   }
