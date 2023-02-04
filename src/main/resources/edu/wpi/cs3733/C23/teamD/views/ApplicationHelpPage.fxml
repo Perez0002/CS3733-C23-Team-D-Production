@@ -9,6 +9,6 @@
       <Label fx:id="titleLabel" text="Help Page" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <MFXButton fx:id="backButton" text="Back" BorderPane.alignment="CENTER" />
+      <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
    </center>
 </BorderPane>
