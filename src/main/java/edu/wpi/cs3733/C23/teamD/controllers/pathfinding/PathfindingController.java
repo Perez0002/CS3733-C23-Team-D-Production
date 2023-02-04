@@ -63,26 +63,23 @@ public class PathfindingController {
   @FXML
   void submit() {
     Pathfinder PathfinderAStar = new Pathfinder(mainMap);
-    ArrayList<Node> Path = new ArrayList<Node>();
+    ArrayList<Node> path = new ArrayList<Node>();
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
 
     if (startNode != null && endNode != null) {
-      Path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
-      if(Path.size()==1){
+      path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
+      if (path.size() == 1) {
         pathResultText.setText("The Chosen Start and End Locations are Identical");
-      }
-      else if (Path.size()==0) {
+      } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
+      } else {
+        MapDrawController pathDrawController = new MapDrawController();
+        javafx.scene.Node sceneNode = pathDrawController.genMapFromNodesWithEdges(path);
+        Navigation.navigate(sceneNode);
       }
-      else{
-        MapDrawController pathDrawController= new MapDrawController();
-        // Add point to navigate too here
-        //Navigation.navigate();
-      }
-    }
-    else {
+    } else {
       pathResultText.setText("Incorrect Node Data Entered");
     }
   }
