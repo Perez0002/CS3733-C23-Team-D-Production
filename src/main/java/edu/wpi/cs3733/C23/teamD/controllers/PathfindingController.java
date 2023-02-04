@@ -3,16 +3,12 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
-import edu.wpi.cs3733.C23.teamD.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
 public class PathfindingController {
-  @FXML private MFXButton cancelButton;
 
   @FXML private Parent roomPicker;
   @FXML private RoomPickComboBoxController roomPickerController;
@@ -42,8 +38,6 @@ public class PathfindingController {
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
-
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
