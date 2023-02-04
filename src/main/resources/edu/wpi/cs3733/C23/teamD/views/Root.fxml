@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -12,42 +12,55 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.RootController">
    <top>
-      <SplitPane dividerPositions="0.5" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <items>
-            <Text fx:id="hospitalName" fill="#123486" strokeType="OUTSIDE" strokeWidth="0.0" text="Brigham and Women's Hospital" wrappingWidth="222.9830722808838">
-               <font>
-                  <Font name="Open Sans Bold" size="18.0" />
-               </font>
-            </Text>
-            <HBox fx:id="menuBar" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="700.0">
+      <AnchorPane prefHeight="33.0" styleClass="rootPane" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <HBox prefHeight="33.0" prefWidth="200.0" spacing="85.0">
                <children>
-                  <MFXButton onAction="#openHomepage" prefHeight="33.0" prefWidth="119.0" text="Home">
+                  <Text fx:id="hospitalName" fill="#123486" strokeType="OUTSIDE" strokeWidth="0.0" text="Brigham and Women's Hospital" wrappingWidth="393.9830722808838">
+                     <font>
+                        <Font name="Open Sans Bold" size="18.0" />
+                     </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="10.0" top="10.0" />
                      </HBox.margin>
-                  </MFXButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Forms">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" text="Pathfinding Form" />
-                      <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" text="Sanitation Form" />
-                        <MenuItem mnemonicParsing="false" onAction="#openPatientTransport" text="Patient Transport Form" />
-                    </items>
-                  </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="250.0" text="Database">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#openDatabase" text="Edit Database" />
-                        <MenuItem mnemonicParsing="false" onAction="#openPatientTransportTable" text="View Patient Transport Requests" />
-                        <MenuItem mnemonicParsing="false" onAction="#openSanitationTable" text="View Sanitation Requests" />
-                     </items>
-                  </MenuButton>
-                  <MFXButton fx:id="helpPageButton" onAction="#openHelpPage" prefHeight="33.0" prefWidth="119.0" text="Help" />
-                  <MFXButton onAction="#exit" prefHeight="33.0" prefWidth="126.0" text="Exit" />
+                  </Text>
+                  <HBox fx:id="menuBar" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="865.0">
+                     <children>
+                        <MFXButton onAction="#openHomepage" prefHeight="33.0" prefWidth="119.0" text="Home">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Forms">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" text="Pathfinding Form" />
+                            <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" text="Sanitation Form" />
+                              <MenuItem mnemonicParsing="false" onAction="#openPatientTransport" text="Patient Transport Form" />
+                          </items>
+                        </MenuButton>
+                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="250.0" text="Database">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#openDatabase" text="Edit Database" />
+                              <MenuItem mnemonicParsing="false" onAction="#openPatientTransportTable" text="View Patient Transport Requests" />
+                              <MenuItem mnemonicParsing="false" onAction="#openSanitationTable" text="View Sanitation Requests" />
+                           </items>
+                        </MenuButton>
+                        <MFXButton fx:id="helpPageButton" onAction="#openHelpPage" prefHeight="33.0" prefWidth="119.0" text="Help" />
+                        <MFXButton onAction="#exit" prefHeight="33.0" prefWidth="126.0" text="Exit" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </HBox>
-         </items>
-      </SplitPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </AnchorPane>
    </top>
 </BorderPane>

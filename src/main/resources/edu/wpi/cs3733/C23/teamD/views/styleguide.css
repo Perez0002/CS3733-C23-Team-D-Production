@@ -34,10 +34,13 @@
     -fx-background-color: #123486; /* Blue */
 }
 
+.rootPane {
+    -fx-background-color: #123486; /* Blue */
+}
 
-#hospitalname{
-    -fx-color: #123486;
-    -fx-font-size: 30pt;
+#hospitalName{
+    -fx-fill: #ffffff;
+    -fx-font-size: 20pt;
 }
 
 #aboutLabel{
