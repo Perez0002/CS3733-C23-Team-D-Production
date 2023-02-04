@@ -1,8 +1,10 @@
+
 .root{ /* this controls for the entire application */
     -fx-font-family: "Open Sans";
     -fx-base: #123486;
     -fx-background: #f5f5f5;
     -fx-background-size: cover;
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(244,244,244,1), rgba(244,244,244,0));
     -fx-background-image: url('Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
 }
@@ -29,7 +31,10 @@
 
 .homePageButton {
     -fx-font-size: 12pt;
+    -fx-background-color: #123486; /* Blue */
 }
+
+
 #hospitalname{
     -fx-color: #123486;
     -fx-font-size: 30pt;
