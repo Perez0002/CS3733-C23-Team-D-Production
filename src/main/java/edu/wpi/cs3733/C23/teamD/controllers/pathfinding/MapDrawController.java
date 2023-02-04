@@ -52,17 +52,20 @@ public class MapDrawController {
       Canvas canvas = new Canvas(imageView.getImage().getWidth(), imageView.getImage().getHeight());
       GraphicsContext context = canvas.getGraphicsContext2D();
       context.setFill(Color.BLACK);
-      context.setLineWidth(3);
 
       Node lastNode = null;
       for (Node node : nodeList) {
         if (lastNode != null) {
           context.strokeLine(
               lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
+        } else {
+          context.strokeText("START", node.getXcoord() + 10, node.getYcoord(), 40);
+          context.setLineWidth(3);
         }
         lastNode = node;
       }
-
+      context.setLineWidth(1);
+      context.strokeText("END", lastNode.getXcoord() + 10, lastNode.getYcoord(), 40);
       System.out.println("Edges Drawn!");
 
       anchor.getChildren().add(1, canvas);
