@@ -4,6 +4,8 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import java.awt.*;
 import java.util.ArrayList;
+
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
@@ -17,7 +19,7 @@ public class MapDrawController {
   private static final int NODE_WIDTH = 10;
   private static final int NODE_HEIGHT = 10;
 
-  public GesturePane genMapFromNodes(ArrayList<Node> nodeList) {
+  public GesturePane genMapFromNodes(ArrayList<Node> nodeList, EventHandler<? super javafx.scene.input.MouseEvent> event) {
     AnchorPane anchor = new AnchorPane();
 
     ImageView imageView =
@@ -31,15 +33,7 @@ public class MapDrawController {
       tempPane.setLayoutX(node.getXcoord() - NODE_WIDTH / 2);
       tempPane.setLayoutY(node.getYcoord() - NODE_HEIGHT / 2);
       tempPane.setStyle("-fx-background-color: '#013A75';");
-      tempPane.setOnMouseClicked(
-          event -> {
-            // TODO this is temporary, needs to be correctly implemented
-            if (tempPane.getStyle().equals("-fx-background-color: '#013A75';")) {
-              tempPane.setStyle("-fx-background-color: '#88CC88';");
-            } else {
-              tempPane.setStyle("-fx-background-color: '#013A75';");
-            }
-          });
+      tempPane.setOnMouseClicked(event);
       anchor.getChildren().add(tempPane);
     }
 
@@ -48,7 +42,7 @@ public class MapDrawController {
   }
 
   public GesturePane genMapFromNodesWithEdges(ArrayList<Node> nodeList) {
-    GesturePane oldPane = genMapFromNodes(nodeList);
+    GesturePane oldPane = genMapFromNodes(nodeList, event -> {});
     javafx.scene.Node incomingNode = oldPane.getContent();
     try {
       assert incomingNode instanceof AnchorPane;
