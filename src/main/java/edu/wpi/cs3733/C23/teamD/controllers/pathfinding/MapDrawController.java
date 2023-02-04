@@ -42,7 +42,7 @@ public class MapDrawController {
     return returnPane;
   }
 
-  public javafx.scene.Node genMapFromNodesWithEdges(ArrayList<Node> nodeList) {
+  public GesturePane genMapFromNodesWithEdges(ArrayList<Node> nodeList) {
     GesturePane oldPane = genMapFromNodes(nodeList);
     javafx.scene.Node incomingNode = oldPane.getContent();
     try {
