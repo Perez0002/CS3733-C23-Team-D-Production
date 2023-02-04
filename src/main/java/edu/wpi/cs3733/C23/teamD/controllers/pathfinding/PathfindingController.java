@@ -70,15 +70,19 @@ public class PathfindingController {
 
     if (startNode != null && endNode != null) {
       Path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
-      String out = "";
-      out += "[";
-      for (Node n : Path) {
-        out += " " + n.getNodeID() + ",";
+      if(Path.size()==1){
+        pathResultText.setText("The Chosen Start and End Locations are Identical");
       }
-      out = out.substring(0, out.length() - 2) + " ]";
-      pathResultText.setText(out);
-
-    } else {
+      else if (Path.size()==0) {
+        pathResultText.setText("There is no Valid Path Between These Two Locations");
+      }
+      else{
+        MapDrawController pathDrawController= new MapDrawController();
+        // Add point to navigate too here
+        //Navigation.navigate();
+      }
+    }
+    else {
       pathResultText.setText("Incorrect Node Data Entered");
     }
   }
