@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
@@ -9,8 +10,11 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
   @FXML private MFXButton cancelButton;
@@ -76,7 +80,13 @@ public class PathfindingController {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
         MapDrawController pathDrawController = new MapDrawController();
-        javafx.scene.Node sceneNode = pathDrawController.genMapFromNodesWithEdges(path);
+        GesturePane sceneNode = pathDrawController.genMapFromNodesWithEdges(path);
+        sceneNode
+            .animate(Duration.millis(200))
+            .centreOn(
+                new Point2D(
+                    mainMap.getNode(startNode).getXcoord() - App.getPrimaryStage().getWidth() / 2,
+                    mainMap.getNode(endNode).getYcoord() - App.getPrimaryStage().getHeight() / 2));
         Navigation.navigate(sceneNode);
       }
     } else {

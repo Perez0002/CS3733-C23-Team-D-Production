@@ -33,7 +33,12 @@ public class MapDrawController {
       tempPane.setStyle("-fx-background-color: '#013A75';");
       tempPane.setOnMouseClicked(
           event -> {
-            // TODO: add functionality
+            // TODO this is temporary, needs to be correctly implemented
+            if (tempPane.getStyle().equals("-fx-background-color: '#013A75';")) {
+              tempPane.setStyle("-fx-background-color: '#88CC88';");
+            } else {
+              tempPane.setStyle("-fx-background-color: '#013A75';");
+            }
           });
       anchor.getChildren().add(tempPane);
     }
@@ -66,7 +71,6 @@ public class MapDrawController {
       }
       context.setLineWidth(1);
       context.strokeText("END", lastNode.getXcoord() + 10, lastNode.getYcoord(), 40);
-      System.out.println("Edges Drawn!");
 
       anchor.getChildren().add(1, canvas);
 
