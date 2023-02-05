@@ -32,9 +32,10 @@
                </children>
             </VBox>
             <Text fx:id="incorrectUsernameOrPasswordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Username or Password" visible="false" wrappingWidth="171.09375" />
+            <Text fx:id="successfulLoginText" strokeType="OUTSIDE" strokeWidth="0.0" text="User Logged In" visible="false" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
-                  <MFXButton text="Submit" />
+                  <MFXButton onAction="#submitLogin" text="Submit" />
                   <MFXButton onAction="#clearFields" text="Clear" />
                    <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                   <MFXButton onAction="#displayHelp" text="Help" />
