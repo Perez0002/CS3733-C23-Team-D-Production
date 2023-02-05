@@ -64,6 +64,6 @@ public class MapEditorPageController {
     MapDrawController mapDrawer = new MapDrawController();
     Connection conn = makeConnection();
     ArrayList<Node> nodeList = createJavaNodes(conn);
-    mapEditorPane.setCenter(mapDrawer.genMapFromNodes(nodeList));
+    mapEditorPane.setCenter(mapDrawer.genMapFromNodes(nodeList, event -> {}));
   }
 }
