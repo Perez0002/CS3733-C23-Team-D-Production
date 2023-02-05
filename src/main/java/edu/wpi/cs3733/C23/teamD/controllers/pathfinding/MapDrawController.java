@@ -34,7 +34,7 @@ public class MapDrawController {
       tempPane.setPrefSize(NODE_WIDTH, NODE_HEIGHT);
       tempPane.setLayoutX(node.getXcoord() - NODE_WIDTH / 2);
       tempPane.setLayoutY(node.getYcoord() - NODE_HEIGHT / 2);
-      tempPane.setStyle("-fx-background-color: '#013A75';");
+      tempPane.setStyle("-fx-background-color: '#013A75'; -fx-border-radius: 1000px;");
       tempPane.setOnMouseClicked(event.apply(node));
       anchor.getChildren().add(tempPane);
     }
