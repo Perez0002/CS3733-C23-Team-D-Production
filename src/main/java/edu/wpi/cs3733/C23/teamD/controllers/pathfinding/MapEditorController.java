@@ -14,7 +14,12 @@ public class MapEditorController {
     MapDrawController mapDrawer = new MapDrawController();
     Connection conn = makeConnection();
     ArrayList<Node> nodeList = createJavaNodes(conn);
-    javafx.scene.Node sceneNode = mapDrawer.genMapFromNodes(nodeList, event -> {});
+    javafx.scene.Node sceneNode =
+        mapDrawer.genMapFromNodes(
+            nodeList,
+            event -> {
+              return null;
+            });
     Navigation.navigate(sceneNode);
   }
 }

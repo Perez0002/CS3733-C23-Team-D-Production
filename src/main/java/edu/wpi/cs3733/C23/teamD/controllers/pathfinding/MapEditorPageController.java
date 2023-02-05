@@ -9,7 +9,9 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Connection;
 import java.util.ArrayList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
@@ -32,6 +34,8 @@ public class MapEditorPageController {
   @FXML private Text shortNameHelpText;
 
   @FXML private MFXTextField shortNameTextField;
+
+  private Node currentNodeEdit;
 
   @FXML
   void clearFields() {
@@ -64,6 +68,17 @@ public class MapEditorPageController {
     MapDrawController mapDrawer = new MapDrawController();
     Connection conn = makeConnection();
     ArrayList<Node> nodeList = createJavaNodes(conn);
-    mapEditorPane.setCenter(mapDrawer.genMapFromNodes(nodeList, event -> {}));
+    mapEditorPane.setCenter(
+        mapDrawer.genMapFromNodes(
+            nodeList,
+            node -> {
+              return new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                  currentNodeEdit = node;
+                  nodeInformationText.setText(currentNodeEdit.getNodeID());
+                }
+              };
+            }));
   }
 }
