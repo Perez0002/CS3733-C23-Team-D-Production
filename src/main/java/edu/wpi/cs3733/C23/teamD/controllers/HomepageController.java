@@ -18,6 +18,8 @@ public class HomepageController {
 
   @FXML private MFXButton pathfindingButton;
 
+  @FXML private MFXButton mapEditorButton1;
+
   @FXML private BorderPane homepageBorderPane;
 
   @FXML private Label serviceRequestHelpText;
@@ -36,6 +38,7 @@ public class HomepageController {
     patientTransportTableButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
     sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
+    mapEditorButton1.setOnMouseClicked(event -> Navigation.navigate((Screen.MAP_EDITOR)));
   }
 
   @FXML
