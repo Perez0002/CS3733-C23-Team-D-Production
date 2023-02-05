@@ -52,6 +52,7 @@
                            </HBox.margin>
                         </MenuButton>
                         <MFXButton fx:id="helpPageButton" onAction="#openHelpPage" prefHeight="33.0" prefWidth="119.0" text="Help" />
+                        <MFXButton onAction="#openLoginPage" prefHeight="33.0" prefWidth="119.0" text="Login" />
                         <MFXButton onAction="#exit" prefHeight="33.0" prefWidth="126.0" text="Exit" />
                      </children>
                      <opaqueInsets>

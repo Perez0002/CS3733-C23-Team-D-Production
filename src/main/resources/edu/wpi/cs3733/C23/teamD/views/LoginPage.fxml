@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.LoginController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login Page" BorderPane.alignment="CENTER">
          <font>
@@ -18,26 +17,27 @@
       </Text>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-                  <MFXTextField />
+                  <Text fx:id="usernameText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Type your username here" textAlignment="CENTER" visible="false" wrappingWidth="160.03753662109375" />
+                  <MFXTextField fx:id="username" floatingText="Username" prefHeight="25.0" prefWidth="130.0" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-                  <MFXTextField />
+                  <Text fx:id="passwordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Type your password here" textAlignment="CENTER" visible="false" wrappingWidth="167.28472900390625" />
+                  <MFXTextField fx:id="password" floatingText="Password" prefHeight="25.0" prefWidth="130.0" />
                </children>
             </VBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+            <Text fx:id="incorrectUsernameOrPasswordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Username or Password" visible="false" wrappingWidth="171.09375" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
                   <MFXButton text="Submit" />
-                  <MFXButton text="Clear" />
+                  <MFXButton onAction="#clearFields" text="Clear" />
                    <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-                  <MFXButton text="Help" />
+                  <MFXButton onAction="#displayHelp" text="Help" />
                </children>
             </HBox>
          </children>

@@ -11,7 +11,8 @@ public enum Screen {
   PATIENT_TRANSPORT_TABLE("views/PatientTransportTable.fxml"),
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
   SERVICE_REQUEST("views/ServiceRequest-ExampleFile.fxml"),
-  HELP_PAGE("views/ApplicationHelpPage.fxml");
+  HELP_PAGE("views/ApplicationHelpPage.fxml"),
+  LOGIN_PAGE("views/LoginPage.fxml");
 
   private final String filename;
 

@@ -10,6 +10,11 @@ public class RootController {
   public void initialize() {}
 
   @FXML
+  void openLoginPage() {
+    Navigation.navigate(Screen.LOGIN_PAGE);
+  }
+
+  @FXML
   void openHomepage() {
     Navigation.navigate(Screen.HOME);
   }
