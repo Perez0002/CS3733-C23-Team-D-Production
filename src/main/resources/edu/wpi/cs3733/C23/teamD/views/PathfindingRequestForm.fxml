@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -9,33 +10,44 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController">
    <center>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="237.0" prefWidth="396.0" spacing="15.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="600.0" snapToPixel="false">
+            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false">
                <children>
                   <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the starting room." visible="false" />
                   <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="600.0">
+            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
                <children>
                   <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want directions to." visible="false" />
                   <fx:include fx:id="endRoomComboBox" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
+            <MFXButton onAction="#clearFields" text="Clear" />
             <Text fx:id="pathResultText" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
                <children>
-                  <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-                  <MFXButton onAction="#clearFields" text="Clear" />
-                  <MFXButton onAction="#submit" text="Submit" />
+                  <HBox spacing="15.0">
+                     <children>
+                        <MFXButton onAction="#submit" text="Submit" />
+                        <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+                     </children>
+                  </HBox>
                   <MFXButton onAction="#displayHelp" style="-fx-background-radius: 40; -fx-min-width: 40; -fx-min-height: 40; -fx-max-height: 40; -fx-max-width: 40;" text="?">
                      <font>
                         <Font size="18.0" />
-                     </font></MFXButton>
+                     </font>
+                  </MFXButton>
                </children>
             </HBox>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="100.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <top>
