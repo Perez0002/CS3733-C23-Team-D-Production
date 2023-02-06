@@ -3,9 +3,6 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.locationName;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
-import edu.wpi.cs3733.C23.teamD.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -60,12 +57,9 @@ public class DBcontroller extends Application implements Initializable {
 
   @FXML private TableView<locationName> locationNameTableView;
 
-  @FXML private MFXButton cancelButton;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   public void tablehandling() {

@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequestData;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
-import edu.wpi.cs3733.C23.teamD.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
@@ -26,7 +23,6 @@ public class SanitationRequestController {
   @FXML private MFXTextField fieldReason;
   //  @FXML private MFXTextField fieldLocation;
   @FXML private Text formSubmittedText;
-  @FXML MFXButton cancelButton;
   @FXML Text locationHelpText;
   @FXML Text reasonHelpText;
   @FXML Text staffIDHelpText;
@@ -35,11 +31,6 @@ public class SanitationRequestController {
   @FXML private Parent fieldLocation;
 
   @FXML private RoomPickComboBoxController fieldLocationController;
-
-  @FXML
-  public void initialize() {
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-  }
 
   @FXML
   public void submitSanitationRequest() {

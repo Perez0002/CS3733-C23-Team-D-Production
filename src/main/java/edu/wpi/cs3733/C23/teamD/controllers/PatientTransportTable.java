@@ -4,9 +4,6 @@ import static javafx.application.Application.launch;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
-import edu.wpi.cs3733.C23.teamD.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -61,13 +58,10 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @FXML private TableColumn<PatientTransportData, String> sendTo;
 
-  @FXML private MFXButton cancelButton;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     Connection con = Ddb.makeConnection();
     tablehandling(con);
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   public void tablehandling(Connection conn) {

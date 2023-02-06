@@ -22,7 +22,7 @@
                   <TableColumn fx:id="sendTo" minWidth="0.0" prefWidth="60.0" text="Contact" />
               </columns>
             </TableView>
-            <MFXButton fx:id="cancelButton" text="Cancel" />
+             <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
          </children>
       </VBox>
    </center>

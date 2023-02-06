@@ -71,10 +71,10 @@
             <Text fx:id="submittedFormText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
-                  <MFXButton fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cancel" />
+                  <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                   <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
                   <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitPatientTransport" text="Submit" />
-                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
+                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" styleClass="helpbuttonstyleclass" text="?" />
                </children>
                <padding>
                   <Insets top="10.0" />

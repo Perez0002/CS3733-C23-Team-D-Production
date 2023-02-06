@@ -28,7 +28,7 @@
                <children>
                   <MFXButton onAction="#submit" text="Submit Request" />
                   <MFXButton text="Clear" onAction = "#clearFields"/>
-                  <MFXButton fx:id="cancelButton" text="Cancel" />
+                  <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                   <MFXButton onAction="#displayHelp" text="Help" />
                </children>
             </HBox>
