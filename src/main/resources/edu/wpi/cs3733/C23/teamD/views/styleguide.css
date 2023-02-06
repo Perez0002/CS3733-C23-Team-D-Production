@@ -23,10 +23,10 @@
 .helpbuttonstyleclass { /* controls all help buttons */
     -fx-background-color: #123486; /* Blue */
     -fx-text-fill: #ffffff; /* White */
-    -fx-background-radius: 50%; /* Makes button a circle */
-    -fx-pref-height: 75pt;
-    -fx-pref-width: 75pt;
-    -fx-font-size: 30pt;
+    -fx-background-radius: 40pt; /* Makes button a circle */
+    -fx-pref-height: 40pt;
+    -fx-pref-width: 40pt;
+    -fx-font-size: 18pt;
     -fx-font-weight: bolder;
 }
 
