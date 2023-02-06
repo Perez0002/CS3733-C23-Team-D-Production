@@ -58,7 +58,27 @@ public class MapEditorPageController {
 
   @FXML
   void submit() {
-
+    Node newNode = new Node();
+    newNode.setXcoord(currentNodeEdit.getXcoord());
+    newNode.setYcoord(currentNodeEdit.getYcoord());
+    newNode.getLocation().setLongName(longNameTextField.getText());
+    newNode.getLocation().setShortName(shortNameTextField.getText());
+    newNode.getLocation().setLocationType(roomTypeTextField.getText());
+    newNode.setBuilding(currentNodeEdit.getBuilding());
+    newNode.setFloor(currentNodeEdit.getFloor());
+    newNode.setNodeEdges(currentNodeEdit.getNodeEdges());
+    for(Edge edge : newNode.getNodeEdges()) {
+      edge.setFromNode(newNode);
+      for (Edge e : edge.getToNode().getNodeEdges())
+      {
+        if(e.getToNode().equals(currentNodeEdit))
+        {
+          e.setToNode(newNode);
+        }
+      }
+    }
+    currentNodeEdit = newNode;
+    // TODO implement adding to database and recalculate cost for edges
   }
 
   @FXML
@@ -92,9 +112,9 @@ public class MapEditorPageController {
                 public void handle(MouseEvent event) {
                   currentNodeEdit = node;
                   nodeInformationText.setText(currentNodeEdit.getNodeID());
-                  longNameTextField.setText("Can't get node name from Node");
-                  shortNameTextField.setText("Can't get node name from Node");
-                  roomTypeTextField.setText("Can't get node room type from Node");
+                  longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
+                  shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
+                  roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
                 }
               };
             });
