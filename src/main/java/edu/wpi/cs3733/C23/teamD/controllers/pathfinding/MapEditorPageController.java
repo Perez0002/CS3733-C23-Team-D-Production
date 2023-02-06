@@ -67,12 +67,10 @@ public class MapEditorPageController {
     newNode.setBuilding(currentNodeEdit.getBuilding());
     newNode.setFloor(currentNodeEdit.getFloor());
     newNode.setNodeEdges(currentNodeEdit.getNodeEdges());
-    for(Edge edge : newNode.getNodeEdges()) {
+    for (Edge edge : newNode.getNodeEdges()) {
       edge.setFromNode(newNode);
-      for (Edge e : edge.getToNode().getNodeEdges())
-      {
-        if(e.getToNode().equals(currentNodeEdit))
-        {
+      for (Edge e : edge.getToNode().getNodeEdges()) {
+        if (e.getToNode().equals(currentNodeEdit)) {
           e.setToNode(newNode);
         }
       }
