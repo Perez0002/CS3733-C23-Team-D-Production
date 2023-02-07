@@ -5,7 +5,6 @@ import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.entities.LoginData;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.text.Text;
 
 public class LoginController {
