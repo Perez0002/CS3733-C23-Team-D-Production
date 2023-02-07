@@ -1,17 +1,26 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-public class locationName {
-  private String longName;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+public class LocationName {
+  @Id private String longName;
   private String shortName;
   private String locationType;
 
-  public locationName(String longName, String shortName, String nodeType) {
+  @OneToMany(mappedBy = "location")
+  private List<Move> moves;
+
+  public LocationName(String longName, String shortName, String nodeType) {
     this.longName = longName;
     this.shortName = shortName;
     this.locationType = nodeType;
   }
 
-  public locationName() {
+  public LocationName() {
     this.longName = "";
     this.shortName = "";
     this.locationType = "";
@@ -35,6 +44,14 @@ public class locationName {
 
   public String getLocationType() {
     return locationType;
+  }
+
+  public List<Move> getMoves() {
+    return moves;
+  }
+
+  public void setMoves(List<Move> moves) {
+    this.moves = moves;
   }
 
   public void setLocationType(String locationType) {

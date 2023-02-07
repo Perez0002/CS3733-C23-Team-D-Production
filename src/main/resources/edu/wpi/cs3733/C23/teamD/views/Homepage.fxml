@@ -27,14 +27,7 @@
                </HBox.margin>
             </MenuButton>
             <Label fx:id="bottomHelpText" prefHeight="40.0" prefWidth="320.0" textFill="#dc3333" wrapText="true" />
-            <MFXButton fx:id="homepageHelpButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" onAction="#toggleHelpText" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10em; -fx-min-height: 40; -fx-min-width: 40; -fx-max-height: 40; -fx-max-width: 40;" text="?" textAlignment="CENTER" textFill="#7b7b7b">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </MFXButton>
+            <MFXButton fx:id="homepageHelpButton" onAction="#toggleHelpText" styleClass="helpbuttonstyleclass" text="?" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="40.0" right="40.0" />
@@ -79,6 +72,7 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </Label>
+            <MFXButton fx:id="mapEditorButton1" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Map Editor (UI TEAM PLEASE REFACTOR)" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
          </children>
          <BorderPane.margin>
             <Insets left="50.0" right="50.0" />

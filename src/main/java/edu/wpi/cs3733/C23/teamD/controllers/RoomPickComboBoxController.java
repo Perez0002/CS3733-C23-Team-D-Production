@@ -3,7 +3,6 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
@@ -16,14 +15,13 @@ public class RoomPickComboBoxController {
 
   public RoomPickComboBoxController() {
     nodeToRoomMap = new HashMap<>();
-    Connection conn = Ddb.makeConnection();
-    ArrayList<Move> moveList = Ddb.createJavaMoves(conn);
+    ArrayList<Move> moveList = Ddb.createJavaMoves();
     for (Move m : moveList) {
-      String locName = m.getLongName();
-      String nodeID = m.getNodeID();
+      String locName = m.getLocation().getLongName();
+      String nodeID = m.getNode().getNodeID();
       // TODO: need to figure out how to grab newest record by date
       // most likely will use ORDER-BY in SQL
-      nodeToRoomMap.put(nodeID, locName);
+      nodeToRoomMap.put(locName, nodeID);
     }
   }
 

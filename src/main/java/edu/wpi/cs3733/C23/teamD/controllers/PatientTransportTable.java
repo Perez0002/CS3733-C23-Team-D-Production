@@ -5,9 +5,7 @@ import static javafx.application.Application.launch;
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
 import java.net.URL;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
@@ -58,37 +56,27 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @FXML private TableColumn<PatientTransportData, String> sendTo;
 
+  @FXML private TableColumn<PatientTransportData, Date> date;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Connection con = Ddb.makeConnection();
-    tablehandling(con);
+    tablehandling();
   }
 
-  public void tablehandling(Connection conn) {
+  public void tablehandling() {
     ObservableList<PatientTransportData> transportList =
-        FXCollections.observableArrayList(Ddb.getPatientTransportData(conn));
+        FXCollections.observableArrayList(Ddb.getPatientTransportData());
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("endRoom"));
-
       equipment.setCellValueFactory(
-          new Callback<
-              TableColumn.CellDataFeatures<PatientTransportData, String>,
-              ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<PatientTransportData, String> param) {
-              ArrayList<String> equip = param.getValue().getEquipment();
-              if (equip != null && equip.size() != 0)
-                return new SimpleStringProperty(String.join(",", equip));
-              else return new SimpleStringProperty("<no value>");
-            }
-          });
+          new PropertyValueFactory<PatientTransportData, String>("equipment"));
       formID.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, Integer>("patientTransportID"));
+          new PropertyValueFactory<PatientTransportData, Integer>("serviceRequestId"));
       patientID.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("patientID"));
       reason.setCellValueFactory(new PropertyValueFactory<PatientTransportData, String>("reason"));
+      date.setCellValueFactory(new PropertyValueFactory<PatientTransportData, Date>("dateAndTime"));
       startRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("startRoom"));
       status.setCellValueFactory(
@@ -102,18 +90,7 @@ public class PatientTransportTable extends Application implements Initializable 
             }
           });
       sendTo.setCellValueFactory(
-          new Callback<
-              TableColumn.CellDataFeatures<PatientTransportData, String>,
-              ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<PatientTransportData, String> param) {
-              String[] sendTo = param.getValue().getSendTo();
-              if (sendTo != null)
-                return new SimpleStringProperty(Arrays.toString(param.getValue().getSendTo()));
-              else return new SimpleStringProperty("<no value>");
-            }
-          });
+          new PropertyValueFactory<PatientTransportData, String>("associatedStaff"));
       patientTable.setItems(transportList);
     }
   }
