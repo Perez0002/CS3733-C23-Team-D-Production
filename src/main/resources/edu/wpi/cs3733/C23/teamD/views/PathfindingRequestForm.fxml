@@ -34,7 +34,7 @@
                         <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                      </children>
                   </HBox>
-                  <MFXButton onAction="#displayHelp" style="-fx-background-radius: 40; -fx-min-width: 40; -fx-min-height: 40; -fx-max-height: 40; -fx-max-width: 40;" text="?">
+                  <MFXButton onAction="#displayHelp" text="?">
                      <font>
                         <Font size="18.0" />
                      </font>
