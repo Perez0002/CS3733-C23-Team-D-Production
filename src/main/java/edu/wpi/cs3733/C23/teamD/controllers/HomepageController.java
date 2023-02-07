@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
+import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -36,6 +38,10 @@ public class HomepageController {
     patientTransportTableButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
     sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
+    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    if (currentUser.getAccessLevel() < 1) {
+      sanitationServiceRequestFormButton.setDisable(true);
+    }
   }
 
   @FXML

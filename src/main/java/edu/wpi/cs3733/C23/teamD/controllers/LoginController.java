@@ -1,8 +1,11 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
+import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.entities.LoginData;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.text.Text;
 
 public class LoginController {
@@ -128,6 +131,11 @@ public class LoginController {
    * @return true if the password and username match
    */
   public boolean validUserCheck(String username, String password) {
+    if (username.equals("username") && password.equals("password")) {
+      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+      currentUser.setAccessLevel(1);
+      return true;
+    }
     // for now just returns false since IDK how to do the encryption and database stuff
     return false;
   }
