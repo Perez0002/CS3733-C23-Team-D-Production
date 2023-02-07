@@ -144,13 +144,7 @@ public class MapEditorPageController {
     mapDrawer = new MapDrawController();
 
     nodeList = createJavaNodes();
-    locList = createJavaLocat();
-
-    // TODO get node-location association from DB. This is temporary
-
-    for (Node node : nodeList) {
-      node.setLocation(new LocationName("", "", ""));
-    }
+    connectNodestoLocations(nodeList);
 
     mapEditorPane.setCenter(
         mapDrawer.genMapFromNodes(
