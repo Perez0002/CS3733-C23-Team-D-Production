@@ -61,16 +61,12 @@ public class MapEditorPageController {
   }
 
   private EventHandler<MouseEvent> paneFunction(Node node) {
-    return new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        currentNodeEdit = node;
-        nodeInformationText.setText(currentNodeEdit.getNodeID());
-        longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
-        shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
-        roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
-        MapEditorNodeController mapeditor = new MapEditorNodeController(node);
-      }
+    return event -> {
+      currentNodeEdit = node;
+      nodeInformationText.setText(currentNodeEdit.getNodeID());
+      longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
+      shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
+      roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
     };
   }
 
@@ -147,11 +143,6 @@ public class MapEditorPageController {
     nodeList = createJavaNodes();
     connectNodestoLocations(nodeList);
 
-    mapEditorPane.setCenter(
-        mapDrawer.genMapFromNodes(
-            nodeList,
-            node -> {
-              return paneFunction(node);
-            }));
+    mapEditorPane.setCenter(mapDrawer.genMapFromNodes(nodeList, node -> paneFunction(node)));
   }
 }
