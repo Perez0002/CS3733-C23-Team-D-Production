@@ -15,7 +15,7 @@
    <bottom>
       <HBox fx:id="bottomVbox" alignment="CENTER" fillHeight="false" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuButton fx:id="exitButtonMenu" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Exit" textFill="#19158c">
+            <MenuButton fx:id="exitButtonMenu" mnemonicParsing="false" opacity="0.98" prefHeight="25.0" prefWidth="100.0" text="Exit" textFill="#19158c">
               <items>
                 <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
               </items>

@@ -22,16 +22,19 @@
    <center>
       <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <MFXButton fx:id="sanitationServiceRequestFormButton" text="Sanitation Service Request" />
-            <MFXButton fx:id="internalPatientTransportationRequestFormButton" layoutX="10.0" layoutY="10.0" text="Patient Transport Request" />
-            <MFXButton fx:id="pathfindingButton" layoutX="10.0" layoutY="10.0" text="Pathfinding Service Request" />
+            <MFXButton fx:id="sanitationServiceRequestFormButton" buttonType="RAISED" prefHeight="50.0" prefWidth="250.0" styleClass="homePageButton" stylesheets="@styleguide.css" text="Sanitation Service Request" />
+            <MFXButton fx:id="internalPatientTransportationRequestFormButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="250.0" styleClass="homePageButton" stylesheets="@styleguide.css" text="Patient Transport Request" />
+            <MFXButton fx:id="pathfindingButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="homePageButton" stylesheets="@styleguide.css" text="Pathfinding Service Request">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></MFXButton>
          </children>
       </VBox>
    </center>
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+            <fx:include source="backButton.fxml" />
          </children>
       </HBox>
    </bottom>
