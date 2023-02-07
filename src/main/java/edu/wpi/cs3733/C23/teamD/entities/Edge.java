@@ -9,22 +9,22 @@ public class Edge {
 
   @ManyToOne
   @JoinColumn(
-          name = "fromNode",
-          foreignKey =
+      name = "fromNode",
+      foreignKey =
           @ForeignKey(
-                  name = "fromNode_id_fk",
-                  foreignKeyDefinition =
-                          "FOREIGN KEY (fromNode) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+              name = "fromNode_id_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (fromNode) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   Node fromNode;
 
   @ManyToOne
   @JoinColumn(
-          name = "toNode",
-          foreignKey =
+      name = "toNode",
+      foreignKey =
           @ForeignKey(
-                  name = "toNode_id_fk",
-                  foreignKeyDefinition =
-                          "FOREIGN KEY (toNode) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+              name = "toNode_id_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (toNode) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   Node toNode;
 
   @Transient private double cost;

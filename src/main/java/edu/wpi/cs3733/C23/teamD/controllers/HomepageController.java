@@ -42,6 +42,7 @@ public class HomepageController {
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    mapEditorButton1.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
   }
 
   @FXML
