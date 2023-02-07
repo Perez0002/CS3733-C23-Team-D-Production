@@ -142,11 +142,6 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
-    GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    int width = gd.getDisplayMode().getWidth();
-    int height = gd.getDisplayMode().getHeight();
-    System.out.println(width + " " + height);
-    mapEditorPane.setMinSize(width * 0.98, height * 0.88);
     mapDrawer = new MapDrawController();
 
     nodeList = createJavaNodes();
