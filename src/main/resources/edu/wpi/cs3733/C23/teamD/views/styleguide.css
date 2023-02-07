@@ -30,8 +30,9 @@
 
 
 .basePane {
-    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(244,244,244,1), rgba(244,244,244,0));
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(244, 244, 244, 1), rgba(244, 244, 244, 0));
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+}
 
 .helpbuttonstyleclass { /* controls all help buttons */
     -fx-background-color: #123486; /* Blue */
