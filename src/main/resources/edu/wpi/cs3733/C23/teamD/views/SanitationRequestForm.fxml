@@ -46,7 +46,7 @@
       </HBox>
    </right>
    <left>
-      <VBox spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox spacing="30.0" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="textHelp" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was filled incorrectly" visible="false" />
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -67,20 +67,10 @@
                   <Text fx:id="reasonHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the reason for Sanitation Request." visible="false" wrappingWidth="220.88671875" />
                </children>
             </HBox>
+            <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <Text fx:id="formSubmittedText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-               <children>
-                  <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
-                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitSanitationRequest" text="Submit" />
-                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
          </children>
          <BorderPane.margin>
             <Insets top="20.0" />
@@ -90,4 +80,20 @@
          </padding>
       </VBox>
    </left>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitSanitationRequest" text="Submit" />
+            <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="550.0">
+               <children>
+                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" styleClass="helpbuttonstyleclass" text="?" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="30.0" right="30.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
 </BorderPane>

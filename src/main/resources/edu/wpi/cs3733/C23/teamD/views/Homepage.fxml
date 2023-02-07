@@ -15,7 +15,7 @@
    <bottom>
       <HBox fx:id="bottomVbox" alignment="CENTER" fillHeight="false" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuButton fx:id="exitButtonMenu" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Exit" textFill="#19158c">
+            <MenuButton fx:id="exitButtonMenu" mnemonicParsing="false" opacity="0.98" prefHeight="25.0" prefWidth="100.0" text="Exit" textFill="#19158c">
               <items>
                 <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
               </items>
@@ -27,14 +27,7 @@
                </HBox.margin>
             </MenuButton>
             <Label fx:id="bottomHelpText" prefHeight="40.0" prefWidth="320.0" textFill="#dc3333" wrapText="true" />
-            <MFXButton fx:id="homepageHelpButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" onAction="#toggleHelpText" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10em; -fx-min-height: 40; -fx-min-width: 40; -fx-max-height: 40; -fx-max-width: 40;" text="?" textAlignment="CENTER" textFill="#7b7b7b">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </MFXButton>
+            <MFXButton fx:id="homepageHelpButton" onAction="#toggleHelpText" styleClass="helpbuttonstyleclass" text="?" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="40.0" right="40.0" />
@@ -45,35 +38,21 @@
       <VBox fx:id="serviceRequestButtonVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="550.0" spacing="5.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <Label fx:id="serviceRequestHelpText" prefHeight="15.0" prefWidth="350.0" textAlignment="CENTER" textFill="#dc3333" />
-            <HBox alignment="TOP_CENTER" prefHeight="275.0" prefWidth="550.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="275.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <VBox prefHeight="275.0" prefWidth="250.0" spacing="10.0">
-                     <children>
-                        <MFXButton fx:id="sanitationServiceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" styleClass="homePageButton" text="Sanitation Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </MFXButton>
-                        <MFXButton fx:id="internalPatientTransportationRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Patient Transport Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </MFXButton>
-                        <MFXButton fx:id="pathfindingButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Pathfinding Service Request" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="275.0" prefWidth="250.0" spacing="10.0">
-                     <children>
-                        <MFXButton fx:id="DBAppButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Update Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                        <MFXButton fx:id="patientTransportTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Patient Transport Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                        <MFXButton fx:id="sanitationTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="View Sanitation Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                     </children>
-                  </VBox>
+                  <MFXButton fx:id="serviceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" styleClass="homePageButton" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="DBAppButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Update Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                  <MFXButton fx:id="patientTransportTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Patient Transport Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                  <MFXButton fx:id="sanitationTableButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="View Sanitation Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                </children>
-            </HBox>
+            </VBox>
             <Label fx:id="aboutLabel" prefHeight="200.0" prefWidth="450.0" text="This homepage was created by Olivia, the Internal Patient Transportation Request Form by Annie and Mike, the Santiation Services Request Form by Wyatt and Gibson, the Pathtfinding Page by Mike and Olivia, the Navigation Bar by Annie, and the database pages by Bryce." textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

@@ -28,9 +28,20 @@
     -fx-font-weight: bolder;
 }
 
+
 .basePane {
     -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(244,244,244,1), rgba(244,244,244,0));
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+
+.helpbuttonstyleclass { /* controls all help buttons */
+    -fx-background-color: #123486; /* Blue */
+    -fx-text-fill: #ffffff; /* White */
+    -fx-background-radius: 40pt; /* Makes button a circle */
+    -fx-pref-height: 40pt;
+    -fx-pref-width: 40pt;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bolder;
+
 }
 
 .menu-button {
