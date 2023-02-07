@@ -16,13 +16,13 @@
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false">
                <children>
                   <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the starting room." visible="false" />
-                  <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
+                  <fx:include fx:id="startRoomComboBox" prefWidth="300.0" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
                <children>
                   <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want directions to." visible="false" />
-                  <fx:include fx:id="endRoomComboBox" source="RoomPickComboBox.fxml" />
+                  <fx:include fx:id="endRoomComboBox" prefWidth="300.0" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <MFXButton onAction="#clearFields" text="Clear" />
