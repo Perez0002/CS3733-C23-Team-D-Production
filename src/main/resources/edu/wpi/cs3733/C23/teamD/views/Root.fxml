@@ -31,7 +31,7 @@
                               <Insets />
                            </HBox.margin>
                         </MFXButton>
-                        <MenuButton fx:id="navMenuButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="navMenuButton" text="Forms">
+                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="navMenuButton" text="Forms">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" styleClass="navMenuButton" text="Pathfinding Form" />
                             <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" styleClass="navMenuButton" text="Sanitation Form" />

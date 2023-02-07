@@ -70,3 +70,7 @@
 #aboutLabel{
     -fx-font-size: 10pt;
 }
+
+.navMenuButton{
+    -fx-background-color: #123486; /* Blue */
+}
