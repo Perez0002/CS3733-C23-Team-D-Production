@@ -79,6 +79,7 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </Label>
+            <MFXButton fx:id="mapEditorButton1" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Map Editor (UI TEAM PLEASE REFACTOR)" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
          </children>
          <BorderPane.margin>
             <Insets left="50.0" right="50.0" />
