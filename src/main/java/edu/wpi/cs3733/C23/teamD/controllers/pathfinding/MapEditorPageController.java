@@ -4,7 +4,6 @@ import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -77,7 +76,6 @@ public class MapEditorPageController {
   }
 
   /**
-   *
    * @param node Node to bind event to
    * @return EventHandler<MouseEvent> to handle on click events
    */

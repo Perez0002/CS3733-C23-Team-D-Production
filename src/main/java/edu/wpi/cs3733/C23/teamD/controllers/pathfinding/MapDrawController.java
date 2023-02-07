@@ -61,7 +61,6 @@ public class MapDrawController {
       // end popup functions
       // end setting events
       tempPane.setId(node.getNodeID() + "_pane");
-      anchor.getChildren().add(tempPane);
       // end fix this code
       anchor
           .getChildren()
@@ -88,6 +87,10 @@ public class MapDrawController {
             event -> {
               return null;
             }); // Calling genMapFromNodes to add the nodes with a null function
+
+    if (nodeList.isEmpty()) {
+      return oldPane;
+    }
 
     javafx.scene.Node incomingNode =
         oldPane.getContent(); // Getting the AnchorPane from the GesturePane
