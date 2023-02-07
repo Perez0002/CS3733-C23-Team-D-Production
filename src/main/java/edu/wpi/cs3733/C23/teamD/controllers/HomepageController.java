@@ -6,33 +6,47 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class HomepageController {
 
+  @FXML private MFXButton DBAppButton;
+
+  @FXML private Label aboutLabel;
+
   @FXML private Label bottomHelpText;
 
-  @FXML private MFXButton internalPatientTransportationRequestFormButton;
+  @FXML private HBox bottomVbox;
 
-  @FXML private MFXButton sanitationServiceRequestFormButton;
+  @FXML private MenuItem exitButton;
 
-  @FXML private MFXButton pathfindingButton;
+  @FXML private MenuButton exitButtonMenu;
 
   @FXML private BorderPane homepageBorderPane;
 
-  @FXML private Label serviceRequestHelpText;
-  @FXML private MFXButton DBAppButton;
+  @FXML private MFXButton homepageHelpButton;
+
   @FXML private MFXButton patientTransportTableButton;
+
   @FXML private MFXButton sanitationTableButton;
+
+  @FXML private VBox serviceRequestButtonVbox;
+
+  @FXML private MFXButton serviceRequestFormButton;
+
+  @FXML private Label serviceRequestHelpText;
+
+  @FXML private Label titleLabel;
 
   @FXML
   public void initialize() {
-    internalPatientTransportationRequestFormButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST));
-    sanitationServiceRequestFormButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SANITATION_FORM));
+    serviceRequestFormButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     DBAppButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDIT));
-    pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
     patientTransportTableButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
     sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
