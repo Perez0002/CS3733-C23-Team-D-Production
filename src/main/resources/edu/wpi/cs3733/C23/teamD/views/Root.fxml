@@ -31,7 +31,7 @@
                               <Insets />
                            </HBox.margin>
                         </MFXButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Forms">
+                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="navMenuButton" text="Forms">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" text="Pathfinding Form" />
                             <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" text="Sanitation Form" />
@@ -41,7 +41,7 @@
                               <Insets />
                            </HBox.margin>
                         </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="250.0" text="Database">
+                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="250.0" styleClass="navMenuButton" text="Database">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#openDatabase" text="Edit Database" />
                               <MenuItem mnemonicParsing="false" onAction="#openPatientTransportTable" text="View Patient Transport Requests" />
