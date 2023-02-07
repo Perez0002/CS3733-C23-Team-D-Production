@@ -26,11 +26,11 @@ public class MapEditorNodeController {
     PopOver popover = new PopOver();
     Pane pane = new Pane();
     pane.setStyle("-fx-background-color: '#ffffff';");
-    popover.setPrefHeight(200);
+    popover.setPrefHeight(100);
     popover.setPrefWidth(200);
-    pane.setPrefHeight(200);
+    pane.setPrefHeight(100);
     pane.setPrefWidth(200);
-    popover.setArrowLocation(PopOver.ArrowLocation.TOP_CENTER); // TODO: fix this so there is no arrow
+    popover.setArrowSize(0);
 
     // REMOVE after database connection
     if (node != null) {
@@ -38,7 +38,7 @@ public class MapEditorNodeController {
       Text nodeData =
           new Text(
               String.format(
-                  "\n\n  xCoord: %d \n  yCoord: %d \n  floor: %d \n  shortName: %s \n  longName: %s ",
+                  "\n  xCoord: %d \n  yCoord: %d \n  floor: %d \n  shortName: %s \n  longName: %s ",
                   node.getXcoord(),
                   node.getYcoord(),
                   node.getFloor(),
@@ -51,7 +51,7 @@ public class MapEditorNodeController {
       Text nodeData =
           new Text(
               String.format(
-                  "\n\n  xCoord: %d \n  yCoord: %d \n  floor: %d \n  shortName: %s \n  longName: %s ",
+                  "\n  xCoord: %d \n  yCoord: %d \n  floor: %d \n  shortName: %s \n  longName: %s ",
                   -10, -10, -10, "getShortName", "getLongName"));
       nodeData.setStyle("-fx-font-family: OpenSans");
       pane.getChildren().add(nodeData);
