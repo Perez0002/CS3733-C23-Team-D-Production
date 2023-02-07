@@ -33,15 +33,11 @@ public class MapEditorPageController {
 
   @FXML private BorderPane mapEditorPane;
 
-  @FXML private Text nodeInformationText;
+  @FXML private MFXButton clearButton;
 
   @FXML private Text roomTypeHelpText;
 
-  @FXML private MFXTextField roomTypeTextField;
-
   @FXML private Text shortNameHelpText;
-
-  @FXML private MFXTextField shortNameTextField;
 
   @FXML private MFXTextField xCoordTextField;
 
@@ -61,8 +57,8 @@ public class MapEditorPageController {
   @FXML
   void clearFields() {
     longNameTextField.clear();
-    shortNameTextField.clear();
-    roomTypeTextField.clear();
+    yCoordTextField.clear();
+    xCoordTextField.clear();
   }
 
   @FXML
@@ -84,11 +80,11 @@ public class MapEditorPageController {
       @Override
       public void handle(MouseEvent event) {
         if (!node.equals(currentNodeEdit)) {
+          updateButtonsForNode(true);
           currentNodeEdit = node;
-          nodeInformationText.setText(currentNodeEdit.getNodeID());
+          xCoordTextField.setText(Integer.toString(currentNodeEdit.getXcoord()));
+          yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
           longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
-          shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
-          roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -101,11 +97,9 @@ public class MapEditorPageController {
             }
           }
         } else {
+          updateButtonsForNode(false);
           currentNodeEdit = null;
-          nodeInformationText.setText("");
-          longNameTextField.setText("");
-          shortNameTextField.setText("");
-          roomTypeTextField.setText("");
+          clearFields();
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -123,11 +117,8 @@ public class MapEditorPageController {
     // For now, this just does basic changes. Will be edited when the changes required are more
     // defined
     Node newNode = new Node();
-    newNode.setLocation(
-        new LocationName(
-            longNameTextField.getText(),
-            shortNameTextField.getText(),
-            roomTypeTextField.getText()));
+    // TODO set location name
+    // newNode.setLocation(new LocationName());
     newNode.setNodeID(currentNodeEdit.getNodeID());
     newNode.setXcoord(currentNodeEdit.getXcoord());
     newNode.setYcoord(currentNodeEdit.getYcoord());
@@ -176,6 +167,40 @@ public class MapEditorPageController {
     // TODO update database to match
   }
 
+  private void updateButtonsForNode(boolean nodeSelected) {
+    if (nodeSelected == true) {
+      submitButton.setVisible(true);
+      submitButton.setManaged(true);
+      addNodeButton.setVisible(false);
+      addNodeButton.setManaged(false);
+      deleteNodeButton.setVisible(true);
+      deleteNodeButton.setManaged(true);
+      longNameTextField.setVisible(true);
+      longNameTextField.setManaged(true);
+      xCoordTextField.setVisible(true);
+      xCoordTextField.setManaged(true);
+      yCoordTextField.setVisible(true);
+      yCoordTextField.setManaged(true);
+      clearButton.setVisible(true);
+      clearButton.setManaged(true);
+    } else {
+      submitButton.setVisible(false);
+      submitButton.setManaged(false);
+      addNodeButton.setVisible(true);
+      addNodeButton.setManaged(true);
+      deleteNodeButton.setVisible(false);
+      deleteNodeButton.setManaged(false);
+      longNameTextField.setVisible(false);
+      longNameTextField.setManaged(false);
+      xCoordTextField.setVisible(false);
+      xCoordTextField.setManaged(false);
+      yCoordTextField.setVisible(false);
+      yCoordTextField.setManaged(false);
+      clearButton.setVisible(false);
+      clearButton.setManaged(false);
+    }
+  }
+
   @FXML
   void displayHelp() {
     helpVisible = !helpVisible;
@@ -186,12 +211,7 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
-    submitButton.setVisible(false);
-    submitButton.setManaged(false);
-    addNodeButton.setVisible(false);
-    addNodeButton.setManaged(false);
-    deleteNodeButton.setVisible(false);
-    deleteNodeButton.setManaged(false);
+    updateButtonsForNode(false);
 
     mapDrawer = new MapDrawController();
 

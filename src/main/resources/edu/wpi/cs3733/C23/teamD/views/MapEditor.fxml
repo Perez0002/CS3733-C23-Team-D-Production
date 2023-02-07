@@ -27,10 +27,6 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </MFXTextField>
-            <MFXTextField fx:id="roomTypeTextField" floatingText="Enter the room type" prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></MFXTextField>
             <Text fx:id="longNameHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the long name you want to set the room to." visible="false">
                <font>
                   <Font size="10.0" />
@@ -45,35 +41,41 @@
                   <Font size="10.0" />
                </font>
             </Text>
-            <MFXTextField fx:id="shortNameTextField" floatingText="Enter the room's short name" prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></MFXTextField>
             <VBox alignment="BOTTOM_CENTER" prefHeight="1000.0" prefWidth="100.0">
                <children>
-                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes" />
-                  <MFXButton fx:id="deleteNodeButton" onAction="#deleteNode" prefHeight="26.0" prefWidth="200.0" text="Delete Node" />
-                  <MFXButton fx:id="addNodeButton" onAction="#addNode" prefHeight="26.0" prefWidth="200.0" text="Add Node" />
-                  <MFXButton onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Clear" />
-                  <MFXButton onAction="#displayHelp" prefHeight="26.0" prefWidth="200.0" text="Help" />
-                  <MFXButton onAction="#openHomepage" prefHeight="26.0" prefWidth="200.0" text="Cancel" />
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="deleteNodeButton" onAction="#deleteNode" prefHeight="26.0" prefWidth="200.0" text="Delete Node">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="addNodeButton" onAction="#addNode" prefHeight="26.0" prefWidth="200.0" text="Add Node">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="clearButton" onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Clear">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton onAction="#displayHelp" prefHeight="26.0" prefWidth="200.0" text="Help">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton onAction="#openHomepage" prefHeight="26.0" prefWidth="200.0" text="Cancel">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
                </children>
             </VBox>
          </children>
       </VBox>
    </left>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor" BorderPane.alignment="TOP_CENTER">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-   </top>
-   <right>
-      <VBox alignment="TOP_CENTER" prefHeight="660.0" prefWidth="133.0" BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <Text fx:id="nodeInformationText" strokeType="OUTSIDE" strokeWidth="0.0" text="Node Information" />
-         </children>
-      </VBox>
-   </right>
 </BorderPane>
