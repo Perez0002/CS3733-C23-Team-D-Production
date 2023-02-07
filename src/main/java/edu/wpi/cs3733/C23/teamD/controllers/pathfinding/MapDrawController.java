@@ -41,6 +41,7 @@ public class MapDrawController {
     }
 
     GesturePane returnPane = new GesturePane(anchor);
+    returnPane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     return returnPane;
   }
 
@@ -77,6 +78,8 @@ public class MapDrawController {
       anchor.getChildren().add(1, canvas);
 
       GesturePane gesturePane = new GesturePane(anchor);
+      gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+
       return gesturePane;
 
     } catch (ClassCastException CCE) {
