@@ -10,11 +10,10 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class HomepageController {
 
-  @FXML private MFXButton DBAppButton;
+  @FXML private MFXButton DBEditorButton;
 
   @FXML private Label aboutLabel;
 
@@ -30,12 +29,6 @@ public class HomepageController {
 
   @FXML private MFXButton homepageHelpButton;
 
-  @FXML private MFXButton patientTransportTableButton;
-
-  @FXML private MFXButton sanitationTableButton;
-
-  @FXML private VBox serviceRequestButtonVbox;
-
   @FXML private MFXButton serviceRequestFormButton;
 
   @FXML private Label serviceRequestHelpText;
@@ -46,10 +39,7 @@ public class HomepageController {
   public void initialize() {
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST));
-    DBAppButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDIT));
-    patientTransportTableButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
-    sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
+    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
   }
 
   @FXML
