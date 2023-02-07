@@ -1,13 +1,22 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.entities.LoginData;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
 public class LoginController {
+  FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
+
+  BorderPane p = loader.load();
+
+  RootController rootController = loader.getController();
 
   private boolean helpVisible = false;
   @FXML private Text incorrectUsernameOrPasswordText;
@@ -21,6 +30,8 @@ public class LoginController {
   @FXML private MFXTextField username;
 
   @FXML private MFXTextField password;
+
+  public LoginController() throws IOException {}
 
   @FXML
   /*
@@ -95,6 +106,8 @@ public class LoginController {
   submits information filled out in forms
   */
   public void submitLogin() {
+    rootController.openHomepage();
+
     if (checkFields()) {
       LoginData loginInfo =
           new LoginData(
