@@ -83,19 +83,34 @@ public class MapEditorPageController {
     return new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        currentNodeEdit = node;
-        nodeInformationText.setText(currentNodeEdit.getNodeID());
-        longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
-        shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
-        roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
+        if (!node.equals(currentNodeEdit)) {
+          currentNodeEdit = node;
+          nodeInformationText.setText(currentNodeEdit.getNodeID());
+          longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
+          shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
+          roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
 
-        GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
-        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+          GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+          AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
-        for (javafx.scene.Node n : anchor.getChildren()) {
-          if ((node.getNodeID() + "_pane").equals(n.getId())) {
-            n.setStyle("-fx-background-color: '#CC2222';");
-          } else {
+          for (javafx.scene.Node n : anchor.getChildren()) {
+            if ((node.getNodeID() + "_pane").equals(n.getId())) {
+              n.setStyle("-fx-background-color: '#CC2222';");
+            } else {
+              n.setStyle("-fx-background-color: '#013A75';");
+            }
+          }
+        } else {
+          currentNodeEdit = null;
+          nodeInformationText.setText("");
+          longNameTextField.setText("");
+          shortNameTextField.setText("");
+          roomTypeTextField.setText("");
+
+          GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+          AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+
+          for (javafx.scene.Node n : anchor.getChildren()) {
             n.setStyle("-fx-background-color: '#013A75';");
           }
         }
