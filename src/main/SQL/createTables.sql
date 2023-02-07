@@ -3,6 +3,7 @@ CREATE TABLE teamdSchema.Node();
 CREATE TABLE teamdSchema.LocationName();
 CREATE TABLE teamdSchema.Move();
 
+ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public
 
 /*
 drop table Move;
