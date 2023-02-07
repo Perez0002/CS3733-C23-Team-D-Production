@@ -1,11 +1,9 @@
 
 .root{ /* this controls for the entire application */
-    -fx-font-family: "Open Sans";
+    -fx-font-family: OpenSans;
     -fx-base: #123486;
     -fx-background: #f5f5f5;
     -fx-background-size: cover;
-    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(244,244,244,1), rgba(244,244,244,0));
-    -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
 }
 
@@ -30,6 +28,11 @@
     -fx-font-weight: bolder;
 }
 
+
+.basePane {
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(244,244,244,1), rgba(244,244,244,0));
+    -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+
 .helpbuttonstyleclass { /* controls all help buttons */
     -fx-background-color: #123486; /* Blue */
     -fx-text-fill: #ffffff; /* White */
@@ -38,6 +41,7 @@
     -fx-pref-width: 40pt;
     -fx-font-size: 18pt;
     -fx-font-weight: bolder;
+
 }
 
 .menu-button {

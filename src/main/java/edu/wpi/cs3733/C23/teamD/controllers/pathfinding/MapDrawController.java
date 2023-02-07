@@ -35,9 +35,25 @@ public class MapDrawController {
       tempPane.setLayoutX(node.getXcoord() - NODE_WIDTH / 2);
       tempPane.setLayoutY(node.getYcoord() - NODE_HEIGHT / 2);
       tempPane.setStyle("-fx-background-color: '#013A75'; -fx-border-radius: 1000px;");
+      // Setting events for click, enter, exit
       tempPane.setOnMouseClicked(event.apply(node));
+      // Popup functions
+      MapEditorNodeController mapeditor = new MapEditorNodeController(node); // creates popup object
+      tempPane.setOnMouseEntered(
+          e -> {
+            mapeditor.makePopupAppear();
+            System.out.println("Screm Enter");
+          });
+      tempPane.setOnMouseExited(
+          e -> {
+            mapeditor.makePopupDisappear();
+            System.out.println("Screm Exit");
+          });
+      // end popup functions
+      // end setting events
       tempPane.setId(node.getNodeID() + "_pane");
       anchor.getChildren().add(tempPane);
+      // end fix this code
     }
 
     GesturePane returnPane = new GesturePane(anchor);
