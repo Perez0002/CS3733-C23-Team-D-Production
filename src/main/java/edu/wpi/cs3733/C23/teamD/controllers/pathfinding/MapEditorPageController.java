@@ -61,28 +61,37 @@ public class MapEditorPageController {
   }
 
   @FXML
-  void delete() {
-    // Does nothing, but should remove a Node
-  }
-
-  @FXML
   void openHomepage() {
+    // Navigates to home page
     Navigation.navigate(Screen.HOME);
   }
 
   @FXML
-  void deleteNode() {}
+  void deleteNode() {
+    // TODO make delete Node
+  }
 
   @FXML
-  void addNode() {}
+  void addNode() {
+    // TODO make add Node
+  }
 
+  /**
+   *
+   * @param node Node to bind event to
+   * @return EventHandler<MouseEvent> to handle on click events
+   */
   private EventHandler<MouseEvent> paneFunction(Node node) {
+    // Return a new EventHandler<MouseEvent> based on the passed Node
     return new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-        if (!node.equals(currentNodeEdit)) {
+        if (!node.equals(currentNodeEdit)) { // If node and currentNode are different
+          // Select Node
           updateButtonsForNode(true);
           currentNodeEdit = node;
+
+          // Setting default fields for Node
           xCoordTextField.setText(Integer.toString(currentNodeEdit.getXcoord()));
           yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
           longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
@@ -92,12 +101,13 @@ public class MapEditorPageController {
 
           for (javafx.scene.Node n : anchor.getChildren()) {
             if ((node.getNodeID() + "_pane").equals(n.getId())) {
-              n.setStyle("-fx-background-color: '#CC2222';");
+              n.setStyle("-fx-background-color: '#CC2222';"); // Turn this Pane to red
             } else {
-              n.setStyle("-fx-background-color: '#013A75';");
+              n.setStyle("-fx-background-color: '#013A75';"); // Turn other Pane's to default
             }
           }
         } else {
+          // Deselect Node
           updateButtonsForNode(false);
           currentNodeEdit = null;
           clearFields();
@@ -106,7 +116,7 @@ public class MapEditorPageController {
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
           for (javafx.scene.Node n : anchor.getChildren()) {
-            n.setStyle("-fx-background-color: '#013A75';");
+            n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
           }
         }
       }
@@ -117,15 +127,17 @@ public class MapEditorPageController {
   void submit() {
     // For now, this just does basic changes. Will be edited when the changes required are more
     // defined
-    Node newNode = new Node();
-    // TODO set location name
-    // newNode.setLocation(new LocationName());
+    Node newNode = new Node(); // New Node
+
+    // Set Node Fields // TODO set these correctly
+    newNode.setLocation(currentNodeEdit.getLocation());
     newNode.setNodeID(currentNodeEdit.getNodeID());
     newNode.setXcoord(currentNodeEdit.getXcoord());
     newNode.setYcoord(currentNodeEdit.getYcoord());
     newNode.setBuilding(currentNodeEdit.getBuilding());
     newNode.setFloor(currentNodeEdit.getFloor());
 
+    // Breaks all Edges connected to this Node
     for (Edge edge : currentNodeEdit.getNodeEdges()) {
       for (Edge e : edge.getToNode().getNodeEdges()) {
         if (e.getToNode().equals(currentNodeEdit)) {
@@ -138,22 +150,29 @@ public class MapEditorPageController {
       edge.setFromNode(null);
     }
 
+    // Make new list of Edges
     newNode.setNodeEdges(new ArrayList<Edge>());
 
+    // Remove current Node being edited from the list of active Nodes
     nodeList.remove(currentNodeEdit);
+    // Add new Node to the list of active Nodes
     nodeList.add(newNode);
 
+    // Get GesturePane and AnchorPane
     GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
     AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
+    // Find the old Pane bound to old Node
     for (javafx.scene.Node node : anchor.getChildren()) {
       if ((currentNodeEdit.getNodeID() + "_pane").equals(node.getId())) {
-        anchor.getChildren().remove(node);
+        anchor.getChildren().remove(node); // Remove it
         break;
       }
     }
 
     // TODO should make a PaneFactory for this
+
+    // Add a new Pane for the new Node
     final Pane tempPane = new Pane();
     tempPane.setPrefSize(MapDrawController.NODE_WIDTH, MapDrawController.NODE_WIDTH);
     tempPane.setLayoutX(newNode.getXcoord() - MapDrawController.NODE_WIDTH / 2);
@@ -163,13 +182,14 @@ public class MapEditorPageController {
     tempPane.setId(newNode.getNodeID() + "_pane");
     anchor.getChildren().add(tempPane);
 
+    // Reset Fields
     longNameTextField.setText("");
     xCoordTextField.setText("");
     yCoordTextField.setText("");
 
     // TODO update database to match
 
-    currentNodeEdit = null;
+    currentNodeEdit = null; // set currentNodeEdit to null
   }
 
   private void updateButtonsForNode(boolean nodeSelected) {
@@ -218,28 +238,35 @@ public class MapEditorPageController {
   public void initialize() {
     updateButtonsForNode(false);
 
-    mapDrawer = new MapDrawController();
+    mapDrawer = new MapDrawController(); // Create a way to draw the Nodes
 
-    nodeList = createJavaNodes();
-    connectNodestoLocations(nodeList);
+    nodeList = createJavaNodes(); // Fetch Nodes
+    connectNodestoLocations(nodeList); // Connect Nodes to Locations
+
+    // Setup for calculating average x and y
     double totalX = 0;
     double totalY = 0;
     int total = 0;
 
+    // Calculating average x and y
     for (Node node : nodeList) {
       totalX += node.getXcoord();
       totalY += node.getYcoord();
       total++;
     }
 
+    // Creating GesturePane to show
     GesturePane gesturePane =
         mapDrawer.genMapFromNodes(
             nodeList,
             node -> {
               return paneFunction(node);
             });
+    // Setting center of BorderPane to the GesturePane
     mapEditorPane.setCenter(gesturePane);
+    // Setting zoom to 0
     gesturePane.zoomTo(0, new Point2D(totalX / total, totalY / total));
+    // Centering on the average x-y of all Nodes
     gesturePane
         .animate(Duration.millis(500))
         .centreOn(
