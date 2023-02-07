@@ -3,12 +3,11 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
-import edu.wpi.cs3733.C23.teamD.entities.locationName;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.sql.Connection;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,7 +41,7 @@ public class MapEditorPageController {
   private Node currentNodeEdit;
 
   private ArrayList<Node> nodeList;
-  private ArrayList<locationName> locList;
+  private ArrayList<LocationName> locList;
 
   private MapDrawController mapDrawer;
 
@@ -80,7 +79,7 @@ public class MapEditorPageController {
     // defined
     Node newNode = new Node();
     newNode.setLocation(
-        new locationName(
+        new LocationName(
             longNameTextField.getText(),
             shortNameTextField.getText(),
             roomTypeTextField.getText()));
@@ -143,15 +142,14 @@ public class MapEditorPageController {
   @FXML
   public void initialize() {
     mapDrawer = new MapDrawController();
-    Connection conn = makeConnection();
 
-    nodeList = createJavaNodes(conn);
-    locList = createJavaLocat(conn);
+    nodeList = createJavaNodes();
+    locList = createJavaLocat();
 
     // TODO get node-location association from DB. This is temporary
 
     for (Node node : nodeList) {
-      node.setLocation(new locationName("", "", ""));
+      node.setLocation(new LocationName("", "", ""));
     }
 
     mapEditorPane.setCenter(
