@@ -6,6 +6,7 @@ import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 public class PathfindingController {
@@ -24,7 +25,7 @@ public class PathfindingController {
 
   @FXML private RoomPickComboBoxController endRoomComboBoxController;
 
-  @FXML private Text pathResultText;
+  @FXML private Label pathResultText;
 
   private RoomPickComboBoxController comboBox;
 

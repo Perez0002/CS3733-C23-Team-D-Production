@@ -2,13 +2,14 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.PathfindingController">
    <center>
       <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="237.0" prefWidth="396.0" spacing="15.0" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -25,7 +26,7 @@
                </children>
             </VBox>
             <MFXButton onAction="#clearFields" text="Clear" />
-            <Text fx:id="pathResultText" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" wrapText="true" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
                <children>
                   <HBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="15.0">
