@@ -38,6 +38,8 @@ public class HomepageController {
     patientTransportTableButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
     sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
+    // TODO I actively put this in the most annoying spot possible, and I have no idea how to change
+    // the name of the button. Fix pls ;-;
     mapEditorButton1.setOnMouseClicked(event -> Navigation.navigate((Screen.MAP_EDITOR)));
   }
 
