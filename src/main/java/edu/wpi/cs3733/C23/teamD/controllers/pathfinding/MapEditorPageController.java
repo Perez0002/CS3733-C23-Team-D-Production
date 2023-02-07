@@ -8,6 +8,7 @@ import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.util.ArrayList;
@@ -42,6 +43,14 @@ public class MapEditorPageController {
 
   @FXML private MFXTextField shortNameTextField;
 
+  @FXML private MFXTextField xCoordTextField;
+
+  @FXML private MFXTextField yCoordTextField;
+
+  @FXML private MFXButton submitButton;
+  @FXML private MFXButton addNodeButton;
+  @FXML private MFXButton deleteNodeButton;
+
   private Node currentNodeEdit;
 
   private ArrayList<Node> nodeList;
@@ -63,6 +72,12 @@ public class MapEditorPageController {
   void openHomepage() {
     Navigation.navigate(Screen.HOME);
   }
+
+  @FXML
+  void deleteNode() {}
+
+  @FXML
+  void addNode() {}
 
   private EventHandler<MouseEvent> paneFunction(Node node) {
     return new EventHandler<MouseEvent>() {
@@ -156,6 +171,13 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+    submitButton.setVisible(false);
+    submitButton.setManaged(false);
+    addNodeButton.setVisible(false);
+    addNodeButton.setManaged(false);
+    deleteNodeButton.setVisible(false);
+    deleteNodeButton.setManaged(false);
+
     mapDrawer = new MapDrawController();
 
     nodeList = createJavaNodes();

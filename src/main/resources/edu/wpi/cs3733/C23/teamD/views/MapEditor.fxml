@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -10,13 +10,23 @@
 
 <BorderPane fx:id="mapEditorPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapEditorPageController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="10000.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="roomTypeHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the type of room you want to set the room to." visible="false">
                <font>
                   <Font size="10.0" />
                </font>
             </Text>
+            <MFXTextField floatingText="Enter the X-coordinate." prefHeight="49.0" prefWidth="200.0" fx:id="xCoordTextField">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="yCoordTextField" floatingText="Enter the Y-coordinate" prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
             <MFXTextField fx:id="roomTypeTextField" floatingText="Enter the room type" prefHeight="49.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -39,23 +49,16 @@
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin></MFXTextField>
-            <Button mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="200.0" text="Delete Node">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="200.0" text="Clear">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#openHomepage" prefHeight="25.0" prefWidth="200.0" text="Cancel">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#displayHelp" prefHeight="25.0" prefWidth="200.0" text="Help" />
+            <VBox alignment="BOTTOM_CENTER" prefHeight="1000.0" prefWidth="100.0">
+               <children>
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes" />
+                  <MFXButton fx:id="deleteNodeButton" onAction="#deleteNode" prefHeight="26.0" prefWidth="200.0" text="Delete Node" />
+                  <MFXButton fx:id="addNodeButton" onAction="#addNode" prefHeight="26.0" prefWidth="200.0" text="Add Node" />
+                  <MFXButton onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Clear" />
+                  <MFXButton onAction="#displayHelp" prefHeight="26.0" prefWidth="200.0" text="Help" />
+                  <MFXButton onAction="#openHomepage" prefHeight="26.0" prefWidth="200.0" text="Cancel" />
+               </children>
+            </VBox>
          </children>
       </VBox>
    </left>
