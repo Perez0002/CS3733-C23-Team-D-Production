@@ -3,25 +3,22 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="662.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationTable">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="662.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationTable">
+   <bottom>
+      <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+   </bottom>
    <center>
-      <VBox prefHeight="411.0" prefWidth="697.0" BorderPane.alignment="CENTER">
-         <children>
-            <TableView fx:id="sanitationTable" prefHeight="371.0" prefWidth="662.0">
-               <columns>
-                  <TableColumn fx:id="formID" prefWidth="118.0" text="serviceRequestID" />
-                  <TableColumn fx:id="location" prefWidth="90.66668701171875" text="location" />
-                  <TableColumn fx:id="reason" prefWidth="81.99993896484375" text="reason" />
-                  <TableColumn fx:id="bioLevel" prefWidth="102.0" text="biohazardLevel" />
-                  <TableColumn fx:id="staff" prefWidth="73.33331298828125" text="staff" />
-                  <TableColumn fx:id="status" prefWidth="72.00003051757812" text="status" />
-                  <TableColumn fx:id="date" prefWidth="73.33331298828125" text="Date" />
-               </columns>
-            </TableView>
-            <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-         </children>
-      </VBox>
+      <TableView fx:id="sanitationTable" prefHeight="371.0" prefWidth="662.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="formID" prefWidth="118.0" text="serviceRequestID" />
+            <TableColumn fx:id="location" prefWidth="90.66668701171875" text="location" />
+            <TableColumn fx:id="reason" prefWidth="81.99993896484375" text="reason" />
+            <TableColumn fx:id="bioLevel" prefWidth="102.0" text="biohazardLevel" />
+            <TableColumn fx:id="staff" prefWidth="73.33331298828125" text="staff" />
+            <TableColumn fx:id="status" prefWidth="72.00003051757812" text="status" />
+            <TableColumn fx:id="date" prefWidth="73.33331298828125" text="Date" />
+         </columns>
+      </TableView>
    </center>
 </BorderPane>

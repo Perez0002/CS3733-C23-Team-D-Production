@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -172,5 +173,71 @@ public class DBcontroller extends Application implements Initializable {
     nodeTableView.setItems(nodeList);
     edgeTable.setItems(edgeList);
     moveTable.setItems(moveList);
+    nodeTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    nodeTableView.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = nodeTableView.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = nodeTableView.getLayoutBounds().getWidth();
+              for (int i = 0; i < nodeTableView.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+              if (nodeTableView.getMaxWidth() / size > currentMax)
+                column.setMinWidth(nodeTableView.getMaxWidth() / size);
+              column.setMinWidth(currentMax);
+            });
+    edgeTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    edgeTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = edgeTable.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = edgeTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < edgeTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+              if (edgeTable.getMaxWidth() / size > currentMax)
+                column.setMinWidth(edgeTable.getMaxWidth() / size);
+              column.setMinWidth(currentMax);
+            });
+    moveTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    moveTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = moveTable.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = moveTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < moveTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+              if (moveTable.getMaxWidth() / size > currentMax)
+                column.setMinWidth(moveTable.getMaxWidth() / size);
+              column.setMinWidth(currentMax);
+            });
   }
 }

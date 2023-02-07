@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -101,5 +102,27 @@ public class ServiceRequestTable extends Application implements Initializable {
           new PropertyValueFactory<ServiceRequestForm, String>("requestType"));
     }
     serviceTable.setItems(requestList);
+    serviceTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    serviceTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = serviceTable.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = serviceTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < serviceTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+              if (serviceTable.getMaxWidth() / size > currentMax)
+                column.setMinWidth(serviceTable.getMaxWidth() / size);
+              column.setMinWidth(currentMax);
+            });
   }
 }
