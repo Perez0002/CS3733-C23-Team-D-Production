@@ -18,7 +18,7 @@ import net.kurobako.gesturefx.GesturePane;
 public class MapDrawController {
 
   protected static final int NODE_WIDTH = 16; // Node width for node Panes
-  protected static final int NODE_HEIGHT = 16; // Node width for node Panes
+  protected static final int NODE_HEIGHT = 16; // Node height for node Panes
 
   /**
    * @param nodeList ArrayList of Nodes to be placed
@@ -42,7 +42,7 @@ public class MapDrawController {
       tempPane.setPrefSize(NODE_WIDTH, NODE_HEIGHT);
       tempPane.setLayoutX(node.getXcoord() - NODE_WIDTH / 2);
       tempPane.setLayoutY(node.getYcoord() - NODE_HEIGHT / 2);
-      tempPane.setStyle("-fx-background-color: '#013A75'; -fx-border-radius: 1000px;");
+      tempPane.setStyle("-fx-background-color: '#013A75';");
       tempPane.setOnMouseClicked(event.apply(node));
       tempPane.setId(node.getNodeID() + "_pane");
       anchor
