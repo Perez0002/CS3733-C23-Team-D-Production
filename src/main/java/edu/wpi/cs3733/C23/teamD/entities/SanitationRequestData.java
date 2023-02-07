@@ -1,29 +1,16 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-public class SanitationRequestData {
+import jakarta.persistence.*;
+import java.util.Date;
 
+@Entity
+public class SanitationRequestData extends ServiceRequestForm {
   // attributes
-  int sanitationRequestID;
   String location;
-  String reason;
   int bioLevel;
-
-  String staff;
-
-  public enum Status {
-    BLANK,
-    PROCESSING,
-    DONE;
-  }
-
-  private SanitationRequestData.Status stat;
 
   public String getLocation() {
     return location;
-  }
-
-  public String getReason() {
-    return reason;
   }
 
   public int getBioLevel() {
@@ -31,68 +18,41 @@ public class SanitationRequestData {
   }
 
   public SanitationRequestData(
-      int formID, String location, String reason, int bioLevel, String staff, Status stat) {
-    sanitationRequestID = formID;
+      String location, String reason, int bioLevel, String staff, Status stat) {
+    super(staff, stat, reason, "SanitationRequestData");
     this.location = location;
-    this.reason = reason;
     this.bioLevel = bioLevel;
-    this.staff = staff;
-    this.stat = stat;
+  }
+
+  public SanitationRequestData(
+      int serviceId,
+      String location,
+      String reason,
+      int bioLevel,
+      String staff,
+      Status stat,
+      Date date) {
+    super(serviceId, staff, stat, reason, "SanitationRequestData", date);
+    this.location = location;
+    this.bioLevel = bioLevel;
   }
 
   public SanitationRequestData() {
-    this.sanitationRequestID = 0;
+    super();
     this.location = "";
-    this.reason = "";
     this.bioLevel = 0;
-    this.staff = "";
-    this.stat = Status.BLANK;
   }
 
   // for debugging
   public void printSanititationInfo() {
-    System.out.println(
-        "location: "
-            + this.location
-            + "\nreason: "
-            + this.reason
-            + "\nBio Hazard Level: "
-            + this.bioLevel);
-  }
-
-  public int getSanitationRequestID() {
-    return sanitationRequestID;
-  }
-
-  public void setSanitationRequestID(int sanitationRequestID) {
-    this.sanitationRequestID = sanitationRequestID;
+    System.out.println("location: " + this.location + "\nBio Hazard Level: " + this.bioLevel);
   }
 
   public void setLocation(String location) {
     this.location = location;
   }
 
-  public void setReason(String reason) {
-    this.reason = reason;
-  }
-
   public void setBioLevel(int bioLevel) {
     this.bioLevel = bioLevel;
-  }
-
-  public String getStaff() {
-    return staff;
-  }
-
-  public void setStaff(String staff) {
-    this.staff = staff;
-  }
-
-  public Status getStat() {
-    return stat;
-  }
-
-  public void setStat(Status stat) {
-    this.stat = stat;
   }
 }

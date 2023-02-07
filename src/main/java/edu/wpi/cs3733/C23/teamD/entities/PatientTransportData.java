@@ -1,31 +1,23 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import jakarta.persistence.*;
+import java.util.Date;
+import org.hibernate.type.*;
 
 /*
 PatientTransportData
 creates an entity object containing data for use on frontend PatientTransport UI
 */
-public class PatientTransportData {
+
+@Entity
+public class PatientTransportData extends ServiceRequestForm {
 
   // Attributes of PatientTransportData class
-  private int patientTransportID;
+
   private String startRoom;
   private String endRoom;
-  private ArrayList<String> equipment; // equipment necessary based on form contents
-  private String reason;
-  private String[] sendTo; // individuals to notify based on form contents
-
+  private String equipment; // equipment necessary based on form contents
   private String patientID;
-
-  public enum Status {
-    BLANK,
-    PROCESSING,
-    DONE;
-  }
-
-  private Status stat;
 
   /*
   PatientTransportData()
@@ -37,31 +29,42 @@ public class PatientTransportData {
   */
   public PatientTransportData(
       String patientID,
-      int patientTransportID,
       String startRoom,
       String endRoom,
-      ArrayList<String> equipment,
+      String equipment,
       String reason,
-      String[] sendTo,
+      String sendTo,
       Status stat) {
+    super(sendTo, stat, reason, "PatientTransportData");
     this.patientID = patientID;
-    this.patientTransportID = patientTransportID;
     this.endRoom = endRoom;
     this.equipment = equipment;
-    this.reason = reason;
-    this.sendTo = sendTo;
     this.startRoom = startRoom;
-    this.stat = stat;
+  }
+
+  public PatientTransportData(
+      int serviceId,
+      String patientID,
+      String startRoom,
+      String endRoom,
+      String equipment,
+      String reason,
+      String sendTo,
+      Status stat,
+      Date date) {
+    super(serviceId, sendTo, stat, reason, "PatientTransportData", date);
+    this.patientID = patientID;
+    this.endRoom = endRoom;
+    this.equipment = equipment;
+    this.startRoom = startRoom;
   }
 
   public PatientTransportData() { // should endRoom be in the constructor
-    this.patientTransportID = 0;
+    super();
     this.endRoom = null;
     this.equipment = null;
-    this.reason = null;
-    this.sendTo = null;
     this.startRoom = "";
-    this.stat = Status.BLANK;
+    this.endRoom = "";
   }
   /*
   printInformation()
@@ -70,11 +73,11 @@ public class PatientTransportData {
   prints information from PatientTransportData for debugging purposes
   */
   public void printInformation() { // for debugging purposes
-    System.out.println("The patientID is " + this.patientTransportID);
+    System.out.println("The patientID is " + this.getServiceRequestId());
     System.out.println("The endRoom " + this.endRoom);
     System.out.println("The equipment required is " + this.equipment);
-    System.out.println("The reason is " + this.reason);
-    System.out.println("sendTo contacts: " + Arrays.toString(this.sendTo));
+    System.out.println("The reason is " + this.getReason());
+    System.out.println("sendTo contacts: " + (this.getAssociatedStaff()));
     System.out.println("The startRoom is " + this.startRoom);
   } // end printInformation()
 
@@ -85,28 +88,12 @@ public class PatientTransportData {
   each get function returns a String containing information from PatientTransportData object
   */
 
-  public int getPatientTransportID() {
-    return patientTransportID;
-  } // end getPatientID()
-
   public String getStartRoom() {
     return startRoom;
   }
 
-  public ArrayList<String> getEquipment() {
+  public String getEquipment() {
     return equipment;
-  }
-
-  public String getReason() {
-    return reason;
-  }
-
-  public String[] getSendTo() {
-    return sendTo;
-  }
-
-  public void setPatientTransportID(int patientTransportID) {
-    this.patientTransportID = patientTransportID;
   }
 
   public void setStartRoom(String startRoom) {
@@ -117,24 +104,8 @@ public class PatientTransportData {
     this.endRoom = endRoom;
   }
 
-  public void setEquipment(ArrayList<String> equipment) {
+  public void setEquipment(String equipment) {
     this.equipment = equipment;
-  }
-
-  public void setReason(String reason) {
-    this.reason = reason;
-  }
-
-  public void setSendTo(String[] sendTo) {
-    this.sendTo = sendTo;
-  }
-
-  public Status getStat() {
-    return stat;
-  }
-
-  public void setStat(Status stat) {
-    this.stat = stat;
   }
 
   public String getEndRoom() {
