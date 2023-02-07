@@ -55,7 +55,7 @@
                         <Font size="11.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="DBEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Database Editors" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                  <MFXButton fx:id="DBEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                </children>
             </VBox>
             <Label fx:id="aboutLabel" prefHeight="200.0" prefWidth="450.0" text="This homepage was created by Olivia, the Internal Patient Transportation Request Form by Annie and Mike, the Santiation Services Request Form by Wyatt and Gibson, the Pathtfinding Page by Mike and Olivia, the Navigation Bar by Annie, and the database pages by Bryce." textAlignment="CENTER" wrapText="true">
