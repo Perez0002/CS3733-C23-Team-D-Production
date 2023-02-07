@@ -50,7 +50,7 @@ public class Pathfinder {
     HashMap<String, Node> beenNodes = new HashMap<String, Node>();
     PriorityQueue<PathCostPair> queue =
         new PriorityQueue<PathCostPair>(5, new PathCostPairComparator());
-
+    System.out.println(startNode.getNodeID());
     // add starting Node to beginning of path
     path.add(startNode);
 

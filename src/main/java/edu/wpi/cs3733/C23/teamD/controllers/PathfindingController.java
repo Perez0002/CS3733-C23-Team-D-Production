@@ -32,12 +32,16 @@ public class PathfindingController {
 
   private GraphMap mainMap;
 
+  private Pathfinder PathfinderAStar;
+
   public PathfindingController() {}
 
   @FXML
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
+
+    PathfinderAStar = new Pathfinder(mainMap);
   }
 
   @FXML
@@ -55,12 +59,10 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    Pathfinder PathfinderAStar = new Pathfinder(mainMap);
     ArrayList<Node> Path = new ArrayList<Node>();
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
-
     if (startNode != null && endNode != null) {
       Path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
       String out = "";

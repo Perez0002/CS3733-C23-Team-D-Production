@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,12 +11,13 @@
          <children>
             <TableView fx:id="sanitationTable" prefHeight="371.0" prefWidth="662.0">
                <columns>
-                  <TableColumn fx:id="formID" prefWidth="118.0" text="sanitationFormID" />
+                  <TableColumn fx:id="formID" prefWidth="118.0" text="serviceRequestID" />
                   <TableColumn fx:id="location" prefWidth="90.66668701171875" text="location" />
                   <TableColumn fx:id="reason" prefWidth="81.99993896484375" text="reason" />
                   <TableColumn fx:id="bioLevel" prefWidth="102.0" text="biohazardLevel" />
                   <TableColumn fx:id="staff" prefWidth="73.33331298828125" text="staff" />
                   <TableColumn fx:id="status" prefWidth="72.00003051757812" text="status" />
+                  <TableColumn fx:id="date" prefWidth="73.33331298828125" text="Date" />
                </columns>
             </TableView>
             <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />

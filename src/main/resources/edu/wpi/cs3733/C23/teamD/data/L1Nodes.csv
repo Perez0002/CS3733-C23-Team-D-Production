@@ -31,7 +31,6 @@ L1X2300Y0879,2300,0879,L1,45 Francis,REST,Restroom K Elevator Floor L1,Restroom 
 L1X2770Y1160,2770,1160,L1,45 Francis,REST,Restroom H Elevator Floor L1,Restroom C004L1
 L1X2185Y0904,2185,0904,L1,45 Francis,RETL,Vending Machine 1 L1,Retail C001L1
 L1X2490Y1043,2490,1043,L1,45 Francis,SERV,Volunteers Floor L1,Service C001L1
-L2X2015Y1280,2015,1280,L2,45 Francis,SERV,Interpreter Services Floor L2,Service C001L2
 L1X1637Y2116,1637,2116,L1,Shapiro,ELEV,Elevator Q MapNode 7 Floor L1,Elevator Q L1
 L1X1702Y2260,1702,2260,L1,Shapiro,EXIT,Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
 L1X1702Y2167,1702,2167,L1,Shapiro,HALL,Hallway MapNode 2 Floor L1,Hall

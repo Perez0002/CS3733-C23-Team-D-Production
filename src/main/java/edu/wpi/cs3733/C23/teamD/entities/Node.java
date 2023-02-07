@@ -1,23 +1,56 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
+@Entity
 public class Node {
-  private String nodeID;
+  @Id private String nodeID;
   private int xcoord;
   private int ycoord;
   private String floor;
   private String building;
-  private locationName location;
-  private ArrayList<Edge> nodeEdges;
+
+  @OneToMany(mappedBy = "node")
+  private List<Move> moves;
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this.getNodeID().equals(((Node) obj).getNodeID())) {
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(nodeID, xcoord, ycoord, floor, building, moves);
+  }
+
+  @Transient private LocationName location;
+
+  // @OneToMany(mappedBy = "fromNode toNode")
+  @Transient private ArrayList<Edge> nodeEdges;
 
   public Node(int xcoord, int ycoord, String floor, String building) {
-    this.nodeID = floor + "X" + xcoord + "Y" + ycoord;
+    String xString = String.format("%04d", xcoord);
+    String yString = String.format("%04d", ycoord);
+    this.nodeID = (floor + "X" + xString + "Y" + yString);
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
     this.nodeEdges = new ArrayList<Edge>();
+  }
+
+  public List<Move> getMoves() {
+    return moves;
+  }
+
+  public void setMoves(List<Move> moves) {
+    this.moves = moves;
   }
 
   public Node() {
@@ -78,11 +111,11 @@ public class Node {
     this.nodeID = nodeID;
   }
 
-  public locationName getLocation() {
+  public LocationName getLocation() {
     return location;
   }
 
-  public void setLocation(locationName location) {
+  public void setLocation(LocationName location) {
     this.location = location;
   }
 
@@ -92,5 +125,29 @@ public class Node {
 
   public void setNodeEdges(ArrayList<Edge> nodeEdges) {
     this.nodeEdges = nodeEdges;
+  }
+
+  public void setLongName(String longName) {
+    this.location.setLongName(longName);
+  }
+
+  public String getLongName() {
+    return this.location.getLongName();
+  }
+
+  public void setShortName(String shortName) {
+    this.location.setLongName(shortName);
+  }
+
+  public String getShortName() {
+    return this.location.getShortName();
+  }
+
+  public void setLocationType(String locationType) {
+    this.location.setLocationType(locationType);
+  }
+
+  public String getLocationType() {
+    return this.location.getLocationType();
   }
 }
