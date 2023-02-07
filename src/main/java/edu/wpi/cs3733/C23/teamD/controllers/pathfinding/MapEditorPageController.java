@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
@@ -11,11 +12,13 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -69,6 +72,17 @@ public class MapEditorPageController {
         longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
         shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
         roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
+
+        GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+
+        for (javafx.scene.Node n : anchor.getChildren()) {
+          if ((node.getNodeID() + "_pane").equals(n.getId())) {
+            n.setStyle("-fx-background-color: '#CC2222';");
+          } else {
+            n.setStyle("-fx-background-color: '#013A75';");
+          }
+        }
       }
     };
   }
@@ -118,9 +132,9 @@ public class MapEditorPageController {
 
     // TODO should make a PaneFactory for this
     final Pane tempPane = new Pane();
-    tempPane.setPrefSize(10, 10);
-    tempPane.setLayoutX(newNode.getXcoord() - 10 / 2);
-    tempPane.setLayoutY(newNode.getYcoord() - 10 / 2);
+    tempPane.setPrefSize(MapDrawController.NODE_WIDTH, MapDrawController.NODE_WIDTH);
+    tempPane.setLayoutX(newNode.getXcoord() - MapDrawController.NODE_WIDTH / 2);
+    tempPane.setLayoutY(newNode.getYcoord() - MapDrawController.NODE_WIDTH / 2);
     tempPane.setStyle("-fx-background-color: '#013A75';");
     tempPane.setOnMouseClicked(paneFunction(newNode));
     tempPane.setId(newNode.getNodeID() + "_pane");
@@ -145,12 +159,29 @@ public class MapEditorPageController {
 
     nodeList = createJavaNodes();
     connectNodestoLocations(nodeList);
+    double totalX = 0;
+    double totalY = 0;
+    int total = 0;
 
-    mapEditorPane.setCenter(
+    for (Node node : nodeList) {
+      totalX += node.getXcoord();
+      totalY += node.getYcoord();
+      total++;
+    }
+
+    GesturePane gesturePane =
         mapDrawer.genMapFromNodes(
             nodeList,
             node -> {
               return paneFunction(node);
-            }));
+            });
+    mapEditorPane.setCenter(gesturePane);
+    gesturePane.zoomTo(0, new Point2D(totalX / total, totalY / total));
+    gesturePane
+        .animate(Duration.millis(500))
+        .centreOn(
+            new Point2D(
+                (totalX / total) - App.getPrimaryStage().getScene().getWidth() / 2,
+                (totalY / total) - App.getPrimaryStage().getScene().getHeight() / 2));
   }
 }

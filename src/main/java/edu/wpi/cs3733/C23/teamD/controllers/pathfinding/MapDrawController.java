@@ -17,8 +17,8 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class MapDrawController {
 
-  private static final int NODE_WIDTH = 10;
-  private static final int NODE_HEIGHT = 10;
+  protected static final int NODE_WIDTH = 16;
+  protected static final int NODE_HEIGHT = 16;
 
   public GesturePane genMapFromNodes(
       ArrayList<Node> nodeList, Function<Node, EventHandler<? super MouseEvent>> event) {
