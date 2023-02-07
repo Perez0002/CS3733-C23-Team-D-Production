@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.RootController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="basePane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.RootController">
    <top>
       <AnchorPane prefHeight="33.0" styleClass="rootPane" BorderPane.alignment="TOP_LEFT">
          <children>
-            <HBox prefHeight="33.0" prefWidth="200.0" spacing="85.0">
+            <HBox fx:id="rootHBox" prefHeight="33.0" prefWidth="200.0" spacing="85.0">
                <children>
                   <Text fx:id="hospitalName" fill="#123486" strokeType="OUTSIDE" strokeWidth="0.0" text="Brigham and Women's Hospital" wrappingWidth="393.9830722808838">
                      <font>
@@ -33,9 +33,9 @@
                         </MFXButton>
                         <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="navMenuButton" text="Forms">
                           <items>
-                            <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" text="Pathfinding Form" />
-                            <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" text="Sanitation Form" />
-                              <MenuItem mnemonicParsing="false" onAction="#openPatientTransport" text="Patient Transport Form" />
+                            <MenuItem mnemonicParsing="false" onAction="#openPathfindingForm" styleClass="navMenuButton" text="Pathfinding Form" />
+                            <MenuItem mnemonicParsing="false" onAction="#openSanitationForm" styleClass="navMenuButton" text="Sanitation Form" />
+                              <MenuItem mnemonicParsing="false" onAction="#openPatientTransport" styleClass="navMenuButton" text="Patient Transport Form" />
                           </items>
                            <HBox.margin>
                               <Insets />
@@ -43,9 +43,9 @@
                         </MenuButton>
                         <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="250.0" styleClass="navMenuButton" text="Database">
                            <items>
-                              <MenuItem mnemonicParsing="false" onAction="#openDatabase" text="Edit Database" />
-                              <MenuItem mnemonicParsing="false" onAction="#openPatientTransportTable" text="View Patient Transport Requests" />
-                              <MenuItem mnemonicParsing="false" onAction="#openSanitationTable" text="View Sanitation Requests" />
+                              <MenuItem mnemonicParsing="false" onAction="#openDatabase" styleClass="navMenuButton" text="Edit Database" />
+                              <MenuItem mnemonicParsing="false" onAction="#openPatientTransportTable" styleClass="navMenuButton" text="View Patient Transport Requests" />
+                              <MenuItem mnemonicParsing="false" onAction="#openSanitationTable" styleClass="navMenuButton" text="View Sanitation Requests" />
                            </items>
                            <HBox.margin>
                               <Insets />

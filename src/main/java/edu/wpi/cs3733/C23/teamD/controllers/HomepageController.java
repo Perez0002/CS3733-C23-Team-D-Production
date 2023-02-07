@@ -25,6 +25,8 @@ public class HomepageController {
 
   @FXML private MenuButton exitButtonMenu;
 
+  @FXML private MFXButton mapEditorButton1;
+
   @FXML private BorderPane homepageBorderPane;
 
   @FXML private MFXButton homepageHelpButton;

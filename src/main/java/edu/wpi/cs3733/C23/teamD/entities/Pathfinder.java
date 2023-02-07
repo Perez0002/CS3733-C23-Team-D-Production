@@ -16,11 +16,11 @@ public class Pathfinder {
     this.fullMap = fullMap;
   }
 
-  public void init() {
-    this.fullMap.init();
+  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
+    this.fullMap.init(nodeList, edgeList);
   }
 
-  public void initFromCSV(String nodePath, String edgePath) {
+  public void initFromDB() {
     this.fullMap.initFromDB();
   }
 
@@ -70,6 +70,7 @@ public class Pathfinder {
 
       if (currentNode.equals(endNode)) {
         // if the current Node is our target Node, we are done, exit loop
+        // System.out.println("Found node!");
         return currentPath.getKey();
       }
 
@@ -87,7 +88,7 @@ public class Pathfinder {
     }
 
     // In the event a Node could not be found, return default path
-    //    System.out.println("Could not find Node!");
-    return path;
+    // System.out.println("Could not find Node!");
+    return new ArrayList<Node>();
   }
 }

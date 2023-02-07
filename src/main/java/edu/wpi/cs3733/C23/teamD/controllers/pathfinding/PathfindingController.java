@@ -1,12 +1,19 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
+import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
 
@@ -24,7 +31,7 @@ public class PathfindingController {
 
   @FXML private RoomPickComboBoxController endRoomComboBoxController;
 
-  @FXML private Text pathResultText;
+  @FXML private Label pathResultText;
 
   private RoomPickComboBoxController comboBox;
 
@@ -32,16 +39,12 @@ public class PathfindingController {
 
   private GraphMap mainMap;
 
-  private Pathfinder PathfinderAStar;
-
   public PathfindingController() {}
 
   @FXML
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
-
-    PathfinderAStar = new Pathfinder(mainMap);
   }
 
   @FXML
@@ -59,20 +62,29 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    ArrayList<Node> Path = new ArrayList<Node>();
+    Pathfinder PathfinderAStar = new Pathfinder(mainMap);
+    ArrayList<Node> path = new ArrayList<Node>();
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
-    if (startNode != null && endNode != null) {
-      Path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
-      String out = "";
-      out += "[";
-      for (Node n : Path) {
-        out += " " + n.getNodeID() + ",";
-      }
-      out = out.substring(0, out.length() - 2) + " ]";
-      pathResultText.setText(out);
 
+    if (startNode != null && endNode != null) {
+      path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
+      if (path.size() == 1) {
+        pathResultText.setText("The Chosen Start and End Locations are Identical");
+      } else if (path.size() == 0) {
+        pathResultText.setText("There is no Valid Path Between These Two Locations");
+      } else {
+        MapDrawController pathDrawController = new MapDrawController();
+        GesturePane sceneNode = pathDrawController.genMapFromNodesWithEdges(path);
+        sceneNode
+            .animate(Duration.millis(200))
+            .centreOn(
+                new Point2D(
+                    mainMap.getNode(startNode).getXcoord() - App.getPrimaryStage().getWidth() / 2,
+                    mainMap.getNode(endNode).getYcoord() - App.getPrimaryStage().getHeight() / 2));
+        Navigation.navigate(sceneNode);
+      }
     } else {
       pathResultText.setText("Incorrect Node Data Entered");
     }
