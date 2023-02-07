@@ -69,6 +69,7 @@ public class MapEditorPageController {
         longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
         shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
         roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
+        MapEditorNodeController mapeditor = new MapEditorNodeController(node);
       }
     };
   }
