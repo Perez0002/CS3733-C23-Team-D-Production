@@ -21,9 +21,9 @@ public class MapDrawController {
   protected static final int NODE_HEIGHT = 16; // Node width for node Panes
 
   /**
-   *
    * @param nodeList ArrayList of Nodes to be placed
-   * @param event A Function taking a Node and returning an EventHandler<MouseEvent> to pass to the onclick function for each Pane
+   * @param event A Function taking a Node and returning an EventHandler<MouseEvent> to pass to the
+   *     onclick function for each Pane
    * @return A GesturePane containing the Image and each Node mapped as a Pane
    */
   public GesturePane genMapFromNodes(
@@ -32,7 +32,9 @@ public class MapDrawController {
 
     ImageView imageView =
         new ImageView(
-            App.class.getResource("views/floorMaps/00_thelowerlevel1.png").toExternalForm()); // Getting Image from resources
+            App.class
+                .getResource("views/floorMaps/00_thelowerlevel1.png")
+                .toExternalForm()); // Getting Image from resources
     anchor.getChildren().add(imageView); // Adding Image to AnchorPane
 
     for (Node node : nodeList) { // For every Node
@@ -43,18 +45,23 @@ public class MapDrawController {
       tempPane.setStyle("-fx-background-color: '#013A75'; -fx-border-radius: 1000px;");
       tempPane.setOnMouseClicked(event.apply(node));
       tempPane.setId(node.getNodeID() + "_pane");
-      anchor.getChildren().add(tempPane); // Make a new Pane, set it's onclick to a passed in function, and add it to the AnchorPane
+      anchor
+          .getChildren()
+          .add(
+              tempPane); // Make a new Pane, set it's onclick to a passed in function, and add it to
+      // the AnchorPane
     }
 
-    GesturePane returnPane = new GesturePane(anchor); // Pass the AnchorPane with everything in it to a GesturePane
+    GesturePane returnPane =
+        new GesturePane(anchor); // Pass the AnchorPane with everything in it to a GesturePane
     returnPane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER); // No more scroll bars!!!
     return returnPane; // Return the GesturePane
   }
 
   /**
-   *
    * @param nodeList List of Nodes to display with edges between
-   * @return A GesturePane containing the Image of the floor and the Nodes mapped on it with Edges connecting them
+   * @return A GesturePane containing the Image of the floor and the Nodes mapped on it with Edges
+   *     connecting them
    */
   public GesturePane genMapFromNodesWithEdges(ArrayList<Node> nodeList) {
     GesturePane oldPane =
@@ -64,13 +71,18 @@ public class MapDrawController {
               return null;
             }); // Calling genMapFromNodes to add the nodes with a null function
 
-    javafx.scene.Node incomingNode = oldPane.getContent(); // Getting the AnchorPane from the GesturePane
+    javafx.scene.Node incomingNode =
+        oldPane.getContent(); // Getting the AnchorPane from the GesturePane
     try {
       assert incomingNode instanceof AnchorPane; // Ensuring the AnchorPane is an AnchorPane
       AnchorPane anchor = (AnchorPane) incomingNode; // Casting
       ImageView imageView = (ImageView) anchor.getChildren().get(0); // Getting the Image
-      Canvas canvas = new Canvas(imageView.getImage().getWidth(), imageView.getImage().getHeight()); // Making a Canvas of the Image Height and Width
-      GraphicsContext context = canvas.getGraphicsContext2D(); // Getting GraphicsContext for drawing
+      Canvas canvas =
+          new Canvas(
+              imageView.getImage().getWidth(),
+              imageView.getImage().getHeight()); // Making a Canvas of the Image Height and Width
+      GraphicsContext context =
+          canvas.getGraphicsContext2D(); // Getting GraphicsContext for drawing
       context.setFill(Color.BLACK); // Setting fill color to black
 
       Node lastNode = null;
@@ -87,9 +99,15 @@ public class MapDrawController {
         lastNode = node; // Incrementing Node
       }
       context.setLineWidth(1);
-      context.strokeText("END", lastNode.getXcoord() + 10, lastNode.getYcoord(), 40); // Labeling last Node in the Path as "END"
+      context.strokeText(
+          "END",
+          lastNode.getXcoord() + 10,
+          lastNode.getYcoord(),
+          40); // Labeling last Node in the Path as "END"
 
-      anchor.getChildren().add(1, canvas); // Adding Canvas after the image but before the Panes start
+      anchor
+          .getChildren()
+          .add(1, canvas); // Adding Canvas after the image but before the Panes start
 
       GesturePane gesturePane = new GesturePane(anchor); // Making a new GesturePane
       gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER); // No more scroll bars!!!

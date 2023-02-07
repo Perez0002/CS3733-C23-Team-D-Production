@@ -8,6 +8,7 @@ import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.util.ArrayList;
@@ -32,29 +33,31 @@ public class MapEditorPageController {
 
   @FXML private BorderPane mapEditorPane;
 
-  @FXML private Text nodeInformationText;
+  @FXML private MFXButton clearButton;
 
   @FXML private Text roomTypeHelpText;
 
-  @FXML private MFXTextField roomTypeTextField;
-
   @FXML private Text shortNameHelpText;
 
-  @FXML private MFXTextField shortNameTextField;
+  @FXML private MFXTextField xCoordTextField;
+
+  @FXML private MFXTextField yCoordTextField;
+
+  @FXML private MFXButton submitButton;
+  @FXML private MFXButton addNodeButton;
+  @FXML private MFXButton deleteNodeButton;
 
   private Node currentNodeEdit;
 
   private ArrayList<Node> nodeList;
-  private ArrayList<LocationName> locList;
-
   private MapDrawController mapDrawer;
 
   @FXML
   void clearFields() {
     // Clears all Text Fields
     longNameTextField.clear();
-    shortNameTextField.clear();
-    roomTypeTextField.clear();
+    yCoordTextField.clear();
+    xCoordTextField.clear();
   }
 
   @FXML
@@ -67,16 +70,22 @@ public class MapEditorPageController {
     Navigation.navigate(Screen.HOME);
   }
 
+  @FXML
+  void deleteNode() {}
+
+  @FXML
+  void addNode() {}
+
   private EventHandler<MouseEvent> paneFunction(Node node) {
     return new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
         if (!node.equals(currentNodeEdit)) {
+          updateButtonsForNode(true);
           currentNodeEdit = node;
-          nodeInformationText.setText(currentNodeEdit.getNodeID());
+          xCoordTextField.setText(Integer.toString(currentNodeEdit.getXcoord()));
+          yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
           longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
-          shortNameTextField.setText(currentNodeEdit.getLocation().getShortName());
-          roomTypeTextField.setText(currentNodeEdit.getLocation().getLocationType());
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -89,11 +98,9 @@ public class MapEditorPageController {
             }
           }
         } else {
+          updateButtonsForNode(false);
           currentNodeEdit = null;
-          nodeInformationText.setText("");
-          longNameTextField.setText("");
-          shortNameTextField.setText("");
-          roomTypeTextField.setText("");
+          clearFields();
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -111,11 +118,8 @@ public class MapEditorPageController {
     // For now, this just does basic changes. Will be edited when the changes required are more
     // defined
     Node newNode = new Node();
-    newNode.setLocation(
-        new LocationName(
-            longNameTextField.getText(),
-            shortNameTextField.getText(),
-            roomTypeTextField.getText()));
+    // TODO set location name
+    // newNode.setLocation(new LocationName());
     newNode.setNodeID(currentNodeEdit.getNodeID());
     newNode.setXcoord(currentNodeEdit.getXcoord());
     newNode.setYcoord(currentNodeEdit.getYcoord());
@@ -159,14 +163,47 @@ public class MapEditorPageController {
     tempPane.setId(newNode.getNodeID() + "_pane");
     anchor.getChildren().add(tempPane);
 
-    nodeInformationText.setText("");
     longNameTextField.setText("");
-    shortNameTextField.setText("");
-    roomTypeTextField.setText("");
+    xCoordTextField.setText("");
+    yCoordTextField.setText("");
 
     // TODO update database to match
 
     currentNodeEdit = null;
+  }
+
+  private void updateButtonsForNode(boolean nodeSelected) {
+    if (nodeSelected == true) {
+      submitButton.setVisible(true);
+      submitButton.setManaged(true);
+      addNodeButton.setVisible(false);
+      addNodeButton.setManaged(false);
+      deleteNodeButton.setVisible(true);
+      deleteNodeButton.setManaged(true);
+      longNameTextField.setVisible(true);
+      longNameTextField.setManaged(true);
+      xCoordTextField.setVisible(true);
+      xCoordTextField.setManaged(true);
+      yCoordTextField.setVisible(true);
+      yCoordTextField.setManaged(true);
+      clearButton.setVisible(true);
+      clearButton.setManaged(true);
+    } else {
+      submitButton.setVisible(false);
+      submitButton.setManaged(false);
+      addNodeButton.setVisible(true);
+      addNodeButton.setManaged(true);
+      deleteNodeButton.setVisible(false);
+      deleteNodeButton.setManaged(false);
+      longNameTextField.setVisible(false);
+      longNameTextField.setManaged(false);
+      xCoordTextField.setVisible(false);
+      xCoordTextField.setManaged(false);
+      yCoordTextField.setVisible(false);
+      yCoordTextField.setManaged(false);
+      clearButton.setVisible(false);
+      clearButton.setManaged(false);
+    }
   }
 
   @FXML
@@ -179,6 +216,8 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+    updateButtonsForNode(false);
+
     mapDrawer = new MapDrawController();
 
     nodeList = createJavaNodes();
