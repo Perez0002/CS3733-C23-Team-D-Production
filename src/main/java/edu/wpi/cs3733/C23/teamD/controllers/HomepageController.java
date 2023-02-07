@@ -25,7 +25,7 @@ public class HomepageController {
 
   @FXML private MenuButton exitButtonMenu;
 
-  @FXML private MFXButton mapEditorButton1;
+  @FXML private MFXButton mapEditorButton;
 
   @FXML private BorderPane homepageBorderPane;
 
@@ -42,6 +42,7 @@ public class HomepageController {
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
   }
 
   @FXML
