@@ -70,17 +70,6 @@
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <Text fx:id="formSubmittedText" strokeType="OUTSIDE" strokeWidth="0.0" text="The form was submitted" visible="false" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-               <children>
-                  <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
-                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitSanitationRequest" text="Submit" />
-                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" text="Help" />
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
          </children>
          <BorderPane.margin>
             <Insets top="20.0" />
@@ -90,4 +79,21 @@
          </padding>
       </VBox>
    </left>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+            <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clearFields" text="Clear" />
+            <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitSanitationRequest" text="Submit" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="550.0">
+               <children>
+                  <MFXButton fx:id="helpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayHelp" styleClass="helpbuttonstyleclass" text="?" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="30.0" right="30.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
 </BorderPane>
