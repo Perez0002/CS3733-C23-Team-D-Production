@@ -1,10 +1,14 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.entities.LocationName;
+import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
-import edu.wpi.cs3733.C23.teamD.entities.locationName;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,6 +27,33 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 public class DBcontroller extends Application implements Initializable {
+  @FXML private TableView<Move> moveTable;
+  @FXML private TableColumn<Move, String> moveNodeID;
+  @FXML private TableColumn<Move, Date> moveDate;
+  @FXML private TableColumn<Move, String> moveLongName;
+  @FXML private TableColumn<Node, String> building;
+
+  @FXML private TableColumn<Node, String> floor;
+
+  @FXML private TableColumn<Node, String> nodeID;
+
+  @FXML private TableView<Node> nodeTableView;
+
+  @FXML private TableColumn<Node, Integer> xCoord;
+
+  @FXML private TableColumn<Node, Integer> yCoord;
+
+  @FXML private TableColumn<Node, String> shortName;
+
+  @FXML private TableColumn<Node, String> longName;
+
+  @FXML private TableColumn<Node, String> locationType;
+
+  @FXML private TableView<Edge> edgeTable;
+
+  @FXML private TableColumn<Edge, String> edgeID;
+  @FXML private TableColumn<Edge, String> startNode;
+  @FXML private TableColumn<Edge, String> endNode;
 
   public static void main(String[] args) {
     launch(args);
@@ -37,26 +68,6 @@ public class DBcontroller extends Application implements Initializable {
     primaryStage.show();
   }
 
-  @FXML private TableColumn<Node, String> building;
-
-  @FXML private TableColumn<Node, String> floor;
-
-  @FXML private TableColumn<Node, String> nodeID;
-
-  @FXML private TableView<Node> nodeTableView;
-
-  @FXML private TableColumn<Node, Integer> xCoord;
-
-  @FXML private TableColumn<Node, Integer> yCoord;
-
-  @FXML private TableColumn<locationName, String> shortName;
-
-  @FXML private TableColumn<locationName, String> longName;
-
-  @FXML private TableColumn<locationName, String> locationType;
-
-  @FXML private TableView<locationName> locationNameTableView;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
@@ -64,11 +75,11 @@ public class DBcontroller extends Application implements Initializable {
 
   public void tablehandling() {
     nodeTableView.setEditable(true);
-    locationNameTableView.setEditable(true);
-    Connection conn = Ddb.makeConnection();
-    ObservableList<Node> nodeList = FXCollections.observableArrayList(Ddb.createJavaNodes(conn));
-    ObservableList<locationName> locList =
-        FXCollections.observableArrayList(Ddb.createJavaLocat(conn));
+    ArrayList<Node> nodes = Ddb.createJavaNodes();
+    Ddb.connectNodestoLocations(nodes);
+    ObservableList<Node> nodeList = FXCollections.observableArrayList(nodes);
+    ObservableList<Move> moveList = FXCollections.observableArrayList(Ddb.createJavaMoves());
+    ObservableList<Edge> edgeList = FXCollections.observableArrayList(Ddb.createJavaEdges(nodes));
     nodeID.setCellValueFactory(new PropertyValueFactory<Node, String>("nodeID"));
     xCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Xcoord"));
     xCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -79,8 +90,7 @@ public class DBcontroller extends Application implements Initializable {
             Node node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setXcoord(newCoord);
-            String stmnt = "UPDATE Node SET xCoord = ? WHERE nodeID = ?";
-            Ddb.updateObjInt(conn, stmnt, node.getNodeID(), newCoord);
+            Ddb.updateObj(node);
           }
         });
 
@@ -94,7 +104,7 @@ public class DBcontroller extends Application implements Initializable {
             int newCoord = event.getNewValue();
             node.setYcoord(newCoord);
             String stmnt = "UPDATE Node SET yCoord = ? WHERE nodeID = ?";
-            Ddb.updateObjInt(conn, stmnt, node.getNodeID(), newCoord);
+            Ddb.updateObj(node);
           }
         });
     floor.setCellValueFactory(new PropertyValueFactory<Node, String>("floor"));
@@ -107,7 +117,7 @@ public class DBcontroller extends Application implements Initializable {
             String newFloor = event.getNewValue();
             node.setFloor(newFloor);
             String stmnt = "UPDATE Node SET floor = ? WHERE nodeID = ?";
-            Ddb.updateObjString(conn, stmnt, node.getNodeID(), newFloor);
+            Ddb.updateObj(node);
           }
         });
 
@@ -121,41 +131,46 @@ public class DBcontroller extends Application implements Initializable {
             String newBuild = event.getNewValue();
             node.setBuilding(newBuild);
             String stmnt = "UPDATE Node SET building = ? WHERE nodeID = ?";
-            Ddb.updateObjString(conn, stmnt, node.getNodeID(), newBuild);
+            Ddb.updateObj(node);
           }
         });
 
-    longName.setCellValueFactory(new PropertyValueFactory<locationName, String>("longName"));
-    shortName.setCellValueFactory(new PropertyValueFactory<locationName, String>("shortName"));
+    longName.setCellValueFactory(new PropertyValueFactory<Node, String>("longName"));
+    shortName.setCellValueFactory(new PropertyValueFactory<Node, String>("shortName"));
     shortName.setCellFactory(TextFieldTableCell.forTableColumn());
     shortName.setOnEditCommit(
-        new EventHandler<TableColumn.CellEditEvent<locationName, String>>() {
+        new EventHandler<TableColumn.CellEditEvent<Node, String>>() {
           @Override
-          public void handle(TableColumn.CellEditEvent<locationName, String> event) {
-            locationName name = event.getRowValue();
+          public void handle(TableColumn.CellEditEvent<Node, String> event) {
+            LocationName name = event.getRowValue().getLocation();
             String newShort = event.getNewValue();
             name.setShortName(newShort);
             String stmnt = "UPDATE locationName SET shortName = ? WHERE longName = ?";
-            Ddb.updateObjString(conn, stmnt, name.getLongName(), newShort);
+            Ddb.updateObj(name);
           }
         });
 
-    locationType.setCellValueFactory(
-        new PropertyValueFactory<locationName, String>("locationType"));
+    locationType.setCellValueFactory(new PropertyValueFactory<Node, String>("locationType"));
     locationType.setCellFactory(TextFieldTableCell.forTableColumn());
     locationType.setOnEditCommit(
-        new EventHandler<TableColumn.CellEditEvent<locationName, String>>() {
+        new EventHandler<TableColumn.CellEditEvent<Node, String>>() {
           @Override
-          public void handle(TableColumn.CellEditEvent<locationName, String> event) {
-            locationName name = event.getRowValue();
+          public void handle(TableColumn.CellEditEvent<Node, String> event) {
+            LocationName name = event.getRowValue().getLocation();
             String newType = event.getNewValue();
             name.setLocationType(newType);
             String stmnt = "UPDATE locationName SET locationType = ? WHERE longName = ?";
-            Ddb.updateObjString(conn, stmnt, name.getLongName(), newType);
+            Ddb.updateObj(name);
           }
         });
-
+    moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
+    moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
+    moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
+    edgeID.setCellValueFactory(new PropertyValueFactory<Edge, String>("edgeID"));
+    startNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("fromNodeID"));
+    endNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("toNodeID"));
     nodeTableView.setItems(nodeList);
-    locationNameTableView.setItems(locList);
+    edgeTable.setItems(edgeList);
+    moveTable.setItems(moveList);
   }
 }

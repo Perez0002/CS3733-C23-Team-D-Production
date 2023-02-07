@@ -5,14 +5,15 @@ public enum Screen {
   PATHFINDING_REQUEST_PAGE("views/PathfindingRequestForm.fxml"),
   HOME("views/Homepage.fxml"),
   DATABASE_EDIT("views/DBApp.fxml"),
+  MAP_EDITOR("views/MapEditor.fxml"),
   PATIENT_TRANSPORT_REQUEST("views/InternalPatientTransportationRequestForm.fxml"),
   SANITATION_FORM("views/SanitationRequestForm.fxml"),
   PATHFINDING_REQUEST("views/PathfindingRequestForm.fxml"),
   PATIENT_TRANSPORT_TABLE("views/PatientTransportTable.fxml"),
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
-  SERVICE_REQUEST("views/ServiceRequest-ExampleFile.fxml"),
-  HELP_PAGE("views/ApplicationHelpPage.fxml"),
-  LOGIN_PAGE("views/LoginPage.fxml");
+  SERVICE_REQUEST("views/LandingPage.fxml"),
+  DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
+  HELP_PAGE("views/ApplicationHelpPage.fxml");
 
   private final String filename;
 

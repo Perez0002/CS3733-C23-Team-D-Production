@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://database.cs.wpi.edu/teamddb</property>
+        <property name="connection.username">teamd</property>
+        <property name="connection.password">teamd40</property>
+
+        <!-- test schema -->
+        <!--        <property name="hibernate.default_schema">teamdtestschema</property>-->
+        <!-- production schema -->
+        <property name="hibernate.default_schema">teamdschema</property>
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Move"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Node"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.LocationName"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.SanitationRequestData"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.PatientTransportData"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Edge"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.ServiceRequestForm"/>
+    </session-factory>
+</hibernate-configuration>

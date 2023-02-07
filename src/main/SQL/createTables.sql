@@ -1,9 +1,16 @@
+
+CREATE TABLE teamdSchema.Node();
+CREATE TABLE teamdSchema.LocationName();
+CREATE TABLE teamdSchema.Move();
+
+ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public
+
+/*
 drop table Move;
 drop table Edge;
 drop table Node;
 drop table LocationName;
 drop table PatientTransportData;
-
 create table Node(
                      nodeID varchar(12) primary key,
                      xcoord integer NOT NULL,
@@ -49,4 +56,4 @@ create table PatientTransportData(
                                      sendTo varchar(255) NOT NULL,
                                      status stat NOT NULL,
 );
-
+*/

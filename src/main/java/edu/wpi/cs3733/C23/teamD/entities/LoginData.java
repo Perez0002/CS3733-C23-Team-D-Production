@@ -4,23 +4,33 @@ public class LoginData {
   private String username;
   private String password;
 
-  public enum Status {
-    BLANK,
-    PROCESSING,
-    DONE;
-  }
+  private int accessLevel;
 
-  private Status stat;
 
-  public LoginData(String username, String password, Status stat) {
+
+  public LoginData(String username, String password) {
     this.username = username;
     this.password = password;
-    this.stat = stat;
+  }
+
+  public int getAccessLevel() {
+    return accessLevel;
+  }
+
+  public boolean setAccessLevel() {
+    if (username.equals("username") && password.equals("password")) {
+      accessLevel = 1;
+      return true;
+    } else if (username.equals("admin") && password.equals("password")) {
+      accessLevel = 2;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public void printInformation() {
     System.out.println("The patientID is " + this.username);
     System.out.println("The endRoom " + this.password);
-    System.out.println("The equipment required is " + this.stat);
   }
 }

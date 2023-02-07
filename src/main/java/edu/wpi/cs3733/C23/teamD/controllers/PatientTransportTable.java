@@ -4,16 +4,16 @@ import static javafx.application.Application.launch;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
+import edu.wpi.cs3733.C23.teamD.entities.ServiceRequestForm;
 import java.net.URL;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -58,37 +59,28 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @FXML private TableColumn<PatientTransportData, String> sendTo;
 
+  @FXML private TableColumn<PatientTransportData, Date> date;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Connection con = Ddb.makeConnection();
-    tablehandling(con);
+    tablehandling();
   }
 
-  public void tablehandling(Connection conn) {
+  public void tablehandling() {
     ObservableList<PatientTransportData> transportList =
-        FXCollections.observableArrayList(Ddb.getPatientTransportData(conn));
+        FXCollections.observableArrayList(Ddb.getPatientTransportData());
+    patientTable.setEditable(true);
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("endRoom"));
-
       equipment.setCellValueFactory(
-          new Callback<
-              TableColumn.CellDataFeatures<PatientTransportData, String>,
-              ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<PatientTransportData, String> param) {
-              ArrayList<String> equip = param.getValue().getEquipment();
-              if (equip != null && equip.size() != 0)
-                return new SimpleStringProperty(String.join(",", equip));
-              else return new SimpleStringProperty("<no value>");
-            }
-          });
+          new PropertyValueFactory<PatientTransportData, String>("equipment"));
       formID.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, Integer>("patientTransportID"));
+          new PropertyValueFactory<PatientTransportData, Integer>("serviceRequestId"));
       patientID.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("patientID"));
       reason.setCellValueFactory(new PropertyValueFactory<PatientTransportData, String>("reason"));
+      date.setCellValueFactory(new PropertyValueFactory<PatientTransportData, Date>("dateAndTime"));
       startRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("startRoom"));
       status.setCellValueFactory(
@@ -101,19 +93,25 @@ public class PatientTransportTable extends Application implements Initializable 
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
-      sendTo.setCellValueFactory(
-          new Callback<
-              TableColumn.CellDataFeatures<PatientTransportData, String>,
-              ObservableValue<String>>() {
+      status.setOnEditCommit(
+          new EventHandler<TableColumn.CellEditEvent<PatientTransportData, String>>() {
             @Override
-            public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<PatientTransportData, String> param) {
-              String[] sendTo = param.getValue().getSendTo();
-              if (sendTo != null)
-                return new SimpleStringProperty(Arrays.toString(param.getValue().getSendTo()));
-              else return new SimpleStringProperty("<no value>");
+            public void handle(TableColumn.CellEditEvent<PatientTransportData, String> event) {
+              PatientTransportData form = event.getRowValue();
+              String newStatus = event.getNewValue();
+              try {
+                ServiceRequestForm.Status stat1 =
+                    Enum.valueOf(ServiceRequestForm.Status.class, newStatus);
+                form.setStat(stat1);
+                Ddb.updateObj(form);
+              } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+              }
             }
           });
+      status.setCellFactory(TextFieldTableCell.forTableColumn());
+      sendTo.setCellValueFactory(
+          new PropertyValueFactory<PatientTransportData, String>("associatedStaff"));
       patientTable.setItems(transportList);
     }
   }

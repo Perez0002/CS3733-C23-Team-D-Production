@@ -108,47 +108,23 @@ public class LoginController {
   public void submitLogin() {
     rootController.openHomepage();
 
-    if (checkFields()) {
-      LoginData loginInfo =
-          new LoginData(
-              username.getText(),
-              password.getText(),
-              LoginData.Status.DONE); // creates PatientTransportData object
-      if (validUserCheck(username.getText(), password.getText())) {
-        successfulLoginText.setVisible(true);
-        incorrectUsernameOrPasswordText.setVisible(false);
-      } else {
-        successfulLoginText.setVisible(false);
-        incorrectUsernameOrPasswordText.setVisible(true);
-      }
+    LoginData loginInfo =
+        new LoginData(
+            username.getText(),
+            password.getText());// creates PatientTransportData object
 
-      // loginInfo.printInformation(); // for debugging
-      //      Database Stuff?:
-      //      Connection conn = Ddb.makeConnection();
-      //      Ddb.insertNewForm(conn, patientInformation);
-      //      try {
-      //        conn.close();
-      //      } catch (SQLException e) {
-      //        e.printStackTrace();
-      //      }
+    if (loginInfo.setAccessLevel()) {
+      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+      currentUser.setAccessLevel(loginInfo.getAccessLevel());
+      successfulLoginText.setVisible(true);
 
+      incorrectUsernameOrPasswordText.setVisible(false);
+    } else {
+      successfulLoginText.setVisible(false);
+      incorrectUsernameOrPasswordText.setVisible(true);
     }
+
   } // end submit()
 
-  /**
-   * check's if the user is in the database
-   *
-   * @param username the username to check
-   * @param password the password to check
-   * @return true if the password and username match
-   */
-  public boolean validUserCheck(String username, String password) {
-    if (username.equals("username") && password.equals("password")) {
-      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-      currentUser.setAccessLevel(1);
-      return true;
-    }
-    // for now just returns false since IDK how to do the encryption and database stuff
-    return false;
-  }
+
 }

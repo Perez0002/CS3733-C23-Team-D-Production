@@ -5,9 +5,6 @@ import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
@@ -53,20 +50,14 @@ public class PatientTransportController {
       PatientTransportData patientInformation =
           new PatientTransportData(
               patientID.getText(),
-              0,
+              // startNode???
               "L1X2255Y0849",
               endRoomController.getNodeValue(),
               checkSelectedEquipment(),
-              reason.getText(),
-              sendTo.getText().split(";"),
-              PatientTransportData.Status.DONE); // creates PatientTransportData object
-      Connection conn = Ddb.makeConnection();
-      Ddb.insertNewForm(conn, patientInformation);
-      try {
-        conn.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
+              reason.getText(), // sendTo.getText().split(";"),
+              sendTo.getText(),
+              PatientTransportData.Status.BLANK); // creates PatientTransportData object
+      Ddb.insertNewForm(patientInformation);
       // patientInformation.printInformation(); // for debeugging purposes
       submittedFormText.setVisible(true);
     }
@@ -92,13 +83,36 @@ public class PatientTransportController {
     }
   } // end checkFields()
 
+  private String checkSelectedEquipment() {
+    String checkedEquipment = "";
+
+    // each if statement identifies whether MFXCheckbox is selected
+    if (testCheck.isSelected()) {
+      checkedEquipment += (testCheck.getText());
+    }
+    if (testCheck2.isSelected()) {
+      checkedEquipment += (testCheck2.getText());
+      checkedEquipment += ", ";
+    }
+    if (testCheck3.isSelected()) {
+      checkedEquipment += (testCheck3.getText());
+      checkedEquipment += ", ";
+    }
+    if (testCheck4.isSelected()) {
+      checkedEquipment += (testCheck4.getText());
+      checkedEquipment += ", ";
+    }
+
+    return checkedEquipment;
+  } // end checkSelectedEquipment()
+
   /*
     checkSelectedEquipment()
     @param void
     @return ArrayList<String>, contains text of checked boxes
     interacts with MFXCheckboxes in SceneBuilder, identifies selected boxes and
     creates an ArrayList of the text associated with selected boxes
-  */
+
   private ArrayList<String> checkSelectedEquipment() {
     ArrayList<String> checkedEquipment =
         new ArrayList<String>(); // creates ArrayList<String> object
@@ -119,6 +133,7 @@ public class PatientTransportController {
 
     return checkedEquipment;
   } // end checkSelectedEquipment()
+  */
 
   @FXML
   /*

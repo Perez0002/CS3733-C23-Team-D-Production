@@ -15,7 +15,12 @@ public class RootController {
   }
 
   public void checkAccessLevel() {
+
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+
+    if (currentUser.getAccessLevel() < 2) {
+
+    }
   }
 
   @FXML
