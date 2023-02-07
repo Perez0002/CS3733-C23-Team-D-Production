@@ -106,25 +106,22 @@ public class LoginController {
   submits information filled out in forms
   */
   public void submitLogin() {
-    rootController.openHomepage();
 
     LoginData loginInfo =
         new LoginData(
-            username.getText(),
-            password.getText());// creates PatientTransportData object
+            username.getText(), password.getText()); // creates PatientTransportData object
 
     if (loginInfo.setAccessLevel()) {
+      rootController.checkAccessLevel();
       CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
       currentUser.setAccessLevel(loginInfo.getAccessLevel());
       successfulLoginText.setVisible(true);
 
       incorrectUsernameOrPasswordText.setVisible(false);
+
     } else {
       successfulLoginText.setVisible(false);
       incorrectUsernameOrPasswordText.setVisible(true);
     }
-
   } // end submit()
-
-
 }

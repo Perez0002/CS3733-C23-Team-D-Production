@@ -42,9 +42,7 @@ public class HomepageController {
   @FXML
   public void initialize() {
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    if (currentUser.getAccessLevel() < 1) {
-      sanitationServiceRequestFormButton.setDisable(true);
-    }
+    if (currentUser.getAccessLevel() < 1) {}
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));

@@ -42,7 +42,6 @@ public class MapEditorPageController {
 
   private ArrayList<Node> nodeList;
   private ArrayList<LocationName> locList;
-
   private MapDrawController mapDrawer;
 
   @FXML

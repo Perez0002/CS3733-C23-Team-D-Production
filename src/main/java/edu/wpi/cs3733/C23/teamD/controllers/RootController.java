@@ -4,22 +4,44 @@ import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuButton;
 
 public class RootController {
+
+  @FXML private MenuButton databaseMenuButton;
+  @FXML private MenuButton formsMenuButton;
+
+  @FXML private MFXButton helpPageButton;
+
   @FXML
   public void initialize() {
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     currentUser.setAccessLevel(0);
+    checkAccessLevel();
   }
 
   public void checkAccessLevel() {
 
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
 
-    if (currentUser.getAccessLevel() < 2) {
-
+    if (currentUser.getAccessLevel() == 2) {
+      System.out.println("2");
+      databaseMenuButton.setVisible(false);
+      formsMenuButton.setDisable(false);
+      helpPageButton.setDisable(false);
+    } else if (currentUser.getAccessLevel() == 1) {
+      System.out.println("1");
+      databaseMenuButton.setDisable(true);
+      formsMenuButton.setDisable(false);
+      helpPageButton.setDisable(true);
+    } else {
+      System.out.println("0");
+      databaseMenuButton.setDisable(true);
+      helpPageButton.setDisable(false);
+      formsMenuButton.setDisable(true);
     }
   }
 

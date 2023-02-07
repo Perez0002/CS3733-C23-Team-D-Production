@@ -6,8 +6,6 @@ public class LoginData {
 
   private int accessLevel;
 
-
-
   public LoginData(String username, String password) {
     this.username = username;
     this.password = password;
