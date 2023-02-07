@@ -37,7 +37,7 @@ public class MapDrawController {
       tempPane.setStyle("-fx-background-color: '#013A75'; -fx-border-radius: 1000px;");
       // Setting events for click, enter, exit
       tempPane.setOnMouseClicked(event.apply(node));
-        // Popup functions
+      // Popup functions
       MapEditorNodeController mapeditor = new MapEditorNodeController(node); // creates popup object
       tempPane.setOnMouseEntered(
           e -> {
@@ -49,7 +49,7 @@ public class MapDrawController {
             mapeditor.makePopupDisappear();
             System.out.println("Screm Exit");
           });
-        // end popup functions
+      // end popup functions
       // end setting events
       tempPane.setId(node.getNodeID() + "_pane");
       anchor.getChildren().add(tempPane);
