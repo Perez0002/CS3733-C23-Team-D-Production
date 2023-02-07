@@ -51,13 +51,16 @@ public class MapEditorPageController {
 
   @FXML
   void clearFields() {
+    // Clears all Text Fields
     longNameTextField.clear();
     shortNameTextField.clear();
     roomTypeTextField.clear();
   }
 
   @FXML
-  void delete() {}
+  void delete() {
+    // Does nothing, but should remove a Node
+  }
 
   @FXML
   void openHomepage() {
@@ -156,9 +159,14 @@ public class MapEditorPageController {
     tempPane.setId(newNode.getNodeID() + "_pane");
     anchor.getChildren().add(tempPane);
 
-    currentNodeEdit = newNode;
+    nodeInformationText.setText("");
+    longNameTextField.setText("");
+    shortNameTextField.setText("");
+    roomTypeTextField.setText("");
 
     // TODO update database to match
+
+    currentNodeEdit = null;
   }
 
   @FXML
