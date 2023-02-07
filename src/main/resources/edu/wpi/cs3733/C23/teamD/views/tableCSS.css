@@ -1,0 +1,12 @@
+/** color the arrow */
+.table-view .column-header .arrow {
+    -fx-background-color: white;
+}
+
+/** color the column header text */
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+.table-view .scroll-bar .thumb {
+    -fx-background-color: lightblue;
+}

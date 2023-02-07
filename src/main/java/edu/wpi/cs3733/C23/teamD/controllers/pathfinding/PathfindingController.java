@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
@@ -30,7 +31,7 @@ public class PathfindingController {
 
   @FXML private RoomPickComboBoxController endRoomComboBoxController;
 
-  @FXML private Text pathResultText;
+  @FXML private Label pathResultText;
 
   private RoomPickComboBoxController comboBox;
 

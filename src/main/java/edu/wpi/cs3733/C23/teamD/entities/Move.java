@@ -7,8 +7,28 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Move {
-  @Id @ManyToOne private Node node;
-  @Id @ManyToOne private LocationName location;
+  @Id
+  @ManyToOne
+  @JoinColumn(
+      name = "node",
+      foreignKey =
+          @ForeignKey(
+              name = "node_id_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (node) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  private Node node;
+
+  @Id
+  @ManyToOne
+  @JoinColumn(
+      name = "location",
+      foreignKey =
+          @ForeignKey(
+              name = "location_id_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (location) REFERENCES locationname(longname) ON UPDATE CASCADE ON DELETE CASCADE"))
+  private LocationName location;
+
   @Id @CreationTimestamp Date moveDate;
 
   @Override

@@ -54,12 +54,14 @@ public class SanitationRequestController {
       Ddb.insertNewForm(requestData);
 
       textHelp.setVisible(false);
+      locationHelpText.setVisible(false);
+      reasonHelpText.setVisible(false);
+      staffIDHelpText.setVisible(false);
       formSubmittedText.setVisible(true);
     } else {
       helpDisplayed = false;
       formSubmittedText.setVisible(false);
       textHelp.setVisible(true);
-      formSubmittedText.setVisible(false);
       displayHelp();
     }
   }
