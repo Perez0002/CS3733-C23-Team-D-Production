@@ -135,6 +135,15 @@ public class Ddb {
     return sanitationReqList;
   }
 
+  public static ArrayList<ServiceRequestForm> createServiceList() {
+    DBsession.beginTransaction();
+    ArrayList<ServiceRequestForm> serviceRequestForms =
+        new ArrayList<>(
+            DBsession.createQuery("SELECT s FROM ServiceRequestForm s").getResultList());
+    DBsession.getTransaction().commit();
+    return serviceRequestForms;
+  }
+
   /**
    * Updates the Object obj in the database
    *
@@ -154,6 +163,18 @@ public class Ddb {
     }
   }
 
+  private static boolean deleteObj(Object obj) {
+    try {
+      DBsession.beginTransaction();
+      DBsession.remove(obj);
+      DBsession.getTransaction().commit();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      DBsession.getTransaction().rollback();
+      return false;
+    }
+  }
   /** @param csvFilePaths */
   public static void csv2DBInsertNodes(String csvFilePaths) {
     try {
@@ -249,6 +270,22 @@ public class Ddb {
       lineReader.close();
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  public boolean addNewNode(Node node) {
+    try {
+      DBsession.beginTransaction();
+      node.setLocation(new LocationName());
+      Move move = new Move(node, node.getLocation());
+      DBsession.persist(node);
+      DBsession.persist(node.getLocation());
+      DBsession.persist(move);
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      DBsession.getTransaction().rollback();
+      return false;
     }
   }
 }

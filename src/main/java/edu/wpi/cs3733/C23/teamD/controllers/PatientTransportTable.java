@@ -4,6 +4,7 @@ import static javafx.application.Application.launch;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
+import edu.wpi.cs3733.C23.teamD.entities.ServiceRequestForm;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -12,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -66,6 +69,7 @@ public class PatientTransportTable extends Application implements Initializable 
   public void tablehandling() {
     ObservableList<PatientTransportData> transportList =
         FXCollections.observableArrayList(Ddb.getPatientTransportData());
+    patientTable.setEditable(true);
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("endRoom"));
@@ -89,6 +93,23 @@ public class PatientTransportTable extends Application implements Initializable 
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
+      status.setOnEditCommit(
+          new EventHandler<TableColumn.CellEditEvent<PatientTransportData, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<PatientTransportData, String> event) {
+              PatientTransportData form = event.getRowValue();
+              String newStatus = event.getNewValue();
+              try {
+                ServiceRequestForm.Status stat1 =
+                    Enum.valueOf(ServiceRequestForm.Status.class, newStatus);
+                form.setStat(stat1);
+                Ddb.updateObj(form);
+              } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+              }
+            }
+          });
+      status.setCellFactory(TextFieldTableCell.forTableColumn());
       sendTo.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("associatedStaff"));
       patientTable.setItems(transportList);

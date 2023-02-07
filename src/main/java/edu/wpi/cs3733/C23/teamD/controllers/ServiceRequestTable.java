@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import static javafx.application.Application.launch;
-
 import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.entities.SanitationRequestData;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequestForm;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -22,14 +19,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class SanitationTable extends Application implements Initializable {
+public class ServiceRequestTable extends Application implements Initializable {
+  @FXML private TableColumn<ServiceRequestForm, Date> date;
+
+  @FXML private TableColumn<ServiceRequestForm, Integer> formID;
+
+  @FXML private TableColumn<ServiceRequestForm, String> reason;
+  @FXML private TableView<ServiceRequestForm> serviceTable;
+
+  @FXML private TableColumn<ServiceRequestForm, String> requestType;
+
+  @FXML private TableColumn<ServiceRequestForm, String> staff;
+
+  @FXML private TableColumn<ServiceRequestForm, String> status;
+  @FXML private MFXButton cancelButton;
 
   public static void main(String[] args) {
     launch(args);
@@ -45,22 +54,6 @@ public class SanitationTable extends Application implements Initializable {
     primaryStage.show();
   }
 
-  @FXML private TableColumn<SanitationRequestData, Integer> formID;
-
-  @FXML private TableColumn<SanitationRequestData, String> location;
-
-  @FXML private TableColumn<SanitationRequestData, String> reason;
-
-  @FXML private TableColumn<SanitationRequestData, Integer> bioLevel;
-
-  @FXML private TableView<SanitationRequestData> sanitationTable;
-
-  @FXML private TableColumn<SanitationRequestData, String> staff;
-  @FXML private TableColumn<SanitationRequestData, String> status;
-  @FXML private TableColumn<SanitationRequestData, Date> date;
-
-  @FXML private MFXButton cancelButton;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
@@ -68,35 +61,27 @@ public class SanitationTable extends Application implements Initializable {
   }
 
   public void tablehandling() {
-    sanitationTable.setEditable(true);
-    ObservableList<SanitationRequestData> requestList =
-        FXCollections.observableArrayList(Ddb.createSanitationRequestList());
+    serviceTable.setEditable(true);
+    ObservableList<ServiceRequestForm> requestList =
+        FXCollections.observableArrayList(Ddb.createServiceList());
     if (requestList.size() != 0) {
       formID.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequestData, Integer>("serviceRequestId"));
-      location.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequestData, String>("location"));
-      reason.setCellValueFactory(new PropertyValueFactory<SanitationRequestData, String>("reason"));
-      bioLevel.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequestData, Integer>("bioLevel"));
+          new PropertyValueFactory<ServiceRequestForm, Integer>("serviceRequestId"));
+      reason.setCellValueFactory(new PropertyValueFactory<ServiceRequestForm, String>("reason"));
       status.setCellValueFactory(
           new Callback<
-              TableColumn.CellDataFeatures<SanitationRequestData, String>,
-              ObservableValue<String>>() {
+              TableColumn.CellDataFeatures<ServiceRequestForm, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<SanitationRequestData, String> param) {
+                TableColumn.CellDataFeatures<ServiceRequestForm, String> param) {
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
-
-      staff.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequestData, String>("associatedStaff"));
       status.setOnEditCommit(
-          new EventHandler<TableColumn.CellEditEvent<SanitationRequestData, String>>() {
+          new EventHandler<TableColumn.CellEditEvent<ServiceRequestForm, String>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<SanitationRequestData, String> event) {
-              SanitationRequestData form = event.getRowValue();
+            public void handle(TableColumn.CellEditEvent<ServiceRequestForm, String> event) {
+              ServiceRequestForm form = event.getRowValue();
               String newStatus = event.getNewValue();
               try {
                 ServiceRequestForm.Status stat1 =
@@ -109,9 +94,12 @@ public class SanitationTable extends Application implements Initializable {
             }
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());
-      date.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequestData, Date>("dateAndTime"));
+      staff.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequestForm, String>("associatedStaff"));
+      date.setCellValueFactory(new PropertyValueFactory<ServiceRequestForm, Date>("dateAndTime"));
+      requestType.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequestForm, String>("requestType"));
     }
-    sanitationTable.setItems(requestList);
+    serviceTable.setItems(requestList);
   }
 }
