@@ -8,6 +8,7 @@ import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.awt.*;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -141,6 +142,11 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+    GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    int width = gd.getDisplayMode().getWidth();
+    int height = gd.getDisplayMode().getHeight();
+    System.out.println(width + " " + height);
+    mapEditorPane.setMinSize(width * 0.98, height * 0.88);
     mapDrawer = new MapDrawController();
 
     nodeList = createJavaNodes();
