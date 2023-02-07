@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -23,8 +24,15 @@ public class MapEditorNodeController {
 
   private void makeEditorNode() {
     PopOver popover = new PopOver();
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("views/MapEditorPopup.fxml"));
-    popover.setContentNode(mapEditorPane);
+    try {
+      System.out.println("it worked");
+      final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/MapEditorPopup.fxml"));
+      popover.setContentNode(loader.load());
+      popover.setTitle("my node title");
+    } catch (IOException | NullPointerException e) {
+      e.printStackTrace();
+    }
+
     popover.show(App.getPrimaryStage());
   }
 
