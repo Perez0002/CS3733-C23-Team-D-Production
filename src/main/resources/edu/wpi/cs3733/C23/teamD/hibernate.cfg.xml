@@ -8,8 +8,7 @@
   -->
 <!DOCTYPE hibernate-configuration SYSTEM
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration
->
+<hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -18,6 +17,9 @@
         <property name="connection.username">teamd</property>
         <property name="connection.password">teamd40</property>
 
+        <!-- test schema -->
+        <!--        <property name="hibernate.default_schema">teamdtestschema</property>-->
+        <!-- production schema -->
         <property name="hibernate.default_schema">teamdschema</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
