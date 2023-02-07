@@ -26,27 +26,33 @@
             </VBox>
             <MFXButton onAction="#clearFields" text="Clear" />
             <Text fx:id="pathResultText" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
                <children>
-                  <HBox spacing="15.0">
+                  <HBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="15.0">
                      <children>
                         <MFXButton onAction="#submit" text="Submit" />
                         <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                      </children>
                   </HBox>
-                  <MFXButton onAction="#displayHelp" text="?">
+                  <MFXButton alignment="CENTER_RIGHT" onAction="#displayHelp" styleClass="helpbuttonstyleclass" text="?">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </MFXButton>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets left="100.0" />
+            <Insets left="50.0" />
          </BorderPane.margin>
       </VBox>
    </center>

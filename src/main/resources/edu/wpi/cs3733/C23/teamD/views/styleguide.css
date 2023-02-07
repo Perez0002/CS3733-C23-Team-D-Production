@@ -20,6 +20,16 @@
     -fx-text-fill: ffffff;
 }
 
+.helpbuttonstyleclass { /* controls all help buttons */
+    -fx-background-color: #123486; /* Blue */
+    -fx-text-fill: #ffffff; /* White */
+    -fx-background-radius: 40pt; /* Makes button a circle */
+    -fx-pref-height: 40pt;
+    -fx-pref-width: 40pt;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bolder;
+}
+
 .menu-button {
     -fx-font-size: 16pt;
     -fx-text-fill: ffffff;
