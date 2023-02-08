@@ -20,6 +20,10 @@ public class LocationName {
     this.locationType = nodeType;
   }
 
+  public boolean equals(LocationName locationName) {
+    return this.getLongName().equals(locationName.getLongName());
+  }
+
   public LocationName() {
     this.longName = "";
     this.shortName = "";

@@ -253,7 +253,7 @@ public class Ddb {
               new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/edges.csv"));
       BufferedWriter lineWriter =
           new BufferedWriter(
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/edges2.csv"));
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/edges3.csv"));
       lineWriter.write(lineReader.readLine());
       lineWriter.newLine();
       lineText = null;
