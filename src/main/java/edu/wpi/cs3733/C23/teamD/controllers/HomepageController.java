@@ -41,14 +41,28 @@ public class HomepageController {
 
   @FXML
   public void initialize() {
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    if (currentUser.getAccessLevel() == 2) {
-
-    }
+    checkAccessLevel();
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
+  }
+
+  private void checkAccessLevel() {
+    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    if (currentUser.getAccessLevel() == 2) {
+      serviceRequestFormButton.setDisable(false);
+      mapEditorButton.setDisable(false);
+      DBEditorButton.setDisable(false);
+    } else if (currentUser.getAccessLevel() == 1) {
+      serviceRequestFormButton.setDisable(false);
+      mapEditorButton.setDisable(false);
+      DBEditorButton.setDisable(true);
+    } else {
+      serviceRequestFormButton.setDisable(true);
+      mapEditorButton.setDisable(true);
+      DBEditorButton.setDisable(true);
+    }
   }
 
   @FXML

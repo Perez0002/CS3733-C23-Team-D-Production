@@ -18,7 +18,7 @@ public class RootController {
 
   @FXML
   public void initialize() {
-    checkAccessLevel();
+    // checkAccessLevel();
   }
 
   public void checkAccessLevel() {
