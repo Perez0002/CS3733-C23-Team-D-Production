@@ -103,4 +103,8 @@ public class ServiceRequestForm {
   public void setDateAndTime(Date dateAndTime) {
     this.dateAndTime = dateAndTime;
   }
+
+  public void setServiceRequestId(int serviceRequestId) {
+    this.serviceRequestId = serviceRequestId;
+  }
 }
