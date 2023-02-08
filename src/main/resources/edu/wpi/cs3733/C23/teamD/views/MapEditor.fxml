@@ -12,11 +12,16 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="10000.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="roomTypeHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the type of room you want to set the room to." visible="false">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
+            <MFXTextField fx:id="buildingTextField" floatingText="Enter the building name." prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="floorTextField" floatingText="Enter the floor number" prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
             <MFXTextField floatingText="Enter the X-coordinate." prefHeight="49.0" prefWidth="200.0" fx:id="xCoordTextField">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -27,28 +32,41 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </MFXTextField>
-            <Text fx:id="longNameHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the long name you want to set the room to." visible="false">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
-            <MFXTextField fx:id="longNameTextField" floatingText="Enter the room's long name" prefHeight="49.0" prefWidth="200.0">
+            <MFXTextField fx:id="locationTypeTextField" floatingText="Enter the location type." prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="shortNameTextField" floatingText="Enter the short name." prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="longNameTextField" floatingText="Enter the long name." prefHeight="49.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin></MFXTextField>
-            <Text fx:id="shortNameHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the short name you want to set the room to." visible="false">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
             <VBox alignment="BOTTOM_CENTER" prefHeight="1000.0" prefWidth="100.0">
                <children>
+                  <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a node on the map, then edit the fields and press submit changes to edit it, and press delete node to delete it. Press add location to add a location and add node to add a node." visible="false" wrappingWidth="218.18597412109375">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Text>
                   <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </MFXButton>
                   <MFXButton fx:id="deleteNodeButton" onAction="#deleteNode" prefHeight="26.0" prefWidth="200.0" text="Delete Node">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="addLocationButton" onAction="#addLocation" prefHeight="26.0" prefWidth="200.0" text="Add Location">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -76,6 +94,9 @@
                </children>
             </VBox>
          </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
    </left>
 </BorderPane>
