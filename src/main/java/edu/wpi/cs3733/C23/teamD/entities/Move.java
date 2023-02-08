@@ -53,6 +53,7 @@ public class Move {
   public Move(Node node, LocationName locationName) {
     this.location = locationName;
     this.node = node;
+    this.moveDate = new Date();
   }
 
   public Move() {

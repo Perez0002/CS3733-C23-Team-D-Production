@@ -18,6 +18,10 @@ public class Node {
 
   @Override
   public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+
     if (this.getNodeID().equals(((Node) obj).getNodeID())) {
       return true;
     }

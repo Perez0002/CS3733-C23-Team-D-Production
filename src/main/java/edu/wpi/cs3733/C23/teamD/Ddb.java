@@ -6,13 +6,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import lombok.Getter;
 import org.hibernate.Session;
 
 public class Ddb {
 
   private static final File logFile = new File("logfile.txt");
 
-  private static Session DBsession = DBSingleton._DB.getSession();
+  @Getter private static Session DBsession = DBSingleton._DB.getSession();
 
   /**
    * @param Nodes the list of all the nodes from the database
