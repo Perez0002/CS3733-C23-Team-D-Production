@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -113,5 +114,27 @@ public class SanitationTable extends Application implements Initializable {
           new PropertyValueFactory<SanitationRequestData, Date>("dateAndTime"));
     }
     sanitationTable.setItems(requestList);
+    sanitationTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    sanitationTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = sanitationTable.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = sanitationTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < sanitationTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+              if (sanitationTable.getMaxWidth() / size > currentMax)
+                column.setMinWidth(sanitationTable.getMaxWidth() / size);
+              column.setMinWidth(currentMax);
+            });
   }
 }

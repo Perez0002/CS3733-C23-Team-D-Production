@@ -13,7 +13,8 @@ public enum Screen {
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
   SERVICE_REQUEST("views/LandingPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
-  HELP_PAGE("views/ApplicationHelpPage.fxml");
+  HELP_PAGE("views/ApplicationHelpPage.fxml"),
+  SERVICE_TABLE("views/ServiceRequestTable.fxml");
 
   private final String filename;
 

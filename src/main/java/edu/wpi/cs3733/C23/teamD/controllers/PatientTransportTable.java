@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -113,6 +114,28 @@ public class PatientTransportTable extends Application implements Initializable 
       sendTo.setCellValueFactory(
           new PropertyValueFactory<PatientTransportData, String>("associatedStaff"));
       patientTable.setItems(transportList);
+      patientTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+      patientTable.getColumns().stream()
+          .forEach(
+              (column) -> {
+                double size = patientTable.getColumns().size();
+                Text serviceTableValue = new Text(column.getText());
+                Object cellData;
+                double currentMax = patientTable.getLayoutBounds().getWidth();
+                for (int i = 0; i < patientTable.getItems().size(); i++) {
+                  cellData = column.getCellData(i);
+                  if (cellData != null) {
+                    serviceTableValue = new Text(cellData.toString());
+                    double width = serviceTableValue.getLayoutBounds().getWidth();
+                    if (width > currentMax) {
+                      currentMax = width;
+                    }
+                  }
+                }
+                if (patientTable.getMaxWidth() / size > currentMax)
+                  column.setMinWidth(patientTable.getMaxWidth() / size);
+                column.setMinWidth(currentMax);
+              });
     }
   }
 }
