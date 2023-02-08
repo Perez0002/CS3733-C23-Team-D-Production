@@ -64,7 +64,7 @@
       </VBox>
    </center>
    <top>
-      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="50.0" prefWidth="350.0" text="Hospital Website Homepage" textAlignment="CENTER" textFill="#19158c" BorderPane.alignment="CENTER">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="50.0" prefWidth="350.0" text="Brigham and Women's Hospital" textAlignment="CENTER" textFill="#19158c" BorderPane.alignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
