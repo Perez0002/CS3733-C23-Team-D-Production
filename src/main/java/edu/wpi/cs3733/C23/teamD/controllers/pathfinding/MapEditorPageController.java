@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeDaoImpl;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
@@ -92,7 +93,10 @@ public class MapEditorPageController {
           // Setting default fields for Node
           xCoordTextField.setText(Integer.toString(currentNodeEdit.getXcoord()));
           yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
-          longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
+          longNameTextField.setText(
+              currentNodeEdit.getLocation().getLongName() == null
+                  ? currentNodeEdit.getLocation().getLongName()
+                  : "");
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -186,6 +190,7 @@ public class MapEditorPageController {
     yCoordTextField.setText("");
 
     // TODO update database to match
+    NodeDaoImpl nDao = new NodeDaoImpl();
 
     currentNodeEdit = null; // set currentNodeEdit to null
   }
