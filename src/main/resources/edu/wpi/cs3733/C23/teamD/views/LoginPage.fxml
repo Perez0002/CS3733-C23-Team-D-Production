@@ -2,13 +2,14 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.LoginController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login Page" BorderPane.alignment="CENTER">
          <font>
@@ -19,6 +20,11 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
+            <Text fx:id="currentUserText" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0">
                <children>
                   <Text fx:id="usernameText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Type your username here" textAlignment="CENTER" visible="false" wrappingWidth="160.03753662109375" />
@@ -28,14 +34,17 @@
             <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="600.0">
                <children>
                   <Text fx:id="passwordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Type your password here" textAlignment="CENTER" visible="false" wrappingWidth="167.28472900390625" />
-                  <MFXTextField fx:id="password" floatingText="Password" prefHeight="25.0" prefWidth="130.0" />
+                  <MFXTextField fx:id="password" accessibleRole="PASSWORD_FIELD" floatingText="Password" prefHeight="25.0" prefWidth="130.0" />
                </children>
             </VBox>
             <Text fx:id="incorrectUsernameOrPasswordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Username or Password" visible="false" wrappingWidth="171.09375" />
             <Text fx:id="successfulLoginText" strokeType="OUTSIDE" strokeWidth="0.0" text="User Logged In" visible="false" />
+            <Text fx:id="successfulLogoutText" strokeType="OUTSIDE" strokeWidth="0.0" text="User Logged out" visible="false" />
+            <HBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="600.0" spacing="40.0" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
-                  <MFXButton onAction="#submitLogin" text="Submit" />
+                  <MFXButton onAction="#submitLogin" text="Login" />
+                  <MFXButton onAction="#logout" text="Logout" />
                   <MFXButton onAction="#clearFields" text="Clear" />
                    <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                   <MFXButton onAction="#displayHelp" text="Help" />

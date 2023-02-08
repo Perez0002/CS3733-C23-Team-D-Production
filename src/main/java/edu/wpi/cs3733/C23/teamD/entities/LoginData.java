@@ -11,6 +11,10 @@ public class LoginData {
     this.password = password;
   }
 
+  public String getUsername() {
+    return username;
+  }
+
   public int getAccessLevel() {
     return accessLevel;
   }

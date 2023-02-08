@@ -23,7 +23,11 @@ public class LoginController {
 
   @FXML private Text successfulLoginText;
 
+  @FXML private Text currentUserText;
+
   @FXML private Text usernameText;
+
+  @FXML private Text successfulLogoutText;
 
   @FXML private Text passwordText;
 
@@ -56,6 +60,9 @@ public class LoginController {
   linked to "Clear" button on SceneBuilder page
   */
   public void clearFields() {
+    successfulLoginText.setVisible(false);
+    incorrectUsernameOrPasswordText.setVisible(false);
+    successfulLogoutText.setVisible(false);
     username.clear();
     password.clear();
     // System.out.println("clearFields"); // for debugging purposes
@@ -98,6 +105,20 @@ public class LoginController {
   }
 
   @FXML
+  public void initialize() {
+    displayCurrentUser();
+  }
+
+  private void displayCurrentUser() {
+    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    if (currentUser.getAccessLevel() == 0) {
+      currentUserText.setText("please log in");
+    } else {
+      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
+    }
+  }
+
+  @FXML
   /*
   submit()
   @param void
@@ -115,13 +136,28 @@ public class LoginController {
 
       CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
       currentUser.setAccessLevel(loginInfo.getAccessLevel());
+      currentUser.setUsername(loginInfo.getUsername());
       successfulLoginText.setVisible(true);
 
       incorrectUsernameOrPasswordText.setVisible(false);
+      successfulLogoutText.setVisible(false);
+      displayCurrentUser();
 
     } else {
       successfulLoginText.setVisible(false);
       incorrectUsernameOrPasswordText.setVisible(true);
+      successfulLogoutText.setVisible(false);
     }
   } // end submit()
+
+  @FXML
+  public void logout() {
+    successfulLoginText.setVisible(false);
+    incorrectUsernameOrPasswordText.setVisible(false);
+    successfulLogoutText.setVisible(true);
+    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    currentUser.setAccessLevel(0);
+    currentUser.setUsername("");
+    displayCurrentUser();
+  }
 }

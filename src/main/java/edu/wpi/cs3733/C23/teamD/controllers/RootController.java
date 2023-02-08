@@ -17,9 +17,7 @@ public class RootController {
   @FXML private MFXButton helpPageButton;
 
   @FXML
-  public void initialize() {
-    // checkAccessLevel();
-  }
+  public void initialize() {}
 
   public void checkAccessLevel() {
 
