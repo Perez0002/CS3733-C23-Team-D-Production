@@ -28,6 +28,7 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin></MFXButton>
+            <MFXButton fx:id="serviceTableButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="homePageButton" stylesheets="@styleguide.css" text="View all Service Requests" />
             </children>
         </VBox>
     </center>

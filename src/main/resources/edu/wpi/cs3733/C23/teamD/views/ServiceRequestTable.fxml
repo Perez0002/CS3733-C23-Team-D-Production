@@ -5,16 +5,19 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.ServiceRequestTable">
-   <center>
-      <TableView fx:id="serviceTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="formID" minWidth="100.0" prefWidth="75.0" text="serviceRequestID" />
-          <TableColumn fx:id="staff" minWidth="100.0" prefWidth="75.0" text="associatedStaff" />
-            <TableColumn fx:id="status" minWidth="100.0" prefWidth="75.0" text="status" />
-            <TableColumn fx:id="reason" minWidth="100.0" prefWidth="75.0" text="reason" />
-            <TableColumn fx:id="requestType" minWidth="100.0" prefWidth="75.0" text="serviceRequestType" />
-            <TableColumn fx:id="date" minWidth="100.0" prefWidth="75.0" text="date" />
-        </columns>
-      </TableView>
-   </center>
+    <center>
+        <TableView fx:id="serviceTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="formID" minWidth="100.0" prefWidth="75.0" text="serviceRequestID" />
+                <TableColumn fx:id="staff" minWidth="100.0" prefWidth="75.0" text="associatedStaff" />
+                <TableColumn fx:id="status" minWidth="100.0" prefWidth="75.0" text="status" />
+                <TableColumn fx:id="reason" minWidth="100.0" prefWidth="75.0" text="reason" />
+                <TableColumn fx:id="requestType" minWidth="100.0" prefWidth="75.0" text="serviceRequestType" />
+                <TableColumn fx:id="date" minWidth="100.0" prefWidth="75.0" text="date" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+    </bottom>
 </BorderPane>

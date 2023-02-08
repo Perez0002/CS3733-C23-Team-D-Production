@@ -99,7 +99,7 @@ public class ServiceRequestTable extends Application implements Initializable {
           new PropertyValueFactory<ServiceRequestForm, String>("associatedStaff"));
       date.setCellValueFactory(new PropertyValueFactory<ServiceRequestForm, Date>("dateAndTime"));
       requestType.setCellValueFactory(
-          new PropertyValueFactory<ServiceRequestForm, String>("requestType"));
+          new PropertyValueFactory<ServiceRequestForm, String>("serviceRequestType"));
     }
     serviceTable.setItems(requestList);
     serviceTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
