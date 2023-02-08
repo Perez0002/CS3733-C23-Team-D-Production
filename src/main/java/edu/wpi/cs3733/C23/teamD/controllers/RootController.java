@@ -18,8 +18,6 @@ public class RootController {
 
   @FXML
   public void initialize() {
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    currentUser.setAccessLevel(0);
     checkAccessLevel();
   }
 

@@ -105,14 +105,14 @@ public class LoginController {
   linked to "submit" button on SceneBuilder page, when selected
   submits information filled out in forms
   */
-  public void submitLogin() {
+  public void submitLogin() throws IOException {
 
     LoginData loginInfo =
         new LoginData(
             username.getText(), password.getText()); // creates PatientTransportData object
 
     if (loginInfo.setAccessLevel()) {
-      rootController.checkAccessLevel();
+
       CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
       currentUser.setAccessLevel(loginInfo.getAccessLevel());
       successfulLoginText.setVisible(true);
