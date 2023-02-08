@@ -3,8 +3,11 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeDaoImpl;
-import edu.wpi.cs3733.C23.teamD.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.entities.LocationName;
+import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -27,21 +30,27 @@ public class MapEditorPageController {
 
   boolean helpVisible = false;
 
-  @FXML private Text longNameHelpText;
-
   @FXML private MFXTextField longNameTextField;
 
   @FXML private BorderPane mapEditorPane;
 
+  @FXML private Text helpText;
+
   @FXML private MFXButton clearButton;
 
-  @FXML private Text roomTypeHelpText;
-
-  @FXML private Text shortNameHelpText;
+  @FXML private MFXButton addLocationButton;
 
   @FXML private MFXTextField xCoordTextField;
 
   @FXML private MFXTextField yCoordTextField;
+
+  @FXML private MFXTextField locationTypeTextField;
+
+  @FXML private MFXTextField shortNameTextField;
+
+  @FXML private MFXTextField floorTextField;
+
+  @FXML private MFXTextField buildingTextField;
 
   @FXML private MFXButton submitButton;
   @FXML private MFXButton addNodeButton;
@@ -52,9 +61,19 @@ public class MapEditorPageController {
   private ArrayList<Node> nodeList;
   private MapDrawController mapDrawer;
 
+  private int mode = 0;
+
   @FXML
   void clearFields() {
     // Clears all Text Fields
+    currentNodeEdit = null;
+    GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+    AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+
+    for (javafx.scene.Node n : anchor.getChildren()) {
+      n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
+    }
+    updateButtonsForNode(0);
     longNameTextField.clear();
     yCoordTextField.clear();
     xCoordTextField.clear();
@@ -69,11 +88,29 @@ public class MapEditorPageController {
   @FXML
   void deleteNode() {
     // TODO make delete Node
+    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    if (currentNodeEdit != null) {
+      nodeDao.delete(currentNodeEdit);
+
+      GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+      AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+
+      // Find the old Pane bound to old Node
+      for (javafx.scene.Node node : anchor.getChildren()) {
+        if ((currentNodeEdit.getNodeID() + "_pane").equals(node.getId())) {
+          anchor.getChildren().remove(node); // Remove it
+          break;
+        }
+      }
+
+      currentNodeEdit = null;
+      clearFields();
+    }
   }
 
   @FXML
   void addNode() {
-    // TODO make add Node
+    updateButtonsForNode(2);
   }
 
   /**
@@ -87,16 +124,13 @@ public class MapEditorPageController {
       public void handle(MouseEvent event) {
         if (!node.equals(currentNodeEdit)) { // If node and currentNode are different
           // Select Node
-          updateButtonsForNode(true);
+          updateButtonsForNode(1);
           currentNodeEdit = node;
 
           // Setting default fields for Node
           xCoordTextField.setText(Integer.toString(currentNodeEdit.getXcoord()));
           yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
-          longNameTextField.setText(
-              currentNodeEdit.getLocation().getLongName() == null
-                  ? currentNodeEdit.getLocation().getLongName()
-                  : "");
+          longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -110,16 +144,8 @@ public class MapEditorPageController {
           }
         } else {
           // Deselect Node
-          updateButtonsForNode(false);
-          currentNodeEdit = null;
+          updateButtonsForNode(0);
           clearFields();
-
-          GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
-          AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-
-          for (javafx.scene.Node n : anchor.getChildren()) {
-            n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
-          }
         }
       }
     };
@@ -132,28 +158,66 @@ public class MapEditorPageController {
     Node newNode = new Node(); // New Node
 
     // Set Node Fields // TODO set these correctly
-    newNode.setLocation(currentNodeEdit.getLocation());
-    newNode.setNodeID(currentNodeEdit.getNodeID());
-    newNode.setXcoord(currentNodeEdit.getXcoord());
-    newNode.setYcoord(currentNodeEdit.getYcoord());
-    newNode.setBuilding(currentNodeEdit.getBuilding());
-    newNode.setFloor(currentNodeEdit.getFloor());
+    LocationNameDaoImpl locDao = new LocationNameDaoImpl();
+    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    MoveDaoImpl moveDao = new MoveDaoImpl();
 
-    // Breaks all Edges connected to this Node
-    for (Edge edge : currentNodeEdit.getNodeEdges()) {
-      for (Edge e : edge.getToNode().getNodeEdges()) {
-        if (e.getToNode().equals(currentNodeEdit)) {
-          edge.getToNode().getNodeEdges().remove(e);
-          e.setToNode(null);
-          e.setFromNode(null);
-        }
+    if (mode == 1) {
+      // Node Selected, updating
+      newNode =
+          new Node(
+              Integer.parseInt(xCoordTextField.getText()),
+              Integer.parseInt(yCoordTextField.getText()),
+              currentNodeEdit.getFloor(),
+              currentNodeEdit.getBuilding());
+      LocationName loc =
+          new LocationName(
+              longNameTextField.getText(),
+              currentNodeEdit.getShortName(),
+              currentNodeEdit.getLocationType());
+      newNode.setLocation(loc);
+
+      nodeDao.nodeEdgeSwap(currentNodeEdit, newNode);
+
+      if (currentNodeEdit.getLongName() != newNode.getLongName()
+          || newNode.getLongName().isEmpty()) {
+        System.out.println(
+            currentNodeEdit.getLocation().getLongName()
+                + currentNodeEdit.getLocation().getShortName()
+                + currentNodeEdit.getLocation().getLocationType());
+        System.out.println(loc.getLongName() + loc.getShortName() + loc.getLocationType());
+
+        Move move = new Move(newNode, loc);
+
+        locDao.updatePK(currentNodeEdit.getLocation(), loc);
+        moveDao.save(move);
       }
-      edge.setToNode(null);
-      edge.setFromNode(null);
-    }
 
-    // Make new list of Edges
-    newNode.setNodeEdges(new ArrayList<Edge>());
+    } else if (mode == 2) {
+      // Add node
+      newNode =
+          new Node(
+              Integer.parseInt(xCoordTextField.getText()),
+              Integer.parseInt(yCoordTextField.getText()),
+              floorTextField.getText(),
+              buildingTextField.getText());
+
+      LocationName loc = new LocationName(newNode.getNodeID() + "_personal", "", "");
+      newNode.setLocation(loc);
+      Move move = new Move(newNode, loc);
+      locDao.save(loc);
+      nodeDao.save(newNode);
+      moveDao.save(move);
+    } else if (mode == 3) {
+      // Add Location
+      LocationName loc =
+          new LocationName(
+              longNameTextField.getText(),
+              shortNameTextField.getText(),
+              locationTypeTextField.getText());
+      locDao.save(loc);
+      return;
+    }
 
     // Remove current Node being edited from the list of active Nodes
     nodeList.remove(currentNodeEdit);
@@ -165,10 +229,12 @@ public class MapEditorPageController {
     AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
     // Find the old Pane bound to old Node
-    for (javafx.scene.Node node : anchor.getChildren()) {
-      if ((currentNodeEdit.getNodeID() + "_pane").equals(node.getId())) {
-        anchor.getChildren().remove(node); // Remove it
-        break;
+    if (mode != 2) {
+      for (javafx.scene.Node node : anchor.getChildren()) {
+        if ((currentNodeEdit.getNodeID() + "_pane").equals(node.getId())) {
+          anchor.getChildren().remove(node); // Remove it
+          break;
+        }
       }
     }
 
@@ -188,30 +254,22 @@ public class MapEditorPageController {
     longNameTextField.setText("");
     xCoordTextField.setText("");
     yCoordTextField.setText("");
-
-    // TODO update database to match
-    NodeDaoImpl nDao = new NodeDaoImpl();
+    shortNameTextField.setText("");
+    buildingTextField.setText("");
+    floorTextField.setText("");
+    locationTypeTextField.setText("");
 
     currentNodeEdit = null; // set currentNodeEdit to null
   }
 
-  private void updateButtonsForNode(boolean nodeSelected) {
-    if (nodeSelected == true) {
-      submitButton.setVisible(true);
-      submitButton.setManaged(true);
-      addNodeButton.setVisible(false);
-      addNodeButton.setManaged(false);
-      deleteNodeButton.setVisible(true);
-      deleteNodeButton.setManaged(true);
-      longNameTextField.setVisible(true);
-      longNameTextField.setManaged(true);
-      xCoordTextField.setVisible(true);
-      xCoordTextField.setManaged(true);
-      yCoordTextField.setVisible(true);
-      yCoordTextField.setManaged(true);
-      clearButton.setVisible(true);
-      clearButton.setManaged(true);
-    } else {
+  @FXML
+  public void addLocation() {
+    updateButtonsForNode(3);
+  }
+
+  private void updateButtonsForNode(int level) {
+    mode = level;
+    if (level == 0) { // Nothing selected
       submitButton.setVisible(false);
       submitButton.setManaged(false);
       addNodeButton.setVisible(true);
@@ -226,20 +284,103 @@ public class MapEditorPageController {
       yCoordTextField.setManaged(false);
       clearButton.setVisible(false);
       clearButton.setManaged(false);
+      buildingTextField.setVisible(false);
+      buildingTextField.setManaged(false);
+      floorTextField.setVisible(false);
+      floorTextField.setManaged(false);
+      addLocationButton.setVisible(true);
+      addLocationButton.setManaged(true);
+      shortNameTextField.setVisible(false);
+      shortNameTextField.setManaged(false);
+      locationTypeTextField.setVisible(false);
+      locationTypeTextField.setManaged(false);
+    } else if (level == 1) { // Node selected
+      submitButton.setVisible(true);
+      submitButton.setManaged(true);
+      addNodeButton.setVisible(false);
+      addNodeButton.setManaged(false);
+      deleteNodeButton.setVisible(true);
+      deleteNodeButton.setManaged(true);
+      longNameTextField.setVisible(true);
+      longNameTextField.setManaged(true);
+      xCoordTextField.setVisible(true);
+      xCoordTextField.setManaged(true);
+      yCoordTextField.setVisible(true);
+      yCoordTextField.setManaged(true);
+      clearButton.setVisible(true);
+      clearButton.setManaged(true);
+      buildingTextField.setVisible(false);
+      buildingTextField.setManaged(false);
+      floorTextField.setVisible(false);
+      floorTextField.setManaged(false);
+      addLocationButton.setVisible(false);
+      addLocationButton.setManaged(false);
+      shortNameTextField.setVisible(false);
+      shortNameTextField.setManaged(false);
+      locationTypeTextField.setVisible(false);
+      locationTypeTextField.setManaged(false);
+    } else if (level == 2) { // Add Node Selected
+      submitButton.setVisible(true);
+      submitButton.setManaged(true);
+      addNodeButton.setVisible(false);
+      addNodeButton.setManaged(false);
+      deleteNodeButton.setVisible(false);
+      deleteNodeButton.setManaged(false);
+      longNameTextField.setVisible(false);
+      longNameTextField.setManaged(false);
+      xCoordTextField.setVisible(true);
+      xCoordTextField.setManaged(true);
+      yCoordTextField.setVisible(true);
+      yCoordTextField.setManaged(true);
+      clearButton.setVisible(true);
+      clearButton.setManaged(true);
+      buildingTextField.setVisible(true);
+      buildingTextField.setManaged(true);
+      floorTextField.setVisible(true);
+      floorTextField.setManaged(true);
+      addLocationButton.setVisible(false);
+      addLocationButton.setManaged(false);
+      shortNameTextField.setVisible(false);
+      shortNameTextField.setManaged(false);
+      locationTypeTextField.setVisible(false);
+      locationTypeTextField.setManaged(false);
+    } else { // Add Location Selected
+      submitButton.setVisible(true);
+      submitButton.setManaged(true);
+      addNodeButton.setVisible(false);
+      addNodeButton.setManaged(false);
+      deleteNodeButton.setVisible(false);
+      deleteNodeButton.setManaged(false);
+      longNameTextField.setVisible(true);
+      longNameTextField.setManaged(true);
+      xCoordTextField.setVisible(false);
+      xCoordTextField.setManaged(false);
+      yCoordTextField.setVisible(false);
+      yCoordTextField.setManaged(false);
+      clearButton.setVisible(true);
+      clearButton.setManaged(true);
+      buildingTextField.setVisible(false);
+      buildingTextField.setManaged(false);
+      floorTextField.setVisible(false);
+      floorTextField.setManaged(false);
+      addLocationButton.setVisible(false);
+      addLocationButton.setManaged(false);
+      shortNameTextField.setVisible(true);
+      shortNameTextField.setManaged(true);
+      locationTypeTextField.setVisible(true);
+      locationTypeTextField.setManaged(true);
     }
   }
 
   @FXML
   void displayHelp() {
     helpVisible = !helpVisible;
-    shortNameHelpText.setVisible(helpVisible);
-    longNameHelpText.setVisible(helpVisible);
-    roomTypeHelpText.setVisible(helpVisible);
+    helpText.setVisible(helpVisible);
   }
 
   @FXML
   public void initialize() {
-    updateButtonsForNode(false);
+    updateButtonsForNode(0);
 
     mapDrawer = new MapDrawController(); // Create a way to draw the Nodes
 
