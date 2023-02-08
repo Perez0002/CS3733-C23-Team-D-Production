@@ -58,7 +58,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="clearButton" onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Clear">
+                  <MFXButton fx:id="clearButton" onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Back">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
