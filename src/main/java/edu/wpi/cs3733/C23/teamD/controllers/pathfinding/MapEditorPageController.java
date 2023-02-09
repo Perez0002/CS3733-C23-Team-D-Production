@@ -239,12 +239,13 @@ public class MapEditorPageController {
     }
 
     // Add a new Pane for the new Node
-    final Pane tempPane = PaneFactories.getMapPaneFactory()
-        .posX(newNode.getXcoord() - MapDrawController.NODE_WIDTH / 2)
-        .posY(newNode.getYcoord() - MapDrawController.NODE_HEIGHT / 2)
-        .onClick(paneFunction(newNode))
-        .paneID(newNode.getNodeID() + "_pane")
-        .build();
+    final Pane tempPane =
+        MapPaneFactory.startBuild()
+            .posX(newNode.getXcoord() - MapDrawController.NODE_WIDTH / 2)
+            .posY(newNode.getYcoord() - MapDrawController.NODE_HEIGHT / 2)
+            .onClick(paneFunction(newNode))
+            .paneID(newNode.getNodeID() + "_pane")
+            .build();
 
     anchor.getChildren().add(tempPane);
 
@@ -393,11 +394,14 @@ public class MapEditorPageController {
 
     // Creating GesturePane to show
     GesturePane gesturePane =
-        mapDrawer.genMapFromNodes(
-            nodeList,
-            node -> {
-              return paneFunction(node);
-            });
+        MapFactory.startBuild()
+            .withNodes(nodeList)
+            .withNodeFunctions(
+                node -> {
+                  return paneFunction(node);
+                })
+            .withoutEdges()
+            .build();
     // Setting center of BorderPane to the GesturePane
     mapEditorPane.setCenter(gesturePane);
     // Setting zoom to 0

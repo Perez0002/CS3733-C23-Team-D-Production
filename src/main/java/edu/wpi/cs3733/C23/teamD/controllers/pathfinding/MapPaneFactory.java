@@ -17,7 +17,7 @@ public class MapPaneFactory {
   private String style;
   private String paneID;
 
-  public MapPaneFactory() {
+  private MapPaneFactory() {
     this.xPos = -1;
     this.yPos = -1;
     this.width = -1;
@@ -29,6 +29,11 @@ public class MapPaneFactory {
     this.paneID = "";
   }
 
+  public static MapPaneFactory  startBuild()
+  {
+    final MapPaneFactory returnable = new MapPaneFactory();
+    return returnable;
+  }
   public MapPaneFactory posX(int xPos) {
     this.xPos = xPos;
     return this;

@@ -81,7 +81,7 @@ public class PathfindingController {
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        GesturePane sceneNode = pathDrawController.genMapFromNodesWithEdges(path);
+        GesturePane sceneNode = MapFactory.startBuild().withNodes(path).withEdges().build();
         sceneNode
             .animate(Duration.millis(200))
             .centreOn(

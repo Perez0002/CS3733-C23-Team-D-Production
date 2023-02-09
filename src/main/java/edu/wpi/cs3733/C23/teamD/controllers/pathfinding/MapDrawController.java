@@ -43,7 +43,7 @@ public class MapDrawController {
       // Creates popup object
       MapEditorNodeController mapEditor = new MapEditorNodeController(node);
       Pane tempPane =
-          PaneFactories.getMapPaneFactory()
+          MapPaneFactory.startBuild()
               .posX(node.getXcoord() - MapDrawController.NODE_WIDTH / 2)
               .posY(node.getYcoord() - MapDrawController.NODE_HEIGHT / 2)
               .onClick(event.apply(node))
@@ -100,13 +100,9 @@ public class MapDrawController {
       // Getting the Image
       ImageView imageView = (ImageView) anchor.getChildren().get(0);
       // Making a Canvas of the Image Height and Width
-      Canvas canvas =
-          new Canvas(
-              imageView.getImage().getWidth(),
-              imageView.getImage().getHeight());
+      Canvas canvas = new Canvas(imageView.getImage().getWidth(), imageView.getImage().getHeight());
       // Getting GraphicsContext for drawing
-      GraphicsContext context =
-          canvas.getGraphicsContext2D();
+      GraphicsContext context = canvas.getGraphicsContext2D();
       // Setting fill color to black
       context.setFill(Color.BLACK);
 
@@ -126,15 +122,9 @@ public class MapDrawController {
       }
       context.setLineWidth(1);
       // Labeling last Node in the Path as "END"
-      context.strokeText(
-          "END",
-          lastNode.getXcoord() + 10,
-          lastNode.getYcoord(),
-          40);
+      context.strokeText("END", lastNode.getXcoord() + 10, lastNode.getYcoord(), 40);
       // Adding Canvas after the image but before the Panes start
-      anchor
-          .getChildren()
-          .add(1, canvas);
+      anchor.getChildren().add(1, canvas);
 
       GesturePane gesturePane = new GesturePane(anchor); // Making a new GesturePane
       gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER); // No more scroll bars!!!
