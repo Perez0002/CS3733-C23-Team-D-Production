@@ -27,7 +27,7 @@ public class MapDrawController {
    * @return A GesturePane containing the Image and each Node mapped as a Pane
    */
   public GesturePane genMapFromNodes(
-      ArrayList<Node> nodeList, Function<Node, EventHandler<? super MouseEvent>> event) {
+      ArrayList<Node> nodeList, Function<Node, EventHandler<MouseEvent>> event) {
     AnchorPane anchor = new AnchorPane(); // AnchorPane to hold everything
 
     ImageView imageView =
@@ -37,42 +37,37 @@ public class MapDrawController {
                 .toExternalForm()); // Getting Image from resources
     anchor.getChildren().add(imageView); // Adding Image to AnchorPane
 
-    for (Node node : nodeList) { // For every Node
-      final Pane tempPane = new Pane();
-      tempPane.setPrefSize(NODE_WIDTH, NODE_HEIGHT);
-      tempPane.setLayoutX(node.getXcoord() - NODE_WIDTH / 2);
-      tempPane.setLayoutY(node.getYcoord() - NODE_HEIGHT / 2);
-      tempPane.setStyle("-fx-background-color: '#013A75';");
-      tempPane.setStyle("-fx-background-color: '#013A75'; -fx-border-radius: 1000px;");
-      // Setting events for click, enter, exit
-      tempPane.setOnMouseClicked(event.apply(node));
-      // Popup functions
-      MapEditorNodeController mapeditor = new MapEditorNodeController(node); // creates popup object
-      tempPane.setOnMouseEntered(
-          e -> {
-            mapeditor.makePopupAppear();
-            System.out.println("Screm Enter");
-          });
-      tempPane.setOnMouseExited(
-          e -> {
-            mapeditor.makePopupDisappear();
-            System.out.println("Screm Exit");
-          });
-      // end popup functions
-      // end setting events
-      tempPane.setId(node.getNodeID() + "_pane");
-      // end fix this code
-      anchor
-          .getChildren()
-          .add(
-              tempPane); // Make a new Pane, set it's onclick to a passed in function, and add it to
-      // the AnchorPane
+    // For every Node
+    for (Node node : nodeList) {
+
+      // Creates popup object
+      MapEditorNodeController mapEditor = new MapEditorNodeController(node);
+      Pane tempPane =
+          PaneFactories.getMapPaneFactory()
+              .posX(node.getXcoord() - MapDrawController.NODE_WIDTH / 2)
+              .posY(node.getYcoord() - MapDrawController.NODE_HEIGHT / 2)
+              .onClick(event.apply(node))
+              .onMouseEnter(
+                  e -> {
+                    mapEditor.makePopupAppear();
+                  })
+              .onMouseExit(
+                  e -> {
+                    mapEditor.makePopupDisappear();
+                  })
+              .paneID(node.getNodeID() + "_pane")
+              .build();
+
+      // Make a new Pane, set it's onclick to a passed in function, and add it to the AnchorPane
+      anchor.getChildren().add(tempPane);
     }
 
-    GesturePane returnPane =
-        new GesturePane(anchor); // Pass the AnchorPane with everything in it to a GesturePane
-    returnPane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER); // No more scroll bars!!!
-    return returnPane; // Return the GesturePane
+    // Pass the AnchorPane with everything in it to a GesturePane
+    GesturePane returnPane = new GesturePane(anchor);
+    // No more scroll bars!!!
+    returnPane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    // Return the GesturePane
+    return returnPane;
   }
 
   /**
@@ -81,30 +76,39 @@ public class MapDrawController {
    *     connecting them
    */
   public GesturePane genMapFromNodesWithEdges(ArrayList<Node> nodeList) {
+    // TODO this functionality, while I thought was initially clean, is messy. This should be redone
+    // Calling genMapFromNodes to add the nodes with a null function
     GesturePane oldPane =
         genMapFromNodes(
             nodeList,
             event -> {
               return null;
-            }); // Calling genMapFromNodes to add the nodes with a null function
+            });
 
     if (nodeList.isEmpty()) {
       return oldPane;
     }
 
-    javafx.scene.Node incomingNode =
-        oldPane.getContent(); // Getting the AnchorPane from the GesturePane
+    // Getting the AnchorPane from the GesturePane
+    javafx.scene.Node incomingNode = oldPane.getContent();
+
     try {
-      assert incomingNode instanceof AnchorPane; // Ensuring the AnchorPane is an AnchorPane
-      AnchorPane anchor = (AnchorPane) incomingNode; // Casting
-      ImageView imageView = (ImageView) anchor.getChildren().get(0); // Getting the Image
+      // Ensuring the AnchorPane is an AnchorPane
+      assert incomingNode instanceof AnchorPane;
+      // Casting
+      AnchorPane anchor = (AnchorPane) incomingNode;
+      // Getting the Image
+      ImageView imageView = (ImageView) anchor.getChildren().get(0);
+      // Making a Canvas of the Image Height and Width
       Canvas canvas =
           new Canvas(
               imageView.getImage().getWidth(),
-              imageView.getImage().getHeight()); // Making a Canvas of the Image Height and Width
+              imageView.getImage().getHeight());
+      // Getting GraphicsContext for drawing
       GraphicsContext context =
-          canvas.getGraphicsContext2D(); // Getting GraphicsContext for drawing
-      context.setFill(Color.BLACK); // Setting fill color to black
+          canvas.getGraphicsContext2D();
+      // Setting fill color to black
+      context.setFill(Color.BLACK);
 
       Node lastNode = null;
       for (Node node : nodeList) {
@@ -117,28 +121,32 @@ public class MapDrawController {
           context.strokeText("START", node.getXcoord() + 10, node.getYcoord(), 40);
           context.setLineWidth(3);
         }
-        lastNode = node; // Incrementing Node
+        // Incrementing Node
+        lastNode = node;
       }
       context.setLineWidth(1);
+      // Labeling last Node in the Path as "END"
       context.strokeText(
           "END",
           lastNode.getXcoord() + 10,
           lastNode.getYcoord(),
-          40); // Labeling last Node in the Path as "END"
-
+          40);
+      // Adding Canvas after the image but before the Panes start
       anchor
           .getChildren()
-          .add(1, canvas); // Adding Canvas after the image but before the Panes start
+          .add(1, canvas);
 
       GesturePane gesturePane = new GesturePane(anchor); // Making a new GesturePane
       gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER); // No more scroll bars!!!
 
-      return gesturePane; // Returning GesturePane
+      // Returning GesturePane
+      return gesturePane;
 
     } catch (ClassCastException CCE) {
-      CCE.printStackTrace(); // If exception, print the stack trace
+      // If exception, print the stack trace
+      CCE.printStackTrace();
     }
-
-    return oldPane; // return the previous method's return if unable to cast
+    // return the previous method's return if unable to cast
+    return oldPane;
   }
 }

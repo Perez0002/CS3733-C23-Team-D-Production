@@ -13,7 +13,6 @@ import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.awt.*;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -67,12 +66,14 @@ public class MapEditorPageController {
   void clearFields() {
     // Clears all Text Fields
     currentNodeEdit = null;
+
     GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
     AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
     for (javafx.scene.Node n : anchor.getChildren()) {
       n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
     }
+
     updateButtonsForNode(0);
     longNameTextField.clear();
     yCoordTextField.clear();
@@ -87,24 +88,23 @@ public class MapEditorPageController {
 
   @FXML
   void deleteNode() {
-    // TODO make delete Node
     NodeDaoImpl nodeDao = new NodeDaoImpl();
     if (currentNodeEdit != null) {
       nodeDao.delete(currentNodeEdit);
 
-      GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+      GesturePane gesturePane = (GesturePane) this.mapEditorPane.getCenter();
       AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
       // Find the old Pane bound to old Node
       for (javafx.scene.Node node : anchor.getChildren()) {
-        if ((currentNodeEdit.getNodeID() + "_pane").equals(node.getId())) {
+        if ((this.currentNodeEdit.getNodeID() + "_pane").equals(node.getId())) {
           anchor.getChildren().remove(node); // Remove it
           break;
         }
       }
 
-      currentNodeEdit = null;
-      clearFields();
+      this.currentNodeEdit = null;
+      this.clearFields();
     }
   }
 
@@ -238,26 +238,18 @@ public class MapEditorPageController {
       }
     }
 
-    // TODO should make a PaneFactory for this
-
     // Add a new Pane for the new Node
-    final Pane tempPane = new Pane();
-    tempPane.setPrefSize(MapDrawController.NODE_WIDTH, MapDrawController.NODE_WIDTH);
-    tempPane.setLayoutX(newNode.getXcoord() - MapDrawController.NODE_WIDTH / 2);
-    tempPane.setLayoutY(newNode.getYcoord() - MapDrawController.NODE_WIDTH / 2);
-    tempPane.setStyle("-fx-background-color: '#013A75';");
-    tempPane.setOnMouseClicked(paneFunction(newNode));
-    tempPane.setId(newNode.getNodeID() + "_pane");
+    final Pane tempPane = PaneFactories.getMapPaneFactory()
+        .posX(newNode.getXcoord() - MapDrawController.NODE_WIDTH / 2)
+        .posY(newNode.getYcoord() - MapDrawController.NODE_HEIGHT / 2)
+        .onClick(paneFunction(newNode))
+        .paneID(newNode.getNodeID() + "_pane")
+        .build();
+
     anchor.getChildren().add(tempPane);
 
     // Reset Fields
-    longNameTextField.setText("");
-    xCoordTextField.setText("");
-    yCoordTextField.setText("");
-    shortNameTextField.setText("");
-    buildingTextField.setText("");
-    floorTextField.setText("");
-    locationTypeTextField.setText("");
+    this.clearFields();
 
     currentNodeEdit = null; // set currentNodeEdit to null
   }
