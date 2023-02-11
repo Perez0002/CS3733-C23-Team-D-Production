@@ -1,38 +1,30 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-public class LoginData {
+public class LoginChecker {
   private String username;
   private String password;
 
   private int accessLevel;
 
-  public LoginData(String username, String password) {
+  public LoginChecker(String username, String password) {
     this.username = username;
     this.password = password;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public int getAccessLevel() {
-    return accessLevel;
-  }
-
   public boolean setAccessLevel() {
+    // TODO add database implementation.
     if (username.equals("username") && password.equals("password")) {
-      accessLevel = 1;
+      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+      currentUser.setAccessLevel(1);
+      currentUser.setUsername(username);
       return true;
     } else if (username.equals("admin") && password.equals("password")) {
-      accessLevel = 2;
+      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+      currentUser.setAccessLevel(2);
+      currentUser.setUsername(username);
       return true;
     } else {
       return false;
     }
-  }
-
-  public void printInformation() {
-    System.out.println("The patientID is " + this.username);
-    System.out.println("The endRoom " + this.password);
   }
 }

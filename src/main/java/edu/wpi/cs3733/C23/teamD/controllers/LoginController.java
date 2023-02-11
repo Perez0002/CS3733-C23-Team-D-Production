@@ -1,36 +1,26 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
-import edu.wpi.cs3733.C23.teamD.entities.LoginData;
+import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.entities.LoginChecker;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.text.Text;
-import lombok.Setter;
 
 public class LoginController {
 
   private boolean helpVisible = false;
   @FXML private Text incorrectUsernameOrPasswordText;
 
-  @FXML private Text successfulLoginText;
-
-  @FXML private Text currentUserText;
-
   @FXML private Text usernameText;
-
-  @FXML private Text successfulLogoutText;
-
-  @FXML private Text passwordText;
 
   @FXML private MFXTextField username;
 
-  @FXML private MFXTextField password;
-
-  @Setter RootController rootController;
-
-  public LoginController() throws IOException {}
+  @FXML private MFXPasswordField password;
 
   @FXML
   /*
@@ -44,25 +34,9 @@ public class LoginController {
     helpVisible = !helpVisible;
 
     usernameText.setVisible(helpVisible);
-    passwordText.setVisible(helpVisible);
   }
 
   @FXML
-  /*
-  clearFields()
-  @param void
-  @return void
-  linked to "Clear" button on SceneBuilder page
-  */
-  public void clearFields() throws IOException {
-    successfulLoginText.setVisible(false);
-    incorrectUsernameOrPasswordText.setVisible(false);
-    successfulLogoutText.setVisible(false);
-    username.clear();
-    password.clear();
-    // System.out.println("clearFields"); // for debugging purposes
-  } // end clearFields()
-
   /*
   checkFields
   @param void
@@ -100,20 +74,6 @@ public class LoginController {
   }
 
   @FXML
-  public void initialize() {
-    displayCurrentUser();
-  }
-
-  private void displayCurrentUser() {
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    if (currentUser.getAccessLevel() == 0) {
-      currentUserText.setText("please log in");
-    } else {
-      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
-    }
-  }
-
-  @FXML
   /*
   submit()
   @param void
@@ -123,37 +83,23 @@ public class LoginController {
   */
   public void submitLogin() throws IOException {
 
-    LoginData loginInfo =
-        new LoginData(
+    LoginChecker loginInfo =
+        new LoginChecker(
             username.getText(), password.getText()); // creates PatientTransportData object
 
     if (loginInfo.setAccessLevel()) {
 
-      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-      currentUser.setAccessLevel(loginInfo.getAccessLevel());
-      currentUser.setUsername(loginInfo.getUsername());
-      successfulLoginText.setVisible(true);
-
       incorrectUsernameOrPasswordText.setVisible(false);
-      successfulLogoutText.setVisible(false);
-      displayCurrentUser();
-      rootController.checkAccessLevel();
+      App.getRootPane()
+          .setTop(
+              FXMLLoader.load(
+                  getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/MenuBar.fxml")));
+
+      Navigation.navigate(Screen.HOME);
+      App.getPrimaryStage().setMaximized(true);
 
     } else {
-      successfulLoginText.setVisible(false);
       incorrectUsernameOrPasswordText.setVisible(true);
-      successfulLogoutText.setVisible(false);
     }
   } // end submit()
-
-  @FXML
-  public void logout() {
-    successfulLoginText.setVisible(false);
-    incorrectUsernameOrPasswordText.setVisible(false);
-    successfulLogoutText.setVisible(true);
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    currentUser.setAccessLevel(0);
-    currentUser.setUsername("");
-    displayCurrentUser();
-  }
 }

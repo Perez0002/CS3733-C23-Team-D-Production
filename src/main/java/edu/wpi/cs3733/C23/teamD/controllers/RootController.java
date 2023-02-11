@@ -9,8 +9,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.MenuButton;
 
 public class RootController {
@@ -32,27 +30,19 @@ public class RootController {
     if (currentUser.getAccessLevel() == 2) {
       databaseMenuButton.setDisable(false);
       formsMenuButton.setDisable(false);
-      helpPageButton.setDisable(false);
     } else if (currentUser.getAccessLevel() == 1) {
       databaseMenuButton.setDisable(true);
       formsMenuButton.setDisable(false);
-      helpPageButton.setDisable(true);
     } else {
       databaseMenuButton.setDisable(true);
-      helpPageButton.setDisable(false);
       formsMenuButton.setDisable(true);
     }
   }
 
   @FXML
   public void openLoginPage() throws IOException {
-
-    FXMLLoader loader =
-        new FXMLLoader(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/LoginPage.fxml"));
-    Parent root = loader.load();
-    LoginController dac = (LoginController) loader.getController();
-    dac.setRootController(this);
-    App.getRootPane().setCenter(root);
+    App.getRootPane().setTop(null);
+    Navigation.navigate(Screen.LOGIN_PAGE);
   }
 
   @FXML

@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD;
 
-import edu.wpi.cs3733.C23.teamD.controllers.RootController;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ public class App extends Application {
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
-  private static String css;
 
   @Override
   public void init() {
@@ -29,21 +29,22 @@ public class App extends Application {
     App.primaryStage = primaryStage;
 
     final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
+
     final BorderPane root = loader.load();
 
     App.rootPane = root;
 
-    final Scene scene = new Scene(root);
+    Scene scene = new Scene(root);
 
     // style sheet
-    css = this.getClass().getResource("views/styleguide.css").toExternalForm();
+    String css = this.getClass().getResource("views/styleguide.css").toExternalForm();
     scene.getStylesheets().add(css);
     // end style sheet
 
     primaryStage.setScene(scene);
     primaryStage.setMaximized(true);
-    RootController rootController = loader.getController();
-    rootController.openLoginPage();
+    rootPane.setTop(null);
+    Navigation.navigate(Screen.LOGIN_PAGE);
     primaryStage.show();
   }
 
