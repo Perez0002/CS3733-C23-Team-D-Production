@@ -14,6 +14,7 @@ public enum Screen {
   SERVICE_REQUEST("views/LandingPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
+  REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml");
 
   private final String filename;

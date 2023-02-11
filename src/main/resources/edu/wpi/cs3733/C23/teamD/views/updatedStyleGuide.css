@@ -1,0 +1,67 @@
+/*.root {*/
+/*    --textBlue: #011830; !* color of text *!*/
+/*    --highlightBlue: #CDDFF6; !* secondary color of things like tabs *!*/
+/*    --primaryBlue: #012D5A;*/
+/*    --font: 'Nunito Sans';*/
+/*}*/
+
+.Label {
+    -fx-font-family: 'Nunito Sans';
+    -fx-text-fill: #012D5A;
+    -fx-font-size: 16pt;
+}
+
+.Text {
+    -fx-font-family: 'Nunito Sans';
+    -fx-text-fill: #012D5A;
+    -fx-font-size: 16pt;
+}
+
+.button {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.hubLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 36pt;
+}
+
+.tabButton { /* defines the format for the tab Buttons on Service Request page */
+    -fx-background-color: #CDDFF6;
+    -fx-background-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-text-size: 16pt;
+}
+
+.tabButtonSelected { /* defines the format for the selected tab Button on the service request page */
+    -fx-background-color: #012D5A;
+}
+
+.tabHBox { /* defines the format for the HBox that the tabs are held in, particularly used for blue underline */
+    -fx-border-color: transparent transparent #012D5A transparent;
+    -fx-border-width: 5px;
+}
+
+/*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
+
+/*}*/
+
+/*.serviceRequestTextFieldVBox { !* defines the format for the vBox that contains service Request Text Fields *!*/
+
+/*}*/
+
+/*.individualServiceRequestTextField { !* defines the format for the individual vBox that contains each serviceRequest *!*/
+
+/*}*/
+
+.submitButton { /* defines the format for the submit button */
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+.cancelButton { /* defines the format for the cancel button */
+    -fx-background-color: transparent;
+    -fx-text-fill: #012D5A;
+    -fx-border-color: #012D5A;
+}

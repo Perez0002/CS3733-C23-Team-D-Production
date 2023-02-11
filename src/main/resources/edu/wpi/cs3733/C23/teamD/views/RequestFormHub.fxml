@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
    <center>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" BorderPane.alignment="CENTER_LEFT">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
          <BorderPane.margin>
             <Insets bottom="75.0" left="100.0" top="75.0" />
          </BorderPane.margin>
@@ -22,21 +22,27 @@
                   <Insets left="5.0" />
                </VBox.margin>
             </Label>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" VBox.vgrow="ALWAYS">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="726.0" spacing="3.0" styleClass="tabHBox">
+               <children>
+                  <MFXButton fx:id="clickableTest" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Clickable" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <VBox fx:id="serviceRequestHubVBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets left="10.0" top="82.0" />
+                  <Insets left="10.0" />
                </VBox.margin>
                <children>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="726.0" spacing="5.0" styleClass="tabHBox">
-                     <children>
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                     </children>
-                  </HBox>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="726.0" styleClass="serviceRequestDescription" text="Label" />
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="726.0" styleClass="serviceRequestDescription" text="Label">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding></Label>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="376.0" prefWidth="726.0" spacing="10.0" styleClass="serviceRequestTextFieldVBox">
                      <children>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -65,18 +71,18 @@
                         </VBox>
                      </children>
                   </VBox>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="726.0">
+                     <children>
+                        <HBox alignment="BOTTOM_RIGHT" fillHeight="false" layoutX="395.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="272.0" spacing="16.0">
+                           <children>
+                              <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="cancelButton" text="Button" />
+                              <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Button" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="726.0">
-               <children>
-                  <HBox alignment="BOTTOM_RIGHT" fillHeight="false" layoutX="395.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="272.0" spacing="16.0">
-                     <children>
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="cancelButton" text="Button" />
-                        <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Button" />
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
          </children>
          <opaqueInsets>
             <Insets />
@@ -84,7 +90,7 @@
       </VBox>
    </center>
    <right>
-      <Pane prefHeight="1080.0" prefWidth="700.0" style="-fx-background-color: red;">
+      <Pane maxWidth="-Infinity" prefHeight="1080.0" prefWidth="700.0" style="-fx-background-color: red;" BorderPane.alignment="TOP_RIGHT">
          <BorderPane.margin>
             <Insets left="20.0" />
          </BorderPane.margin></Pane>
