@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class MoveIDaoImpl implements IDao<Move> {
-  private final Session session = Ddb.getDBsession();
+  private final Session session = DBSingleton.getSession();
 
   private ArrayList<Move> moves = new ArrayList<>();
 

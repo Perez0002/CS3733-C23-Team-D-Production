@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class LocationNameIDaoImpl implements IDao<LocationName> {
-  private final Session session = Ddb.getDBsession();
+  private final Session session = DBSingleton.getSession();
 
   private ArrayList<LocationName> locationNames = new ArrayList<>();
 

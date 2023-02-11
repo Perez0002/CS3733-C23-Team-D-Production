@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import jakarta.persistence.Query;
@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 import org.hibernate.Session;
 
 public class NodeIDaoImpl implements IDao<Node> {
-  private final Session session = Ddb.getDBsession();
+  private final Session session = DBSingleton.getSession();
 
   private ArrayList<Node> nodes = new ArrayList<>();
 
