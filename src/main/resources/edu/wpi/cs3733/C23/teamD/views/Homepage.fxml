@@ -2,75 +2,102 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="homepageBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
-   <bottom>
-      <HBox fx:id="bottomVbox" alignment="CENTER" fillHeight="false" spacing="25.0" BorderPane.alignment="CENTER">
-         <children>
-            <MenuButton fx:id="exitButtonMenu" mnemonicParsing="false" opacity="0.98" prefHeight="25.0" prefWidth="100.0" text="Exit" textFill="#19158c">
-              <items>
-                <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
-              </items>
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </MenuButton>
-            <Label fx:id="bottomHelpText" prefHeight="40.0" prefWidth="320.0" textFill="#dc3333" wrapText="true" />
-            <MFXButton fx:id="homepageHelpButton" onAction="#toggleHelpText" styleClass="helpbuttonstyleclass" text="?" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="40.0" right="40.0" />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
+<BorderPane fx:id="homepageBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
    <center>
-      <VBox fx:id="serviceRequestButtonVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="550.0" spacing="5.0" BorderPane.alignment="TOP_CENTER">
+      <VBox fx:id="serviceRequestButtonVbox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="serviceRequestHelpText" prefHeight="15.0" prefWidth="350.0" textAlignment="CENTER" textFill="#dc3333" />
-            <VBox alignment="CENTER" prefHeight="275.0" prefWidth="250.0" spacing="10.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="serviceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" styleClass="homePageButton" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton fx:id="DBEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                  <MFXButton fx:id="mapEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Map Editor" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                  <VBox minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" HBox.hgrow="NEVER">
+                     <children>
+                        <VBox VBox.vgrow="NEVER">
+                           <children>
+                              <Label text="Dashboard" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <MFXButton minHeight="53.0" minWidth="128.0" prefHeight="53.0" prefWidth="128.0" text="Directions" />
+                                    <MFXButton minHeight="53.0" minWidth="128.0" text="Button" />
+                                    <MFXButton minHeight="53.0" minWidth="128.0" />
+                                    <MFXButton minHeight="53.0" minWidth="128.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." wrappingWidth="512.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox spacing="20.0">
+                                 <children>
+                                    <MFXButton fx:id="serviceRequestFormButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" styleClass="homePageButton" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton fx:id="mapEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Map Editor" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                                    <MFXButton fx:id="DBEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                              <HBox alignment="CENTER_RIGHT">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <MFXButton text="floor" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <MFXButton text="?" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <Label fx:id="aboutLabel" prefHeight="200.0" prefWidth="450.0" text="This homepage was created by Olivia, the Internal Patient Transportation Request Form by Annie and Mike, the Santiation Services Request Form by Wyatt and Gibson, the Pathtfinding Page by Mike and Olivia, the Navigation Bar by Annie, and the database pages by Bryce." textAlignment="CENTER" wrapText="true">
-               <VBox.margin>
-                  <Insets left="50.0" right="50.0" />
-               </VBox.margin>
-            </Label>
+            </HBox>
          </children>
          <BorderPane.margin>
-            <Insets left="50.0" right="50.0" />
+            <Insets bottom="80.0" left="80.0" right="80.0" top="80.0" />
          </BorderPane.margin>
       </VBox>
    </center>
-   <top>
-      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="50.0" prefWidth="350.0" text="Brigham and Women's Hospital" textAlignment="CENTER" textFill="#19158c" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets top="10.0" />
-         </BorderPane.margin>
-      </Label>
-   </top>
 </BorderPane>
