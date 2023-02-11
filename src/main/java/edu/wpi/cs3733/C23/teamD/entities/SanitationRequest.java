@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-public class SanitationRequestData extends ServiceRequestForm {
+public class SanitationRequest extends ServiceRequest {
   // attributes
   String location;
   int bioLevel;
@@ -17,14 +17,14 @@ public class SanitationRequestData extends ServiceRequestForm {
     return bioLevel;
   }
 
-  public SanitationRequestData(
+  public SanitationRequest(
       String location, String reason, int bioLevel, String staff, Status stat) {
     super(staff, stat, reason, "SanitationRequestData");
     this.location = location;
     this.bioLevel = bioLevel;
   }
 
-  public SanitationRequestData(
+  public SanitationRequest(
       int serviceId,
       String location,
       String reason,
@@ -37,7 +37,7 @@ public class SanitationRequestData extends ServiceRequestForm {
     this.bioLevel = bioLevel;
   }
 
-  public SanitationRequestData() {
+  public SanitationRequest() {
     super();
     this.location = "";
     this.bioLevel = 0;

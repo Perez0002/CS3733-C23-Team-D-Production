@@ -2,7 +2,6 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import org.hibernate.type.*;
 
 /*
 PatientTransportData
@@ -10,7 +9,7 @@ creates an entity object containing data for use on frontend PatientTransport UI
 */
 
 @Entity
-public class PatientTransportData extends ServiceRequestForm {
+public class PatientTransportRequest extends ServiceRequest {
 
   // Attributes of PatientTransportData class
 
@@ -27,7 +26,7 @@ public class PatientTransportData extends ServiceRequestForm {
   -- relationship with PatientTransportController: this function is called when
   submit() is called
   */
-  public PatientTransportData(
+  public PatientTransportRequest(
       String patientID,
       String startRoom,
       String endRoom,
@@ -42,7 +41,7 @@ public class PatientTransportData extends ServiceRequestForm {
     this.startRoom = startRoom;
   }
 
-  public PatientTransportData(
+  public PatientTransportRequest(
       int serviceId,
       String patientID,
       String startRoom,
@@ -59,7 +58,7 @@ public class PatientTransportData extends ServiceRequestForm {
     this.startRoom = startRoom;
   }
 
-  public PatientTransportData() { // should endRoom be in the constructor
+  public PatientTransportRequest() { // should endRoom be in the constructor
     super();
     this.endRoom = null;
     this.equipment = null;
