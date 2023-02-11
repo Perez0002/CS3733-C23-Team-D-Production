@@ -9,14 +9,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.PathfindingController">
-   <center>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="237.0" prefWidth="396.0" spacing="15.0" BorderPane.alignment="CENTER_LEFT">
+<BorderPane fx:id="pathfindingBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.PathfindingController">
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding Request Form" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+   </top>
+   <left>
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="237.0" prefWidth="396.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false">
                <children>
                   <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the starting room." visible="false" />
-                  <fx:include fx:id="startRoomComboBox" prefWidth="300.0" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
+                  <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
@@ -35,14 +42,6 @@
                         <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                      </children>
                   </HBox>
-                  <MFXButton alignment="CENTER_RIGHT" onAction="#displayHelp" styleClass="helpbuttonstyleclass" text="?">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </MFXButton>
                </children>
                <VBox.margin>
                   <Insets />
@@ -56,12 +55,15 @@
             <Insets left="50.0" />
          </BorderPane.margin>
       </VBox>
-   </center>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding Request Form" BorderPane.alignment="CENTER">
+   </left>
+   <right>
+      <MFXButton alignment="CENTER" onAction="#displayHelp" prefWidth="32.0" styleClass="helpbuttonstyleclass" text="?" textAlignment="CENTER" BorderPane.alignment="BOTTOM_CENTER">
          <font>
-            <Font size="36.0" />
+            <Font size="18.0" />
          </font>
-      </Text>
-   </top>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </MFXButton>
+   </right>
 </BorderPane>

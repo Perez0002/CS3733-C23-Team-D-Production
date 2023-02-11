@@ -6,13 +6,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import lombok.Getter;
 import org.hibernate.Session;
 
 public class Ddb {
 
   private static final File logFile = new File("logfile.txt");
 
-  private static Session DBsession = DBSingleton._DB.getSession();
+  @Getter private static Session DBsession = DBSingleton._DB.getSession();
 
   /**
    * @param Nodes the list of all the nodes from the database
@@ -253,7 +254,7 @@ public class Ddb {
               new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/edges.csv"));
       BufferedWriter lineWriter =
           new BufferedWriter(
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/edges2.csv"));
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/edges3.csv"));
       lineWriter.write(lineReader.readLine());
       lineWriter.newLine();
       lineText = null;

@@ -13,6 +13,7 @@ public class MapEditorNodeController {
   PopOver popover; // contains popover object
 
   MapEditorNodeController(Node node) {
+    this.node = node;
     makeEditorNode(); // calls pseudo-constructor object
   }
 

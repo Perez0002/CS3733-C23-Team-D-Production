@@ -1,76 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="mapEditorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapEditorPageController">
+<BorderPane fx:id="mapEditorPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapEditorPageController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="10000.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="roomTypeHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the type of room you want to set the room to." visible="false">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
-            <MFXTextField fx:id="roomTypeTextField" floatingText="Enter the room type" prefHeight="49.0" prefWidth="200.0">
+            <MFXTextField fx:id="buildingTextField" floatingText="Enter the building name." prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="floorTextField" floatingText="Enter the floor number" prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField floatingText="Enter the X-coordinate." prefHeight="49.0" prefWidth="200.0" fx:id="xCoordTextField">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="yCoordTextField" floatingText="Enter the Y-coordinate" prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="locationTypeTextField" floatingText="Enter the location type." prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="shortNameTextField" floatingText="Enter the short name." prefHeight="49.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="longNameTextField" floatingText="Enter the long name." prefHeight="49.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin></MFXTextField>
-            <Text fx:id="longNameHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the long name you want to set the room to." visible="false">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
-            <MFXTextField fx:id="longNameTextField" floatingText="Enter the room's long name" prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></MFXTextField>
-            <Text fx:id="shortNameHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the short name you want to set the room to." visible="false">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Text>
-            <MFXTextField fx:id="shortNameTextField" floatingText="Enter the room's short name" prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></MFXTextField>
-            <Button mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="200.0" text="Delete Node">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="200.0" text="Clear">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#openHomepage" prefHeight="25.0" prefWidth="200.0" text="Cancel">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#displayHelp" prefHeight="25.0" prefWidth="200.0" text="Help" />
+            <VBox alignment="BOTTOM_CENTER" prefHeight="1000.0" prefWidth="100.0">
+               <children>
+                  <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a node on the map, then edit the fields and press submit changes to edit it, and press delete node to delete it. Press add location to add a location and add node to add a node." visible="false" wrappingWidth="218.18597412109375">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="deleteNodeButton" onAction="#deleteNode" prefHeight="26.0" prefWidth="200.0" text="Delete Node">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="addLocationButton" onAction="#addLocation" prefHeight="26.0" prefWidth="200.0" text="Add Location">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="addNodeButton" onAction="#addNode" prefHeight="26.0" prefWidth="200.0" text="Add Node">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="clearButton" onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Back">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton onAction="#displayHelp" prefHeight="26.0" prefWidth="200.0" text="Help">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton onAction="#openHomepage" prefHeight="26.0" prefWidth="200.0" text="Cancel">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+               </children>
+            </VBox>
          </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
    </left>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor" BorderPane.alignment="TOP_CENTER">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-   </top>
-   <right>
-      <VBox alignment="TOP_CENTER" prefHeight="660.0" prefWidth="133.0" BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <Text fx:id="nodeInformationText" strokeType="OUTSIDE" strokeWidth="0.0" text="Node Information" />
-         </children>
-      </VBox>
-   </right>
 </BorderPane>

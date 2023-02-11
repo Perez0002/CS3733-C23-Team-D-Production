@@ -54,12 +54,12 @@ public class PathfindingTest {
   public void testBasicPath() {
     ArrayList<Node> tempList = new ArrayList<Node>();
 
-    tempList.add(graphMap.getNode("L1X0Y0"));
-    tempList.add(graphMap.getNode("L1X5Y5"));
-    tempList.add(graphMap.getNode("L1X10Y10"));
+    tempList.add(graphMap.getNode("L1X0000Y0000"));
+    tempList.add(graphMap.getNode("L1X0005Y0005"));
+    tempList.add(graphMap.getNode("L1X0010Y0010"));
 
     ArrayList<Node> output =
-        pathfinder.aStarSearch(graphMap.getNode("L1X0Y0"), graphMap.getNode("L1X10Y10"));
+        pathfinder.aStarSearch(graphMap.getNode("L1X0000Y0000"), graphMap.getNode("L1X0010Y0010"));
     for (Node n : output) {
       System.out.println(n.getNodeID());
     }
@@ -71,7 +71,7 @@ public class PathfindingTest {
     ArrayList<Node> tempList = new ArrayList<Node>();
 
     ArrayList<Node> output =
-        pathfinder.aStarSearch(graphMap.getNode("L1X0Y0"), graphMap.getNode("L1X12Y12"));
+        pathfinder.aStarSearch(graphMap.getNode("L1X0000Y0000"), graphMap.getNode("L1X0012Y0012"));
 
     Assertions.assertEquals(tempList, output);
   }

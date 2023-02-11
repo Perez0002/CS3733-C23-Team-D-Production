@@ -55,6 +55,7 @@
                      </font>
                   </MFXButton>
                   <MFXButton fx:id="DBEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Database" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                  <MFXButton fx:id="mapEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Map Editor" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                </children>
             </VBox>
             <Label fx:id="aboutLabel" prefHeight="200.0" prefWidth="450.0" text="This homepage was created by Olivia, the Internal Patient Transportation Request Form by Annie and Mike, the Santiation Services Request Form by Wyatt and Gibson, the Pathtfinding Page by Mike and Olivia, the Navigation Bar by Annie, and the database pages by Bryce." textAlignment="CENTER" wrapText="true">
@@ -62,7 +63,6 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </Label>
-            <MFXButton fx:id="mapEditorButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthLevel="LEVEL1" prefHeight="45.0" prefWidth="250.0" rippleAnimateBackground="false" rippleColor="#bdbdbd" styleClass="homePageButton" text="Map Editor" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
          </children>
          <BorderPane.margin>
             <Insets left="50.0" right="50.0" />
@@ -70,7 +70,7 @@
       </VBox>
    </center>
    <top>
-      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="50.0" prefWidth="350.0" text="Hospital Website Homepage" textAlignment="CENTER" textFill="#19158c" BorderPane.alignment="CENTER">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="50.0" prefWidth="350.0" text="Brigham and Women's Hospital" textAlignment="CENTER" textFill="#19158c" BorderPane.alignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>

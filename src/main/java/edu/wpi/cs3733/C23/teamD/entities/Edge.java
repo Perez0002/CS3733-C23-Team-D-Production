@@ -8,23 +8,11 @@ public class Edge {
   @Id private String edgeID;
 
   @ManyToOne
-  @JoinColumn(
-      name = "fromNode",
-      foreignKey =
-          @ForeignKey(
-              name = "fromNode_id_fk",
-              foreignKeyDefinition =
-                  "FOREIGN KEY (fromNode) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  @JoinColumn(name = "fromNode", foreignKey = @ForeignKey(name = "fromNode_id_fk"))
   Node fromNode;
 
   @ManyToOne
-  @JoinColumn(
-      name = "toNode",
-      foreignKey =
-          @ForeignKey(
-              name = "toNode_id_fk",
-              foreignKeyDefinition =
-                  "FOREIGN KEY (toNode) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  @JoinColumn(name = "toNode", foreignKey = @ForeignKey(name = "toNode_id_fk"))
   Node toNode;
 
   @Transient private double cost;

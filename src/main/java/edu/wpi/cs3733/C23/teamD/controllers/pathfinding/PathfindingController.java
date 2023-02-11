@@ -5,12 +5,12 @@ import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
@@ -33,11 +33,14 @@ public class PathfindingController {
 
   @FXML private Label pathResultText;
 
+  @FXML private BorderPane pathfindingBorderPane;
+
   private RoomPickComboBoxController comboBox;
 
   private boolean helpVisible = false;
 
   private GraphMap mainMap;
+  private MapDrawController pathDrawController;
 
   public PathfindingController() {}
 
@@ -45,6 +48,9 @@ public class PathfindingController {
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
+    pathDrawController = new MapDrawController();
+    pathfindingBorderPane.setCenter(
+        pathDrawController.genMapFromNodesWithEdges(new ArrayList<Node>()));
   }
 
   @FXML
@@ -75,7 +81,6 @@ public class PathfindingController {
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        MapDrawController pathDrawController = new MapDrawController();
         GesturePane sceneNode = pathDrawController.genMapFromNodesWithEdges(path);
         sceneNode
             .animate(Duration.millis(200))
@@ -83,7 +88,7 @@ public class PathfindingController {
                 new Point2D(
                     mainMap.getNode(startNode).getXcoord() - App.getPrimaryStage().getWidth() / 2,
                     mainMap.getNode(endNode).getYcoord() - App.getPrimaryStage().getHeight() / 2));
-        Navigation.navigate(sceneNode);
+        pathfindingBorderPane.setCenter(sceneNode);
       }
     } else {
       pathResultText.setText("Incorrect Node Data Entered");

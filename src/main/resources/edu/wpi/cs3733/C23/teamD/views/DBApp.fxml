@@ -3,8 +3,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.DBcontroller">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.DBcontroller">
    <bottom>
        <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
    </bottom>
@@ -22,22 +23,24 @@
         </columns>
       </TableView>
    </top>
-   <left>
-      <TableView fx:id="moveTable" prefHeight="300.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-         <columns>
-            <TableColumn fx:id="moveNodeID" prefWidth="144.0" styleClass="tableCSS.css" text="nodeID" />
-            <TableColumn fx:id="moveLongName" prefWidth="133.0" styleClass="tableCSS.css" text="longName" />
-            <TableColumn fx:id="moveDate" prefWidth="133.0" styleClass="tableCSS.css" text="moveDate" />
-         </columns>
-      </TableView>
-   </left>
    <center>
-      <TableView fx:id="edgeTable" prefHeight="300.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="edgeID" prefWidth="134.0" styleClass="tableCSS.css" text="EdgeID" />
-          <TableColumn fx:id="startNode" prefWidth="133.0" styleClass="tableCSS.css" text="startNode" />
-            <TableColumn fx:id="endNode" prefWidth="133.0" styleClass="tableCSS.css" text="endNode" />
-        </columns>
-      </TableView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="moveTable" prefHeight="300.0" prefWidth="400.0">
+               <columns>
+                  <TableColumn fx:id="moveNodeID" prefWidth="144.0" styleClass="tableCSS.css" text="nodeID" />
+                  <TableColumn fx:id="moveLongName" prefWidth="133.0" styleClass="tableCSS.css" text="longName" />
+                  <TableColumn fx:id="moveDate" prefWidth="133.0" styleClass="tableCSS.css" text="moveDate" />
+               </columns>
+            </TableView>
+            <TableView fx:id="edgeTable" prefHeight="300.0" prefWidth="400.0">
+              <columns>
+                <TableColumn fx:id="edgeID" prefWidth="134.0" styleClass="tableCSS.css" text="EdgeID" />
+                <TableColumn fx:id="startNode" prefWidth="133.0" styleClass="tableCSS.css" text="startNode" />
+                  <TableColumn fx:id="endNode" prefWidth="133.0" styleClass="tableCSS.css" text="endNode" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
    </center>
 </BorderPane>

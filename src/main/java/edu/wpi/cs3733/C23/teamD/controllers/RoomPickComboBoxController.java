@@ -4,21 +4,21 @@ import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 public class RoomPickComboBoxController {
 
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
-  private HashMap<String, String> nodeToRoomMap;
+  TreeMap<String, String> nodeToRoomMap;
 
   public RoomPickComboBoxController() {
-    nodeToRoomMap = new HashMap<>();
+    nodeToRoomMap = new TreeMap<>();
     ArrayList<Move> moveList = Ddb.createJavaMoves();
     for (Move m : moveList) {
-      String locName = m.getLocation().getLongName();
-      String nodeID = m.getNode().getNodeID();
+      String locName = m.getLocation().getLongName(); // long name
+      String nodeID = m.getNode().getNodeID(); // nodeID
       // TODO: need to figure out how to grab newest record by date
       // most likely will use ORDER-BY in SQL
       nodeToRoomMap.put(locName, nodeID);
