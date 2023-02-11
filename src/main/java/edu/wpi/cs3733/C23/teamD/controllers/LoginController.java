@@ -1,22 +1,15 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.entities.LoginData;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import lombok.Setter;
 
 public class LoginController {
-  FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
-
-  BorderPane p = loader.load();
-
-  RootController rootController = loader.getController();
 
   private boolean helpVisible = false;
   @FXML private Text incorrectUsernameOrPasswordText;
@@ -34,6 +27,8 @@ public class LoginController {
   @FXML private MFXTextField username;
 
   @FXML private MFXTextField password;
+
+  @Setter RootController rootController;
 
   public LoginController() throws IOException {}
 
@@ -59,7 +54,7 @@ public class LoginController {
   @return void
   linked to "Clear" button on SceneBuilder page
   */
-  public void clearFields() {
+  public void clearFields() throws IOException {
     successfulLoginText.setVisible(false);
     incorrectUsernameOrPasswordText.setVisible(false);
     successfulLogoutText.setVisible(false);
@@ -142,6 +137,7 @@ public class LoginController {
       incorrectUsernameOrPasswordText.setVisible(false);
       successfulLogoutText.setVisible(false);
       displayCurrentUser();
+      rootController.checkAccessLevel();
 
     } else {
       successfulLoginText.setVisible(false);
