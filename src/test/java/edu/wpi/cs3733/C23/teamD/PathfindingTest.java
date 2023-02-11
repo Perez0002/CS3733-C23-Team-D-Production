@@ -3,7 +3,7 @@ package edu.wpi.cs3733.C23.teamD;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
-import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.entities.PathfinderAStar;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 
 public class PathfindingTest {
   private GraphMap graphMap;
-  private Pathfinder pathfinder;
+  private PathfinderAStar pathfinder;
 
   @BeforeEach
   public void init() {
     graphMap = new GraphMap();
-    pathfinder = new Pathfinder(graphMap);
+    pathfinder = new PathfinderAStar(graphMap);
     ArrayList<Node> nodeList = new ArrayList<Node>();
     ArrayList<Edge> edgeList = new ArrayList<Edge>();
 

@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import javafx.util.Pair;
 
-public class Pathfinder {
+public class PathfinderAStar {
   private GraphMap fullMap;
 
-  public Pathfinder(GraphMap fullMap) {
+  public PathfinderAStar(GraphMap fullMap) {
     this.fullMap = fullMap;
   }
 

@@ -4,7 +4,7 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
-import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.entities.PathfinderAStar;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -68,7 +68,7 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    Pathfinder PathfinderAStar = new Pathfinder(mainMap);
+    PathfinderAStar PathfinderAStar = new PathfinderAStar(mainMap);
     ArrayList<Node> path = new ArrayList<Node>();
 
     String startNode = startRoomComboBoxController.getNodeValue();
