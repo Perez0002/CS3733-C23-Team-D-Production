@@ -40,7 +40,6 @@ public class PathfindingController {
   private boolean helpVisible = false;
 
   private GraphMap mainMap;
-  private MapDrawController pathDrawController;
 
   public PathfindingController() {}
 
@@ -48,9 +47,7 @@ public class PathfindingController {
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
-    pathDrawController = new MapDrawController();
-    pathfindingBorderPane.setCenter(
-        pathDrawController.genMapFromNodesWithEdges(new ArrayList<Node>()));
+    pathfindingBorderPane.setCenter(MapFactory.startBuild().build());
   }
 
   @FXML
@@ -81,13 +78,15 @@ public class PathfindingController {
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        GesturePane sceneNode = MapFactory.startBuild().withNodes(path).withEdges().build();
+        GesturePane sceneNode =
+            MapFactory.startBuild().withNodes(path).withEdges().onlyStartEnd().build();
         sceneNode
             .animate(Duration.millis(200))
             .centreOn(
                 new Point2D(
                     mainMap.getNode(startNode).getXcoord() - App.getPrimaryStage().getWidth() / 2,
                     mainMap.getNode(endNode).getYcoord() - App.getPrimaryStage().getHeight() / 2));
+
         pathfindingBorderPane.setCenter(sceneNode);
       }
     } else {

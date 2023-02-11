@@ -21,11 +21,13 @@ public class MapFactory {
   protected static final int NODE_HEIGHT = 16; // Node height for node Panes
 
   private boolean withEdges;
+  private boolean onlyStartEnd;
   private ArrayList<Node> nodeList;
   private Function<Node, EventHandler<MouseEvent>> nodeEvent;
 
   private MapFactory() {
     this.withEdges = false;
+    this.onlyStartEnd = false;
     this.nodeList = new ArrayList<Node>();
     this.nodeEvent =
         new Function<Node, EventHandler<MouseEvent>>() {
@@ -61,6 +63,11 @@ public class MapFactory {
     return this;
   }
 
+  public MapFactory onlyStartEnd() {
+    this.onlyStartEnd = true;
+    return this;
+  }
+
   public GesturePane build() {
     AnchorPane anchor = new AnchorPane(); // AnchorPane to hold everything
 
@@ -74,28 +81,69 @@ public class MapFactory {
     Canvas canvas = new Canvas(imageView.getImage().getWidth(), imageView.getImage().getHeight());
     GraphicsContext context = canvas.getGraphicsContext2D();
     anchor.getChildren().add(canvas);
-    // For every Node
-    for (Node node : nodeList) {
-      // Creates popup object
-      MapEditorNodeController mapEditor = new MapEditorNodeController(node);
-      Pane tempPane =
+    if (!this.onlyStartEnd) {
+      // For every Node
+      for (Node node : nodeList) {
+        // Creates popup object
+        MapEditorNodeController mapEditor = new MapEditorNodeController(node);
+        Pane tempPane =
+            MapPaneFactory.startBuild()
+                .posX(node.getXcoord() - NODE_WIDTH / 2)
+                .posY(node.getYcoord() - NODE_HEIGHT / 2)
+                .onClick(this.nodeEvent.apply(node))
+                .onMouseEnter(
+                    e -> {
+                      mapEditor.makePopupAppear();
+                    })
+                .onMouseExit(
+                    e -> {
+                      mapEditor.makePopupDisappear();
+                    })
+                .paneID(node.getNodeID() + "_pane")
+                .build();
+
+        // Make a new Pane, set it's onclick to a passed in function, and add it to the AnchorPane
+        anchor.getChildren().add(tempPane);
+      }
+    } else {
+      System.out.println("In else!");
+      MapEditorNodeController startNodePopup = new MapEditorNodeController(nodeList.get(0));
+      MapEditorNodeController endNodePopup =
+          new MapEditorNodeController(nodeList.get(nodeList.size() - 1));
+      Pane startPane =
           MapPaneFactory.startBuild()
-              .posX(node.getXcoord() - NODE_WIDTH / 2)
-              .posY(node.getYcoord() - NODE_HEIGHT / 2)
-              .onClick(this.nodeEvent.apply(node))
+              .posX(nodeList.get(0).getXcoord() - NODE_WIDTH / 2)
+              .posY(nodeList.get(0).getYcoord() - NODE_HEIGHT / 2)
+              .onClick(this.nodeEvent.apply(nodeList.get(0)))
               .onMouseEnter(
-                  e -> {
-                    mapEditor.makePopupAppear();
+                  event -> {
+                    startNodePopup.makePopupAppear();
                   })
               .onMouseExit(
-                  e -> {
-                    mapEditor.makePopupDisappear();
+                  event -> {
+                    startNodePopup.makePopupDisappear();
                   })
-              .paneID(node.getNodeID() + "_pane")
+              .paneID(nodeList.get(0).getNodeID() + "_pane")
+              .build();
+      Pane endPane =
+          MapPaneFactory.startBuild()
+              .posX(nodeList.get(nodeList.size() - 1).getXcoord() - NODE_WIDTH / 2)
+              .posY(nodeList.get(nodeList.size() - 1).getYcoord() - NODE_HEIGHT / 2)
+              .onClick(this.nodeEvent.apply(nodeList.get(nodeList.size() - 1)))
+              .onMouseEnter(
+                  event -> {
+                    endNodePopup.makePopupAppear();
+                  })
+              .onMouseExit(
+                  event -> {
+                    endNodePopup.makePopupDisappear();
+                  })
+              .paneID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
               .build();
 
-      // Make a new Pane, set it's onclick to a passed in function, and add it to the AnchorPane
-      anchor.getChildren().add(tempPane);
+      anchor.getChildren().add(startPane);
+      anchor.getChildren().add(endPane);
+      System.out.println(anchor.getChildren().size());
     }
 
     if (this.withEdges) {

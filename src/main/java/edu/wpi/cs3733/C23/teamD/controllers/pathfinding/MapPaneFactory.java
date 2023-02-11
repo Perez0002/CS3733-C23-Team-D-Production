@@ -20,20 +20,20 @@ public class MapPaneFactory {
   private MapPaneFactory() {
     this.xPos = -1;
     this.yPos = -1;
-    this.width = -1;
-    this.height = -1;
+    this.width = 16;
+    this.height = 16;
     this.onClick = null;
     this.onMouseEnter = null;
     this.onMouseExit = null;
-    this.style = "";
+    this.style = "-fx-background-color: '#012C03'";
     this.paneID = "";
   }
 
-  public static MapPaneFactory  startBuild()
-  {
+  public static MapPaneFactory startBuild() {
     final MapPaneFactory returnable = new MapPaneFactory();
     return returnable;
   }
+
   public MapPaneFactory posX(int xPos) {
     this.xPos = xPos;
     return this;
