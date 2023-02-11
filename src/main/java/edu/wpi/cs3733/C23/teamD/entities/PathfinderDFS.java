@@ -48,6 +48,7 @@ public class PathfinderDFS {
           currentNode = Visited.get((Visited.size() - rollbackCount));
           rollbackCount++;
         }
+
       }
     }
 
