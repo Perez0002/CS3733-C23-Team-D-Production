@@ -3,24 +3,23 @@ package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import jakarta.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
 import org.hibernate.Session;
 
-public class EdgeDaoImpl implements DaoPlus<Edge> {
-  private Session session = Ddb.getDBsession();
+import java.util.ArrayList;
+import java.util.stream.IntStream;
+
+public class EdgeIDaoImpl implements IDao<Edge> {
+  private final Session session = Ddb.getDBsession();
+
+  private ArrayList<Edge> edges = new ArrayList<>();
+
+  public EdgeIDaoImpl() {
+    this.refresh();
+  }
 
   @Override
   public Edge get(Edge e) {
-    Edge eq = null;
-    session.beginTransaction();
-    try {
-      eq = session.get(Edge.class, e.getEdgeID());
-      session.getTransaction().commit();
-    } catch (Exception ex) {
-      session.getTransaction().rollback();
-    }
-    return eq;
+    return this.edges.stream().filter(edge -> e.getEdgeID().equals(edge.getEdgeID())).findFirst().orElse(null);
   }
 
   @Override
@@ -29,6 +28,9 @@ public class EdgeDaoImpl implements DaoPlus<Edge> {
     try {
       session.persist(e);
       session.getTransaction().commit();
+
+      this.edges.add(e);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
@@ -40,23 +42,37 @@ public class EdgeDaoImpl implements DaoPlus<Edge> {
     try {
       session.merge(e);
       session.getTransaction().commit();
+
+      int index = IntStream.range(0, this.edges.size())
+              .filter(i -> this.edges.get(i).getEdgeID().equals(e.getEdgeID()))
+              .findFirst()
+              .orElse(-1);
+
+      this.edges.remove(index);
+      this.edges.add(e);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
   }
 
   @Override
-  public List<Edge> getAll() {
-    ArrayList<Edge> javaEdges = null;
+  public ArrayList<Edge> getAll() {
+    return this.edges;
+  }
+
+  @Override
+  public void refresh() {
+    ArrayList<Edge> javaEdges;
     session.beginTransaction();
     try {
       javaEdges =
-          (ArrayList<Edge>) session.createQuery("SELECT e FROM Edge e", Edge.class).getResultList();
+              (ArrayList<Edge>) session.createQuery("SELECT e FROM Edge e", Edge.class).getResultList();
       session.getTransaction().commit();
+      this.edges = javaEdges;
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
-    return javaEdges;
   }
 
   @Override
@@ -67,6 +83,9 @@ public class EdgeDaoImpl implements DaoPlus<Edge> {
       q.setParameter("id", e.getEdgeID());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
+
+      this.edges.remove(e);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
