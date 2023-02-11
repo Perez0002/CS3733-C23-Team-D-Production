@@ -3,58 +3,54 @@ package edu.wpi.cs3733.C23.teamD.entities;
 import java.util.ArrayList;
 
 public class PathfinderDFS {
-    private GraphMap fullMap;
-    public PathfinderDFS(GraphMap fullMap) {
-        this.fullMap = fullMap;
-    }
+  private GraphMap fullMap;
 
-    public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
-        this.fullMap.init(nodeList, edgeList);
-    }
+  public PathfinderDFS(GraphMap fullMap) {
+    this.fullMap = fullMap;
+  }
 
-    public void initFromDB() {
-        this.fullMap.initFromDB();
-    }
+  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
+    this.fullMap.init(nodeList, edgeList);
+  }
 
-    public ArrayList<Node> depthFirstSearch(Node startNode, Node endNode) {
-        ArrayList<Node> Path = new ArrayList<Node>();
-        ArrayList<Node> Visited = new ArrayList<Node>();
-        ArrayList<Edge> Neighbors = new ArrayList<Edge>();
-        Node currentNode = startNode;
-        int rollbackCount = 1;
+  public void initFromDB() {
+    this.fullMap.initFromDB();
+  }
 
-        while (!currentNode.getNodeID().equals(endNode.getNodeID())) {
-            // Neighbors.clear();
+  public ArrayList<Node> depthFirstSearch(Node startNode, Node endNode) {
+    ArrayList<Node> Path = new ArrayList<Node>();
+    ArrayList<Node> Visited = new ArrayList<Node>();
+    ArrayList<Edge> Neighbors = new ArrayList<Edge>();
+    Node currentNode = startNode;
+    int rollbackCount = 1;
 
-            Neighbors = (ArrayList<Edge>) currentNode.getNodeEdges().clone();
+    while (!currentNode.getNodeID().equals(endNode.getNodeID())) {
+      // Neighbors.clear();
 
-            for (int i = 0; i < Neighbors.size(); i++) {
-                // if the edge leads to an unvisited node: Make it the new current node
+      Neighbors = (ArrayList<Edge>) currentNode.getNodeEdges().clone();
 
-                if (!Visited.contains(Neighbors.get(i).getToNode())) {
-                    rollbackCount = 1;
-                    currentNode = Neighbors.get(i).getToNode();
-                    Visited.add(currentNode);
-                    Path.add(currentNode);
-                    break;
-                }
+      for (int i = 0; i < Neighbors.size(); i++) {
+        // if the edge leads to an unvisited node: Make it the new current node
 
-                // If the current node has no unvisited neighbors, go back through visited until we find one
-                // that does. Assign it to be the new current node
-                else if (i == (Neighbors.size() - 1)) {
-                    // Visited.add(currentNode);
-                    Path.remove(currentNode);
-                    currentNode = Visited.get((Visited.size() - rollbackCount));
-                    rollbackCount++;
-                }
-            }
+        if (!Visited.contains(Neighbors.get(i).getToNode())) {
+          rollbackCount = 1;
+          currentNode = Neighbors.get(i).getToNode();
+          Visited.add(currentNode);
+          Path.add(currentNode);
+          break;
         }
 
-        return Path;
+        // If the current node has no unvisited neighbors, go back through visited until we find one
+        // that does. Assign it to be the new current node
+        else if (i == (Neighbors.size() - 1)) {
+          // Visited.add(currentNode);
+          Path.remove(currentNode);
+          currentNode = Visited.get((Visited.size() - rollbackCount));
+          rollbackCount++;
+        }
+      }
     }
-}
 
-
-
-
+    return Path;
+  }
 }
