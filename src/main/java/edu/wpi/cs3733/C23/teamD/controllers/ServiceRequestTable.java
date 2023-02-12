@@ -85,8 +85,7 @@ public class ServiceRequestTable extends Application implements Initializable {
               ServiceRequest form = event.getRowValue();
               String newStatus = event.getNewValue();
               try {
-                ServiceRequest.Status stat1 =
-                    Enum.valueOf(ServiceRequest.Status.class, newStatus);
+                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
                 Ddb.updateObj(form);
               } catch (IllegalArgumentException e) {

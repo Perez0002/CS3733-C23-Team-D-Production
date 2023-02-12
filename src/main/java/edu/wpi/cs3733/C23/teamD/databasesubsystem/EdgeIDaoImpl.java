@@ -2,10 +2,9 @@ package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import jakarta.persistence.Query;
-import org.hibernate.Session;
-
 import java.util.ArrayList;
 import java.util.stream.IntStream;
+import org.hibernate.Session;
 
 public class EdgeIDaoImpl implements IDao<Edge> {
   private final Session session = DBSingleton.getSession();
@@ -18,7 +17,10 @@ public class EdgeIDaoImpl implements IDao<Edge> {
 
   @Override
   public Edge get(Edge e) {
-    return this.edges.stream().filter(edge -> e.getEdgeID().equals(edge.getEdgeID())).findFirst().orElse(null);
+    return this.edges.stream()
+        .filter(edge -> e.getEdgeID().equals(edge.getEdgeID()))
+        .findFirst()
+        .orElse(null);
   }
 
   @Override
@@ -42,7 +44,8 @@ public class EdgeIDaoImpl implements IDao<Edge> {
       session.merge(e);
       session.getTransaction().commit();
 
-      int index = IntStream.range(0, this.edges.size())
+      int index =
+          IntStream.range(0, this.edges.size())
               .filter(i -> this.edges.get(i).getEdgeID().equals(e.getEdgeID()))
               .findFirst()
               .orElse(-1);
@@ -66,7 +69,7 @@ public class EdgeIDaoImpl implements IDao<Edge> {
     session.beginTransaction();
     try {
       javaEdges =
-              (ArrayList<Edge>) session.createQuery("SELECT e FROM Edge e", Edge.class).getResultList();
+          (ArrayList<Edge>) session.createQuery("SELECT e FROM Edge e", Edge.class).getResultList();
       session.getTransaction().commit();
       this.edges = javaEdges;
     } catch (Exception ex) {

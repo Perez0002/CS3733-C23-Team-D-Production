@@ -5,7 +5,6 @@ import edu.wpi.cs3733.C23.teamD.entities.Node;
 import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
-
 import org.hibernate.Session;
 
 public class NodeIDaoImpl implements IDao<Node> {
@@ -16,13 +15,20 @@ public class NodeIDaoImpl implements IDao<Node> {
   public NodeIDaoImpl() {
     this.refresh();
   }
+
   @Override
   public Node get(Node n) {
-    return this.nodes.stream().filter(node -> n.getNodeID().equals(node.getNodeID())).findFirst().orElse(null);
+    return this.nodes.stream()
+        .filter(node -> n.getNodeID().equals(node.getNodeID()))
+        .findFirst()
+        .orElse(null);
   }
 
   public Node get(String nodeID) {
-    return this.nodes.stream().filter(node -> nodeID.equals(node.getNodeID())).findFirst().orElse(null);
+    return this.nodes.stream()
+        .filter(node -> nodeID.equals(node.getNodeID()))
+        .findFirst()
+        .orElse(null);
   }
 
   @Override
@@ -46,7 +52,8 @@ public class NodeIDaoImpl implements IDao<Node> {
       session.merge(n);
       session.getTransaction().commit();
 
-      int index = IntStream.range(0, this.nodes.size())
+      int index =
+          IntStream.range(0, this.nodes.size())
               .filter(i -> this.nodes.get(i).getNodeID().equals(n.getNodeID()))
               .findFirst()
               .orElse(-1);
@@ -70,7 +77,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     session.beginTransaction();
     try {
       javaNodes =
-              (ArrayList<Node>) session.createQuery("SELECT n FROM Node n", Node.class).getResultList();
+          (ArrayList<Node>) session.createQuery("SELECT n FROM Node n", Node.class).getResultList();
       session.getTransaction().commit();
       this.nodes = javaNodes;
     } catch (Exception ex) {

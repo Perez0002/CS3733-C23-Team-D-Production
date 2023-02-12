@@ -11,7 +11,8 @@ public class ComputerServiceRequest extends ServiceRequest {
     super(staff, stat, reason, "ComputerService");
   }
 
-  public ComputerServiceRequest(int serviceID, String reason, String staff, Status stat, Date date) {
+  public ComputerServiceRequest(
+      int serviceID, String reason, String staff, Status stat, Date date) {
     super(serviceID, staff, stat, reason, "ComputerService", date);
   }
 }

@@ -75,15 +75,13 @@ public class SanitationTable extends Application implements Initializable {
     if (requestList.size() != 0) {
       formID.setCellValueFactory(
           new PropertyValueFactory<SanitationRequest, Integer>("serviceRequestId"));
-      location.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequest, String>("location"));
+      location.setCellValueFactory(new PropertyValueFactory<SanitationRequest, String>("location"));
       reason.setCellValueFactory(new PropertyValueFactory<SanitationRequest, String>("reason"));
       bioLevel.setCellValueFactory(
           new PropertyValueFactory<SanitationRequest, Integer>("bioLevel"));
       status.setCellValueFactory(
           new Callback<
-              TableColumn.CellDataFeatures<SanitationRequest, String>,
-              ObservableValue<String>>() {
+              TableColumn.CellDataFeatures<SanitationRequest, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(
                 TableColumn.CellDataFeatures<SanitationRequest, String> param) {
@@ -100,8 +98,7 @@ public class SanitationTable extends Application implements Initializable {
               SanitationRequest form = event.getRowValue();
               String newStatus = event.getNewValue();
               try {
-                ServiceRequest.Status stat1 =
-                    Enum.valueOf(ServiceRequest.Status.class, newStatus);
+                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
                 Ddb.updateObj(form);
               } catch (IllegalArgumentException e) {
@@ -110,8 +107,7 @@ public class SanitationTable extends Application implements Initializable {
             }
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());
-      date.setCellValueFactory(
-          new PropertyValueFactory<SanitationRequest, Date>("dateAndTime"));
+      date.setCellValueFactory(new PropertyValueFactory<SanitationRequest, Date>("dateAndTime"));
     }
     sanitationTable.setItems(requestList);
     sanitationTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);

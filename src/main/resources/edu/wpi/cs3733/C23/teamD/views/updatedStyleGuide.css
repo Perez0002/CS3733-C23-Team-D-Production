@@ -65,3 +65,7 @@
     -fx-text-fill: #012D5A;
     -fx-border-color: #012D5A;
 }
+
+#loginBorderPane {
+    -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+}

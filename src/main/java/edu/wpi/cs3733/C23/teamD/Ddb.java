@@ -130,8 +130,7 @@ public class Ddb {
   public static ArrayList<SanitationRequest> createSanitationRequestList() {
     DBsession.beginTransaction();
     ArrayList<SanitationRequest> sanitationReqList =
-        new ArrayList<>(
-            DBsession.createQuery("SELECT s FROM SanitationRequest s").getResultList());
+        new ArrayList<>(DBsession.createQuery("SELECT s FROM SanitationRequest s").getResultList());
     DBsession.getTransaction().commit();
     return sanitationReqList;
   }
@@ -139,8 +138,7 @@ public class Ddb {
   public static ArrayList<ServiceRequest> createServiceList() {
     DBsession.beginTransaction();
     ArrayList<ServiceRequest> serviceRequests =
-        new ArrayList<>(
-            DBsession.createQuery("SELECT s FROM ServiceRequest s").getResultList());
+        new ArrayList<>(DBsession.createQuery("SELECT s FROM ServiceRequest s").getResultList());
     DBsession.getTransaction().commit();
     return serviceRequests;
   }

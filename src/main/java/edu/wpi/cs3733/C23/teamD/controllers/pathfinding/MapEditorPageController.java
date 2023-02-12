@@ -13,7 +13,6 @@ import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
