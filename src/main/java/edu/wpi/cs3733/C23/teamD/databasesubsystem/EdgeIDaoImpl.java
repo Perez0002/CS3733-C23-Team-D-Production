@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
