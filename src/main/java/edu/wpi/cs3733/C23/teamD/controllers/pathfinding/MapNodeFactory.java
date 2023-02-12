@@ -6,8 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class MapNodeFactory
-{
+public class MapNodeFactory {
 
   private int xPos;
   private int yPos;
@@ -32,6 +31,7 @@ public class MapNodeFactory
 
   /**
    * Begins the building process
+   *
    * @return A MapNodeFactory to chain off of
    */
   public static MapNodeFactory startBuild() {
@@ -41,6 +41,7 @@ public class MapNodeFactory
 
   /**
    * Begins the building process with a preset for PathNode representation
+   *
    * @return A MapNodeFactory to chain off of
    */
   public static MapNodeFactory startPathBuild() {
@@ -79,7 +80,6 @@ public class MapNodeFactory
   }
 
   /**
-   *
    * @param radius The radius for the MapNode to be
    * @return a MapNodeFactory with these settings
    */
@@ -89,7 +89,6 @@ public class MapNodeFactory
   }
 
   /**
-   *
    * @param onClick An event to be run when the MapNode is clicked
    * @return a MapNodeFactory with these settings
    */
@@ -99,7 +98,6 @@ public class MapNodeFactory
   }
 
   /**
-   *
    * @param onMouseEnter An event to be run when the mouse enters the MapNode
    * @return a MapNodeFactory with these settings
    */
@@ -109,7 +107,6 @@ public class MapNodeFactory
   }
 
   /**
-   *
    * @param onMouseExit An event to be run when the mouse exits the MapNode
    * @return a MapNodeFactory with these settings
    */
@@ -119,7 +116,6 @@ public class MapNodeFactory
   }
 
   /**
-   *
    * @param color The Color to set the MapNode to
    * @return a MapNodeFactory with these settings
    */
@@ -129,7 +125,6 @@ public class MapNodeFactory
   }
 
   /**
-   *
    * @param nodeID an ID to set the MapNode to
    * @return a MapNodeFactory with these settings
    */
@@ -140,6 +135,7 @@ public class MapNodeFactory
 
   /**
    * Finishes the building process and makes a new Node object
+   *
    * @return the Circle corresponding to the settings given to the MapNodeFactory
    */
   public Node build() {
@@ -152,6 +148,7 @@ public class MapNodeFactory
     returnable.setOnMouseExited(this.onMouseExit);
     returnable.setFill(this.color);
     returnable.setId(this.nodeID);
+    returnable.setCache(false);
     return returnable;
   }
 }

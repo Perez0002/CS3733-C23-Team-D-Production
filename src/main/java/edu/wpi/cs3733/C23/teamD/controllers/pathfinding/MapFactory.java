@@ -2,7 +2,6 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
-
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -232,6 +231,11 @@ public class MapFactory {
       context.setLineWidth(1);
       context.strokeText("END", lastNode.getXcoord(), lastNode.getYcoord() - 10, 40);
     }
+    listOfImages[0].setCache(false);
+    listOfImages[1].setCache(false);
+    listOfImages[2].setCache(false);
+    listOfImages[3].setCache(false);
+    listOfImages[4].setCache(false);
     // Return the GesturePane
     return listOfMaps;
   }
