@@ -72,6 +72,12 @@ public class Edge {
         Math.sqrt(
             Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
                 + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
+    if(getToNode().getLocationType().equals("ELEV")&&getFromNode().getLocationType().equals("ELEV")){
+      this.cost=500;
+    }
+    else if(getToNode().getLocationType().equals("STAI")&&getFromNode().getLocationType().equals("STAI")){
+      this.cost=1500;
+    }
   }
 
   @Override
