@@ -4,7 +4,7 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
-import edu.wpi.cs3733.C23.teamD.entities.PathfinderAStar;
+import edu.wpi.cs3733.C23.teamD.entities.PathfinderBFS;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -68,14 +68,15 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    PathfinderAStar PathfinderAStar = new PathfinderAStar(mainMap);
+    PathfinderBFS PathfinderAStar = new PathfinderBFS(mainMap);
     ArrayList<Node> path = new ArrayList<Node>();
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
 
     if (startNode != null && endNode != null) {
-      path = PathfinderAStar.aStarSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
+      path =
+          PathfinderAStar.breadthFirstSearch(mainMap.getNode(startNode), mainMap.getNode(endNode));
       if (path.size() == 1) {
         pathResultText.setText("The Chosen Start and End Locations are Identical");
       } else if (path.size() == 0) {

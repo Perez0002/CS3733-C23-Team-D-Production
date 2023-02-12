@@ -28,6 +28,7 @@ public class PathfinderBFS {
     frontier.add(currentNode);
     while (!frontier.isEmpty()) {
       frontier.remove(currentNode);
+      visited.add(currentNode);
       if (currentNode.equals(endNode)) {
         path.add(currentNode);
         while (!currentNode.equals(startNode)) {
@@ -38,8 +39,10 @@ public class PathfinderBFS {
         return path;
       }
       for (Edge edge : currentNode.getNodeEdges()) {
-        frontier.add(edge.getToNode());
-        nodeParentMap.put(edge.getToNode(), currentNode);
+        if (visited.contains(edge.getToNode())) {
+          frontier.add(edge.getToNode());
+          nodeParentMap.put(edge.getToNode(), currentNode);
+        }
       }
       currentNode = frontier.get(0);
     }
