@@ -80,8 +80,10 @@ public class PatientTransportTable extends Application implements Initializable 
           new PropertyValueFactory<PatientTransportRequest, Integer>("serviceRequestId"));
       patientID.setCellValueFactory(
           new PropertyValueFactory<PatientTransportRequest, String>("patientID"));
-      reason.setCellValueFactory(new PropertyValueFactory<PatientTransportRequest, String>("reason"));
-      date.setCellValueFactory(new PropertyValueFactory<PatientTransportRequest, Date>("dateAndTime"));
+      reason.setCellValueFactory(
+          new PropertyValueFactory<PatientTransportRequest, String>("reason"));
+      date.setCellValueFactory(
+          new PropertyValueFactory<PatientTransportRequest, Date>("dateAndTime"));
       startRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportRequest, String>("startRoom"));
       status.setCellValueFactory(
@@ -101,8 +103,7 @@ public class PatientTransportTable extends Application implements Initializable 
               PatientTransportRequest form = event.getRowValue();
               String newStatus = event.getNewValue();
               try {
-                ServiceRequest.Status stat1 =
-                    Enum.valueOf(ServiceRequest.Status.class, newStatus);
+                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
                 Ddb.updateObj(form);
               } catch (IllegalArgumentException e) {

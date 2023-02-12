@@ -1,165 +1,168 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.*;
-
 import java.util.ArrayList;
 
 public class FDdb {
-    private static final FDdb instance = new FDdb();
+  private static final FDdb instance = new FDdb();
 
-    private final EdgeIDaoImpl edgeIDao;
-    private final NodeIDaoImpl nodeIDao;
-    private final LocationNameIDaoImpl locationNameIDao;
-    private final MoveIDaoImpl moveIDao;
+  private final EdgeIDaoImpl edgeIDao;
+  private final NodeIDaoImpl nodeIDao;
+  private final LocationNameIDaoImpl locationNameIDao;
+  private final MoveIDaoImpl moveIDao;
 
-    private final ServiceRequestIDaoImpl serviceRequestIDao;
+  private final ServiceRequestIDaoImpl serviceRequestIDao;
 
-    private FDdb() {
-        this.edgeIDao = new EdgeIDaoImpl();
-        this.nodeIDao = new NodeIDaoImpl();
-        this.locationNameIDao = new LocationNameIDaoImpl();
-        this.moveIDao = new MoveIDaoImpl();
-        this.serviceRequestIDao = new ServiceRequestIDaoImpl();
-    }
+  private FDdb() {
+    this.edgeIDao = new EdgeIDaoImpl();
+    this.nodeIDao = new NodeIDaoImpl();
+    this.locationNameIDao = new LocationNameIDaoImpl();
+    this.moveIDao = new MoveIDaoImpl();
+    this.serviceRequestIDao = new ServiceRequestIDaoImpl();
+  }
 
-    public static FDdb getInstance() {
-        return instance;
-    }
+  public static FDdb getInstance() {
+    return instance;
+  }
 
+  // nodeDao wrapper methods
+  public Node getNode(Node n) {
+    return nodeIDao.get(n);
+  }
 
+  public Node getNode(String nodeID) {
+    return nodeIDao.get(nodeID);
+  }
 
-    // nodeDao wrapper methods
-    public Node getNode(Node n) {
-        return nodeIDao.get(n);
-    }
+  public ArrayList<Node> getAllNodes() {
+    return nodeIDao.getAll();
+  }
 
-    public Node getNode(String nodeID) {
-        return nodeIDao.get(nodeID);
-    }
+  public void saveNode(Node n) {
+    nodeIDao.save(n);
+  }
 
-    public ArrayList<Node> getAllNodes() {
-        return nodeIDao.getAll();
-    }
+  public void updateNode(Node n) {
+    nodeIDao.update(n);
+  }
 
-    public void saveNode(Node n) {
-        nodeIDao.save(n);
-    }
+  public void deleteNode(Node n) {
+    nodeIDao.delete(n);
+  }
 
-    public void updateNode(Node n) {
-        nodeIDao.update(n);
-    }
+  public void nodeEdgeSwap(Node oldNode, Node newNode) {
+    nodeIDao.nodeEdgeSwap(oldNode, newNode);
+  }
 
-    public void deleteNode(Node n) {
-        nodeIDao.delete(n);
-    }
+  public void refreshNodes() {
+    nodeIDao.refresh();
+  }
 
-    public void nodeEdgeSwap(Node oldNode, Node newNode) {
-        nodeIDao.nodeEdgeSwap(oldNode, newNode);
-    }
+  // edgeDao wrapper methods
+  public Edge getEdge(Edge e) {
+    return edgeIDao.get(e);
+  }
 
-    public void refreshNodes() { nodeIDao.refresh(); }
+  public ArrayList<Edge> getAllEdges() {
+    return edgeIDao.getAll();
+  }
 
+  public void saveEdge(Edge e) {
+    edgeIDao.save(e);
+  }
 
+  public void updateEdge(Edge e) {
+    edgeIDao.update(e);
+  }
 
-    // edgeDao wrapper methods
-    public Edge getEdge(Edge e) {
-        return edgeIDao.get(e);
-    }
+  public void deleteEdge(Edge e) {
+    edgeIDao.delete(e);
+  }
 
-    public ArrayList<Edge> getAllEdges() {
-        return edgeIDao.getAll();
-    }
+  public void refreshEdges() {
+    edgeIDao.refresh();
+  }
 
-    public void saveEdge(Edge e) {
-        edgeIDao.save(e);
-    }
+  // locationNameDao wrapper methods
+  public LocationName getNode(LocationName l) {
+    return locationNameIDao.get(l);
+  }
 
-    public void updateEdge(Edge e) {
-        edgeIDao.update(e);
-    }
+  public ArrayList<LocationName> getAllLocationNames() {
+    return locationNameIDao.getAll();
+  }
 
-    public void deleteEdge(Edge e) {
-        edgeIDao.delete(e);
-    }
+  public void saveLocationName(LocationName l) {
+    locationNameIDao.save(l);
+  }
 
-    public void refreshEdges() { edgeIDao.refresh(); }
+  public void updateLocationName(LocationName l) {
+    locationNameIDao.update(l);
+  }
 
+  public void deleteLocationName(LocationName l) {
+    locationNameIDao.delete(l);
+  }
 
+  public void refreshLocationNames() {
+    locationNameIDao.refresh();
+  }
 
-    // locationNameDao wrapper methods
-    public LocationName getNode(LocationName l) {
-        return locationNameIDao.get(l);
-    }
+  // moveDao wrapper methods
+  public Move getMove(Move m) {
+    return moveIDao.get(m);
+  }
 
-    public ArrayList<LocationName> getAllLocationNames() {
-        return locationNameIDao.getAll();
-    }
+  public ArrayList<Move> getAllMoves() {
+    return moveIDao.getAll();
+  }
 
-    public void saveLocationName(LocationName l) {
-        locationNameIDao.save(l);
-    }
+  public void saveMove(Move m) {
+    moveIDao.save(m);
+  }
 
-    public void updateLocationName(LocationName l) {
-        locationNameIDao.update(l);
-    }
+  public void updateMove(Move m) {
+    moveIDao.update(m);
+  }
 
-    public void deleteLocationName(LocationName l) {
-        locationNameIDao.delete(l);
-    }
+  public void deleteMove(Move m) {
+    moveIDao.delete(m);
+  }
 
-    public void refreshLocationNames() { locationNameIDao.refresh(); }
+  public void refreshMoves() {
+    serviceRequestIDao.refresh();
+  }
 
+  // ServiceRequestDao wrappers
+  public ServiceRequest getServiceRequest(ServiceRequest s) {
+    return serviceRequestIDao.get(s);
+  }
 
+  public ArrayList<ServiceRequest> getAllGenericServiceRequests() {
+    return serviceRequestIDao.getAll();
+  }
 
-    // moveDao wrapper methods
-    public Move getMove(Move m) {
-        return moveIDao.get(m);
-    }
+  public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() {
+    return serviceRequestIDao.getAllPatientTransportRequests();
+  }
 
-    public ArrayList<Move> getAllMoves() {
-        return moveIDao.getAll();
-    }
+  public ArrayList<SanitationRequest> getAllSanitationRequest() {
+    return serviceRequestIDao.getAllSanitationRequests();
+  }
 
-    public void saveMove(Move m) {
-        moveIDao.save(m);
-    }
+  public void saveServiceRequest(ServiceRequest s) {
+    serviceRequestIDao.save(s);
+  }
 
-    public void updateMove(Move m) {
-        moveIDao.update(m);
-    }
+  public void updateServiceRequest(ServiceRequest s) {
+    serviceRequestIDao.update(s);
+  }
 
-    public void deleteMove(Move m) {
-         moveIDao.delete(m);
-    }
+  public void deleteServiceRequest(ServiceRequest s) {
+    serviceRequestIDao.delete(s);
+  }
 
-    public void refreshMoves() { serviceRequestIDao.refresh(); }
-
-
-
-    // ServiceRequestDao wrappers
-    public ServiceRequest getServiceRequest(ServiceRequest s) {
-        return serviceRequestIDao.get(s);
-    }
-
-    public ArrayList<ServiceRequest> getAllGenericServiceRequests() {
-        return serviceRequestIDao.getAll();
-    }
-
-    public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() { return serviceRequestIDao.getAllPatientTransportRequests(); }
-
-    public ArrayList<SanitationRequest> getAllSanitationRequest() { return serviceRequestIDao.getAllSanitationRequests(); }
-
-    public void saveServiceRequest(ServiceRequest s) {
-        serviceRequestIDao.save(s);
-    }
-
-    public void updateServiceRequest(ServiceRequest s) {
-        serviceRequestIDao.update(s);
-    }
-
-    public void deleteServiceRequest(ServiceRequest s) {
-        serviceRequestIDao.delete(s);
-    }
-
-    public void refreshServiceRequests() { serviceRequestIDao.refresh(); }
+  public void refreshServiceRequests() {
+    serviceRequestIDao.refresh();
+  }
 }

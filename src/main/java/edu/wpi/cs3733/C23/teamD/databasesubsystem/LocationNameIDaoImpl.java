@@ -2,10 +2,9 @@ package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import jakarta.persistence.Query;
-import org.hibernate.Session;
-
 import java.util.ArrayList;
 import java.util.stream.IntStream;
+import org.hibernate.Session;
 
 public class LocationNameIDaoImpl implements IDao<LocationName> {
   private final Session session = DBSingleton.getSession();
@@ -18,7 +17,10 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
 
   @Override
   public LocationName get(LocationName l) {
-    return this.locationNames.stream().filter(locationName -> l.getLongName().equals(locationName.getLongName())).findFirst().orElse(null);
+    return this.locationNames.stream()
+        .filter(locationName -> l.getLongName().equals(locationName.getLongName()))
+        .findFirst()
+        .orElse(null);
   }
 
   @Override
@@ -42,7 +44,8 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
       session.merge(l);
       session.getTransaction().commit();
 
-      int index = IntStream.range(0, this.locationNames.size())
+      int index =
+          IntStream.range(0, this.locationNames.size())
               .filter(i -> this.locationNames.get(i).getLongName().equals(l.getLongName()))
               .findFirst()
               .orElse(-1);
@@ -79,10 +82,10 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
     session.beginTransaction();
     try {
       javaLocationNames =
-              (ArrayList<LocationName>)
-                      session
-                              .createQuery("SELECT l FROM LocationName l", LocationName.class)
-                              .getResultList();
+          (ArrayList<LocationName>)
+              session
+                  .createQuery("SELECT l FROM LocationName l", LocationName.class)
+                  .getResultList();
       session.getTransaction().commit();
       this.locationNames = javaLocationNames;
     } catch (Exception ex) {
