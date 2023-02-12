@@ -2,10 +2,6 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameDaoImpl;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveDaoImpl;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeDaoImpl;
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
@@ -255,7 +251,7 @@ public class MapEditorPageController {
       locDao.save(loc);
       nodeDao.save(newNode);
       moveDao.save(move);
-    } else if (mode == 3) {
+    } else if (mode == SubmitMode.ADD_LOCATION) {
       // Add Location
       LocationName loc =
           new LocationName(
