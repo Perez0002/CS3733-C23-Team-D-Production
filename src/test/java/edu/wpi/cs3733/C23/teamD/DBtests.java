@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.entities.LocationName;
-import edu.wpi.cs3733.C23.teamD.entities.Move;
-import edu.wpi.cs3733.C23.teamD.entities.Node;
+import edu.wpi.cs3733.C23.teamD.entities.*;
 
 import java.util.ArrayList;
 
@@ -15,11 +12,14 @@ public class FDdb {
     private final LocationNameIDaoImpl locationNameIDao;
     private final MoveIDaoImpl moveIDao;
 
+    private final ServiceRequestIDaoImpl serviceRequestIDao;
+
     private FDdb() {
         this.edgeIDao = new EdgeIDaoImpl();
         this.nodeIDao = new NodeIDaoImpl();
         this.locationNameIDao = new LocationNameIDaoImpl();
         this.moveIDao = new MoveIDaoImpl();
+        this.serviceRequestIDao = new ServiceRequestIDaoImpl();
     }
 
     public static FDdb getInstance() {
@@ -57,6 +57,8 @@ public class FDdb {
         nodeIDao.nodeEdgeSwap(oldNode, newNode);
     }
 
+    public void refreshNodes() { nodeIDao.refresh(); }
+
 
 
     // edgeDao wrapper methods
@@ -79,6 +81,8 @@ public class FDdb {
     public void deleteEdge(Edge e) {
         edgeIDao.delete(e);
     }
+
+    public void refreshEdges() { edgeIDao.refresh(); }
 
 
 
@@ -103,6 +107,8 @@ public class FDdb {
         locationNameIDao.delete(l);
     }
 
+    public void refreshLocationNames() { locationNameIDao.refresh(); }
+
 
 
     // moveDao wrapper methods
@@ -125,4 +131,35 @@ public class FDdb {
     public void deleteMove(Move m) {
          moveIDao.delete(m);
     }
+
+    public void refreshMoves() { serviceRequestIDao.refresh(); }
+
+
+
+    // ServiceRequestDao wrappers
+    public ServiceRequest getServiceRequest(ServiceRequest s) {
+        return serviceRequestIDao.get(s);
+    }
+
+    public ArrayList<ServiceRequest> getAllGenericServiceRequests() {
+        return serviceRequestIDao.getAll();
+    }
+
+    public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() { return serviceRequestIDao.getAllPatientTransportRequests(); }
+
+    public ArrayList<SanitationRequest> getAllSanitationRequest() { return serviceRequestIDao.getAllSanitationRequests(); }
+
+    public void saveServiceRequest(ServiceRequest s) {
+        serviceRequestIDao.save(s);
+    }
+
+    public void updateServiceRequest(ServiceRequest s) {
+        serviceRequestIDao.update(s);
+    }
+
+    public void deleteServiceRequest(ServiceRequest s) {
+        serviceRequestIDao.delete(s);
+    }
+
+    public void refreshServiceRequests() { serviceRequestIDao.refresh(); }
 }

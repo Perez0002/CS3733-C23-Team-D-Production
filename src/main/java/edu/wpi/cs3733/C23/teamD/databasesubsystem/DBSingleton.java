@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.C23.teamD;
+package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
