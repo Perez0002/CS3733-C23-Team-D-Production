@@ -64,7 +64,6 @@ dependencies {
 //            'com.oracle.ojdbc:ojdbc10:19.3.0.0',
     )
     implementation 'org.controlsfx:controlsfx:11.1.2'
-    implementation 'com.onexip:FlexBoxFX:0.1.5.3-SNAPSHOT'
 }
 test {
     useJUnitPlatform()
