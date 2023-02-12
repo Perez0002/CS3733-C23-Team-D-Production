@@ -18,7 +18,6 @@ public class SanitationRequestController {
   @FXML private MFXRadioButton radioBSL3;
   @FXML private MFXRadioButton radioBSL4;
   @FXML private MFXTextField fieldReason;
-  //  @FXML private MFXTextField fieldLocation;
   @FXML private Text formSubmittedText;
   @FXML Text locationHelpText;
   @FXML Text reasonHelpText;
@@ -43,7 +42,7 @@ public class SanitationRequestController {
       } else if (radioBSL4.isSelected()) {
         i = 4;
       }
-      formSubmittedText.setVisible(true);
+      // formSubmittedText.setVisible(true);
       SanitationRequestData requestData =
           new SanitationRequestData(
               fieldLocationController.getNodeValue(),
@@ -58,6 +57,7 @@ public class SanitationRequestController {
       reasonHelpText.setVisible(false);
       staffIDHelpText.setVisible(false);
       formSubmittedText.setVisible(true);
+
     } else {
       helpDisplayed = false;
       formSubmittedText.setVisible(false);

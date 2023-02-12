@@ -2,51 +2,57 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tooltip;
 
 public class RootController {
-  @FXML
-  public void initialize() {}
+
+  @FXML private MFXButton dbButton;
+
+  @FXML private MFXButton exitButton;
+
+  @FXML private MFXButton helpPageButton;
+
+  @FXML private MFXButton homeButton;
+
+  @FXML private MFXButton infoButton;
+
+  @FXML private MFXButton mapEditorButton;
+
+  @FXML private MFXButton profileButton;
+
+  @FXML private MFXButton serviceRequestFormsButton;
 
   @FXML
-  void openHomepage() {
-    Navigation.navigate(Screen.HOME);
-  }
+  public void initialize() {
+    homeButton.setOnMouseClicked(
+            event -> Navigation.navigate(Screen.HOME));
+    homeButton.setTooltip(new Tooltip("Home"));
 
-  @FXML
-  void openPathfindingForm() {
-    Navigation.navigate(Screen.PATHFINDING_REQUEST);
-  }
+    profileButton.setOnMouseClicked(
+            event -> Navigation.navigate(Screen.HOME));
+    profileButton.setTooltip(new Tooltip("Profile Page"));
 
-  @FXML
-  void openSanitationForm() {
-    Navigation.navigate(Screen.SANITATION_FORM);
-  }
+    serviceRequestFormsButton.setOnMouseClicked(
+            event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    serviceRequestFormsButton.setTooltip(new Tooltip("Service Request Forms"));
 
-  @FXML
-  void openPatientTransport() {
-    Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST);
-  }
+    dbButton.setOnMouseClicked(
+            event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    dbButton.setTooltip(new Tooltip("Database Editors"));
 
-  @FXML
-  void openDatabase() {
-    Navigation.navigate(Screen.DATABASE_EDIT);
-  }
+    mapEditorButton.setOnMouseClicked(
+            event -> Navigation.navigate(Screen.MAP_EDITOR));
+    mapEditorButton.setTooltip(new Tooltip("Map Editor"));
 
-  @FXML
-  void openPatientTransportTable() {
-    Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE);
-  }
+    helpPageButton.setOnMouseClicked(
+            event -> Navigation.navigate(Screen.HELP_PAGE));
+    helpPageButton.setTooltip(new Tooltip("Help"));
 
-  @FXML
-  void openSanitationTable() {
-    Navigation.navigate(Screen.SANITATION_TABLE);
-  }
-
-  @FXML
-  void openHelpPage() {
-    Navigation.navigate(Screen.HELP_PAGE);
+    infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    helpPageButton.setTooltip(new Tooltip("Information"));
   }
 
   @FXML

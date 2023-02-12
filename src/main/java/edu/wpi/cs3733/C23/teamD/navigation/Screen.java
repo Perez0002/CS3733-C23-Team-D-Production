@@ -15,7 +15,6 @@ public enum Screen {
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml");
-
   private final String filename;
 
   Screen(String filename) {
