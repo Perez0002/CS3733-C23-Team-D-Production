@@ -47,7 +47,7 @@ public class PathfindingController {
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
-    pathfindingBorderPane.setCenter(MapFactory.startBuild().build()[0]);
+    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
   }
 
   @FXML
@@ -78,16 +78,16 @@ public class PathfindingController {
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        GesturePane[] sceneNode =
-            MapFactory.startBuild().withNodes(path).withEdges().onlyStartEnd().build();
-        sceneNode[0]
+        GesturePane sceneNode =
+            MapFactory.startBuild().withNodes(path).withEdges().onlyStartEnd().build(0);
+        sceneNode
             .animate(Duration.millis(200))
             .centreOn(
                 new Point2D(
                     mainMap.getNode(startNode).getXcoord() - App.getPrimaryStage().getWidth() / 2,
                     mainMap.getNode(endNode).getYcoord() - App.getPrimaryStage().getHeight() / 2));
 
-        pathfindingBorderPane.setCenter(sceneNode[0]);
+        pathfindingBorderPane.setCenter(sceneNode);
       }
     } else {
       pathResultText.setText("Incorrect Node Data Entered");

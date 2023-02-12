@@ -3,15 +3,15 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import java.util.ArrayList;
-import java.util.function.BiConsumer;
+import java.util.HashMap;
 import java.util.function.Function;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
@@ -86,59 +86,55 @@ public class MapFactory {
    *
    * @return An array of GesturePanes representing each floor
    */
-  public GesturePane[] build() {
+  public GesturePane build(int floor) {
     System.out.println("Making Map!");
-    AnchorPane[] listOfHolders = new AnchorPane[5];
-    ImageView[] listOfImages = new ImageView[5];
-    Canvas[] listOfCanvas = new Canvas[5];
-    GesturePane[] listOfMaps = new GesturePane[5];
+    HashMap<String, Integer> converter = new HashMap<String, Integer>();
 
-    listOfImages[0] =
-        new ImageView(
-            App.class.getResource("views/floorMaps/00_thelowerlevel1.png").toExternalForm());
-    listOfImages[1] =
-        new ImageView(
-            App.class.getResource("views/floorMaps/00_thelowerlevel2.png").toExternalForm());
-    listOfImages[2] =
-        new ImageView(
-            App.class.getResource("views/floorMaps/01_thefirstfloor.png").toExternalForm());
-    listOfImages[3] =
-        new ImageView(
-            App.class.getResource("views/floorMaps/02_thesecondfloor.png").toExternalForm());
-    listOfImages[4] =
-        new ImageView(
-            App.class.getResource("views/floorMaps/03_thethirdfloor.png").toExternalForm());
+    converter.put("L1", 0);
+    converter.put("L2", 1);
+    converter.put("1", 2);
+    converter.put("2", 3);
+    converter.put("3", 4);
 
-    for (int i = 0; i < listOfHolders.length; i++) {
-      listOfHolders[i] = new AnchorPane();
-      listOfCanvas[i] =
-          new Canvas(listOfImages[i].getImage().getWidth(), listOfImages[i].getImage().getHeight());
-      listOfCanvas[i].getGraphicsContext2D().setFill(Color.BLACK);
-      listOfHolders[i].getChildren().add(listOfImages[i]);
-      listOfHolders[i].getChildren().add(listOfCanvas[i]);
-      listOfMaps[i] = new GesturePane(listOfHolders[i]);
-      listOfMaps[i].setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    AnchorPane holder = new AnchorPane();
+    ImageView image = new ImageView();
+    Canvas canvas = new Canvas();
+    GesturePane map = new GesturePane();
+
+    if (floor == 0) {
+      image =
+          new ImageView(
+              App.class.getResource("views/floorMaps/00_thelowerlevel1.png").toExternalForm());
+    } else if (floor == 1) {
+      image =
+          new ImageView(
+              App.class.getResource("views/floorMaps/00_thelowerlevel2.png").toExternalForm());
+    } else if (floor == 2) {
+      image =
+          new ImageView(
+              App.class.getResource("views/floorMaps/01_thefirstfloor.png").toExternalForm());
+    } else if (floor == 3) {
+      image =
+          new ImageView(
+              App.class.getResource("views/floorMaps/02_thesecondfloor.png").toExternalForm());
+    } else if (floor == 4) {
+      image =
+          new ImageView(
+              App.class.getResource("views/floorMaps/03_thethirdfloor.png").toExternalForm());
     }
 
-    BiConsumer<Node, javafx.scene.Node> mapNodesToFloors =
-        (node, pane) -> {
-          if (node.getFloor().equals("L1")) {
-            listOfHolders[0].getChildren().add(pane);
-          } else if (node.getFloor().equals("L2")) {
-            listOfHolders[1].getChildren().add(pane);
-          } else if (node.getFloor().equals("1")) {
-            listOfHolders[2].getChildren().add(pane);
-          } else if (node.getFloor().equals("2")) {
-            listOfHolders[3].getChildren().add(pane);
-          } else if (node.getFloor().equals("3")) {
-            listOfHolders[4].getChildren().add(pane);
-          }
-        };
+    canvas.resize(image.getImage().getWidth(), image.getImage().getHeight());
+    holder.getChildren().add(image);
+    holder.getChildren().add(canvas);
 
     if (!this.onlyStartEnd) {
       // For every Node
       for (Node node : nodeList) {
         // Creates popup object
+        if (converter.get(node.getFloor()) != floor) {
+          continue;
+        }
+
         MapEditorNodeController mapEditor = new MapEditorNodeController(node);
         javafx.scene.Node tempPane =
             MapNodeFactory.startPathBuild()
@@ -155,8 +151,7 @@ public class MapFactory {
                     })
                 .nodeID(node.getNodeID() + "_pane")
                 .build();
-
-        mapNodesToFloors.accept(node, tempPane);
+        holder.getChildren().add(tempPane);
       }
     } else {
       System.out.println("In else!");
@@ -193,32 +188,20 @@ public class MapFactory {
                   })
               .nodeID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
               .build();
-      mapNodesToFloors.accept(nodeList.get(0), startPane);
-      mapNodesToFloors.accept(nodeList.get(nodeList.size() - 1), endPane);
+      holder.getChildren().add(startPane);
+      holder.getChildren().add(endPane);
     }
 
-    Function<Node, GraphicsContext> getFloorContextFromNode =
-        (node) -> {
-          if (node.getFloor().equals("L1")) {
-            return listOfCanvas[0].getGraphicsContext2D();
-          } else if (node.getFloor().equals("L2")) {
-            return listOfCanvas[1].getGraphicsContext2D();
-          } else if (node.getFloor().equals("1")) {
-            return listOfCanvas[2].getGraphicsContext2D();
-          } else if (node.getFloor().equals("2")) {
-            return listOfCanvas[3].getGraphicsContext2D();
-          } else if (node.getFloor().equals("3")) {
-            return listOfCanvas[4].getGraphicsContext2D();
-          }
-
-          return null;
-        };
-    GraphicsContext context = null;
+    GraphicsContext context = canvas.getGraphicsContext2D();
     if (this.withEdges) {
       Node lastNode = null;
       for (Node node : nodeList) {
-        context = getFloorContextFromNode.apply(node);
-        System.out.println(context.getCanvas());
+
+        if (converter.get(node.getFloor()) == floor) {
+          lastNode = node;
+          continue;
+        }
+
         if (lastNode != null) {
           context.strokeLine(
               lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
@@ -231,12 +214,11 @@ public class MapFactory {
       context.setLineWidth(1);
       context.strokeText("END", lastNode.getXcoord(), lastNode.getYcoord() - 10, 40);
     }
-    listOfImages[0].setCache(false);
-    listOfImages[1].setCache(false);
-    listOfImages[2].setCache(false);
-    listOfImages[3].setCache(false);
-    listOfImages[4].setCache(false);
+
+    map.setContent(holder);
+    map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    map.zoomTo(0, Point2D.ZERO);
     // Return the GesturePane
-    return listOfMaps;
+    return map;
   }
 }

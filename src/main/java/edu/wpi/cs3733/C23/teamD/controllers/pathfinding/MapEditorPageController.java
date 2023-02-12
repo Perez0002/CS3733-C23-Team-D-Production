@@ -2,7 +2,6 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeDaoImpl;
@@ -16,14 +15,12 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -63,7 +60,7 @@ public class MapEditorPageController {
   private UIManager uiManager = new UIManager();
   private SubmitMode mode = SubmitMode.NO_SELECTION;
 
-  private GesturePane[] gesturePane;
+  private GesturePane gesturePane;
   private int currentFloor = 0;
 
   private enum SubmitMode {
@@ -75,18 +72,35 @@ public class MapEditorPageController {
 
   @FXML
   void floorUp() {
-    if (currentFloor <= 5) {
+    if (currentFloor < 4) {
       currentFloor++;
     }
-    mapEditorPane.setCenter(gesturePane[currentFloor]);
+    gesturePane =
+        gesturePane =
+            MapFactory.startBuild()
+                .withNodes(nodeList)
+                .withNodeFunctions(
+                    node -> {
+                      return paneFunction(node);
+                    })
+                .build(currentFloor);
+    mapEditorPane.setCenter(gesturePane);
   }
 
   @FXML
   void floorDown() {
-    if (currentFloor >= 0) {
+    if (currentFloor > 0) {
       currentFloor--;
     }
-    mapEditorPane.setCenter(gesturePane[currentFloor]);
+    gesturePane =
+        MapFactory.startBuild()
+            .withNodes(nodeList)
+            .withNodeFunctions(
+                node -> {
+                  return paneFunction(node);
+                })
+            .build(currentFloor);
+    mapEditorPane.setCenter(gesturePane);
   }
 
   @FXML
@@ -363,19 +377,9 @@ public class MapEditorPageController {
                 node -> {
                   return paneFunction(node);
                 })
-            .build();
+            .build(currentFloor);
     // Setting center of BorderPane to the GesturePane
-    mapEditorPane.setCenter(gesturePane[currentFloor]);
+    mapEditorPane.setCenter(gesturePane);
     // Setting zoom to 0
-    for (int i = 0; i < 5; i++) {
-      gesturePane[i].zoomTo(0, new Point2D(totalX / total, totalY / total));
-      // Centering on the average x-y of all Nodes
-      gesturePane[i]
-          .animate(Duration.millis(200))
-          .centreOn(
-              new Point2D(
-                  (totalX / total) - App.getPrimaryStage().getScene().getWidth() / 2,
-                  (totalY / total) - App.getPrimaryStage().getScene().getHeight() / 2));
-    }
   }
 }
