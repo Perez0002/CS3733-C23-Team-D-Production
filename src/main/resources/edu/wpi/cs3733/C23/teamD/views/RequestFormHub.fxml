@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -34,55 +32,7 @@
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <VBox fx:id="serviceRequestHubVBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-               <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="726.0" styleClass="serviceRequestDescription" text="Label">
-                     <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                     </padding></Label>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="376.0" prefWidth="726.0" spacing="10.0" styleClass="serviceRequestTextFieldVBox">
-                     <children>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="individualServiceRequestTextFieldVBox">
-                           <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="serviceRequestMFXTextFieldLabel" text="Text Field Description" />
-                              <MFXTextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="58.0" prefWidth="471.0" styleClass="serviceRequestMFXTextField" />
-                           </children>
-                        </VBox>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="individualServiceRequestTextFieldVBox">
-                           <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="serviceRequestMFXTextFieldLabel" text="Text Field Description" />
-                              <MFXTextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="58.0" prefWidth="471.0" styleClass="serviceRequestMFXTextField" />
-                           </children>
-                        </VBox>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="individualServiceRequestTextFieldVBox">
-                           <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="serviceRequestMFXTextFieldLabel" text="Text Field Description" />
-                              <MFXTextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="58.0" prefWidth="471.0" styleClass="serviceRequestMFXTextField" />
-                           </children>
-                        </VBox>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="individualServiceRequestTextFieldVBox">
-                           <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="385.0" styleClass="serviceRequestMFXTextFieldLabel" text="Text Field Description" />
-                              <MFXTextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="58.0" prefWidth="471.0" styleClass="serviceRequestMFXTextField" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="726.0">
-                     <children>
-                        <HBox alignment="BOTTOM_RIGHT" fillHeight="false" layoutX="395.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="272.0" spacing="16.0">
-                           <children>
-                              <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="cancelButton" text="Button" />
-                              <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Button" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </VBox>
+            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" />
          </children>
          <opaqueInsets>
             <Insets />
