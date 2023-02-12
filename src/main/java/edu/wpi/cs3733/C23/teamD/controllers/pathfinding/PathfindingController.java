@@ -7,6 +7,8 @@ import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
@@ -59,6 +61,7 @@ public class PathfindingController {
   private GraphMap mainMap;
 
   private String algorithm = "AStar";
+  private ArrayList<Node> path = new ArrayList<Node>();
 
   public PathfindingController() {}
 
@@ -77,11 +80,27 @@ public class PathfindingController {
     algorithm = "DFS";
   }
 
+  public EventHandler<ActionEvent> changeFloor(int floor) {
+    return new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        pathfindingBorderPane.setCenter(
+            MapFactory.startBuild().withNodes(path).withEdges().build(floor));
+      }
+    };
+  }
+
   @FXML
   public void initialize() {
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
+
+    floor1Button.setOnAction(changeFloor(0));
+    floor2Button.setOnAction(changeFloor(1));
+    floor3Button.setOnAction(changeFloor(2));
+    floor4Button.setOnAction(changeFloor(3));
+    floor5Button.setOnAction(changeFloor(4));
   }
 
   @FXML
@@ -94,7 +113,6 @@ public class PathfindingController {
   @FXML
   void submit() {
     Pathfinder pathfinder = new Pathfinder(mainMap);
-    ArrayList<Node> path = new ArrayList<Node>();
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
