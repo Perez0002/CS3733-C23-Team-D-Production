@@ -56,6 +56,8 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Text>
+                  <MFXButton fx:id="downButton" onAction="#floorDown" prefHeight="26.0" prefWidth="200.0" text="Floor Down" />
+                  <MFXButton fx:id="upButton" onAction="#floorUp" prefHeight="26.0" prefWidth="200.0" text="Floor Up" />
                   <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
                      <VBox.margin>
                         <Insets bottom="10.0" />

@@ -20,7 +20,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
@@ -62,11 +63,30 @@ public class MapEditorPageController {
   private UIManager uiManager = new UIManager();
   private SubmitMode mode = SubmitMode.NO_SELECTION;
 
+  private GesturePane[] gesturePane;
+  private int currentFloor = 0;
+
   private enum SubmitMode {
     NO_SELECTION,
     EDIT_NODE,
     ADD_NODE,
     ADD_LOCATION
+  }
+
+  @FXML
+  void floorUp() {
+    if (currentFloor <= 5) {
+      currentFloor++;
+    }
+    mapEditorPane.setCenter(gesturePane[currentFloor]);
+  }
+
+  @FXML
+  void floorDown() {
+    if (currentFloor >= 0) {
+      currentFloor--;
+    }
+    mapEditorPane.setCenter(gesturePane[currentFloor]);
   }
 
   @FXML
@@ -141,12 +161,14 @@ public class MapEditorPageController {
 
           GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
           AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-
           for (javafx.scene.Node n : anchor.getChildren()) {
+            if (!(n instanceof Circle)) {
+              continue;
+            }
             if ((node.getNodeID() + "_pane").equals(n.getId())) {
-              n.setStyle("-fx-background-color: '#CC2222';"); // Turn this Pane to red
+              ((Circle) n).setFill(Color.rgb(204, 34, 34)); // Turn this Pane to red
             } else {
-              n.setStyle("-fx-background-color: '#013A75';"); // Turn other Pane's to default
+              ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Turn this Pane to red
             }
           }
         } else {
@@ -246,12 +268,12 @@ public class MapEditorPageController {
     }
 
     // Add a new Pane for the new Node
-    final Pane tempPane =
-        MapPaneFactory.startBuild()
+    final javafx.scene.Node tempPane =
+        MapNodeFactory.startBuild()
             .posX(newNode.getXcoord() - MapFactory.NODE_WIDTH / 2)
             .posY(newNode.getYcoord() - MapFactory.NODE_HEIGHT / 2)
             .onClick(paneFunction(newNode))
-            .paneID(newNode.getNodeID() + "_pane")
+            .nodeID(newNode.getNodeID() + "_pane")
             .build();
 
     anchor.getChildren().add(tempPane);
@@ -334,25 +356,26 @@ public class MapEditorPageController {
     }
 
     // Creating GesturePane to show
-    GesturePane gesturePane =
+    gesturePane =
         MapFactory.startBuild()
             .withNodes(nodeList)
             .withNodeFunctions(
                 node -> {
                   return paneFunction(node);
                 })
-            .withoutEdges()
             .build();
     // Setting center of BorderPane to the GesturePane
-    mapEditorPane.setCenter(gesturePane);
+    mapEditorPane.setCenter(gesturePane[currentFloor]);
     // Setting zoom to 0
-    gesturePane.zoomTo(0, new Point2D(totalX / total, totalY / total));
-    // Centering on the average x-y of all Nodes
-    gesturePane
-        .animate(Duration.millis(500))
-        .centreOn(
-            new Point2D(
-                (totalX / total) - App.getPrimaryStage().getScene().getWidth() / 2,
-                (totalY / total) - App.getPrimaryStage().getScene().getHeight() / 2));
+    for (int i = 0; i < 5; i++) {
+      gesturePane[i].zoomTo(0, new Point2D(totalX / total, totalY / total));
+      // Centering on the average x-y of all Nodes
+      gesturePane[i]
+          .animate(Duration.millis(200))
+          .centreOn(
+              new Point2D(
+                  (totalX / total) - App.getPrimaryStage().getScene().getWidth() / 2,
+                  (totalY / total) - App.getPrimaryStage().getScene().getHeight() / 2));
+    }
   }
 }
