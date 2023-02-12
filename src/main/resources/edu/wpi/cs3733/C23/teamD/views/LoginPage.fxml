@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.LoginController">
+   <right>
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="394.0" style="-fx-background-color: White;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="57.0" fitWidth="200.0">
+               <image>
+                  <Image url="@images/Brigham_and_Women's_Hospital_Logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0">
+               <children>
+                  <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="200.03753662109375" />
+                  <MFXTextField fx:id="username" floatingText="Username" prefHeight="20.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></MFXTextField>
+                  <Text fx:id="usernameText1" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="200.03753662109375" />
+                  <MFXPasswordField fx:id="password" floatingText="Password" prefHeight="20.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <Text fx:id="incorrectUsernameOrPasswordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Username or Password" visible="false" wrappingWidth="171.09375" />
+            <MFXButton onAction="#submitLogin" prefHeight="30.0" prefWidth="200.0" text="Login">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </MFXButton>
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');" BorderPane.alignment="CENTER">
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #012D5A; -fx-opacity: 80%;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

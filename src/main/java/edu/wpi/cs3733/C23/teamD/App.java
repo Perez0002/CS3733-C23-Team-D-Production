@@ -29,11 +29,12 @@ public class App extends Application {
     App.primaryStage = primaryStage;
 
     final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
+
     final BorderPane root = loader.load();
 
     App.rootPane = root;
 
-    final Scene scene = new Scene(root);
+    Scene scene = new Scene(root);
 
     // style sheet
     String css = this.getClass().getResource("views/styleguide.css").toExternalForm();
@@ -42,9 +43,9 @@ public class App extends Application {
 
     primaryStage.setScene(scene);
     primaryStage.setMaximized(true);
+    rootPane.setTop(null);
+    Navigation.navigate(Screen.LOGIN_PAGE);
     primaryStage.show();
-
-    Navigation.navigate(Screen.HOME);
   }
 
   @Override
