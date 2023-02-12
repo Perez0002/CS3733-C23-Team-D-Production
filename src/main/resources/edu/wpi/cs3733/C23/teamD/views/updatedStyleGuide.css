@@ -5,6 +5,11 @@
 /*    --font: 'Nunito Sans';*/
 /*}*/
 
+@font-face {
+    -font-family: 'Nunito Sans';
+    src: url('images/NunitoSans-Black.ttf');
+}
+
 .label { /* sets base format for labels */
     -fx-font-family: 'Nunito Sans';
     -fx-text-fill: #012D5A;
@@ -20,6 +25,8 @@
 .mfx-text-field { /* sets base format for MFXTextFields */
     -fx-background-color: #EEEEEE;
     -fx-border-radius: 10px;
+    -fx-min-height: 40px;
+    -fx-border-color: #012D5A;
 }
 
 .button {
