@@ -21,7 +21,6 @@ public class MapEditorNodeController {
    * Creates a popover object that contains necessary popup information (pane, text containing node
    * information). neither param nor return
    */
-  // TODO: make this happen during node hover, not node click
   private void makeEditorNode() {
     popover = new PopOver(); // creates PopOver container
     Pane pane = new Pane(); // creates Pane object to place within PopOver

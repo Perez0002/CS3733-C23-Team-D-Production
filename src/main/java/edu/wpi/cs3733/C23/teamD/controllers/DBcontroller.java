@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
@@ -76,11 +77,13 @@ public class DBcontroller extends Application implements Initializable {
 
   public void tablehandling() {
     nodeTableView.setEditable(true);
-    ArrayList<Node> nodes = Ddb.createJavaNodes();
+    ArrayList<Node> nodes = FDdb.getInstance().getAllNodes();
     Ddb.connectNodestoLocations(nodes);
     ObservableList<Node> nodeList = FXCollections.observableArrayList(nodes);
-    ObservableList<Move> moveList = FXCollections.observableArrayList(Ddb.createJavaMoves());
-    ObservableList<Edge> edgeList = FXCollections.observableArrayList(Ddb.createJavaEdges(nodes));
+    ObservableList<Move> moveList =
+        FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+    ObservableList<Edge> edgeList =
+        FXCollections.observableArrayList(FDdb.getInstance().getAllEdges());
     nodeID.setCellValueFactory(new PropertyValueFactory<Node, String>("nodeID"));
     xCoord.setCellValueFactory(new PropertyValueFactory<Node, Integer>("Xcoord"));
     xCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
