@@ -30,7 +30,6 @@ public class PathfinderBFS {
       frontier.remove(currentNode);
       visited.add(currentNode);
       if (currentNode.equals(endNode)) {
-        path.add(currentNode);
         while (!currentNode.equals(startNode)) {
           path.add(nodeParentMap.get(currentNode));
           currentNode = nodeParentMap.get(currentNode);
