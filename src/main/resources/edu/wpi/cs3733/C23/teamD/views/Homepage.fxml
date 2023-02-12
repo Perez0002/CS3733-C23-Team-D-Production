@@ -3,16 +3,17 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
 <BorderPane fx:id="homepageBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
    <center>
       <VBox fx:id="serviceRequestButtonVbox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox VBox.vgrow="ALWAYS">
                <children>
                   <VBox minHeight="-Infinity" minWidth="-Infinity" HBox.hgrow="NEVER">
                      <children>
@@ -26,9 +27,13 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <MFXButton contentDisplay="GRAPHIC_ONLY">
+                              <MFXButton fx:id="mapEditorButton" contentDisplay="GRAPHIC_ONLY">
                                  <graphic>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="772.0" />
+                                    <ImageView fitHeight="445.0" fitWidth="684.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/MapImage.png" />
+                                       </image>
+                                    </ImageView>
                                  </graphic>
                               </MFXButton>
                            </children>
@@ -55,9 +60,13 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <MFXButton contentDisplay="GRAPHIC_ONLY" text="Button">
+                              <MFXButton fx:id="DBEditorButton" contentDisplay="GRAPHIC_ONLY" text="Button">
                                  <graphic>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="773.0" />
+                                    <ImageView fitHeight="171.0" fitWidth="680.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DatabaseImage.png" />
+                                       </image>
+                                    </ImageView>
                                  </graphic>
                               </MFXButton>
                            </children>
@@ -77,8 +86,22 @@
                               <Label styleClass="hospitalName" text="Recent Request Forms" />
                               <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <MFXButton />
-                                    <MFXButton />
+                                    <MFXButton contentDisplay="GRAPHIC_ONLY" text="Button">
+                                       <graphic>
+                                          <ImageView fitHeight="14.0" fitWidth="45.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/Weather.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></MFXButton>
+                                    <MFXButton contentDisplay="GRAPHIC_ONLY" prefHeight="13.0" prefWidth="7.0">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="16.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/emptyPFP.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></MFXButton>
                                  </children>
                               </HBox>
                            </children>
@@ -86,12 +109,20 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="376.0" stroke="BLACK" strokeType="INSIDE" width="434.0" />
+                              <MFXButton fx:id="serviceRequestFormButton" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="374.0" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="430.0" fitWidth="367.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/ServiceRequestForm.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MFXButton>
                            </children>
                         </VBox>
                         <HBox alignment="CENTER_RIGHT">
@@ -101,7 +132,7 @@
                         </HBox>
                      </children>
                      <HBox.margin>
-                        <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </VBox>
                </children>

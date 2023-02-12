@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +38,12 @@ public class HomepageController {
   @FXML private Label titleLabel;
 
   @FXML
-  public void initialize() {}
+  public void initialize() {
+    serviceRequestFormButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
+  }
 
   @FXML
   /** user open menubutton, clicks Exit, and it closes the window. */
