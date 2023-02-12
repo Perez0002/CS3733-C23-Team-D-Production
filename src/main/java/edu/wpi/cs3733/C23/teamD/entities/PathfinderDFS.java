@@ -28,7 +28,10 @@ public class PathfinderDFS {
       // Neighbors.clear();
 
       Neighbors = (ArrayList<Edge>) currentNode.getNodeEdges().clone();
-
+      if (startNode.equals(currentNode) && Neighbors.size() == 0) {
+        Path.clear();
+        break;
+      }
       for (int i = 0; i < Neighbors.size(); i++) {
         // if the edge leads to an unvisited node: Make it the new current node
 

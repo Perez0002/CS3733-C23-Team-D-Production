@@ -76,6 +76,8 @@ public class PathfinderAStar {
 
       // for every connection in our current Node, add  those we have not been too to the queue
       for (Edge e : currentNode.getNodeEdges()) {
+        System.out.print(e.getToNode().getNodeID() + " ");
+        System.out.println(e.getFromNode().getNodeID());
         if (!beenNodes.containsKey(e.getToNode().getNodeID())) {
           ArrayList<Node> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());

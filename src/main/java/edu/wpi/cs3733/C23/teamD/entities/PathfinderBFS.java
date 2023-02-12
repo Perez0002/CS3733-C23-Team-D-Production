@@ -39,7 +39,7 @@ public class PathfinderBFS {
         return path;
       }
       for (Edge edge : currentNode.getNodeEdges()) {
-        if (visited.contains(edge.getToNode())) {
+        if (!visited.contains(edge.getToNode())) {
           frontier.add(edge.getToNode());
           nodeParentMap.put(edge.getToNode(), currentNode);
         }
@@ -47,6 +47,6 @@ public class PathfinderBFS {
       currentNode = frontier.get(0);
     }
 
-    return null;
+    return path;
   }
 }

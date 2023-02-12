@@ -16,15 +16,19 @@ public class Pathfinder {
 
   public ArrayList<Node> pathfind(Node startNode, Node endNode, String algorithim) {
     ArrayList<Node> path = new ArrayList<>();
+    for (Edge e : startNode.getNodeEdges()) {
+      System.out.print(e.getToNode().getNodeID() + " ");
+      System.out.println(e.getFromNode().getNodeID());
+    }
     if (algorithim.equals("AStar")) {
       PathfinderAStar pathfinderAStar = new PathfinderAStar(fullMap);
-      path = pathfinderAStar.aStarSearch(startNode, endNode);
+      path.addAll(pathfinderAStar.aStarSearch(startNode, endNode));
     } else if (algorithim.equals("DFS")) {
       PathfinderDFS pathfinderDFS = new PathfinderDFS(fullMap);
-      path = pathfinderDFS.depthFirstSearch(startNode, endNode);
+      path.addAll(pathfinderDFS.depthFirstSearch(startNode, endNode));
     } else if (algorithim.equals("BFS")) {
       PathfinderBFS pathfinderBFS = new PathfinderBFS(fullMap);
-      path = pathfinderBFS.breadthFirstSearch(startNode, endNode);
+      path.addAll(pathfinderBFS.breadthFirstSearch(startNode, endNode));
     }
 
     return path;
