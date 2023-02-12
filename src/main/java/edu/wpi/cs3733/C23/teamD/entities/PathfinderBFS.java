@@ -29,7 +29,7 @@ public class PathfinderBFS {
       frontier.remove(currentNode);
       visited.add(currentNode);
       if (currentNode.equals(endNode)) {
-        System.out.println("Assembling Path");
+        System.out.println(endNode.getLongName());
         path.add(endNode);
         while (!currentNode.equals(startNode)) {
           path.add(nodeParentMap.get(currentNode));
