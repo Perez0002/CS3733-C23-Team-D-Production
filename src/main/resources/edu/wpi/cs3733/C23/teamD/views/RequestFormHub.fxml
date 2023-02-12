@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
+   <center>
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="675.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="75.0" left="25.0" top="75.0" />
+         </BorderPane.margin>
+         <children>
+            <Label styleClass="hubLabel" text="Service Request Hub">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </Label>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="675.0" spacing="3.0" styleClass="tabHBox">
+               <children>
+                  <MFXButton fx:id="clickableTest" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Clickable" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="675.0">
+               <children>
+                  <fx:include fx:id="hubVBox" source="VBoxInjections/hubVBox.fxml" />
+               </children></Pane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </center>
+   <right>
+      <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="700.0" BorderPane.alignment="TOP_RIGHT">
+         <BorderPane.margin>
+            <Insets left="20.0" right="25.0" />
+         </BorderPane.margin></BorderPane>
+   </right>
+</BorderPane>
