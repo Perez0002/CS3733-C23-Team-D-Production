@@ -21,14 +21,14 @@
                               <Label text="Pathfinding" />
                            </children>
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </VBox>
                         <VBox>
                            <children>
                               <MFXButton contentDisplay="GRAPHIC_ONLY">
                                  <graphic>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="560.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="772.0" />
                                  </graphic>
                               </MFXButton>
                            </children>
@@ -57,7 +57,7 @@
                            <children>
                               <MFXButton contentDisplay="GRAPHIC_ONLY" text="Button">
                                  <graphic>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="557.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="773.0" />
                                  </graphic>
                               </MFXButton>
                            </children>
