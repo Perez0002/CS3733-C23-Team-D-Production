@@ -3,9 +3,9 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameDaoImpl;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveDaoImpl;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
@@ -13,7 +13,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.awt.*;
+
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -88,7 +88,7 @@ public class MapEditorPageController {
   @FXML
   void deleteNode() {
     // TODO make delete Node
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    NodeIDaoImpl nodeDao = new NodeIDaoImpl();
     if (currentNodeEdit != null) {
       nodeDao.delete(currentNodeEdit);
 
@@ -158,9 +158,9 @@ public class MapEditorPageController {
     Node newNode = new Node(); // New Node
 
     // Set Node Fields // TODO set these correctly
-    LocationNameDaoImpl locDao = new LocationNameDaoImpl();
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
-    MoveDaoImpl moveDao = new MoveDaoImpl();
+    LocationNameIDaoImpl locDao = new LocationNameIDaoImpl();
+    NodeIDaoImpl nodeDao = new NodeIDaoImpl();
+    MoveIDaoImpl moveDao = new MoveIDaoImpl();
 
     if (mode == 1) {
       // Node Selected, updating

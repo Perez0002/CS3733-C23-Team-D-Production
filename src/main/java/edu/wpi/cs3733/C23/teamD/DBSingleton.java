@@ -6,12 +6,12 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public enum DBSingleton {
-  _DB;
+public class DBSingleton {
 
-  Session session;
+  private static DBSingleton instance;
+  private Session session;
 
-  DBSingleton() {
+  private DBSingleton() {
     StandardServiceRegistry standardServiceRegistry =
         new StandardServiceRegistryBuilder()
             .configure("edu/wpi/cs3733/C23/teamD/hibernate.cfg.xml")
@@ -29,7 +29,11 @@ public enum DBSingleton {
     }
   }
 
-  public Session getSession() {
-    return session;
+  public static Session getSession() {
+    if (instance == null) {
+      instance = new DBSingleton();
+      return instance.session;
+    }
+    return instance.session;
   }
 }

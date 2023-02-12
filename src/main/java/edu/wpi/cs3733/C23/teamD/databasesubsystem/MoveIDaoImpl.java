@@ -1,26 +1,24 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import jakarta.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
 import org.hibernate.Session;
 
-public class MoveDaoImpl implements DaoPlus<Move> {
-  private Session session = Ddb.getDBsession();
+import java.util.ArrayList;
+import java.util.stream.IntStream;
 
+public class MoveIDaoImpl implements IDao<Move> {
+  private final Session session = DBSingleton.getSession();
+
+  private ArrayList<Move> moves = new ArrayList<>();
+
+  public MoveIDaoImpl() {
+    this.refresh();
+  }
   @Override
   public Move get(Move m) {
-    Move mq = null;
-    session.beginTransaction();
-    try {
-      mq = session.get(Move.class, m.getMoveDate());
-      session.getTransaction().commit();
-    } catch (Exception ex) {
-      session.getTransaction().rollback();
-    }
-    return mq;
+    return this.moves.stream().filter(move -> m.getMoveDate().equals(move.getMoveDate())).findFirst().orElse(null);
   }
 
   @Override
@@ -29,6 +27,9 @@ public class MoveDaoImpl implements DaoPlus<Move> {
     try {
       session.persist(m);
       session.getTransaction().commit();
+
+      this.moves.add(m);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
@@ -40,23 +41,37 @@ public class MoveDaoImpl implements DaoPlus<Move> {
     try {
       session.merge(m);
       session.getTransaction().commit();
+
+      int index = IntStream.range(0, this.moves.size())
+              .filter(i -> this.moves.get(i).getMoveDate().equals(m.getMoveDate()))
+              .findFirst()
+              .orElse(-1);
+
+      this.moves.remove(index);
+      this.moves.add(m);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
   }
 
   @Override
-  public List<Move> getAll() {
-    ArrayList<Move> javaMoves = null;
+  public ArrayList<Move> getAll() {
+    return this.moves;
+  }
+
+  @Override
+  public void refresh() {
+    ArrayList<Move> javaMoves;
     session.beginTransaction();
     try {
       javaMoves =
-          (ArrayList<Move>) session.createQuery("SELECT m FROM Move m", Move.class).getResultList();
+              (ArrayList<Move>) session.createQuery("SELECT m FROM Move m", Move.class).getResultList();
       session.getTransaction().commit();
+      this.moves = javaMoves;
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
-    return javaMoves;
   }
 
   @Override
@@ -67,6 +82,9 @@ public class MoveDaoImpl implements DaoPlus<Move> {
       q.setParameter("id", m.getMoveDate());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
+
+      this.moves.remove(m);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }

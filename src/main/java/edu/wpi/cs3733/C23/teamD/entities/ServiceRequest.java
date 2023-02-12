@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ServiceRequestForm {
+public class ServiceRequest {
   private String serviceRequestType;
 
   @Enumerated(value = EnumType.STRING)
@@ -28,7 +28,7 @@ public class ServiceRequestForm {
 
   @CreationTimestamp private Date dateAndTime;
 
-  public ServiceRequestForm(
+  public ServiceRequest(
       String associatedStaff, Status stat, String reason, String serviceRequestType) {
     this.associatedStaff = associatedStaff;
     this.stat = stat;
@@ -37,7 +37,7 @@ public class ServiceRequestForm {
     this.serviceRequestType = serviceRequestType;
   }
 
-  public ServiceRequestForm(
+  public ServiceRequest(
       int serviceId,
       String associatedStaff,
       Status stat,
@@ -52,7 +52,7 @@ public class ServiceRequestForm {
     this.serviceRequestType = serviceRequestType;
   }
 
-  public ServiceRequestForm() {
+  public ServiceRequest() {
     this.associatedStaff = "";
     this.stat = Status.BLANK;
     this.dateAndTime = new Date();
