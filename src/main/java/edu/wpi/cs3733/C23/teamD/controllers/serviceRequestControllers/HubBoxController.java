@@ -14,4 +14,12 @@ public class HubBoxController {
   }
 
   public void initialize() {};
+
+  public void setVisible() {
+    if (serviceRequestHubVBox.isVisible()) {
+      serviceRequestHubVBox.setVisible(false);
+    } else {
+      serviceRequestHubVBox.setVisible(true);
+    }
+  }
 }

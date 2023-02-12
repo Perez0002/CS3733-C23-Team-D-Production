@@ -12,7 +12,7 @@
    <center>
       <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
          <BorderPane.margin>
-            <Insets bottom="75.0" left="100.0" top="75.0" />
+            <Insets bottom="75.0" left="25.0" top="75.0" />
          </BorderPane.margin>
          <children>
             <Label styleClass="hubLabel" text="Service Request Hub">
@@ -32,7 +32,10 @@
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" />
+            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="746.0">
+               <children>
+                  <fx:include fx:id="hubVBox" source="VBoxInjections/hubVBox.fxml" />
+               </children></Pane>
          </children>
          <opaqueInsets>
             <Insets />
