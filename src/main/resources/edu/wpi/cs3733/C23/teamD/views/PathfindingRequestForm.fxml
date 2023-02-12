@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="pathfindingBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.PathfindingController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.PathfindingController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding Request Form" BorderPane.alignment="CENTER">
          <font>
@@ -32,14 +32,20 @@
                   <fx:include fx:id="endRoomComboBox" prefWidth="300.0" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
-            <MFXButton onAction="#clearFields" text="Clear" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                  <MFXButton fx:id="aStarButton" onAction="#setAStar" text="Good" />
+                  <MFXButton fx:id="BFSButton" onAction="#setBFS" text="Bad" />
+                  <MFXButton fx:id="DFSButton" onAction="#setDFS" text="Worse" />
+               </children>
+            </HBox>
             <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" wrapText="true" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
                <children>
-                  <HBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="15.0">
+                  <HBox alignment="TOP_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="15.0">
                      <children>
-                        <MFXButton onAction="#submit" text="Submit" />
                         <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
+                        <MFXButton onAction="#submit" text="Submit" />
                      </children>
                   </HBox>
                </children>
@@ -56,8 +62,8 @@
          </BorderPane.margin>
       </VBox>
    </left>
-   <right>
-      <MFXButton alignment="CENTER" onAction="#displayHelp" prefWidth="32.0" styleClass="helpbuttonstyleclass" text="?" textAlignment="CENTER" BorderPane.alignment="BOTTOM_CENTER">
+   <bottom>
+      <MFXButton alignment="CENTER" onAction="#displayHelp" prefWidth="32.0" styleClass="helpbuttonstyleclass" text="?" textAlignment="CENTER" BorderPane.alignment="BOTTOM_RIGHT">
          <font>
             <Font size="18.0" />
          </font>
@@ -65,5 +71,25 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
       </MFXButton>
-   </right>
+   </bottom>
+   <center>
+      <VBox prefHeight="604.0" prefWidth="736.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="526.0" prefWidth="876.0">
+               <children>
+                  <BorderPane fx:id="pathfindingBorderPane" prefHeight="506.0" prefWidth="753.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                  <MFXButton fx:id="floor1Button" text="Floor 1" />
+                  <MFXButton fx:id="floor2Button" text="Floor 2" />
+                  <MFXButton fx:id="floor3Button" text="Floor 3" />
+                  <MFXButton fx:id="floor4Button" text="Floor 4" />
+                  <MFXButton fx:id="floor5Button" text="Floor 5" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
