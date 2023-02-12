@@ -3,8 +3,8 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 import static javafx.application.Application.launch;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
-import edu.wpi.cs3733.C23.teamD.entities.ServiceRequestForm;
+import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
+import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -43,24 +43,24 @@ public class PatientTransportTable extends Application implements Initializable 
     primaryStage.show();
   }
 
-  @FXML private TableColumn<PatientTransportData, String> endRoom;
+  @FXML private TableColumn<PatientTransportRequest, String> endRoom;
 
-  @FXML private TableColumn<PatientTransportData, String> equipment;
+  @FXML private TableColumn<PatientTransportRequest, String> equipment;
 
-  @FXML private TableColumn<PatientTransportData, Integer> formID;
+  @FXML private TableColumn<PatientTransportRequest, Integer> formID;
 
-  @FXML private TableView<PatientTransportData> patientTable;
+  @FXML private TableView<PatientTransportRequest> patientTable;
 
-  @FXML private TableColumn<PatientTransportData, String> patientID;
+  @FXML private TableColumn<PatientTransportRequest, String> patientID;
 
-  @FXML private TableColumn<PatientTransportData, String> reason;
-  @FXML private TableColumn<PatientTransportData, String> startRoom;
+  @FXML private TableColumn<PatientTransportRequest, String> reason;
+  @FXML private TableColumn<PatientTransportRequest, String> startRoom;
 
-  @FXML private TableColumn<PatientTransportData, String> status;
+  @FXML private TableColumn<PatientTransportRequest, String> status;
 
-  @FXML private TableColumn<PatientTransportData, String> sendTo;
+  @FXML private TableColumn<PatientTransportRequest, String> sendTo;
 
-  @FXML private TableColumn<PatientTransportData, Date> date;
+  @FXML private TableColumn<PatientTransportRequest, Date> date;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -68,41 +68,42 @@ public class PatientTransportTable extends Application implements Initializable 
   }
 
   public void tablehandling() {
-    ObservableList<PatientTransportData> transportList =
+    ObservableList<PatientTransportRequest> transportList =
         FXCollections.observableArrayList(Ddb.getPatientTransportData());
     patientTable.setEditable(true);
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, String>("endRoom"));
+          new PropertyValueFactory<PatientTransportRequest, String>("endRoom"));
       equipment.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, String>("equipment"));
+          new PropertyValueFactory<PatientTransportRequest, String>("equipment"));
       formID.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, Integer>("serviceRequestId"));
+          new PropertyValueFactory<PatientTransportRequest, Integer>("serviceRequestId"));
       patientID.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, String>("patientID"));
-      reason.setCellValueFactory(new PropertyValueFactory<PatientTransportData, String>("reason"));
-      date.setCellValueFactory(new PropertyValueFactory<PatientTransportData, Date>("dateAndTime"));
+          new PropertyValueFactory<PatientTransportRequest, String>("patientID"));
+      reason.setCellValueFactory(
+          new PropertyValueFactory<PatientTransportRequest, String>("reason"));
+      date.setCellValueFactory(
+          new PropertyValueFactory<PatientTransportRequest, Date>("dateAndTime"));
       startRoom.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, String>("startRoom"));
+          new PropertyValueFactory<PatientTransportRequest, String>("startRoom"));
       status.setCellValueFactory(
           new Callback<
-              TableColumn.CellDataFeatures<PatientTransportData, String>,
+              TableColumn.CellDataFeatures<PatientTransportRequest, String>,
               ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<PatientTransportData, String> param) {
+                TableColumn.CellDataFeatures<PatientTransportRequest, String> param) {
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
       status.setOnEditCommit(
-          new EventHandler<TableColumn.CellEditEvent<PatientTransportData, String>>() {
+          new EventHandler<TableColumn.CellEditEvent<PatientTransportRequest, String>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<PatientTransportData, String> event) {
-              PatientTransportData form = event.getRowValue();
+            public void handle(TableColumn.CellEditEvent<PatientTransportRequest, String> event) {
+              PatientTransportRequest form = event.getRowValue();
               String newStatus = event.getNewValue();
               try {
-                ServiceRequestForm.Status stat1 =
-                    Enum.valueOf(ServiceRequestForm.Status.class, newStatus);
+                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
                 Ddb.updateObj(form);
               } catch (IllegalArgumentException e) {
@@ -112,7 +113,7 @@ public class PatientTransportTable extends Application implements Initializable 
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());
       sendTo.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportData, String>("associatedStaff"));
+          new PropertyValueFactory<PatientTransportRequest, String>("associatedStaff"));
       patientTable.setItems(transportList);
       patientTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
       patientTable.getColumns().stream()

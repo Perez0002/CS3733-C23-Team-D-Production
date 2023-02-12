@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.entities.ServiceRequestForm;
+import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -27,18 +27,18 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class ServiceRequestTable extends Application implements Initializable {
-  @FXML private TableColumn<ServiceRequestForm, Date> date;
+  @FXML private TableColumn<ServiceRequest, Date> date;
 
-  @FXML private TableColumn<ServiceRequestForm, Integer> formID;
+  @FXML private TableColumn<ServiceRequest, Integer> formID;
 
-  @FXML private TableColumn<ServiceRequestForm, String> reason;
-  @FXML private TableView<ServiceRequestForm> serviceTable;
+  @FXML private TableColumn<ServiceRequest, String> reason;
+  @FXML private TableView<ServiceRequest> serviceTable;
 
-  @FXML private TableColumn<ServiceRequestForm, String> requestType;
+  @FXML private TableColumn<ServiceRequest, String> requestType;
 
-  @FXML private TableColumn<ServiceRequestForm, String> staff;
+  @FXML private TableColumn<ServiceRequest, String> staff;
 
-  @FXML private TableColumn<ServiceRequestForm, String> status;
+  @FXML private TableColumn<ServiceRequest, String> status;
   @FXML private MFXButton cancelButton;
 
   public static void main(String[] args) {
@@ -63,30 +63,29 @@ public class ServiceRequestTable extends Application implements Initializable {
 
   public void tablehandling() {
     serviceTable.setEditable(true);
-    ObservableList<ServiceRequestForm> requestList =
+    ObservableList<ServiceRequest> requestList =
         FXCollections.observableArrayList(Ddb.createServiceList());
     if (requestList.size() != 0) {
       formID.setCellValueFactory(
-          new PropertyValueFactory<ServiceRequestForm, Integer>("serviceRequestId"));
-      reason.setCellValueFactory(new PropertyValueFactory<ServiceRequestForm, String>("reason"));
+          new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
+      reason.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("reason"));
       status.setCellValueFactory(
           new Callback<
-              TableColumn.CellDataFeatures<ServiceRequestForm, String>, ObservableValue<String>>() {
+              TableColumn.CellDataFeatures<ServiceRequest, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(
-                TableColumn.CellDataFeatures<ServiceRequestForm, String> param) {
+                TableColumn.CellDataFeatures<ServiceRequest, String> param) {
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
       status.setOnEditCommit(
-          new EventHandler<TableColumn.CellEditEvent<ServiceRequestForm, String>>() {
+          new EventHandler<TableColumn.CellEditEvent<ServiceRequest, String>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<ServiceRequestForm, String> event) {
-              ServiceRequestForm form = event.getRowValue();
+            public void handle(TableColumn.CellEditEvent<ServiceRequest, String> event) {
+              ServiceRequest form = event.getRowValue();
               String newStatus = event.getNewValue();
               try {
-                ServiceRequestForm.Status stat1 =
-                    Enum.valueOf(ServiceRequestForm.Status.class, newStatus);
+                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
                 Ddb.updateObj(form);
               } catch (IllegalArgumentException e) {
@@ -96,10 +95,10 @@ public class ServiceRequestTable extends Application implements Initializable {
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());
       staff.setCellValueFactory(
-          new PropertyValueFactory<ServiceRequestForm, String>("associatedStaff"));
-      date.setCellValueFactory(new PropertyValueFactory<ServiceRequestForm, Date>("dateAndTime"));
+          new PropertyValueFactory<ServiceRequest, String>("associatedStaff"));
+      date.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
       requestType.setCellValueFactory(
-          new PropertyValueFactory<ServiceRequestForm, String>("serviceRequestType"));
+          new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
     }
     serviceTable.setItems(requestList);
     serviceTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);

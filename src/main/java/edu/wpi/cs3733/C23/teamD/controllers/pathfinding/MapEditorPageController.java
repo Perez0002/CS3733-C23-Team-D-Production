@@ -5,6 +5,10 @@ import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeDaoImpl;
+import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
@@ -129,7 +133,7 @@ public class MapEditorPageController {
 
   @FXML
   void deleteNode() {
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    NodeIDaoImpl nodeDao = new NodeIDaoImpl();
     if (currentNodeEdit != null) {
       nodeDao.delete(currentNodeEdit);
 
@@ -201,9 +205,9 @@ public class MapEditorPageController {
     Node newNode = new Node(); // New Node
 
     // Set Node Fields // TODO set these correctly
-    LocationNameDaoImpl locDao = new LocationNameDaoImpl();
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
-    MoveDaoImpl moveDao = new MoveDaoImpl();
+    LocationNameIDaoImpl locDao = new LocationNameIDaoImpl();
+    NodeIDaoImpl nodeDao = new NodeIDaoImpl();
+    MoveIDaoImpl moveDao = new MoveIDaoImpl();
 
     if (mode == SubmitMode.EDIT_NODE) {
       // Node Selected, updating
@@ -251,7 +255,7 @@ public class MapEditorPageController {
       locDao.save(loc);
       nodeDao.save(newNode);
       moveDao.save(move);
-    } else if (mode == SubmitMode.ADD_LOCATION) {
+    } else if (mode == 3) {
       // Add Location
       LocationName loc =
           new LocationName(
