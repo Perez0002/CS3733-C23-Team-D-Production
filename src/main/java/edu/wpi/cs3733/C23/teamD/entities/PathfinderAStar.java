@@ -3,10 +3,7 @@ package edu.wpi.cs3733.C23.teamD.entities;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 import javafx.util.Pair;
 
 public class PathfinderAStar {
@@ -47,12 +44,13 @@ public class PathfinderAStar {
   public ArrayList<Node> aStarSearch(Node startNode, Node endNode) {
     // init variables
     ArrayList<Node> path = new ArrayList<Node>();
-    HashMap<String, Node> beenNodes = new HashMap<String, Node>();
+    HashSet<Node> beenNodes = new HashSet<Node>();
     PriorityQueue<PathCostPair> queue =
         new PriorityQueue<PathCostPair>(5, new PathCostPairComparator());
     System.out.println(startNode.getNodeID());
     // add starting Node to beginning of path
     path.add(startNode);
+    beenNodes.add(startNode);
 
     PathCostPair currentPath = null;
 
@@ -65,9 +63,6 @@ public class PathfinderAStar {
 
       Node currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
 
-      // Put the Node we are at right now into list of Nodes we have been to
-      beenNodes.put(currentNode.getNodeID(), currentNode);
-
       if (currentNode.equals(endNode)) {
         // if the current Node is our target Node, we are done, exit loop
         // System.out.println("Found node!");
@@ -75,16 +70,22 @@ public class PathfinderAStar {
       }
 
       // for every connection in our current Node, add  those we have not been too to the queue
+      System.out.println(currentNode.getNodeEdges());
       for (Edge e : currentNode.getNodeEdges()) {
-        if (!beenNodes.containsKey(e.getToNode().getNodeID())) {
+        System.out.println(e.getEdgeID());
+        if (beenNodes.add(e.getToNode())) {
           ArrayList<Node> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());
           queue.add(
               new PathCostPair(
                   temp,
                   currentPath.getValue() + e.getCost() + getHeuristic(e.getToNode(), endNode)));
+          System.out.println("Added: " + e.getToNode().getLongName());
+        } else {
+          System.out.println("Compared Node: " + e.getToNode().getLongName());
         }
       }
+      System.out.println("Out of loop!");
     }
 
     // In the event a Node could not be found, return default path
