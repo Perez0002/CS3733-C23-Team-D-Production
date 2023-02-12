@@ -43,7 +43,7 @@
             </VBox>
          </children>
       </VBox>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="726.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="400.0">
          <children>
             <HBox alignment="BOTTOM_RIGHT" fillHeight="false" layoutX="395.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="272.0" spacing="16.0">
                <children>
