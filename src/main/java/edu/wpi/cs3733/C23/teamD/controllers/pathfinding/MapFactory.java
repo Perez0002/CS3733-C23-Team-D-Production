@@ -98,7 +98,7 @@ public class MapFactory {
 
     AnchorPane holder = new AnchorPane();
     ImageView image = new ImageView();
-    Canvas canvas = new Canvas();
+
     GesturePane map = new GesturePane();
 
     if (floor == 0) {
@@ -123,7 +123,8 @@ public class MapFactory {
               App.class.getResource("views/floorMaps/03_thethirdfloor.png").toExternalForm());
     }
 
-    canvas.resize(image.getImage().getWidth(), image.getImage().getHeight());
+    Canvas canvas = new Canvas(image.getImage().getWidth(), image.getImage().getHeight());
+
     holder.getChildren().add(image);
     holder.getChildren().add(canvas);
 
@@ -197,7 +198,7 @@ public class MapFactory {
       Node lastNode = null;
       for (Node node : nodeList) {
 
-        if (converter.get(node.getFloor()) == floor) {
+        if (converter.get(node.getFloor()) != floor) {
           lastNode = node;
           continue;
         }

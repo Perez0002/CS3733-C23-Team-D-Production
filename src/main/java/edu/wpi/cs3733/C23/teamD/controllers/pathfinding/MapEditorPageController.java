@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
@@ -15,12 +16,14 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -62,6 +65,7 @@ public class MapEditorPageController {
 
   private GesturePane gesturePane;
   private int currentFloor = 0;
+  private Point2D currentPoint;
 
   private enum SubmitMode {
     NO_SELECTION,
@@ -75,6 +79,7 @@ public class MapEditorPageController {
     if (currentFloor < 4) {
       currentFloor++;
     }
+    // currentPoint = gesturePane;
     gesturePane =
         gesturePane =
             MapFactory.startBuild()
@@ -85,6 +90,7 @@ public class MapEditorPageController {
                     })
                 .build(currentFloor);
     mapEditorPane.setCenter(gesturePane);
+    gesturePane.animate(Duration.millis(100)).centreOn(currentPoint);
   }
 
   @FXML
@@ -92,6 +98,7 @@ public class MapEditorPageController {
     if (currentFloor > 0) {
       currentFloor--;
     }
+    currentPoint = gesturePane.viewportCentre();
     gesturePane =
         MapFactory.startBuild()
             .withNodes(nodeList)
@@ -101,6 +108,7 @@ public class MapEditorPageController {
                 })
             .build(currentFloor);
     mapEditorPane.setCenter(gesturePane);
+    gesturePane.animate(Duration.millis(100)).centreOn(currentPoint);
   }
 
   @FXML
@@ -364,9 +372,11 @@ public class MapEditorPageController {
 
     // Calculating average x and y
     for (Node node : nodeList) {
-      totalX += node.getXcoord();
-      totalY += node.getYcoord();
-      total++;
+      if (node.getFloor().equals("L1")) {
+        totalX += node.getXcoord();
+        totalY += node.getYcoord();
+        total++;
+      }
     }
 
     // Creating GesturePane to show
@@ -380,6 +390,11 @@ public class MapEditorPageController {
             .build(currentFloor);
     // Setting center of BorderPane to the GesturePane
     mapEditorPane.setCenter(gesturePane);
-    // Setting zoom to 0
+
+    currentPoint =
+        new Point2D(
+            (totalX / total) - App.getPrimaryStage().getScene().getWidth() / 2,
+            (totalY / total) - App.getPrimaryStage().getScene().getHeight() / 2);
+    gesturePane.animate(Duration.millis(100)).centreOn(currentPoint);
   }
 }

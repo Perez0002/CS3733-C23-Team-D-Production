@@ -72,14 +72,13 @@ public class PathfindingController {
     String endNode = endRoomComboBoxController.getNodeValue();
 
     if (startNode != null && endNode != null) {
-      path = pathfinder.pathfind(mainMap.getNode(startNode), mainMap.getNode(endNode), "BFS");
+      path = pathfinder.pathfind(mainMap.getNode(startNode), mainMap.getNode(endNode), "AStar");
       if (path.size() == 1) {
         pathResultText.setText("The Chosen Start and End Locations are Identical");
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        GesturePane sceneNode =
-            MapFactory.startBuild().withNodes(path).withEdges().onlyStartEnd().build(0);
+        GesturePane sceneNode = MapFactory.startBuild().withNodes(path).withEdges().build(0);
         sceneNode
             .animate(Duration.millis(200))
             .centreOn(
