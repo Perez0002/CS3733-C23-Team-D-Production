@@ -1,12 +1,12 @@
 package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -143,6 +143,14 @@ public class PathfindingController {
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
 
+    HashMap<String, Integer> converter = new HashMap<String, Integer>();
+
+    converter.put("L1", 0);
+    converter.put("L2", 1);
+    converter.put("1", 2);
+    converter.put("2", 3);
+    converter.put("3", 4);
+
     if (startNode != null && endNode != null) {
       path = pathfinder.pathfind(mainMap.getNode(startNode), mainMap.getNode(endNode), algorithm);
       if (path.size() == 1) {
@@ -150,13 +158,17 @@ public class PathfindingController {
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        GesturePane sceneNode = MapFactory.startBuild().withNodes(path).withEdges().build(0);
+        GesturePane sceneNode =
+            MapFactory.startBuild()
+                .withNodes(path)
+                .withEdges()
+                .build(converter.get(mainMap.getNode(startNode).getFloor()));
         sceneNode
             .animate(Duration.millis(200))
             .centreOn(
                 new Point2D(
-                    mainMap.getNode(startNode).getXcoord() - App.getPrimaryStage().getWidth() / 2,
-                    mainMap.getNode(endNode).getYcoord() - App.getPrimaryStage().getHeight() / 2));
+                    mainMap.getNode(startNode).getXcoord() - sceneNode.getViewportWidth(),
+                    mainMap.getNode(endNode).getYcoord() - sceneNode.getViewportHeight()));
 
         pathfindingBorderPane.setCenter(sceneNode);
       }
