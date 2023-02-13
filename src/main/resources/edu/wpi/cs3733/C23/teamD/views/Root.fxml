@@ -48,7 +48,7 @@
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fltral-info-20" iconSize="30" />
                </graphic></MFXButton>
-            <MFXButton fx:id="exitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="50.0" prefWidth="50.0" styleClass="exitButton" text="x" />
+            <MFXButton fx:id="logOutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="exitButton" text="sign out" />
          </children>
          <padding>
             <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />

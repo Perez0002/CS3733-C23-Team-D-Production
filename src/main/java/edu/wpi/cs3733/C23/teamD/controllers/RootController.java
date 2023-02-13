@@ -11,11 +11,10 @@ public class RootController {
 
   @FXML private MFXButton dbButton;
 
-  @FXML private MFXButton exitButton;
+  @FXML private MFXButton logOutButton;
 
   @FXML private MFXButton helpPageButton;
 
-  @FXML private MFXButton homeButton1;
   @FXML private MFXButton homeButton;
 
   @FXML private MFXButton infoButton;
@@ -49,6 +48,9 @@ public class RootController {
 
     infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     infoButton.setTooltip(new Tooltip("Information"));
+
+    logOutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    logOutButton.setTooltip(new Tooltip("Sign Out"));
   }
 
   @FXML
