@@ -42,7 +42,7 @@ public class SanitationRequestController {
       } else if (radioBSL4.isSelected()) {
         i = 4;
       }
-      // formSubmittedText.setVisible(true);
+      formSubmittedText.setVisible(true);
       SanitationRequestData requestData =
           new SanitationRequestData(
               fieldLocationController.getNodeValue(),
