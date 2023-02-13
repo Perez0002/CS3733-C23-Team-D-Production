@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="basePane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.RootController">
    <left>
-      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" spacing="22.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
+      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" spacing="22.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
@@ -32,17 +32,22 @@
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fltral-document-one-page-20" iconSize="30" />
                </graphic></MFXButton>
-            <MFXButton fx:id="dbButton" alignment="CENTER" layoutX="30.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="db">
+            <MFXButton fx:id="dbButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fltrmz-table-20" iconSize="30" />
                </graphic></MFXButton>
-            <MFXButton fx:id="mapEditorButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" text="m">
+            <MFXButton fx:id="mapEditorButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fltrmz-map-24" iconSize="30" />
                </graphic></MFXButton>
-            <MFXButton fx:id="helpPageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="helpButton" text="?">
-              </MFXButton>
-            <MFXButton fx:id="infoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="infoButton" text="i" />
+            <MFXButton fx:id="helpPageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="helpButton">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltrmz-question-circle-20" iconSize="30" />
+               </graphic></MFXButton>
+            <MFXButton fx:id="infoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="infoButton">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltral-info-20" iconSize="30" />
+               </graphic></MFXButton>
             <MFXButton fx:id="exitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="50.0" prefWidth="50.0" styleClass="exitButton" text="x" />
          </children>
          <padding>
