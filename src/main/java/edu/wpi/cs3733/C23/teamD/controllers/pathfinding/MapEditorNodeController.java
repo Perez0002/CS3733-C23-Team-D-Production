@@ -12,16 +12,16 @@ public class MapEditorNodeController {
   Node node; // contains pathfinding node information
   PopOver popover; // contains popover object
 
-  MapEditorNodeController(Node node) {
+  MapEditorNodeController(Node node, double xPos, double yPos) {
     this.node = node;
-    makeEditorNode(); // calls pseudo-constructor object
+    makeEditorNode(xPos, yPos); // calls pseudo-constructor object
   }
 
   /**
    * Creates a popover object that contains necessary popup information (pane, text containing node
    * information). neither param nor return
    */
-  private void makeEditorNode() {
+  private void makeEditorNode(double xPos, double yPos) {
     popover = new PopOver(); // creates PopOver container
     Pane pane = new Pane(); // creates Pane object to place within PopOver
 
@@ -29,6 +29,8 @@ public class MapEditorNodeController {
     pane.setStyle("-fx-background-color: '#ffffff';");
     popover.setPrefHeight(100);
     popover.setPrefWidth(200);
+    popover.setX(xPos);
+    popover.setY(yPos);
     pane.setPrefHeight(100);
     pane.setPrefWidth(200);
     popover.setArrowSize(0);

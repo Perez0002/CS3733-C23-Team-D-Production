@@ -55,7 +55,7 @@ public class MapEditorPageController {
 
   private Node currentNodeEdit;
 
-  private ArrayList<Node> nodeList;
+  private ArrayList<Node> nodeList = new ArrayList<>();
 
   private UIManager uiManager = new UIManager();
   private SubmitMode mode = SubmitMode.NO_SELECTION;
@@ -163,8 +163,13 @@ public class MapEditorPageController {
     return new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
+
+        GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+
         if (!node.equals(currentNodeEdit)) { // If node and currentNode are different
           // Select Node
+
           updateButtonsForNode(SubmitMode.EDIT_NODE);
           currentNodeEdit = node;
 
@@ -173,8 +178,6 @@ public class MapEditorPageController {
           yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
           longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
 
-          GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
-          AnchorPane anchor = (AnchorPane) gesturePane.getContent();
           for (javafx.scene.Node n : anchor.getChildren()) {
             if (!(n instanceof Circle)) {
               continue;

@@ -135,7 +135,6 @@ public class MapFactory {
           continue;
         }
 
-        MapEditorNodeController mapEditor = new MapEditorNodeController(node);
         javafx.scene.Node tempPane =
             MapNodeFactory.startPathBuild()
                 .posX(node.getXcoord())
@@ -143,11 +142,9 @@ public class MapFactory {
                 .onClick(this.nodeEvent.apply(node))
                 .onMouseEnter(
                     e -> {
+                      MapEditorNodeController mapEditor =
+                          new MapEditorNodeController(node, e.getSceneX(), e.getSceneY());
                       mapEditor.makePopupAppear();
-                    })
-                .onMouseExit(
-                    e -> {
-                      mapEditor.makePopupDisappear();
                     })
                 .nodeID(node.getNodeID() + "_pane")
                 .build();
@@ -155,9 +152,7 @@ public class MapFactory {
       }
     } else {
       System.out.println("In else!");
-      MapEditorNodeController startNodePopup = new MapEditorNodeController(nodeList.get(0));
-      MapEditorNodeController endNodePopup =
-          new MapEditorNodeController(nodeList.get(nodeList.size() - 1));
+
       javafx.scene.Node startPane =
           MapNodeFactory.startPathBuild()
               .posX(nodeList.get(0).getXcoord())
@@ -165,11 +160,10 @@ public class MapFactory {
               .onClick(this.nodeEvent.apply(nodeList.get(0)))
               .onMouseEnter(
                   event -> {
+                    MapEditorNodeController startNodePopup =
+                        new MapEditorNodeController(
+                            nodeList.get(0), event.getSceneX(), event.getSceneY());
                     startNodePopup.makePopupAppear();
-                  })
-              .onMouseExit(
-                  event -> {
-                    startNodePopup.makePopupDisappear();
                   })
               .nodeID(nodeList.get(0).getNodeID() + "_pane")
               .build();
@@ -180,11 +174,12 @@ public class MapFactory {
               .onClick(this.nodeEvent.apply(nodeList.get(nodeList.size() - 1)))
               .onMouseEnter(
                   event -> {
+                    MapEditorNodeController endNodePopup =
+                        new MapEditorNodeController(
+                            nodeList.get(nodeList.size() - 1),
+                            event.getSceneX(),
+                            event.getSceneY());
                     endNodePopup.makePopupAppear();
-                  })
-              .onMouseExit(
-                  event -> {
-                    endNodePopup.makePopupDisappear();
                   })
               .nodeID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
               .build();
