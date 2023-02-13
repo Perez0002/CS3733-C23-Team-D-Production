@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 public class ServiceRequestVBoxController {
@@ -14,5 +15,9 @@ public class ServiceRequestVBoxController {
     } else {
       vbox.setVisible(true);
     }
+  }
+
+  public Node getVBox() {
+    return vbox;
   }
 }

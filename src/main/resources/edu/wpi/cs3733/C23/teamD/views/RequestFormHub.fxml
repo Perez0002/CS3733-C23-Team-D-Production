@@ -17,7 +17,7 @@
             <Insets bottom="75.0" left="25.0" top="75.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="hubLabel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" styleClass="hubLabel" text="Service Request Hub">
+            <Label fx:id="hubLabel" maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" text="Service Request Hub">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin>
@@ -38,12 +38,7 @@
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="625.0" prefWidth="600.0">
-               <children>
-                  <fx:include fx:id="hubVBox" source="VBoxInjections/hubVBox.fxml" />
-                  <fx:include fx:id="patientTransportVBox" source="VBoxInjections/PatientTransportVBox.fxml" />
-               </children>
-            </Pane>
+            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" />
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="125.0" prefWidth="600.0">
                <children>
                   <HBox alignment="BOTTOM_LEFT" layoutX="431.0" layoutY="323.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
