@@ -203,7 +203,6 @@ public class MapFactory {
         }
 
         if (throughFirst) {
-          System.out.println("draw");
           context.strokeLine(
               lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
         } else {
