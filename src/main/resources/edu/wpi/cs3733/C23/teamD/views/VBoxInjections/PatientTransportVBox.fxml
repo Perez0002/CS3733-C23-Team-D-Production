@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="patientTransportRequestVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="746.0" visible="false" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.PatientTransportVBoxController">
+   <children>
+      <Label text="Label" />
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Label" />
+            <MFXTextField />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Label" />
+            <fx:include fx:id="employeeDropdown" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Label" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Label" />
+         </children>
+      </VBox>
+   </children>
+</VBox>

@@ -10,23 +10,31 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class ServiceRequestHubController {
 
-  @FXML private MFXButton clickableTest;
-
+  @FXML private MFXButton hubButton;
+  @FXML private MFXButton transportButton;
   @FXML private Pane requestFormHubPane;
-
+  @FXML private Parent patientTransportVBox;
+  @FXML private PatientTransportVBoxController patientTransportVBoxController;
   @FXML private Parent hubVBox;
-
   @FXML private HubBoxController hubVBoxController;
-
   @FXML private BorderPane mapPaneContainer;
-
   @FXML private BorderPane requestFormHubBorderPane;
+  private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   public void initialize() {
 
     createHubMap();
 
-    clickableTest.setOnMouseClicked(event -> hubVBoxController.setVisible());
+    currentController = hubVBoxController;
+
+    hubButton.setOnMouseClicked(event -> switchVBox(hubVBoxController));
+    transportButton.setOnMouseClicked(event -> switchVBox(patientTransportVBoxController));
+  }
+
+  void switchVBox(ServiceRequestVBoxController switchTo) {
+    currentController.setVisible();
+    switchTo.setVisible();
+    currentController = switchTo;
   }
 
   void createHubMap() {

@@ -22,11 +22,12 @@
             </Label>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="675.0" spacing="3.0" styleClass="tabHBox">
                <children>
-                  <MFXButton fx:id="clickableTest" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Clickable" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
+                  <MFXButton fx:id="transportButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Patient Transport" />
+                  <MFXButton fx:id="sanitationButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Sanitation" />
+                  <MFXButton fx:id="computerButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Computer" />
+                  <MFXButton fx:id="avButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="A/V" />
+                  <MFXButton fx:id="securityButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Security" />
                </children>
                <padding>
                   <Insets top="10.0" />
@@ -35,6 +36,7 @@
             <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="675.0">
                <children>
                   <fx:include fx:id="hubVBox" source="VBoxInjections/hubVBox.fxml" />
+                  <fx:include fx:id="patientTransportVBox" source="VBoxInjections/PatientTransportVBox.fxml" />
                </children></Pane>
          </children>
          <opaqueInsets>
