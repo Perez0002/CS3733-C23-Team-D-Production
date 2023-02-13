@@ -202,11 +202,9 @@ public class MapFactory {
         }
 
         if (lastNode != null) {
-          System.out.println("draw");
           context.strokeLine(
               lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
         } else {
-          System.out.println("start");
           context.strokeText("START", node.getXcoord(), node.getYcoord() - 10, 40);
           context.setLineWidth(5);
         }

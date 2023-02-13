@@ -15,34 +15,37 @@
          <font>
             <Font size="36.0" />
          </font>
+         <BorderPane.margin>
+            <Insets bottom="32.0" />
+         </BorderPane.margin>
       </Text>
    </top>
    <left>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="237.0" prefWidth="396.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="425.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false">
                <children>
                   <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the starting room." visible="false" />
-                  <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="RoomPickComboBox.fxml" />
+                  <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="360.0" snapToPixel="false" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
                <children>
                   <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want directions to." visible="false" />
-                  <fx:include fx:id="endRoomComboBox" prefWidth="300.0" source="RoomPickComboBox.fxml" />
+                  <fx:include fx:id="endRoomComboBox" prefWidth="360.0" source="RoomPickComboBox.fxml" />
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+            <HBox prefHeight="25.0" prefWidth="300.0" spacing="15.0">
                <children>
-                  <MFXButton fx:id="aStarButton" onAction="#setAStar" text="Good" />
-                  <MFXButton fx:id="BFSButton" onAction="#setBFS" text="Bad" />
-                  <MFXButton fx:id="DFSButton" onAction="#setDFS" text="Worse" />
+                  <MFXButton fx:id="aStarButton" disable="true" onAction="#setAStar" prefWidth="110.0" text="Good" />
+                  <MFXButton fx:id="BFSButton" onAction="#setBFS" prefWidth="110.0" text="Bad" />
+                  <MFXButton fx:id="DFSButton" onAction="#setDFS" prefWidth="110.0" text="Worse" />
                </children>
             </HBox>
             <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" wrapText="true" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
                <children>
-                  <HBox alignment="TOP_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="15.0">
+                  <HBox alignment="BOTTOM_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="360.0" spacing="15.0">
                      <children>
                         <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
                         <MFXButton onAction="#submit" text="Submit" />
@@ -62,34 +65,41 @@
          </BorderPane.margin>
       </VBox>
    </left>
-   <bottom>
-      <MFXButton alignment="CENTER" onAction="#displayHelp" prefWidth="32.0" styleClass="helpbuttonstyleclass" text="?" textAlignment="CENTER" BorderPane.alignment="BOTTOM_RIGHT">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </MFXButton>
-   </bottom>
    <center>
-      <VBox prefHeight="604.0" prefWidth="736.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="526.0" prefWidth="876.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <right>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="BOTTOM_RIGHT" />
+         </right>
+         <bottom>
+            <VBox prefHeight="140.0" prefWidth="850.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="pathfindingBorderPane" prefHeight="506.0" prefWidth="753.0" />
+                  <HBox alignment="CENTER" prefHeight="76.0" prefWidth="850.0" spacing="24.0">
+                     <children>
+                        <MFXButton fx:id="floor1Button" disable="true" text="Floor 1" />
+                        <MFXButton fx:id="floor2Button" text="Floor 2" />
+                        <MFXButton fx:id="floor3Button" text="Floor 3" />
+                        <MFXButton fx:id="floor4Button" text="Floor 4" />
+                        <MFXButton fx:id="floor5Button" text="Floor 5" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="71.0" prefWidth="850.0">
+                     <children>
+                        <MFXButton alignment="CENTER" onAction="#displayHelp" prefWidth="32.0" styleClass="helpbuttonstyleclass" text="?" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="16.0" right="16.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
-               <children>
-                  <MFXButton fx:id="floor1Button" text="Floor 1" />
-                  <MFXButton fx:id="floor2Button" text="Floor 2" />
-                  <MFXButton fx:id="floor3Button" text="Floor 3" />
-                  <MFXButton fx:id="floor4Button" text="Floor 4" />
-                  <MFXButton fx:id="floor5Button" text="Floor 5" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
+            </VBox>
+         </bottom>
+         <center>
+            <BorderPane fx:id="pathfindingBorderPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #1D4E8D; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </center>
 </BorderPane>

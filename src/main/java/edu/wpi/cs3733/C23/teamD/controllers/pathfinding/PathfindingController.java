@@ -48,6 +48,8 @@ public class PathfindingController {
 
   @FXML private MFXButton floor5Button;
 
+  private MFXButton[] floorButtons = new MFXButton[5];
+
   @FXML private MFXButton aStarButton;
 
   @FXML private MFXButton BFSButton;
@@ -68,22 +70,39 @@ public class PathfindingController {
   @FXML
   public void setAStar() {
     algorithm = "AStar";
+    aStarButton.setDisable(true);
+    BFSButton.setDisable(false);
+    DFSButton.setDisable(false);
   }
 
   @FXML
   public void setBFS() {
     algorithm = "BFS";
+    aStarButton.setDisable(false);
+    BFSButton.setDisable(true);
+    DFSButton.setDisable(false);
   }
 
   @FXML
   public void setDFS() {
     algorithm = "DFS";
+    aStarButton.setDisable(false);
+    BFSButton.setDisable(false);
+    DFSButton.setDisable(true);
   }
 
   public EventHandler<ActionEvent> changeFloor(int floor) {
+
     return new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
+        for (int i = 0; i < 5; i++) {
+          if (i == floor) {
+            floorButtons[i].setDisable(true);
+          } else {
+            floorButtons[i].setDisable(false);
+          }
+        }
         pathfindingBorderPane.setCenter(
             MapFactory.startBuild().withNodes(path).withEdges().build(floor));
       }
@@ -92,6 +111,11 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
+    floorButtons[0] = floor1Button;
+    floorButtons[1] = floor2Button;
+    floorButtons[2] = floor3Button;
+    floorButtons[3] = floor4Button;
+    floorButtons[4] = floor5Button;
     this.mainMap = new GraphMap();
     mainMap.initFromDB();
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
@@ -102,6 +126,8 @@ public class PathfindingController {
     floor4Button.setOnAction(changeFloor(3));
     floor5Button.setOnAction(changeFloor(4));
   }
+
+  private void switchFloor(int fl) {}
 
   @FXML
   void displayHelp() {
