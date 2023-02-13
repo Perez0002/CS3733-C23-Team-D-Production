@@ -62,6 +62,7 @@ public class PathfinderAStar {
       currentPath = queue.poll();
 
       Node currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
+      beenNodes.add(currentNode);
 
       if (currentNode.equals(endNode)) {
         // if the current Node is our target Node, we are done, exit loop
@@ -70,16 +71,25 @@ public class PathfinderAStar {
       }
 
       // for every connection in our current Node, add  those we have not been too to the queue
-      System.out.println(currentNode.getNodeEdges());
+      for (Edge e : currentNode.getNodeEdges()) {
+        System.out.print(e.getEdgeID() + " : ");
+      }
+      System.out.println("");
       for (Edge e : currentNode.getNodeEdges()) {
         System.out.println(e.getEdgeID());
-        if (beenNodes.add(e.getToNode())) {
+        if (!beenNodes.contains(e.getToNode())) {
           ArrayList<Node> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());
-          queue.add(
+          if (!queue.contains(
               new PathCostPair(
                   temp,
-                  currentPath.getValue() + e.getCost() + getHeuristic(e.getToNode(), endNode)));
+                  currentPath.getValue() + e.getCost() + getHeuristic(e.getToNode(), endNode)))) {
+            queue.add(
+                new PathCostPair(
+                    temp,
+                    currentPath.getValue() + e.getCost() + getHeuristic(e.getToNode(), endNode)));
+          }
+
           System.out.println("Added: " + e.getToNode().getLongName());
         } else {
           System.out.println("Compared Node: " + e.getToNode().getLongName());

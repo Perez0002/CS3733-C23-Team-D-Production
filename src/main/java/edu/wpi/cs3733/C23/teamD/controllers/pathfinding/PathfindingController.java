@@ -10,13 +10,10 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
-import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
 
@@ -111,20 +108,22 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
-    floorButtons[0] = floor1Button;
-    floorButtons[1] = floor2Button;
-    floorButtons[2] = floor3Button;
-    floorButtons[3] = floor4Button;
-    floorButtons[4] = floor5Button;
-    this.mainMap = new GraphMap();
-    mainMap.initFromDB();
-    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
 
     floor1Button.setOnAction(changeFloor(0));
     floor2Button.setOnAction(changeFloor(1));
     floor3Button.setOnAction(changeFloor(2));
     floor4Button.setOnAction(changeFloor(3));
     floor5Button.setOnAction(changeFloor(4));
+
+    floorButtons[0] = floor1Button;
+    floorButtons[1] = floor2Button;
+    floorButtons[2] = floor3Button;
+    floorButtons[3] = floor4Button;
+    floorButtons[4] = floor5Button;
+
+    this.mainMap = new GraphMap();
+    mainMap.initFromDB();
+    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
   }
 
   private void switchFloor(int fl) {}
@@ -153,24 +152,13 @@ public class PathfindingController {
 
     if (startNode != null && endNode != null) {
       path = pathfinder.pathfind(mainMap.getNode(startNode), mainMap.getNode(endNode), algorithm);
+      System.out.println(path.size());
       if (path.size() == 1) {
         pathResultText.setText("The Chosen Start and End Locations are Identical");
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        GesturePane sceneNode =
-            MapFactory.startBuild()
-                .withNodes(path)
-                .withEdges()
-                .build(converter.get(mainMap.getNode(startNode).getFloor()));
-        sceneNode
-            .animate(Duration.millis(200))
-            .centreOn(
-                new Point2D(
-                    mainMap.getNode(startNode).getXcoord() - sceneNode.getViewportWidth(),
-                    mainMap.getNode(endNode).getYcoord() - sceneNode.getViewportHeight()));
-
-        pathfindingBorderPane.setCenter(sceneNode);
+        changeFloor(converter.get(mainMap.getNode(startNode).getFloor())).handle(null);
       }
     } else {
       pathResultText.setText("Incorrect Node Data Entered");
