@@ -228,8 +228,10 @@ public class MapFactory {
     map.animate(Duration.millis(100))
         .centreOn(
             new Point2D(
-                (totalX / totalNode) - App.getPrimaryStage().getScene().getWidth() / 2,
-                (totalY / totalNode) - App.getPrimaryStage().getScene().getHeight() / 2));
+                (totalX / (totalNode == 0 ? 1 : totalNode)
+                    - App.getPrimaryStage().getScene().getWidth() / 2),
+                (totalY / (totalNode == 0 ? 1 : totalNode)
+                    - App.getPrimaryStage().getScene().getHeight() / 2)));
     // Return the GesturePane
     return map;
   }
