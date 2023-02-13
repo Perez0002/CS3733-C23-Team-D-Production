@@ -165,4 +165,11 @@ public class FDdb {
   public void refreshServiceRequests() {
     serviceRequestIDao.refresh();
   }
+
+  public void downloadCSV() {
+    nodeIDao.downloadCSV(new Node());
+    locationNameIDao.downloadCSV(new LocationName());
+    moveIDao.downloadCSV(new Move());
+    edgeIDao.downloadCSV(new Edge());
+  }
 }

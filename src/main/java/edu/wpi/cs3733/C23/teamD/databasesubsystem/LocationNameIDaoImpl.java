@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -105,6 +106,44 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
       this.locationNames.remove(l);
     } catch (Exception ex) {
       session.getTransaction().rollback();
+    }
+  }
+
+  @Override
+  public void uploadCSV(LocationName locat) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
+      DBSingleton.getSession().beginTransaction();
+      DBSingleton.getSession().createQuery("DELETE FROM LocationName");
+      DBSingleton.getSession().getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        LocationName l = new LocationName(data[0], data[1], data[2]);
+        FDdb.getInstance().saveLocationName(l);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(LocationName locat) {
+    try {
+      BufferedWriter fileWriter =
+          new BufferedWriter(
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
+      for (LocationName l : this.locationNames) {
+        String oneObject = String.join(",", l.getLongName(), l.getShortName(), l.getLocationType());
+        fileWriter.write(oneObject);
+        fileWriter.newLine();
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }

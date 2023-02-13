@@ -1,7 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
+import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import jakarta.persistence.Query;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -90,6 +96,61 @@ public class MoveIDaoImpl implements IDao<Move> {
 
     } catch (Exception ex) {
       session.getTransaction().rollback();
+    }
+  }
+
+  @Override
+  public void uploadCSV(Move move) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv"));
+      DBSingleton.getSession().beginTransaction();
+      DBSingleton.getSession().createQuery("DELETE FROM Move");
+      DBSingleton.getSession().getTransaction().commit();
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        Node curNode = new Node();
+        LocationName curLocat = new LocationName();
+        for (Node node : FDdb.getInstance().getAllNodes()) {
+          if (node.getNodeID().equals(data[0])) {
+            curNode = node;
+            break;
+          }
+        }
+        for (LocationName locat : FDdb.getInstance().getAllLocationNames()) {
+          if (locat.getLongName().equals(data[1])) {
+            curLocat = locat;
+            break;
+          }
+        }
+        Move m = new Move(curNode, curLocat, format.parse(data[2]));
+        FDdb.getInstance().saveMove(m);
+      }
+      fileReader.close();
+    } catch (IOException | ParseException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(Move move) {
+    try {
+      BufferedWriter fileWriter =
+          new BufferedWriter(
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv"));
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      for (Move m : this.moves) {
+        String oneObject =
+            String.join(",", m.getNodeID(), m.getLongName(), format.format(m.getMoveDate()));
+        fileWriter.write(oneObject);
+        fileWriter.newLine();
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
