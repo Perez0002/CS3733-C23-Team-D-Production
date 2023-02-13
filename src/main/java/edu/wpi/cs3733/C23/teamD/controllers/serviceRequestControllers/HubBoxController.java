@@ -3,7 +3,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
-public class HubBoxController extends ServiceRequestVBoxController {
+public class HubBoxController implements ServiceRequestVBoxController {
 
   @FXML private VBox serviceRequestHubVBox;
 
