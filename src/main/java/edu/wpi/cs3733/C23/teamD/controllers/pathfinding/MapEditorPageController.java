@@ -109,7 +109,9 @@ public class MapEditorPageController {
     AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
     for (javafx.scene.Node n : anchor.getChildren()) {
-      n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
+      if (n instanceof Circle) {
+        ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Setting all Panes to default color
+      }
     }
 
     updateButtonsForNode(SubmitMode.NO_SELECTION);
@@ -179,7 +181,7 @@ public class MapEditorPageController {
             if ((node.getNodeID() + "_pane").equals(n.getId())) {
               ((Circle) n).setFill(Color.rgb(204, 34, 34)); // Turn this Pane to red
             } else {
-              ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Turn this Pane to red
+              ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Turn this Pane to blue
             }
           }
         } else {
