@@ -48,7 +48,7 @@ public class RootController {
     helpPageButton.setTooltip(new Tooltip("Help"));
 
     infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    helpPageButton.setTooltip(new Tooltip("Information"));
+    infoButton.setTooltip(new Tooltip("Information"));
   }
 
   @FXML
