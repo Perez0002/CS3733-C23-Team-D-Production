@@ -1,5 +1,8 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.HUB;
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.PATIENT_TRANSPORT;
+
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
@@ -10,23 +13,39 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class ServiceRequestHubController {
 
-  @FXML private MFXButton clickableTest;
-
+  @FXML private MFXButton hubButton;
+  @FXML private MFXButton transportButton;
   @FXML private Pane requestFormHubPane;
-
+  @FXML private Parent patientTransportVBox;
+  @FXML private PatientTransportVBoxController patientTransportVBoxController;
   @FXML private Parent hubVBox;
-
   @FXML private HubBoxController hubVBoxController;
-
   @FXML private BorderPane mapPaneContainer;
-
   @FXML private BorderPane requestFormHubBorderPane;
+  private ServiceRequestVBoxController currentController; // tracks current VBox pane
+
+  Pane getRequestFormHubPane() {
+    return requestFormHubPane;
+  }
 
   public void initialize() {
 
     createHubMap();
 
-    clickableTest.setOnMouseClicked(event -> hubVBoxController.setVisible());
+    currentController = hubVBoxController;
+
+    hubButton.setOnMouseClicked(event -> switchVBox(HUB));
+    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
+  }
+
+  //  void switchVBox(ServiceRequestVBoxController switchTo) {
+  //    currentController.setVisible();
+  //    switchTo.setVisible();
+  //    currentController = switchTo;
+  //  }
+
+  void switchVBox(ServiceRequests switchTo) {
+    NavigationServiceRequests.navigate(switchTo, getRequestFormHubPane());
   }
 
   void createHubMap() {

@@ -57,7 +57,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <fx:include fx:id="fieldLocation" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="RoomPickComboBox.fxml" />
+                  <fx:include fx:id="fieldLocation" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
                   <Text fx:id="locationHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Use dropdown to select location for sanitation request." visible="false" wrappingWidth="198.478515625" />
                </children>
             </HBox>

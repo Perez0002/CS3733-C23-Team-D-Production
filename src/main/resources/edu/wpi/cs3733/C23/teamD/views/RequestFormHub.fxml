@@ -7,35 +7,43 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="requestFormHubBorderPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
    <center>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="675.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
          <BorderPane.margin>
             <Insets bottom="75.0" left="25.0" top="75.0" />
          </BorderPane.margin>
          <children>
-            <Label styleClass="hubLabel" text="Service Request Hub">
+            <Label fx:id="hubLabel" maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" text="Service Request Hub">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </Label>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="675.0" spacing="3.0" styleClass="tabHBox">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="600.0" spacing="3.0" styleClass="tabHBox">
                <children>
-                  <MFXButton fx:id="clickableTest" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Clickable" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
-                  <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Button" />
+                  <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
+                  <MFXButton fx:id="transportButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Patient Transport" />
+                  <MFXButton fx:id="sanitationButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Sanitation" />
+                  <MFXButton fx:id="computerButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Computer" />
+                  <MFXButton fx:id="avButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="A/V" />
+                  <MFXButton fx:id="securityButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Security" />
                </children>
                <padding>
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <Pane fx:id="requestFormHubPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="675.0">
+            <Pane fx:id="requestFormHubPane" maxWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" />
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
                <children>
-                  <fx:include fx:id="hubVBox" source="VBoxInjections/hubVBox.fxml" />
-               </children></Pane>
+                  <MFXButton fx:id="clearButton" styleClass="clearButton" />
+                  <MFXButton fx:id="submitButton" styleClass="submitButton" />
+               </children>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets />
