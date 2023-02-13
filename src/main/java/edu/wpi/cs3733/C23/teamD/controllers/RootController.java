@@ -3,7 +3,6 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tooltip;
 
@@ -27,6 +26,10 @@ public class RootController {
 
   @FXML
   public void initialize() {
+    setButtons();
+  }
+
+  public void setButtons() {
     homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     homeButton.setTooltip(new Tooltip("Home"));
 
@@ -51,10 +54,5 @@ public class RootController {
 
     logOutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     logOutButton.setTooltip(new Tooltip("Sign Out"));
-  }
-
-  @FXML
-  void exit() {
-    Platform.exit();
   }
 }
