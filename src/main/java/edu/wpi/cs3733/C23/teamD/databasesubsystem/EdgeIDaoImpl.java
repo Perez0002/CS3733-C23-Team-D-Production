@@ -127,21 +127,19 @@ public class EdgeIDaoImpl implements IDao<Edge> {
           new BufferedWriter(
               new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv"));
       for (Edge e : this.edges) {
-        String oneObject = e.getEdgeID();
-        boolean toNode = false;
-        boolean fromNode = false;
+        String toNodeID = "";
+        String fromNodeID = "";
         for (Node n : FDdb.getInstance().getAllNodes()) {
+          System.out.println(e.getToNodeID());
+          System.out.println(e.getFromNodeID());
           if (e.getToNodeID().equals(n.getNodeID())) {
-            if (fromNode) oneObject = oneObject.replace("empty", n.getNodeID());
-            else oneObject = String.join(",", oneObject, n.getNodeID());
-            toNode = true;
-
-          } else if (e.getFromNodeID().equals(n.getNodeID())) {
-            if (toNode) oneObject = String.join(",", oneObject, n.getNodeID());
-            else oneObject = String.join(",", oneObject, "empty", n.getNodeID());
-            fromNode = true;
+            toNodeID = n.getNodeID();
+          }
+          if (e.getFromNodeID().equals(n.getNodeID())) {
+            fromNodeID = n.getNodeID();
           }
         }
+        String oneObject = String.join(",", e.getEdgeID(), toNodeID, fromNodeID);
         fileWriter.write(oneObject);
         fileWriter.newLine();
       }

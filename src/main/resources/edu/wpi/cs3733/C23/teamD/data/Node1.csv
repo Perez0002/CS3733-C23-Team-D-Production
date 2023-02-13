@@ -51,7 +51,7 @@ L2X1667Y2682,1667,2682,L2,BTM,LABS,MRI CT Scan Imaging,MRI CT Imaging
 2X2385Y753,2385,753,2,45 Francis,DEPT,Lee Bell Breast Center,DEPT B0302
 2X2439Y902,2439,902,2,45 Francis,DEPT,Jen Center for Primary Care,DEPT B0402
 2X2623Y1018,2623,1018,2,45 Francis,DEPT,Ear Nose & Throat,DEPT B0502
-2X2782Y1303,2782,1303,2,45 Francis,HALL,Hallway Intersection 31 Level 2,Hallway B3102
+2X2782Y1303,2782,1303,2,45 Francis,HALL,Hallway Intersection 45 Level 2,Hallway B3102
 2X2945Y775,2945,775,2,45 Francis,DEPT,Plastic Surgery,DEPT B0702
 2X3155Y890,3155,890,2,45 Francis,DEPT,Outpatient Pharmacy,DEPT B0802
 2X3257Y879,3257,879,2,45 Francis,DEPT,Weiner Center for Preoperative Evaluation,DEPT B0902
@@ -434,7 +434,7 @@ L2X2015Y1280,2015,1280,L2,45 Francis,SERV,Interpreter Services Floor L2,Service 
 3X1580Y2006,1580,2006,3,Shapiro,HALL,Hallway Node 13 Floor 3,Hall
 3X1628Y2052,1628,2052,3,Shapiro,REST,Restroom Node 12 Floor 3,Restroom Shapiro Floor 3
 3X1580Y1858,1580,1858,3,Shapiro,SERV,The Porch Node 16 Floor 3,The Porch
-3X1685Y2052,1685,2052,3,Shapiro,STAI,Staircase Node 9 Floor 3,Floor 3 Stairs 
+3X1685Y2052,1685,2052,3,Shapiro,STAI,Staircase Node 9 Floor 3,Floor 3 Stairs
 L1X1637Y2116,1637,2116,L1,Shapiro,ELEV,Elevator Q MapNode 7 Floor L1,Elevator Q L1
 L1X1702Y2260,1702,2260,L1,Shapiro,EXIT,Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1
 L1X1702Y2167,1702,2167,L1,Shapiro,HALL,Hallway MapNode 2 Floor L1,Hall
@@ -459,31 +459,31 @@ L2X1729Y2089,1729,2089,L2,Shapiro,LABS,Cardiovascular Imaging Center Floor L2,Ca
 L2X1512Y1844,1512,1844,L2,Shapiro,LABS,Cardiac Stress Test Lab Floor L2,Cardiac Stress Test Lab
 L2X1512Y1811,1512,1811,L2,Shapiro,LABS,CVRR Floor L2,CVRR
 L2X1680Y2090,1680,2090,L2,Shapiro,REST,Restroom MapNode 4 Floor L2,Restroom Shapiro L2
-2X1875Y925,1875,925,2,Tower,HALL,Hallway Connector 1 Floor 2,Hallway H00102
-2X1955Y900,1955,900,2,Tower,HALL,Hallway Connector 2 Floor 2,Hallway H00202
+2X1875Y925,1875,925,2,Tower,HALL,Hallway Connector 11 Floor 2,Hallway H00102
+2X1955Y900,1955,900,2,Tower,HALL,Hallway Connector 12 Floor 2,Hallway H00202
 2X1935Y860,1935,860,2,Tower,RETL,Garden Cafe,Garden Cafe
-2X2035Y900,2035,900,2,Tower,HALL,Hallway Connector 3 Floor 2,Hallway H00302
+2X2035Y900,2035,900,2,Tower,HALL,Hallway Connector 13 Floor 2,Hallway H00302
 2X2060Y880,2060,880,2,Tower,STAI,Stairwell 1 Floor 2,Stairwell 0102
-2X1875Y1025,1875,1025,2,Tower,HALL,Hallway Connector 4 Floor 2,Hallway H00402
-2X1825Y1025,1825,1025,2,Tower,HALL,Hallway Connector 5 Floor 2,Hallway H00502
-2X1615Y1025,1615,1025,2,Tower,RETL,Vending Machine Floor 2?,Vending Machine
+2X1875Y1025,1875,1025,2,Tower,HALL,Hallway Connector 14 Floor 2,Hallway H00402
+2X1825Y1025,1825,1025,2,Tower,HALL,Hallway Connector 16 Floor 2,Hallway H00502
+2X1615Y1025,1615,1025,2,Tower,RETL,Vending Machine Floor 2,Vending Machine
 2X1605Y1008,1605,1008,2,Tower,BATH,Bathroom 1 Tower Floor 2,Bathroom 0102
 2X1825Y1080,1825,1080,2,Tower,RETL,Gift Shop Tower Floor 2,Gift Shop
-2X1775Y1080,1775,1080,2,Tower,HALL,Hallway Connector 6 Floor 2,Hallway H00602
-2X1740Y1165,1740,1165,2,Tower,HALL,Hallway Connector 7 Floor 2,Hallway H00702
+2X1775Y1080,1775,1080,2,Tower,HALL,Hallway Connector 17 Floor 2,Hallway H00602
+2X1740Y1165,1740,1165,2,Tower,HALL,Hallway Connector 18 Floor 2,Hallway H00702
 2X1695Y1165,1695,1165,2,Tower,STAI,Stairwell 2 Tower Floor 2,Stairwell 0202
-2X1740Y1230,1740,1230,2,Tower,HALL,Hallway Connector 8 Floor 2,Hallway H00802
+2X1740Y1230,1740,1230,2,Tower,HALL,Hallway Connector 19 Floor 2,Hallway H00802
 2X1790Y1230,1790,1230,2,Tower,STAI,Escalator 1 Floor 2,Escalator 1 Floor 2
-2X1740Y1280,1740,1280,2,Tower,HALL,Hallway Connector 9 Floor 2,Hallway H00902
-2X2055Y1280,2055,1280,2,Tower,HALL,Hallway Connector 10 Floor 2,Hallway H01002
+2X1740Y1280,1740,1280,2,Tower,HALL,Hallway Connector 15 Floor 2,Hallway H00902
+2X2055Y1280,2055,1280,2,Tower,HALL,Hallway Connector 20 Floor 2,Hallway H01002
 2X2055Y1330,2055,1330,2,Tower,DEPT,Endoscopy,Endoscopy
 3X1680Y1290,1680,1290,3,Tower,HALL,Hallway Connector 5 Floor 3,Hallway H00502
 3X1680Y1275,1680,1275,3,Tower,STAI,Stairwell 1 Floor 3,Stairwell
 3X1325Y1290,1325,1290,3,Tower,HALL,Hallway Connector 4 Floor 3,Hallway H00403
 3X1325Y985,1325,985,3,Tower,HALL,Hallway Connector 3 Floor 3,Hallway H00303
-3X1235Y985,1235,985,3,Tower,HALL,Hallway Connector 2 Floor 3,Hallway H00203
+3X1235Y985,1235,985,3,Tower,HALL,Hallway Connector 16 Floor 3,Hallway H00203
 3X1235Y865,1235,865,3,Tower,LABS,Reproductive Endocrine Labs,Reproductive Endocrine Labs
-3X1325Y655,1325,655,3,Tower,HALL,Hallway Connector 1 Floor 3,Hallway H00103
+3X1325Y655,1325,655,3,Tower,HALL,Hallway Connector 17 Floor 3,Hallway H00103
 3X1735Y925,1735,925,3,Tower,HALL,Hallway Connector 6 Floor 3,Hallway H00603
 3X1735Y900,1735,900,3,Tower,HALL,Hallway Connector 7 Floor 3,Hallway H00703
 3X1725Y900,1725,900,3,Tower,DEPT,Dialysis Waiting Room,Dialysis WR
