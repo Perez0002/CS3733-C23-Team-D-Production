@@ -61,6 +61,8 @@ public class MapEditorPageController {
   private SubmitMode mode = SubmitMode.NO_SELECTION;
 
   private GesturePane gesturePane;
+
+  private MapEditorNodeController tempPopup;
   private int currentFloor = 0;
 
   private enum SubmitMode {
@@ -81,7 +83,15 @@ public class MapEditorPageController {
                 .withNodes(nodeList)
                 .withNodeFunctions(
                     node -> {
-                      return paneFunction(node);
+                      return paneClickFunction(node);
+                    })
+                .withNodeMouseEnterFunctions(
+                    node -> {
+                      return paneEnterFunction(node);
+                    })
+                .withNodeMouseExitFunctions(
+                    node -> {
+                      return paneExitFunction(node);
                     })
                 .build(currentFloor);
     mapEditorPane.setCenter(gesturePane);
@@ -97,7 +107,15 @@ public class MapEditorPageController {
             .withNodes(nodeList)
             .withNodeFunctions(
                 node -> {
-                  return paneFunction(node);
+                  return paneClickFunction(node);
+                })
+            .withNodeMouseEnterFunctions(
+                node -> {
+                  return paneEnterFunction(node);
+                })
+            .withNodeMouseExitFunctions(
+                node -> {
+                  return paneExitFunction(node);
                 })
             .build(currentFloor);
     mapEditorPane.setCenter(gesturePane);
@@ -158,7 +176,7 @@ public class MapEditorPageController {
    * @param node Node to bind event to
    * @return EventHandler<MouseEvent> to handle on click events
    */
-  private EventHandler<MouseEvent> paneFunction(Node node) {
+  private EventHandler<MouseEvent> paneClickFunction(Node node) {
     // Return a new EventHandler<MouseEvent> based on the passed Node
     return new EventHandler<MouseEvent>() {
       @Override
@@ -192,6 +210,37 @@ public class MapEditorPageController {
           // Deselect Node
           updateButtonsForNode(SubmitMode.NO_SELECTION);
           clearFields();
+        }
+      }
+    };
+  }
+
+  private EventHandler<MouseEvent> paneEnterFunction(Node node) {
+    // Return a new EventHandler<MouseEvent> based on the passed Node
+    return new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+        if (tempPopup == null) {
+          tempPopup = new MapEditorNodeController(node, event.getSceneX(), event.getSceneY());
+          tempPopup.makePopupAppear();
+        }
+      }
+    };
+  }
+
+  private EventHandler<MouseEvent> paneExitFunction(Node node) {
+    // Return a new EventHandler<MouseEvent> based on the passed Node
+    return new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
+        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+
+        if (tempPopup != null) {
+          tempPopup.makePopupDisappear();
+          tempPopup = null;
         }
       }
     };
@@ -289,7 +338,7 @@ public class MapEditorPageController {
         MapNodeFactory.startBuild()
             .posX(newNode.getXcoord() - MapFactory.NODE_WIDTH / 2)
             .posY(newNode.getYcoord() - MapFactory.NODE_HEIGHT / 2)
-            .onClick(paneFunction(newNode))
+            .onClick(paneClickFunction(newNode))
             .nodeID(newNode.getNodeID() + "_pane")
             .build();
 
@@ -378,7 +427,15 @@ public class MapEditorPageController {
             .withNodes(nodeList)
             .withNodeFunctions(
                 node -> {
-                  return paneFunction(node);
+                  return paneClickFunction(node);
+                })
+            .withNodeMouseEnterFunctions(
+                node -> {
+                  return paneEnterFunction(node);
+                })
+            .withNodeMouseExitFunctions(
+                node -> {
+                  return paneExitFunction(node);
                 })
             .build(currentFloor);
     // Setting center of BorderPane to the GesturePane

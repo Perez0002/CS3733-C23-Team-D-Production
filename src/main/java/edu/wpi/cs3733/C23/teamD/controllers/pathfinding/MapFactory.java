@@ -22,6 +22,8 @@ public class MapFactory {
   private boolean onlyStartEnd;
   private ArrayList<Node> nodeList;
   private Function<Node, EventHandler<MouseEvent>> nodeEvent;
+  private Function<Node, EventHandler<MouseEvent>> nodeMouseEnterEvent;
+  private Function<Node, EventHandler<MouseEvent>> nodeMouseExitEvent;
 
   /** Creates a new MapFactory Object */
   private MapFactory() {
@@ -29,6 +31,20 @@ public class MapFactory {
     this.onlyStartEnd = false;
     this.nodeList = new ArrayList<Node>();
     this.nodeEvent =
+        new Function<Node, EventHandler<MouseEvent>>() {
+          @Override
+          public EventHandler<MouseEvent> apply(Node node) {
+            return null;
+          }
+        };
+    this.nodeMouseEnterEvent =
+        new Function<Node, EventHandler<MouseEvent>>() {
+          @Override
+          public EventHandler<MouseEvent> apply(Node node) {
+            return null;
+          }
+        };
+    this.nodeMouseExitEvent =
         new Function<Node, EventHandler<MouseEvent>>() {
           @Override
           public EventHandler<MouseEvent> apply(Node node) {
@@ -58,6 +74,16 @@ public class MapFactory {
    */
   public MapFactory withNodeFunctions(Function<Node, EventHandler<MouseEvent>> event) {
     this.nodeEvent = event;
+    return this;
+  }
+
+  public MapFactory withNodeMouseEnterFunctions(Function<Node, EventHandler<MouseEvent>> event) {
+    this.nodeMouseEnterEvent = event;
+    return this;
+  }
+
+  public MapFactory withNodeMouseExitFunctions(Function<Node, EventHandler<MouseEvent>> event) {
+    this.nodeMouseExitEvent = event;
     return this;
   }
 
@@ -140,12 +166,8 @@ public class MapFactory {
                 .posX(node.getXcoord())
                 .posY(node.getYcoord())
                 .onClick(this.nodeEvent.apply(node))
-                .onMouseEnter(
-                    e -> {
-                      MapEditorNodeController mapEditor =
-                          new MapEditorNodeController(node, e.getSceneX(), e.getSceneY());
-                      mapEditor.makePopupAppear();
-                    })
+                .onMouseEnter(this.nodeMouseEnterEvent.apply(node))
+                .onMouseExit(this.nodeMouseExitEvent.apply(node))
                 .nodeID(node.getNodeID() + "_pane")
                 .build();
         holder.getChildren().add(tempPane);
@@ -158,13 +180,8 @@ public class MapFactory {
               .posX(nodeList.get(0).getXcoord())
               .posY(nodeList.get(0).getYcoord())
               .onClick(this.nodeEvent.apply(nodeList.get(0)))
-              .onMouseEnter(
-                  event -> {
-                    MapEditorNodeController startNodePopup =
-                        new MapEditorNodeController(
-                            nodeList.get(0), event.getSceneX(), event.getSceneY());
-                    startNodePopup.makePopupAppear();
-                  })
+              .onMouseEnter(this.nodeMouseEnterEvent.apply(nodeList.get(0)))
+              .onMouseExit(this.nodeMouseExitEvent.apply(nodeList.get(0)))
               .nodeID(nodeList.get(0).getNodeID() + "_pane")
               .build();
       javafx.scene.Node endPane =
@@ -172,15 +189,8 @@ public class MapFactory {
               .posX(nodeList.get(nodeList.size() - 1).getXcoord())
               .posY(nodeList.get(nodeList.size() - 1).getYcoord())
               .onClick(this.nodeEvent.apply(nodeList.get(nodeList.size() - 1)))
-              .onMouseEnter(
-                  event -> {
-                    MapEditorNodeController endNodePopup =
-                        new MapEditorNodeController(
-                            nodeList.get(nodeList.size() - 1),
-                            event.getSceneX(),
-                            event.getSceneY());
-                    endNodePopup.makePopupAppear();
-                  })
+              .onMouseEnter(this.nodeMouseEnterEvent.apply(nodeList.get(nodeList.size() - 1)))
+              .onMouseExit(this.nodeMouseExitEvent.apply(nodeList.get(nodeList.size() - 1)))
               .nodeID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
               .build();
       holder.getChildren().add(startPane);
