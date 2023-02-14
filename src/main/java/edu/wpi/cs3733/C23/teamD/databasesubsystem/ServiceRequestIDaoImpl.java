@@ -176,7 +176,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public void delete(ServiceRequest s) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE ServiceRequest where id=:id");
+      Query q = session.createQuery("DELETE ServiceRequest where serviceRequestId=:id");
       q.setParameter("id", s.getServiceRequestId());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
@@ -185,6 +185,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.patientTransportRequestList.remove(s);
       } else if (s instanceof SanitationRequest) {
         this.sanitationRequestList.remove(s);
+      } else if (s instanceof ComputerServiceRequest) {
+        this.computerServiceRequests.remove(s);
       }
 
       this.masterList.remove(s);
@@ -214,6 +216,15 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                           == (s.getServiceRequestId()))
               .findFirst()
               .orElse(-1);
+    } else if (s instanceof ComputerServiceRequest) {
+      index =
+              IntStream.range(0, this.computerServiceRequests.size())
+                      .filter(
+                              i ->
+                                      this.computerServiceRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     }
 
     return index;
