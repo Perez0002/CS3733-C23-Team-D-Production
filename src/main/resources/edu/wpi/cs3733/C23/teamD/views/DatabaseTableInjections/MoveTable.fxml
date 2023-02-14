@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="MoveTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+    <TableView fx:id="moveTable" prefHeight="300.0" prefWidth="400.0">
+    <columns>
+    <TableColumn fx:id="moveNodeID" prefWidth="144.0" styleClass="tableCSS.css" text="nodeID" />
+    <TableColumn fx:id="moveLongName" prefWidth="133.0" styleClass="tableCSS.css" text="longName" />
+    <TableColumn fx:id="moveDate" prefWidth="133.0" styleClass="tableCSS.css" text="moveDate" />
+    </columns>
+    </TableView>
+    </center>
+   <right>
+      <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

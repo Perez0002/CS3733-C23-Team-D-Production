@@ -6,9 +6,6 @@
 <?import javafx.scene.layout.HBox?>
 
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.DBcontroller">
-   <bottom>
-       <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-   </bottom>
    <top>
       <TableView fx:id="nodeTableView" prefHeight="300.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>

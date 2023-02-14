@@ -2,6 +2,9 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
+import java.net.URL;
+import java.util.Date;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -20,10 +23,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
 
 public class ServiceRequestTable extends Application implements Initializable {
   @FXML private TableColumn<ServiceRequest, Date> date;

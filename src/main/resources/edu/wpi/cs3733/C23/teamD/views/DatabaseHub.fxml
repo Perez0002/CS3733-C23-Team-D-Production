@@ -29,10 +29,10 @@
                     <children>
                         <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
                         <MFXButton fx:id="serviceTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="159.0" styleClass="tabButton" text="Service Requests" />
-                        <MFXButton fx:id="sanitationButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Node" />
-                        <MFXButton fx:id="computerButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Edge" />
-                        <MFXButton fx:id="avButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Move" />
-                        <MFXButton fx:id="securityButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Location" />
+                        <MFXButton fx:id="nodeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Node" />
+                        <MFXButton fx:id="edgeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Edge" />
+                        <MFXButton fx:id="moveTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Move" />
+                        <MFXButton fx:id="locationTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Location" />
                     </children>
                     <padding>
                         <Insets top="10.0" />
