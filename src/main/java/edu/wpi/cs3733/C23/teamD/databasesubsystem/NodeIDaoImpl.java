@@ -184,26 +184,18 @@ public class NodeIDaoImpl implements IDao<Node> {
   @Override
   public void downloadCSV(Node node) {
     try {
-      FileWriter fw =
-          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv", false);
-      PrintWriter pw = new PrintWriter(fw, false);
-      pw.flush();
-      pw.close();
-      fw.close();
-      BufferedWriter fileWriter =
-          new BufferedWriter(
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv"));
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
       for (Node n : this.nodes) {
         String oneObject =
             String.join(
                 ",",
                 n.getNodeID(),
-                Integer.toString(n.getXcoord()),
-                Integer.toString(n.getYcoord()),
+                String.format("%04d", n.getXcoord()),
+                String.format("%04d", n.getYcoord()),
                 n.getFloor(),
                 n.getBuilding());
-        fileWriter.write(oneObject);
-        fileWriter.newLine();
+        fileWriter.write(oneObject + "\n");
       }
       fileWriter.flush();
       fileWriter.close();

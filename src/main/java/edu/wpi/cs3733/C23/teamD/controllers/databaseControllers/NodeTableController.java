@@ -84,7 +84,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setXcoord(newCoord);
-            Ddb.updateObj(node);
+            FDdb.getInstance().saveNode(node);
           }
         });
 
@@ -100,8 +100,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setYcoord(newCoord);
-            String stmnt = "UPDATE Node SET yCoord = ? WHERE nodeID = ?";
-            Ddb.updateObj(node);
+            FDdb.getInstance().saveNode(node);
           }
         });
     floor.setCellValueFactory(
@@ -116,8 +115,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             String newFloor = event.getNewValue();
             node.setFloor(newFloor);
-            String stmnt = "UPDATE Node SET floor = ? WHERE nodeID = ?";
-            Ddb.updateObj(node);
+            FDdb.getInstance().saveNode(node);
           }
         });
 
@@ -133,8 +131,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             String newBuild = event.getNewValue();
             node.setBuilding(newBuild);
-            String stmnt = "UPDATE Node SET building = ? WHERE nodeID = ?";
-            Ddb.updateObj(node);
+            FDdb.getInstance().saveNode(node);
           }
         });
     nodeTable.setItems(nodeList);

@@ -52,8 +52,8 @@ public class EdgeTableController extends Application implements Initializable, D
     ObservableList<Edge> edgeList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllEdges());
     edgeID.setCellValueFactory(new PropertyValueFactory<Edge, String>("edgeID"));
-    startNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("fromNode"));
-    endNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("toNode"));
+    startNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("fromNodeID"));
+    endNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("toNodeID"));
     edgeTable.setItems(edgeList);
     edgeTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     edgeTable.getColumns().stream()

@@ -258,13 +258,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   @Override
   public void downloadCSV(ServiceRequest serv) {
     try {
-      BufferedWriter fileWriter =
-          new BufferedWriter(
-              new FileWriter(
-                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/SanitationRequest.csv"));
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
       for (SanitationRequest s : this.sanitationRequestList) {
         fileWriter.write("");
-        fileWriter.newLine();
       }
       fileWriter.flush();
       fileWriter.close();
