@@ -4,7 +4,9 @@ public enum ServiceRequests {
   ROOT("views/Root.fxml"),
 
   HUB("views/VBoxInjections/hubVBox.fxml"),
-  PATIENT_TRANSPORT("views/VBoxInjections/PatientTransportVBox.fxml");
+  PATIENT_TRANSPORT("views/VBoxInjections/PatientTransportVBox.fxml"),
+
+  COMPUTER_REQUEST("views/VBoxInjections/ComputerServiceRequest.fxml");
 
   private final String filename;
 

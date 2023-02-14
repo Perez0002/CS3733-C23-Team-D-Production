@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.HUB;
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.PATIENT_TRANSPORT;
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -15,6 +14,7 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton hubButton;
   @FXML private MFXButton transportButton;
+  @FXML private MFXButton computerButton;
   @FXML private Pane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
   @FXML private PatientTransportVBoxController patientTransportVBoxController;
@@ -36,6 +36,7 @@ public class ServiceRequestHubController {
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
+    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST));
   }
 
   //  void switchVBox(ServiceRequestVBoxController switchTo) {

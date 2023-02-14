@@ -1,10 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.controllers.components;
 
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-
-import java.util.ArrayList;
 
 public class UrgencySelectorBoxController {
 
@@ -13,7 +12,7 @@ public class UrgencySelectorBoxController {
 
   public UrgencySelectorBoxController() {
     urgency = new ArrayList<String>();
-    urgency= new ArrayList<>();
+    urgency = new ArrayList<>();
     urgency.add("High");
     urgency.add("Medium");
     urgency.add("Low");

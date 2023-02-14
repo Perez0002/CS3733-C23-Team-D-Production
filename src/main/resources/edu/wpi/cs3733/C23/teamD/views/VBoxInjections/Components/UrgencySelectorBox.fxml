@@ -3,4 +3,4 @@
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 
 
-<MFXFilterComboBox fx:id="mfxFilterComboBox" floatingText="Select the Urgency" styleClass="serviceRequestMFXComboBox" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.components.UrgencySelectorBoxController" />
+<MFXFilterComboBox fx:id="mfxFilterComboBox" promptText="Select the Urgency" styleClass="serviceRequestMFXComboBox" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.components.UrgencySelectorBoxController" />
