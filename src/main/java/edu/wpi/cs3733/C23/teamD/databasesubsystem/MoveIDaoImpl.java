@@ -81,7 +81,7 @@ public class MoveIDaoImpl implements IDao<Move> {
   public void delete(Move m) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE Move where id=:id");
+      Query q = session.createQuery("DELETE Move where moveDate=:id");
       q.setParameter("id", m.getMoveDate());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
