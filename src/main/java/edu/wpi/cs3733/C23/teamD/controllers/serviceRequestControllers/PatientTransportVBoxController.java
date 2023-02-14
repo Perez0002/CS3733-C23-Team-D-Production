@@ -24,5 +24,4 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
   }
 
   void submit() {}
-
 }

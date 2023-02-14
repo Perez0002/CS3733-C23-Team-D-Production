@@ -1,14 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
+
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
-
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 public class ServiceRequestHubController {
 
@@ -42,13 +41,13 @@ public class ServiceRequestHubController {
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION));
 
-    // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(YOUR_REQUEST)
+    // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to
+    // switchVBox(YOUR_REQUEST)
     // you need to add your vbox fxml file to the ENUM ServiceRequests
 
     submitButton.setOnMouseClicked(event -> submit());
     clearButton.setOnMouseClicked(event -> clearFields());
   }
-
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
   void switchVBox(ServiceRequests switchTo) {
@@ -60,22 +59,22 @@ public class ServiceRequestHubController {
 
     } else if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).clearTransportForms();
-    }
-    else if (currentController instanceof SanitationRequestController) {
+    } else if (currentController instanceof SanitationRequestController) {
       ((SanitationRequestController) currentController).clearFields();
     }
 
-    // TODO: add your ClearFields here. Follow the exact same format as the PatientTransportVBoxController but with your variables
-    // What should your ClearFields do? It should clear ALL the fields in YOUR form. Do this in your own controller class.
+    // TODO: add your ClearFields here. Follow the exact same format as the
+    // PatientTransportVBoxController but with your variables
+    // What should your ClearFields do? It should clear ALL the fields in YOUR form. Do this in your
+    // own controller class.
     // This function SIMPLY calls that controller class function.
-
 
   }
 
   void submit() {
     if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).submit();
-    }else if (currentController instanceof SanitationRequestController) {
+    } else if (currentController instanceof SanitationRequestController) {
       ((SanitationRequestController) currentController).submitSanitationRequest();
     }
 
