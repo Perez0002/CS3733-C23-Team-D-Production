@@ -22,13 +22,9 @@ public class ComputerServiceRequestController extends ServiceRequestController {
     private MFXTextField descriptionBox;
 
     public  ComputerServiceRequestController(){
-         urgency= new ArrayList<>();
-                urgency.add("High");
-                urgency.add("Medium");
-                urgency.add("Low");
+
     }
     public void initialize(){
-        urgencyBox.setItems(FXCollections.observableArrayList(urgency));
 
 
 
