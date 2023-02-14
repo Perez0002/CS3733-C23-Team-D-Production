@@ -10,7 +10,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
             <Label text="Label" />
-            <MFXTextField />
+            <MFXTextField fx:id="testField" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0">

@@ -22,6 +22,10 @@ public class ServiceRequestHubController {
   @FXML private HubBoxController hubVBoxController;
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
+
+  @FXML private MFXButton submitButton;
+
+  @FXML private MFXButton clearButton;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   Pane getRequestFormHubPane() {
@@ -36,16 +40,20 @@ public class ServiceRequestHubController {
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
+    // submitButton.setOnMouseClicked(event -> System.out.println());
+    clearButton.setOnMouseClicked(event -> clearFields());
   }
 
-  //  void switchVBox(ServiceRequestVBoxController switchTo) {
-  //    currentController.setVisible();
-  //    switchTo.setVisible();
-  //    currentController = switchTo;
-  //  }
-
   void switchVBox(ServiceRequests switchTo) {
-    NavigationServiceRequests.navigate(switchTo, getRequestFormHubPane());
+    currentController = NavigationServiceRequests.navigate(switchTo, getRequestFormHubPane());
+  }
+
+  void clearFields() {
+    if (currentController instanceof HubBoxController) {
+
+    } else if (currentController instanceof PatientTransportVBoxController) {
+      ((PatientTransportVBoxController) currentController).clearTransportForms();
+    }
   }
 
   void createHubMap() {
