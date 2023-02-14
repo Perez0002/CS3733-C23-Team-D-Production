@@ -93,4 +93,10 @@ public class PastMovesIDaoImpl implements IDao<PastMoves> {
       session.getTransaction().rollback();
     }
   }
+
+  @Override
+  public void downloadCSV(PastMoves move) {}
+
+  @Override
+  public void uploadCSV(PastMoves move) {}
 }
