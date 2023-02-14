@@ -5,6 +5,8 @@ import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxControlle
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,6 +42,11 @@ public class MoveRequestTableController implements Initializable {
   public void submit() {
     System.out.println(locationBoxController.getLocationName());
     System.out.println(nodeBoxController.getNodeValue());
+  }
+
+  @FXML
+  public void backToHub() {
+    Navigation.navigate(Screen.DATABASE_HUB);
   }
 
   @FXML

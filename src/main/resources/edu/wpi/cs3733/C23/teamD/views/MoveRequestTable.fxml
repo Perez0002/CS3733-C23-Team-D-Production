@@ -44,12 +44,12 @@
                   <Insets top="16.0" />
                </VBox.margin>
             </Text>
-            <fx:include fx:id="LocationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/LocationPickComboBox.fxml" />
+            <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/LocationPickComboBox.fxml" />
             <HBox alignment="BOTTOM_RIGHT" maxHeight="Infinity" maxWidth="Infinity" prefHeight="305.0" prefWidth="376.0" spacing="16.0">
                <children>
-                  <MFXButton onAction="#clearFields" styleClass="clearButton" text="clear" />
-                  <MFXButton styleClass="cancelButton" text="Cancel" />
-                  <MFXButton onAction="#submit" styleClass="submitButton" text="submit" />
+                  <MFXButton onAction="#clearFields" prefWidth="80.0" styleClass="clearButton" text="clear" />
+                  <MFXButton onAction="#backToHub" prefWidth="80.0" styleClass="cancelButton" text="Back" />
+                  <MFXButton onAction="#submit" prefWidth="80.0" styleClass="submitButton" text="submit" />
                </children>
             </HBox>
          </children>
