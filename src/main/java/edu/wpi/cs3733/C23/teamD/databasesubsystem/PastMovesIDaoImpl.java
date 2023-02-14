@@ -82,7 +82,7 @@ public class PastMovesIDaoImpl implements IDao<PastMoves> {
   public void delete(PastMoves m) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE PastMoves where id=:id");
+      Query q = session.createQuery("DELETE PastMoves where moveDate=:id");
       q.setParameter("id", m.getMoveDate());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();

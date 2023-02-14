@@ -81,7 +81,7 @@ public class EdgeIDaoImpl implements IDao<Edge> {
   public void delete(Edge e) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE Edge where id=:id");
+      Query q = session.createQuery("DELETE Edge where edgeID=:id");
       q.setParameter("id", e.getEdgeID());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
