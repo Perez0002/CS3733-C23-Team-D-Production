@@ -1,16 +1,16 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
-import java.util.Date;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
 public class Employee {
-  @Getter
-  @Setter
+  @Getter @Setter
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int employeeID;
@@ -22,6 +22,8 @@ public class Employee {
   @Getter @Setter private String lastName;
 
   @Getter @Setter private String username;
+
+  @Getter @Setter private String email;
 
   @Getter @Setter private String password;
 
@@ -44,12 +46,14 @@ public class Employee {
       String firstName,
       String lastName,
       String username,
-      String password) {
+      String password,
+      String email) {
     this.employeeID = employeeID;
     this.employeeType = employeeType;
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
     this.password = password;
+    this.email = email;
   }
 }

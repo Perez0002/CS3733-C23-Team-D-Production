@@ -1,9 +1,12 @@
 package edu.wpi.cs3733.C23.teamD.controllers.components;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
+import edu.wpi.cs3733.C23.teamD.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+
+import java.util.ArrayList;
 
 public class EmployeeDropdownComboBoxController {
 
@@ -11,17 +14,13 @@ public class EmployeeDropdownComboBoxController {
   @FXML private ArrayList<String> employeeNames;
 
   public EmployeeDropdownComboBoxController() {
-    employeeNames = new ArrayList<String>();
-    employeeNames.add("Annie");
-    employeeNames.add("Ari");
-    employeeNames.add("Jonathon");
-    employeeNames.add("Wyatt");
-    employeeNames.add("Bryce");
-    employeeNames.add("Abigail");
-    employeeNames.add("Liv");
-    employeeNames.add("Mike");
-    employeeNames.add("Theo");
-    employeeNames.add("Gibson");
+    employeeNames = new ArrayList<>();
+    ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
+    for (Employee e : employees) {
+      String firstName = e.getFirstName();
+      String lastName = e.getLastName();
+      employeeNames.add(firstName + " " + lastName);
+    }
   }
 
   public void initialize() {

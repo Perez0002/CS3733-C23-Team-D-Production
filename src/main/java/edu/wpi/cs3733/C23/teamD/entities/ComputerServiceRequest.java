@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.Entity;
-
 import java.util.Date;
 
 @Entity

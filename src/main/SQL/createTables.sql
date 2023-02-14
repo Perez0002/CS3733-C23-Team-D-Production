@@ -5,6 +5,9 @@ CREATE TABLE teamdSchema.Move();
 
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public
 
+insert into employee (firstname, lastname, password, username) values ('Wilson', 'Wong', 'password', 'wwong2');
+insert into employee (firstname, lastname, password, username) values ('Ari', 'Schecter', 'password', 'ari');
+
 /*
 drop table Move;
 drop table Edge;
