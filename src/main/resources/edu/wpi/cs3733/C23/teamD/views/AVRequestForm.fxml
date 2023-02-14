@@ -9,7 +9,7 @@
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request" />
       <MFXTextField fx:id="staffIDTextField" floatingText="Enter PatientID (Probably will be replaced" prefHeight="50.0" prefWidth="247.0" />
-      <MFXTextField fx:id="systemFailureTextBox" floatingText="Enter what system isn't working properly. " prefHeight="50.0" prefWidth="247.0" />
+      <MFXTextField fx:id="systemFailureTextField" floatingText="Enter what system isn't working properly. " prefHeight="50.0" prefWidth="247.0" />
       <MFXTextField fx:id="timeTextField" floatingText="Enter when you first noticed the issue." prefHeight="50.0" prefWidth="247.0" />
       <MFXTextField fx:id="descriptionTextField" floatingText="Enter a description of the issue" prefHeight="50.0" prefWidth="247.0" />
    </children>
