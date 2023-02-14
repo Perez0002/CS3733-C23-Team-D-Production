@@ -37,7 +37,7 @@ public class ComputerServiceRequestController extends ServiceRequestController {
     }
 
     public void initialize(){
-        deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));)
+        deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));
 
 
 
