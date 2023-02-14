@@ -196,6 +196,24 @@ public class FDdb {
     pastMovesIDao.refresh();
   }
 
+  public void downloadCSV() {
+    nodeIDao.downloadCSV(new Node());
+    locationNameIDao.downloadCSV(new LocationName());
+    moveIDao.downloadCSV(new Move());
+    edgeIDao.downloadCSV(new Edge());
+  }
+
+  public void uploadCSV() {
+    nodeIDao.uploadCSV(new Node());
+    locationNameIDao.uploadCSV(new LocationName());
+    moveIDao.uploadCSV(new Move());
+    edgeIDao.uploadCSV(new Edge());
+    refreshEdges();
+    refreshNodes();
+    refreshMoves();
+    refreshLocationNames();
+  }
+
   // EmployeeDao wrappers
   public Employee getEmployee(Employee e) {
     return employeeIDao.get(e);

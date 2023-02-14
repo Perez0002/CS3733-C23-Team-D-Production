@@ -2,10 +2,9 @@ package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.Employee;
 import jakarta.persistence.Query;
-import org.hibernate.Session;
-
 import java.util.ArrayList;
 import java.util.stream.IntStream;
+import org.hibernate.Session;
 
 public class EmployeeIDaoImpl implements IDao<Employee> {
   private final Session session = DBSingleton.getSession();
@@ -94,4 +93,10 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
       session.getTransaction().rollback();
     }
   }
+
+  @Override
+  public void downloadCSV(Employee emp) {}
+
+  @Override
+  public void uploadCSV(Employee emp) {}
 }

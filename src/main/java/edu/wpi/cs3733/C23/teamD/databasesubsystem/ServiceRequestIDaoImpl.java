@@ -1,10 +1,12 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
+import edu.wpi.cs3733.C23.teamD.entities.*;
 import edu.wpi.cs3733.C23.teamD.entities.ComputerServiceRequest;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -227,5 +229,44 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     }
 
     return index;
+  }
+
+  @Override
+  public void uploadCSV(ServiceRequest serv) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader(
+                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM ServiceRequest");
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        ServiceRequest sans = new ServiceRequest();
+        FDdb.getInstance().saveServiceRequest(sans);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(ServiceRequest serv) {
+    try {
+      BufferedWriter fileWriter =
+          new BufferedWriter(
+              new FileWriter(
+                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/SanitationRequest.csv"));
+      for (SanitationRequest s : this.sanitationRequestList) {
+        fileWriter.write("");
+        fileWriter.newLine();
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
