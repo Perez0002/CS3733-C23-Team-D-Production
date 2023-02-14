@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -105,6 +106,60 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
       this.locationNames.remove(l);
     } catch (Exception ex) {
       session.getTransaction().rollback();
+    }
+  }
+
+  @Override
+  public void uploadCSV(LocationName locat) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM LocationName");
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        LocationName l =
+            new LocationName(
+                data[0],
+                data[1].equals("empty") ? "" : data[1],
+                data[2].equals("empty") ? "" : data[2]);
+        FDdb.getInstance().saveLocationName(l);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(LocationName locat) {
+    try {
+      FileWriter fw =
+          new FileWriter(
+              "src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
+      BufferedWriter fileWriter =
+          new BufferedWriter(
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
+      for (LocationName l : this.locationNames) {
+        String oneObject =
+            String.join(
+                ",",
+                l.getLongName(),
+                l.getShortName().equals("") ? "empty" : l.getShortName(),
+                l.getLocationType().equals("") ? "empty" : l.getLocationType());
+        fileWriter.write(oneObject);
+        fileWriter.newLine();
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }

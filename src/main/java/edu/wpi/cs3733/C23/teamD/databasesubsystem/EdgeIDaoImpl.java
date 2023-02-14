@@ -1,7 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -90,6 +92,64 @@ public class EdgeIDaoImpl implements IDao<Edge> {
 
     } catch (Exception ex) {
       session.getTransaction().rollback();
+    }
+  }
+
+  @Override
+  public void uploadCSV(Edge edge) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM Edge");
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        Edge e = new Edge();
+        e.setEdgeID(data[0]);
+        for (Node node : FDdb.getInstance().getAllNodes()) {
+          if (node.getNodeID().equals(data[1])) e.setToNode(node);
+          if (node.getNodeID().equals(data[2])) e.setFromNode(node);
+        }
+        FDdb.getInstance().saveEdge(e);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(Edge edge) {
+    try {
+      FileWriter fw =
+          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
+      BufferedWriter fileWriter =
+          new BufferedWriter(
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv"));
+      for (Edge e : this.edges) {
+        String toNodeID = "";
+        String fromNodeID = "";
+        for (Node n : FDdb.getInstance().getAllNodes()) {
+          if (e.getToNodeID().equals(n.getNodeID())) {
+            toNodeID = n.getNodeID();
+          } else if (e.getFromNodeID().equals(n.getNodeID())) {
+            fromNodeID = n.getNodeID();
+          }
+        }
+        String oneObject = String.join(",", e.getEdgeID(), toNodeID, fromNodeID);
+        fileWriter.write(oneObject);
+        fileWriter.newLine();
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
