@@ -91,9 +91,9 @@ public class LoginController {
 
       incorrectUsernameOrPasswordText.setVisible(false);
       App.getRootPane()
-          .setTop(
+          .setLeft(
               FXMLLoader.load(
-                  getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/MenuBar.fxml")));
+                  getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
 
       Navigation.navigate(Screen.HOME);
       App.getPrimaryStage().setMaximized(true);

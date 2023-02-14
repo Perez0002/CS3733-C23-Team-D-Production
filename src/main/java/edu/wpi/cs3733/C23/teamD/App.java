@@ -37,13 +37,13 @@ public class App extends Application {
     Scene scene = new Scene(root);
 
     // style sheet
-    String css = this.getClass().getResource("views/styleguide.css").toExternalForm();
+    String css = this.getClass().getResource("views/updatedStyleGuide.css").toExternalForm();
     scene.getStylesheets().add(css);
     // end style sheet
 
     primaryStage.setScene(scene);
     primaryStage.setMaximized(true);
-    rootPane.setTop(null);
+    rootPane.setLeft(null);
     Navigation.navigate(Screen.LOGIN_PAGE);
     primaryStage.show();
   }

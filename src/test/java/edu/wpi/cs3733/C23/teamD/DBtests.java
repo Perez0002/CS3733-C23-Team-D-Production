@@ -169,14 +169,14 @@ public class DBtests {
   @Test
   public void createNodesandEdges() {
 
-    DBSingleton._DB.getSession().beginTransaction();
+    DBSingleton.getSession().beginTransaction();
     ArrayList<Edge> edgeList =
         new ArrayList<Edge>(
-            DBSingleton._DB.getSession().createQuery("SELECT e FROM Edge e").getResultList());
+            DBSingleton.getSession().createQuery("SELECT e FROM Edge e").getResultList());
 
     ArrayList<Node> Nodes =
         new ArrayList<Node>(
-            DBSingleton._DB.getSession().createQuery("SELECT n FROM Node n").getResultList());
+            DBSingleton.getSession().createQuery("SELECT n FROM Node n").getResultList());
     for (Edge edge : edgeList) {
       for (Node node : Nodes) {
         if (edge.getFromNode().nodeEquals(node)) {
@@ -186,7 +186,7 @@ public class DBtests {
         }
       }
     }
-    DBSingleton._DB.getSession().getTransaction().commit();
+    DBSingleton.getSession().getTransaction().commit();
     ArrayList<Node> nodeList = new ArrayList<>(Ddb.createJavaNodes());
     Assertions.assertEquals(Nodes, nodeList);
     Assertions.assertEquals(edgeList, Ddb.createJavaEdges(nodeList));
