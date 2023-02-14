@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,8 +25,8 @@ public class GraphMap {
   }
 
   public void initFromDB() {
-    ArrayList<Node> nodeList = createJavaNodes();
-    ArrayList<Edge> edgeList = createJavaEdges(nodeList);
+    ArrayList<Node> nodeList = FDdb.getInstance().getAllNodes();
+    ArrayList<Edge> edgeList = FDdb.getInstance().getAllEdges();
     connectNodestoLocations(nodeList);
     for (Node node : nodeList) {
       nodeMap.put(node.getNodeID(), node);

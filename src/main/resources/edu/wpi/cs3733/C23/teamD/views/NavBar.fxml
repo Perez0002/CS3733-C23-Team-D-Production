@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.RootController">
+   <left>
+      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" spacing="22.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+            <MFXButton fx:id="homeButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltral-home-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="profileButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltrmz-person-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="serviceRequestFormsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltral-document-one-page-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="pathfindingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltral-location-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="dbButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltrmz-table-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="mapEditorButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltrmz-map-24" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="helpPageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltrmz-question-circle-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="infoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltral-info-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="logOutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltrmz-person-delete-16" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+         </padding>
+      </VBox>
+   </left>
+</BorderPane>

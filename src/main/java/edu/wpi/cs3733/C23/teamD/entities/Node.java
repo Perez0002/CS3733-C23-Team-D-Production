@@ -18,11 +18,7 @@ public class Node {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-
-    if (this.getNodeID().equals(((Node) obj).getNodeID())) {
+    if (this == obj) {
       return true;
     }
     return false;
@@ -113,6 +109,12 @@ public class Node {
 
   public void setNodeID(String nodeID) {
     this.nodeID = nodeID;
+  }
+
+  public void setNodeID() {
+    String xString = String.format("%04d", this.xcoord);
+    String yString = String.format("%04d", this.ycoord);
+    this.nodeID = (this.floor + "X" + xString + "Y" + yString);
   }
 
   public LocationName getLocation() {

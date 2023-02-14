@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers.components;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class RoomPickComboBoxController {
 
   public RoomPickComboBoxController() {
     nodeToRoomMap = new TreeMap<>();
-    ArrayList<Move> moveList = Ddb.createJavaMoves();
+    ArrayList<Move> moveList = FDdb.getInstance().getAllMoves();
     for (Move m : moveList) {
       String locName = m.getLocation().getLongName(); // long name
       String nodeID = m.getNode().getNodeID(); // nodeID
