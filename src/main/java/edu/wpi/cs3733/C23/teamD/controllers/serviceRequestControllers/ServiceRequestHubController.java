@@ -61,6 +61,9 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).clearTransportForms();
     }
+    else if (currentController instanceof SanitationRequestController) {
+      ((SanitationRequestController) currentController).clearFields();
+    }
 
     // TODO: add your ClearFields here. Follow the exact same format as the PatientTransportVBoxController but with your variables
     // What should your ClearFields do? It should clear ALL the fields in YOUR form. Do this in your own controller class.
@@ -72,6 +75,8 @@ public class ServiceRequestHubController {
   void submit() {
     if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).submit();
+    }else if (currentController instanceof SanitationRequestController) {
+      ((SanitationRequestController) currentController).submitSanitationRequest();
     }
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController
