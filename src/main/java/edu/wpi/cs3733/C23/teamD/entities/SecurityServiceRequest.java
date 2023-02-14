@@ -1,5 +1,3 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-public class SecurityServiceRequest extends ServiceRequest
-{
-}
+public class SecurityServiceRequest extends ServiceRequest {}
