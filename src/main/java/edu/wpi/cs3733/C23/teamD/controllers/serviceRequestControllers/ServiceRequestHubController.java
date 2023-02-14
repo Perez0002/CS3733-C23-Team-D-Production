@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.controllers.ToastController;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -72,7 +73,14 @@ public class ServiceRequestHubController {
             throw new RuntimeException(e);
           }
         });
-    submitButton.setOnMouseClicked(event -> submit());
+    submitButton.setOnMouseClicked(
+        event -> {
+          try {
+            submit();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     clearButton.setOnMouseClicked(event -> clearFields());
   }
 
@@ -106,7 +114,7 @@ public class ServiceRequestHubController {
 
   }
 
-  void submit() {
+  void submit() throws IOException {
     System.out.println("Submit Pressed");
     boolean submission = false;
     if (currentController instanceof PatientTransportVBoxController) {
@@ -119,7 +127,8 @@ public class ServiceRequestHubController {
 
     if (submission) {
       clearFields();
-      ToastController.makeText("Your data has been downloaded!", 1000, 50, 100);
+      ToastController.makeText("Your form has been submitted!", 1500, 50, 100);
+      ConfettiController.makeConfetti(1500, 50, 100);
     }
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController

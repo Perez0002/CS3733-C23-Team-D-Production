@@ -73,7 +73,7 @@ public class RootController {
     pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
     pathfindingButton.setTooltip(new Tooltip("Get Directions"));
 
-    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     dbButton.setTooltip(new Tooltip("Database Editors"));
 
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
