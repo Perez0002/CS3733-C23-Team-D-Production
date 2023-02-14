@@ -29,7 +29,7 @@ public class Move {
                   "FOREIGN KEY (location) REFERENCES locationname(longname) ON UPDATE CASCADE ON DELETE CASCADE"))
   private LocationName location;
 
-  @Id @CreationTimestamp Date moveDate;
+  @Id Date moveDate;
 
   @Override
   public boolean equals(Object obj) {

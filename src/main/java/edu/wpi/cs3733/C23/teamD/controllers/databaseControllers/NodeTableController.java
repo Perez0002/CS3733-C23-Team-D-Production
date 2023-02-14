@@ -84,7 +84,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setXcoord(newCoord);
-            FDdb.getInstance().saveNode(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -100,7 +100,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setYcoord(newCoord);
-            FDdb.getInstance().saveNode(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
     floor.setCellValueFactory(
@@ -115,7 +115,7 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             String newFloor = event.getNewValue();
             node.setFloor(newFloor);
-            FDdb.getInstance().saveNode(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -131,7 +131,52 @@ public class NodeTableController extends Application implements Initializable, D
             edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
             String newBuild = event.getNewValue();
             node.setBuilding(newBuild);
-            FDdb.getInstance().saveNode(node);
+            FDdb.getInstance().updateNode(node);
+          }
+        });
+    shortName.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("shortName"));
+    shortName.setCellFactory(TextFieldTableCell.forTableColumn());
+    shortName.setOnEditCommit(
+        new EventHandler<
+            TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String>>() {
+          @Override
+          public void handle(
+              TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String> event) {
+            edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
+            String newShort = event.getNewValue();
+            node.getLocation().setShortName(newShort);
+            FDdb.getInstance().updateLocationName(node.getLocation());
+          }
+        });
+    longName.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("longName"));
+    longName.setCellFactory(TextFieldTableCell.forTableColumn());
+    longName.setOnEditCommit(
+        new EventHandler<
+            TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String>>() {
+          @Override
+          public void handle(
+              TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String> event) {
+            edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
+            String newLong = event.getNewValue();
+            node.getLocation().setLongName(newLong);
+            FDdb.getInstance().updateLocationName(node.getLocation());
+          }
+        });
+    locationType.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("locationType"));
+    locationType.setCellFactory(TextFieldTableCell.forTableColumn());
+    locationType.setOnEditCommit(
+        new EventHandler<
+            TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String>>() {
+          @Override
+          public void handle(
+              TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String> event) {
+            edu.wpi.cs3733.C23.teamD.entities.Node node = event.getRowValue();
+            String newType = event.getNewValue();
+            node.getLocation().setLocationType(newType);
+            FDdb.getInstance().updateLocationName(node.getLocation());
           }
         });
     nodeTable.setItems(nodeList);

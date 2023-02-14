@@ -327,6 +327,7 @@ Tower Hallway 11,Hallway F01901,HALL
 Tower Hallway 12,Hallway F02001,HALL
 Bretholtz Center for Patients and Families,Bretholtz WR,DEPT
 Kessler Library,Kessler Library,SERV
+Elevator M Floor L2,Elevator ML2,ELEV
 Tower Hallway Entrance,Tower Entrance 2,HALL
 Sharf Admitting Center,Sharf Center,DEPT
 Hallway Lobby Entrance,Entrance Hallway,HALL
@@ -558,7 +559,6 @@ Elevator L Floor L1,Elevator LL1,ELEV
 Elevator L Floor 1,Elevator L1,ELEV
 Elevator L Floor 2,Elevator L2,ELEV
 Elevator L Floor 3,Elevator L3,ELEV
-Elevator M Floor L2,Elevator ML2,ELEV
 Elevator M Floor L1,Elevator ML1,ELEV
 Elevator M Floor 1,Elevator M1,ELEV
 Elevator M Floor 2,Elevator M2,ELEV
