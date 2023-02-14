@@ -24,6 +24,8 @@ public class RootController {
 
   @FXML private MFXButton mapEditorButton;
 
+  @FXML private MFXButton pathfindingButton;
+
   @FXML private MFXButton profileButton;
 
   @FXML private MFXButton serviceRequestFormsButton;
@@ -67,6 +69,9 @@ public class RootController {
     serviceRequestFormsButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     serviceRequestFormsButton.setTooltip(new Tooltip("Service Request Forms"));
+
+    pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
+    pathfindingButton.setTooltip(new Tooltip("Get Directions"));
 
     dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
     dbButton.setTooltip(new Tooltip("Database Editors"));
