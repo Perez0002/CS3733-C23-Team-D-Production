@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.entities.NodePathfinding;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
@@ -20,18 +20,18 @@ public class MapFactory {
 
   private boolean withEdges;
   private boolean onlyStartEnd;
-  private ArrayList<NodePathfinding> nodeList;
-  private Function<NodePathfinding, EventHandler<MouseEvent>> nodeEvent;
+  private ArrayList<Node> nodeList;
+  private Function<Node, EventHandler<MouseEvent>> nodeEvent;
 
   /** Creates a new MapFactory Object */
   private MapFactory() {
     this.withEdges = false;
     this.onlyStartEnd = false;
-    this.nodeList = new ArrayList<NodePathfinding>();
+    this.nodeList = new ArrayList<Node>();
     this.nodeEvent =
-        new Function<NodePathfinding, EventHandler<MouseEvent>>() {
+        new Function<Node, EventHandler<MouseEvent>>() {
           @Override
-          public EventHandler<MouseEvent> apply(NodePathfinding node) {
+          public EventHandler<MouseEvent> apply(Node node) {
             return null;
           }
         };
@@ -47,7 +47,7 @@ public class MapFactory {
    * @param withNodes list of Nodes to add to the map
    * @return the MapFactory with these changes
    */
-  public MapFactory withNodes(ArrayList<NodePathfinding> withNodes) {
+  public MapFactory withNodes(ArrayList<Node> withNodes) {
     this.nodeList = withNodes;
     return this;
   }
@@ -56,7 +56,7 @@ public class MapFactory {
    * @param event a Function< Node, EventHandler< MouseEvent >> to apply to every Node
    * @return the MapFactory with these changes
    */
-  public MapFactory withNodeFunctions(Function<NodePathfinding, EventHandler<MouseEvent>> event) {
+  public MapFactory withNodeFunctions(Function<Node, EventHandler<MouseEvent>> event) {
     this.nodeEvent = event;
     return this;
   }
@@ -129,7 +129,7 @@ public class MapFactory {
 
     if (!this.onlyStartEnd) {
       // For every Node
-      for (NodePathfinding node : nodeList) {
+      for (Node node : nodeList) {
         // Creates popup object
         if (converter.get(node.getFloor()) != floor) {
           continue;
@@ -194,8 +194,8 @@ public class MapFactory {
 
     GraphicsContext context = canvas.getGraphicsContext2D();
     if (this.withEdges) {
-      NodePathfinding lastNode = null;
-      for (NodePathfinding node : nodeList) {
+      Node lastNode = null;
+      for (Node node : nodeList) {
 
         if (converter.get(node.getFloor()) == floor) {
           lastNode = node;

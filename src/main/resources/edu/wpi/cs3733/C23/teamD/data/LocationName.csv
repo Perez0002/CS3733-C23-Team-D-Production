@@ -50,7 +50,7 @@ Oral Medicine and Dentistry,DEPT B0202,DEPT
 Lee Bell Breast Center,DEPT B0302,DEPT
 Jen Center for Primary Care,DEPT B0402,DEPT
 Ear Nose & Throat,DEPT B0502,DEPT
-Hallway Intersection 45 Level 2,Hallway B3102,HALL
+Hallway Intersection 31 Level 2,Hallway B3102,HALL
 Plastic Surgery,DEPT B0702,DEPT
 Outpatient Pharmacy,DEPT B0802,DEPT
 Weiner Center for Preoperative Evaluation,DEPT B0902,DEPT
@@ -83,7 +83,6 @@ Hallway Intersection 27 Level 2,Hallway B2702,HALL
 Hallway Intersection 28 Level 2,Hallway B2802,HALL
 Hallway Intersection 29 Level 2,Hallway B2902,HALL
 Hallway Intersection 30 Level 2,Hallway B3002,HALL
-Hallway Intersection 31 Level 2,Hallway B3102,HALL
 Hallway Intersection 32 Level 2,Hallway B3202,HALL
 Information Desk Level 2,INFO B0102,INFO
 Valet Service Level 2,INFO B0202,INFO
@@ -433,7 +432,7 @@ Hallway Node 11 Floor 3,Hall,HALL
 Hallway Node 13 Floor 3,Hall,HALL
 Restroom Node 12 Floor 3,Restroom Shapiro Floor 3,REST
 The Porch Node 16 Floor 3,The Porch,SERV
-Staircase Node 9 Floor 3,Floor 3 Stairs,STAI
+Staircase Node 9 Floor 3,Floor 3 Stairs ,STAI
 Elevator Q MapNode 7 Floor L1,Elevator Q L1,ELEV
 Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1,EXIT
 Hallway MapNode 2 Floor L1,Hall,HALL
@@ -458,31 +457,31 @@ Cardiovascular Imaging Center Floor L2,Cardiovascular Imaging Center,LABS
 Cardiac Stress Test Lab Floor L2,Cardiac Stress Test Lab,LABS
 CVRR Floor L2,CVRR,LABS
 Restroom MapNode 4 Floor L2,Restroom Shapiro L2,REST
-Hallway Connector 11 Floor 2,Hallway H00102,HALL
-Hallway Connector 12 Floor 2,Hallway H00202,HALL
+Hallway Connector 1 Floor 2,Hallway H00102,HALL
+Hallway Connector 2 Floor 2,Hallway H00202,HALL
 Garden Cafe,Garden Cafe,RETL
-Hallway Connector 13 Floor 2,Hallway H00302,HALL
+Hallway Connector 3 Floor 2,Hallway H00302,HALL
 Stairwell 1 Floor 2,Stairwell 0102,STAI
-Hallway Connector 14 Floor 2,Hallway H00402,HALL
-Hallway Connector 16 Floor 2,Hallway H00502,HALL
-Vending Machine Floor 2,Vending Machine,RETL
+Hallway Connector 4 Floor 2,Hallway H00402,HALL
+Hallway Connector 5 Floor 2,Hallway H00502,HALL
+Vending Machine Floor 2?,Vending Machine,RETL
 Bathroom 1 Tower Floor 2,Bathroom 0102,BATH
 Gift Shop Tower Floor 2,Gift Shop,RETL
-Hallway Connector 17 Floor 2,Hallway H00602,HALL
-Hallway Connector 18 Floor 2,Hallway H00702,HALL
+Hallway Connector 6 Floor 2,Hallway H00602,HALL
+Hallway Connector 7 Floor 2,Hallway H00702,HALL
 Stairwell 2 Tower Floor 2,Stairwell 0202,STAI
-Hallway Connector 19 Floor 2,Hallway H00802,HALL
+Hallway Connector 8 Floor 2,Hallway H00802,HALL
 Escalator 1 Floor 2,Escalator 1 Floor 2,STAI
-Hallway Connector 15 Floor 2,Hallway H00902,HALL
-Hallway Connector 20 Floor 2,Hallway H01002,HALL
+Hallway Connector 9 Floor 2,Hallway H00902,HALL
+Hallway Connector 10 Floor 2,Hallway H01002,HALL
 Endoscopy,Endoscopy,DEPT
 Hallway Connector 5 Floor 3,Hallway H00502,HALL
 Stairwell 1 Floor 3,Stairwell,STAI
 Hallway Connector 4 Floor 3,Hallway H00403,HALL
 Hallway Connector 3 Floor 3,Hallway H00303,HALL
-Hallway Connector 16 Floor 3,Hallway H00203,HALL
+Hallway Connector 2 Floor 3,Hallway H00203,HALL
 Reproductive Endocrine Labs,Reproductive Endocrine Labs,LABS
-Hallway Connector 17 Floor 3,Hallway H00103,HALL
+Hallway Connector 1 Floor 3,Hallway H00103,HALL
 Hallway Connector 6 Floor 3,Hallway H00603,HALL
 Hallway Connector 7 Floor 3,Hallway H00703,HALL
 Dialysis Waiting Room,Dialysis WR,DEPT
@@ -567,15 +566,3 @@ Hallway Connector 1 Floor L2,Hallway W01L2,HALL
 Hallway Connector 2 Floor L2,Hallway W02L2,HALL
 Hallway Connector 1 Floor 1,Hallway W0101,HALL
 Hallway Connector 2 Floor 1,Hallway W0201,HALL
-Hallway Connector 1 Floor 3,Hallway W0103,HALL
-Hallway Connector 2 Floor 3,Hallway W0203,HALL
-Hallway Connector 1 Floor 2,Hallway W0102,HALL
-Hallway Connector 2 Floor 2,Hallway W0202,HALL
-Hallway Connector 3 Floor 2,Hallway W0302,HALL
-Hallway Connector 4 Floor 2,Hallway W0402,HALL
-Hallway Connector 5 Floor 2,Hallway W0502,HALL
-Hallway Connector 6 Floor 2,Hallway W0602,HALL
-Hallway Connector 7 Floor 2,Hallway W0702,HALL
-Hallway Connector 8 Floor 2,Hallway W0802,HALL
-Hallway Connector 9 Floor 2,Hallway W0902,HALL
-Hallway Connector 10 Floor 2,Hallway W1002,HALL

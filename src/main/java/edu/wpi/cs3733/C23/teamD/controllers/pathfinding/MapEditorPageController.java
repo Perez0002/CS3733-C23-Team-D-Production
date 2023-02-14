@@ -2,14 +2,12 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
-import edu.wpi.cs3733.C23.teamD.entities.NodePathfinding;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -55,9 +53,9 @@ public class MapEditorPageController {
   @FXML private MFXButton addNodeButton;
   @FXML private MFXButton deleteNodeButton;
 
-  private NodePathfinding currentNodeEdit;
+  private Node currentNodeEdit;
 
-  private ArrayList<NodePathfinding> nodeList;
+  private ArrayList<Node> nodeList;
 
   private UIManager uiManager = new UIManager();
   private SubmitMode mode = SubmitMode.NO_SELECTION;
@@ -160,7 +158,7 @@ public class MapEditorPageController {
    * @param node Node to bind event to
    * @return EventHandler<MouseEvent> to handle on click events
    */
-  private EventHandler<MouseEvent> paneFunction(NodePathfinding node) {
+  private EventHandler<MouseEvent> paneFunction(Node node) {
     // Return a new EventHandler<MouseEvent> based on the passed Node
     return new EventHandler<MouseEvent>() {
       @Override
@@ -200,7 +198,7 @@ public class MapEditorPageController {
   void submit() {
     // For now, this just does basic changes. Will be edited when the changes required are more
     // defined
-    NodePathfinding newNode = new NodePathfinding(); // New Node
+    Node newNode = new Node(); // New Node
 
     // Set Node Fields // TODO set these correctly
     LocationNameIDaoImpl locDao = new LocationNameIDaoImpl();
@@ -210,7 +208,7 @@ public class MapEditorPageController {
     if (mode == SubmitMode.EDIT_NODE) {
       // Node Selected, updating
       newNode =
-          new NodePathfinding(
+          new Node(
               Integer.parseInt(xCoordTextField.getText()),
               Integer.parseInt(yCoordTextField.getText()),
               currentNodeEdit.getFloor(),
@@ -241,7 +239,7 @@ public class MapEditorPageController {
     } else if (mode == SubmitMode.ADD_NODE) {
       // Add node
       newNode =
-          new NodePathfinding(
+          new Node(
               Integer.parseInt(xCoordTextField.getText()),
               Integer.parseInt(yCoordTextField.getText()),
               floorTextField.getText(),
@@ -356,7 +354,7 @@ public class MapEditorPageController {
 
     updateButtonsForNode(SubmitMode.NO_SELECTION);
 
-    nodeList = Ddb.nodeToPathfinding(FDdb.getInstance().getAllNodes()); // Fetch Nodes
+    nodeList = createJavaNodes(); // Fetch Nodes
     connectNodestoLocations(nodeList); // Connect Nodes to Locations
 
     // Setup for calculating average x and y
@@ -365,7 +363,7 @@ public class MapEditorPageController {
     int total = 0;
 
     // Calculating average x and y
-    for (NodePathfinding node : nodeList) {
+    for (Node node : nodeList) {
       totalX += node.getXcoord();
       totalY += node.getYcoord();
       total++;

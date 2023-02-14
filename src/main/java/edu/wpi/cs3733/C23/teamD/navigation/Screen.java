@@ -4,7 +4,7 @@ public enum Screen {
   ROOT("views/Root.fxml"),
   PATHFINDING_REQUEST_PAGE("views/PathfindingRequestForm.fxml"),
   HOME("views/Homepage.fxml"),
-  DATABASE_EDIT("views/NodeTable.fxml"),
+  DATABASE_EDIT("views/DBApp.fxml"),
   MAP_EDITOR("views/MapEditor.fxml"),
   PATIENT_TRANSPORT_REQUEST("views/InternalPatientTransportationRequestForm.fxml"),
   SANITATION_FORM("views/SanitationRequestForm.fxml"),

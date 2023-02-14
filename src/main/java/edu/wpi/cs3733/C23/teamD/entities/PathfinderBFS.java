@@ -10,7 +10,7 @@ public class PathfinderBFS {
     this.fullMap = fullMap;
   }
 
-  public void init(ArrayList<NodePathfinding> nodeList, ArrayList<EdgePathfinding> edgeList) {
+  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
     this.fullMap.init(nodeList, edgeList);
   }
 
@@ -18,14 +18,13 @@ public class PathfinderBFS {
     this.fullMap.initFromDB();
   }
 
-  public ArrayList<NodePathfinding> breadthFirstSearch(
-      NodePathfinding startNode, NodePathfinding endNode) {
-    ArrayList<NodePathfinding> path = new ArrayList<NodePathfinding>();
-    ArrayList<NodePathfinding> frontier = new ArrayList<NodePathfinding>();
-    HashSet<NodePathfinding> visited = new HashSet<NodePathfinding>();
-    HashMap<NodePathfinding, NodePathfinding> nodeParentMap = new HashMap<>();
+  public ArrayList<Node> breadthFirstSearch(Node startNode, Node endNode) {
+    ArrayList<Node> path = new ArrayList<Node>();
+    ArrayList<Node> frontier = new ArrayList<Node>();
+    HashSet<Node> visited = new HashSet<Node>();
+    HashMap<Node, Node> nodeParentMap = new HashMap<>();
     path.add(startNode);
-    NodePathfinding currentNode = startNode;
+    Node currentNode = startNode;
     frontier.add(currentNode);
     while (!frontier.isEmpty()) {
       frontier.remove(currentNode);
@@ -38,7 +37,7 @@ public class PathfinderBFS {
         Collections.reverse(path);
         return path;
       }
-      for (EdgePathfinding edge : currentNode.getNodeEdges()) {
+      for (Edge edge : currentNode.getNodeEdges()) {
         if (!visited.contains(edge.getToNode())) {
           frontier.add(edge.getToNode());
           nodeParentMap.put(edge.getToNode(), currentNode);

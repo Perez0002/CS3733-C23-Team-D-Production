@@ -2,40 +2,37 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GraphMap {
   // private HashMap<String, Node> nodeMap;
   // private HashMap<String, Edge> edgeMap;
-  private HashMap<String, NodePathfinding> nodeMap = new HashMap<String, NodePathfinding>();
-  private HashMap<String, EdgePathfinding> edgeMap = new HashMap<String, EdgePathfinding>();
+  private HashMap<String, Node> nodeMap = new HashMap<String, Node>();
+  private HashMap<String, Edge> edgeMap = new HashMap<String, Edge>();
 
-  public void init(ArrayList<NodePathfinding> nodeList, ArrayList<EdgePathfinding> edgeList) {
-
-    for (NodePathfinding node : nodeList) {
+  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
+    for (Node node : nodeList) {
       nodeMap.put(node.getNodeID(), node);
       // System.out.println(node.getNodeID());
     }
 
-    for (EdgePathfinding edge : edgeList) {
+    for (Edge edge : edgeList) {
       edgeMap.put(edge.getEdgeID(), edge);
       // System.out.println(edge.getEdgeID());
     }
   }
 
   public void initFromDB() {
-    ArrayList<NodePathfinding> nodeList = Ddb.nodeToPathfinding(FDdb.getInstance().getAllNodes());
-    ArrayList<EdgePathfinding> edgeList = Ddb.edgetoPathfinding(FDdb.getInstance().getAllEdges());
+    ArrayList<Node> nodeList = createJavaNodes();
+    ArrayList<Edge> edgeList = createJavaEdges(nodeList);
     connectNodestoLocations(nodeList);
-    for (NodePathfinding node : nodeList) {
+    for (Node node : nodeList) {
       nodeMap.put(node.getNodeID(), node);
     }
-    for (EdgePathfinding edge : edgeList) {
+    for (Edge edge : edgeList) {
       edgeMap.put(edge.getEdgeID(), edge);
-      EdgePathfinding tempEdge = new EdgePathfinding(edge.getToNode(), edge.getFromNode());
+      Edge tempEdge = new Edge(edge.getToNode(), edge.getFromNode());
       tempEdge.genEdgeID();
       tempEdge.genCost();
       edge.getFromNode().getNodeEdges().add(edge);
@@ -44,11 +41,11 @@ public class GraphMap {
     }
   }
 
-  public NodePathfinding getNode(String nodeID) {
+  public Node getNode(String nodeID) {
     return nodeMap.get(nodeID);
   }
 
-  public EdgePathfinding getEdge(String edgeID) {
+  public Edge getEdge(String edgeID) {
     return edgeMap.get(edgeID);
   }
 }

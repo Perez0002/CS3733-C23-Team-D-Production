@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.entities.NodePathfinding;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
@@ -9,10 +9,10 @@ import org.controlsfx.control.PopOver;
 public class MapEditorNodeController {
 
   /* Attributes */
-  NodePathfinding node; // contains pathfinding node information
+  Node node; // contains pathfinding node information
   PopOver popover; // contains popover object
 
-  MapEditorNodeController(NodePathfinding node) {
+  MapEditorNodeController(Node node) {
     this.node = node;
     makeEditorNode(); // calls pseudo-constructor object
   }

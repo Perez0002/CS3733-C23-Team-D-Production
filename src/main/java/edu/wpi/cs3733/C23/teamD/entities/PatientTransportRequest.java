@@ -2,8 +2,6 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import lombok.Getter;
-import lombok.Setter;
 
 /*
 PatientTransportData
@@ -14,10 +12,11 @@ creates an entity object containing data for use on frontend PatientTransport UI
 public class PatientTransportRequest extends ServiceRequest {
 
   // Attributes of PatientTransportData class
-  @Getter @Setter private String startRoom;
-  @Getter @Setter private String endRoom;
-  @Getter @Setter private String equipment; // equipment necessary based on form contents
-  @Getter @Setter private String patientID;
+
+  private String startRoom;
+  private String endRoom;
+  private String equipment; // equipment necessary based on form contents
+  private String patientID;
 
   /*
   PatientTransportData()
@@ -80,4 +79,43 @@ public class PatientTransportRequest extends ServiceRequest {
     System.out.println("sendTo contacts: " + (this.getAssociatedStaff()));
     System.out.println("The startRoom is " + this.startRoom);
   } // end printInformation()
+
+  /*
+  getFunctions()
+  @param void
+  @return String
+  each get function returns a String containing information from PatientTransportData object
+  */
+
+  public String getStartRoom() {
+    return startRoom;
+  }
+
+  public String getEquipment() {
+    return equipment;
+  }
+
+  public void setStartRoom(String startRoom) {
+    this.startRoom = startRoom;
+  }
+
+  public void setEndRoom(String endRoom) {
+    this.endRoom = endRoom;
+  }
+
+  public void setEquipment(String equipment) {
+    this.equipment = equipment;
+  }
+
+  public String getEndRoom() {
+    return endRoom;
+  }
+
+  public String getPatientID() {
+    return patientID;
+  }
+
+  public void setPatientID(String patientID) {
+    this.patientID = patientID;
+  }
 }

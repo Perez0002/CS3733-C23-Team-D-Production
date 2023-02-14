@@ -2,34 +2,76 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Objects;
-import lombok.*;
 
 @Entity
 public class Edge {
-  @Getter @Setter @Id private String edgeID;
+  @Id private String edgeID;
 
-  @Getter
-  @Setter
   @ManyToOne
   @JoinColumn(name = "fromNode", foreignKey = @ForeignKey(name = "fromNode_id_fk"))
   Node fromNode;
 
-  @Getter
-  @Setter
   @ManyToOne
   @JoinColumn(name = "toNode", foreignKey = @ForeignKey(name = "toNode_id_fk"))
   Node toNode;
+
+  @Transient private double cost;
 
   public Edge(Node fromNode, Node toNode) {
     this.fromNode = fromNode;
     this.toNode = toNode;
     this.edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
+    this.cost =
+        Math.sqrt(
+            Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
+                + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
   }
 
   public Edge() {
     this.toNode = new Node();
     this.fromNode = new Node();
     edgeID = "";
+    cost = 0;
+  }
+
+  public String getEdgeID() {
+    return edgeID;
+  }
+
+  public void setEdgeID(String edgeID) {
+    this.edgeID = edgeID;
+  }
+
+  public Node getFromNode() {
+    return fromNode;
+  }
+
+  public void setFromNode(Node fromNode) {
+    this.fromNode = fromNode;
+  }
+
+  public Node getToNode() {
+    return toNode;
+  }
+
+  public void setToNode(Node toNode) {
+    this.toNode = toNode;
+  }
+
+  public double getCost() {
+    return cost;
+  }
+
+  public void setCost(double cost) {
+    this.cost = cost;
+  }
+
+  /** generates and sets the cost of a node to the euclidian distance between its two nodes */
+  public void genCost() {
+    this.cost =
+        Math.sqrt(
+            Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
+                + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
   }
 
   @Override

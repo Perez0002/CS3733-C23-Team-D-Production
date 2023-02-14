@@ -3,12 +3,10 @@ package edu.wpi.cs3733.C23.teamD.entities;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Move {
-  @Getter
-  @Setter
   @Id
   @ManyToOne
   @JoinColumn(
@@ -20,8 +18,6 @@ public class Move {
                   "FOREIGN KEY (node) REFERENCES node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   private Node node;
 
-  @Getter
-  @Setter
   @Id
   @ManyToOne
   @JoinColumn(
@@ -33,7 +29,7 @@ public class Move {
                   "FOREIGN KEY (location) REFERENCES locationname(longname) ON UPDATE CASCADE ON DELETE CASCADE"))
   private LocationName location;
 
-  @Getter @Setter @Id Date moveDate;
+  @Id @CreationTimestamp Date moveDate;
 
   @Override
   public boolean equals(Object obj) {
@@ -64,6 +60,30 @@ public class Move {
     this.location = new LocationName();
     this.node = new Node();
     this.moveDate = new Date(2023, 1, 1);
+  }
+
+  public Node getNode() {
+    return node;
+  }
+
+  public void setNode(Node node) {
+    this.node = node;
+  }
+
+  public LocationName getLocation() {
+    return location;
+  }
+
+  public void setLocation(LocationName location) {
+    this.location = location;
+  }
+
+  public Date getMoveDate() {
+    return moveDate;
+  }
+
+  public void setMoveDate(Date moveDate) {
+    this.moveDate = moveDate;
   }
 
   public String getLongName() {

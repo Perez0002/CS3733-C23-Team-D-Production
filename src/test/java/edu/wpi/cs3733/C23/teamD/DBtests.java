@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,8 +13,8 @@ import org.junit.jupiter.api.Test;
 public class DBtests {
   @Test
   public void nodeConstructors() {
-    NodePathfinding node = new NodePathfinding();
-    NodePathfinding node2 = new NodePathfinding(1, 1, "floorofhell", "buildingofhell");
+    Node node = new Node();
+    Node node2 = new Node(1, 1, "floorofhell", "buildingofhell");
     node.setXcoord(node2.getXcoord());
     node.setYcoord(node2.getYcoord());
     node.setFloor(node2.getFloor());
@@ -29,10 +30,10 @@ public class DBtests {
 
   @Test
   public void edgeConstructors() {
-    NodePathfinding node = new NodePathfinding(1, 1, "floor", "building");
-    NodePathfinding node1 = new NodePathfinding(2, 2, "floor", "building");
-    EdgePathfinding edge = new EdgePathfinding();
-    EdgePathfinding edge1 = new EdgePathfinding(node1, node);
+    Node node = new Node(1, 1, "floor", "building");
+    Node node1 = new Node(2, 2, "floor", "building");
+    Edge edge = new Edge();
+    Edge edge1 = new Edge(node1, node);
     edge.setToNode(edge1.getToNode());
     edge.setFromNode(edge1.getFromNode());
     edge.genEdgeID();
@@ -42,7 +43,7 @@ public class DBtests {
 
   @Test
   public void moveConstructors() {
-    NodePathfinding node = new NodePathfinding(1, 1, "floor", "building");
+    Node node = new Node(1, 1, "floor", "building");
     LocationName loc1 = new LocationName("Anasthesia", "room1", "DoctorRoom");
     Move move = new Move(node, loc1, new Date());
     Move move1 = new Move();
@@ -54,8 +55,8 @@ public class DBtests {
 
   @Test
   public void locNameConstructors() {
-    NodePathfinding node = new NodePathfinding(1, 1, "floor", "building");
-    NodePathfinding node1 = new NodePathfinding(2, 2, "floor", "building");
+    Node node = new Node(1, 1, "floor", "building");
+    Node node1 = new Node(2, 2, "floor", "building");
     List<Move> moves = new ArrayList<Move>();
     LocationName loc = new LocationName();
     LocationName loc1 = new LocationName("Anasthesia", "room1", "DoctorRoom");
@@ -163,5 +164,31 @@ public class DBtests {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Test
+  public void createNodesandEdges() {
+
+    DBSingleton._DB.getSession().beginTransaction();
+    ArrayList<Edge> edgeList =
+        new ArrayList<Edge>(
+            DBSingleton._DB.getSession().createQuery("SELECT e FROM Edge e").getResultList());
+
+    ArrayList<Node> Nodes =
+        new ArrayList<Node>(
+            DBSingleton._DB.getSession().createQuery("SELECT n FROM Node n").getResultList());
+    for (Edge edge : edgeList) {
+      for (Node node : Nodes) {
+        if (edge.getFromNode().nodeEquals(node)) {
+          node.getNodeEdges().add(edge);
+        } else if (edge.getToNode().nodeEquals(node)) {
+          node.getNodeEdges().add(edge);
+        }
+      }
+    }
+    DBSingleton._DB.getSession().getTransaction().commit();
+    ArrayList<Node> nodeList = new ArrayList<>(Ddb.createJavaNodes());
+    Assertions.assertEquals(Nodes, nodeList);
+    Assertions.assertEquals(edgeList, Ddb.createJavaEdges(nodeList));
   }
 }

@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
+import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
@@ -57,7 +57,7 @@ public class PatientTransportController {
               reason.getText(), // sendTo.getText().split(";"),
               sendTo.getText(),
               PatientTransportRequest.Status.BLANK); // creates PatientTransportData object
-      FDdb.getInstance().saveServiceRequest(patientInformation);
+      Ddb.insertNewForm(patientInformation);
       // patientInformation.printInformation(); // for debeugging purposes
       submittedFormText.setVisible(true);
     }
