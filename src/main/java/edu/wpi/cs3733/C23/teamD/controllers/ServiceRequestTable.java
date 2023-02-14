@@ -124,6 +124,5 @@ public class ServiceRequestTable extends Application implements Initializable {
                 column.setMinWidth(serviceTable.getMaxWidth() / size);
               column.setMinWidth(currentMax);
             });
-    FDdb.getInstance().uploadCSV();
   }
 }

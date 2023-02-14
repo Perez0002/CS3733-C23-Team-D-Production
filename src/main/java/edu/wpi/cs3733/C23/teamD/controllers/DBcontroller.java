@@ -78,7 +78,6 @@ public class DBcontroller extends Application implements Initializable {
   public void tablehandling() {
     nodeTableView.setEditable(true);
     ArrayList<Node> nodes = FDdb.getInstance().getAllNodes();
-    FDdb.getInstance().downloadCSV();
     Ddb.connectNodestoLocations(nodes);
     ObservableList<Node> nodeList = FXCollections.observableArrayList(nodes);
     ObservableList<Move> moveList =
