@@ -41,6 +41,9 @@ dependencies {
 
 
     )
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.3.1'
+    implementation 'org.kordamp.ikonli:ikonli-fluentui-pack:12.3.1'
+
     implementation 'org.hibernate.orm:hibernate-core:6.1.6.Final'
     implementation 'junit:junit:4.13.1'
     implementation 'junit:junit:4.13.1'
