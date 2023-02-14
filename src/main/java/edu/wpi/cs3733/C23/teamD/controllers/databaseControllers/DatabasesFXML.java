@@ -4,7 +4,7 @@ public enum DatabasesFXML {
   ROOT("views/Root.fxml"),
 
   HUB("views/VBoxInjections/hubVBox.fxml"),
-  PATIENT_TRANSPORT("views/VBoxInjections/PatientTransportVBox.fxml");
+  SERVICE_REQUEST("views/DatabaseTableInjections/ServiceRequestTable.fxml");
 
   private final String filename;
 

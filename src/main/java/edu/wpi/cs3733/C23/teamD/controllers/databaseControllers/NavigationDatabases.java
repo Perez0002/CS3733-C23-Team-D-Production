@@ -1,10 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-
-import java.io.IOException;
 
 public class NavigationDatabases {
 

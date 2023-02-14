@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.HUB;
-import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.PATIENT_TRANSPORT;
+import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.SERVICE_REQUEST;
 
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -14,10 +14,10 @@ import net.kurobako.gesturefx.GesturePane;
 public class DatabaseHubController {
 
   @FXML private MFXButton hubButton;
-  @FXML private MFXButton transportButton;
+  @FXML private MFXButton serviceTableButton;
   @FXML private Pane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
-  @FXML private PatientTransportVBoxController patientTransportVBoxController;
+  @FXML private ServiceRequestTableController serviceRequestTable;
   @FXML private Parent hubVBox;
   @FXML private HubBoxController hubVBoxController;
   @FXML private BorderPane mapPaneContainer;
@@ -35,7 +35,7 @@ public class DatabaseHubController {
     currentController = hubVBoxController;
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
-    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
+    serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST));
   }
 
   //  void switchVBox(ServiceRequestVBoxController switchTo) {

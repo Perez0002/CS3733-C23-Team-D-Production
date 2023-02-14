@@ -2,12 +2,6 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
-import edu.wpi.cs3733.C23.teamD.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -19,12 +13,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.net.URL;
+import java.util.Date;
+import java.util.ResourceBundle;
 
 public class ServiceRequestTable extends Application implements Initializable {
   @FXML private TableColumn<ServiceRequest, Date> date;
@@ -39,7 +38,6 @@ public class ServiceRequestTable extends Application implements Initializable {
   @FXML private TableColumn<ServiceRequest, String> staff;
 
   @FXML private TableColumn<ServiceRequest, String> status;
-  @FXML private MFXButton cancelButton;
 
   public static void main(String[] args) {
     launch(args);
@@ -58,7 +56,6 @@ public class ServiceRequestTable extends Application implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   public void tablehandling() {
