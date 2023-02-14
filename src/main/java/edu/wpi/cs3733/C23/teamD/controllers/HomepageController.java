@@ -42,6 +42,8 @@ public class HomepageController {
 
   @FXML private Label titleLabel;
 
+  @FXML private MFXButton profileButton;
+
   @FXML
   public void initialize() {
     checkAccessLevel();
@@ -49,7 +51,9 @@ public class HomepageController {
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
+    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+
     //    if (currentUser.getAccessLevel() == 0) {
     //      currentUserText.setText("please log in");
     //    } else {

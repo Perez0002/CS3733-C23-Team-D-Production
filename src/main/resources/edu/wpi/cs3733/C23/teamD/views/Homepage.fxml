@@ -24,7 +24,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton contentDisplay="GRAPHIC_ONLY" prefHeight="13.0" prefWidth="7.0">
+                  <MFXButton fx:id="profileButton" contentDisplay="GRAPHIC_ONLY" prefHeight="13.0" prefWidth="7.0">
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="48.0" preserveRatio="true">
                            <image>
@@ -51,7 +51,7 @@
                            <children>
                               <MFXButton fx:id="mapEditorButton" contentDisplay="GRAPHIC_ONLY">
                                  <graphic>
-                                    <ImageView fitHeight="445.0" fitWidth="684.0" preserveRatio="true">
+                                    <ImageView fitHeight="445.0" fitWidth="684.0" preserveRatio="true" styleClass="button">
                                        <image>
                                           <Image url="@images/MapImage.png" />
                                        </image>
@@ -110,7 +110,7 @@
                            <children>
                               <MFXButton fx:id="serviceRequestFormButton" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="374.0" text="Button">
                                  <graphic>
-                                    <ImageView fitHeight="585.0" fitWidth="400.0" preserveRatio="true">
+                                    <ImageView fitHeight="496.0" fitWidth="407.0" preserveRatio="true">
                                        <image>
                                           <Image url="@images/ServiceRequestForm.png" />
                                        </image>
@@ -121,7 +121,7 @@
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#toggleHelpText" styleClass="helpbuttonstyleclass" text="?" />
+                              <MFXButton layoutX="412.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#toggleHelpText" styleClass="helpbuttonstyleclass" text="?" />
                            </children>
                         </HBox>
                      </children>
