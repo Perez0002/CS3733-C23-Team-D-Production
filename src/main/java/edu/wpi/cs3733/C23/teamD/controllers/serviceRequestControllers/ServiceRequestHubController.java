@@ -2,12 +2,16 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
 import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class ServiceRequestHubController {
 
@@ -22,7 +26,7 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton submitButton;
 
-  @FXML private Pane mapCenterPane;
+  @FXML private MFXButton helpButton;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
@@ -48,12 +52,20 @@ public class ServiceRequestHubController {
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
 
-    // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to
+    // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
     // you need to add your vbox fxml file to the ENUM ServiceRequests
 
     submitButton.setOnMouseClicked(event -> submit());
     clearButton.setOnMouseClicked(event -> clearFields());
+    helpButton.setOnMouseClicked(
+        event -> {
+          try {
+            help();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
   }
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
@@ -103,5 +115,14 @@ public class ServiceRequestHubController {
     //    map.setStyle("fx-border-color: #012D5A");
     map.setMaxSize(700, 500);
     mapPaneContainer.setCenter(map);
+  }
+
+  void help() throws IOException {
+    final var resource = App.class.getResource("views/VBoxInjections/ServiceRequestHubHelp.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    PopOver popover = new PopOver(loader.load());
+    popover.setArrowSize(0);
+    popover.setTitle("Help");
+    popover.show(App.getPrimaryStage());
   }
 }
