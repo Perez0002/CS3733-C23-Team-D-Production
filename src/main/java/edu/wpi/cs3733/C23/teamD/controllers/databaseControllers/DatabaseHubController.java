@@ -68,8 +68,8 @@ public class DatabaseHubController {
 
   void createHubMap() {
     GesturePane map = MapFactory.startBuild().build(0);
-    map.setStyle("-fx-border-color: #012D5A;");
-    map.setMaxSize(700, 500);
+    map.setStyle("-fx-border-color: #012D5A; -fx-border-width:3px;");
+    map.setMaxSize(600, 500);
     mapPaneContainer.setCenter(map);
   }
 }

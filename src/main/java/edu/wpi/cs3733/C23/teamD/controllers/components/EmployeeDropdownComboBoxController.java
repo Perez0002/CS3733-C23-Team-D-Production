@@ -3,10 +3,9 @@ package edu.wpi.cs3733.C23.teamD.controllers.components;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-
-import java.util.ArrayList;
 
 public class EmployeeDropdownComboBoxController {
 

@@ -1,16 +1,16 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
-import java.util.List;
-
 @Entity
 public class Employee {
-  @Getter @Setter
+  @Getter
+  @Setter
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int employeeID;

@@ -1,27 +1,26 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 public class CurrentUser {
 
-  private String username;
+  @Getter @Setter private String username;
 
-  private int accessLevel;
+  @Getter @Setter private int accessLevel;
 
-  private String employeeType;
+  @Getter @Setter private String employeeType;
 
-  private String firstName;
+  @Getter @Setter private String firstName;
 
-  private String lastName;
+  @Getter @Setter private String lastName;
 
-  private String email;
+  @Getter @Setter private String email;
 
-  private String password;
+  @Getter @Setter private String password;
 
-  private Date accountCreated;
+  @Getter @Setter private Date accountCreated;
 
   @Getter @Setter private String phoneNumber;
 
@@ -29,22 +28,5 @@ public class CurrentUser {
 
   @Getter @Setter private String address;
 
-
   public CurrentUser() {}
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public void setAccessLevel(int accessLevel) {
-    this.accessLevel = accessLevel;
-  }
-
-  public int getAccessLevel() {
-    return accessLevel;
-  }
 }
