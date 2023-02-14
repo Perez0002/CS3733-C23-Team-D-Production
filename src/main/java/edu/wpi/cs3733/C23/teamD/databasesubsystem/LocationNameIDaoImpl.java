@@ -38,6 +38,7 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
   }
 
   @Override
+  // TODO delete old and add new
   public void update(LocationName l) {
     session.beginTransaction();
     try {
