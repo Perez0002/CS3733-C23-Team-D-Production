@@ -1,56 +1,86 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
+import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
-import javafx.application.Platform;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tooltip;
 
 public class RootController {
-  @FXML
-  public void initialize() {}
+
+  @FXML private MFXButton dbButton;
+
+  @FXML private MFXButton helpPageButton;
+
+  @FXML private MFXButton homeButton;
+
+  @FXML private MFXButton infoButton;
+
+  @FXML private MFXButton logOutButton;
+
+  @FXML private MFXButton mapEditorButton;
+
+  @FXML private MFXButton profileButton;
+
+  @FXML private MFXButton serviceRequestFormsButton;
 
   @FXML
-  void openHomepage() {
-    Navigation.navigate(Screen.HOME);
+  public void initialize() throws IOException {
+    checkAccessLevel();
+    setButtons();
+  }
+
+  public void checkAccessLevel() {
+
+    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+
+    if (currentUser.getAccessLevel() == 2) {
+      dbButton.setDisable(false);
+      serviceRequestFormsButton.setDisable(false);
+    } else if (currentUser.getAccessLevel() == 1) {
+      dbButton.setDisable(true);
+      serviceRequestFormsButton.setDisable(false);
+    } else {
+      dbButton.setDisable(true);
+      serviceRequestFormsButton.setDisable(true);
+    }
   }
 
   @FXML
-  void openPathfindingForm() {
-    Navigation.navigate(Screen.PATHFINDING_REQUEST);
+  public void openLoginPage() throws IOException {
+    App.getRootPane().setTop(null);
+    Navigation.navigate(Screen.LOGIN_PAGE);
   }
 
   @FXML
-  void openSanitationForm() {
-    Navigation.navigate(Screen.SANITATION_FORM);
-  }
+  public void setButtons() {
+    homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    homeButton.setTooltip(new Tooltip("Home"));
 
-  @FXML
-  void openPatientTransport() {
-    Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST);
-  }
+    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    profileButton.setTooltip(new Tooltip("Profile Page"));
 
-  @FXML
-  void openDatabase() {
-    Navigation.navigate(Screen.DATABASE_EDIT);
-  }
+    serviceRequestFormsButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
+    serviceRequestFormsButton.setTooltip(new Tooltip("Service Request Forms"));
 
-  @FXML
-  void openPatientTransportTable() {
-    Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE);
-  }
+    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    dbButton.setTooltip(new Tooltip("Database Editors"));
 
-  @FXML
-  void openSanitationTable() {
-    Navigation.navigate(Screen.SANITATION_TABLE);
-  }
+    mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
+    mapEditorButton.setTooltip(new Tooltip("Map Editor"));
 
-  @FXML
-  void openHelpPage() {
-    Navigation.navigate(Screen.HELP_PAGE);
-  }
+    helpPageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HELP_PAGE));
+    helpPageButton.setTooltip(new Tooltip("Help"));
 
-  @FXML
-  void exit() {
-    Platform.exit();
+    infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    infoButton.setTooltip(new Tooltip("Information"));
+
+    logOutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
+    logOutButton.setTooltip(new Tooltip("Sign Out"));
   }
 }

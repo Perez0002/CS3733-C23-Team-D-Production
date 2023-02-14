@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -77,9 +78,9 @@ public class DBtests {
 
   @Test
   public void patientTransportDataTest() {
-    PatientTransportData transport = new PatientTransportData();
-    PatientTransportData transport1 =
-        new PatientTransportData(
+    PatientTransportRequest transport = new PatientTransportRequest();
+    PatientTransportRequest transport1 =
+        new PatientTransportRequest(
             0,
             "patient1",
             "room1",
@@ -87,7 +88,7 @@ public class DBtests {
             "defib",
             "for testing purposes",
             "thisperson;thisperson2",
-            ServiceRequestForm.Status.PROCESSING,
+            ServiceRequest.Status.PROCESSING,
             new Date());
     transport.setPatientID(transport1.getPatientID());
     transport.setStat(transport1.getStat());
@@ -112,15 +113,15 @@ public class DBtests {
 
   @Test
   public void sanitationRequestDatatests() {
-    SanitationRequestData sanitation = new SanitationRequestData();
-    SanitationRequestData sanitation1 =
-        new SanitationRequestData(
+    SanitationRequest sanitation = new SanitationRequest();
+    SanitationRequest sanitation1 =
+        new SanitationRequest(
             0,
             "location1",
             "for testing purposes",
             1,
             "thisperson;thisperson2",
-            ServiceRequestForm.Status.PROCESSING,
+            ServiceRequest.Status.PROCESSING,
             new Date());
     sanitation.setStat(sanitation1.getStat());
     sanitation.setReason(sanitation1.getReason());
@@ -168,14 +169,14 @@ public class DBtests {
   @Test
   public void createNodesandEdges() {
 
-    DBSingleton._DB.getSession().beginTransaction();
+    DBSingleton.getSession().beginTransaction();
     ArrayList<Edge> edgeList =
         new ArrayList<Edge>(
-            DBSingleton._DB.getSession().createQuery("SELECT e FROM Edge e").getResultList());
+            DBSingleton.getSession().createQuery("SELECT e FROM Edge e").getResultList());
 
     ArrayList<Node> Nodes =
         new ArrayList<Node>(
-            DBSingleton._DB.getSession().createQuery("SELECT n FROM Node n").getResultList());
+            DBSingleton.getSession().createQuery("SELECT n FROM Node n").getResultList());
     for (Edge edge : edgeList) {
       for (Node node : Nodes) {
         if (edge.getFromNode().nodeEquals(node)) {
@@ -185,7 +186,7 @@ public class DBtests {
         }
       }
     }
-    DBSingleton._DB.getSession().getTransaction().commit();
+    DBSingleton.getSession().getTransaction().commit();
     ArrayList<Node> nodeList = new ArrayList<>(Ddb.createJavaNodes());
     Assertions.assertEquals(Nodes, nodeList);
     Assertions.assertEquals(edgeList, Ddb.createJavaEdges(nodeList));

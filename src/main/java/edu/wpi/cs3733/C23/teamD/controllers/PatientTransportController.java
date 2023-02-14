@@ -1,7 +1,8 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.entities.PatientTransportData;
+import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
+import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -47,8 +48,8 @@ public class PatientTransportController {
     if (checkFields()) {
       // System.out.println(patientID.getText() + " will be moved to " + endRoom.getText()); // for
       // debugging purposes
-      PatientTransportData patientInformation =
-          new PatientTransportData(
+      PatientTransportRequest patientInformation =
+          new PatientTransportRequest(
               patientID.getText(),
               // startNode???
               "L1X2255Y0849",
@@ -56,7 +57,7 @@ public class PatientTransportController {
               checkSelectedEquipment(),
               reason.getText(), // sendTo.getText().split(";"),
               sendTo.getText(),
-              PatientTransportData.Status.BLANK); // creates PatientTransportData object
+              PatientTransportRequest.Status.BLANK); // creates PatientTransportData object
       Ddb.insertNewForm(patientInformation);
       // patientInformation.printInformation(); // for debeugging purposes
       submittedFormText.setVisible(true);

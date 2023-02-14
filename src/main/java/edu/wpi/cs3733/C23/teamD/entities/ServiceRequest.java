@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ServiceRequestForm {
+public class ServiceRequest {
   private String serviceRequestType;
 
   @Enumerated(value = EnumType.STRING)
@@ -24,11 +24,21 @@ public class ServiceRequestForm {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int serviceRequestId;
 
+  @ManyToOne
+  @JoinColumn(
+      name = "staffAssigned",
+      foreignKey =
+          @ForeignKey(
+              name = "employee_id_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (staffAssigned) REFERENCES Employee(employeeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  private Employee staffAssigned;
+
   private String associatedStaff;
 
   @CreationTimestamp private Date dateAndTime;
 
-  public ServiceRequestForm(
+  public ServiceRequest(
       String associatedStaff, Status stat, String reason, String serviceRequestType) {
     this.associatedStaff = associatedStaff;
     this.stat = stat;
@@ -37,7 +47,7 @@ public class ServiceRequestForm {
     this.serviceRequestType = serviceRequestType;
   }
 
-  public ServiceRequestForm(
+  public ServiceRequest(
       int serviceId,
       String associatedStaff,
       Status stat,
@@ -52,12 +62,13 @@ public class ServiceRequestForm {
     this.serviceRequestType = serviceRequestType;
   }
 
-  public ServiceRequestForm() {
+  public ServiceRequest() {
     this.associatedStaff = "";
     this.stat = Status.BLANK;
     this.dateAndTime = new Date();
     this.reason = "";
     this.serviceRequestType = "";
+    this.staffAssigned = new Employee();
   }
 
   public String getServiceRequestType() {
