@@ -50,11 +50,11 @@ public class HomepageController {
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    if (currentUser.getAccessLevel() == 0) {
-      currentUserText.setText("please log in");
-    } else {
-      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
-    }
+    //    if (currentUser.getAccessLevel() == 0) {
+    //      currentUserText.setText("please log in");
+    //    } else {
+    //      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
+    //    }
   }
 
   private void checkAccessLevel() {
