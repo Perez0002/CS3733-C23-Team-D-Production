@@ -355,8 +355,8 @@ public class MapEditorPageController {
     // Add a new Pane for the new Node
     final javafx.scene.Node tempPane =
         MapNodeFactory.startBuild()
-            .posX(newNode.getXcoord() - MapFactory.NODE_WIDTH / 2)
-            .posY(newNode.getYcoord() - MapFactory.NODE_HEIGHT / 2)
+            .posX(newNode.getXcoord())
+            .posY(newNode.getYcoord())
             .onClick(paneClickFunction(newNode))
             .nodeID(newNode.getNodeID() + "_pane")
             .build();

@@ -15,9 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
-  protected static final int NODE_WIDTH = 16; // Node width for node Panes
-  protected static final int NODE_HEIGHT = 16; // Node height for node Panes
-
   private boolean withEdges;
   private boolean onlyStartEnd;
   private ArrayList<Node> nodeList;
@@ -223,6 +220,7 @@ public class MapFactory {
     map.setContent(holder);
     map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     map.zoomTo(0, Point2D.ZERO);
+
     // Return the GesturePane
     return map;
   }

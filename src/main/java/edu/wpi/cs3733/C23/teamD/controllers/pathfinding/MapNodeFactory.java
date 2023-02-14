@@ -46,7 +46,7 @@ public class MapNodeFactory {
    */
   public static MapNodeFactory startPathBuild() {
     final MapNodeFactory returnable = new MapNodeFactory();
-    returnable.color(Color.rgb(01, 58, 117)).radius(10);
+    returnable.color(Color.rgb(01, 58, 117)).radius(16);
     return returnable;
   }
 
