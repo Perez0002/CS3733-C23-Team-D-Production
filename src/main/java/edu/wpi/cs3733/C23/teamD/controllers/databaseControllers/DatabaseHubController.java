@@ -2,11 +2,13 @@ package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.*;
 
+import edu.wpi.cs3733.C23.teamD.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.controllers.ToastController;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
@@ -54,8 +56,9 @@ public class DatabaseHubController {
   }
 
   @FXML
-  void downloadData() {
+  void downloadData() throws IOException {
     ToastController.makeText("Your data has been downloaded!", 1000, 50, 50);
+    ConfettiController.makeConfetti(1000, 50, 50);
   }
 
   @FXML
