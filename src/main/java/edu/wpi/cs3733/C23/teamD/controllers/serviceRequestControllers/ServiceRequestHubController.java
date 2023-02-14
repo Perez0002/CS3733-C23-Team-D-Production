@@ -1,8 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.HUB;
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.PATIENT_TRANSPORT;
-
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
@@ -10,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
+
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 public class ServiceRequestHubController {
 
@@ -41,7 +40,7 @@ public class ServiceRequestHubController {
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
-    //sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST));
+    sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION));
 
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(YOUR_REQUEST)
     // you need to add your vbox fxml file to the ENUM ServiceRequests
