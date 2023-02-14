@@ -1,13 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
+
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
-
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 public class ServiceRequestHubController {
 
@@ -71,10 +71,11 @@ public class ServiceRequestHubController {
   }
 
   void submit() {
+    System.out.println("Submit Pressed");
     if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).submit();
-    }
-    else if (currentController instanceof ComputerServiceRequestController) {
+    } else if (currentController instanceof ComputerServiceRequestController) {
+      System.out.println("Submitting");
       ((ComputerServiceRequestController) currentController).submit();
     }
 
