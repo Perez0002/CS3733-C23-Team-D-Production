@@ -31,23 +31,25 @@
                   <Insets bottom="64.0" />
                </VBox.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date:" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
             <MFXDatePicker fx:id="datePicker" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="16.0" />
                </VBox.margin>
             </MFXDatePicker>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the Room you want to move" />
-            <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
-            <HBox alignment="BOTTOM_LEFT" maxHeight="Infinity" maxWidth="Infinity" prefHeight="305.0" prefWidth="500.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want to move" />
+            <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move to">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin>
+            </Text>
+            <fx:include fx:id="LocationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/LocationPickComboBox.fxml" />
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="Infinity" maxWidth="Infinity" prefHeight="305.0" prefWidth="376.0" spacing="16.0">
                <children>
-                  <MFXButton text="clear" />
-                  <HBox alignment="BOTTOM_RIGHT" maxHeight="Infinity" maxWidth="Infinity" prefHeight="305.0" prefWidth="376.0" spacing="16.0">
-                     <children>
-                        <MFXButton text="Cancel" />
-                        <MFXButton text="submit" />
-                     </children>
-                  </HBox>
+                  <MFXButton onAction="#clearFields" styleClass="clearButton" text="clear" />
+                  <MFXButton styleClass="cancelButton" text="Cancel" />
+                  <MFXButton onAction="#submit" styleClass="submitButton" text="submit" />
                </children>
             </HBox>
          </children>

@@ -33,6 +33,10 @@ public class RoomPickComboBoxController {
     return nodeToRoomMap.get(mfxFilterComboBox.getValue());
   }
 
+  public String getLocationName() {
+    return mfxFilterComboBox.getValue();
+  }
+
   public void clearForm() {
     mfxFilterComboBox.setValue(null);
   }

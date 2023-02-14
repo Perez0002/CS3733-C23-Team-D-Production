@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
@@ -13,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,16 +26,27 @@ public class MoveRequestTableController implements Initializable {
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
-
-  @FXML
-  public void updateDate() {
-    System.out.println(datePicker.getCurrentDate());
-    System.out.println(datePicker.getText());
-  }
+  @FXML private Parent nodeBox;
+  @FXML private RoomPickComboBoxController nodeBoxController;
+  @FXML private Parent locationBox;
+  @FXML private RoomPickComboBoxController locationBoxController;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @FXML
+  public void submit() {
+    System.out.println(locationBoxController.getLocationName());
+    System.out.println(nodeBoxController.getNodeValue());
+  }
+
+  @FXML
+  public void clearFields() {
+    nodeBoxController.clearForm();
+    locationBoxController.clearForm();
+    datePicker.clear();
   }
 
   public void tablehandling() {
