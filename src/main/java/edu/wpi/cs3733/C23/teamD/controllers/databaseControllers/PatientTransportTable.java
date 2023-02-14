@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import java.net.URL;
@@ -57,7 +57,7 @@ public class PatientTransportTable extends Application implements Initializable 
 
   public void tablehandling() {
     ObservableList<PatientTransportRequest> transportList =
-        FXCollections.observableArrayList(Ddb.getPatientTransportData());
+        FXCollections.observableArrayList(FDdb.getInstance().getAllPatientTransportRequests());
     patientTable.setEditable(true);
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
@@ -93,7 +93,7 @@ public class PatientTransportTable extends Application implements Initializable 
               try {
                 ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
-                Ddb.updateObj(form);
+                FDdb.getInstance().updateServiceRequest(form);
               } catch (IllegalArgumentException e) {
                 e.printStackTrace();
               }

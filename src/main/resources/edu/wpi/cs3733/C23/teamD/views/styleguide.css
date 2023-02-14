@@ -1,14 +1,14 @@
 
 .root{ /* this controls for the entire application */
     -fx-font-family: OpenSans;
-    -fx-base: #123486;
+    -fx-base: #012D5A;
     -fx-background: #f5f5f5;
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }
 
 .button { /* it controls all button customization */
-    -fx-background-color: #123486; /* Blue */
+    -fx-background-color: #012D5A; /* Blue */
     -fx-border: none;
     -fx-border-radius: 15px;
     -fx-text-align: center;
@@ -19,7 +19,7 @@
 }
 
 .helpbuttonstyleclass { /* controls all help buttons */
-    -fx-background-color: #123486; /* Blue */
+    -fx-background-color: #012D5A; /* Blue */
     -fx-text-fill: #ffffff; /* White */
     -fx-background-radius: 40pt; /* Makes button a circle */
     -fx-pref-height: 40pt;
@@ -35,7 +35,7 @@
 }
 
 .helpbuttonstyleclass { /* controls all help buttons */
-    -fx-background-color: #123486; /* Blue */
+    -fx-background-color: #012D5A; /* Blue */
     -fx-text-fill: #ffffff; /* White */
     -fx-background-radius: 40pt; /* Makes button a circle */
     -fx-pref-height: 40pt;
@@ -55,11 +55,11 @@
 
 .homePageButton {
     -fx-font-size: 12pt;
-    -fx-background-color: #123486; /* Blue */
+    -fx-background-color: #012D5A; /* Blue */
 }
 
 .rootPane {
-    -fx-background-color: #123486; /* Blue */
+    -fx-background-color: #012D5A; /* Blue */
 }
 
 #hospitalName{
@@ -72,5 +72,5 @@
 }
 
 .navMenuButton{
-    -fx-background-color: #123486; /* Blue */
+    -fx-background-color: #012D5A; /* Blue */
 }

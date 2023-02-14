@@ -1,16 +1,13 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
-import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tooltip;
 
-public class RootController {
+public class NavBarController {
 
   @FXML private MFXButton dbButton;
 
@@ -24,42 +21,12 @@ public class RootController {
 
   @FXML private MFXButton mapEditorButton;
 
-  @FXML private MFXButton pathfindingButton;
-
   @FXML private MFXButton profileButton;
 
   @FXML private MFXButton serviceRequestFormsButton;
 
   @FXML
-  public void initialize() throws IOException {
-    checkAccessLevel();
-    setButtons();
-  }
-
-  public void checkAccessLevel() {
-
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-
-    if (currentUser.getAccessLevel() == 2) {
-      dbButton.setDisable(false);
-      serviceRequestFormsButton.setDisable(false);
-    } else if (currentUser.getAccessLevel() == 1) {
-      dbButton.setDisable(true);
-      serviceRequestFormsButton.setDisable(false);
-    } else {
-      dbButton.setDisable(true);
-      serviceRequestFormsButton.setDisable(true);
-    }
-  }
-
-  @FXML
-  public void openLoginPage() throws IOException {
-    App.getRootPane().setTop(null);
-    Navigation.navigate(Screen.LOGIN_PAGE);
-  }
-
-  @FXML
-  public void setButtons() {
+  public void initialize() {
     homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     homeButton.setTooltip(new Tooltip("Home"));
 
@@ -69,9 +36,6 @@ public class RootController {
     serviceRequestFormsButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     serviceRequestFormsButton.setTooltip(new Tooltip("Service Request Forms"));
-
-    pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
-    pathfindingButton.setTooltip(new Tooltip("Get Directions"));
 
     dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
     dbButton.setTooltip(new Tooltip("Database Editors"));
@@ -87,5 +51,45 @@ public class RootController {
 
     logOutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
     logOutButton.setTooltip(new Tooltip("Sign Out"));
+  }
+
+  @FXML
+  void openDBHub(ActionEvent event) {
+    Navigation.navigate(Screen.DATABASE_EDITOR);
+  }
+
+  @FXML
+  void openHelpPage(ActionEvent event) {
+    Navigation.navigate(Screen.HELP_PAGE);
+  }
+
+  @FXML
+  void openHomepage(ActionEvent event) {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  void openInfoPage(ActionEvent event) {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  void openLoginPage(ActionEvent event) {
+    Navigation.navigate(Screen.LOGIN_PAGE);
+  }
+
+  @FXML
+  void openMapEditor(ActionEvent event) {
+    Navigation.navigate(Screen.MAP_EDITOR);
+  }
+
+  @FXML
+  void openProfilePage(ActionEvent event) {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  void openServiceRequestFormHub(ActionEvent event) {
+    Navigation.navigate(Screen.REQUEST_FORM_HUB);
   }
 }

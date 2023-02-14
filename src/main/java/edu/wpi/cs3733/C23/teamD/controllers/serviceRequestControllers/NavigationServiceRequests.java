@@ -7,7 +7,8 @@ import javafx.scene.layout.Pane;
 
 public class NavigationServiceRequests {
 
-  public static void navigate(final ServiceRequests serviceRequest, Pane requestFormHubPane) {
+  public static ServiceRequestVBoxController navigate(
+      final ServiceRequests serviceRequest, Pane requestFormHubPane) {
     final String filename = serviceRequest.getFilename();
     try {
       final var resource = App.class.getResource(filename);
@@ -15,9 +16,13 @@ public class NavigationServiceRequests {
       requestFormHubPane.getChildren().clear();
       System.out.println("LOAD " + filename);
       requestFormHubPane.getChildren().add(loader.load());
-      // App.getRootPane().setCenter(loader.load());
+      System.out.println("CONTROLLER" + loader.getController());
+      return loader.getController();
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
+    final var resource = App.class.getResource("views/VBoxInjections/hubVBox.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    return loader.getController();
   }
 }
