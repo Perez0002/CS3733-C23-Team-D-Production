@@ -225,7 +225,7 @@ public class MapFactory {
     map.setContent(holder);
     map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     map.zoomTo(0, Point2D.ZERO);
-    map.animate(Duration.millis(100))
+    map.animate(Duration.millis(300))
         .centreOn(
             new Point2D(
                 (totalX / (totalNode == 0 ? 1 : totalNode)
