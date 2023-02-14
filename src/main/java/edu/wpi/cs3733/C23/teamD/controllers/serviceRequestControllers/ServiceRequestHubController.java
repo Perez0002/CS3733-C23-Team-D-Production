@@ -22,6 +22,7 @@ public class ServiceRequestHubController {
   @FXML private MFXButton transportButton;
   @FXML private MFXButton sanitationButton;
   @FXML private MFXButton computerButton;
+  @FXML private MFXButton avButton;
 
   @FXML private Pane requestFormHubPane;
   @FXML private BorderPane mapPaneContainer;
@@ -58,6 +59,7 @@ public class ServiceRequestHubController {
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
+    avButton.setOnMouseClicked(event -> switchVBox(AV_REQUEST, sanitationButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
