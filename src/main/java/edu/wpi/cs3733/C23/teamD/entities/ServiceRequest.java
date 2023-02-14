@@ -24,6 +24,16 @@ public class ServiceRequest {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int serviceRequestId;
 
+  @ManyToOne
+  @JoinColumn(
+      name = "staffAssigned",
+      foreignKey =
+          @ForeignKey(
+              name = "employee_id_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (staffAssigned) REFERENCES Employee(employeeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  private Employee staffAssigned;
+
   private String associatedStaff;
 
   @CreationTimestamp private Date dateAndTime;
@@ -58,6 +68,7 @@ public class ServiceRequest {
     this.dateAndTime = new Date();
     this.reason = "";
     this.serviceRequestType = "";
+    this.staffAssigned = new Employee();
   }
 
   public String getServiceRequestType() {

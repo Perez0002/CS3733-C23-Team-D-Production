@@ -32,17 +32,21 @@
 .button {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
+    -fx-max-width: 128px;
+    -fx-max-height: 53px;
 }
 
-.hubLabel { /* defines the format for the header on Service Request page */
+#hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 36pt;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
 }
 
 .tabButton { /* defines the format for the tab Buttons on Service Request page */
     -fx-background-color: #CDDFF6;
     -fx-background-radius: 16px 16px 0px 0px; /* Makes button a circle */
     -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
-    -fx-text-size: 16pt;
+    -fx-text-size: 12pt;
     -fx-max-width: 100px;
 }
 
@@ -69,6 +73,12 @@
 /*    -fx-background-color: #EEEEEE;*/
 /*}*/
 
+.clearButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #012D5A;
+    -fx-border-color: #012D5A;
+}
+
 .submitButton { /* defines the format for the submit button */
     -fx-background-color: #012D5A;
     -fx-text-fill: white;
@@ -81,6 +91,15 @@
     -fx-border-color: #012D5A;
 }
 
+#loginButton {
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-max-width: 160px;
+}
+
 #loginBorderPane {
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
 }

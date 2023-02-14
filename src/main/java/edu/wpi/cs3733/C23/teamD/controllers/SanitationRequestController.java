@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -18,7 +19,6 @@ public class SanitationRequestController {
   @FXML private MFXRadioButton radioBSL3;
   @FXML private MFXRadioButton radioBSL4;
   @FXML private MFXTextField fieldReason;
-  //  @FXML private MFXTextField fieldLocation;
   @FXML private Text formSubmittedText;
   @FXML Text locationHelpText;
   @FXML Text reasonHelpText;
@@ -58,6 +58,7 @@ public class SanitationRequestController {
       reasonHelpText.setVisible(false);
       staffIDHelpText.setVisible(false);
       formSubmittedText.setVisible(true);
+
     } else {
       helpDisplayed = false;
       formSubmittedText.setVisible(false);

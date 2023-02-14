@@ -36,5 +36,6 @@
         <mapping class="edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.entities.Edge"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.entities.ServiceRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Employee"/>
     </session-factory>
 </hibernate-configuration>
