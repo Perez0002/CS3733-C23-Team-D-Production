@@ -1,6 +1,4 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
-
-import static javafx.application.Application.launch;
+package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
@@ -15,10 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,20 +23,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class PatientTransportTable extends Application implements Initializable {
-
-  public static void main(String[] args) {
-    launch(args);
-  }
-
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root =
-        FXMLLoader.load(
-            getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/PatientTransportTable.fxml"));
-    primaryStage.setTitle("PatientTransportTable");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
-  }
 
   @FXML private TableColumn<PatientTransportRequest, String> endRoom;
 
@@ -61,6 +42,13 @@ public class PatientTransportTable extends Application implements Initializable 
   @FXML private TableColumn<PatientTransportRequest, String> sendTo;
 
   @FXML private TableColumn<PatientTransportRequest, Date> date;
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  @Override
+  public void start(Stage primaryStage) throws Exception {}
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

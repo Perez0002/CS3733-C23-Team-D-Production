@@ -19,12 +19,11 @@ public class DatabaseHubController {
   @FXML private MFXButton locationTableButton;
   @FXML private Pane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
-  @FXML private ServiceRequestTableController serviceRequestTable;
   @FXML private Parent hubVBox;
   @FXML private HubBoxController hubVBoxController;
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
-  private DatabaseVBoxController currentController; // tracks current VBox pane
+  private DatabaseController currentController; // tracks current VBox pane
 
   Pane getRequestFormHubPane() {
     return requestFormHubPane;
@@ -42,6 +41,7 @@ public class DatabaseHubController {
 
   void switchVBox(DatabasesFXML switchTo) {
     NavigationDatabases.navigate(switchTo, getRequestFormHubPane());
+    if (switchTo == SERVICE_REQUEST) {}
   }
 
   void createHubMap() {
