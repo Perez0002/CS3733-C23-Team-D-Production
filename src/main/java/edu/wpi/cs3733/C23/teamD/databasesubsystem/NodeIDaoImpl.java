@@ -151,9 +151,16 @@ public class NodeIDaoImpl implements IDao<Node> {
       BufferedReader fileReader =
           new BufferedReader(
               new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv"));
-      DBSingleton.getSession().beginTransaction();
-      DBSingleton.getSession().createQuery("DELETE FROM Node");
-      DBSingleton.getSession().getTransaction().commit();
+      session.beginTransaction();
+      org.hibernate.query.Query query = session.createQuery("DELETE FROM Edge");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM Move");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM LocationName ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM Node");
+      query.executeUpdate();
+      session.getTransaction().commit();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
         Node n = new Node();
@@ -173,6 +180,12 @@ public class NodeIDaoImpl implements IDao<Node> {
   @Override
   public void downloadCSV(Node node) {
     try {
+      FileWriter fw =
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
       BufferedWriter fileWriter =
           new BufferedWriter(
               new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv"));

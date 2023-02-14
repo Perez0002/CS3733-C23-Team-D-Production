@@ -105,9 +105,9 @@ public class MoveIDaoImpl implements IDao<Move> {
       BufferedReader fileReader =
           new BufferedReader(
               new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv"));
-      DBSingleton.getSession().beginTransaction();
-      DBSingleton.getSession().createQuery("DELETE FROM Move");
-      DBSingleton.getSession().getTransaction().commit();
+      session.beginTransaction();
+      session.createQuery("DELETE FROM Move");
+      session.getTransaction().commit();
       DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
@@ -137,6 +137,12 @@ public class MoveIDaoImpl implements IDao<Move> {
   @Override
   public void downloadCSV(Move move) {
     try {
+      FileWriter fw =
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
       BufferedWriter fileWriter =
           new BufferedWriter(
               new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv"));

@@ -115,12 +115,16 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
       BufferedReader fileReader =
           new BufferedReader(
               new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
-      DBSingleton.getSession().beginTransaction();
-      DBSingleton.getSession().createQuery("DELETE FROM LocationName");
-      DBSingleton.getSession().getTransaction().commit();
+      session.beginTransaction();
+      session.createQuery("DELETE FROM LocationName");
+      session.getTransaction().commit();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        LocationName l = new LocationName(data[0], data[1], data[2]);
+        LocationName l =
+            new LocationName(
+                data[0],
+                data[1].equals("empty") ? "" : data[1],
+                data[2].equals("empty") ? "" : data[2]);
         FDdb.getInstance().saveLocationName(l);
       }
       fileReader.close();
@@ -132,11 +136,22 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
   @Override
   public void downloadCSV(LocationName locat) {
     try {
+      FileWriter fw =
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
       BufferedWriter fileWriter =
           new BufferedWriter(
               new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
       for (LocationName l : this.locationNames) {
-        String oneObject = String.join(",", l.getLongName(), l.getShortName(), l.getLocationType());
+        String oneObject =
+            String.join(
+                ",",
+                l.getLongName(),
+                l.getShortName().equals("") ? "empty" : l.getShortName(),
+                l.getLocationType().equals("") ? "empty" : l.getLocationType());
         fileWriter.write(oneObject);
         fileWriter.newLine();
       }

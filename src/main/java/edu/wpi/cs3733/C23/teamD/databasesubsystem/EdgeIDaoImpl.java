@@ -101,16 +101,16 @@ public class EdgeIDaoImpl implements IDao<Edge> {
       BufferedReader fileReader =
           new BufferedReader(
               new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv"));
-      DBSingleton.getSession().beginTransaction();
-      DBSingleton.getSession().createQuery("DELETE FROM Edge");
-      DBSingleton.getSession().getTransaction().commit();
+      session.beginTransaction();
+      session.createQuery("DELETE FROM Edge");
+      session.getTransaction().commit();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
         Edge e = new Edge();
         e.setEdgeID(data[0]);
         for (Node node : FDdb.getInstance().getAllNodes()) {
           if (node.getNodeID().equals(data[1])) e.setToNode(node);
-          else if (node.getNodeID().equals(data[2])) e.setFromNode(node);
+          if (node.getNodeID().equals(data[2])) e.setFromNode(node);
         }
         FDdb.getInstance().saveEdge(e);
       }
@@ -123,6 +123,12 @@ public class EdgeIDaoImpl implements IDao<Edge> {
   @Override
   public void downloadCSV(Edge edge) {
     try {
+      FileWriter fw =
+          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
       BufferedWriter fileWriter =
           new BufferedWriter(
               new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv"));
@@ -130,12 +136,9 @@ public class EdgeIDaoImpl implements IDao<Edge> {
         String toNodeID = "";
         String fromNodeID = "";
         for (Node n : FDdb.getInstance().getAllNodes()) {
-          System.out.println(e.getToNodeID());
-          System.out.println(e.getFromNodeID());
           if (e.getToNodeID().equals(n.getNodeID())) {
             toNodeID = n.getNodeID();
-          }
-          if (e.getFromNodeID().equals(n.getNodeID())) {
+          } else if (e.getFromNodeID().equals(n.getNodeID())) {
             fromNodeID = n.getNodeID();
           }
         }

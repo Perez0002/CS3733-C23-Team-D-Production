@@ -192,13 +192,13 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       BufferedReader fileReader =
           new BufferedReader(
               new FileReader(
-                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/SanitationRequest.csv"));
-      DBSingleton.getSession().beginTransaction();
-      DBSingleton.getSession().createQuery("DELETE FROM ServiceRequest");
-      DBSingleton.getSession().getTransaction().commit();
+                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM ServiceRequest");
+      session.getTransaction().commit();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        SanitationRequest sans = new SanitationRequest();
+        ServiceRequest sans = new ServiceRequest();
         FDdb.getInstance().saveServiceRequest(sans);
       }
       fileReader.close();

@@ -172,4 +172,15 @@ public class FDdb {
     moveIDao.downloadCSV(new Move());
     edgeIDao.downloadCSV(new Edge());
   }
+
+  public void uploadCSV() {
+    nodeIDao.uploadCSV(new Node());
+    locationNameIDao.uploadCSV(new LocationName());
+    moveIDao.uploadCSV(new Move());
+    edgeIDao.uploadCSV(new Edge());
+    refreshEdges();
+    refreshNodes();
+    refreshMoves();
+    refreshLocationNames();
+  }
 }

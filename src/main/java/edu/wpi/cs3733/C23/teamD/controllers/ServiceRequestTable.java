@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -123,5 +124,6 @@ public class ServiceRequestTable extends Application implements Initializable {
                 column.setMinWidth(serviceTable.getMaxWidth() / size);
               column.setMinWidth(currentMax);
             });
+    FDdb.getInstance().uploadCSV();
   }
 }
