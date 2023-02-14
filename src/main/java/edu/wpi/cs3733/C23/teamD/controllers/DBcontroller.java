@@ -94,7 +94,7 @@ public class DBcontroller extends Application implements Initializable {
             Node node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setXcoord(newCoord);
-            Ddb.updateObj(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -108,7 +108,7 @@ public class DBcontroller extends Application implements Initializable {
             int newCoord = event.getNewValue();
             node.setYcoord(newCoord);
             String stmnt = "UPDATE Node SET yCoord = ? WHERE nodeID = ?";
-            Ddb.updateObj(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
     floor.setCellValueFactory(new PropertyValueFactory<Node, String>("floor"));
@@ -121,7 +121,7 @@ public class DBcontroller extends Application implements Initializable {
             String newFloor = event.getNewValue();
             node.setFloor(newFloor);
             String stmnt = "UPDATE Node SET floor = ? WHERE nodeID = ?";
-            Ddb.updateObj(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -135,7 +135,7 @@ public class DBcontroller extends Application implements Initializable {
             String newBuild = event.getNewValue();
             node.setBuilding(newBuild);
             String stmnt = "UPDATE Node SET building = ? WHERE nodeID = ?";
-            Ddb.updateObj(node);
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -150,7 +150,7 @@ public class DBcontroller extends Application implements Initializable {
             String newShort = event.getNewValue();
             name.setShortName(newShort);
             String stmnt = "UPDATE locationName SET shortName = ? WHERE longName = ?";
-            Ddb.updateObj(name);
+            FDdb.getInstance().updateLocationName(name);
           }
         });
 
@@ -164,7 +164,7 @@ public class DBcontroller extends Application implements Initializable {
             String newType = event.getNewValue();
             name.setLocationType(newType);
             String stmnt = "UPDATE locationName SET locationType = ? WHERE longName = ?";
-            Ddb.updateObj(name);
+            FDdb.getInstance().updateLocationName(name);
           }
         });
     moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));

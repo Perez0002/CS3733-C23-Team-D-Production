@@ -12,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
@@ -89,6 +90,9 @@ public class MapFactory {
   public GesturePane build(int floor) {
     System.out.println("Making Map!");
     HashMap<String, Integer> converter = new HashMap<String, Integer>();
+    int totalX = 0;
+    int totalY = 0;
+    int totalNode = 0;
 
     converter.put("L1", 0);
     converter.put("L2", 1);
@@ -129,11 +133,14 @@ public class MapFactory {
     if (!this.onlyStartEnd) {
       // For every Node
       for (Node node : nodeList) {
-        // Creates popup object
+
         if (converter.get(node.getFloor()) != floor) {
           continue;
         }
-
+        totalX += node.getXcoord();
+        totalY += node.getYcoord();
+        totalNode++;
+        // Creates popup object
         MapEditorNodeController mapEditor = new MapEditorNodeController(node);
         javafx.scene.Node tempPane =
             MapNodeFactory.startPathBuild()
@@ -153,7 +160,6 @@ public class MapFactory {
         holder.getChildren().add(tempPane);
       }
     } else {
-      System.out.println("In else!");
       MapEditorNodeController startNodePopup = new MapEditorNodeController(nodeList.get(0));
       MapEditorNodeController endNodePopup =
           new MapEditorNodeController(nodeList.get(nodeList.size() - 1));
@@ -219,6 +225,13 @@ public class MapFactory {
     map.setContent(holder);
     map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     map.zoomTo(0, Point2D.ZERO);
+    map.animate(Duration.millis(300))
+        .centreOn(
+            new Point2D(
+                (totalX / (totalNode == 0 ? 1 : totalNode)
+                    - App.getPrimaryStage().getScene().getWidth() / 2),
+                (totalY / (totalNode == 0 ? 1 : totalNode)
+                    - App.getPrimaryStage().getScene().getHeight() / 2)));
     // Return the GesturePane
     return map;
   }

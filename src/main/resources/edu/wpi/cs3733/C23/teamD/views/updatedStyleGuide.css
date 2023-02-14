@@ -1,0 +1,105 @@
+/*.root {*/
+/*    --textBlue: #011830; !* color of text *!*/
+/*    --highlightBlue: #CDDFF6; !* secondary color of things like tabs *!*/
+/*    --primaryBlue: #012D5A;*/
+/*    --font: 'Nunito Sans';*/
+/*}*/
+
+@font-face {
+    -font-family: 'Nunito Sans';
+    src: url('images/NunitoSans-Black.ttf');
+}
+
+.label { /* sets base format for labels */
+    -fx-font-family: 'Nunito Sans';
+    -fx-text-fill: #012D5A;
+    -fx-font-size: 16pt;
+}
+
+.text { /* sets base format for text */
+    -fx-font-family: 'Nunito Sans';
+    -fx-text-fill: #012D5A;
+    -fx-font-size: 16pt;
+}
+
+.mfx-text-field { /* sets base format for MFXTextFields */
+    -fx-background-color: #EEEEEE;
+    -fx-border-radius: 10px;
+    -fx-min-height: 40px;
+    -fx-border-color: #012D5A;
+}
+
+.button {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-max-width: 128px;
+    -fx-max-height: 53px;
+}
+
+#hubLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 36pt;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
+}
+
+.tabButton { /* defines the format for the tab Buttons on Service Request page */
+    -fx-background-color: #CDDFF6;
+    -fx-background-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-text-size: 12pt;
+    -fx-max-width: 100px;
+}
+
+.tabButtonSelected { /* defines the format for the selected tab Button on the service request page */
+    -fx-background-color: #012D5A;
+}
+
+.tabHBox { /* defines the format for the HBox that the tabs are held in, particularly used for blue underline */
+    -fx-border-color: transparent transparent #012D5A transparent;
+    -fx-border-width: 5px;
+}
+
+/*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
+
+/* serviceRequestMFXTextFieldLabel {
+
+} */
+
+/*.individualServiceRequestTextFieldVBox { !* defines the format for the individual vBox that contains service Request Text Fields *!*/
+
+/*}*/
+
+/*.serviceRequestMFXTextField { !* defines the format for each MFXTextField *!*/
+/*    -fx-background-color: #EEEEEE;*/
+/*}*/
+
+.clearButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #012D5A;
+    -fx-border-color: #012D5A;
+}
+
+.submitButton { /* defines the format for the submit button */
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+.cancelButton { /* defines the format for the cancel button */
+    -fx-background-color: transparent;
+    -fx-text-fill: #012D5A;
+    -fx-border-color: #012D5A;
+}
+
+#loginButton {
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-max-width: 160px;
+}
+
+#loginBorderPane {
+    -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}

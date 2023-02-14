@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
-import edu.wpi.cs3733.C23.teamD.controllers.RoomPickComboBoxController;
+
+import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.Pathfinder;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
 

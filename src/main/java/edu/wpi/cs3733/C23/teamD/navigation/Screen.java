@@ -11,11 +11,12 @@ public enum Screen {
   PATHFINDING_REQUEST("views/PathfindingRequestForm.fxml"),
   PATIENT_TRANSPORT_TABLE("views/PatientTransportTable.fxml"),
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
-  SERVICE_REQUEST("views/LandingPage.fxml"),
   LOGIN_PAGE("views/LoginPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
-  SERVICE_TABLE("views/ServiceRequestTable.fxml");
+  REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
+  SERVICE_TABLE("views/ServiceRequestTable.fxml"),
+  PROFILE_PAGE("views/ProfilePage.fxml");
 
   private final String filename;
 
