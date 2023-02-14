@@ -16,6 +16,7 @@ public enum Screen {
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
   REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml"),
+  MOVES_TABLE("views/MoveRequestTable.fxml"),
   PROFILE_PAGE("views/ProfilePage.fxml");
 
   private final String filename;

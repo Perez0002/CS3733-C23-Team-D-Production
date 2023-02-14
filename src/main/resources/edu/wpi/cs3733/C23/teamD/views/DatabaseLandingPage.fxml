@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.DatabaseLandingPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.DatabaseLandingPageController">
     <top>
         <Label text="Database Editors" BorderPane.alignment="CENTER">
             <font>
@@ -29,6 +29,7 @@
                         <Insets />
                     </VBox.margin></MFXButton>
             <MFXButton fx:id="serviceTableButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="homePageButton" stylesheets="@styleguide.css" text="View all Service Requests" />
+            <MFXButton fx:id="updateMovesButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="homePageButton" stylesheets="@styleguide.css" text="Update Move Requests" />
             </children>
         </VBox>
     </center>
