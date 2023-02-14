@@ -107,3 +107,13 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
+
+.helpButton {
+    -fx-background-color: #012D5A; /* Blue */
+    -fx-text-fill: #ffffff; /* White */
+    -fx-background-radius: 40pt; /* Makes button a circle */
+    -fx-max-height: 40pt;
+    -fx-max-width: 40pt;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bolder;
+}

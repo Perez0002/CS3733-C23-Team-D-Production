@@ -54,6 +54,9 @@
       <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="TOP_RIGHT">
          <BorderPane.margin>
             <Insets bottom="25.0" left="20.0" right="25.0" top="25.0" />
-         </BorderPane.margin></BorderPane>
+         </BorderPane.margin>
+         <bottom>
+            <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="CENTER_RIGHT" />
+         </bottom></BorderPane>
    </right>
 </BorderPane>

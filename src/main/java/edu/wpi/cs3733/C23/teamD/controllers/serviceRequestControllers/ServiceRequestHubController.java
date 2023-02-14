@@ -21,6 +21,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton clearButton;
 
   @FXML private MFXButton submitButton;
+
+  @FXML private Pane mapCenterPane;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
@@ -97,7 +99,8 @@ public class ServiceRequestHubController {
 
   void createHubMap() {
     GesturePane map = MapFactory.startBuild().build(0);
-    map.setStyle("-fx-border-color: #012D5A;");
+    //    map.setStyle("fx-border-width: 20px");
+    //    map.setStyle("fx-border-color: #012D5A");
     map.setMaxSize(700, 500);
     mapPaneContainer.setCenter(map);
   }
