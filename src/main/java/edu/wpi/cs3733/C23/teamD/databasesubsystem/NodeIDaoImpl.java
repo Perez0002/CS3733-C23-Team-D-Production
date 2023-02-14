@@ -5,6 +5,8 @@ import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.PastMoves;
 import jakarta.persistence.Query;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import org.hibernate.Session;
 
@@ -146,5 +148,68 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
 
     this.delete(oldNode);
+  }
+
+  @Override
+  public void uploadCSV(Node node) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv"));
+      session.beginTransaction();
+      org.hibernate.query.Query query = session.createQuery("DELETE FROM Edge");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM Move");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM LocationName ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM Node");
+      query.executeUpdate();
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        Node n = new Node();
+        n.setNodeID(data[0]);
+        n.setXcoord(Integer.parseInt(data[1]));
+        n.setYcoord(Integer.parseInt(data[2]));
+        n.setFloor(data[3]);
+        n.setBuilding(data[4]);
+        FDdb.getInstance().saveNode(n);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(Node node) {
+    try {
+      FileWriter fw =
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv", false);
+      PrintWriter pw = new PrintWriter(fw, false);
+      pw.flush();
+      pw.close();
+      fw.close();
+      BufferedWriter fileWriter =
+          new BufferedWriter(
+              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv"));
+      for (Node n : this.nodes) {
+        String oneObject =
+            String.join(
+                ",",
+                n.getNodeID(),
+                Integer.toString(n.getXcoord()),
+                Integer.toString(n.getYcoord()),
+                n.getFloor(),
+                n.getBuilding());
+        fileWriter.write(oneObject);
+        fileWriter.newLine();
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

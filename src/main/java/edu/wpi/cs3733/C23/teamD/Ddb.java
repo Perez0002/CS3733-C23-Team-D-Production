@@ -184,8 +184,9 @@ public class Ddb {
       lineReader.readLine(); // skip header line
       while ((lineText = lineReader.readLine()) != null) {
         String[] data = lineText.split(",");
-        Node node = new Node(Integer.valueOf(data[1]), Integer.valueOf(data[2]), data[3], data[4]);
-        node.getNodeID();
+        Node node =
+            new Node(Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4]);
+        node.setNodeID(data[0]);
         DBsession.persist(node);
         LocationName loc = new LocationName(data[6], data[7], data[5]);
         DBsession.persist(loc);
@@ -216,14 +217,13 @@ public class Ddb {
         String[] data = lineText.split(",");
         Edge edge = new Edge();
         for (Node node : nodes) {
-          if (data[0].equals(node.getNodeID())) {
+          if (data[2].equals(node.getNodeID())) {
             edge.setFromNode(node);
           } else if (data[1].equals(node.getNodeID())) {
             edge.setToNode(node);
           }
         }
-        edge.genEdgeID();
-        System.out.println(edge.getEdgeID());
+        edge.setEdgeID(data[0]);
         DBsession.persist(edge);
       }
       DBsession.getTransaction().commit();
