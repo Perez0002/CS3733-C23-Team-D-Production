@@ -16,7 +16,7 @@ public class PathfinderAStar {
     this.fullMap = fullMap;
   }
 
-  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
+  public void init(ArrayList<NodePathfinding> nodeList, ArrayList<EdgePathfinding> edgeList) {
     this.fullMap.init(nodeList, edgeList);
   }
 
@@ -24,8 +24,8 @@ public class PathfinderAStar {
     this.fullMap.initFromDB();
   }
 
-  private class PathCostPair extends Pair<ArrayList<Node>, Double> {
-    public PathCostPair(ArrayList<Node> n, double c) {
+  private class PathCostPair extends Pair<ArrayList<NodePathfinding>, Double> {
+    public PathCostPair(ArrayList<NodePathfinding> n, double c) {
       super(n, c);
     }
   }
@@ -44,10 +44,11 @@ public class PathfinderAStar {
     return heuristic;
   }
 
-  public ArrayList<Node> aStarSearch(Node startNode, Node endNode) {
+  public ArrayList<NodePathfinding> aStarSearch(
+      NodePathfinding startNode, NodePathfinding endNode) {
     // init variables
-    ArrayList<Node> path = new ArrayList<Node>();
-    HashMap<String, Node> beenNodes = new HashMap<String, Node>();
+    ArrayList<NodePathfinding> path = new ArrayList<NodePathfinding>();
+    HashMap<String, NodePathfinding> beenNodes = new HashMap<String, NodePathfinding>();
     PriorityQueue<PathCostPair> queue =
         new PriorityQueue<PathCostPair>(5, new PathCostPairComparator());
     System.out.println(startNode.getNodeID());
@@ -63,7 +64,8 @@ public class PathfinderAStar {
       // remove and get the first 'path' in the queue
       currentPath = queue.poll();
 
-      Node currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
+      NodePathfinding currentNode =
+          new NodePathfinding(currentPath.getKey().get(currentPath.getKey().size() - 1));
 
       // Put the Node we are at right now into list of Nodes we have been to
       beenNodes.put(currentNode.getNodeID(), currentNode);
@@ -75,11 +77,11 @@ public class PathfinderAStar {
       }
 
       // for every connection in our current Node, add  those we have not been too to the queue
-      for (Edge e : currentNode.getNodeEdges()) {
+      for (EdgePathfinding e : currentNode.getNodeEdges()) {
         System.out.print(e.getToNode().getNodeID() + " ");
         System.out.println(e.getFromNode().getNodeID());
         if (!beenNodes.containsKey(e.getToNode().getNodeID())) {
-          ArrayList<Node> temp = (ArrayList) currentPath.getKey().clone();
+          ArrayList<NodePathfinding> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());
           queue.add(
               new PathCostPair(
@@ -91,6 +93,6 @@ public class PathfinderAStar {
 
     // In the event a Node could not be found, return default path
     // System.out.println("Could not find Node!");
-    return new ArrayList<Node>();
+    return new ArrayList<NodePathfinding>();
   }
 }

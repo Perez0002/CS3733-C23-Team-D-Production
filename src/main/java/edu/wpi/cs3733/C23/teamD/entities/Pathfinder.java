@@ -10,13 +10,14 @@ public class Pathfinder {
     this.fullMap = fullMap;
   }
 
-  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
+  public void init(ArrayList<NodePathfinding> nodeList, ArrayList<EdgePathfinding> edgeList) {
     this.fullMap.init(nodeList, edgeList);
   }
 
-  public ArrayList<Node> pathfind(Node startNode, Node endNode, String algorithim) {
-    ArrayList<Node> path = new ArrayList<>();
-    for (Edge e : startNode.getNodeEdges()) {
+  public ArrayList<NodePathfinding> pathfind(
+      NodePathfinding startNode, NodePathfinding endNode, String algorithim) {
+    ArrayList<NodePathfinding> path = new ArrayList<>();
+    for (EdgePathfinding e : startNode.getNodeEdges()) {
       System.out.print(e.getToNode().getNodeID() + " ");
       System.out.println(e.getFromNode().getNodeID());
     }

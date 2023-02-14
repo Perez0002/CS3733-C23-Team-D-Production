@@ -2,20 +2,14 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class SanitationRequest extends ServiceRequest {
   // attributes
-  String location;
-  int bioLevel;
-
-  public String getLocation() {
-    return location;
-  }
-
-  public int getBioLevel() {
-    return bioLevel;
-  }
+  @Getter @Setter String location;
+  @Getter @Setter int bioLevel;
 
   public SanitationRequest(
       String location, String reason, int bioLevel, String staff, Status stat) {
@@ -46,13 +40,5 @@ public class SanitationRequest extends ServiceRequest {
   // for debugging
   public void printSanititationInfo() {
     System.out.println("location: " + this.location + "\nBio Hazard Level: " + this.bioLevel);
-  }
-
-  public void setLocation(String location) {
-    this.location = location;
-  }
-
-  public void setBioLevel(int bioLevel) {
-    this.bioLevel = bioLevel;
   }
 }

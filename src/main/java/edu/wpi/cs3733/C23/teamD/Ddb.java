@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD;
 
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.DBSingleton;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -16,27 +17,6 @@ public class Ddb {
   @Getter private static Session DBsession = DBSingleton.getSession();
 
   /**
-   * @param Nodes the list of all the nodes from the database
-   * @return the list of all the edges stored in the database
-   */
-  public static ArrayList<Edge> createJavaEdges(ArrayList<Node> Nodes) {
-    DBsession.beginTransaction();
-    ArrayList<Edge> edgeList =
-        new ArrayList<Edge>(DBsession.createQuery("SELECT e FROM Edge e").getResultList());
-    for (Edge edge : edgeList) {
-      for (Node node : Nodes) {
-        if (edge.getFromNode().nodeEquals(node)) {
-          node.getNodeEdges().add(edge);
-        } else if (edge.getToNode().nodeEquals(node)) {
-          node.getNodeEdges().add(edge);
-        }
-      }
-    }
-    DBsession.getTransaction().commit();
-    return edgeList;
-  }
-
-  /**
    * Creates a list of all the nodes stored in the wpi database
    *
    * @return a list of all nodes stored in the database
@@ -47,25 +27,6 @@ public class Ddb {
         new ArrayList<Node>(DBsession.createQuery("SELECT n FROM Node n").getResultList());
     DBsession.getTransaction().commit();
     return nodeList;
-  }
-
-  /** @return */
-  public static ArrayList<Move> createJavaMoves() {
-    DBsession.beginTransaction();
-    ArrayList<Move> moveList =
-        new ArrayList<Move>(DBsession.createQuery("SELECT m FROM Move m").getResultList());
-    DBsession.getTransaction().commit();
-    return moveList;
-  }
-
-  /** @return */
-  public static ArrayList<LocationName> createJavaLocat() {
-    DBsession.beginTransaction();
-    ArrayList<LocationName> locationNames =
-        new ArrayList<LocationName>(
-            DBsession.createQuery("SELECT l FROM LocationName l").getResultList());
-    DBsession.getTransaction().commit();
-    return locationNames;
   }
 
   /**
@@ -86,92 +47,14 @@ public class Ddb {
     }
   }
 
-  /**
-   * Inserts a new patientTransportForm with the attributes from the given form into the
-   * ServiceRequestForm
-   *
-   * @param form
-   * @return
-   */
-  public static boolean insertNewForm(ServiceRequest form) {
-    try {
-      DBsession.beginTransaction();
-      DBsession.persist(form);
-      DBsession.getTransaction().commit();
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
-      DBsession.getTransaction().rollback();
-      return false;
-    }
-  }
-
-  public static void connectNodestoLocations(ArrayList<Node> nodes) {
-    ArrayList<Move> moves = new ArrayList<Move>(createJavaMoves());
-    for (Node node : nodes) {
+  public static void connectNodestoLocations(ArrayList<NodePathfinding> nodes) {
+    ArrayList<Move> moves = FDdb.getInstance().getAllMoves();
+    for (NodePathfinding node : nodes) {
       for (Move move : moves) {
-        if (node.nodeEquals(move.getNode())) {
+        if (node.getNodeID().equals(move.getNode().getNodeID())) {
           node.setLocation(move.getLocation());
         }
       }
-    }
-  }
-
-  /** @return */
-  public static ArrayList<PatientTransportRequest> getPatientTransportData() {
-    DBsession.beginTransaction();
-    ArrayList<PatientTransportRequest> patientTransList =
-        new ArrayList<>(
-            DBsession.createQuery("SELECT p FROM PatientTransportRequest p").getResultList());
-    DBsession.getTransaction().commit();
-    return patientTransList;
-  }
-
-  public static ArrayList<SanitationRequest> createSanitationRequestList() {
-    DBsession.beginTransaction();
-    ArrayList<SanitationRequest> sanitationReqList =
-        new ArrayList<>(DBsession.createQuery("SELECT s FROM SanitationRequest s").getResultList());
-    DBsession.getTransaction().commit();
-    return sanitationReqList;
-  }
-
-  public static ArrayList<ServiceRequest> createServiceList() {
-    DBsession.beginTransaction();
-    ArrayList<ServiceRequest> serviceRequests =
-        new ArrayList<>(DBsession.createQuery("SELECT s FROM ServiceRequest s").getResultList());
-    DBsession.getTransaction().commit();
-    return serviceRequests;
-  }
-
-  /**
-   * Updates the Object obj in the database
-   *
-   * @param obj the object to update
-   * @return true if the update succeeded or false if not
-   */
-  public static boolean updateObj(Object obj) {
-    try {
-      DBsession.beginTransaction();
-      DBsession.merge(obj);
-      DBsession.getTransaction().commit();
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
-      DBsession.getTransaction().rollback();
-      return false;
-    }
-  }
-
-  private static boolean deleteObj(Object obj) {
-    try {
-      DBsession.beginTransaction();
-      DBsession.remove(obj);
-      DBsession.getTransaction().commit();
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
-      DBsession.getTransaction().rollback();
-      return false;
     }
   }
   /** @param csvFilePaths */
@@ -207,7 +90,7 @@ public class Ddb {
 
   public static void csv2DBInsertEdges(String csvFilePaths) {
     try {
-      ArrayList<Node> nodes = new ArrayList<>(createJavaNodes());
+      ArrayList<Node> nodes = FDdb.getInstance().getAllNodes();
       DBsession.beginTransaction();
       BufferedReader lineReader = new BufferedReader(new FileReader(csvFilePaths));
       String lineText = null;
@@ -222,7 +105,7 @@ public class Ddb {
             edge.setToNode(node);
           }
         }
-        edge.setEdgeID(data[0]);
+        edge.genEdgeID();
         DBsession.persist(edge);
       }
       DBsession.getTransaction().commit();
@@ -272,19 +155,21 @@ public class Ddb {
     }
   }
 
-  public boolean addNewNode(Node node) {
-    try {
-      DBsession.beginTransaction();
-      node.setLocation(new LocationName());
-      Move move = new Move(node, node.getLocation());
-      DBsession.persist(node);
-      DBsession.persist(node.getLocation());
-      DBsession.persist(move);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
-      DBsession.getTransaction().rollback();
-      return false;
+  public static ArrayList<EdgePathfinding> edgetoPathfinding(ArrayList<Edge> Db) {
+    ArrayList<EdgePathfinding> edgePList = new ArrayList<EdgePathfinding>();
+    for (Edge edge : Db) {
+      EdgePathfinding newEdge = new EdgePathfinding(edge);
+      edgePList.add(newEdge);
     }
+    return edgePList;
+  }
+
+  public static ArrayList<NodePathfinding> nodeToPathfinding(ArrayList<Node> Db) {
+    ArrayList<NodePathfinding> nodePList = new ArrayList<NodePathfinding>();
+    for (Node node : Db) {
+      NodePathfinding newNode = new NodePathfinding(node);
+      nodePList.add(newNode);
+    }
+    return nodePList;
   }
 }

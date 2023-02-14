@@ -4,13 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import lombok.*;
 
 @Entity
 public class LocationName {
-  @Id private String longName;
-  private String shortName;
-  private String locationType;
+  @Getter @Setter @Id private String longName;
+  @Getter @Setter private String shortName;
+  @Getter @Setter private String locationType;
 
+  @Getter
+  @Setter
   @OneToMany(mappedBy = "location")
   private List<Move> moves;
 
@@ -28,37 +31,5 @@ public class LocationName {
     this.longName = "";
     this.shortName = "";
     this.locationType = "";
-  }
-
-  public String getLongName() {
-    return longName;
-  }
-
-  public void setLongName(String longName) {
-    this.longName = longName;
-  }
-
-  public String getShortName() {
-    return shortName;
-  }
-
-  public void setShortName(String shortName) {
-    this.shortName = shortName;
-  }
-
-  public String getLocationType() {
-    return locationType;
-  }
-
-  public List<Move> getMoves() {
-    return moves;
-  }
-
-  public void setMoves(List<Move> moves) {
-    this.moves = moves;
-  }
-
-  public void setLocationType(String locationType) {
-    this.locationType = locationType;
   }
 }

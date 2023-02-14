@@ -9,7 +9,7 @@ public class PathfinderDFS {
     this.fullMap = fullMap;
   }
 
-  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
+  public void init(ArrayList<NodePathfinding> nodeList, ArrayList<EdgePathfinding> edgeList) {
     this.fullMap.init(nodeList, edgeList);
   }
 
@@ -17,17 +17,18 @@ public class PathfinderDFS {
     this.fullMap.initFromDB();
   }
 
-  public ArrayList<Node> depthFirstSearch(Node startNode, Node endNode) {
-    ArrayList<Node> Path = new ArrayList<Node>();
-    ArrayList<Node> Visited = new ArrayList<Node>();
-    ArrayList<Edge> Neighbors = new ArrayList<Edge>();
-    Node currentNode = startNode;
+  public ArrayList<NodePathfinding> depthFirstSearch(
+      NodePathfinding startNode, NodePathfinding endNode) {
+    ArrayList<NodePathfinding> Path = new ArrayList<NodePathfinding>();
+    ArrayList<NodePathfinding> Visited = new ArrayList<NodePathfinding>();
+    ArrayList<EdgePathfinding> Neighbors = new ArrayList<EdgePathfinding>();
+    NodePathfinding currentNode = startNode;
     int rollbackCount = 1;
 
     while (!currentNode.getNodeID().equals(endNode.getNodeID())) {
       // Neighbors.clear();
 
-      Neighbors = (ArrayList<Edge>) currentNode.getNodeEdges().clone();
+      Neighbors = (ArrayList<EdgePathfinding>) currentNode.getNodeEdges().clone();
       if (startNode.equals(currentNode) && Neighbors.size() == 0) {
         Path.clear();
         break;
