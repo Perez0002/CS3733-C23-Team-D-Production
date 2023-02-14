@@ -45,7 +45,7 @@
    <center>
       <BorderPane fx:id="loginBorderPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #012D5A; -fx-opacity: 80%;" BorderPane.alignment="CENTER" />
+            <BorderPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #012D5A; -fx-opacity: 80%;" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </center>

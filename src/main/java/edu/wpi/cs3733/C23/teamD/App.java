@@ -43,7 +43,7 @@ public class App extends Application {
 
     primaryStage.setScene(scene);
     primaryStage.setMaximized(true);
-    rootPane.setTop(null);
+    rootPane.setLeft(null);
     Navigation.navigate(Screen.LOGIN_PAGE);
     primaryStage.show();
   }
