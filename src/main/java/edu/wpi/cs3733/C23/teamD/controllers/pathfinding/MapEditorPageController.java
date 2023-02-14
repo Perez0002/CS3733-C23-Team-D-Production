@@ -202,15 +202,19 @@ public class MapEditorPageController {
         }
 
         if (!activePopups.containsKey(node)) {
-          tempPopup.makePopupDisappear();
-          tempPopup = null;
+          if (tempPopup != null) {
+            tempPopup.makePopupDisappear();
+            tempPopup = null;
+          }
 
           MapEditorNodeController newPopup = new MapEditorNodeController(node, tempPane);
+          final Circle nodeCircle = (Circle) tempPane;
           activePopups.put(node, newPopup);
           newPopup.setOnClose(
               e -> {
                 activePopups.get(node).makePopupDisappear();
                 activePopups.remove(node, newPopup);
+                nodeCircle.setFill(Color.rgb(1, 58, 117));
               });
 
           newPopup.makePopupAppear();
