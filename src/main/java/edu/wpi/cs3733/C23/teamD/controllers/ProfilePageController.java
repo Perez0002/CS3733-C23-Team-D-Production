@@ -3,12 +3,11 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.fxml.FXML;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import javafx.fxml.FXML;
 
 public class ProfilePageController {
 
@@ -24,7 +23,7 @@ public class ProfilePageController {
 
   @FXML private MFXTextField address;
 
-  @FXML private MFXDatePicker birthday;
+  @FXML private MFXTextField birthday;
 
   @FXML private MFXTextField accountCreated;
 
@@ -47,11 +46,18 @@ public class ProfilePageController {
   private void setText() {
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-    accountCreated.setText(dateFormat.format(currentUser.getAccountCreated()));
-    birthday.setValue(
-        currentUser.getAccountCreated().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-    email.setText(currentUser.getEmail());
-    phoneNumber.setText(currentUser.getPhoneNumber());
-    address.setText(currentUser.getPhoneNumber());
+    if (currentUser.getAccountCreated() == null) {
+      accountCreated.setText("Information Unavailable");
+      email.setText("Information Unavailable");
+      phoneNumber.setText("Information Unavailable");
+      address.setText("Information Unavailable");
+    } else {
+      accountCreated.setText(dateFormat.format(currentUser.getAccountCreated()));
+    }
+    // birthday.setValue(
+    //   currentUser.getAccountCreated().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    //    email.setText(currentUser.getEmail());
+    //    phoneNumber.setText(currentUser.getPhoneNumber());
+    //    address.setText(currentUser.getPhoneNumber());
   }
 }

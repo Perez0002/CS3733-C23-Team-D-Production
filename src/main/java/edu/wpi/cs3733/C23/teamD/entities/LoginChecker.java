@@ -19,7 +19,6 @@ public class LoginChecker {
   // Returns a hashtable of username and passwords in database
   public Hashtable<String, String> exisitngUserInfo() {
     Hashtable<String, String> employeeInfo = new Hashtable<String, String>();
-    FDdb.getInstance();
     ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
     for (Employee e : employees) {
       String username = e.getUsername();
@@ -35,7 +34,9 @@ public class LoginChecker {
     // looks through each username if exists, check if correct password
     for (String s : usernames) {
       if (s.equals(username)) {
+        System.out.println("Yeah");
         if (password.equals(employeeInfo.get(s))) {
+          System.out.println("Yeah Yeah Yeah");
           CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
           currentUser.setAccessLevel(1);
           currentUser.setUsername(username);
