@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
@@ -65,7 +66,7 @@ public class ServiceRequestTable extends Application implements Initializable {
   public void tablehandling() {
     serviceTable.setEditable(true);
     ObservableList<ServiceRequest> requestList =
-        FXCollections.observableArrayList(Ddb.createServiceList());
+        FXCollections.observableArrayList(FDdb.getInstance().getAllGenericServiceRequests());
     if (requestList.size() != 0) {
       formID.setCellValueFactory(
           new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
@@ -88,7 +89,7 @@ public class ServiceRequestTable extends Application implements Initializable {
               try {
                 ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
-                Ddb.updateObj(form);
+                FDdb.getInstance().updateServiceRequest(form);
               } catch (IllegalArgumentException e) {
                 e.printStackTrace();
               }
