@@ -132,7 +132,9 @@ public class MapEditorPageController {
     AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
     for (javafx.scene.Node n : anchor.getChildren()) {
-      n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
+      if (n instanceof Circle) {
+        ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Setting all Panes to default color
+      }
     }
 
     updateButtonsForNode(SubmitMode.NO_SELECTION);
@@ -435,9 +437,11 @@ public class MapEditorPageController {
 
     // Calculating average x and y
     for (Node node : nodeList) {
-      totalX += node.getXcoord();
-      totalY += node.getYcoord();
-      total++;
+      if (node.getFloor().equals("L1")) {
+        totalX += node.getXcoord();
+        totalY += node.getYcoord();
+        total++;
+      }
     }
 
     // Creating GesturePane to show
@@ -459,6 +463,5 @@ public class MapEditorPageController {
             .build(currentFloor);
     // Setting center of BorderPane to the GesturePane
     mapEditorPane.setCenter(gesturePane);
-    // Setting zoom to 0
   }
 }
