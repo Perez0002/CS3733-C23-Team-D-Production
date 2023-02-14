@@ -27,7 +27,6 @@
                 </Label>
                 <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="600.0" spacing="3.0" styleClass="tabHBox">
                     <children>
-                        <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
                         <MFXButton fx:id="serviceTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="159.0" styleClass="tabButton" text="Service Requests" />
                         <MFXButton fx:id="nodeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Node" />
                         <MFXButton fx:id="edgeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Edge" />
@@ -45,7 +44,7 @@
                      <left>
                         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <MFXButton fx:id="DownloadButton" prefHeight="45.0" prefWidth="55.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
+                              <MFXButton fx:id="DownloadButton" prefHeight="45.0" prefWidth="55.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a" onAction = "#downloadData">
                                  <HBox.margin>
                                     <Insets right="25.0" />
                                  </HBox.margin>
@@ -53,7 +52,7 @@
                                     <FontIcon iconColor="#fffdfd" iconLiteral="fltfal-cloud-download-24" iconSize="30" wrappingWidth="20.0" />
                                  </graphic>
                               </MFXButton>
-                              <MFXButton fx:id="UploadButton" prefHeight="45.0" prefWidth="48.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
+                              <MFXButton fx:id="UploadButton" prefHeight="45.0" prefWidth="48.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a" onAction = "#uploadData">
                                  <graphic>
                                     <FontIcon iconColor="WHITE" iconLiteral="fltfal-cloud-backup-24" iconSize="30" wrappingWidth="20.0" />
                                  </graphic>
@@ -65,8 +64,8 @@
                         </HBox>
                      </left>
                   </BorderPane>
-                        <MFXButton fx:id="clearButton" styleClass="clearButton" text="Clear" />
-                        <MFXButton fx:id="submitButton" styleClass="submitButton" text="Cancel" />
+                        <MFXButton fx:id="cancelButton" prefHeight="27.0" prefWidth="69.0" styleClass="clearButton" text="Cancel" />
+                        <MFXButton fx:id="submitButton" styleClass="submitButton" text="Submiy" />
                     </children>
                 </HBox>
             </children>

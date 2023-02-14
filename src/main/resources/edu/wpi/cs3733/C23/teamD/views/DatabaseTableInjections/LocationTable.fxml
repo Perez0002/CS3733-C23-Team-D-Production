@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.wpi.cs3733.C23.teamD.views.DatabaseTableInjections.LocationTable"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane fx:id="LocationTableBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.LocationTableController">
+    <center>
+        <TableView fx:id="locationTable" prefHeight="300.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="longName" prefWidth="144.0" styleClass="tableCSS.css" text="longName" />
+                <TableColumn fx:id="locationType" prefWidth="133.0" styleClass="tableCSS.css" text="locationType" />
+                <TableColumn fx:id="shortName" prefWidth="133.0" styleClass="tableCSS.css" text="shortName" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

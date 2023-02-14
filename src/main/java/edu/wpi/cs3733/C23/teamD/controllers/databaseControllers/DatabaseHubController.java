@@ -2,7 +2,10 @@ package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.*;
 
+import edu.wpi.cs3733.C23.teamD.controllers.ToastController;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -11,16 +14,22 @@ import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
 
 public class DatabaseHubController {
-  @FXML private MFXButton hubButton;
   @FXML private MFXButton serviceTableButton;
   @FXML private MFXButton nodeTableButton;
   @FXML private MFXButton edgeTableButton;
   @FXML private MFXButton moveTableButton;
   @FXML private MFXButton locationTableButton;
+  @FXML private MFXButton cancelButton;
+
+  @FXML private MFXButton submitButton;
+
+  @FXML private MFXButton downloadButton;
+
+  @FXML private MFXButton uploadButton;
+
+  @FXML private ServiceRequestTableController ServiceRequestTableBorderPane;
   @FXML private Pane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
-  @FXML private Parent hubVBox;
-  @FXML private HubBoxController hubVBoxController;
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
   private DatabaseController currentController; // tracks current VBox pane
@@ -31,17 +40,27 @@ public class DatabaseHubController {
 
   public void initialize() {
     createHubMap();
-    currentController = hubVBoxController;
-    hubButton.setOnMouseClicked(event -> switchVBox(HUB));
+    currentController = ServiceRequestTableBorderPane;
     serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST));
     nodeTableButton.setOnMouseClicked(event -> switchVBox(NODE_TABLE));
     edgeTableButton.setOnMouseClicked(event -> switchVBox(EDGES_TABLE));
     moveTableButton.setOnMouseClicked(event -> switchVBox(MOVE_TABLE));
+    locationTableButton.setOnMouseClicked(event -> switchVBox(LOCATION_TABLE));
+    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   void switchVBox(DatabasesFXML switchTo) {
     NavigationDatabases.navigate(switchTo, getRequestFormHubPane());
-    if (switchTo == SERVICE_REQUEST) {}
+  }
+
+  @FXML
+  void downloadData() {
+    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50);
+  }
+
+  @FXML
+  void uploadData() {
+    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50);
   }
 
   void createHubMap() {

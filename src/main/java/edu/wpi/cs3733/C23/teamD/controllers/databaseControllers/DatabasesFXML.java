@@ -11,6 +11,8 @@ public enum DatabasesFXML {
 
   EDGES_TABLE("views/DatabaseTableInjections/EdgesTable.fxml"),
 
+  LOCATION_TABLE("views/DatabaseTableInjections/LocationTable.fxml"),
+
   SERVICE_REQUEST("views/DatabaseTableInjections/ServiceRequestTable.fxml");
 
   private final String filename;
