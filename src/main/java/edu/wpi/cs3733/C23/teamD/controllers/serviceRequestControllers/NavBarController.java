@@ -34,7 +34,7 @@ public class NavBarController {
     profileButton.setTooltip(new Tooltip("Profile Page"));
 
     serviceRequestFormsButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+        event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     serviceRequestFormsButton.setTooltip(new Tooltip("Service Request Forms"));
 
     dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));

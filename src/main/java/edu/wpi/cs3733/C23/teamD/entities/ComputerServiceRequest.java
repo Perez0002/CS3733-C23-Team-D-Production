@@ -11,12 +11,17 @@ public class ComputerServiceRequest extends ServiceRequest {
     super();
   }
 
-  public ComputerServiceRequest(String reason, String staff, Status stat,String urgency,String deviceType, String location) {
+  public ComputerServiceRequest(
+      String reason,
+      String staff,
+      Status stat,
+      String urgency,
+      String deviceType,
+      String location) {
     super(staff, stat, reason, "ComputerService");
-    this.urgency=urgency;
-    this.deviceType=deviceType;
-    this.location=location;
-
+    this.urgency = urgency;
+    this.deviceType = deviceType;
+    this.location = location;
   }
 
   public ComputerServiceRequest(
