@@ -53,10 +53,10 @@ public class LocationTableController extends Application
   public void tablehandling() {
     ObservableList<LocationName> locationList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllLocationNames());
-    longName.setCellValueFactory(new PropertyValueFactory<LocationName, String>("longname"));
+    longName.setCellValueFactory(new PropertyValueFactory<LocationName, String>("longName"));
     locationType.setCellValueFactory(
-        new PropertyValueFactory<LocationName, String>("locationtype"));
-    shortName.setCellValueFactory(new PropertyValueFactory<LocationName, String>("shortname"));
+        new PropertyValueFactory<LocationName, String>("locationType"));
+    shortName.setCellValueFactory(new PropertyValueFactory<LocationName, String>("shortName"));
     locationTable.setItems(locationList);
     locationTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     locationTable.getColumns().stream()
