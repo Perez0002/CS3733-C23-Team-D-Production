@@ -46,11 +46,11 @@ public class ServiceRequestHubController {
 
     createHubMap();
 
-    switchVBox(HUB);
+    switchVBox(HUB, hubButton);
 
-    hubButton.setOnMouseClicked(event -> switchVBox(HUB));
-    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
-    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST));
+    hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
+    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
+    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
@@ -60,6 +60,14 @@ public class ServiceRequestHubController {
     // switchVBox(YOUR_REQUEST)
     // you need to add your vbox fxml file to the ENUM ServiceRequests
 
+    helpButton.setOnMouseClicked(
+        event -> {
+          try {
+            help();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     submitButton.setOnMouseClicked(event -> submit());
     clearButton.setOnMouseClicked(event -> clearFields());
   }
