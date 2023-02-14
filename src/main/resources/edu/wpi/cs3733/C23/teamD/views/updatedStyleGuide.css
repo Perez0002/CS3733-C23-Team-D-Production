@@ -13,13 +13,12 @@
 .label { /* sets base format for labels */
     -fx-font-family: 'Nunito Sans';
     -fx-text-fill: #012D5A;
-    -fx-font-size: 16pt;
+    -fx-text-size: 12pt;
 }
 
 .text { /* sets base format for text */
     -fx-font-family: 'Nunito Sans';
     -fx-text-fill: #012D5A;
-    -fx-font-size: 16pt;
 }
 
 .mfx-text-field { /* sets base format for MFXTextFields */
@@ -37,7 +36,7 @@
 }
 
 #hubLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 36pt;
+    -fx-font-size: 24pt;
     -fx-max-width: 400px;
     -fx-max-height: 100px;
 }
@@ -52,6 +51,11 @@
 
 .tabButtonSelected { /* defines the format for the selected tab Button on the service request page */
     -fx-background-color: #012D5A;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-text-size: 12pt;
+    -fx-max-width: 100px;
 }
 
 .tabHBox { /* defines the format for the HBox that the tabs are held in, particularly used for blue underline */
@@ -61,9 +65,9 @@
 
 /*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
 
-/* serviceRequestMFXTextFieldLabel {
-
-} */
+.serviceRequestMFXTextFieldLabel {
+    -fx-text-size: 12pt;
+}
 
 /*.individualServiceRequestTextFieldVBox { !* defines the format for the individual vBox that contains service Request Text Fields *!*/
 
@@ -102,4 +106,14 @@
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
+}
+
+.helpButton {
+    -fx-background-color: #012D5A; /* Blue */
+    -fx-text-fill: #ffffff; /* White */
+    -fx-background-radius: 40pt; /* Makes button a circle */
+    -fx-max-height: 40pt;
+    -fx-max-width: 40pt;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bolder;
 }
