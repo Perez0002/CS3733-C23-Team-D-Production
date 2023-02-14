@@ -115,6 +115,12 @@ public class Node {
     this.nodeID = nodeID;
   }
 
+  public void setNodeID() {
+    String xString = String.format("%04d", this.xcoord);
+    String yString = String.format("%04d", this.ycoord);
+    this.nodeID = (this.floor + "X" + xString + "Y" + yString);
+  }
+
   public LocationName getLocation() {
     return location;
   }

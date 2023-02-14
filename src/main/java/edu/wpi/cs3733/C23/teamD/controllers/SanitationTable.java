@@ -2,7 +2,7 @@ package edu.wpi.cs3733.C23.teamD.controllers;
 
 import static javafx.application.Application.launch;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
@@ -71,7 +71,7 @@ public class SanitationTable extends Application implements Initializable {
   public void tablehandling() {
     sanitationTable.setEditable(true);
     ObservableList<SanitationRequest> requestList =
-        FXCollections.observableArrayList(Ddb.createSanitationRequestList());
+        FXCollections.observableArrayList(FDdb.getInstance().getAllSanitationRequest());
     if (requestList.size() != 0) {
       formID.setCellValueFactory(
           new PropertyValueFactory<SanitationRequest, Integer>("serviceRequestId"));
@@ -100,7 +100,7 @@ public class SanitationTable extends Application implements Initializable {
               try {
                 ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
-                Ddb.updateObj(form);
+                FDdb.getInstance().updateServiceRequest(form);
               } catch (IllegalArgumentException e) {
                 e.printStackTrace();
               }

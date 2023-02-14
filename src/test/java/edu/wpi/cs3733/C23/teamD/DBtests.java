@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD;
 
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.DBSingleton;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -187,8 +188,8 @@ public class DBtests {
       }
     }
     DBSingleton.getSession().getTransaction().commit();
-    ArrayList<Node> nodeList = new ArrayList<>(Ddb.createJavaNodes());
+    ArrayList<Node> nodeList = new ArrayList<>(FDdb.getInstance().getAllNodes());
     Assertions.assertEquals(Nodes, nodeList);
-    Assertions.assertEquals(edgeList, Ddb.createJavaEdges(nodeList));
+    Assertions.assertEquals(edgeList, FDdb.getInstance().getAllEdges());
   }
 }

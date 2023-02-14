@@ -25,12 +25,12 @@
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0">
                <children>
                   <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="200.03753662109375" />
-                  <MFXTextField fx:id="username" floatingText="Username" prefHeight="20.0" prefWidth="200.0">
+                  <MFXTextField fx:id="username" floatMode="DISABLED" floatingText="Username" prefHeight="20.0" prefWidth="200.0" promptText="Username">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></MFXTextField>
                   <Text fx:id="usernameText1" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="200.03753662109375" />
-                  <MFXPasswordField fx:id="password" floatingText="Password" prefHeight="20.0" prefWidth="200.0" />
+                  <MFXPasswordField fx:id="password" floatMode="DISABLED" floatingText="Password" prefHeight="20.0" prefWidth="200.0" promptText="Password" />
                </children>
             </VBox>
             <Text fx:id="incorrectUsernameOrPasswordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Username or Password" visible="false" wrappingWidth="171.09375" />
@@ -45,7 +45,7 @@
    <center>
       <BorderPane fx:id="loginBorderPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #012D5A; -fx-opacity: 80%;" BorderPane.alignment="CENTER" />
+            <BorderPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #012D5A; -fx-opacity: 80%;" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </center>
