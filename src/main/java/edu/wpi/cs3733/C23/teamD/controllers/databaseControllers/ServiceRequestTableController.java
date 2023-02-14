@@ -1,11 +1,10 @@
 package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
-import edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestVBoxController;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
-public class ServiceRequestTableController implements ServiceRequestVBoxController {
+public class ServiceRequestTableController implements DatabaseVBoxController {
 
   @FXML private BorderPane ServiceRequestTableBorderPane;
 

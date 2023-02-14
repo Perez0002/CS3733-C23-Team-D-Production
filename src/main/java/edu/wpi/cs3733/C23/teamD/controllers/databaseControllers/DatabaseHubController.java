@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
+import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.*;
+
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
@@ -8,10 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
 
-import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabasesFXML.*;
-
 public class DatabaseHubController {
-
   @FXML private MFXButton hubButton;
   @FXML private MFXButton serviceTableButton;
   @FXML private MFXButton nodeTableButton;
@@ -32,11 +31,8 @@ public class DatabaseHubController {
   }
 
   public void initialize() {
-
     createHubMap();
-
     currentController = hubVBoxController;
-
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST));
     nodeTableButton.setOnMouseClicked(event -> switchVBox(NODE_TABLE));
