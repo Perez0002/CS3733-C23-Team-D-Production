@@ -40,6 +40,11 @@
             <Pane fx:id="requestFormHubPane" prefHeight="546.0" prefWidth="660.0" />
             <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="550.0" spacing="5.0">
                <children>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="successfulSubmissionText" text="Successful submission!" visible="false" />
+                     </children>
+                  </HBox>
                   <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="100.0" styleClass="clearButton" text="Clear" />
                   <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="100.0" styleClass="submitButton" text="Submit" />
                </children>

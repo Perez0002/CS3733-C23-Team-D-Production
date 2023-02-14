@@ -8,6 +8,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
@@ -27,6 +28,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton submitButton;
 
   @FXML private MFXButton helpButton;
+
+  @FXML private Label successfulSubmissionText;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
@@ -74,6 +77,10 @@ public class ServiceRequestHubController {
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
   void switchVBox(ServiceRequests switchTo, MFXButton button) {
+    if (successfulSubmissionText.isVisible()) {
+      successfulSubmissionText.setVisible(false);
+    }
+
     if (currentTab != null) {
       currentTab.getStyleClass().clear();
       currentTab.getStyleClass().add("tabButton");
@@ -89,6 +96,8 @@ public class ServiceRequestHubController {
 
     } else if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).clearTransportForms();
+    } else if (currentController instanceof ComputerServiceRequestController) {
+      ((ComputerServiceRequestController) currentController).clearComputerForms();
     }
 
     // TODO: add your ClearFields here. Follow the exact same format as the
@@ -101,11 +110,18 @@ public class ServiceRequestHubController {
 
   void submit() {
     System.out.println("Submit Pressed");
+    boolean submission = false;
     if (currentController instanceof PatientTransportVBoxController) {
-      ((PatientTransportVBoxController) currentController).submit();
+      submission = ((PatientTransportVBoxController) currentController).submit();
+
     } else if (currentController instanceof ComputerServiceRequestController) {
       System.out.println("Submitting");
-      ((ComputerServiceRequestController) currentController).submit();
+      submission = ((ComputerServiceRequestController) currentController).submit();
+    }
+
+    if (submission) {
+      clearFields();
+      successfulSubmissionText.setVisible(true);
     }
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController
