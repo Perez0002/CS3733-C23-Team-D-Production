@@ -109,7 +109,7 @@ public class NodeIDaoImpl implements IDao<Node> {
 
     session.beginTransaction();
     try {
-      Query q2 = session.createQuery("DELETE Node where id=:id");
+      Query q2 = session.createQuery("DELETE Node where nodeID=:id");
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();
