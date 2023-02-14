@@ -28,35 +28,37 @@ public class LoginChecker {
     return employeeInfo;
   }
 
+  // Returns a hashtable of username and accessLevels in database
+  public Hashtable<String, String> userAccessLevel() {
+    Hashtable<String, String> employeeAccessLevel = new Hashtable<String, String>();
+    ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
+    for (Employee e : employees) {
+      String accessLevel = e.getEmployeeType();
+      employeeAccessLevel.put(username, accessLevel);
+    }
+    return employeeAccessLevel;
+  }
+
   public boolean setAccessLevel() {
     Hashtable<String, String> employeeInfo = exisitngUserInfo();
+    Hashtable<String, String> userAccessLevelInfo = userAccessLevel();
     Set<String> usernames = employeeInfo.keySet();
     // looks through each username if exists, check if correct password
     for (String s : usernames) {
       if (s.equals(username)) {
-        System.out.println("Yeah");
         if (password.equals(employeeInfo.get(s))) {
-          System.out.println("Yeah Yeah Yeah");
           CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-          currentUser.setAccessLevel(1);
-          currentUser.setUsername(username);
-          return true;
+          if (userAccessLevelInfo.get(s).equals("ADMIN")) {
+            currentUser.setAccessLevel(2);
+            currentUser.setUsername(username);
+            return true;
+          } else {
+            currentUser.setAccessLevel(1);
+            return true;
+          }
         }
       }
     }
-    if (username.equals("staff") && password.equals("password")) {
-      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-      currentUser.setAccessLevel(1);
-      currentUser.setUsername(username);
-      return true;
-    }
-    if (username.equals("admin") && password.equals("password")) {
-      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-      currentUser.setAccessLevel(2);
-      currentUser.setUsername(username);
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 }

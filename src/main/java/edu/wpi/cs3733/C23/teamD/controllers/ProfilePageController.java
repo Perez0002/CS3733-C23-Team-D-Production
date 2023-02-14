@@ -4,10 +4,9 @@ import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.fxml.FXML;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javafx.fxml.FXML;
 
 public class ProfilePageController {
 
