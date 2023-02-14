@@ -90,6 +90,6 @@ public class NavBarController {
 
   @FXML
   void openServiceRequestFormHub(ActionEvent event) {
-    Navigation.navigate(Screen.SERVICE_REQUEST);
+    Navigation.navigate(Screen.REQUEST_FORM_HUB);
   }
 }
