@@ -13,6 +13,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -63,6 +64,7 @@ public class MapEditorPageController {
   private GesturePane gesturePane;
 
   private MapEditorNodeController tempPopup;
+  private HashMap<Node, MapEditorNodeController> activePopups = new HashMap<>();
   private int currentFloor = 0;
 
   private enum SubmitMode {
@@ -185,31 +187,32 @@ public class MapEditorPageController {
         GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
         AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
-        if (!node.equals(currentNodeEdit)) { // If node and currentNode are different
-          // Select Node
-
-          updateButtonsForNode(SubmitMode.EDIT_NODE);
-          currentNodeEdit = node;
-
-          // Setting default fields for Node
-          xCoordTextField.setText(Integer.toString(currentNodeEdit.getXcoord()));
-          yCoordTextField.setText(Integer.toString(currentNodeEdit.getYcoord()));
-          longNameTextField.setText(currentNodeEdit.getLocation().getLongName());
-
-          for (javafx.scene.Node n : anchor.getChildren()) {
-            if (!(n instanceof Circle)) {
-              continue;
-            }
-            if ((node.getNodeID() + "_pane").equals(n.getId())) {
-              ((Circle) n).setFill(Color.rgb(204, 34, 34)); // Turn this Pane to red
-            } else {
-              ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Turn this Pane to red
-            }
+        javafx.scene.Node tempPane = null;
+        for (javafx.scene.Node n : anchor.getChildren()) {
+          if (!(n instanceof Circle)) {
+            continue;
           }
-        } else {
-          // Deselect Node
-          updateButtonsForNode(SubmitMode.NO_SELECTION);
-          clearFields();
+
+          if ((node.getNodeID() + "_pane").equals(n.getId())) {
+            // Turn this Pane to red
+            tempPane = n;
+          }
+        }
+
+        if (!activePopups.containsKey(node)) {
+          tempPopup.makePopupDisappear();
+          tempPopup = null;
+
+          MapEditorNodeController newPopup = new MapEditorNodeController(node, tempPane);
+          activePopups.put(node, newPopup);
+          newPopup.setOnClose(
+              e -> {
+                activePopups.get(node).makePopupDisappear();
+                activePopups.remove(node, newPopup);
+              });
+
+          newPopup.makePopupAppear();
+          ((Circle) tempPane).setFill(Color.rgb(204, 34, 34));
         }
       }
     };
@@ -222,7 +225,8 @@ public class MapEditorPageController {
       public void handle(MouseEvent event) {
         GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
         AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-        if (tempPopup == null) {
+
+        if (tempPopup == null && !activePopups.containsKey(node)) {
           javafx.scene.Node tempNode = null;
           for (javafx.scene.Node n : anchor.getChildren()) {
             if (n instanceof Circle) {
@@ -233,8 +237,7 @@ public class MapEditorPageController {
             }
           }
 
-          tempPopup =
-              new MapEditorNodeController(node, event.getSceneX(), event.getSceneY(), tempNode);
+          tempPopup = new MapEditorNodeController(node, tempNode);
           tempPopup.setOnClose(
               e -> {
                 tempPopup.makePopupDisappear();
@@ -254,6 +257,10 @@ public class MapEditorPageController {
         GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
         AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
+        if (tempPopup != null && !activePopups.containsKey(node)) {
+          tempPopup.makePopupDisappear();
+          tempPopup = null;
+        }
       }
     };
   }

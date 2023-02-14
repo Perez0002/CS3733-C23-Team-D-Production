@@ -5,6 +5,8 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
 
@@ -16,17 +18,17 @@ public class MapEditorNodeController {
   javafx.scene.Node anchor;
   MFXButton button;
 
-  MapEditorNodeController(Node node, double xPos, double yPos, javafx.scene.Node anchor) {
+  MapEditorNodeController(Node node, javafx.scene.Node anchor) {
     this.node = node;
     this.anchor = anchor;
-    makeEditorNode(xPos, yPos); // calls pseudo-constructor object
+    makeEditorNode(); // calls pseudo-constructor object
   }
 
   /**
    * Creates a popover object that contains necessary popup information (pane, text containing node
    * information). neither param nor return
    */
-  private void makeEditorNode(double xPos, double yPos) {
+  private void makeEditorNode() {
     popover = new PopOver(); // creates PopOver container
     VBox pane = new VBox(); // creates Pane object to place within PopOver
     button = new MFXButton();
@@ -83,6 +85,7 @@ public class MapEditorNodeController {
 
   void setOnClose(EventHandler<ActionEvent> event) {
     button.setOnAction(event);
+    ((Circle) anchor).setFill(Color.rgb(1, 58, 117));
   }
 
   public void initialize() {}
