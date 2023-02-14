@@ -7,7 +7,7 @@ public enum Screen {
   DATABASE_EDIT("views/DBApp.fxml"),
   MAP_EDITOR("views/MapEditor.fxml"),
   PATIENT_TRANSPORT_REQUEST("views/InternalPatientTransportationRequestForm.fxml"),
-  SANITATION_FORM("views/SanitationRequestForm.fxml"),
+  SANITATION_FORM("views/SanitationRequestVBox.fxml"),
   PATHFINDING_REQUEST("views/PathfindingRequestForm.fxml"),
   PATIENT_TRANSPORT_TABLE("views/PatientTransportTable.fxml"),
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),

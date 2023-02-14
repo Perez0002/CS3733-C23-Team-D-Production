@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
@@ -6,24 +6,18 @@ import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
 
-public class SanitationRequestController {
-
-  private boolean helpDisplayed = false;
-
-  @FXML private Text textHelp;
+public class SanitationRequestVBoxController implements ServiceRequestVBoxController {
   @FXML private MFXRadioButton radioBSL1;
   @FXML private MFXRadioButton radioBSL2;
   @FXML private MFXRadioButton radioBSL3;
   @FXML private MFXRadioButton radioBSL4;
   @FXML private MFXTextField fieldReason;
-  @FXML private Text formSubmittedText;
-  @FXML Text locationHelpText;
-  @FXML Text reasonHelpText;
-  @FXML Text staffIDHelpText;
   @FXML MFXTextField staffIDTextField;
+  @FXML private VBox sanitationRequestVBOX;
 
   @FXML private Parent fieldLocation;
 
@@ -32,7 +26,6 @@ public class SanitationRequestController {
   @FXML
   public void submitSanitationRequest() {
     if (isFieldsSaturated()) {
-      // System.out.print("Submit Success: ");
       int i = 0;
       if (radioBSL1.isSelected()) {
         i = 1;
@@ -43,7 +36,6 @@ public class SanitationRequestController {
       } else if (radioBSL4.isSelected()) {
         i = 4;
       }
-      formSubmittedText.setVisible(true);
       SanitationRequest requestData =
           new SanitationRequest(
               fieldLocationController.getNodeValue(),
@@ -52,18 +44,6 @@ public class SanitationRequestController {
               staffIDTextField.getText(),
               SanitationRequest.Status.BLANK);
       Ddb.insertNewForm(requestData);
-
-      textHelp.setVisible(false);
-      locationHelpText.setVisible(false);
-      reasonHelpText.setVisible(false);
-      staffIDHelpText.setVisible(false);
-      formSubmittedText.setVisible(true);
-
-    } else {
-      helpDisplayed = false;
-      formSubmittedText.setVisible(false);
-      textHelp.setVisible(true);
-      displayHelp();
     }
   }
 
@@ -76,21 +56,9 @@ public class SanitationRequestController {
     radioBSL2.setSelected(false);
     radioBSL3.setSelected(false);
     radioBSL4.setSelected(false);
-    formSubmittedText.setVisible(false);
-    formSubmittedText.setVisible(false);
-    // System.out.print("Fields Cleared\n");
-  }
-
-  @FXML
-  public void displayHelp() {
-    helpDisplayed = !helpDisplayed; // if help is already displayed, turns off (toggle feature)
-    reasonHelpText.setVisible(helpDisplayed);
-    locationHelpText.setVisible(helpDisplayed);
-    staffIDHelpText.setVisible(helpDisplayed);
   }
 
   private boolean isFieldsSaturated() {
-    // System.out.print("Submit Success2: ");
     return (fieldReason.getText() != ""
         && (fieldLocationController.getNodeValue() != null)
         && staffIDTextField.getText() != ""
@@ -98,5 +66,10 @@ public class SanitationRequestController {
             || radioBSL2.isSelected()
             || radioBSL3.isSelected()
             || radioBSL4.isSelected()));
+  }
+
+  @Override
+  public Node getVBox() {
+    return sanitationRequestVBOX;
   }
 }

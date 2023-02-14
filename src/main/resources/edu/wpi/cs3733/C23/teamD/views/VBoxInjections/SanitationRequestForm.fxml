@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="sanitationRequestVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.SanitationRequestController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.SanitationRequestVBoxController">
    <children>
       <Label styleClass="serviceRequestDescription" text="This request form is to report spills or hazrds in the rooms or hallways of Brigham and Women's Hospital that should be dealth with." wrapText="true" />
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -23,7 +23,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="individualServiceRequestTextFieldVBox">
          <children>
             <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select a Room" />
-            <fx:include fx:id="fieldLocation" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
+            <fx:include fx:id="fieldLocation" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="individualServiceRequestTextFieldVBox">

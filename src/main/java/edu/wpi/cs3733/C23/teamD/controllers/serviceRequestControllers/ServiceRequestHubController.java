@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
 import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.HUB;
 import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.PATIENT_TRANSPORT;
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.SANITATION_REQUEST;
 
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -14,6 +15,7 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton hubButton;
   @FXML private MFXButton transportButton;
+  @FXML private MFXButton sanitationButton;
   @FXML private Pane requestFormHubPane;
   @FXML private BorderPane mapPaneContainer;
 
@@ -39,7 +41,7 @@ public class ServiceRequestHubController {
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
-
+    sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST));
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
     // you need to add your vbox fxml file to the ENUM ServiceRequests
@@ -58,7 +60,10 @@ public class ServiceRequestHubController {
 
     } else if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).clearTransportForms();
+    } else if (currentController instanceof SanitationRequestVBoxController) {
+      ((SanitationRequestVBoxController) currentController).clearFields();
     }
+
 
     // TODO: add your ClearFields here. Follow the exact same format as the
     // PatientTransportVBoxController but with your variables

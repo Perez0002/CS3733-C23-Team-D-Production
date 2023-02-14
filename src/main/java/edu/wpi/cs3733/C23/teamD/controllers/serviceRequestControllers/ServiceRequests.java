@@ -2,7 +2,8 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
 public enum ServiceRequests {
   HUB("views/VBoxInjections/hubVBox.fxml"),
-  PATIENT_TRANSPORT("views/VBoxInjections/PatientTransportVBox.fxml");
+  PATIENT_TRANSPORT("views/VBoxInjections/PatientTransportVBox.fxml"),
+  SANITATION_REQUEST("views/VBoxInjections/SanitationRequestVBox.fxml");
 
   private final String filename;
 
