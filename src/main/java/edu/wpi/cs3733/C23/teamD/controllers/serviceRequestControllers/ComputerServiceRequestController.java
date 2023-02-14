@@ -42,5 +42,6 @@ public class ComputerServiceRequestController extends ServiceRequestController {
             deviceTypeBox.getText(),
             locationBox.getText());
     FDdb.getInstance().saveServiceRequest(computerServiceRequest);
+    System.out.println("Submit computer request");
   }
 }

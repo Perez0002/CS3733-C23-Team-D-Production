@@ -40,8 +40,8 @@
             <Pane fx:id="requestFormHubPane" maxWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" />
             <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
                <children>
-                  <MFXButton fx:id="clearButton" styleClass="clearButton" />
-                  <MFXButton fx:id="submitButton" styleClass="submitButton" />
+                  <MFXButton fx:id="clearButton" styleClass="clearButton" text="Cancel" />
+                  <MFXButton fx:id="submitButton" styleClass="submitButton" text="Submit" />
                </children>
             </HBox>
          </children>
