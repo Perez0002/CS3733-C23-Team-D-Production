@@ -47,7 +47,7 @@ public class HomepageController {
     checkAccessLevel();
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
-    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     //    if (currentUser.getAccessLevel() == 0) {

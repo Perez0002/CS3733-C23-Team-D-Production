@@ -34,7 +34,7 @@ public class ComputerServiceRequestController extends ServiceRequestController
     deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));
   }
 
-  public void submit() {
+  public boolean submit() {
 
     if (descriptionBox.getText() != null
         && urgencyBox.getText() != null
@@ -52,11 +52,18 @@ public class ComputerServiceRequestController extends ServiceRequestController
               deviceTypeBox.getText(),
               locationBox.getText());
       FDdb.getInstance().saveServiceRequest(computerServiceRequest);
+      return true;
     }
+    return false;
   }
 
   @Override
   public Node getVBox() {
     return null;
+  }
+
+  // TODO: set the rest to clear
+  void clearComputerForms() {
+    deviceTypeBox.clearSelection();
   }
 }

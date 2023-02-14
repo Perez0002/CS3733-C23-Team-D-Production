@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="requestFormHubBorderPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
    <center>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+      <VBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
          <BorderPane.margin>
-            <Insets bottom="75.0" left="25.0" top="75.0" />
+            <Insets bottom="25.0" left="25.0" top="25.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="hubLabel" maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" text="Service Request Hub">
+            <Label fx:id="hubLabel" prefHeight="158.0" prefWidth="245.0" text="Service Request Hub">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin>
@@ -24,7 +24,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="600.0" spacing="3.0" styleClass="tabHBox">
+            <HBox prefHeight="53.0" prefWidth="550.0" spacing="3.0" styleClass="tabHBox">
                <children>
                   <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
                   <MFXButton fx:id="transportButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Patient Transport" />
@@ -37,11 +37,16 @@
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <Pane fx:id="requestFormHubPane" maxWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" />
-            <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
+            <Pane fx:id="requestFormHubPane" prefHeight="546.0" prefWidth="660.0" />
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="550.0" spacing="5.0">
                <children>
-                  <MFXButton fx:id="clearButton" styleClass="clearButton" text="Clear" />
-                  <MFXButton fx:id="submitButton" styleClass="submitButton" text="Submit" />
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="successfulSubmissionText" text="Successful submission!" visible="false" />
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="100.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="100.0" styleClass="submitButton" text="Submit" />
                </children>
             </HBox>
          </children>
@@ -51,9 +56,12 @@
       </VBox>
    </center>
    <right>
-      <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="700.0" BorderPane.alignment="TOP_RIGHT">
+      <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="TOP_RIGHT">
          <BorderPane.margin>
-            <Insets left="20.0" right="25.0" />
-         </BorderPane.margin></BorderPane>
+            <Insets bottom="25.0" left="20.0" right="25.0" top="25.0" />
+         </BorderPane.margin>
+         <bottom>
+            <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="CENTER_RIGHT" />
+         </bottom></BorderPane>
    </right>
 </BorderPane>

@@ -97,7 +97,7 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
   public void delete(LocationName l) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE LocationName where id=:id");
+      Query q = session.createQuery("DELETE LocationName where longName=:id");
       q.setParameter("id", l.getLongName());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
