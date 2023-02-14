@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.controllers.ToastController;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
@@ -77,9 +78,6 @@ public class ServiceRequestHubController {
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
   void switchVBox(ServiceRequests switchTo, MFXButton button) {
-    if (successfulSubmissionText.isVisible()) {
-      successfulSubmissionText.setVisible(false);
-    }
 
     if (currentTab != null) {
       currentTab.getStyleClass().clear();
@@ -121,7 +119,7 @@ public class ServiceRequestHubController {
 
     if (submission) {
       clearFields();
-      successfulSubmissionText.setVisible(true);
+      ToastController.makeText("Your data has been downloaded!", 1000, 50, 100);
     }
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController
