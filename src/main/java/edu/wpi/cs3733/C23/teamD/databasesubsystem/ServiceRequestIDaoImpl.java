@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
+import org.hibernate.TransactionException;
 
 public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private final Session session = DBSingleton.getSession();
@@ -108,6 +109,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       this.masterList.add(s);
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -149,7 +151,6 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
               session
                   .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
                   .getResultList();
-      session.getTransaction().commit();
       javaComputerServiceRequestList =
           (ArrayList<ComputerServiceRequest>)
               session
@@ -169,6 +170,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       this.masterList = javaMasterList;
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -192,7 +194,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
 
       this.masterList.remove(s);
 
-    } catch (Exception ex) {
+    } catch (TransactionException ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }

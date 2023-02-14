@@ -6,7 +6,6 @@ public enum ServiceRequests {
   SANITATION_REQUEST("views/VBoxInjections/SanitationRequestForm.fxml"),
   COMPUTER_REQUEST("views/VBoxInjections/ComputerServiceRequest.fxml");
 
-
   private final String filename;
 
   ServiceRequests(String filename) {

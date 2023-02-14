@@ -51,12 +51,13 @@ public class ServiceRequestHubController {
   public void initialize() {
 
     createHubMap();
-    // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB, hubButton);
+    // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB,
+    // hubButton);
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
-    sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST,sanitationButton));
+    sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -104,7 +105,6 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof ComputerServiceRequestController) {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
     }
-
 
     // TODO: add your ClearFields here. Follow the exact same format as the
     // PatientTransportVBoxController but with your variables
