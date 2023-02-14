@@ -46,7 +46,11 @@ public class ServiceRequestHubController {
 
     createHubMap();
 
-    switchVBox(HUB, hubButton);
+    switchVBox(HUB);
+
+    hubButton.setOnMouseClicked(event -> switchVBox(HUB));
+    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
+    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST));
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
@@ -58,14 +62,6 @@ public class ServiceRequestHubController {
 
     submitButton.setOnMouseClicked(event -> submit());
     clearButton.setOnMouseClicked(event -> clearFields());
-    helpButton.setOnMouseClicked(
-        event -> {
-          try {
-            help();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
   }
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
@@ -111,8 +107,7 @@ public class ServiceRequestHubController {
 
   void createHubMap() {
     GesturePane map = MapFactory.startBuild().build(0);
-    //    map.setStyle("fx-border-width: 20px");
-    //    map.setStyle("fx-border-color: #012D5A");
+    map.setStyle("-fx-border-color: #012D5A;");
     map.setMaxSize(700, 500);
     mapPaneContainer.setCenter(map);
   }
