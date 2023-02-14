@@ -13,13 +13,12 @@
 .label { /* sets base format for labels */
     -fx-font-family: 'Nunito Sans';
     -fx-text-fill: #012D5A;
-    -fx-font-size: 16pt;
+    -fx-text-size: 12pt;
 }
 
 .text { /* sets base format for text */
     -fx-font-family: 'Nunito Sans';
     -fx-text-fill: #012D5A;
-    -fx-font-size: 16pt;
 }
 
 .mfx-text-field { /* sets base format for MFXTextFields */
@@ -37,7 +36,7 @@
 }
 
 #hubLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 36pt;
+    -fx-font-size: 24pt;
     -fx-max-width: 400px;
     -fx-max-height: 100px;
 }
@@ -61,9 +60,9 @@
 
 /*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
 
-/* serviceRequestMFXTextFieldLabel {
-
-} */
+.serviceRequestMFXTextFieldLabel {
+    -fx-text-size: 12pt;
+}
 
 /*.individualServiceRequestTextFieldVBox { !* defines the format for the individual vBox that contains service Request Text Fields *!*/
 
