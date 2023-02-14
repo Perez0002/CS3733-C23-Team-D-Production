@@ -20,6 +20,7 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton hubButton;
   @FXML private MFXButton transportButton;
+  @FXML private MFXButton sanitationButton;
   @FXML private MFXButton computerButton;
 
   @FXML private Pane requestFormHubPane;
@@ -50,16 +51,12 @@ public class ServiceRequestHubController {
   public void initialize() {
 
     createHubMap();
-
-    switchVBox(HUB, hubButton);
-
-    hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
-    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
-    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
+    // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB, hubButton);
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
+    sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST,sanitationButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -102,9 +99,12 @@ public class ServiceRequestHubController {
 
     } else if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).clearTransportForms();
+    } else if (currentController instanceof SanitationRequestController) {
+      ((SanitationRequestController) currentController).clearFields();
     } else if (currentController instanceof ComputerServiceRequestController) {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
     }
+
 
     // TODO: add your ClearFields here. Follow the exact same format as the
     // PatientTransportVBoxController but with your variables
