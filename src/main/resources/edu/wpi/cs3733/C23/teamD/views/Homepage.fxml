@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="homepageBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.HomepageController">
    <center>
@@ -15,7 +16,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" spacing="10.0">
                <children>
-                  <MFXButton contentDisplay="GRAPHIC_ONLY" text="Button">
+                  <MFXButton contentDisplay="GRAPHIC_ONLY" styleClass="imageBorder" text="Button">
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="121.0" preserveRatio="true">
                            <image>
@@ -24,9 +25,9 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="profileButton" contentDisplay="GRAPHIC_ONLY" prefHeight="13.0" prefWidth="7.0">
+                  <MFXButton fx:id="profileButton" contentDisplay="GRAPHIC_ONLY" prefHeight="13.0" prefWidth="7.0" styleClass="imageBorder">
                      <graphic>
-                        <ImageView fitHeight="48.0" fitWidth="48.0" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="71.0" preserveRatio="true">
                            <image>
                               <Image url="@images/emptyPFP.png" />
                            </image>
@@ -39,9 +40,12 @@
                <children>
                   <VBox minHeight="-Infinity" minWidth="-Infinity" HBox.hgrow="NEVER">
                      <children>
-                        <VBox VBox.vgrow="NEVER">
+                        <VBox styleClass="homepageLabel" VBox.vgrow="NEVER">
                            <children>
-                              <Label styleClass="hospitalName" text="Directions" />
+                              <Label styleClass="homepageLabel" text="Directions">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -49,23 +53,25 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <MFXButton fx:id="mapEditorButton" contentDisplay="GRAPHIC_ONLY">
+                              <MFXButton fx:id="mapEditorButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="700.0" styleClass="imageBorder" text="Button">
                                  <graphic>
-                                    <ImageView fitHeight="445.0" fitWidth="684.0" preserveRatio="true" styleClass="button">
+                                    <ImageView fitHeight="333.0" fitWidth="687.0" preserveRatio="true">
                                        <image>
                                           <Image url="@images/MapImage.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic>
-                              </MFXButton>
+                                 </graphic></MFXButton>
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </VBox>
-                        <VBox>
+                        <VBox styleClass="homepageLabel">
                            <children>
-                              <Label styleClass="hospitalName" text="Recent Databases" />
+                              <Label text="Recent Databases">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -74,7 +80,7 @@
                         <VBox />
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <MFXButton fx:id="DBEditorButton" contentDisplay="GRAPHIC_ONLY" text="Button">
+                              <MFXButton fx:id="DBEditorButton" contentDisplay="GRAPHIC_ONLY" styleClass="imageBorder" text="Button">
                                  <graphic>
                                     <ImageView fitHeight="171.0" fitWidth="680.0" preserveRatio="true">
                                        <image>
@@ -97,7 +103,10 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label styleClass="hospitalName" text="Recent Request Forms" />
+                              <Label styleClass="homepageLabel" text="Recent Request Forms">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -108,9 +117,9 @@
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <MFXButton fx:id="serviceRequestFormButton" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="374.0" text="Button">
+                              <MFXButton fx:id="serviceRequestFormButton" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="imageBorder" text="Button">
                                  <graphic>
-                                    <ImageView fitHeight="496.0" fitWidth="407.0" preserveRatio="true">
+                                    <ImageView fitHeight="470.0" fitWidth="380.0" preserveRatio="true">
                                        <image>
                                           <Image url="@images/ServiceRequestForm.png" />
                                        </image>
@@ -119,9 +128,9 @@
                               </MFXButton>
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton layoutX="412.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#toggleHelpText" styleClass="helpbuttonstyleclass" text="?" />
+                              <MFXButton fx:id="helpButton" maxHeight="40.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" styleClass="helpButton" text="?" />
                            </children>
                         </HBox>
                      </children>
