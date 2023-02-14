@@ -38,6 +38,8 @@ public class ServiceRequestHubController {
 
     createHubMap();
 
+    switchVBox(HUB);
+
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST));
