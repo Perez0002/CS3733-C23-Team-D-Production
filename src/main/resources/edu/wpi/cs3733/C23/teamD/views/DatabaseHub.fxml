@@ -44,7 +44,7 @@
                      <left>
                         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <MFXButton fx:id="DownloadButton" prefHeight="45.0" prefWidth="55.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a" onAction = "#downloadData">
+                              <MFXButton fx:id="DownloadButton" onAction="#downloadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
                                  <HBox.margin>
                                     <Insets right="25.0" />
                                  </HBox.margin>
@@ -52,7 +52,7 @@
                                     <FontIcon iconColor="#fffdfd" iconLiteral="fltfal-cloud-download-24" iconSize="30" wrappingWidth="20.0" />
                                  </graphic>
                               </MFXButton>
-                              <MFXButton fx:id="UploadButton" prefHeight="45.0" prefWidth="48.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a" onAction = "#uploadData">
+                              <MFXButton fx:id="UploadButton" onAction="#uploadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
                                  <graphic>
                                     <FontIcon iconColor="WHITE" iconLiteral="fltfal-cloud-backup-24" iconSize="30" wrappingWidth="20.0" />
                                  </graphic>
@@ -64,8 +64,8 @@
                         </HBox>
                      </left>
                   </BorderPane>
-                        <MFXButton fx:id="cancelButton" prefHeight="27.0" prefWidth="69.0" styleClass="clearButton" text="Cancel" />
-                        <MFXButton fx:id="submitButton" styleClass="submitButton" text="Submiy" />
+                        <MFXButton fx:id="cancelButton" prefHeight="45.0" prefWidth="80.0" styleClass="cancelButton" stylesheets="@updatedStyleGuide.css" text="Cancel" />
+                        <MFXButton fx:id="submitButton" prefHeight="45.0" prefWidth="80.0" styleClass="submitButton" stylesheets="@updatedStyleGuide.css" text="Submit" />
                     </children>
                 </HBox>
             </children>

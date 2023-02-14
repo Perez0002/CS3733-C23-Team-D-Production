@@ -27,7 +27,7 @@ public class ToastController {
 
     Text text = new Text(toastMsg);
     text.setFont(Font.font("Nunito Sans", 16));
-    text.setFill(Color.WHITE);
+    text.setFill(Color.DARKGREEN);
 
     StackPane root = new StackPane(text);
     root.setStyle("-fx-background-radius: 20; -fx-background-color: #BBF391; -fx-padding: 18px;");

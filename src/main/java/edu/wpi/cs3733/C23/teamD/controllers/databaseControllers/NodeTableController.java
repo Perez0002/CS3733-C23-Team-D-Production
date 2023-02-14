@@ -2,7 +2,6 @@ package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
-import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -136,42 +135,6 @@ public class NodeTableController extends Application implements Initializable, D
             node.setBuilding(newBuild);
             String stmnt = "UPDATE Node SET building = ? WHERE nodeID = ?";
             Ddb.updateObj(node);
-          }
-        });
-
-    longName.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("longName"));
-    shortName.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("shortName"));
-    shortName.setCellFactory(TextFieldTableCell.forTableColumn());
-    shortName.setOnEditCommit(
-        new EventHandler<
-            TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String>>() {
-          @Override
-          public void handle(
-              TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String> event) {
-            LocationName name = event.getRowValue().getLocation();
-            String newShort = event.getNewValue();
-            name.setShortName(newShort);
-            String stmnt = "UPDATE locationName SET shortName = ? WHERE longName = ?";
-            Ddb.updateObj(name);
-          }
-        });
-
-    locationType.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("locationType"));
-    locationType.setCellFactory(TextFieldTableCell.forTableColumn());
-    locationType.setOnEditCommit(
-        new EventHandler<
-            TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String>>() {
-          @Override
-          public void handle(
-              TableColumn.CellEditEvent<edu.wpi.cs3733.C23.teamD.entities.Node, String> event) {
-            LocationName name = event.getRowValue().getLocation();
-            String newType = event.getNewValue();
-            name.setLocationType(newType);
-            String stmnt = "UPDATE locationName SET locationType = ? WHERE longName = ?";
-            Ddb.updateObj(name);
           }
         });
     nodeTable.setItems(nodeList);

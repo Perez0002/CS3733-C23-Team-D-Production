@@ -2,9 +2,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.entities.Move;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -22,9 +20,6 @@ import javafx.stage.Stage;
 public class EdgeTableController extends Application implements Initializable, DatabaseController {
   @FXML private BorderPane EdgeTableBorderPane;
   @FXML private TableView<Edge> edgeTable;
-  @FXML private TableColumn<Move, String> moveNodeID;
-  @FXML private TableColumn<Move, Date> moveDate;
-  @FXML private TableColumn<Move, String> moveLongName;
   @FXML private TableColumn<Edge, String> edgeID;
   @FXML private TableColumn<Edge, String> startNode;
   @FXML private TableColumn<Edge, String> endNode;
@@ -57,8 +52,8 @@ public class EdgeTableController extends Application implements Initializable, D
     ObservableList<Edge> edgeList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllEdges());
     edgeID.setCellValueFactory(new PropertyValueFactory<Edge, String>("edgeID"));
-    startNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("fromNodeID"));
-    endNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("toNodeID"));
+    startNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("fromNode"));
+    endNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("toNode"));
     edgeTable.setItems(edgeList);
     edgeTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     edgeTable.getColumns().stream()
