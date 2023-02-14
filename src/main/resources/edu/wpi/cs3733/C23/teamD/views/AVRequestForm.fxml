@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.AVRequestController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" spacing="32.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request" />
+      <MFXTextField fx:id="staffIDTextField" floatingText="Enter PatientID (Probably will be replaced" prefHeight="50.0" prefWidth="247.0" />
+      <MFXTextField fx:id="systemFailureTextBox" floatingText="Enter what system isn't working properly. " prefHeight="50.0" prefWidth="247.0" />
+      <MFXTextField fx:id="timeTextField" floatingText="Enter when you first noticed the issue." prefHeight="50.0" prefWidth="247.0" />
+      <MFXTextField fx:id="descriptionTextField" floatingText="Enter a description of the issue" prefHeight="50.0" prefWidth="247.0" />
+   </children>
+</VBox>

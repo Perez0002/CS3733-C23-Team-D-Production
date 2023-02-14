@@ -6,11 +6,14 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
 public class ServiceRequestController {
+  private RequestSubmitter requestSubmitter;
+  private FieldClearer fieldClearer;
 
-  @FXML MFXButton backButton;
+  public void submit() {
+    requestSubmitter.submit();
+  }
 
-  @FXML
-  public void initialize() {
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  public void clearFields() {
+    fieldClearer.clearFields();
   }
 }
