@@ -65,6 +65,7 @@ public class DatabaseHubController {
 
   @FXML
   void uploadData() {
+    FDdb.getInstance().uploadCSV();
     ToastController.makeText("Your data has been uploaded!", 1000, 50, 50);
   }
 
