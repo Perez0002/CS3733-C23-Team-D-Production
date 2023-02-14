@@ -73,7 +73,7 @@ public class NodeTableController extends Application implements Initializable, D
     nodeID.setCellValueFactory(
         new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, String>("nodeID"));
     xCoord.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, Integer>("Xcoord"));
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, Integer>("xcoord"));
     xCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     xCoord.setOnEditCommit(
         new EventHandler<
@@ -89,7 +89,7 @@ public class NodeTableController extends Application implements Initializable, D
         });
 
     yCoord.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, Integer>("Ycoord"));
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.entities.Node, Integer>("ycoord"));
     yCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     yCoord.setOnEditCommit(
         new EventHandler<

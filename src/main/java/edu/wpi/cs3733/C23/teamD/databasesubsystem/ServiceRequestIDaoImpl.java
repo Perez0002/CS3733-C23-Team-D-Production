@@ -1,15 +1,16 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
+import edu.wpi.cs3733.C23.teamD.entities.*;
 import edu.wpi.cs3733.C23.teamD.entities.ComputerServiceRequest;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import jakarta.persistence.Query;
-import org.hibernate.Session;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
+import org.hibernate.Session;
+import org.hibernate.TransactionException;
 
 public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private final Session session = DBSingleton.getSession();
@@ -108,6 +109,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       this.masterList.add(s);
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -144,14 +146,11 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   .createQuery(
                       "SELECT p FROM PatientTransportRequest p", PatientTransportRequest.class)
                   .getResultList();
-
       javaSanitationRequestList =
           (ArrayList<SanitationRequest>)
               session
                   .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
                   .getResultList();
-      session.getTransaction().commit();
-
       javaComputerServiceRequestList =
           (ArrayList<ComputerServiceRequest>)
               session
@@ -171,6 +170,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       this.masterList = javaMasterList;
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -194,7 +194,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
 
       this.masterList.remove(s);
 
-    } catch (Exception ex) {
+    } catch (TransactionException ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
