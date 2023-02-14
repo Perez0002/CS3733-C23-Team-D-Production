@@ -138,7 +138,7 @@ public class MoveIDaoImpl implements IDao<Move> {
   public void downloadCSV(Move move) {
     try {
       FileWriter fw =
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv", false);
+          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv", false);
       PrintWriter pw = new PrintWriter(fw, false);
       pw.flush();
       pw.close();

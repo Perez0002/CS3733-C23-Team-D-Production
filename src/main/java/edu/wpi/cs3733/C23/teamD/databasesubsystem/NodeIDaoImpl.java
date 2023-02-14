@@ -6,7 +6,6 @@ import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.PastMoves;
 import jakarta.persistence.Query;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import org.hibernate.Session;
 
@@ -186,7 +185,7 @@ public class NodeIDaoImpl implements IDao<Node> {
   public void downloadCSV(Node node) {
     try {
       FileWriter fw =
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv", false);
+          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv", false);
       PrintWriter pw = new PrintWriter(fw, false);
       pw.flush();
       pw.close();

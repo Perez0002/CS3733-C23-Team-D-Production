@@ -7,8 +7,6 @@ import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import jakarta.persistence.Query;
 import java.io.*;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -41,13 +39,13 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   s.getServiceRequestId() == (sanitationRequest.getServiceRequestId()))
           .findFirst()
           .orElse(null);
-    } else if (s instanceof  ComputerServiceRequest) {
+    } else if (s instanceof ComputerServiceRequest) {
       return this.computerServiceRequests.stream()
-              .filter(
-                      computerServiceRequest ->
-                              s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
-              .findFirst()
-              .orElse(null);
+          .filter(
+              computerServiceRequest ->
+                  s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
+          .findFirst()
+          .orElse(null);
     } else {
       return this.masterList.stream()
           .filter(
@@ -153,10 +151,11 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   .getResultList();
       session.getTransaction().commit();
       javaComputerServiceRequestList =
-              (ArrayList<ComputerServiceRequest>)
-                      session
-                              .createQuery("SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
-                              .getResultList();
+          (ArrayList<ComputerServiceRequest>)
+              session
+                  .createQuery(
+                      "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
+                  .getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
@@ -220,13 +219,13 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
               .orElse(-1);
     } else if (s instanceof ComputerServiceRequest) {
       index =
-              IntStream.range(0, this.computerServiceRequests.size())
-                      .filter(
-                              i ->
-                                      this.computerServiceRequests.get(i).getServiceRequestId()
-                                              == (s.getServiceRequestId()))
-                      .findFirst()
-                      .orElse(-1);
+          IntStream.range(0, this.computerServiceRequests.size())
+              .filter(
+                  i ->
+                      this.computerServiceRequests.get(i).getServiceRequestId()
+                          == (s.getServiceRequestId()))
+              .findFirst()
+              .orElse(-1);
     }
 
     return index;
