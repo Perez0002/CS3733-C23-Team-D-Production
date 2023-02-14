@@ -40,7 +40,7 @@
                               </ImageView>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity">
                                  <children>
-                                    <MFXButton minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Profile Picture" />
+                                    <MFXButton fx:id="changeProfilePicture" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Profile Picture" />
                                  </children>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0">
@@ -53,8 +53,8 @@
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXButton minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" style="-fx-alignment: left;" text="View Password" />
-                                    <MFXButton minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Password" />
+                                    <MFXButton fx:id="viewPassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" style="-fx-alignment: left;" text="View Password" />
+                                    <MFXButton fx:id="changePassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Password" />
                                  </children>
                               </VBox>
                            </children>
@@ -74,7 +74,7 @@
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField maxHeight="54.0" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="email" maxHeight="54.0" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -83,7 +83,7 @@
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField minWidth="270.0" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="phoneNumber" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -92,7 +92,7 @@
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="adress" prefHeight="54.0" prefWidth="270.0" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -101,7 +101,7 @@
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="birthday" prefHeight="54.0" prefWidth="270.0" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -110,7 +110,7 @@
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="accountCreated" prefHeight="54.0" prefWidth="270.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -130,7 +130,7 @@
                               <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
                                  <children>
                                     <Label text="Service Request Form History:" />
-                                    <TableView minWidth="400.0" prefWidth="400.0">
+                                    <TableView fx:id="serviceRequestHistory" minWidth="400.0" prefWidth="400.0">
                                       <columns>
                                         <TableColumn maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Service Request" />
                                         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Date" />
@@ -141,7 +141,7 @@
                               <VBox spacing="10.0">
                                  <children>
                                     <Label text="Database Edit History:" />
-                                    <TableView minWidth="400.0" prefHeight="400.0">
+                                    <TableView fx:id="databaseEditHistory" minWidth="400.0" prefHeight="400.0">
                                       <columns>
                                         <TableColumn maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Database Edit" />
                                         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Date" />

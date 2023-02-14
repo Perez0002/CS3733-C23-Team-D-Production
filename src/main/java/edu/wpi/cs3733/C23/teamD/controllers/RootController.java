@@ -61,7 +61,7 @@ public class RootController {
     homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     homeButton.setTooltip(new Tooltip("Home"));
 
-    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     profileButton.setTooltip(new Tooltip("Profile Page"));
 
     serviceRequestFormsButton.setOnMouseClicked(
