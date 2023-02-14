@@ -13,12 +13,17 @@ public class FDdb {
 
   private final ServiceRequestIDaoImpl serviceRequestIDao;
 
+  private final PastMovesIDaoImpl pastMovesIDao;
+  private final EmployeeIDaoImpl employeeIDao;
+
   private FDdb() {
     this.edgeIDao = new EdgeIDaoImpl();
     this.nodeIDao = new NodeIDaoImpl();
     this.locationNameIDao = new LocationNameIDaoImpl();
     this.moveIDao = new MoveIDaoImpl();
     this.serviceRequestIDao = new ServiceRequestIDaoImpl();
+    this.pastMovesIDao = new PastMovesIDaoImpl();
+    this.employeeIDao = new EmployeeIDaoImpl();
   }
 
   public static FDdb getInstance() {
@@ -130,7 +135,7 @@ public class FDdb {
   }
 
   public void refreshMoves() {
-    serviceRequestIDao.refresh();
+    moveIDao.refresh();
   }
 
   // ServiceRequestDao wrappers
@@ -164,5 +169,55 @@ public class FDdb {
 
   public void refreshServiceRequests() {
     serviceRequestIDao.refresh();
+  }
+
+  // PastMovesDao wrappers
+  public PastMoves getPastMove(PastMoves m) {
+    return pastMovesIDao.get(m);
+  }
+
+  public ArrayList<PastMoves> getAllPastMoves() {
+    return pastMovesIDao.getAll();
+  }
+
+  public void savePastMove(PastMoves m) {
+    pastMovesIDao.save(m);
+  }
+
+  public void updatePastMove(PastMoves m) {
+    pastMovesIDao.update(m);
+  }
+
+  public void deletePastMove(PastMoves m) {
+    pastMovesIDao.delete(m);
+  }
+
+  public void refreshPastMoves() {
+    pastMovesIDao.refresh();
+  }
+
+  // EmployeeDao wrappers
+  public Employee getEmployee(Employee e) {
+    return employeeIDao.get(e);
+  }
+
+  public ArrayList<Employee> getAllEmployees() {
+    return employeeIDao.getAll();
+  }
+
+  public void saveEmployee(Employee e) {
+    employeeIDao.save(e);
+  }
+
+  public void updateEmployee(Employee e) {
+    employeeIDao.update(e);
+  }
+
+  public void deleteEmployee(Employee e) {
+    employeeIDao.delete(e);
+  }
+
+  public void refreshEmployees() {
+    employeeIDao.refresh();
   }
 }

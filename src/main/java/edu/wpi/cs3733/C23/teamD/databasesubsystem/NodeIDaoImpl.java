@@ -1,10 +1,11 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
 import edu.wpi.cs3733.C23.teamD.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
+import edu.wpi.cs3733.C23.teamD.entities.PastMoves;
 import jakarta.persistence.Query;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 import org.hibernate.Session;
 
 public class NodeIDaoImpl implements IDao<Node> {
@@ -47,20 +48,13 @@ public class NodeIDaoImpl implements IDao<Node> {
 
   @Override
   public void update(Node n) {
-    session.beginTransaction();
+    Node oldNode = n;
+    n.setNodeID();
+    Node newNode = n;
     try {
-      session.merge(n);
-      session.getTransaction().commit();
-
-      int index =
-          IntStream.range(0, this.nodes.size())
-              .filter(i -> this.nodes.get(i).getNodeID().equals(n.getNodeID()))
-              .findFirst()
-              .orElse(-1);
-
-      this.nodes.remove(index);
-      this.nodes.add(n);
-
+      this.delete(oldNode);
+      this.save(newNode);
+      this.nodeEdgeSwap(oldNode, newNode);
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
@@ -90,6 +84,16 @@ public class NodeIDaoImpl implements IDao<Node> {
     FDdb dbFacade = FDdb.getInstance();
 
     session.beginTransaction();
+    Query mq = session.createQuery("SELECT m FROM Move m WHERE node=:n");
+    mq.setParameter("n", n);
+    ArrayList<Move> moves = (ArrayList<Move>) mq.getResultList();
+    session.getTransaction().commit();
+    for (Move m : moves) {
+      PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
+      dbFacade.savePastMove(tempMove);
+    }
+
+    session.beginTransaction();
     Query q =
         session.createQuery("SELECT e FROM Edge e WHERE fromNode=:fromnode OR toNode=:tonode");
     q.setParameter("fromnode", n);
@@ -105,7 +109,7 @@ public class NodeIDaoImpl implements IDao<Node> {
 
     session.beginTransaction();
     try {
-      Query q2 = session.createQuery("DELETE Node where id=:id");
+      Query q2 = session.createQuery("DELETE Node where nodeID=:id");
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();

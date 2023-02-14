@@ -24,6 +24,8 @@ public class RootController {
 
   @FXML private MFXButton mapEditorButton;
 
+  @FXML private MFXButton pathfindingButton;
+
   @FXML private MFXButton profileButton;
 
   @FXML private MFXButton serviceRequestFormsButton;
@@ -51,8 +53,8 @@ public class RootController {
   }
 
   @FXML
-  public void openLoginPage() throws IOException {
-    App.getRootPane().setTop(null);
+  public void openLoginPage() {
+    App.getRootPane().setLeft(null);
     Navigation.navigate(Screen.LOGIN_PAGE);
   }
 
@@ -61,14 +63,17 @@ public class RootController {
     homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     homeButton.setTooltip(new Tooltip("Home"));
 
-    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     profileButton.setTooltip(new Tooltip("Profile Page"));
 
     serviceRequestFormsButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     serviceRequestFormsButton.setTooltip(new Tooltip("Service Request Forms"));
 
-    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
+    pathfindingButton.setTooltip(new Tooltip("Get Directions"));
+
+    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     dbButton.setTooltip(new Tooltip("Database Editors"));
 
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
@@ -80,7 +85,7 @@ public class RootController {
     infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     infoButton.setTooltip(new Tooltip("Information"));
 
-    logOutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
+    logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
   }
 }

@@ -12,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
@@ -89,6 +90,9 @@ public class MapFactory {
   public GesturePane build(int floor) {
     System.out.println("Making Map!");
     HashMap<String, Integer> converter = new HashMap<String, Integer>();
+    int totalX = 0;
+    int totalY = 0;
+    int totalNode = 0;
 
     converter.put("L1", 0);
     converter.put("L2", 1);
@@ -98,7 +102,6 @@ public class MapFactory {
 
     AnchorPane holder = new AnchorPane();
     ImageView image = new ImageView();
-    Canvas canvas = new Canvas();
     GesturePane map = new GesturePane();
 
     if (floor == 0) {
@@ -123,18 +126,21 @@ public class MapFactory {
               App.class.getResource("views/floorMaps/03_thethirdfloor.png").toExternalForm());
     }
 
-    canvas.resize(image.getImage().getWidth(), image.getImage().getHeight());
+    Canvas canvas = new Canvas(image.getImage().getWidth(), image.getImage().getHeight());
     holder.getChildren().add(image);
     holder.getChildren().add(canvas);
 
     if (!this.onlyStartEnd) {
       // For every Node
       for (Node node : nodeList) {
-        // Creates popup object
+
         if (converter.get(node.getFloor()) != floor) {
           continue;
         }
-
+        totalX += node.getXcoord();
+        totalY += node.getYcoord();
+        totalNode++;
+        // Creates popup object
         MapEditorNodeController mapEditor = new MapEditorNodeController(node);
         javafx.scene.Node tempPane =
             MapNodeFactory.startPathBuild()
@@ -154,7 +160,6 @@ public class MapFactory {
         holder.getChildren().add(tempPane);
       }
     } else {
-      System.out.println("In else!");
       MapEditorNodeController startNodePopup = new MapEditorNodeController(nodeList.get(0));
       MapEditorNodeController endNodePopup =
           new MapEditorNodeController(nodeList.get(nodeList.size() - 1));
@@ -193,19 +198,21 @@ public class MapFactory {
     }
 
     GraphicsContext context = canvas.getGraphicsContext2D();
+    boolean throughFirst = false;
     if (this.withEdges) {
       Node lastNode = null;
       for (Node node : nodeList) {
 
-        if (converter.get(node.getFloor()) == floor) {
+        if (converter.get(node.getFloor()) != floor) {
           lastNode = node;
           continue;
         }
 
-        if (lastNode != null) {
+        if (throughFirst) {
           context.strokeLine(
               lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
         } else {
+          throughFirst = true;
           context.strokeText("START", node.getXcoord(), node.getYcoord() - 10, 40);
           context.setLineWidth(5);
         }
@@ -218,6 +225,13 @@ public class MapFactory {
     map.setContent(holder);
     map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     map.zoomTo(0, Point2D.ZERO);
+    map.animate(Duration.millis(300))
+        .centreOn(
+            new Point2D(
+                (totalX / (totalNode == 0 ? 1 : totalNode)
+                    - App.getPrimaryStage().getScene().getWidth() / 2),
+                (totalY / (totalNode == 0 ? 1 : totalNode)
+                    - App.getPrimaryStage().getScene().getHeight() / 2)));
     // Return the GesturePane
     return map;
   }
