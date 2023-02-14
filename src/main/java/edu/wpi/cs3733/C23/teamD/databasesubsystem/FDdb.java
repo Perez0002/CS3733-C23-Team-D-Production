@@ -145,9 +145,13 @@ public class FDdb {
     return serviceRequestIDao.getAll();
   }
 
-  public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() { return serviceRequestIDao.getAllPatientTransportRequests(); }
+  public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() {
+    return serviceRequestIDao.getAllPatientTransportRequests();
+  }
 
-  public ArrayList<SanitationRequest> getAllSanitationRequest() { return serviceRequestIDao.getAllSanitationRequests(); }
+  public ArrayList<SanitationRequest> getAllSanitationRequest() {
+    return serviceRequestIDao.getAllSanitationRequests();
+  }
 
   public void saveServiceRequest(ServiceRequest s) {
     serviceRequestIDao.save(s);
@@ -182,7 +186,9 @@ public class FDdb {
     pastMovesIDao.update(m);
   }
 
-  public void deletePastMove(PastMoves m) { pastMovesIDao.delete(m); }
+  public void deletePastMove(PastMoves m) {
+    pastMovesIDao.delete(m);
+  }
 
   public void refreshPastMoves() {
     pastMovesIDao.refresh();
