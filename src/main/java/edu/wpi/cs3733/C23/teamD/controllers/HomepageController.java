@@ -7,21 +7,26 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class HomepageController {
 
   @FXML private MFXButton DBEditorButton;
 
-  //  @FXML private Label aboutLabel;
-  //
-  //  @FXML private Label bottomHelpText;
-  //
-  //  @FXML private HBox bottomVbox;
-  //
-  //  @FXML private MenuItem exitButton;
-  //
-  //  @FXML private MenuButton exitButtonMenu;
+  @FXML private Label aboutLabel;
+
+  @FXML private Label bottomHelpText;
+
+  @FXML private HBox bottomVbox;
+
+  @FXML private MenuItem exitButton;
+
+  @FXML private MenuButton exitButtonMenu;
 
   @FXML private MFXButton mapEditorButton;
 
@@ -31,18 +36,18 @@ public class HomepageController {
 
   @FXML private MFXButton serviceRequestFormButton;
 
-  //  @FXML private Label serviceRequestHelpText;
-  //
-  //  @FXML private Text currentUserText;
-  //
-  //  @FXML private Label titleLabel;
+  @FXML private Label serviceRequestHelpText;
+
+  @FXML private Text currentUserText;
+
+  @FXML private Label titleLabel;
 
   @FXML
   public void initialize() {
     checkAccessLevel();
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
-    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     //    if (currentUser.getAccessLevel() == 0) {

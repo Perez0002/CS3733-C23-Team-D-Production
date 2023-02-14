@@ -1,13 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.controllers.components;
 
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 public class UrgencySelectorBoxController {
 
-  @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
+  @FXML private MFXComboBox mfxComboBox;
   @FXML private ArrayList<String> urgency;
 
   public UrgencySelectorBoxController() {
@@ -19,14 +19,14 @@ public class UrgencySelectorBoxController {
   }
 
   public void initialize() {
-    mfxFilterComboBox.setItems(FXCollections.observableArrayList(urgency));
+    mfxComboBox.setItems(FXCollections.observableArrayList(urgency));
   }
 
   public String getEmployeeName() {
-    return mfxFilterComboBox.getValue();
+    return mfxComboBox.getText();
   }
 
   public void clearForm() {
-    mfxFilterComboBox.setValue(null);
+    mfxComboBox.setValue(null);
   }
 }

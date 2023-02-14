@@ -102,7 +102,6 @@ public class MapFactory {
 
     AnchorPane holder = new AnchorPane();
     ImageView image = new ImageView();
-
     GesturePane map = new GesturePane();
 
     if (floor == 0) {
@@ -128,7 +127,6 @@ public class MapFactory {
     }
 
     Canvas canvas = new Canvas(image.getImage().getWidth(), image.getImage().getHeight());
-
     holder.getChildren().add(image);
     holder.getChildren().add(canvas);
 
@@ -200,6 +198,7 @@ public class MapFactory {
     }
 
     GraphicsContext context = canvas.getGraphicsContext2D();
+    boolean throughFirst = false;
     if (this.withEdges) {
       Node lastNode = null;
       for (Node node : nodeList) {
@@ -209,10 +208,11 @@ public class MapFactory {
           continue;
         }
 
-        if (lastNode != null) {
+        if (throughFirst) {
           context.strokeLine(
               lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
         } else {
+          throughFirst = true;
           context.strokeText("START", node.getXcoord(), node.getYcoord() - 10, 40);
           context.setLineWidth(5);
         }

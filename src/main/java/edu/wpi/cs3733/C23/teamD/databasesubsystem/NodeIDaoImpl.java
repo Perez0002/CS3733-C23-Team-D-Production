@@ -8,7 +8,6 @@ import jakarta.persistence.Query;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 import org.hibernate.Session;
 
 public class NodeIDaoImpl implements IDao<Node> {
@@ -87,8 +86,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     FDdb dbFacade = FDdb.getInstance();
 
     session.beginTransaction();
-    Query mq =
-            session.createQuery("SELECT m FROM Move m WHERE node=:n");
+    Query mq = session.createQuery("SELECT m FROM Move m WHERE node=:n");
     mq.setParameter("n", n);
     ArrayList<Move> moves = (ArrayList<Move>) mq.getResultList();
     session.getTransaction().commit();
@@ -113,7 +111,7 @@ public class NodeIDaoImpl implements IDao<Node> {
 
     session.beginTransaction();
     try {
-      Query q2 = session.createQuery("DELETE Node where id=:id");
+      Query q2 = session.createQuery("DELETE Node where nodeID=:id");
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();

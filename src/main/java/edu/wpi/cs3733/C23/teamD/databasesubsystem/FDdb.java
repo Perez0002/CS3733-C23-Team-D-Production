@@ -14,6 +14,7 @@ public class FDdb {
   private final ServiceRequestIDaoImpl serviceRequestIDao;
 
   private final PastMovesIDaoImpl pastMovesIDao;
+  private final EmployeeIDaoImpl employeeIDao;
 
   private FDdb() {
     this.edgeIDao = new EdgeIDaoImpl();
@@ -22,6 +23,7 @@ public class FDdb {
     this.moveIDao = new MoveIDaoImpl();
     this.serviceRequestIDao = new ServiceRequestIDaoImpl();
     this.pastMovesIDao = new PastMovesIDaoImpl();
+    this.employeeIDao = new EmployeeIDaoImpl();
   }
 
   public static FDdb getInstance() {
@@ -145,9 +147,13 @@ public class FDdb {
     return serviceRequestIDao.getAll();
   }
 
-  public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() { return serviceRequestIDao.getAllPatientTransportRequests(); }
+  public ArrayList<PatientTransportRequest> getAllPatientTransportRequests() {
+    return serviceRequestIDao.getAllPatientTransportRequests();
+  }
 
-  public ArrayList<SanitationRequest> getAllSanitationRequest() { return serviceRequestIDao.getAllSanitationRequests(); }
+  public ArrayList<SanitationRequest> getAllSanitationRequest() {
+    return serviceRequestIDao.getAllSanitationRequests();
+  }
 
   public void saveServiceRequest(ServiceRequest s) {
     serviceRequestIDao.save(s);
@@ -182,7 +188,9 @@ public class FDdb {
     pastMovesIDao.update(m);
   }
 
-  public void deletePastMove(PastMoves m) { pastMovesIDao.delete(m); }
+  public void deletePastMove(PastMoves m) {
+    pastMovesIDao.delete(m);
+  }
 
   public void refreshPastMoves() {
     pastMovesIDao.refresh();
@@ -204,5 +212,30 @@ public class FDdb {
     refreshNodes();
     refreshMoves();
     refreshLocationNames();
+  }
+
+  // EmployeeDao wrappers
+  public Employee getEmployee(Employee e) {
+    return employeeIDao.get(e);
+  }
+
+  public ArrayList<Employee> getAllEmployees() {
+    return employeeIDao.getAll();
+  }
+
+  public void saveEmployee(Employee e) {
+    employeeIDao.save(e);
+  }
+
+  public void updateEmployee(Employee e) {
+    employeeIDao.update(e);
+  }
+
+  public void deleteEmployee(Employee e) {
+    employeeIDao.delete(e);
+  }
+
+  public void refreshEmployees() {
+    employeeIDao.refresh();
   }
 }
