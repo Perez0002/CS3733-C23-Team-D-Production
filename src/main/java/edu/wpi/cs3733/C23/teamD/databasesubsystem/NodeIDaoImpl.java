@@ -5,10 +5,7 @@ import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.PastMoves;
 import jakarta.persistence.Query;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 import org.hibernate.Session;
 
 public class NodeIDaoImpl implements IDao<Node> {
@@ -87,8 +84,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     FDdb dbFacade = FDdb.getInstance();
 
     session.beginTransaction();
-    Query mq =
-            session.createQuery("SELECT m FROM Move m WHERE node=:n");
+    Query mq = session.createQuery("SELECT m FROM Move m WHERE node=:n");
     mq.setParameter("n", n);
     ArrayList<Move> moves = (ArrayList<Move>) mq.getResultList();
     session.getTransaction().commit();
