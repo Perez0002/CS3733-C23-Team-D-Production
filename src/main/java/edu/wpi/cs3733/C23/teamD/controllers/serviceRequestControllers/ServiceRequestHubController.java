@@ -23,6 +23,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton submitButton;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
+  private MFXButton currentTab;
+
   Pane getRequestFormHubPane() {
     return requestFormHubPane;
   }
@@ -38,9 +40,11 @@ public class ServiceRequestHubController {
 
     createHubMap();
 
-    hubButton.setOnMouseClicked(event -> switchVBox(HUB));
-    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
-    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST));
+    switchVBox(HUB, hubButton);
+
+    hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
+    transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
+    computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
 
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -51,7 +55,14 @@ public class ServiceRequestHubController {
   }
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
-  void switchVBox(ServiceRequests switchTo) {
+  void switchVBox(ServiceRequests switchTo, MFXButton button) {
+    if (currentTab != null) {
+      currentTab.getStyleClass().clear();
+      currentTab.getStyleClass().add("tabButton");
+    }
+    currentTab = button;
+    currentTab.getStyleClass().clear();
+    currentTab.getStyleClass().add("tabButtonSelected");
     currentController = NavigationServiceRequests.navigate(switchTo, getRequestFormHubPane());
   }
 

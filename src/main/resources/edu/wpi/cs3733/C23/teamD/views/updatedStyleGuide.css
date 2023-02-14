@@ -51,6 +51,11 @@
 
 .tabButtonSelected { /* defines the format for the selected tab Button on the service request page */
     -fx-background-color: #012D5A;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
+    -fx-text-size: 12pt;
+    -fx-max-width: 100px;
 }
 
 .tabHBox { /* defines the format for the HBox that the tabs are held in, particularly used for blue underline */
