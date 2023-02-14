@@ -4,6 +4,8 @@ import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
@@ -131,7 +133,7 @@ public class MapEditorPageController {
   void deleteNode() {
     NodeIDaoImpl nodeDao = new NodeIDaoImpl();
     if (currentNodeEdit != null) {
-      nodeDao.delete(currentNodeEdit.pathToDB());
+      nodeDao.delete(currentNodeEdit);
 
       GesturePane gesturePane = (GesturePane) this.mapEditorPane.getCenter();
       AnchorPane anchor = (AnchorPane) gesturePane.getContent();
@@ -200,6 +202,11 @@ public class MapEditorPageController {
     // defined
     NodePathfinding newNode = new NodePathfinding(); // New Node
 
+    // Set Node Fields // TODO set these correctly
+    LocationNameIDaoImpl locDao = new LocationNameIDaoImpl();
+    NodeIDaoImpl nodeDao = new NodeIDaoImpl();
+    MoveIDaoImpl moveDao = new MoveIDaoImpl();
+
     if (mode == SubmitMode.EDIT_NODE) {
       // Node Selected, updating
       newNode =
@@ -215,7 +222,7 @@ public class MapEditorPageController {
               currentNodeEdit.getLocationType());
       newNode.setLocation(loc);
 
-      FDdb.getInstance().updateNode(newNode.pathToDB());
+      nodeDao.nodeEdgeSwap(currentNodeEdit, newNode);
 
       if (currentNodeEdit.getLongName() != newNode.getLongName()
           || newNode.getLongName().isEmpty()) {
@@ -225,10 +232,10 @@ public class MapEditorPageController {
                 + currentNodeEdit.getLocation().getLocationType());
         System.out.println(loc.getLongName() + loc.getShortName() + loc.getLocationType());
 
-        Move move = new Move(newNode.pathToDB(), loc);
+        Move move = new Move(newNode, loc);
 
-        FDdb.getInstance().updateLocationName(currentNodeEdit.getLocation());
-        FDdb.getInstance().saveMove(move);
+        locDao.updatePK(currentNodeEdit.getLocation(), loc);
+        moveDao.save(move);
       }
 
     } else if (mode == SubmitMode.ADD_NODE) {
@@ -242,10 +249,10 @@ public class MapEditorPageController {
 
       LocationName loc = new LocationName(newNode.getNodeID() + "_personal", "", "");
       newNode.setLocation(loc);
-      Move move = new Move(newNode.pathToDB(), loc);
-      FDdb.getInstance().saveLocationName(loc);
-      FDdb.getInstance().saveNode(newNode.pathToDB());
-      FDdb.getInstance().saveMove(move);
+      Move move = new Move(newNode, loc);
+      locDao.save(loc);
+      nodeDao.save(newNode);
+      moveDao.save(move);
     } else if (mode == SubmitMode.ADD_LOCATION) {
       // Add Location
       LocationName loc =
@@ -253,7 +260,7 @@ public class MapEditorPageController {
               longNameTextField.getText(),
               shortNameTextField.getText(),
               locationTypeTextField.getText());
-      FDdb.getInstance().saveLocationName(loc);
+      locDao.save(loc);
       return;
     }
 

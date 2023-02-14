@@ -36,7 +36,7 @@ public class PathfinderAStar {
     }
   }
 
-  private double getHeuristic(NodePathfinding currentNode, NodePathfinding goalNode) {
+  private double getHeuristic(Node currentNode, Node goalNode) {
     double heuristic =
         sqrt(
             pow(currentNode.getXcoord() - goalNode.getXcoord(), 2)
@@ -64,7 +64,8 @@ public class PathfinderAStar {
       // remove and get the first 'path' in the queue
       currentPath = queue.poll();
 
-      NodePathfinding currentNode = currentPath.getKey().get(currentPath.getKey().size() - 1);
+      NodePathfinding currentNode =
+          new NodePathfinding(currentPath.getKey().get(currentPath.getKey().size() - 1));
 
       // Put the Node we are at right now into list of Nodes we have been to
       beenNodes.put(currentNode.getNodeID(), currentNode);

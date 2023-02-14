@@ -22,16 +22,6 @@ public class EdgePathfinding {
                 + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
   }
 
-  public EdgePathfinding(NodePathfinding fromNode, NodePathfinding toNode) {
-    edgeID = fromNode.getNodeID() + "_" + toNode.getNodeID();
-    this.fromNode = fromNode;
-    this.toNode = toNode;
-    this.cost =
-        Math.sqrt(
-            Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
-                + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
-  }
-
   public EdgePathfinding() {
     edgeID = "";
     this.fromNode = new NodePathfinding();

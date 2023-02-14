@@ -58,7 +58,7 @@ public class DBcontroller implements Initializable {
             NodePathfinding node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setXcoord(newCoord);
-            FDdb.getInstance().updateNode(node.pathToDB());
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -71,7 +71,7 @@ public class DBcontroller implements Initializable {
             NodePathfinding node = event.getRowValue();
             int newCoord = event.getNewValue();
             node.setYcoord(newCoord);
-            FDdb.getInstance().updateNode(node.pathToDB());
+            FDdb.getInstance().updateNode(node);
           }
         });
     floor.setCellValueFactory(new PropertyValueFactory<NodePathfinding, String>("floor"));
@@ -83,7 +83,7 @@ public class DBcontroller implements Initializable {
             NodePathfinding node = event.getRowValue();
             String newFloor = event.getNewValue();
             node.setFloor(newFloor);
-            FDdb.getInstance().updateNode(node.pathToDB());
+            FDdb.getInstance().updateNode(node);
           }
         });
 
@@ -96,7 +96,7 @@ public class DBcontroller implements Initializable {
             NodePathfinding node = event.getRowValue();
             String newBuild = event.getNewValue();
             node.setBuilding(newBuild);
-            FDdb.getInstance().updateNode(node.pathToDB());
+            FDdb.getInstance().updateNode(node);
           }
         });
 
