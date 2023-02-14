@@ -1,7 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
+import jakarta.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class ComputerServiceRequest extends ServiceRequest {
   private String urgency;
   private String deviceType;

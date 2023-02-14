@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 
 <VBox prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.SanitationRequestController">
    <children>
@@ -37,13 +38,49 @@
          <children>
             <Label text="How Hazardous is the Issue" />
             <MFXRadioButton fx:id="radioBSL1" text="BSL-1 - Minimal Hazards">
+=======
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.SanitationRequestVBoxController">
+   <children>
+      <Label styleClass="serviceRequestDescription" text="This request form is to report spills or hazrds in the rooms or hallways of Brigham and Women's Hospital that should be dealth with." wrapText="true" />
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="individualServiceRequestTextFieldVBox">
+         <children>
+            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Staff ID">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <MFXTextField fx:id="staffIDTextField" floatingText="Staff ID" prefHeight="49.0" prefWidth="200.0" styleClass="serviceRequestMFXTextField" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="individualServiceRequestTextFieldVBox">
+         <children>
+            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select a Room" />
+            <fx:include fx:id="fieldLocation" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="individualServiceRequestTextFieldVBox">
+         <children>
+            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Reason" />
+            <MFXTextField fx:id="fieldReason" floatingText="Reason" prefHeight="107.0" prefWidth="200.0" styleClass="serviceRequestMFXTextField" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="serviceRequestMFXTextField">
+         <children>
+            <MFXRadioButton fx:id="radioBSL1" styleClass="serviceRequestMFXRadioButton" text="BSL-1 - Minimal Hazards">
+>>>>>>> development
             <toggleGroup>
                <ToggleGroup fx:id="Button" />
             </toggleGroup>
             </MFXRadioButton>
+<<<<<<< HEAD
             <MFXRadioButton fx:id="radioBSL2" text="BSL-2 - Moderate Hazards" toggleGroup="$Button" />
             <MFXRadioButton fx:id="radioBSL3" text="BSL-3 - Serious Hazards" toggleGroup="$Button" />
             <MFXRadioButton fx:id="radioBSL4" text="BSL-4 - Most Complex" toggleGroup="$Button" />
+=======
+            <MFXRadioButton fx:id="radioBSL2" styleClass="serviceRequestMFXTextField" text="BSL-2 - Moderate Hazards" toggleGroup="$Button" />
+            <MFXRadioButton fx:id="radioBSL3" styleClass="serviceRequestMFXTextField" text="BSL-3 - Serious Hazards" toggleGroup="$Button" />
+            <MFXRadioButton fx:id="radioBSL4" styleClass="serviceRequestMFXTextField" text="BSL-4 - Most Complex" toggleGroup="$Button" />
+>>>>>>> development
          </children>
       </VBox>
    </children>

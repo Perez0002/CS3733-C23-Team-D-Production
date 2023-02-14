@@ -47,14 +47,14 @@ public class HomepageController {
     checkAccessLevel();
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
-    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    if (currentUser.getAccessLevel() == 0) {
-      currentUserText.setText("please log in");
-    } else {
-      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
-    }
+    //    if (currentUser.getAccessLevel() == 0) {
+    //      currentUserText.setText("please log in");
+    //    } else {
+    //      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
+    //    }
   }
 
   private void checkAccessLevel() {
@@ -86,13 +86,15 @@ public class HomepageController {
    * empty when button clicked again
    */
   void toggleHelpText(ActionEvent event) {
-    if (serviceRequestHelpText.getText().equals("") || bottomHelpText.getText().equals("")) {
-      serviceRequestHelpText.setText("Click the buttons below to fill out service request forms!");
-      bottomHelpText.setText(
-          "<-Use the leftmost button to exit the program  \n  Click the rightmost button to remove the help text->");
-    } else {
-      serviceRequestHelpText.setText("");
-      bottomHelpText.setText("");
-    }
+    //    if (serviceRequestHelpText.getText().equals("") || bottomHelpText.getText().equals("")) {
+    //      serviceRequestHelpText.setText("Click the buttons below to fill out service request
+    // forms!");
+    //      bottomHelpText.setText(
+    //          "<-Use the leftmost button to exit the program  \n  Click the rightmost button to
+    // remove the help text->");
+    //    } else {
+    //      serviceRequestHelpText.setText("");
+    //      bottomHelpText.setText("");
+    //    }
   }
 }

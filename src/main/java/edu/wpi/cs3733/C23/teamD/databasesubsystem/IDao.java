@@ -14,4 +14,8 @@ public interface IDao<T> {
   void refresh();
 
   void delete(T t);
+
+  void uploadCSV(T t);
+
+  void downloadCSV(T t);
 }

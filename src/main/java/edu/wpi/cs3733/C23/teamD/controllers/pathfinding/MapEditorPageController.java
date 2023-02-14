@@ -54,12 +54,9 @@ public class MapEditorPageController {
   @FXML private MFXButton deleteNodeButton;
 
   private Node currentNodeEdit;
-
   private ArrayList<Node> nodeList;
-
   private UIManager uiManager = new UIManager();
   private SubmitMode mode = SubmitMode.NO_SELECTION;
-
   private GesturePane gesturePane;
   private int currentFloor = 0;
 
@@ -74,33 +71,33 @@ public class MapEditorPageController {
   void floorUp() {
     if (currentFloor < 4) {
       currentFloor++;
+      gesturePane =
+          gesturePane =
+              MapFactory.startBuild()
+                  .withNodes(nodeList)
+                  .withNodeFunctions(
+                      node -> {
+                        return paneFunction(node);
+                      })
+                  .build(currentFloor);
+      mapEditorPane.setCenter(gesturePane);
     }
-    gesturePane =
-        gesturePane =
-            MapFactory.startBuild()
-                .withNodes(nodeList)
-                .withNodeFunctions(
-                    node -> {
-                      return paneFunction(node);
-                    })
-                .build(currentFloor);
-    mapEditorPane.setCenter(gesturePane);
   }
 
   @FXML
   void floorDown() {
     if (currentFloor > 0) {
       currentFloor--;
+      gesturePane =
+          MapFactory.startBuild()
+              .withNodes(nodeList)
+              .withNodeFunctions(
+                  node -> {
+                    return paneFunction(node);
+                  })
+              .build(currentFloor);
+      mapEditorPane.setCenter(gesturePane);
     }
-    gesturePane =
-        MapFactory.startBuild()
-            .withNodes(nodeList)
-            .withNodeFunctions(
-                node -> {
-                  return paneFunction(node);
-                })
-            .build(currentFloor);
-    mapEditorPane.setCenter(gesturePane);
   }
 
   @FXML
@@ -112,7 +109,9 @@ public class MapEditorPageController {
     AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
     for (javafx.scene.Node n : anchor.getChildren()) {
-      n.setStyle("-fx-background-color: '#013A75';"); // Setting all Panes to default color
+      if (n instanceof Circle) {
+        ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Setting all Panes to default color
+      }
     }
 
     updateButtonsForNode(SubmitMode.NO_SELECTION);
@@ -182,7 +181,7 @@ public class MapEditorPageController {
             if ((node.getNodeID() + "_pane").equals(n.getId())) {
               ((Circle) n).setFill(Color.rgb(204, 34, 34)); // Turn this Pane to red
             } else {
-              ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Turn this Pane to red
+              ((Circle) n).setFill(Color.rgb(1, 58, 117)); // Turn this Pane to blue
             }
           }
         } else {
@@ -364,9 +363,11 @@ public class MapEditorPageController {
 
     // Calculating average x and y
     for (Node node : nodeList) {
-      totalX += node.getXcoord();
-      totalY += node.getYcoord();
-      total++;
+      if (node.getFloor().equals("L1")) {
+        totalX += node.getXcoord();
+        totalY += node.getYcoord();
+        total++;
+      }
     }
 
     // Creating GesturePane to show
@@ -380,6 +381,5 @@ public class MapEditorPageController {
             .build(currentFloor);
     // Setting center of BorderPane to the GesturePane
     mapEditorPane.setCenter(gesturePane);
-    // Setting zoom to 0
   }
 }

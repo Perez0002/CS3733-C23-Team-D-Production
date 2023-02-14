@@ -1,8 +1,6 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
-import static javafx.application.Application.launch;
-
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import java.net.URL;
@@ -15,10 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,20 +23,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class PatientTransportTable extends Application implements Initializable {
-
-  public static void main(String[] args) {
-    launch(args);
-  }
-
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root =
-        FXMLLoader.load(
-            getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/PatientTransportTable.fxml"));
-    primaryStage.setTitle("PatientTransportTable");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.show();
-  }
 
   @FXML private TableColumn<PatientTransportRequest, String> endRoom;
 
@@ -62,6 +43,13 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @FXML private TableColumn<PatientTransportRequest, Date> date;
 
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  @Override
+  public void start(Stage primaryStage) throws Exception {}
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
@@ -69,7 +57,7 @@ public class PatientTransportTable extends Application implements Initializable 
 
   public void tablehandling() {
     ObservableList<PatientTransportRequest> transportList =
-        FXCollections.observableArrayList(Ddb.getPatientTransportData());
+        FXCollections.observableArrayList(FDdb.getInstance().getAllPatientTransportRequests());
     patientTable.setEditable(true);
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
@@ -105,7 +93,7 @@ public class PatientTransportTable extends Application implements Initializable 
               try {
                 ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
                 form.setStat(stat1);
-                Ddb.updateObj(form);
+                FDdb.getInstance().updateServiceRequest(form);
               } catch (IllegalArgumentException e) {
                 e.printStackTrace();
               }
