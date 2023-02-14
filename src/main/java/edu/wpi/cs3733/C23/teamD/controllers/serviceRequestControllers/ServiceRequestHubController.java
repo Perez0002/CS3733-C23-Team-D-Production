@@ -15,6 +15,7 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton hubButton;
   @FXML private MFXButton transportButton;
+  @FXML private MFXButton sanitationButton;
   @FXML private Pane requestFormHubPane;
   @FXML private BorderPane mapPaneContainer;
 
@@ -40,6 +41,7 @@ public class ServiceRequestHubController {
 
     hubButton.setOnMouseClicked(event -> switchVBox(HUB));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT));
+    //sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST));
 
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(YOUR_REQUEST)
     // you need to add your vbox fxml file to the ENUM ServiceRequests
