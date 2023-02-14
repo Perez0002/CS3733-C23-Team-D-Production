@@ -19,15 +19,10 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     return patientTransportRequestVBox;
   }
 
-  public void setVisible() {
-    if (patientTransportRequestVBox.isVisible()) {
-      patientTransportRequestVBox.setVisible(false);
-    } else {
-      patientTransportRequestVBox.setVisible(true);
-    }
-  }
-
   void clearTransportForms() {
     testField.clear();
   }
+
+  void submit() {}
+
 }
