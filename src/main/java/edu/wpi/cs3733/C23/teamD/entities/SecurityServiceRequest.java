@@ -8,20 +8,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@AllArgsConstructor
 public class SecurityServiceRequest extends ServiceRequest {
     @Getter
     private String typeOfSecurityRequest;
 
     @Getter
-    @Enumerated(value= EnumType.STRING)
-    private Urgency urgency;
+    private String urgency;
 
-    public SecurityServiceRequest() {}
-
-    private enum Urgency {
-        HIGH,
-        MEDIUM,
-        LOW
+    public SecurityServiceRequest(String typeOfSecurityRequest, String urgency, String staff, Status stat, String reason) {
+        super(staff, stat, reason, "Security");
+        this.typeOfSecurityRequest = typeOfSecurityRequest;
+        this.urgency = urgency;
     }
+
 }
