@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers.components;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;

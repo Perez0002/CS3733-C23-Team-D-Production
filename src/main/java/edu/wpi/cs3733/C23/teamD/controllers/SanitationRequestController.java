@@ -1,7 +1,8 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.Ddb;
-import edu.wpi.cs3733.C23.teamD.entities.SanitationRequestData;
+import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
+import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
@@ -43,13 +44,13 @@ public class SanitationRequestController {
         i = 4;
       }
       formSubmittedText.setVisible(true);
-      SanitationRequestData requestData =
-          new SanitationRequestData(
+      SanitationRequest requestData =
+          new SanitationRequest(
               fieldLocationController.getNodeValue(),
               fieldReason.getText(),
               i,
               staffIDTextField.getText(),
-              SanitationRequestData.Status.BLANK);
+              SanitationRequest.Status.BLANK);
       Ddb.insertNewForm(requestData);
 
       textHelp.setVisible(false);

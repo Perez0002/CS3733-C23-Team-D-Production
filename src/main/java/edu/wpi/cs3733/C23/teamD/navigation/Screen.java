@@ -12,8 +12,10 @@ public enum Screen {
   PATIENT_TRANSPORT_TABLE("views/PatientTransportTable.fxml"),
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
   SERVICE_REQUEST("views/LandingPage.fxml"),
+  LOGIN_PAGE("views/LoginPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
+  REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml");
   private final String filename;
 

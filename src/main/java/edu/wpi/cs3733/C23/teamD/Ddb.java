@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.DBSingleton;
 import edu.wpi.cs3733.C23.teamD.entities.*;
 import java.io.*;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ public class Ddb {
 
   private static final File logFile = new File("logfile.txt");
 
-  @Getter private static Session DBsession = DBSingleton._DB.getSession();
+  @Getter private static Session DBsession = DBSingleton.getSession();
 
   /**
    * @param Nodes the list of all the nodes from the database
@@ -93,7 +93,7 @@ public class Ddb {
    * @param form
    * @return
    */
-  public static boolean insertNewForm(ServiceRequestForm form) {
+  public static boolean insertNewForm(ServiceRequest form) {
     try {
       DBsession.beginTransaction();
       DBsession.persist(form);
@@ -118,31 +118,29 @@ public class Ddb {
   }
 
   /** @return */
-  public static ArrayList<PatientTransportData> getPatientTransportData() {
+  public static ArrayList<PatientTransportRequest> getPatientTransportData() {
     DBsession.beginTransaction();
-    ArrayList<PatientTransportData> patientTransList =
+    ArrayList<PatientTransportRequest> patientTransList =
         new ArrayList<>(
-            DBsession.createQuery("SELECT p FROM PatientTransportData p").getResultList());
+            DBsession.createQuery("SELECT p FROM PatientTransportRequest p").getResultList());
     DBsession.getTransaction().commit();
     return patientTransList;
   }
 
-  public static ArrayList<SanitationRequestData> createSanitationRequestList() {
+  public static ArrayList<SanitationRequest> createSanitationRequestList() {
     DBsession.beginTransaction();
-    ArrayList<SanitationRequestData> sanitationReqList =
-        new ArrayList<>(
-            DBsession.createQuery("SELECT s FROM SanitationRequestData s").getResultList());
+    ArrayList<SanitationRequest> sanitationReqList =
+        new ArrayList<>(DBsession.createQuery("SELECT s FROM SanitationRequest s").getResultList());
     DBsession.getTransaction().commit();
     return sanitationReqList;
   }
 
-  public static ArrayList<ServiceRequestForm> createServiceList() {
+  public static ArrayList<ServiceRequest> createServiceList() {
     DBsession.beginTransaction();
-    ArrayList<ServiceRequestForm> serviceRequestForms =
-        new ArrayList<>(
-            DBsession.createQuery("SELECT s FROM ServiceRequestForm s").getResultList());
+    ArrayList<ServiceRequest> serviceRequests =
+        new ArrayList<>(DBsession.createQuery("SELECT s FROM ServiceRequest s").getResultList());
     DBsession.getTransaction().commit();
-    return serviceRequestForms;
+    return serviceRequests;
   }
 
   /**

@@ -1,26 +1,26 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
 import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import jakarta.persistence.Query;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.IntStream;
 import org.hibernate.Session;
 
-public class LocationNameDaoImpl implements DaoPlus<LocationName> {
-  private Session session = Ddb.getDBsession();
+public class LocationNameIDaoImpl implements IDao<LocationName> {
+  private final Session session = DBSingleton.getSession();
+
+  private ArrayList<LocationName> locationNames = new ArrayList<>();
+
+  public LocationNameIDaoImpl() {
+    this.refresh();
+  }
 
   @Override
   public LocationName get(LocationName l) {
-    LocationName lq = null;
-    session.beginTransaction();
-    try {
-      lq = session.get(LocationName.class, l.getLongName());
-      session.getTransaction().commit();
-    } catch (Exception ex) {
-      session.getTransaction().rollback();
-    }
-    return lq;
+    return this.locationNames.stream()
+        .filter(locationName -> l.getLongName().equals(locationName.getLongName()))
+        .findFirst()
+        .orElse(null);
   }
 
   @Override
@@ -29,6 +29,9 @@ public class LocationNameDaoImpl implements DaoPlus<LocationName> {
     try {
       session.persist(l);
       session.getTransaction().commit();
+
+      this.locationNames.add(l);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
@@ -40,6 +43,16 @@ public class LocationNameDaoImpl implements DaoPlus<LocationName> {
     try {
       session.merge(l);
       session.getTransaction().commit();
+
+      int index =
+          IntStream.range(0, this.locationNames.size())
+              .filter(i -> this.locationNames.get(i).getLongName().equals(l.getLongName()))
+              .findFirst()
+              .orElse(-1);
+
+      this.locationNames.remove(index);
+      this.locationNames.add(l);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
@@ -49,14 +62,23 @@ public class LocationNameDaoImpl implements DaoPlus<LocationName> {
     try {
       this.delete(oldLoc);
       this.save(newLoc);
+
+      this.locationNames.remove(oldLoc);
+      this.locationNames.add(newLoc);
+
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
   }
 
   @Override
-  public List<LocationName> getAll() {
-    ArrayList<LocationName> javaLocationNames = null;
+  public ArrayList<LocationName> getAll() {
+    return this.locationNames;
+  }
+
+  @Override
+  public void refresh() {
+    ArrayList<LocationName> javaLocationNames;
     session.beginTransaction();
     try {
       javaLocationNames =
@@ -65,10 +87,10 @@ public class LocationNameDaoImpl implements DaoPlus<LocationName> {
                   .createQuery("SELECT l FROM LocationName l", LocationName.class)
                   .getResultList();
       session.getTransaction().commit();
+      this.locationNames = javaLocationNames;
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
-    return javaLocationNames;
   }
 
   @Override
@@ -79,6 +101,8 @@ public class LocationNameDaoImpl implements DaoPlus<LocationName> {
       q.setParameter("id", l.getLongName());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
+
+      this.locationNames.remove(l);
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
