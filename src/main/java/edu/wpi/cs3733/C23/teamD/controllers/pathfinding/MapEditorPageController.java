@@ -223,7 +223,23 @@ public class MapEditorPageController {
         GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
         AnchorPane anchor = (AnchorPane) gesturePane.getContent();
         if (tempPopup == null) {
-          tempPopup = new MapEditorNodeController(node, event.getSceneX(), event.getSceneY());
+          javafx.scene.Node tempNode = null;
+          for (javafx.scene.Node n : anchor.getChildren()) {
+            if (n instanceof Circle) {
+              if (n.getId().equals(node.getNodeID() + "_pane")) {
+                tempNode = n;
+                break;
+              }
+            }
+          }
+
+          tempPopup =
+              new MapEditorNodeController(node, event.getSceneX(), event.getSceneY(), tempNode);
+          tempPopup.setOnClose(
+              e -> {
+                tempPopup.makePopupDisappear();
+                tempPopup = null;
+              });
           tempPopup.makePopupAppear();
         }
       }
@@ -238,10 +254,6 @@ public class MapEditorPageController {
         GesturePane gesturePane = (GesturePane) mapEditorPane.getCenter();
         AnchorPane anchor = (AnchorPane) gesturePane.getContent();
 
-        if (tempPopup != null) {
-          tempPopup.makePopupDisappear();
-          tempPopup = null;
-        }
       }
     };
   }
