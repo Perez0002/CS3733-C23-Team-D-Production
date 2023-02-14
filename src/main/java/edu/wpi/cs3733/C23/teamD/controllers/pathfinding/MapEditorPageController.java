@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.LocationNameIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.MoveIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.NodeIDaoImpl;
@@ -383,7 +384,7 @@ public class MapEditorPageController {
 
     mapDrawer = new MapDrawController(); // Create a way to draw the Nodes
 
-    nodeList = createJavaNodes(); // Fetch Nodes
+    nodeList = FDdb.getInstance().getAllNodes(); // Fetch Nodes
     connectNodestoLocations(nodeList); // Connect Nodes to Locations
 
     // Setup for calculating average x and y
