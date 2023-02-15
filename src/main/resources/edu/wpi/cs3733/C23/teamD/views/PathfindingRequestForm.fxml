@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.PathfindingController">
    <left>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="699.0" prefWidth="425.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="699.0" prefWidth="400.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <Text fill="#011830" strokeType="OUTSIDE" strokeWidth="0.0" text="Get Directions">
                <font>
@@ -89,19 +89,19 @@
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets left="50.0" />
+            <Insets left="50.0" right="50.0" />
          </BorderPane.margin>
       </VBox>
    </left>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <right>
-            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="BOTTOM_RIGHT" />
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="50.0" BorderPane.alignment="BOTTOM_RIGHT" />
          </right>
          <bottom>
-            <VBox prefHeight="140.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+            <VBox prefWidth="850.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="76.0" prefWidth="850.0" spacing="24.0">
+                  <HBox alignment="CENTER" prefWidth="850.0" spacing="24.0">
                      <children>
                         <MFXButton fx:id="floor1Button" disable="true" styleClass="floorSwitchButton" text="Floor 1" />
                         <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="Floor 2" />
@@ -109,18 +109,9 @@
                         <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 4" />
                         <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 5" />
                      </children>
-                  </HBox>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="71.0" prefWidth="850.0">
-                     <children>
-                        <MFXButton alignment="CENTER" onAction="#displayHelp" prefWidth="32.0" styleClass="helpbuttonstyleclass" text="?" textAlignment="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="16.0" right="16.0" />
-                           </HBox.margin>
-                        </MFXButton>
-                     </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="30.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
