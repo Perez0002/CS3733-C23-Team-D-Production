@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
-import static edu.wpi.cs3733.C23.teamD.entities.ServiceRequest.Status.DONE;
-
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -28,7 +26,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     return patientTransportRequestVBox;
   }
 
-  void clearTransportForms() {
+  public void clearTransportForms() {
     employeeBox.clearSelection();
     startLocationComboBox.clearSelection();
     endLocationComboBox.clearSelection();
@@ -47,19 +45,17 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     return false;
   }
 
-  boolean submit() {
+  public boolean submit() {
     // if the fields are full, go to submit item
     if (checkFieldsFull()) {
       System.out.println(startLocationComboBox.getValue().toString());
       PatientTransportRequest newForm =
           new PatientTransportRequest(
-              "PATIENT ID",
               startLocationComboBox.getValue().toString(),
               endLocationComboBox.getValue().toString(),
-              "equipment",
               descriptionBox.getText(),
               employeeBox.getValue().toString(),
-              DONE);
+              urgencyBox.getValue().toString());
       FDdb.getInstance().saveServiceRequest(newForm);
       return true;
     }

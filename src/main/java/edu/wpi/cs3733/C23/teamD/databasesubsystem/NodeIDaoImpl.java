@@ -49,16 +49,24 @@ public class NodeIDaoImpl implements IDao<Node> {
 
   @Override
   public void update(Node n) {
-    Node oldNode = n;
-    n.setNodeID();
-    Node newNode = n;
+    session.beginTransaction();
     try {
-      this.delete(oldNode);
-      this.save(newNode);
-      this.nodeEdgeSwap(oldNode, newNode);
+      session.merge(n);
+      session.getTransaction().commit();
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
+  }
+
+  public void updatePK(Node n) {
+    Node oldNode = new Node(n);
+    n.setNodeID();
+    Node newNode = new Node(n);
+    this.save(newNode);
+    this.nodeMoveSwap(oldNode, newNode);
+    this.nodeEdgeSwap(oldNode, newNode);
+    this.delete(n);
   }
 
   @Override
@@ -83,13 +91,13 @@ public class NodeIDaoImpl implements IDao<Node> {
   @Override
   public void delete(Node n) {
     FDdb dbFacade = FDdb.getInstance();
-
-    session.beginTransaction();
-    Query mq = session.createQuery("SELECT m FROM Move m WHERE node=:n");
-    mq.setParameter("n", n);
-    ArrayList<Move> moves = (ArrayList<Move>) mq.getResultList();
-    session.getTransaction().commit();
-    for (Move m : moves) {
+    ArrayList<Move> movesWithNode = new ArrayList<>();
+    for (Move m : dbFacade.getAllMoves()) {
+      if (m.getNodeID().equals(n.getNodeID())) {
+        movesWithNode.add(m);
+      }
+    }
+    for (Move m : movesWithNode) {
       PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
     }
@@ -125,8 +133,6 @@ public class NodeIDaoImpl implements IDao<Node> {
   public void nodeEdgeSwap(Node oldNode, Node newNode) {
     FDdb dbFacade = FDdb.getInstance();
 
-    this.save(newNode);
-
     session.beginTransaction();
     Query q =
         session.createQuery("SELECT e FROM Edge e WHERE fromNode=:fromnode OR toNode=:tonode");
@@ -145,8 +151,17 @@ public class NodeIDaoImpl implements IDao<Node> {
       dbFacade.deleteEdge(oldEdge);
       dbFacade.saveEdge(newEdge);
     }
+  }
 
-    this.delete(oldNode);
+  private void nodeMoveSwap(Node oldNode, Node newNode) {
+    FDdb dbFacade = FDdb.getInstance();
+
+    for (Move m : dbFacade.getAllMoves()) {
+      if (m.getNodeID().equals(oldNode.getNodeID())) {
+        m.setNode(newNode);
+        dbFacade.updateMove(m);
+      }
+    }
   }
 
   @Override

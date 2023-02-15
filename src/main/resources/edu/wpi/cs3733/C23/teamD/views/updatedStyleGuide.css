@@ -6,26 +6,32 @@
 /*}*/
 
 @font-face {
-    -font-family: 'Nunito Sans';
-    src: url('images/NunitoSans-Black.ttf');
+    -fx-font-family: 'Nunito Sans Regular', sans-serif;
+    src: url('images/Nunito_Sans/NunitoSans-Black.ttf');
+}
+
+@font-face {
+    -fx-font-family: 'Nunito Sans Bold', sans-serif;
+    src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
 .label { /* sets base format for labels */
-    -fx-font-family: 'Nunito Sans';
     -fx-text-fill: #012D5A;
     -fx-text-size: 12pt;
 }
 
-.text { /* sets base format for text */
-    -fx-font-family: 'Nunito Sans';
-    -fx-text-fill: #012D5A;
-}
+/*.text { !* sets base format for text *!*/
+/*    -fx-font-family: 'Nunito Sans Regular';*/
+/*    -fx-text-fill: #012D5A;*/
+/*}*/
 
 .mfx-text-field { /* sets base format for MFXTextFields */
     -fx-background-color: #EEEEEE;
     -fx-border-radius: 10px;
     -fx-min-height: 40px;
     -fx-border-color: #012D5A;
+    -fx-font-family: "Nunito Sans Regular";
+
 }
 
 .button {
@@ -33,18 +39,23 @@
     -fx-background-radius: 10px;
     -fx-max-width: 128px;
     -fx-max-height: 53px;
+    -fx-font-family: "Nunito Sans Regular";
+
 }
 
 #hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
     -fx-max-width: 400px;
     -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
 }
 
 .homepageLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
     -fx-max-width: 400px;
     -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
+
 }
 
 .imageBorder {
@@ -60,6 +71,7 @@
     -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
     -fx-text-size: 12pt;
     -fx-max-width: 100px;
+    -fx-font-family: 'Nunito Sans Regular';
 }
 
 .tabButtonSelected { /* defines the format for the selected tab Button on the service request page */
@@ -69,17 +81,35 @@
     -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
     -fx-text-size: 12pt;
     -fx-max-width: 100px;
+    -fx-font-family: 'Nunito Sans Regular';
 }
+.floorSwitchButton{
 
+    -fx-gap-start-and-end: 12px;
+    -fx-text-size: 16pt;
+    -fx-pref-width: 128px;
+    -fx-pref-height: 53px;
+
+    -fx-background-color: #C9E0F8;
+    -fx-border-width: 1pt;
+    -fx-border-color: #012D5A;
+    -fx-font-family: 'Nunito Sans Regular';
+
+
+}
 .tabHBox { /* defines the format for the HBox that the tabs are held in, particularly used for blue underline */
     -fx-border-color: transparent transparent #012D5A transparent;
     -fx-border-width: 5px;
+    -fx-font-family: 'Nunito Sans Regular';
+
 }
 
 /*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
 
 .serviceRequestMFXTextFieldLabel {
     -fx-text-size: 12pt;
+    -fx-font-family: 'Nunito Sans Regular';
+
 }
 
 /*.individualServiceRequestTextFieldVBox { !* defines the format for the individual vBox that contains service Request Text Fields *!*/
@@ -94,24 +124,65 @@
     -fx-background-color: transparent;
     -fx-text-fill: #012D5A;
     -fx-border-color: #012D5A;
+    -fx-pref-height: 40px;
+    -fx-font-family: 'Nunito Sans Regular';
+
 }
 
 .submitButton { /* defines the format for the submit button */
     -fx-background-color: #012D5A;
     -fx-text-fill: white;
     -fx-border-color: white;
+    -fx-pref-height: 40px;
+    -fx-font-family: 'Nunito Sans Regular';
+
 }
 
 .cancelButton { /* defines the format for the cancel button */
     -fx-background-color: transparent;
     -fx-text-fill: #012D5A;
     -fx-border-color: #012D5A;
+    -fx-font-family: 'Nunito Sans Regular';
+
+}
+
+.deleteButton { /* defines the format for the delete button */
+    -fx-background-color: transparent;
+    -fx-text-fill: #CC2222;
+    -fx-border-color: #CC2222;
+}
+
+.mapEditorMapHolder { /* defines the format for the map holder on the mapEditor */
+    -fx-border-color: #012D5A;
+    -fx-border-width: 5px;
+}
+
+.mapEditorFloorButton { /* defines the format for the floor buttons on the mapEditor */
+    -fx-background-color: #C9E0F8;
+    -fx-text-fill: #000000;
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-max-width: 200px;
+    -fx-max-height: 100px;
+}
+
+.mapEditorFloorButtonSelected { /* defines the format for the floor buttons on the mapEditor when selected */
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-max-width: 200px;
+    -fx-max-height: 100px;
 }
 
 #loginButton {
     -fx-background-color: #012D5A;
     -fx-text-fill: white;
     -fx-border-color: white;
+    -fx-font-family: 'Nunito Sans Regular';
+
     -fx-max-width: 160px;
 }
 
@@ -128,6 +199,6 @@
     -fx-max-height: 40pt;
     -fx-max-width: 40pt;
     -fx-font-size: 18pt;
-    -fx-font-weight: bolder;
+    -fx-font-family: "Nunito Sans Bold";
 }
 

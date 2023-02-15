@@ -2,8 +2,6 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -26,7 +24,6 @@ public class ServiceRequest {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int serviceRequestId;
 
-  @Getter
   @ManyToOne
   @JoinColumn(
       name = "staffAssigned",
@@ -37,39 +34,35 @@ public class ServiceRequest {
                   "FOREIGN KEY (staffAssigned) REFERENCES Employee(employeeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   private Employee staffAssigned;
 
-  @Getter @Setter private String associatedStaff;
+  private String associatedStaff;
 
   @CreationTimestamp private Date dateAndTime;
 
-  public ServiceRequest(
-      String associatedStaff, Status stat, String reason, String serviceRequestType) {
+  public ServiceRequest(String associatedStaff, String reason, String serviceRequestType) {
     this.associatedStaff = associatedStaff;
-    this.stat = stat;
+    this.stat = Status.PROCESSING;
     this.dateAndTime = new Date();
     this.reason = reason;
     this.serviceRequestType = serviceRequestType;
   }
 
   public ServiceRequest(
-      int serviceId,
-      String associatedStaff,
-      Status stat,
-      String reason,
-      String serviceRequestType,
-      Date date) {
+      int serviceId, String associatedStaff, String reason, String serviceRequestType, Date date) {
+    this.associatedStaff = associatedStaff;
     this.serviceRequestId = serviceId;
-    this.stat = stat;
+    this.stat = Status.PROCESSING;
     this.dateAndTime = date;
     this.reason = reason;
     this.serviceRequestType = serviceRequestType;
   }
 
   public ServiceRequest() {
+    this.associatedStaff = "";
     this.stat = Status.BLANK;
     this.dateAndTime = new Date();
     this.reason = "";
     this.serviceRequestType = "";
-    this.associatedStaff = "";
+    this.staffAssigned = new Employee();
   }
 
   public String getServiceRequestType() {
@@ -98,6 +91,14 @@ public class ServiceRequest {
 
   public int getServiceRequestId() {
     return serviceRequestId;
+  }
+
+  public String getAssociatedStaff() {
+    return associatedStaff;
+  }
+
+  public void setAssociatedStaff(String associatedStaff) {
+    this.associatedStaff = associatedStaff;
   }
 
   public Date getDateAndTime() {

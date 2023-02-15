@@ -26,7 +26,7 @@ public class PatientTransportTable extends Application implements Initializable 
 
   @FXML private TableColumn<PatientTransportRequest, String> endRoom;
 
-  @FXML private TableColumn<PatientTransportRequest, String> equipment;
+  @FXML private TableColumn<PatientTransportRequest, String> urgency;
 
   @FXML private TableColumn<PatientTransportRequest, Integer> formID;
 
@@ -62,8 +62,8 @@ public class PatientTransportTable extends Application implements Initializable 
     if (transportList.size() != 0) {
       endRoom.setCellValueFactory(
           new PropertyValueFactory<PatientTransportRequest, String>("endRoom"));
-      equipment.setCellValueFactory(
-          new PropertyValueFactory<PatientTransportRequest, String>("equipment"));
+      urgency.setCellValueFactory(
+          new PropertyValueFactory<PatientTransportRequest, String>("urgency"));
       formID.setCellValueFactory(
           new PropertyValueFactory<PatientTransportRequest, Integer>("serviceRequestId"));
       patientID.setCellValueFactory(

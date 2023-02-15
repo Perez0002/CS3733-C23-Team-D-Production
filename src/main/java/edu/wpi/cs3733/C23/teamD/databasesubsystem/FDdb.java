@@ -51,6 +51,10 @@ public class FDdb {
     nodeIDao.update(n);
   }
 
+  public void updateNodePK(Node n) {
+    nodeIDao.updatePK(n);
+  }
+
   public void deleteNode(Node n) {
     nodeIDao.delete(n);
   }

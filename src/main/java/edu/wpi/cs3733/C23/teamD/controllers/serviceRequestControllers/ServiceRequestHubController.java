@@ -22,6 +22,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton transportButton;
   @FXML private MFXButton sanitationButton;
   @FXML private MFXButton computerButton;
+  @FXML private MFXButton securityButton;
+  @FXML private MFXButton avButton;
 
   @FXML private Pane requestFormHubPane;
   @FXML private BorderPane mapPaneContainer;
@@ -59,6 +61,8 @@ public class ServiceRequestHubController {
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
+    securityButton.setOnMouseClicked(event -> switchVBox(SECURITY_REQUEST, securityButton));
+    avButton.setOnMouseClicked(event -> switchVBox(AV_REQUEST, avButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -101,10 +105,12 @@ public class ServiceRequestHubController {
 
     } else if (currentController instanceof PatientTransportVBoxController) {
       ((PatientTransportVBoxController) currentController).clearTransportForms();
-    } else if (currentController instanceof SanitationRequestController) {
-      ((SanitationRequestController) currentController).clearFields();
     } else if (currentController instanceof ComputerServiceRequestController) {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
+    } else if (currentController instanceof SecurityServiceRequestController) {
+      ((SecurityServiceRequestController) currentController).clearFields();
+    } else {
+      currentController.clearTransportForms();
     }
 
     // TODO: add your ClearFields here. Follow the exact same format as the
@@ -124,6 +130,12 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof ComputerServiceRequestController) {
       System.out.println("Submitting");
       submission = ((ComputerServiceRequestController) currentController).submit();
+    } else if (currentController instanceof SecurityServiceRequestController) {
+      System.out.println("Submitting");
+      submission = ((SecurityServiceRequestController) currentController).submit();
+    } else {
+      submission = currentController.submit();
+      System.out.println("Submitting");
     }
 
     if (submission) {
