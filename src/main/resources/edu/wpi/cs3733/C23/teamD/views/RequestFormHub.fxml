@@ -26,7 +26,6 @@
             </Label>
             <HBox prefHeight="53.0" prefWidth="550.0" spacing="3.0" styleClass="tabHBox">
                <children>
-                  <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
                   <MFXButton fx:id="transportButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Patient Transport" />
                   <MFXButton fx:id="sanitationButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Sanitation" />
                   <MFXButton fx:id="computerButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Computer" />

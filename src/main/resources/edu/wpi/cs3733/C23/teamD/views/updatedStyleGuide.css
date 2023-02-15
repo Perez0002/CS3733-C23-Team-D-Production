@@ -25,6 +25,10 @@
 /*    -fx-text-fill: #012D5A;*/
 /*}*/
 
+.ourText {
+    -fx-font-family: 'Nunito Sans Regular';
+}
+
 .mfx-text-field { /* sets base format for MFXTextFields */
     -fx-background-color: #EEEEEE;
     -fx-border-radius: 10px;
@@ -71,6 +75,7 @@
     -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
     -fx-text-size: 12pt;
     -fx-max-width: 100px;
+    -fx-pref-height: 40px;
     -fx-font-family: 'Nunito Sans Regular';
 }
 
@@ -151,8 +156,10 @@
     -fx-text-fill: white;
     -fx-border-color: white;
     -fx-font-family: 'Nunito Sans Regular';
-
-    -fx-max-width: 160px;
+    -fx-max-width: 200px;
+    -fx-max-height: 40px;
+    -fx-pref-height: 40px;
+    -fx-min-height: 40px;
 }
 
 #loginBorderPane {
