@@ -61,7 +61,7 @@
                         </Label>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="53.0" prefWidth="400.0" spacing="15.0">
                            <children>
-                              <MFXButton fx:id="aStarButton" disable="true" onAction="#setAStar" prefHeight="53.0" styleClass="floorSwitchButton" text="AStar" />
+                              <MFXButton fx:id="aStarButton" onAction="#setAStar" prefHeight="53.0" styleClass="floorSwitchButton" text="AStar" />
                               <MFXButton fx:id="BFSButton" onAction="#setBFS" prefHeight="53.0" styleClass="floorSwitchButton" text="BFS" />
                               <MFXButton fx:id="DFSButton" onAction="#setDFS" prefHeight="53.0" styleClass="floorSwitchButton" text="DFS" />
                            </children>
@@ -103,7 +103,7 @@
                <children>
                   <HBox alignment="CENTER" prefWidth="850.0" spacing="24.0">
                      <children>
-                        <MFXButton fx:id="floor1Button" disable="true" styleClass="floorSwitchButton" text="Floor 1" />
+                        <MFXButton fx:id="floor1Button" styleClass="floorSwitchButton" text="Floor 1" />
                         <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="Floor 2" />
                         <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 3" />
                         <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 4" />
