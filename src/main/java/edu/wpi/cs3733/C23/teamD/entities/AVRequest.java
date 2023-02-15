@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.Entity;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +10,14 @@ import lombok.Setter;
 public class AVRequest extends ServiceRequest {
 
   @Getter @Setter private String systemFailureTextField;
-  @Getter @Setter private Date dateFirstSeen;
+  @Getter @Setter private LocalDate dateFirstSeen;
 
   public AVRequest(
       String associatedStaff,
       String reason,
       String serviceRequestType,
       String systemFailureTextField,
-      Date dateFirstSeen) {
+      LocalDate dateFirstSeen) {
     super(associatedStaff, reason, serviceRequestType);
     this.systemFailureTextField = systemFailureTextField;
     this.dateFirstSeen = dateFirstSeen;
@@ -29,13 +30,13 @@ public class AVRequest extends ServiceRequest {
       String serviceRequestType,
       Date date,
       String systemFailureTextField,
-      Date dateFirstSeen) {
+      LocalDate dateFirstSeen) {
     super(serviceId, associatedStaff, reason, serviceRequestType, date);
     this.systemFailureTextField = systemFailureTextField;
     this.dateFirstSeen = dateFirstSeen;
   }
 
-  public AVRequest(String systemFailureTextField, Date dateFirstSeen) {
+  public AVRequest(String systemFailureTextField, LocalDate dateFirstSeen) {
     this.systemFailureTextField = systemFailureTextField;
     this.dateFirstSeen = dateFirstSeen;
   }
