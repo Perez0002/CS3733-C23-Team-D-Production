@@ -70,7 +70,18 @@
     -fx-text-size: 12pt;
     -fx-max-width: 100px;
 }
+.floorSwitchButton{
 
+    -fx-gap-start-and-end: 12px;
+    -fx-text-size: 16pt;
+    -fx-pref-width: 128px;
+    -fx-pref-height: 53px;
+
+    -fx-background-color: #C9E0F8;
+    -fx-border-width: 1pt;
+    -fx-border-color: #012D5A;
+
+}
 .tabHBox { /* defines the format for the HBox that the tabs are held in, particularly used for blue underline */
     -fx-border-color: transparent transparent #012D5A transparent;
     -fx-border-width: 5px;
