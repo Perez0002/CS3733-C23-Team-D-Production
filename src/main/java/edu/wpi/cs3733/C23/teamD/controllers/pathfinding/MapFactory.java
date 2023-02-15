@@ -222,7 +222,9 @@ public class MapFactory {
         lastNode = node;
       }
       context.setLineWidth(1);
-      context.strokeText("END", lastNode.getXcoord(), lastNode.getYcoord() - 10, 40);
+      if (lastNode != null) {
+        context.strokeText("END", lastNode.getXcoord(), lastNode.getYcoord() - 10, 40);
+      }
     }
 
     map.setContent(holder);

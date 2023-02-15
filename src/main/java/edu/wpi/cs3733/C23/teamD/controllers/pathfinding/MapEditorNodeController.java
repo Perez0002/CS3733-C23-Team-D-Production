@@ -1,15 +1,22 @@
 package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 
+import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
 
@@ -26,38 +33,63 @@ public class MapEditorNodeController {
   private MFXTextField shortNameTextField;
   private MFXTextField buildingTextField;
   private MFXTextField floorTextField;
+  private MFXTextField typeTextField;
   MFXButton closeButton;
   MFXButton submitButton;
+  MFXButton deleteButton;
 
   private EventHandler<ActionEvent> closeEvent;
   private EventHandler<ActionEvent> submitEvent;
 
   public MapEditorNodeController() {}
 
-  public MapEditorNodeController(Node node, javafx.scene.Node anchor) {
+  public MapEditorNodeController(Node node, javafx.scene.Node anchor, double xPos, double yPos) {
     this.node = node;
     this.anchor = anchor;
     closeButton = new MFXButton();
     submitButton = new MFXButton();
+    deleteButton = new MFXButton();
     xCoordTextField = new MFXTextField();
     yCoordTextField = new MFXTextField();
     longNameTextField = new MFXTextField();
     shortNameTextField = new MFXTextField();
     buildingTextField = new MFXTextField();
     floorTextField = new MFXTextField();
-    makeEditorNode(); // calls pseudo-constructor object
+    typeTextField = new MFXTextField();
+    makeEditorNode(xPos, yPos); // calls pseudo-constructor object
   }
 
   /**
    * Creates a popover object that contains necessary popup information (pane, text containing node
    * information). neither param nor return
    */
-  private void makeEditorNode() {
+  private void makeEditorNode(double xPos, double yPos) {
     popover = new PopOver(); // creates PopOver container
+    VBox fullContainer = new VBox();
     VBox vBox = new VBox(); // creates Pane object to place within PopOver
+    MFXScrollPane scrollPane = new MFXScrollPane(vBox);
+    scrollPane.setFitToWidth(true);
+    scrollPane.getStyleClass().add("mfx-text-field");
+
+    Point2D point = anchor.getParent().localToScene(node.getXcoord(), node.getYcoord());
+
+    if (xPos > App.getPrimaryStage().getScene().getWidth() / 2) {
+      if (yPos > App.getPrimaryStage().getScene().getHeight() / 2) {
+        popover.setArrowLocation(PopOver.ArrowLocation.RIGHT_TOP); // Why stupid??
+      } else {
+        popover.setArrowLocation(PopOver.ArrowLocation.RIGHT_TOP);
+      }
+    } else {
+      if (yPos > App.getPrimaryStage().getScene().getHeight() / 2) {
+        popover.setArrowLocation(PopOver.ArrowLocation.LEFT_TOP); // Why stupid??
+
+      } else {
+        popover.setArrowLocation(PopOver.ArrowLocation.LEFT_TOP);
+      }
+    }
 
     vBox.setPrefWidth(200);
-    vBox.setPrefHeight(490);
+    vBox.setPrefHeight(200);
     VBox.setMargin(vBox, new Insets(5, 0, 5, 0));
 
     // Start format PopOver container
@@ -103,17 +135,29 @@ public class MapEditorNodeController {
       floorTextField.setPrefWidth(190);
       floorTextField.setText(node.getFloor());
       VBox floorVBox = new VBox(floorLabel, floorTextField);
-      VBox.setMargin(floorVBox, new Insets(5, 5, 10, 5));
+      VBox.setMargin(floorVBox, new Insets(5, 5, 5, 5));
+
+      Label typeLabel = new Label("Type");
+      typeTextField.setPrefWidth(190);
+      typeTextField.setText(node.getLocationType());
+      VBox typeVBox = new VBox(typeLabel, typeTextField);
+      VBox.setMargin(typeVBox, new Insets(5, 5, 10, 5));
 
       submitButton.getStyleClass().add("submitButton");
       submitButton.setText("Submit");
       closeButton.getStyleClass().add("cancelButton");
       closeButton.setText("Close");
-      HBox buttonBox = new HBox(closeButton, submitButton);
+      deleteButton.getStyleClass().add("deleteButton");
+      deleteButton.setText("Delete");
+      HBox buttonBox = new HBox(closeButton, deleteButton);
       HBox.setMargin(buttonBox, new Insets(10, 5, 5, 5));
-      HBox.setMargin(submitButton, new Insets(0, 0, 5, 5));
+      HBox.setMargin(deleteButton, new Insets(0, 0, 5, 5));
       HBox.setMargin(closeButton, new Insets(0, 5, 5, 0));
       buttonBox.setAlignment(Pos.CENTER);
+
+      VBox submitButtonHolder = new VBox(submitButton);
+      VBox.setMargin(submitButtonHolder, new Insets(5, 5, 5, 5));
+      submitButtonHolder.setAlignment(Pos.CENTER);
 
       vBox.getChildren().add(xCoordVBox);
       vBox.getChildren().add(yCoordVBox);
@@ -121,7 +165,13 @@ public class MapEditorNodeController {
       vBox.getChildren().add(longNameVBox);
       vBox.getChildren().add(buildingVBox);
       vBox.getChildren().add(floorVBox);
-      vBox.getChildren().add(buttonBox);
+      vBox.getChildren().add(typeVBox);
+
+      fullContainer.getChildren().add(scrollPane);
+      fullContainer.getChildren().add(buttonBox);
+      fullContainer.getChildren().add(submitButtonHolder);
+      VBox.setMargin(scrollPane, new Insets(5, 0, 5, 0));
+      VBox.setMargin(buttonBox, new Insets(5, 0, 5, 0));
 
     } else { // connection to database is null (test case)
       popover.setTitle(String.format("%s Information", "nodeLongName"));
@@ -136,7 +186,7 @@ public class MapEditorNodeController {
 
     popover.setHeaderAlwaysVisible(true);
 
-    popover.setContentNode(vBox); // sets pane as content of popover
+    popover.setContentNode(fullContainer); // sets pane as content of popover
   } // end makeEditorNode class
 
   void makePopupAppear() {
@@ -149,6 +199,80 @@ public class MapEditorNodeController {
 
   public void setOnClose(EventHandler<ActionEvent> event) {
     closeButton.setOnAction(event);
+  }
+
+  public void setOnDelete(HashMap<Node, MapEditorNodeController> list) {
+    deleteButton.setOnAction(
+        event -> {
+          FDdb database = FDdb.getInstance();
+
+          database.deleteNode(node);
+
+          anchor.setVisible(false);
+          anchor.setManaged(false);
+
+          list.get(node).makePopupDisappear();
+          list.remove(node, anchor);
+
+          node = null;
+        });
+  }
+
+  public void setOnSubmit(HashMap<Node, MapEditorNodeController> list) {
+    submitButton.setOnAction(
+        event -> {
+          FDdb database = FDdb.getInstance();
+
+          if (xCoordTextField.getText().isEmpty()) {
+            return;
+          }
+          if (yCoordTextField.getText().isEmpty()) {
+            return;
+          }
+          if (longNameTextField.getText().isEmpty()) {
+            return;
+          }
+          if (shortNameTextField.getText().isEmpty()) {
+            return;
+          }
+          if (buildingTextField.getText().isEmpty()) {
+            return;
+          }
+          if (floorTextField.getText().isEmpty()) {
+            return;
+          }
+          if (typeTextField.getText().isEmpty()) {
+            return;
+          }
+
+          node.setXcoord(Integer.parseInt(xCoordTextField.getText()));
+          node.setYcoord(Integer.parseInt(yCoordTextField.getText()));
+          node.setFloor(floorTextField.getText());
+          node.setBuilding(buildingTextField.getText());
+
+          node.getLocation().setLongName(longNameTextField.getText());
+          node.getLocation().setShortName(shortNameTextField.getText());
+          node.getLocation().setLocationType(typeTextField.getText());
+
+          if (database.getAllNodes().contains(node)) {
+            database.updateNode(node);
+          } else {
+            database.saveNode(node);
+          }
+
+          if (database.getAllLocationNames().contains(node.getLocation())) {
+            database.updateLocationName(node.getLocation());
+          } else {
+            database.saveLocationName(node.getLocation());
+          }
+
+          ((Circle) anchor).setFill(Color.rgb(1, 58, 117));
+          ((Circle) anchor).setCenterX(node.getXcoord());
+          ((Circle) anchor).setCenterY(node.getYcoord());
+
+          list.get(node).makePopupDisappear();
+          list.remove(node, anchor);
+        });
   }
 
   public void initialize() {}

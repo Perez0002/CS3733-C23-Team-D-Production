@@ -48,7 +48,7 @@
                   <HBox alignment="BOTTOM_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="360.0" spacing="15.0">
                      <children>
                         <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-                        <MFXButton onAction="#submit" text="Submit" />
+                        <MFXButton onAction="#submit" styleClass="submitButton" text="Submit" />
                      </children>
                   </HBox>
                </children>
