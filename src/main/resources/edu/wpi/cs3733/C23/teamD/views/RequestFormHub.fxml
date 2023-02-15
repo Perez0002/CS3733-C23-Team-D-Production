@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
    <center>
-      <VBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+      <VBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="25.0" left="25.0" top="25.0" />
          </BorderPane.margin>
@@ -51,12 +48,15 @@
             </HBox>
          </children>
          <opaqueInsets>
-            <Insets />
+            <Insets left="25.0" />
          </opaqueInsets>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
       </VBox>
    </center>
    <right>
-      <BorderPane prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="TOP_RIGHT">
+      <BorderPane prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="25.0" left="20.0" right="25.0" top="25.0" />
          </BorderPane.margin>
@@ -66,6 +66,12 @@
          <center>
             <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-border-color: #012D5A; -fx-border-width: 5;" BorderPane.alignment="CENTER" />
          </center>
+         <opaqueInsets>
+            <Insets right="25.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets right="25.0" />
+         </padding>
       </BorderPane>
    </right>
 </BorderPane>
