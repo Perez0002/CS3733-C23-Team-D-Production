@@ -67,25 +67,25 @@ public class PathfindingController {
   @FXML
   public void setAStar() {
     algorithm = "AStar";
-    aStarButton.setDisable(true);
-    BFSButton.setDisable(false);
-    DFSButton.setDisable(false);
+    aStarButton.setDisable(false);
+    BFSButton.setDisable(true);
+    DFSButton.setDisable(true);
   }
 
   @FXML
   public void setBFS() {
     algorithm = "BFS";
-    aStarButton.setDisable(false);
-    BFSButton.setDisable(true);
-    DFSButton.setDisable(false);
+    aStarButton.setDisable(true);
+    BFSButton.setDisable(false);
+    DFSButton.setDisable(true);
   }
 
   @FXML
   public void setDFS() {
     algorithm = "DFS";
-    aStarButton.setDisable(false);
-    BFSButton.setDisable(false);
-    DFSButton.setDisable(true);
+    aStarButton.setDisable(true);
+    BFSButton.setDisable(true);
+    DFSButton.setDisable(false);
   }
 
   public EventHandler<ActionEvent> changeFloor(int floor) {
@@ -95,9 +95,9 @@ public class PathfindingController {
       public void handle(ActionEvent event) {
         for (int i = 0; i < 5; i++) {
           if (i == floor) {
-            floorButtons[i].setDisable(true);
-          } else {
             floorButtons[i].setDisable(false);
+          } else {
+            floorButtons[i].setDisable(true);
           }
         }
         pathfindingBorderPane.setCenter(
