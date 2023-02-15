@@ -3,7 +3,6 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 import edu.wpi.cs3733.C23.teamD.controllers.ServiceRequestController;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.ComputerServiceRequest;
-import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
@@ -50,11 +49,11 @@ public class ComputerServiceRequestController extends ServiceRequestController
           new ComputerServiceRequest(
               descriptionBox.getText(),
               employeeBox.getText(),
-              ServiceRequest.Status.PROCESSING,
               urgencyBox.getText(),
               deviceTypeBox.getText(),
               locationBox.getText());
       FDdb.getInstance().saveServiceRequest(computerServiceRequest);
+
       return true;
     }
     return false;
@@ -66,7 +65,11 @@ public class ComputerServiceRequestController extends ServiceRequestController
   }
 
   // TODO: set the rest to clear
-  void clearComputerForms() {
+  public void clearComputerForms() {
     deviceTypeBox.clearSelection();
+    urgencyBox.clearSelection();
+    locationBox.clearSelection();
+    descriptionBox.clear();
+    employeeBox.clearSelection();
   }
 }

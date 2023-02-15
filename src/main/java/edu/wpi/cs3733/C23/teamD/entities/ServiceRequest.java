@@ -38,25 +38,19 @@ public class ServiceRequest {
 
   @CreationTimestamp private Date dateAndTime;
 
-  public ServiceRequest(
-      String associatedStaff, Status stat, String reason, String serviceRequestType) {
+  public ServiceRequest(String associatedStaff, String reason, String serviceRequestType) {
     this.associatedStaff = associatedStaff;
-    this.stat = stat;
+    this.stat = Status.PROCESSING;
     this.dateAndTime = new Date();
     this.reason = reason;
     this.serviceRequestType = serviceRequestType;
   }
 
   public ServiceRequest(
-      int serviceId,
-      String associatedStaff,
-      Status stat,
-      String reason,
-      String serviceRequestType,
-      Date date) {
+      int serviceId, String associatedStaff, String reason, String serviceRequestType, Date date) {
     this.associatedStaff = associatedStaff;
     this.serviceRequestId = serviceId;
-    this.stat = stat;
+    this.stat = Status.PROCESSING;
     this.dateAndTime = date;
     this.reason = reason;
     this.serviceRequestType = serviceRequestType;
