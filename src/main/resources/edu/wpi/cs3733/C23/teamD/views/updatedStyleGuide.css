@@ -41,6 +41,19 @@
     -fx-max-height: 100px;
 }
 
+.homepageLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 24pt;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
+}
+
+.imageBorder {
+    -fx-border-color: #012D5A;
+    /*-fx-border-radius: 16;*/
+    -fx-border-width: 4;
+
+}
+
 .tabButton { /* defines the format for the tab Buttons on Service Request page */
     -fx-background-color: #CDDFF6;
     -fx-background-radius: 16px 16px 0px 0px; /* Makes button a circle */
@@ -117,3 +130,4 @@
     -fx-font-size: 18pt;
     -fx-font-weight: bolder;
 }
+
