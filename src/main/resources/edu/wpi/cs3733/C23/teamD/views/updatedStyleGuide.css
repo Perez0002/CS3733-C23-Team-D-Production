@@ -94,12 +94,14 @@
     -fx-background-color: transparent;
     -fx-text-fill: #012D5A;
     -fx-border-color: #012D5A;
+    -fx-pref-height: 40px;
 }
 
 .submitButton { /* defines the format for the submit button */
     -fx-background-color: #012D5A;
     -fx-text-fill: white;
     -fx-border-color: white;
+    -fx-pref-height: 40px;
 }
 
 .cancelButton { /* defines the format for the cancel button */
