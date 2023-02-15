@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.AVRequestController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report any issues experienced regarding audio or visual systems throughout the hospital. This includes Intercom, malfunctioning monitors or speakers, or any video screens displayed throughout the hospital. " wrappingWidth="600" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Staff member">
+         <VBox.margin>
+            <Insets top="64.0" />
+         </VBox.margin>
+      </Text>
+      <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="System">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date First Noticed">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="descriptionTextField" prefHeight="90.0" prefWidth="300.0" promptText="Enter a description of the issue" />
+   </children>
+</VBox>

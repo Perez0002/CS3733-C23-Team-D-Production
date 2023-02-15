@@ -12,7 +12,7 @@
           <TableColumn fx:id="patientID" prefWidth="90.66668701171875" text="patientID" />
             <TableColumn fx:id="startRoom" prefWidth="76.6666259765625" text="startRoom" />
             <TableColumn fx:id="endRoom" prefWidth="81.99993896484375" text="endRoom" />
-            <TableColumn fx:id="equipment" prefWidth="82.66668701171875" text="Equipment" />
+            <TableColumn fx:id="urgency" prefWidth="82.66668701171875" text="Urgency" />
             <TableColumn fx:id="reason" prefWidth="58.0" text="Reason" />
             <TableColumn fx:id="status" prefWidth="72.00003051757812" text="status" />
             <TableColumn fx:id="sendTo" minWidth="0.0" prefWidth="60.0" text="Contact" />

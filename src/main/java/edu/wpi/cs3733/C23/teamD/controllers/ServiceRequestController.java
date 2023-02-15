@@ -6,7 +6,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
 public class ServiceRequestController {
-
   @FXML MFXButton backButton;
 
   @FXML

@@ -8,7 +8,9 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tooltip;
+import org.controlsfx.control.PopOver;
 
 public class RootController {
 
@@ -87,5 +89,20 @@ public class RootController {
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
+
+    infoButton.setOnMouseClicked(event -> showCredits());
+  }
+
+  void showCredits() {
+    try {
+      final var resource = App.class.getResource("views/credits.fxml");
+      final FXMLLoader loader = new FXMLLoader(resource);
+      PopOver popover = new PopOver(loader.load());
+      popover.setArrowSize(0);
+      popover.setTitle("Credits");
+      popover.show(App.getPrimaryStage());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
