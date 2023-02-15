@@ -63,7 +63,7 @@ public class SanitationTable extends Application implements Initializable, Datab
   public void tablehandling() {
     sanitationTable.setEditable(true);
     ObservableList<SanitationRequest> requestList =
-        FXCollections.observableArrayList(FDdb.getInstance().getAllSanitationRequest());
+        FXCollections.observableArrayList(FDdb.getInstance().getAllSanitationRequests());
     if (requestList.size() != 0) {
       formID.setCellValueFactory(
           new PropertyValueFactory<SanitationRequest, Integer>("serviceRequestId"));

@@ -155,8 +155,19 @@ public class FDdb {
     return serviceRequestIDao.getAllPatientTransportRequests();
   }
 
-  public ArrayList<SanitationRequest> getAllSanitationRequest() {
+  public ArrayList<SanitationRequest> getAllSanitationRequests() {
     return serviceRequestIDao.getAllSanitationRequests();
+  }
+
+  public ArrayList<ComputerServiceRequest> getAllComputerServiceRequests() {
+    return serviceRequestIDao.getAllComputerRequests();
+  }
+
+  public ArrayList<SecurityServiceRequest> getAllSecurityServiceRequests() {
+    return serviceRequestIDao.getAllSecurityRequests();
+  }
+  public ArrayList<AVRequest> getAllAVRequests() {
+    return serviceRequestIDao.getAllAVRequests();
   }
 
   public void saveServiceRequest(ServiceRequest s) {

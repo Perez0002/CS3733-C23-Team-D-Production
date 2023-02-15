@@ -19,6 +19,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private ArrayList<PatientTransportRequest> patientTransportRequestList = new ArrayList<>();
   private ArrayList<SanitationRequest> sanitationRequestList = new ArrayList<>();
   private ArrayList<ComputerServiceRequest> computerServiceRequests = new ArrayList<>();
+  private ArrayList<SecurityServiceRequest> securityServiceRequests = new ArrayList<>();
+  private ArrayList<AVRequest> avRequests = new ArrayList<>();
 
   public ServiceRequestIDaoImpl() {
     this.refresh();
@@ -47,6 +49,20 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
           .findFirst()
           .orElse(null);
+    } else if (s instanceof SecurityServiceRequest) {
+      return this.securityServiceRequests.stream()
+              .filter(
+                      securityServiceRequest ->
+                              s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
+    } else if (s instanceof AVRequest) {
+      return this.avRequests.stream()
+              .filter(
+                      avRequest ->
+                              s.getServiceRequestId() == (avRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else {
       return this.masterList.stream()
           .filter(
@@ -69,6 +85,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.sanitationRequestList.add((SanitationRequest) s);
       } else if (s instanceof ComputerServiceRequest) {
         this.computerServiceRequests.add((ComputerServiceRequest) s);
+      } else if (s instanceof SecurityServiceRequest) {
+        this.securityServiceRequests.add((SecurityServiceRequest) s);
+      } else if (s instanceof AVRequest) {
+        this.avRequests.add((AVRequest) s);
       }
 
       this.masterList.add(s);
@@ -96,6 +116,12 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       } else if (s instanceof ComputerServiceRequest) {
         this.computerServiceRequests.remove(index);
         this.computerServiceRequests.add((ComputerServiceRequest) s);
+      } else if (s instanceof SecurityServiceRequest) {
+        this.securityServiceRequests.remove(index);
+        this.securityServiceRequests.add((SecurityServiceRequest) s);
+      } else if (s instanceof AVRequest) {
+        this.avRequests.remove(index);
+        this.avRequests.add((AVRequest) s);
       }
 
       int masterIndex =
@@ -131,12 +157,22 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     return this.computerServiceRequests;
   }
 
+  public ArrayList<SecurityServiceRequest> getAllSecurityRequests() {
+    return this.securityServiceRequests;
+  }
+
+  public ArrayList<AVRequest> getAllAVRequests() {
+    return this.avRequests;
+  }
+
   @Override
   public void refresh() {
     ArrayList<ServiceRequest> javaMasterList = new ArrayList<>();
     ArrayList<PatientTransportRequest> javaPatientTransportRequestList;
     ArrayList<SanitationRequest> javaSanitationRequestList;
     ArrayList<ComputerServiceRequest> javaComputerServiceRequestList;
+    ArrayList<SecurityServiceRequest> javaSecurityRequestList;
+    ArrayList<AVRequest> javaAVRequestList;
 
     session.beginTransaction();
     try {
@@ -157,15 +193,31 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   .createQuery(
                       "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
                   .getResultList();
+      javaSecurityRequestList =
+              (ArrayList<SecurityServiceRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
+                              .getResultList();
+      javaAVRequestList =
+              (ArrayList<AVRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM AVRequest p", AVRequest.class)
+                              .getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
       javaMasterList.addAll(javaSanitationRequestList);
       javaMasterList.addAll(javaComputerServiceRequestList);
+      javaMasterList.addAll(javaSecurityRequestList);
+      javaMasterList.addAll(javaAVRequestList);
 
       this.patientTransportRequestList = javaPatientTransportRequestList;
       this.sanitationRequestList = javaSanitationRequestList;
       this.computerServiceRequests = javaComputerServiceRequestList;
+      this.securityServiceRequests = javaSecurityRequestList;
+      this.avRequests = javaAVRequestList;
 
       this.masterList = javaMasterList;
 
@@ -190,6 +242,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.sanitationRequestList.remove(s);
       } else if (s instanceof ComputerServiceRequest) {
         this.computerServiceRequests.remove(s);
+      } else if (s instanceof SecurityServiceRequest) {
+        this.securityServiceRequests.remove(s);
+      } else if (s instanceof AVRequest) {
+        this.avRequests.remove(s);
       }
 
       this.masterList.remove(s);
@@ -229,6 +285,24 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                           == (s.getServiceRequestId()))
               .findFirst()
               .orElse(-1);
+    } else if (s instanceof SecurityServiceRequest) {
+      index =
+              IntStream.range(0, this.securityServiceRequests.size())
+                      .filter(
+                              i ->
+                                      this.securityServiceRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
+    } else if (s instanceof AVRequest) {
+      index =
+              IntStream.range(0, this.avRequests.size())
+                      .filter(
+                              i ->
+                                      this.avRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     }
 
     return index;
