@@ -254,24 +254,30 @@ public class MapEditorNodeController {
           node.getLocation().setShortName(shortNameTextField.getText());
           node.getLocation().setLocationType(typeTextField.getText());
 
-          if (database.getAllNodes().contains(node)) {
-            database.updateNode(node);
-          } else {
+          try {
+            System.out.println("UPDATED");
+            database.updateNodePK(node);
+          } catch (Exception e) {
+            e.printStackTrace();
             database.saveNode(node);
           }
 
-          if (database.getAllLocationNames().contains(node.getLocation())) {
+          try {
+            System.out.println("UPDATED LOCATION");
             database.updateLocationName(node.getLocation());
-          } else {
+          } catch (Exception e) {
+            e.printStackTrace();
             database.saveLocationName(node.getLocation());
           }
 
           ((Circle) anchor).setFill(Color.rgb(1, 58, 117));
           ((Circle) anchor).setCenterX(node.getXcoord());
           ((Circle) anchor).setCenterY(node.getYcoord());
-
-          list.get(node).makePopupDisappear();
-          list.remove(node, anchor);
+          if(list.get(node) != null)
+          {
+             list.get(node).makePopupDisappear();
+             list.remove(node, anchor);
+          }
         });
   }
 
