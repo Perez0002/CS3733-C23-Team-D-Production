@@ -52,7 +52,6 @@ public class MoveRequestTableController implements Initializable {
               FDdb.getInstance().getNode(locationBoxController.getNodeValue()).getLocation(),
               date);
       FDdb.getInstance().saveMove(move);
-      tablehandling();
     } else {
       errorText.setVisible(true);
     }
