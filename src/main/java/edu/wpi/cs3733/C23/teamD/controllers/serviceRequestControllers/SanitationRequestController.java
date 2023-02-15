@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.C23.teamD.controllers;
+package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
 import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
@@ -49,8 +49,7 @@ public class SanitationRequestController {
               fieldLocationController.getNodeValue(),
               fieldReason.getText(),
               i,
-              staffIDTextField.getText(),
-              SanitationRequest.Status.BLANK);
+              staffIDTextField.getText());
       FDdb.getInstance().saveServiceRequest(requestData);
 
       textHelp.setVisible(false);

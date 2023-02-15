@@ -2,6 +2,8 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /*
 PatientTransportData
@@ -12,11 +14,10 @@ creates an entity object containing data for use on frontend PatientTransport UI
 public class PatientTransportRequest extends ServiceRequest {
 
   // Attributes of PatientTransportData class
-
-  private String startRoom;
-  private String endRoom;
-  private String equipment; // equipment necessary based on form contents
-  private String patientID;
+  @Getter @Setter private String startRoom;
+  @Getter @Setter private String endRoom;
+  @Getter @Setter private String urgency;
+  //  private String patientID;
 
   /*
   PatientTransportData()
@@ -27,44 +28,34 @@ public class PatientTransportRequest extends ServiceRequest {
   submit() is called
   */
   public PatientTransportRequest(
-      String patientID,
-      String startRoom,
-      String endRoom,
-      String equipment,
-      String reason,
-      String sendTo,
-      Status stat) {
-    super(sendTo, stat, reason, "PatientTransportData");
-    this.patientID = patientID;
+      String startRoom, String endRoom, String reason, String sendTo, String urgency) {
+    super(sendTo, reason, "PatientTransportData");
     this.endRoom = endRoom;
-    this.equipment = equipment;
     this.startRoom = startRoom;
+    this.urgency = urgency;
   }
 
   public PatientTransportRequest(
       int serviceId,
-      String patientID,
       String startRoom,
       String endRoom,
-      String equipment,
       String reason,
       String sendTo,
-      Status stat,
+      String urgency,
       Date date) {
-    super(serviceId, sendTo, stat, reason, "PatientTransportData", date);
-    this.patientID = patientID;
+    super(serviceId, sendTo, reason, "PatientTransportData", date);
     this.endRoom = endRoom;
-    this.equipment = equipment;
     this.startRoom = startRoom;
+    this.urgency = urgency;
   }
 
   public PatientTransportRequest() { // should endRoom be in the constructor
     super();
-    this.endRoom = null;
-    this.equipment = null;
     this.startRoom = "";
     this.endRoom = "";
+    this.urgency = "";
   }
+
   /*
   printInformation()
   @param void
@@ -74,7 +65,6 @@ public class PatientTransportRequest extends ServiceRequest {
   public void printInformation() { // for debugging purposes
     System.out.println("The patientID is " + this.getServiceRequestId());
     System.out.println("The endRoom " + this.endRoom);
-    System.out.println("The equipment required is " + this.equipment);
     System.out.println("The reason is " + this.getReason());
     System.out.println("sendTo contacts: " + (this.getAssociatedStaff()));
     System.out.println("The startRoom is " + this.startRoom);
@@ -87,35 +77,4 @@ public class PatientTransportRequest extends ServiceRequest {
   each get function returns a String containing information from PatientTransportData object
   */
 
-  public String getStartRoom() {
-    return startRoom;
-  }
-
-  public String getEquipment() {
-    return equipment;
-  }
-
-  public void setStartRoom(String startRoom) {
-    this.startRoom = startRoom;
-  }
-
-  public void setEndRoom(String endRoom) {
-    this.endRoom = endRoom;
-  }
-
-  public void setEquipment(String equipment) {
-    this.equipment = equipment;
-  }
-
-  public String getEndRoom() {
-    return endRoom;
-  }
-
-  public String getPatientID() {
-    return patientID;
-  }
-
-  public void setPatientID(String patientID) {
-    this.patientID = patientID;
-  }
 }

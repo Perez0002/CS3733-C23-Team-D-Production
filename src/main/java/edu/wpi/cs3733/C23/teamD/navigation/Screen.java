@@ -7,15 +7,19 @@ public enum Screen {
   DATABASE_EDIT("views/DBApp.fxml"),
   MAP_EDITOR("views/MapEditor.fxml"),
   PATIENT_TRANSPORT_REQUEST("views/InternalPatientTransportationRequestForm.fxml"),
-  SANITATION_FORM("views/SanitationRequestForm.fxml"),
+  SANITATION_FORM("views/SanitationRequestVBox.fxml"),
   PATHFINDING_REQUEST("views/PathfindingRequestForm.fxml"),
   PATIENT_TRANSPORT_TABLE("views/PatientTransportTable.fxml"),
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
   LOGIN_PAGE("views/LoginPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
+
+  DATABASE_HUB("views/DatabaseHub.fxml"),
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
   REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
-  SERVICE_TABLE("views/ServiceRequestTable.fxml");
+  SERVICE_TABLE("views/ServiceRequestTable.fxml"),
+  PROFILE_PAGE("views/ProfilePage.fxml");
+
   private final String filename;
 
   Screen(String filename) {

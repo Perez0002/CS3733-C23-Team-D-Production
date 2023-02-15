@@ -5,6 +5,7 @@ import edu.wpi.cs3733.C23.teamD.entities.Move;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.entities.PastMoves;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import org.hibernate.Session;
 
@@ -109,7 +110,7 @@ public class NodeIDaoImpl implements IDao<Node> {
 
     session.beginTransaction();
     try {
-      Query q2 = session.createQuery("DELETE Node where id=:id");
+      Query q2 = session.createQuery("DELETE Node where nodeID=:id");
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();
@@ -146,5 +147,60 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
 
     this.delete(oldNode);
+  }
+
+  @Override
+  public void uploadCSV(Node node) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv"));
+      session.beginTransaction();
+      org.hibernate.query.Query query = session.createQuery("DELETE FROM Edge");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM Move");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM LocationName ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM Node");
+      query.executeUpdate();
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        Node n = new Node();
+        n.setNodeID(data[0]);
+        n.setXcoord(Integer.parseInt(data[1]));
+        n.setYcoord(Integer.parseInt(data[2]));
+        n.setFloor(data[3]);
+        n.setBuilding(data[4]);
+        FDdb.getInstance().saveNode(n);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(Node node) {
+    try {
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Node.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
+      for (Node n : this.nodes) {
+        String oneObject =
+            String.join(
+                ",",
+                n.getNodeID(),
+                String.format("%04d", n.getXcoord()),
+                String.format("%04d", n.getYcoord()),
+                n.getFloor(),
+                n.getBuilding());
+        fileWriter.write(oneObject + "\n");
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
