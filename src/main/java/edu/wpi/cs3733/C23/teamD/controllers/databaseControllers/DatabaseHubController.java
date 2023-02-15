@@ -44,6 +44,7 @@ public class DatabaseHubController {
   public void initialize() {
     createHubMap();
     currentController = ServiceRequestTableBorderPane;
+    switchVBox(SERVICE_REQUEST);
     serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST));
     nodeTableButton.setOnMouseClicked(event -> switchVBox(NODE_TABLE));
     edgeTableButton.setOnMouseClicked(event -> switchVBox(EDGES_TABLE));
