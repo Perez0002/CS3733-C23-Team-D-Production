@@ -6,8 +6,18 @@ CREATE TABLE teamdSchema.Move();
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public
 
 delete from employee;
-insert into employee (firstname, lastname, password, username, employeetype) values ('Wilson', 'Wong', 'password', 'wwong2', 'ADMIN');
-insert into employee (firstname, lastname, password, username, employeetype) values ('Ari', 'Schecter', 'password', 'ari', 'ADMIN');
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Wong Paradise', 'wwong2@wpi.edu', 'ADMIN', 'Wilson', 'Wong', 'password', 9999555955, 'wwong2');
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'SAE House', 'aschecter@wpi.edu', 'ADMIN', 'Ari', 'Schecter', 'password', 9999555955, 'ari');
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Cowboy House', 'bclukens@wpi.edu', 'ADMIN', 'Bryce', 'Lukens', 'password', 9999555955, 'bryce');
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Cowboy House', 'lperez@wpi.edu', 'ADMIN', 'Liv', 'Perez', 'password', 9999555955, 'liv');
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'aralbuquerque@wpi.edu', 'STAFF', 'Abby', 'Albuquerque', 'password', 9999555955, 'abby');
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'azimmerman@wpi.edu', 'STAFF', 'Annie', 'Zimmerman', 'password', 9999555955, 'annie');
 
 /*
 drop table Move;

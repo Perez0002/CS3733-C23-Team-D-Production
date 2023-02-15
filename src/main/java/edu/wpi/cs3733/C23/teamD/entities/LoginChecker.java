@@ -8,7 +8,6 @@ import java.util.Set;
 public class LoginChecker {
   private String username;
   private String password;
-
   private int accessLevel;
 
   public LoginChecker(String username, String password) {
@@ -33,6 +32,7 @@ public class LoginChecker {
     Hashtable<String, String> employeeAccessLevel = new Hashtable<String, String>();
     ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
     for (Employee e : employees) {
+      String username = e.getUsername();
       String accessLevel = e.getEmployeeType();
       employeeAccessLevel.put(username, accessLevel);
     }
@@ -48,14 +48,12 @@ public class LoginChecker {
       if (s.equals(username)) {
         if (password.equals(employeeInfo.get(s))) {
           CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-          if (userAccessLevelInfo.get(s).equals("ADMIN")) {
-            currentUser.setAccessLevel(2);
+          if (userAccessLevelInfo.get(s).equals("ADMIN")) {currentUser.setAccessLevel(2);
             currentUser.setUsername(username);
-            return true;
           } else {
             currentUser.setAccessLevel(1);
-            return true;
           }
+          return true;
         }
       }
     }
