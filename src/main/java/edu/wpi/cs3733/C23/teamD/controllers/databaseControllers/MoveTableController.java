@@ -2,6 +2,8 @@ package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
 
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -24,6 +26,11 @@ public class MoveTableController extends Application implements Initializable, D
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
+
+  @FXML
+  public void openMoveRequest() {
+    Navigation.navigate(Screen.MOVES_TABLE);
+  }
 
   public static void main(String[] args) {
     launch(args);

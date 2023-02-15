@@ -46,8 +46,8 @@ public class DatabaseHubController {
     serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST));
     nodeTableButton.setOnMouseClicked(event -> switchVBox(NODE_TABLE));
     edgeTableButton.setOnMouseClicked(event -> switchVBox(EDGES_TABLE));
-    // moveTableButton.setOnMouseClicked(event -> switchVBox(MOVE_TABLE));
-    moveTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
+    moveTableButton.setOnMouseClicked(event -> switchVBox(MOVE_TABLE));
+    // moveTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
     locationTableButton.setOnMouseClicked(event -> switchVBox(LOCATION_TABLE));
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
