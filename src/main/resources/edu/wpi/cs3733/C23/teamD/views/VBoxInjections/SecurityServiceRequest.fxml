@@ -16,29 +16,26 @@
         </Label>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
             <children>
-                <HBox>
+
+                <VBox fx:id="staffDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Staff">
+                        <VBox.margin>
+                            <Insets left="5.0" />
+                        </VBox.margin>
+                    </Label>
+                    <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+                </VBox>
+                <VBox fx:id="locationDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <VBox fx:id="staffDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Staff">
-                                <VBox.margin>
-                                    <Insets left="5.0" />
-                                </VBox.margin>
-                            </Label>
-                            <fx:include fx:id="employeeBox" source="Components/EmployeeDropdownComboBox.fxml" />
-                        </VBox>
-                        <VBox fx:id="locationDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                            <children>
-                                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
-                                    <VBox.margin>
-                                        <Insets left="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <fx:include fx:id="locationBox" source="Components/RoomPickComboBox.fxml" />
-                            </children>
-                        </VBox>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
                     </children>
-                </HBox>
-                <HBox>
+                </VBox>
+                <HBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
                         <VBox alignment="CENTER" prefHeight="119.0" prefWidth="140.0">
                             <children>
@@ -47,7 +44,7 @@
                                         <Insets left="5.0" />
                                     </VBox.margin>
                                 </Label>
-                        <MFXCheckbox fx:id="addSecurityNode" />
+                                <MFXCheckbox fx:id="addSecurityNode" />
                             </children>
                         </VBox>
                         <VBox alignment="CENTER">
@@ -57,7 +54,7 @@
                                         <Insets left="5.0" />
                                     </VBox.margin>
                                 </Label>
-                        <MFXCheckbox fx:id="addRequestSecurityNode" />
+                                <MFXCheckbox fx:id="addRequestSecurityNode" />
                             </children>
                         </VBox>
                         <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -67,10 +64,16 @@
                                         <Insets left="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <fx:include fx:id="urgencyBox" source="Components/UrgencySelectorBox.fxml" />
+                                <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
                             </children>
+                     <HBox.margin>
+                        <Insets top="4.0" />
+                     </HBox.margin>
                         </VBox>
                     </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
                 </HBox>
             </children>
         </VBox>
@@ -81,7 +84,7 @@
                         <Insets left="5.0" />
                     </VBox.margin>
                 </Label>
-                <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" styleClass="serviceRequestMFXTextField" />
+                <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
             </children>
         </VBox>
     </children>
