@@ -49,8 +49,7 @@ public class SanitationRequestController {
               fieldLocationController.getNodeValue(),
               fieldReason.getText(),
               i,
-              staffIDTextField.getText(),
-              SanitationRequest.Status.BLANK);
+              staffIDTextField.getText());
       FDdb.getInstance().saveServiceRequest(requestData);
 
       textHelp.setVisible(false);

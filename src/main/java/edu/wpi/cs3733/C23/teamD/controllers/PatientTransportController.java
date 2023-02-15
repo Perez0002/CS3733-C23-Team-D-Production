@@ -50,14 +50,12 @@ public class PatientTransportController {
       // debugging purposes
       PatientTransportRequest patientInformation =
           new PatientTransportRequest(
-              patientID.getText(),
               // startNode???
               "L1X2255Y0849",
               endRoomController.getNodeValue(),
               checkSelectedEquipment(),
               reason.getText(), // sendTo.getText().split(";"),
-              sendTo.getText(),
-              PatientTransportRequest.Status.BLANK); // creates PatientTransportData object
+              sendTo.getText()); // creates PatientTransportData object
       FDdb.getInstance().saveServiceRequest(patientInformation);
       // patientInformation.printInformation(); // for debeugging purposes
       submittedFormText.setVisible(true);
