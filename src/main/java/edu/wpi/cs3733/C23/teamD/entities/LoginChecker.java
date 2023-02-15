@@ -15,48 +15,47 @@ public class LoginChecker {
     this.password = password;
   }
 
-  // Returns a hashtable of username and passwords in database
-  public Hashtable<String, String> exisitngUserInfo() {
-    Hashtable<String, String> employeeInfo = new Hashtable<String, String>();
+  // Returns a hashtable of employee information and username
+  public Hashtable<Employee, String> exisitngUserInfo() {
+    Hashtable<Employee, String> employeeInfo = new Hashtable<Employee, String>();
     ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
     for (Employee e : employees) {
       String username = e.getUsername();
-      String password = e.getPassword();
-      employeeInfo.put(username, password);
+      employeeInfo.put(e, username);
     }
     return employeeInfo;
   }
 
-  // Returns a hashtable of username and accessLevels in database
-  public Hashtable<String, String> userAccessLevel() {
-    Hashtable<String, String> employeeAccessLevel = new Hashtable<String, String>();
-    ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
-    for (Employee e : employees) {
-      String username = e.getUsername();
-      String accessLevel = e.getEmployeeType();
-      employeeAccessLevel.put(username, accessLevel);
-    }
-    return employeeAccessLevel;
-  }
-
   public boolean setAccessLevel() {
-    Hashtable<String, String> employeeInfo = exisitngUserInfo();
-    Hashtable<String, String> userAccessLevelInfo = userAccessLevel();
-    Set<String> usernames = employeeInfo.keySet();
+    Hashtable<Employee, String> employeeInfo = exisitngUserInfo();
+    Set<Employee> employee = employeeInfo.keySet();
+
     // looks through each username if exists, check if correct password
-    for (String s : usernames) {
-      if (s.equals(username)) {
-        if (password.equals(employeeInfo.get(s))) {
+    for (Employee s : employee) {
+      if (s.getUsername().equals(username)) {
+        if (s.getPassword().equals(password)) {
           CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-          if (userAccessLevelInfo.get(s).equals("ADMIN")) {currentUser.setAccessLevel(2);
-            currentUser.setUsername(username);
+          if (s.getEmployeeType().equals("ADMIN")) {
+            currentUser.setAccessLevel(2);
+            setCurrentUserInfo(s, currentUser);
           } else {
             currentUser.setAccessLevel(1);
+            setCurrentUserInfo(s, currentUser);
           }
           return true;
         }
       }
     }
     return false;
+  }
+
+  private void setCurrentUserInfo(Employee s, CurrentUser currentUser) {
+    currentUser.setUsername(username);
+    currentUser.setFirstName(s.getFirstName());
+    currentUser.setLastName(s.getLastName());
+    currentUser.setEmail(s.getEmail());
+    currentUser.setPhoneNumber(s.getPhoneNumber());
+    currentUser.setAddress(s.getAddress());
+    currentUser.setBirthday(s.getBirthday());
   }
 }

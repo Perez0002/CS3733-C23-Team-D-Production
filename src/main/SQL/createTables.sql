@@ -3,7 +3,7 @@ CREATE TABLE teamdSchema.Node();
 CREATE TABLE teamdSchema.LocationName();
 CREATE TABLE teamdSchema.Move();
 
-ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public
+ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 
 delete from employee;
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
@@ -18,6 +18,12 @@ insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FI
 values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'aralbuquerque@wpi.edu', 'STAFF', 'Abby', 'Albuquerque', 'password', 9999555955, 'abby');
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
 values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'azimmerman@wpi.edu', 'STAFF', 'Annie', 'Zimmerman', 'password', 9999555955, 'annie');
+
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'admin@wpi.edu', 'ADMIN', 'Admin', 'Admin', 'password', 9999555955, 'admin');
+
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER, USERNAME)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff@wpi.edu', 'STAFF', 'Staff', 'Staff', 'password', 9999555955, 'staff');
 
 /*
 drop table Move;
