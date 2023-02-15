@@ -52,6 +52,7 @@ public class ComputerServiceRequestController extends ServiceRequestController
               deviceTypeBox.getText(),
               locationBox.getText());
       FDdb.getInstance().saveServiceRequest(computerServiceRequest);
+
       return true;
     }
     return false;
@@ -63,7 +64,11 @@ public class ComputerServiceRequestController extends ServiceRequestController
   }
 
   // TODO: set the rest to clear
-  void clearComputerForms() {
+  public void clearComputerForms() {
     deviceTypeBox.clearSelection();
+    urgencyBox.clearSelection();
+    locationBox.clearSelection();
+    descriptionBox.clear();
+    employeeBox.clearSelection();
   }
 }
