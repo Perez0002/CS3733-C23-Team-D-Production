@@ -10,3 +10,9 @@
 .table-view .scroll-bar .thumb {
     -fx-background-color: lightblue;
 }
+
+.Button { /* defines the format for the submit button */
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}

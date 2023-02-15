@@ -1,12 +1,16 @@
 package edu.wpi.cs3733.C23.teamD.databasesubsystem;
 
+import edu.wpi.cs3733.C23.teamD.entities.*;
+import edu.wpi.cs3733.C23.teamD.entities.ComputerServiceRequest;
 import edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
+import org.hibernate.TransactionException;
 
 public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private final Session session = DBSingleton.getSession();
@@ -14,6 +18,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private ArrayList<ServiceRequest> masterList = new ArrayList<>();
   private ArrayList<PatientTransportRequest> patientTransportRequestList = new ArrayList<>();
   private ArrayList<SanitationRequest> sanitationRequestList = new ArrayList<>();
+  private ArrayList<ComputerServiceRequest> computerServiceRequests = new ArrayList<>();
 
   public ServiceRequestIDaoImpl() {
     this.refresh();
@@ -33,6 +38,13 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
           .filter(
               sanitationRequest ->
                   s.getServiceRequestId() == (sanitationRequest.getServiceRequestId()))
+          .findFirst()
+          .orElse(null);
+    } else if (s instanceof ComputerServiceRequest) {
+      return this.computerServiceRequests.stream()
+          .filter(
+              computerServiceRequest ->
+                  s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
           .findFirst()
           .orElse(null);
     } else {
@@ -55,6 +67,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.patientTransportRequestList.add((PatientTransportRequest) s);
       } else if (s instanceof SanitationRequest) {
         this.sanitationRequestList.add((SanitationRequest) s);
+      } else if (s instanceof ComputerServiceRequest) {
+        this.computerServiceRequests.add((ComputerServiceRequest) s);
       }
 
       this.masterList.add(s);
@@ -79,6 +93,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       } else if (s instanceof SanitationRequest) {
         this.sanitationRequestList.remove(index);
         this.sanitationRequestList.add((SanitationRequest) s);
+      } else if (s instanceof ComputerServiceRequest) {
+        this.computerServiceRequests.remove(index);
+        this.computerServiceRequests.add((ComputerServiceRequest) s);
       }
 
       int masterIndex =
@@ -92,6 +109,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       this.masterList.add(s);
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -109,11 +127,16 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     return this.sanitationRequestList;
   }
 
+  public ArrayList<ComputerServiceRequest> getAllComputerRequests() {
+    return this.computerServiceRequests;
+  }
+
   @Override
   public void refresh() {
     ArrayList<ServiceRequest> javaMasterList = new ArrayList<>();
     ArrayList<PatientTransportRequest> javaPatientTransportRequestList;
     ArrayList<SanitationRequest> javaSanitationRequestList;
+    ArrayList<ComputerServiceRequest> javaComputerServiceRequestList;
 
     session.beginTransaction();
     try {
@@ -128,14 +151,26 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
               session
                   .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
                   .getResultList();
+      javaComputerServiceRequestList =
+          (ArrayList<ComputerServiceRequest>)
+              session
+                  .createQuery(
+                      "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
+                  .getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
       javaMasterList.addAll(javaSanitationRequestList);
+      javaMasterList.addAll(javaComputerServiceRequestList);
+
+      this.patientTransportRequestList = javaPatientTransportRequestList;
+      this.sanitationRequestList = javaSanitationRequestList;
+      this.computerServiceRequests = javaComputerServiceRequestList;
 
       this.masterList = javaMasterList;
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -144,7 +179,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public void delete(ServiceRequest s) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE ServiceRequest where id=:id");
+      Query q = session.createQuery("DELETE ServiceRequest where serviceRequestId=:id");
       q.setParameter("id", s.getServiceRequestId());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
@@ -153,11 +188,14 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.patientTransportRequestList.remove(s);
       } else if (s instanceof SanitationRequest) {
         this.sanitationRequestList.remove(s);
+      } else if (s instanceof ComputerServiceRequest) {
+        this.computerServiceRequests.remove(s);
       }
 
       this.masterList.remove(s);
 
-    } catch (Exception ex) {
+    } catch (TransactionException ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -182,8 +220,53 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                           == (s.getServiceRequestId()))
               .findFirst()
               .orElse(-1);
+    } else if (s instanceof ComputerServiceRequest) {
+      index =
+          IntStream.range(0, this.computerServiceRequests.size())
+              .filter(
+                  i ->
+                      this.computerServiceRequests.get(i).getServiceRequestId()
+                          == (s.getServiceRequestId()))
+              .findFirst()
+              .orElse(-1);
     }
 
     return index;
+  }
+
+  @Override
+  public void uploadCSV(ServiceRequest serv) {
+    try {
+      BufferedReader fileReader =
+          new BufferedReader(
+              new FileReader(
+                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM ServiceRequest");
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        ServiceRequest sans = new ServiceRequest();
+        FDdb.getInstance().saveServiceRequest(sans);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void downloadCSV(ServiceRequest serv) {
+    try {
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
+      for (SanitationRequest s : this.sanitationRequestList) {
+        fileWriter.write("");
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

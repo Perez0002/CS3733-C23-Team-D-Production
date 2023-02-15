@@ -53,8 +53,8 @@ public class RootController {
   }
 
   @FXML
-  public void openLoginPage() throws IOException {
-    App.getRootPane().setTop(null);
+  public void openLoginPage() {
+    App.getRootPane().setLeft(null);
     Navigation.navigate(Screen.LOGIN_PAGE);
   }
 
@@ -73,7 +73,7 @@ public class RootController {
     pathfindingButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_REQUEST));
     pathfindingButton.setTooltip(new Tooltip("Get Directions"));
 
-    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_EDITOR));
+    dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     dbButton.setTooltip(new Tooltip("Database Editors"));
 
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
@@ -85,7 +85,7 @@ public class RootController {
     infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     infoButton.setTooltip(new Tooltip("Information"));
 
-    logOutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
+    logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
   }
 }

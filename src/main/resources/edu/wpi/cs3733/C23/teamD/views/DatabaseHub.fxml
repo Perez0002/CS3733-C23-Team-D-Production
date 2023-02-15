@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.DatabaseHubController">
+    <center>
+        <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+            <BorderPane.margin>
+                <Insets bottom="75.0" left="25.0" top="75.0" />
+            </BorderPane.margin>
+            <children>
+                <Label fx:id="hubLabel" maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" text="Database Hub">
+                    <VBox.margin>
+                        <Insets left="5.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="600.0" spacing="3.0" styleClass="tabHBox">
+                    <children>
+                        <MFXButton fx:id="serviceTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="159.0" styleClass="tabButton" text="Service Requests" />
+                        <MFXButton fx:id="nodeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Node" />
+                        <MFXButton fx:id="edgeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Edge" />
+                        <MFXButton fx:id="moveTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Move" />
+                        <MFXButton fx:id="locationTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Location" />
+                    </children>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+                </HBox>
+                <Pane fx:id="requestFormHubPane" maxWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" />
+                <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
+                    <children>
+                  <BorderPane prefHeight="45.0" prefWidth="483.0">
+                     <left>
+                        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <MFXButton fx:id="DownloadButton" onAction="#downloadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
+                                 <HBox.margin>
+                                    <Insets right="25.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <FontIcon iconColor="#fffdfd" iconLiteral="fltfal-cloud-download-24" iconSize="30" wrappingWidth="20.0" />
+                                 </graphic>
+                              </MFXButton>
+                              <MFXButton fx:id="UploadButton" onAction="#uploadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fltfal-cloud-backup-24" iconSize="30" wrappingWidth="20.0" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin>
+                              </MFXButton>
+                           </children>
+                        </HBox>
+                     </left>
+                  </BorderPane>
+                        <MFXButton fx:id="cancelButton" prefHeight="45.0" prefWidth="80.0" styleClass="cancelButton" stylesheets="@updatedStyleGuide.css" text="Cancel" />
+                        <MFXButton fx:id="submitButton" prefHeight="45.0" prefWidth="80.0" styleClass="submitButton" stylesheets="@updatedStyleGuide.css" text="Submit" />
+                    </children>
+                </HBox>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </VBox>
+    </center>
+    <right>
+        <BorderPane maxWidth="-Infinity" prefHeight="1080.0" prefWidth="700.0" BorderPane.alignment="TOP_RIGHT">
+            <BorderPane.margin>
+                <Insets left="20.0" right="25.0" />
+            </BorderPane.margin>
+         <center>
+            <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-border-color: #012D5A; -fx-border-width: 5;" BorderPane.alignment="CENTER" />
+         </center></BorderPane>
+    </right>
+</BorderPane>
