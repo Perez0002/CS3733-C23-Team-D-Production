@@ -45,6 +45,15 @@ public class Node {
     this.nodeEdges = new ArrayList<Edge>();
   }
 
+  public Node(Node n) {
+    this.nodeID = n.getNodeID();
+    this.xcoord = n.getXcoord();
+    this.ycoord = n.getYcoord();
+    this.floor = n.getFloor();
+    this.building = n.getBuilding();
+    this.nodeEdges = new ArrayList<Edge>();
+  }
+
   public List<Move> getMoves() {
     return moves;
   }

@@ -8,8 +8,8 @@ import javafx.scene.shape.Circle;
 
 public class MapNodeFactory {
 
-  private int xPos;
-  private int yPos;
+  private double xPos;
+  private double yPos;
   private int radius;
   private EventHandler<MouseEvent> onClick;
   private EventHandler<MouseEvent> onMouseEnter;
@@ -46,7 +46,7 @@ public class MapNodeFactory {
    */
   public static MapNodeFactory startPathBuild() {
     final MapNodeFactory returnable = new MapNodeFactory();
-    returnable.color(Color.rgb(01, 58, 117)).radius(10);
+    returnable.color(Color.rgb(01, 58, 117)).radius(16);
     return returnable;
   }
 
@@ -54,7 +54,7 @@ public class MapNodeFactory {
    * @param xPos X Position of the center of the Pane
    * @return a MapNodeFactory with these settings
    */
-  public MapNodeFactory posX(int xPos) {
+  public MapNodeFactory posX(double xPos) {
     this.xPos = xPos;
     return this;
   }
@@ -63,7 +63,7 @@ public class MapNodeFactory {
    * @param yPos Y Position of the center of the Pane
    * @return a MapNodeFactory with these settings
    */
-  public MapNodeFactory posY(int yPos) {
+  public MapNodeFactory posY(double yPos) {
     this.yPos = yPos;
     return this;
   }

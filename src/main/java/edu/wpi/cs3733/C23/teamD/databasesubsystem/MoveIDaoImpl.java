@@ -47,8 +47,9 @@ public class MoveIDaoImpl implements IDao<Move> {
   public void update(Move m) {
     session.beginTransaction();
     try {
+      //      this.delete(m);
+      //      this.save(m);
       session.merge(m);
-      session.getTransaction().commit();
 
       int index =
           IntStream.range(0, this.moves.size())
@@ -56,8 +57,8 @@ public class MoveIDaoImpl implements IDao<Move> {
               .findFirst()
               .orElse(-1);
 
-      this.moves.remove(index);
-      this.moves.add(m);
+      //      this.moves.remove(index);
+      //      this.moves.add(m);
 
     } catch (Exception ex) {
       session.getTransaction().rollback();
