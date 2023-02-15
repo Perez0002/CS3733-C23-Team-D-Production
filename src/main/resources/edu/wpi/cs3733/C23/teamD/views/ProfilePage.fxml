@@ -53,7 +53,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXButton fx:id="viewPassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" style="-fx-alignment: left;" text="View Password" />
+                                    <MFXButton fx:id="viewPassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" style="-fx-text-alignment: left;" text="View Password" />
                                     <MFXButton fx:id="changePassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Password" />
                                  </children>
                               </VBox>
