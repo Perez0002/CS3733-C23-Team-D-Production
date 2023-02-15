@@ -273,10 +273,9 @@ public class MapEditorNodeController {
           ((Circle) anchor).setFill(Color.rgb(1, 58, 117));
           ((Circle) anchor).setCenterX(node.getXcoord());
           ((Circle) anchor).setCenterY(node.getYcoord());
-          if(list.get(node) != null)
-          {
-             list.get(node).makePopupDisappear();
-             list.remove(node, anchor);
+          if (list.get(node) != null) {
+            list.get(node).makePopupDisappear();
+            list.remove(node, anchor);
           }
         });
   }

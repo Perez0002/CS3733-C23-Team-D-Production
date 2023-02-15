@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.controllers.pathfinding;
 import static edu.wpi.cs3733.C23.teamD.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
+import edu.wpi.cs3733.C23.teamD.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -69,6 +70,16 @@ public class MapEditorPageController {
             // Turn this Pane to red
             tempPane = n;
           }
+        }
+
+        if (tempPane == null) {
+          tempPane =
+              MapNodeFactory.startPathBuild()
+                  .posX(event.getX())
+                  .posY(event.getY())
+                  .nodeID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
+                  .build();
+          anchor.getChildren().add(tempPane);
         }
 
         if (!activePopups.containsKey(node)) {
@@ -185,6 +196,18 @@ public class MapEditorPageController {
                         return paneExitFunction(node);
                       })
                   .build(floor);
+          gesturePane
+              .getContent()
+              .setOnMouseClicked(
+                  e -> {
+                    if (e.getClickCount() >= 2) {
+                      Node tempNode = new Node();
+                      tempNode.setXcoord((int) e.getX());
+                      tempNode.setYcoord((int) e.getY());
+                      tempNode.setLocation(new LocationName());
+                      paneClickFunction(tempNode).handle(e);
+                    }
+                  });
           mapPlacement.setCenter(gesturePane);
           currentFloor = floor;
         }
