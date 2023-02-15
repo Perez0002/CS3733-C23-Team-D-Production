@@ -56,14 +56,6 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   }
 
   @Override
-  public void clearTransportForms() {}
-
-  @Override
-  public boolean submit() {
-    return false;
-  }
-
-  @Override
   public Node getVBox() {
     return null;
   }
