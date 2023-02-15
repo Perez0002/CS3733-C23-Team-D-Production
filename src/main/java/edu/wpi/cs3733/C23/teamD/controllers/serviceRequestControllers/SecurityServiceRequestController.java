@@ -9,17 +9,19 @@ import edu.wpi.cs3733.C23.teamD.entities.SecurityServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXCircleToggleNode;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 
-public class SecurityServiceRequestController extends ServiceRequestController {
-  @FXML private Parent staffDropdownBox;
-  @FXML private EmployeeDropdownComboBoxController staffDropdownBoxController;
-  @FXML private Parent locationDropdownBox;
+public class SecurityServiceRequestController extends ServiceRequestController
+    implements ServiceRequestVBoxController {
+  @FXML private Parent employeeBox;
+  @FXML private EmployeeDropdownComboBoxController employeeBoxController;
+  @FXML private Parent locationBox;
 
-  @FXML private RoomPickComboBoxController locationDropdownBoxController;
+  @FXML private RoomPickComboBoxController locationBoxController;
 
-  @FXML private Parent urgencyDropdownBox;
-  @FXML private UrgencySelectorBoxController urgencyDropdownBoxController;
+  @FXML private Parent urgencyBox;
+  @FXML private UrgencySelectorBoxController urgencyBoxController;
   @FXML private MFXCircleToggleNode addSecurityNode;
   @FXML private MFXCircleToggleNode addRequestSecurityNode;
   @FXML private MFXTextField problemTextField;
@@ -30,7 +32,14 @@ public class SecurityServiceRequestController extends ServiceRequestController {
     // TODO temp
   }
 
-  public void submit() {
+  public void clearFields() {
+    employeeBoxController.clearForm();
+    locationBoxController.clearForm();
+    urgencyBoxController.clearForm();
+    this.problemTextField.clear();
+  }
+
+  public boolean submit() {
     String typeOfRequest = "";
     if (addSecurityNode.isFocused()) {
       typeOfRequest = "Add Security";
@@ -41,9 +50,20 @@ public class SecurityServiceRequestController extends ServiceRequestController {
     SecurityServiceRequest securityServiceRequest =
         new SecurityServiceRequest(
             typeOfRequest,
-            urgencyDropdownBoxController.getEmployeeName(),
-            staffDropdownBoxController.getEmployeeName(),
+            urgencyBoxController.getEmployeeName(),
+            employeeBoxController.getEmployeeName(),
             problemTextField.getText());
-    FDdb.getInstance().saveServiceRequest(securityServiceRequest);
+    try {
+      FDdb.getInstance().saveServiceRequest(securityServiceRequest);
+      return true;
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      return false;
+    }
+  }
+
+  @Override
+  public Node getVBox() {
+    return null;
   }
 }
