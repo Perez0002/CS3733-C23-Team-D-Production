@@ -9,6 +9,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -32,6 +33,7 @@ public class MoveRequestTableController implements Initializable {
   @FXML private RoomPickComboBoxController nodeBoxController;
   @FXML private Parent locationBox;
   @FXML private RoomPickComboBoxController locationBoxController;
+  @FXML private Text errorText;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -40,8 +42,26 @@ public class MoveRequestTableController implements Initializable {
 
   @FXML
   public void submit() {
-    System.out.println(locationBoxController.getLocationName());
-    System.out.println(nodeBoxController.getNodeValue());
+    if (checkFields()) {
+      errorText.setVisible(false);
+      ZoneId defaultZoneId = ZoneId.systemDefault();
+      Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
+      Move move =
+          new Move(
+              FDdb.getInstance().getNode(nodeBoxController.getNodeValue()),
+              FDdb.getInstance().getNode(locationBoxController.getNodeValue()).getLocation(),
+              date);
+      FDdb.getInstance().saveMove(move);
+      tablehandling();
+    } else {
+      errorText.setVisible(true);
+    }
+  }
+
+  private boolean checkFields() {
+    return !(datePicker.getValue() == null
+        || nodeBoxController.getNodeValue().isEmpty()
+        || locationBoxController.getLocationName().isEmpty());
   }
 
   @FXML
@@ -51,6 +71,7 @@ public class MoveRequestTableController implements Initializable {
 
   @FXML
   public void clearFields() {
+    errorText.setVisible(false);
     nodeBoxController.clearForm();
     locationBoxController.clearForm();
     datePicker.clear();
