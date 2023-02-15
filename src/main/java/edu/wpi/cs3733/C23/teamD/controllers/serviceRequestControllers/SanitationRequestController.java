@@ -28,7 +28,7 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   @FXML private RoomPickComboBoxController fieldLocationController;
 
   @FXML
-  public boolean submitSanitationRequest() {
+  public boolean submit() {
     if (isFieldsSaturated()) {
       // System.out.print("Submit Success: ");
       int i = 0;
@@ -61,7 +61,7 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   }
 
   @FXML
-  public void clearFields() {
+  public void clearTransportForms() {
     fieldLocationController.clearForm();
     fieldReason.clear();
     staffIDTextField.clear();
