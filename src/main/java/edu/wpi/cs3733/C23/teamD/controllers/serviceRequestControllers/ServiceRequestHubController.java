@@ -1,10 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 
+import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
+
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.controllers.ToastController;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -12,10 +15,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
-
-import java.io.IOException;
-
-import static edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequests.*;
 
 public class ServiceRequestHubController {
 
@@ -129,7 +128,7 @@ public class ServiceRequestHubController {
 
     if (submission) {
       clearFields();
-      ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 750);
+      ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 755);
       ConfettiController.makeConfetti(1500, 50, 100);
     }
 

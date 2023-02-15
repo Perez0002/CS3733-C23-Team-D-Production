@@ -33,6 +33,8 @@ public class Employee {
 
   @Getter @Setter private String address;
 
+  @Getter
+  @Setter
   @OneToMany(mappedBy = "staffAssigned")
   private List<ServiceRequest> serviceRequest;
 

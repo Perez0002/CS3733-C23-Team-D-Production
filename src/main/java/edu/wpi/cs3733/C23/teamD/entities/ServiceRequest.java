@@ -2,6 +2,8 @@ package edu.wpi.cs3733.C23.teamD.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -24,6 +26,7 @@ public class ServiceRequest {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int serviceRequestId;
 
+  @Getter
   @ManyToOne
   @JoinColumn(
       name = "staffAssigned",
@@ -34,7 +37,7 @@ public class ServiceRequest {
                   "FOREIGN KEY (staffAssigned) REFERENCES Employee(employeeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   private Employee staffAssigned;
 
-  private String associatedStaff;
+  @Getter @Setter private String associatedStaff;
 
   @CreationTimestamp private Date dateAndTime;
 
@@ -54,7 +57,6 @@ public class ServiceRequest {
       String reason,
       String serviceRequestType,
       Date date) {
-    this.associatedStaff = associatedStaff;
     this.serviceRequestId = serviceId;
     this.stat = stat;
     this.dateAndTime = date;
@@ -63,12 +65,11 @@ public class ServiceRequest {
   }
 
   public ServiceRequest() {
-    this.associatedStaff = "";
     this.stat = Status.BLANK;
     this.dateAndTime = new Date();
     this.reason = "";
     this.serviceRequestType = "";
-    this.staffAssigned = new Employee();
+    this.associatedStaff = "";
   }
 
   public String getServiceRequestType() {
@@ -97,14 +98,6 @@ public class ServiceRequest {
 
   public int getServiceRequestId() {
     return serviceRequestId;
-  }
-
-  public String getAssociatedStaff() {
-    return associatedStaff;
-  }
-
-  public void setAssociatedStaff(String associatedStaff) {
-    this.associatedStaff = associatedStaff;
   }
 
   public Date getDateAndTime() {

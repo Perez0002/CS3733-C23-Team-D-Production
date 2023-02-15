@@ -5,6 +5,12 @@ CREATE TABLE teamdSchema.Move();
 
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 
+delete from computerservicerequest;
+delete from patienttransportrequest;
+delete from sanitationrequest;
+delete from servicerequest;
+
+delete from servicerequest;
 delete from employee;
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Wong Paradise', 'wwong2@wpi.edu', 'ADMIN', 'Wilson', 'Wong', 'password', 9999555955);
