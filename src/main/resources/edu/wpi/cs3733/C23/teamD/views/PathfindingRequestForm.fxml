@@ -13,9 +13,9 @@
    <left>
       <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="699.0" prefWidth="425.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Get Directions">
+            <Text fill="#011830" strokeType="OUTSIDE" strokeWidth="0.0" text="Get Directions">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
             <HBox prefHeight="1.0" prefWidth="200.0" styleClass="tabHBox">
