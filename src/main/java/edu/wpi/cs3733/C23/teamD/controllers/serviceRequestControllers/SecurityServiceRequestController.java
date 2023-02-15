@@ -41,6 +41,11 @@ public class SecurityServiceRequestController extends ServiceRequestController
     this.addRequestSecurityNode.setSelected(false);
   }
 
+  @Override
+  public void clearTransportForms() {
+
+  }
+
   public boolean submit() {
     String typeOfRequest = "";
     if (addRequestSecurityNode.isFocused() && addSecurityNode.isFocused()) {
