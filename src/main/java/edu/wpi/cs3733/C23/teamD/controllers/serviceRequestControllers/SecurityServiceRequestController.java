@@ -42,9 +42,7 @@ public class SecurityServiceRequestController extends ServiceRequestController
   }
 
   @Override
-  public void clearTransportForms() {
-
-  }
+  public void clearTransportForms() {}
 
   public boolean submit() {
     String typeOfRequest = "";
