@@ -3,7 +3,6 @@ package edu.wpi.cs3733.C23.teamD.entities;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Move {
