@@ -136,16 +136,8 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
   @Override
   public void downloadCSV(LocationName locat) {
     try {
-      FileWriter fw =
-          new FileWriter(
-              "src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv", false);
-      PrintWriter pw = new PrintWriter(fw, false);
-      pw.flush();
-      pw.close();
-      fw.close();
-      BufferedWriter fileWriter =
-          new BufferedWriter(
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv"));
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
       for (LocationName l : this.locationNames) {
         String oneObject =
             String.join(
@@ -153,8 +145,7 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
                 l.getLongName(),
                 l.getShortName().equals("") ? "empty" : l.getShortName(),
                 l.getLocationType().equals("") ? "empty" : l.getLocationType());
-        fileWriter.write(oneObject);
-        fileWriter.newLine();
+        fileWriter.write(oneObject + "\n");
       }
       fileWriter.flush();
       fileWriter.close();

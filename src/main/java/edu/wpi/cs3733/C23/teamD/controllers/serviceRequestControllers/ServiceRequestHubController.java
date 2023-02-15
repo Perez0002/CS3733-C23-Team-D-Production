@@ -51,6 +51,7 @@ public class ServiceRequestHubController {
   public void initialize() {
 
     createHubMap();
+    switchVBox(HUB, hubButton);
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB,
     // hubButton);
 

@@ -70,8 +70,7 @@ public class EdgeIDaoImpl implements IDao<Edge> {
     ArrayList<Edge> javaEdges;
     session.beginTransaction();
     try {
-      javaEdges =
-          (ArrayList<Edge>) session.createQuery("SELECT e FROM Edge e", Edge.class).getResultList();
+      javaEdges = new ArrayList<Edge>(session.createQuery("SELECT e FROM Edge e").getResultList());
       session.getTransaction().commit();
       this.edges = javaEdges;
     } catch (Exception ex) {
@@ -123,15 +122,8 @@ public class EdgeIDaoImpl implements IDao<Edge> {
   @Override
   public void downloadCSV(Edge edge) {
     try {
-      FileWriter fw =
-          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv", false);
-      PrintWriter pw = new PrintWriter(fw, false);
-      pw.flush();
-      pw.close();
-      fw.close();
-      BufferedWriter fileWriter =
-          new BufferedWriter(
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv"));
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Edge.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
       for (Edge e : this.edges) {
         String toNodeID = "";
         String fromNodeID = "";
@@ -143,8 +135,7 @@ public class EdgeIDaoImpl implements IDao<Edge> {
           }
         }
         String oneObject = String.join(",", e.getEdgeID(), toNodeID, fromNodeID);
-        fileWriter.write(oneObject);
-        fileWriter.newLine();
+        fileWriter.write(oneObject + "\n");
       }
       fileWriter.flush();
       fileWriter.close();

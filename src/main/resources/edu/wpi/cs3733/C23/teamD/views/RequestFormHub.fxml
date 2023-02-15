@@ -56,12 +56,16 @@
       </VBox>
    </center>
    <right>
-      <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="TOP_RIGHT">
+      <BorderPane prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="TOP_RIGHT">
          <BorderPane.margin>
             <Insets bottom="25.0" left="20.0" right="25.0" top="25.0" />
          </BorderPane.margin>
          <bottom>
             <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="CENTER_RIGHT" />
-         </bottom></BorderPane>
+         </bottom>
+         <center>
+            <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-border-color: #012D5A; -fx-border-width: 5;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </right>
 </BorderPane>
