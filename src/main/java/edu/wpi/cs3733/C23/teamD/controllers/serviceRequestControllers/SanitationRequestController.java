@@ -27,6 +27,9 @@ public class SanitationRequestController implements ServiceRequestVBoxController
 
   @FXML private RoomPickComboBoxController fieldLocationController;
 
+  @Override
+  public void clearTransportForms() {}
+
   @FXML
   public boolean submit() {
     if (isFieldsSaturated()) {
@@ -56,20 +59,12 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   }
 
   @Override
-  public void clearTransportForms() {}
-
-  @Override
-  public boolean submit() {
-    return false;
-  }
-
-  @Override
   public Node getVBox() {
     return null;
   }
 
   @FXML
-  public void clearTransportForms() {
+  public boolean clearSanitationForms() {
     fieldLocationController.clearForm();
     fieldReason.clear();
     staffIDTextField.clear();
@@ -77,6 +72,7 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     radioBSL2.setSelected(false);
     radioBSL3.setSelected(false);
     radioBSL4.setSelected(false);
+    return true;
     // System.out.print("Fields Cleared\n");
   }
 
