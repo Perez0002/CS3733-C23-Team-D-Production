@@ -126,6 +126,9 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof ComputerServiceRequestController) {
       System.out.println("Submitting");
       submission = ((ComputerServiceRequestController) currentController).submit();
+    } else if (currentController instanceof SanitationRequestController) {
+      System.out.println("Submitting");
+      submission = ((SanitationRequestController) currentController).submitSanitationRequest();
     } else if (currentController instanceof SecurityServiceRequestController) {
       System.out.println("Submitting");
       submission = ((SecurityServiceRequestController) currentController).submit();
