@@ -10,52 +10,80 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.PathfindingController">
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding Request Form" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="36.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets bottom="32.0" />
-         </BorderPane.margin>
-      </Text>
-   </top>
    <left>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="425.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="699.0" prefWidth="425.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false">
-               <children>
-                  <Text fx:id="startRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the starting room." visible="false" />
-                  <fx:include fx:id="startRoomComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
-               <children>
-                  <Text fx:id="endRoomHelpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want directions to." visible="false" />
-                  <fx:include fx:id="endRoomComboBox" prefWidth="300.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
-               </children>
-            </VBox>
-            <HBox prefHeight="25.0" prefWidth="300.0" spacing="15.0">
-               <children>
-                  <MFXButton fx:id="aStarButton" disable="true" onAction="#setAStar" prefWidth="110.0" text="Good" />
-                  <MFXButton fx:id="BFSButton" onAction="#setBFS" prefWidth="110.0" text="Bad" />
-                  <MFXButton fx:id="DFSButton" onAction="#setDFS" prefWidth="110.0" text="Worse" />
-               </children>
+            <Text fill="#011830" strokeType="OUTSIDE" strokeWidth="0.0" text="Get Directions">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Text>
+            <HBox prefHeight="1.0" prefWidth="200.0" styleClass="tabHBox">
+               <VBox.margin>
+                  <Insets right="20.0" />
+               </VBox.margin>
             </HBox>
-            <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" wrapText="true" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
+            <Label prefWidth="400.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets right="20.0" />
+               </VBox.margin></Label>
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox alignment="BOTTOM_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="360.0" spacing="15.0">
+                  <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false" styleClass="serviceRequestMFXComboBox">
                      <children>
-                        <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
-                        <MFXButton onAction="#submit" text="Submit" />
+                        <Label text="Starting Location">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="startRoomComboBox" prefHeight="55.0" prefWidth="400.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" styleClass="serviceRequestMFXComboBox">
+                     <children>
+                        <Label text="Destination">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="endRoomComboBox" prefHeight="55.0" prefWidth="400.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pathinding Algorithim">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="53.0" prefWidth="400.0" spacing="15.0">
+                           <children>
+                              <MFXButton fx:id="aStarButton" disable="true" onAction="#setAStar" prefHeight="53.0" styleClass="floorSwitchButton" text="AStar" />
+                              <MFXButton fx:id="BFSButton" onAction="#setBFS" prefHeight="53.0" styleClass="floorSwitchButton" text="BFS" />
+                              <MFXButton fx:id="DFSButton" onAction="#setDFS" prefHeight="53.0" styleClass="floorSwitchButton" text="DFS" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+                  <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" wrapText="true" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
+                     <children>
+                        <HBox alignment="BOTTOM_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="400.0" spacing="15.0">
+                           <children>
+                              <fx:include fx:id="cancelButton" prefHeight="53.0" prefWidth="128.0" source="cancelButton.fxml" />
+                              <MFXButton onAction="#submit" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Submit" />
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+            </VBox>
          </children>
          <opaqueInsets>
             <Insets />
@@ -75,11 +103,11 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="76.0" prefWidth="850.0" spacing="24.0">
                      <children>
-                        <MFXButton fx:id="floor1Button" disable="true" text="Floor 1" />
-                        <MFXButton fx:id="floor2Button" text="Floor 2" />
-                        <MFXButton fx:id="floor3Button" text="Floor 3" />
-                        <MFXButton fx:id="floor4Button" text="Floor 4" />
-                        <MFXButton fx:id="floor5Button" text="Floor 5" />
+                        <MFXButton fx:id="floor1Button" disable="true" styleClass="floorSwitchButton" text="Floor 1" />
+                        <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="Floor 2" />
+                        <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 3" />
+                        <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 4" />
+                        <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 5" />
                      </children>
                   </HBox>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="71.0" prefWidth="850.0">
@@ -100,6 +128,9 @@
          <center>
             <BorderPane fx:id="pathfindingBorderPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #1D4E8D; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
          </center>
+         <BorderPane.margin>
+            <Insets top="30.0" />
+         </BorderPane.margin>
       </BorderPane>
    </center>
 </BorderPane>

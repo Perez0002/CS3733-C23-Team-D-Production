@@ -10,7 +10,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import net.kurobako.gesturefx.GesturePane;
@@ -22,6 +21,7 @@ public class ServiceRequestHubController {
   @FXML private MFXButton transportButton;
   @FXML private MFXButton sanitationButton;
   @FXML private MFXButton computerButton;
+  @FXML private MFXButton securityButton;
 
   @FXML private Pane requestFormHubPane;
   @FXML private BorderPane mapPaneContainer;
@@ -32,7 +32,6 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton helpButton;
 
-  @FXML private Label successfulSubmissionText;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
@@ -59,6 +58,7 @@ public class ServiceRequestHubController {
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
+    securityButton.setOnMouseClicked(event -> switchVBox(SECURITY_REQUEST, securityButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -105,6 +105,8 @@ public class ServiceRequestHubController {
       ((SanitationRequestController) currentController).clearFields();
     } else if (currentController instanceof ComputerServiceRequestController) {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
+    } else if (currentController instanceof SecurityServiceRequestController) {
+      ((SecurityServiceRequestController) currentController).clearFields();
     }
 
     // TODO: add your ClearFields here. Follow the exact same format as the
@@ -124,6 +126,9 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof ComputerServiceRequestController) {
       System.out.println("Submitting");
       submission = ((ComputerServiceRequestController) currentController).submit();
+    } else if (currentController instanceof SecurityServiceRequestController) {
+      System.out.println("Submitting");
+      submission = ((SecurityServiceRequestController) currentController).submit();
     }
 
     if (submission) {
