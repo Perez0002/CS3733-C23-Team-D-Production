@@ -69,21 +69,21 @@ public class PathfindingController {
     algorithm = "AStar";
     DFSButton.setStyle("-fx-background-color: #C9E0F8");
     BFSButton.setStyle("-fx-background-color: #C9E0F8");
-    aStarButton.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #004D97");
+    aStarButton.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
   }
 
   @FXML
   public void setBFS() {
     algorithm = "BFS";
     DFSButton.setStyle("-fx-background-color: #C9E0F8");
-    BFSButton.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #004D97");
+    BFSButton.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
     aStarButton.setStyle("-fx-background-color: #C9E0F8");
   }
 
   @FXML
   public void setDFS() {
     algorithm = "DFS";
-    DFSButton.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #004D97");
+    DFSButton.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
     BFSButton.setStyle("-fx-background-color: #C9E0F8");
     aStarButton.setStyle("-fx-background-color: #C9E0F8");
   }
@@ -95,7 +95,7 @@ public class PathfindingController {
       public void handle(ActionEvent event) {
         for (int i = 0; i < 5; i++) {
           if (i == floor) {
-            floorButtons[i].setStyle("-fx-text-fill: #ffffff;-fx-background-color: #004D97");
+            floorButtons[i].setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           } else {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
@@ -125,6 +125,7 @@ public class PathfindingController {
     mainMap.initFromDB();
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
     setAStar();
+    floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
   }
 
   private void switchFloor(int fl) {}
