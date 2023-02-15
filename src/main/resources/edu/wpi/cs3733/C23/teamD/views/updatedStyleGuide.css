@@ -91,6 +91,37 @@
     -fx-border-color: #012D5A;
 }
 
+.deleteButton { /* defines the format for the delete button */
+    -fx-background-color: transparent;
+    -fx-text-fill: #CC2222;
+    -fx-border-color: #CC2222;
+}
+
+.mapEditorMapHolder { /* defines the format for the map holder on the mapEditor */
+    -fx-border-color: #012D5A;
+    -fx-border-width: 5px;
+}
+
+.mapEditorFloorButton { /* defines the format for the floor buttons on the mapEditor */
+    -fx-background-color: #C9E0F8;
+    -fx-text-fill: #000000;
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-max-width: 200px;
+    -fx-max-height: 100px;
+}
+
+.mapEditorFloorButtonSelected { /* defines the format for the floor buttons on the mapEditor when selected */
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-max-width: 200px;
+    -fx-max-height: 100px;
+}
+
 #loginButton {
     -fx-background-color: #012D5A;
     -fx-text-fill: white;
