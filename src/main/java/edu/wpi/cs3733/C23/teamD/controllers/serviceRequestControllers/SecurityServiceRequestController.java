@@ -6,7 +6,7 @@ import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxControlle
 import edu.wpi.cs3733.C23.teamD.controllers.components.UrgencySelectorBoxController;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.SecurityServiceRequest;
-import io.github.palexdev.materialfx.controls.MFXCircleToggleNode;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -22,8 +22,8 @@ public class SecurityServiceRequestController extends ServiceRequestController
 
   @FXML private Parent urgencyBox;
   @FXML private UrgencySelectorBoxController urgencyBoxController;
-  @FXML private MFXCircleToggleNode addSecurityNode;
-  @FXML private MFXCircleToggleNode addRequestSecurityNode;
+  @FXML private MFXCheckbox addSecurityNode;
+  @FXML private MFXCheckbox addRequestSecurityNode;
   @FXML private MFXTextField problemTextField;
 
   public SecurityServiceRequestController() {}
@@ -37,11 +37,15 @@ public class SecurityServiceRequestController extends ServiceRequestController
     locationBoxController.clearForm();
     urgencyBoxController.clearForm();
     this.problemTextField.clear();
+    this.addSecurityNode.setSelected(false);
+    this.addRequestSecurityNode.setSelected(false);
   }
 
   public boolean submit() {
     String typeOfRequest = "";
-    if (addSecurityNode.isFocused()) {
+    if (addRequestSecurityNode.isFocused() && addSecurityNode.isFocused()) {
+      typeOfRequest = "Add Security,Request Security";
+    } else if (addSecurityNode.isFocused()) {
       typeOfRequest = "Add Security";
     } else if (addRequestSecurityNode.isFocused()) {
       typeOfRequest = "Request Security";

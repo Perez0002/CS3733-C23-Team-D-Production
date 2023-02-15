@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXCircleToggleNode?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -40,14 +40,14 @@
                 </HBox>
                 <HBox>
                     <children>
-                        <VBox>
+                        <VBox alignment="CENTER" prefHeight="119.0" prefWidth="140.0">
                             <children>
                                 <Label maxWidth="100" minWidth="100" styleClass="serviceRequestMFXTextFieldLabel" text="Add security to location" textAlignment="CENTER" wrapText="true">
                                     <VBox.margin>
                                         <Insets left="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <MFXCircleToggleNode fx:id="addSecurityNode" size="8.0" />
+                        <MFXCheckbox fx:id="addSecurityNode" />
                             </children>
                         </VBox>
                         <VBox alignment="CENTER">
@@ -57,7 +57,7 @@
                                         <Insets left="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <MFXCircleToggleNode fx:id="addRequestSecurityNode" size="8.0" />
+                        <MFXCheckbox fx:id="addRequestSecurityNode" />
                             </children>
                         </VBox>
                         <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
