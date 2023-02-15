@@ -1,8 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -34,18 +33,14 @@ public class RootController {
 
   @FXML
   public void initialize() throws IOException {
-    checkAccessLevel();
     setButtons();
   }
 
-  public void checkAccessLevel() {
-
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-
-    if (currentUser.getAccessLevel() == 2) {
+  public void checkAccessLevel(Employee currentUser) {
+    if (currentUser.getEmployeeType().equals("ADMIN")) {
       dbButton.setDisable(false);
       serviceRequestFormsButton.setDisable(false);
-    } else if (currentUser.getAccessLevel() == 1) {
+    } else if (currentUser.getEmployeeType().equals("STAFF")) {
       dbButton.setDisable(true);
       serviceRequestFormsButton.setDisable(false);
     } else {

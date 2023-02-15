@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -51,7 +51,7 @@ public class HomepageController {
 
   @FXML
   public void initialize() {
-    checkAccessLevel();
+    checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
     serviceRequestFormButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
@@ -66,7 +66,7 @@ public class HomepageController {
           }
         });
 
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
 
     //    if (currentUser.getAccessLevel() == 0) {
     //      currentUserText.setText("please log in");
@@ -84,13 +84,12 @@ public class HomepageController {
     popover.show(App.getPrimaryStage());
   }
 
-  private void checkAccessLevel() {
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-    if (currentUser.getAccessLevel() == 2) {
+  private void checkAccessLevel(Employee currentUser) {
+    if (currentUser.getEmployeeType().equals("ADMIN")) {
       serviceRequestFormButton.setDisable(false);
       mapEditorButton.setDisable(false);
       DBEditorButton.setDisable(false);
-    } else if (currentUser.getAccessLevel() == 1) {
+    } else if (currentUser.equals("STAFF")) {
       serviceRequestFormButton.setDisable(false);
       mapEditorButton.setDisable(false);
       DBEditorButton.setDisable(true);

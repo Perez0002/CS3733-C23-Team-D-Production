@@ -3,7 +3,31 @@ CREATE TABLE teamdSchema.Node();
 CREATE TABLE teamdSchema.LocationName();
 CREATE TABLE teamdSchema.Move();
 
-ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public
+ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
+
+delete from computerservicerequest;
+delete from patienttransportrequest;
+delete from sanitationrequest;
+delete from servicerequest;
+
+delete from servicerequest;
+delete from employee;
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Wong Paradise', 'wwong2@wpi.edu', 'ADMIN', 'Wilson', 'Wong', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'SAE House', 'aschecter@wpi.edu', 'ADMIN', 'Ari', 'Schecter', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Cowboy House', 'bclukens@wpi.edu', 'ADMIN', 'Bryce', 'Lukens', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Cowboy House', 'lperez@wpi.edu', 'ADMIN', 'Liv', 'Perez', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'aralbuquerque@wpi.edu', 'STAFF', 'Abby', 'Albuquerque', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'azimmerman@wpi.edu', 'STAFF', 'Annie', 'Zimmerman', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'admin', 'ADMIN', 'Admin', 'Admin', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff', 'STAFF', 'Staff', 'Staff', 'password', 9999555955);
 
 /*
 drop table Move;

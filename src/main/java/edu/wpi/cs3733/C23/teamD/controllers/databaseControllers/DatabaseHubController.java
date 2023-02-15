@@ -62,20 +62,20 @@ public class DatabaseHubController {
   @FXML
   void downloadData() throws IOException {
     FDdb.getInstance().downloadCSV();
-    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50);
+    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50, 275, 720);
     ConfettiController.makeConfetti(1000, 50, 50);
   }
 
   @FXML
   void uploadData() {
     FDdb.getInstance().uploadCSV();
-    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50);
+    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50, 275, 720);
   }
 
   void createHubMap() {
     GesturePane map = MapFactory.startBuild().build(0);
-    map.setStyle("-fx-border-color: #012D5A;");
-    map.setMaxSize(700, 500);
+    map.setStyle("-fx-border-color: #012D5A; -fx-border-width:3px;");
+    map.setMaxSize(600, 500);
     mapPaneContainer.setCenter(map);
   }
 }

@@ -1,30 +1,49 @@
 package edu.wpi.cs3733.C23.teamD.entities;
 
-public class LoginChecker {
-  private String username;
-  private String password;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Set;
 
+public class LoginChecker {
+  private String email;
+  private String password;
   private int accessLevel;
 
-  public LoginChecker(String username, String password) {
-    this.username = username;
+  public LoginChecker(String email, String password) {
+    this.email = email;
     this.password = password;
   }
 
-  public boolean setAccessLevel() {
-    // TODO add database implementation.
-    if (username.equals("username") && password.equals("password")) {
-      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-      currentUser.setAccessLevel(1);
-      currentUser.setUsername(username);
-      return true;
-    } else if (username.equals("admin") && password.equals("password")) {
-      CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
-      currentUser.setAccessLevel(2);
-      currentUser.setUsername(username);
-      return true;
-    } else {
-      return false;
+  // Returns a hashtable of employee information and email
+  public Hashtable<Employee, String> exisitngUserInfo() {
+    Hashtable<Employee, String> employeeInfo = new Hashtable<Employee, String>();
+    ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
+    for (Employee e : employees) {
+      String username = e.getEmail();
+      employeeInfo.put(e, username);
     }
+    return employeeInfo;
+  }
+
+  public boolean setAccessLevel() {
+    Hashtable<Employee, String> employeeInfo = exisitngUserInfo();
+    Set<Employee> employee = employeeInfo.keySet();
+
+    // looks through each username if exists, checks if correct password, checks the employeetype
+    // for access
+    for (Employee s : employee) {
+      if (s.getEmail().equals(email)) {
+        if (s.getPassword().equals(password)) {
+          if (s.getEmployeeType().equals("ADMIN")) {
+            CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
+          } else {
+            CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
+          }
+        }
+        return true;
+      }
+    }
+    return false;
   }
 }

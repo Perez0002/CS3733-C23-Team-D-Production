@@ -15,17 +15,17 @@ public class Employee {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int employeeID;
 
+  @Getter @Setter private String email;
+
   @Getter @Setter private String employeeType;
 
   @Getter @Setter private String firstName;
 
   @Getter @Setter private String lastName;
 
-  @Getter @Setter private String username;
-
   @Getter @Setter private String password;
 
-  @CreationTimestamp private Date accountCreated;
+  @Getter @Setter @CreationTimestamp private Date accountCreated;
 
   @Getter @Setter private String phoneNumber;
 
@@ -33,6 +33,8 @@ public class Employee {
 
   @Getter @Setter private String address;
 
+  @Getter
+  @Setter
   @OneToMany(mappedBy = "staffAssigned")
   private List<ServiceRequest> serviceRequest;
 
@@ -43,13 +45,13 @@ public class Employee {
       String employeeType,
       String firstName,
       String lastName,
-      String username,
-      String password) {
+      String password,
+      String email) {
     this.employeeID = employeeID;
     this.employeeType = employeeType;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.username = username;
     this.password = password;
+    this.email = email;
   }
 }
