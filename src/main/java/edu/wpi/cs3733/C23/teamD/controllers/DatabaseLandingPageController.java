@@ -13,6 +13,7 @@ public class DatabaseLandingPageController {
   @FXML private MFXButton patientTransportTableButton;
 
   @FXML private MFXButton sanitationTableButton;
+  @FXML private MFXButton updateMovesButton;
   @FXML private MFXButton serviceTableButton;
 
   @FXML
@@ -22,5 +23,6 @@ public class DatabaseLandingPageController {
         event -> Navigation.navigate(Screen.PATIENT_TRANSPORT_TABLE));
     sanitationTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SANITATION_TABLE));
     serviceTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_TABLE));
+    updateMovesButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
   }
 }

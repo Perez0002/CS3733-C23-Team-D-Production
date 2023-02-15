@@ -46,23 +46,16 @@ public class DatabaseHubController {
   public void initialize() {
     createHubMap();
     currentController = ServiceRequestTableBorderPane;
-    switchVBox(SERVICE_REQUEST, serviceTableButton);
-    serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST, serviceTableButton));
-    nodeTableButton.setOnMouseClicked(event -> switchVBox(NODE_TABLE, nodeTableButton));
-    edgeTableButton.setOnMouseClicked(event -> switchVBox(EDGES_TABLE, edgeTableButton));
-    moveTableButton.setOnMouseClicked(event -> switchVBox(MOVE_TABLE, moveTableButton));
-    locationTableButton.setOnMouseClicked(event -> switchVBox(LOCATION_TABLE, locationTableButton));
+    switchVBox(SERVICE_REQUEST);
+    serviceTableButton.setOnMouseClicked(event -> switchVBox(SERVICE_REQUEST));
+    nodeTableButton.setOnMouseClicked(event -> switchVBox(NODE_TABLE));
+    edgeTableButton.setOnMouseClicked(event -> switchVBox(EDGES_TABLE));
+    moveTableButton.setOnMouseClicked(event -> switchVBox(MOVE_TABLE));
+    locationTableButton.setOnMouseClicked(event -> switchVBox(LOCATION_TABLE));
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  void switchVBox(DatabasesFXML switchTo, MFXButton button) {
-    if (currentTab != null) {
-      currentTab.getStyleClass().clear();
-      currentTab.getStyleClass().add("tabButton");
-    }
-    currentTab = button;
-    currentTab.getStyleClass().clear();
-    currentTab.getStyleClass().add("tabButtonSelected");
+  void switchVBox(DatabasesFXML switchTo) {
     NavigationDatabases.navigate(switchTo, getRequestFormHubPane());
   }
 

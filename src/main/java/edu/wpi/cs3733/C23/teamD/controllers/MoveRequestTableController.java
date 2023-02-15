@@ -1,64 +1,87 @@
-package edu.wpi.cs3733.C23.teamD.controllers.databaseControllers;
+package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.controllers.components.RoomPickComboBoxController;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.Move;
+import edu.wpi.cs3733.C23.teamD.entities.Node;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.net.URL;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-public class MoveTableController extends Application implements Initializable, DatabaseController {
-  @FXML private BorderPane MoveTableBorderPane;
+public class MoveRequestTableController implements Initializable {
+  @FXML private MFXDatePicker datePicker;
   @FXML private TableView<Move> moveTable;
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
-
-  @FXML
-  public void openMoveRequest() {
-    Navigation.navigate(Screen.MOVES_TABLE);
-  }
-
-  public static void main(String[] args) {
-    launch(args);
-  }
-
-  @Override
-  public void start(Stage primaryStage) throws Exception {}
+  @FXML private Parent nodeBox;
+  @FXML private RoomPickComboBoxController nodeBoxController;
+  @FXML private Parent locationBox;
+  @FXML private RoomPickComboBoxController locationBoxController;
+  @FXML private Text errorText;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
   }
 
-  public Node getBox() {
-    return MoveTableBorderPane;
-  }
-
-  public void setVisible() {
-    if (MoveTableBorderPane.isVisible()) {
-      MoveTableBorderPane.setVisible(false);
+  @FXML
+  public void submit() {
+    if (checkFields()) {
+      errorText.setVisible(false);
+      ZoneId defaultZoneId = ZoneId.systemDefault();
+      Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
+      Move move =
+          new Move(
+              FDdb.getInstance().getNode(nodeBoxController.getNodeValue()),
+              FDdb.getInstance().getNode(locationBoxController.getNodeValue()).getLocation(),
+              date);
+      FDdb.getInstance().saveMove(move);
     } else {
-      MoveTableBorderPane.setVisible(true);
+      errorText.setVisible(true);
     }
   }
 
+  private boolean checkFields() {
+    return !(datePicker.getValue() == null
+        || nodeBoxController.getNodeValue().isEmpty()
+        || locationBoxController.getLocationName().isEmpty());
+  }
+
+  @FXML
+  public void backToHub() {
+    Navigation.navigate(Screen.DATABASE_HUB);
+  }
+
+  @FXML
+  public void clearFields() {
+    errorText.setVisible(false);
+    nodeBoxController.clearForm();
+    locationBoxController.clearForm();
+    datePicker.clear();
+  }
+
   public void tablehandling() {
+    ArrayList<Node> nodes = FDdb.getInstance().getAllNodes();
+    Ddb.connectNodestoLocations(nodes);
     ObservableList<Move> moveList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+
     moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
     moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
     moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
