@@ -137,21 +137,13 @@ public class MoveIDaoImpl implements IDao<Move> {
   @Override
   public void downloadCSV(Move move) {
     try {
-      FileWriter fw =
-          new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv", false);
-      PrintWriter pw = new PrintWriter(fw, false);
-      pw.flush();
-      pw.close();
-      fw.close();
-      BufferedWriter fileWriter =
-          new BufferedWriter(
-              new FileWriter("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv"));
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Move.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
       DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
       for (Move m : this.moves) {
         String oneObject =
             String.join(",", m.getNodeID(), m.getLongName(), format.format(m.getMoveDate()));
-        fileWriter.write(oneObject);
-        fileWriter.newLine();
+        fileWriter.write(oneObject + "\n");
       }
       fileWriter.flush();
       fileWriter.close();

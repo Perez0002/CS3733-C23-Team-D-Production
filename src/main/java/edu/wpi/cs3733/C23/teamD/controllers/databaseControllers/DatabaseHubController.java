@@ -5,6 +5,7 @@ import static edu.wpi.cs3733.C23.teamD.controllers.databaseControllers.Databases
 import edu.wpi.cs3733.C23.teamD.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.controllers.ToastController;
 import edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapFactory;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -58,12 +59,14 @@ public class DatabaseHubController {
 
   @FXML
   void downloadData() throws IOException {
+    FDdb.getInstance().downloadCSV();
     ToastController.makeText("Your data has been downloaded!", 1000, 50, 50);
     ConfettiController.makeConfetti(1000, 50, 50);
   }
 
   @FXML
   void uploadData() {
+    FDdb.getInstance().uploadCSV();
     ToastController.makeText("Your data has been uploaded!", 1000, 50, 50);
   }
 

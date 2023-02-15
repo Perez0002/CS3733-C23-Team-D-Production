@@ -3,7 +3,6 @@ package edu.wpi.cs3733.C23.teamD.entities;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Move {
@@ -29,7 +28,7 @@ public class Move {
                   "FOREIGN KEY (location) REFERENCES locationname(longname) ON UPDATE CASCADE ON DELETE CASCADE"))
   private LocationName location;
 
-  @Id @CreationTimestamp Date moveDate;
+  @Id Date moveDate;
 
   @Override
   public boolean equals(Object obj) {

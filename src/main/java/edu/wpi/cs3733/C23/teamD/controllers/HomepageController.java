@@ -1,18 +1,22 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import org.controlsfx.control.PopOver;
 
 public class HomepageController {
 
@@ -42,6 +46,9 @@ public class HomepageController {
 
   @FXML private Label titleLabel;
 
+  @FXML private MFXButton profileButton;
+  @FXML private MFXButton helpButton;
+
   @FXML
   public void initialize() {
     checkAccessLevel();
@@ -49,12 +56,32 @@ public class HomepageController {
         event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
     DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
+    profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
+    helpButton.setOnMouseClicked(
+        event -> {
+          try {
+            help();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
     CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+
     //    if (currentUser.getAccessLevel() == 0) {
     //      currentUserText.setText("please log in");
     //    } else {
     //      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
     //    }
+  }
+
+  private void help() throws IOException {
+    final var resource = App.class.getResource("views/VBoxInjections/ServiceRequestHubHelp.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    PopOver popover = new PopOver(loader.load());
+    popover.setArrowSize(0);
+    popover.setTitle("Help");
+    popover.show(App.getPrimaryStage());
   }
 
   private void checkAccessLevel() {
