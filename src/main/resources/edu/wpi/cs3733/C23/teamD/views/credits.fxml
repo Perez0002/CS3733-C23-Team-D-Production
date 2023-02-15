@@ -19,7 +19,7 @@
                         <Image url="@images/Dapperdingo.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="CreditsLabel1" layoutX="228.0" layoutY="67.0" stylesheets="@updatedStyleGuide.css" text="Credits" />
+                  <Label fx:id="CreditsLabel1" alignment="CENTER" layoutX="194.0" layoutY="56.0" styleClass="homepageLabel" stylesheets="@updatedStyleGuide.css" text="Credits" />
                   <ImageView fitHeight="155.0" fitWidth="156.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Dapperdingo.png" />
@@ -27,7 +27,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <TextArea editable="false" prefHeight="313.0" prefWidth="494.0" stylesheets="@updatedStyleGuide.css" text="Service Request Pages:&#10;     Hub: Annie Zimmerman&#10;     Patient Transport: Annie Zimmerman&#10;     Sanitation:&#10;     Audio/Visual: Mike Wilkinson, Gibson Phillips&#10;     Security:&#10;     Computer: Wyatt Harris&#10;Database Pages:&#10;     Hub: Abigail Albuquerque&#10;     Tables: Abigail Albuquerque, Bryce Lukens, Ari Scheter&#10;     Upload/Download buttons: Abigail Albuquerque, Bryce Lukens&#10;Pathfinding Pages:&#10;     Pathfinding Form: Jonathan Asher, Theo Winter&#10;     Map editor: Jonathan Asher, Theo Winter&#10;Profile:&#10;     Profile Page: Abigail Albuquerque, Wyatt Harris&#10;     Login Page: Mike Wilkinson&#10;Home:&#10;     Homepage: Wyatt Harris&#10;Navbar:&#10;     Navigation Bar and Icons: Liv Perez" />
+            <TextArea editable="false" prefHeight="313.0" prefWidth="494.0" styleClass="ourText" stylesheets="@updatedStyleGuide.css" text="Service Request Pages:&#10;     Hub: Annie Zimmerman&#10;     Patient Transport: Annie Zimmerman&#10;     Sanitation:&#10;     Audio/Visual: Mike Wilkinson, Gibson Phillips&#10;     Security:&#10;     Computer: Wyatt Harris&#10;Database Pages:&#10;     Hub: Abigail Albuquerque&#10;     Tables: Abigail Albuquerque, Bryce Lukens, Ari Scheter&#10;     Upload/Download buttons: Abigail Albuquerque, Bryce Lukens&#10;Pathfinding Pages:&#10;     Pathfinding Form: Jonathan Asher, Theo Winter&#10;     Map editor: Jonathan Asher, Theo Winter&#10;Profile:&#10;     Profile Page: Abigail Albuquerque, Wyatt Harris&#10;     Login Page: Mike Wilkinson&#10;Home:&#10;     Homepage: Wyatt Harris&#10;Navbar:&#10;     Navigation Bar and Icons: Liv Perez" />
          </children>
       </VBox>
    </top>

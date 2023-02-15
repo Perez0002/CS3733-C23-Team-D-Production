@@ -53,11 +53,10 @@ public class ServiceRequestHubController {
   public void initialize() {
 
     createHubMap();
-    switchVBox(HUB, hubButton);
+    switchVBox(PATIENT_TRANSPORT, transportButton);
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB,
     // hubButton);
 
-    hubButton.setOnMouseClicked(event -> switchVBox(HUB, hubButton));
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
