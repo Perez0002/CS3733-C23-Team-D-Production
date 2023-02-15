@@ -3,13 +3,11 @@ package edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers;
 import edu.wpi.cs3733.C23.teamD.controllers.components.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.AVRequest;
-import edu.wpi.cs3733.C23.teamD.entities.ServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-
-import java.util.Date;
 
 public class AVRequestController implements ServiceRequestVBoxController {
   @FXML private Parent employeeBox;
@@ -21,9 +19,6 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
 
-
-
-
   public void clearTransportForms() {
     employeeBoxController.clearForm();
     timeTextField.clear();
@@ -33,8 +28,14 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   @Override
   public boolean submit() {
-    AVRequest request = new AVRequest(employeeBoxController.getEmployeeName(), ServiceRequest.Status stat, String reason, String serviceRequestType, String systemFailureTextField, Date dateFirstSeen);
-    FDdb.getInstance().saveServiceRequest();
+    AVRequest request =
+        new AVRequest(
+            employeeBoxController.getEmployeeName(),
+            descriptionTextField.getText(),
+            "AVRequest",
+            systemFailureTextField.getText(),
+            new Date());
+    FDdb.getInstance().saveServiceRequest(request);
 
     return true;
   }

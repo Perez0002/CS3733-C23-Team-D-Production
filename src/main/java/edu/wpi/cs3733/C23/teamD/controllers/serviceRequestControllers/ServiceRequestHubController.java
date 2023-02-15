@@ -128,6 +128,9 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof ComputerServiceRequestController) {
       System.out.println("Submitting");
       submission = ((ComputerServiceRequestController) currentController).submit();
+    } else {
+      submission = currentController.submit();
+      System.out.println("Submitting");
     }
 
     if (submission) {
