@@ -4,5 +4,9 @@ import javafx.scene.Node;
 
 public interface ServiceRequestVBoxController {
 
+  public void clearTransportForms();
+
+  public boolean submit();
+
   Node getVBox();
 }

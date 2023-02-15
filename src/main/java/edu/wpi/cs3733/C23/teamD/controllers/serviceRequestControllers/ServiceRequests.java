@@ -5,7 +5,8 @@ public enum ServiceRequests {
   PATIENT_TRANSPORT("views/VBoxInjections/PatientTransportVBox.fxml"),
   SANITATION_REQUEST("views/VBoxInjections/SanitationRequestForm.fxml"),
   COMPUTER_REQUEST("views/VBoxInjections/ComputerServiceRequest.fxml"),
-  SECURITY_REQUEST("views/VBoxInjections/SecurityServiceRequest.fxml");
+  SECURITY_REQUEST("views/VBoxInjections/SecurityServiceRequest.fxml"),
+  AV_REQUEST("views/VBoxInjections/AVRequestForm.fxml");
 
   private final String filename;
 

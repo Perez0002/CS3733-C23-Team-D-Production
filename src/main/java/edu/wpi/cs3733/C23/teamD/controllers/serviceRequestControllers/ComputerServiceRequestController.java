@@ -33,6 +33,9 @@ public class ComputerServiceRequestController extends ServiceRequestController
     deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));
   }
 
+  @Override
+  public void clearTransportForms() {}
+
   public boolean submit() {
 
     if (descriptionBox.getText() != null
