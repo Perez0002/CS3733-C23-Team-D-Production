@@ -51,18 +51,16 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
           .orElse(null);
     } else if (s instanceof SecurityServiceRequest) {
       return this.securityServiceRequests.stream()
-              .filter(
-                      securityServiceRequest ->
-                              s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
-              .findFirst()
-              .orElse(null);
+          .filter(
+              securityServiceRequest ->
+                  s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
+          .findFirst()
+          .orElse(null);
     } else if (s instanceof AVRequest) {
       return this.avRequests.stream()
-              .filter(
-                      avRequest ->
-                              s.getServiceRequestId() == (avRequest.getServiceRequestId()))
-              .findFirst()
-              .orElse(null);
+          .filter(avRequest -> s.getServiceRequestId() == (avRequest.getServiceRequestId()))
+          .findFirst()
+          .orElse(null);
     } else {
       return this.masterList.stream()
           .filter(
@@ -194,17 +192,14 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                       "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
                   .getResultList();
       javaSecurityRequestList =
-              (ArrayList<SecurityServiceRequest>)
-                      session
-                              .createQuery(
-                                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
-                              .getResultList();
+          (ArrayList<SecurityServiceRequest>)
+              session
+                  .createQuery(
+                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
+                  .getResultList();
       javaAVRequestList =
-              (ArrayList<AVRequest>)
-                      session
-                              .createQuery(
-                                      "SELECT p FROM AVRequest p", AVRequest.class)
-                              .getResultList();
+          (ArrayList<AVRequest>)
+              session.createQuery("SELECT p FROM AVRequest p", AVRequest.class).getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
@@ -287,22 +282,20 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
               .orElse(-1);
     } else if (s instanceof SecurityServiceRequest) {
       index =
-              IntStream.range(0, this.securityServiceRequests.size())
-                      .filter(
-                              i ->
-                                      this.securityServiceRequests.get(i).getServiceRequestId()
-                                              == (s.getServiceRequestId()))
-                      .findFirst()
-                      .orElse(-1);
+          IntStream.range(0, this.securityServiceRequests.size())
+              .filter(
+                  i ->
+                      this.securityServiceRequests.get(i).getServiceRequestId()
+                          == (s.getServiceRequestId()))
+              .findFirst()
+              .orElse(-1);
     } else if (s instanceof AVRequest) {
       index =
-              IntStream.range(0, this.avRequests.size())
-                      .filter(
-                              i ->
-                                      this.avRequests.get(i).getServiceRequestId()
-                                              == (s.getServiceRequestId()))
-                      .findFirst()
-                      .orElse(-1);
+          IntStream.range(0, this.avRequests.size())
+              .filter(
+                  i -> this.avRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
+              .findFirst()
+              .orElse(-1);
     }
 
     return index;

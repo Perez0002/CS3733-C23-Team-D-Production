@@ -38,5 +38,7 @@
         <mapping class="edu.wpi.cs3733.C23.teamD.entities.ServiceRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.entities.Employee"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.entities.ComputerServiceRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.SecurityServiceRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.entities.AVRequest"/>
     </session-factory>
 </hibernate-configuration>
