@@ -59,14 +59,14 @@ public class DatabaseHubController {
   @FXML
   void downloadData() throws IOException {
     FDdb.getInstance().downloadCSV();
-    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50);
+    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50, 275, 720);
     ConfettiController.makeConfetti(1000, 50, 50);
   }
 
   @FXML
   void uploadData() {
     FDdb.getInstance().uploadCSV();
-    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50);
+    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50, 275, 720);
   }
 
   void createHubMap() {

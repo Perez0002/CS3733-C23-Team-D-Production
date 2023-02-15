@@ -16,14 +16,15 @@ import javafx.util.Duration;
 public class ToastController {
   static Stage currentstage = App.getPrimaryStage();
 
-  public static void makeText(String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay) {
+  public static void makeText(
+      String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay, int x, int y) {
 
     Stage toastStage = new Stage();
     toastStage.initOwner(currentstage);
     toastStage.setResizable(false);
     toastStage.initStyle(StageStyle.TRANSPARENT);
-    toastStage.setX(283);
-    toastStage.setY(715);
+    toastStage.setX(x);
+    toastStage.setY(y);
 
     Text text = new Text(toastMsg);
     text.setFont(Font.font("Nunito Sans", 16));

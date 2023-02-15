@@ -6,21 +6,21 @@ import java.util.Hashtable;
 import java.util.Set;
 
 public class LoginChecker {
-  private String username;
+  private String email;
   private String password;
   private int accessLevel;
 
-  public LoginChecker(String username, String password) {
-    this.username = username;
+  public LoginChecker(String email, String password) {
+    this.email = email;
     this.password = password;
   }
 
-  // Returns a hashtable of employee information and username
+  // Returns a hashtable of employee information and email
   public Hashtable<Employee, String> exisitngUserInfo() {
     Hashtable<Employee, String> employeeInfo = new Hashtable<Employee, String>();
     ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
     for (Employee e : employees) {
-      String username = e.getUsername();
+      String username = e.getEmail();
       employeeInfo.put(e, username);
     }
     return employeeInfo;
@@ -30,32 +30,20 @@ public class LoginChecker {
     Hashtable<Employee, String> employeeInfo = exisitngUserInfo();
     Set<Employee> employee = employeeInfo.keySet();
 
-    // looks through each username if exists, check if correct password
+    // looks through each username if exists, checks if correct password, checks the employeetype
+    // for access
     for (Employee s : employee) {
-      if (s.getUsername().equals(username)) {
+      if (s.getEmail().equals(email)) {
         if (s.getPassword().equals(password)) {
-          CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
           if (s.getEmployeeType().equals("ADMIN")) {
-            currentUser.setAccessLevel(2);
-            setCurrentUserInfo(s, currentUser);
+            CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
           } else {
-            currentUser.setAccessLevel(1);
-            setCurrentUserInfo(s, currentUser);
+            CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
           }
-          return true;
         }
+        return true;
       }
     }
     return false;
-  }
-
-  private void setCurrentUserInfo(Employee s, CurrentUser currentUser) {
-    currentUser.setUsername(username);
-    currentUser.setFirstName(s.getFirstName());
-    currentUser.setLastName(s.getLastName());
-    currentUser.setEmail(s.getEmail());
-    currentUser.setPhoneNumber(s.getPhoneNumber());
-    currentUser.setAddress(s.getAddress());
-    currentUser.setBirthday(s.getBirthday());
   }
 }

@@ -1,14 +1,15 @@
 package edu.wpi.cs3733.C23.teamD.controllers;
 
-import edu.wpi.cs3733.C23.teamD.entities.CurrentUser;
+import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
 import edu.wpi.cs3733.C23.teamD.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import javafx.fxml.FXML;
 
 public class ProfilePageController {
 
@@ -24,7 +25,7 @@ public class ProfilePageController {
 
   @FXML private MFXTextField address;
 
-  @FXML private DatePicker birthday;
+  @FXML private MFXDatePicker birthday;
 
   @FXML private MFXTextField accountCreated;
 
@@ -42,10 +43,12 @@ public class ProfilePageController {
 
   public void initialize() {
     setText();
+    accountCreated.setDisable(true);
+    birthday.setDisable(true);
   }
 
   private void setText() {
-    CurrentUser currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     if (currentUser.getAccountCreated() == null) {
       accountCreated.setText("Information Unavailable");
@@ -67,5 +70,25 @@ public class ProfilePageController {
     } else {
       phoneNumber.setText(currentUser.getPhoneNumber());
     }
+    if (currentUser.getBirthday() == null) {
+    } else {
+      birthday.setValue(
+          currentUser.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    }
+  }
+
+  @FXML
+  private void resetChanges() {
+    setText();
+  }
+
+  @FXML
+  private void saveChanges() {
+    Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    currentUser.setEmail(email.getText());
+    currentUser.setAddress(address.getText());
+    currentUser.setPhoneNumber(phoneNumber.getText());
+    FDdb.getInstance().updateEmployee(currentUser);
+    ToastController.makeText("Changes Saved.", 1500, 50, 50, 675, 750);
   }
 }
