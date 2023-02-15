@@ -9,6 +9,14 @@ public class HubBoxController implements ServiceRequestVBoxController {
 
   public HubBoxController() {}
 
+  @Override
+  public void clearTransportForms() {}
+
+  @Override
+  public boolean submit() {
+    return false;
+  }
+
   public VBox getVBox() {
     return serviceRequestHubVBox;
   }

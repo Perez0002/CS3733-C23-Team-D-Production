@@ -59,7 +59,7 @@ public class ServiceRequestHubController {
     transportButton.setOnMouseClicked(event -> switchVBox(PATIENT_TRANSPORT, transportButton));
     computerButton.setOnMouseClicked(event -> switchVBox(COMPUTER_REQUEST, computerButton));
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
-    avButton.setOnMouseClicked(event -> switchVBox(AV_REQUEST, sanitationButton));
+    avButton.setOnMouseClicked(event -> switchVBox(AV_REQUEST, avButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -106,6 +106,8 @@ public class ServiceRequestHubController {
       ((SanitationRequestController) currentController).clearFields();
     } else if (currentController instanceof ComputerServiceRequestController) {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
+    } else {
+      currentController.clearTransportForms();
     }
 
     // TODO: add your ClearFields here. Follow the exact same format as the

@@ -28,7 +28,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     return patientTransportRequestVBox;
   }
 
-  void clearTransportForms() {
+  public void clearTransportForms() {
     employeeBox.clearSelection();
     startLocationComboBox.clearSelection();
     endLocationComboBox.clearSelection();
@@ -47,7 +47,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     return false;
   }
 
-  boolean submit() {
+  public boolean submit() {
     // if the fields are full, go to submit item
     if (checkFieldsFull()) {
       System.out.println(startLocationComboBox.getValue().toString());

@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.AVRequestController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" spacing="32.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.AVRequestController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request" />
-      <MFXTextField fx:id="staffIDTextField" floatingText="Enter PatientID (Probably will be replaced" prefHeight="50.0" prefWidth="247.0" />
-      <MFXTextField fx:id="systemFailureTextField" floatingText="Enter what system isn't working properly. " prefHeight="50.0" prefWidth="247.0" />
-      <MFXTextField fx:id="timeTextField" floatingText="Enter when you first noticed the issue." prefHeight="50.0" prefWidth="247.0" />
-      <MFXTextField fx:id="descriptionTextField" floatingText="Enter a description of the issue" prefHeight="50.0" prefWidth="247.0" />
+      <Text wrappingWidth="600" strokeType="OUTSIDE" strokeWidth="0.0" text="Report any issues experienced regarding audio or visual systems throughout the hospital. This includes Intercom, malfunctioning monitors or speakers, or any video screens displayed throughout the hospital. " />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Staff member">
+         <VBox.margin>
+            <Insets top="64.0" />
+         </VBox.margin>
+      </Text>
+      <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="System">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date First Noticed">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="timeTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter when you first noticed the issue." />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="descriptionTextField" prefHeight="90.0" prefWidth="300.0" promptText="Enter a description of the issue"/>
    </children>
 </VBox>
