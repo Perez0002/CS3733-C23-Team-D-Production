@@ -11,7 +11,7 @@
 
 <BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
    <center>
-      <VBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="25.0" left="25.0" top="25.0" />
          </BorderPane.margin>
