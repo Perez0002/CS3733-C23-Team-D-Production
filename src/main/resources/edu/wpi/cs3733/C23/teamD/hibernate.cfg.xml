@@ -29,16 +29,16 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Move"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Node"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.LocationName"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.SanitationRequest"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.PatientTransportRequest"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Edge"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.ServiceRequest"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.Employee"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.ComputerServiceRequest"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.SecurityServiceRequest"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.entities.AVRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.Move"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.Node"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.LocationName"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.Edge"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.Employee"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.SecurityServiceRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.AVRequest"/>
     </session-factory>
 </hibernate-configuration>

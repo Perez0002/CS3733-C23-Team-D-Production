@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.C23.teamD;
 
-import edu.wpi.cs3733.C23.teamD.databasesubsystem.FDdb;
-import edu.wpi.cs3733.C23.teamD.entities.*;
-import java.io.*;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
+import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import java.util.ArrayList;
 
 public class Ddb {
