@@ -3,4 +3,4 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 
 
-<MFXButton fx:id="backButton" onAction="#openHomepage" opacity="0.95" prefHeight="25.0" prefWidth="80.0" text="Back" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.cancelButtonController" />
+<MFXButton fx:id="backButton" onAction="#openHomepage" opacity="0.95" prefHeight="25.0" prefWidth="80.0" text="Back" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.cancelButtonController" />
