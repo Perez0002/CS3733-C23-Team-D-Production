@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
+package edu.wpi.cs3733.C23.teamD.userinterface.components.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import javafx.animation.KeyFrame;

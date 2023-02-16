@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
-import edu.wpi.cs3733.C23.teamD.Ddb;
+import edu.wpi.cs3733.C23.teamD.database.util.Ddb;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import java.net.URL;
 import java.util.ArrayList;

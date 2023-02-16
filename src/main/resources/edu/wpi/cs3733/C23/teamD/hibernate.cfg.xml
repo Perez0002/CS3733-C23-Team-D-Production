@@ -36,7 +36,7 @@
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.Edge"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest"/>
-        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.Employee"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.user.entities.Employee"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.SecurityServiceRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.AVRequest"/>

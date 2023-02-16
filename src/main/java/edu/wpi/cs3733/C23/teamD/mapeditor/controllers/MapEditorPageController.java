@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
-import static edu.wpi.cs3733.C23.teamD.Ddb.*;
+import static edu.wpi.cs3733.C23.teamD.database.util.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;

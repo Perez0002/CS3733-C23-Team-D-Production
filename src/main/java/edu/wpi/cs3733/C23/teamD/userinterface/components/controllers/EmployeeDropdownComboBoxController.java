@@ -1,7 +1,7 @@
-package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
+package edu.wpi.cs3733.C23.teamD.userinterface.components.controllers;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;

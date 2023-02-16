@@ -4,8 +4,8 @@ import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequest
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.ConfettiController;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.ToastController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;

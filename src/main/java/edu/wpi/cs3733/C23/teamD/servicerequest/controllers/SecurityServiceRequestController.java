@@ -2,10 +2,9 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SecurityServiceRequest;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.EmployeeDropdownComboBoxController;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.RoomPickComboBoxController;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.ServiceRequestController;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.UrgencySelectorBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.UrgencySelectorBoxController;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;

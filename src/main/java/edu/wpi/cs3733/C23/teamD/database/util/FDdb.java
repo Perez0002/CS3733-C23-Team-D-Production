@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import java.util.ArrayList;
 
 public class FDdb {
@@ -25,6 +26,16 @@ public class FDdb {
     this.serviceRequestIDao = new ServiceRequestIDaoImpl();
     this.pastMovesIDao = new PastMovesIDaoImpl();
     this.employeeIDao = new EmployeeIDaoImpl();
+  }
+
+  public void refreshAll() {
+    edgeIDao.refresh();
+    nodeIDao.refresh();
+    locationNameIDao.refresh();
+    moveIDao.refresh();
+    serviceRequestIDao.refresh();
+    pastMovesIDao.refresh();
+    employeeIDao.refresh();
   }
 
   public static FDdb getInstance() {

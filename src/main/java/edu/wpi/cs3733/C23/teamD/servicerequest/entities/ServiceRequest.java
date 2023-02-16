@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.entities;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.*;
 import java.util.Date;
 import org.hibernate.annotations.CreationTimestamp;

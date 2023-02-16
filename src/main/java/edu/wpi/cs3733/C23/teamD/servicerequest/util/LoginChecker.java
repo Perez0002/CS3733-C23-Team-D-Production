@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.util;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
-import edu.wpi.cs3733.C23.teamD.database.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;

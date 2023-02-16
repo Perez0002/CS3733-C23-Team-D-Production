@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.entities;
 
-import static edu.wpi.cs3733.C23.teamD.Ddb.*;
+import static edu.wpi.cs3733.C23.teamD.database.util.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;

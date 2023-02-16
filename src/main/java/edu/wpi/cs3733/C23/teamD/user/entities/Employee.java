@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.C23.teamD.database.entities;
+package edu.wpi.cs3733.C23.teamD.user.entities;
 
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import jakarta.persistence.*;

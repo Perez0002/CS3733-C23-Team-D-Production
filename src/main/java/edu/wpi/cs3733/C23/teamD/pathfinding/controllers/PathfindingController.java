@@ -4,7 +4,7 @@ import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.GraphMap;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
-import edu.wpi.cs3733.C23.teamD.userinterface.controllers.RoomPickComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import java.util.HashMap;

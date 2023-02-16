@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.util;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
