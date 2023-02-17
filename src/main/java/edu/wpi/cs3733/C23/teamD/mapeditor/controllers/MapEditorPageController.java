@@ -15,6 +15,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -81,40 +82,33 @@ public class MapEditorPageController {
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
-    ArrayList<PathNode> pathNodes = new ArrayList<>();
+    HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
-      pathNodes.add(new PathNode(move.getNode(), move.getLocation()));
+      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
-    ArrayList<PathEdge> pathEdges = new ArrayList<>();
-    PathNode[] nodeArray = new PathNode[2];
     for (Edge edge : baseEdgeList) {
-      for (PathNode node : pathNodes) {
-        if (edge.getToNode().equals(node.getNode())) {
-          nodeArray[0] = node;
-        }
-        if (edge.getFromNode().equals(node.getNode())) {
-          nodeArray[1] = node;
-        }
-        if (nodeArray[0] != null && nodeArray[1] != null) {
-          PathEdge edge1 = new PathEdge(nodeArray[0], nodeArray[1]);
-          nodeArray[0].addEdge(edge1);
-          PathEdge edge2 = new PathEdge(nodeArray[1], nodeArray[0]);
-          nodeArray[1].addEdge(edge2);
-          pathEdges.add(edge1); // Only add one copy for drawing
-          nodeArray[0] = null;
-          nodeArray[1] = null;
-          break;
-        }
-      }
-    }
+      PathEdge edge1 =
+          new PathEdge(
+              pathNodes.get(edge.getFromNode().getNodeID()),
+              pathNodes.get(edge.getToNode().getNodeID()));
+      PathEdge edge2 =
+          new PathEdge(
+              pathNodes.get(edge.getToNode().getNodeID()),
+              pathNodes.get(edge.getFromNode().getNodeID()));
+      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
 
-    for (PathNode node : pathNodes) {
-      nodeList.add(new MapEditorMapNode(node));
-    }
+      MapEdge tempMapEdge = new MapEdge(edge1);
+      edgeList.add(tempMapEdge);
 
-    for (PathEdge edge : pathEdges) {
-      edgeList.add(new MapEdge(edge));
+      MapNode tempMapFromNode = new MapEditorMapNode(pathNodes.get(edge.getFromNode().getNodeID()));
+      MapNode tempMapToNode = new MapEditorMapNode(pathNodes.get(edge.getToNode().getNodeID()));
+      tempMapEdge.setFromNode(tempMapFromNode);
+      tempMapEdge.setToNode(tempMapToNode);
+
+      nodeList.add(tempMapFromNode);
+      nodeList.add(tempMapToNode);
     }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");

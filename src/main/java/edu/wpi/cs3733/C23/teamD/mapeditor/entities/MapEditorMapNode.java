@@ -7,10 +7,10 @@ import javafx.scene.paint.Color;
 public class MapEditorMapNode extends MapNode {
 
   public MapEditorMapNode(PathNode node) {
-     /* Superclass object */
-     super(node);
-     /* Creates popup on mouse click */
-     nodeRepresentation.setOnMouseClicked(
+    /* Superclass object */
+    super(node);
+    /* Creates popup on mouse click */
+    nodeRepresentation.setOnMouseClicked(
         event -> {
           this.MakePopup();
         });
@@ -40,7 +40,7 @@ public class MapEditorMapNode extends MapNode {
 
   private void RemovePopup() {
     if (popup != null) {
-       /* Assuming the popup exists, hide and then remove it to save VRam space */
+      /* Assuming the popup exists, hide and then remove it to save VRam space */
       popup.hide();
       popup = null;
       /* Set the color of the Node on the map to represent deselection */

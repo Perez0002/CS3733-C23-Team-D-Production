@@ -34,10 +34,7 @@ public class PopupFactory {
     this.closeEvent = event -> {};
   }
 
-  /**
-   *
-   * @return new PopupFactory to chain off of
-   */
+  /** @return new PopupFactory to chain off of */
   public static PopupFactory startBuild() {
     PopupFactory returnable = new PopupFactory();
     return returnable;
@@ -45,6 +42,7 @@ public class PopupFactory {
 
   /**
    * Makes the fields in the popup editable and allows submission
+   *
    * @return the PopupFactory with these changes
    */
   public PopupFactory editable() {
@@ -54,6 +52,7 @@ public class PopupFactory {
 
   /**
    * Makes the popup able to delete selected nodes
+   *
    * @return the PopupFactory with these changes
    */
   public PopupFactory deletable() {
@@ -62,7 +61,6 @@ public class PopupFactory {
   }
 
   /**
-   *
    * @param anchor the javafx Node to anchor this popup to
    * @return the PopupFactory with these changes
    */
@@ -72,7 +70,6 @@ public class PopupFactory {
   }
 
   /**
-   *
    * @param mapNode the MapNode to get information from and potentially mutate
    * @return the PopupFactory with these changes
    */
@@ -82,7 +79,6 @@ public class PopupFactory {
   }
 
   /**
-   *
    * @param submitEvent event to occur when submission button is pressed
    * @return the PopupFactory with these changes
    */
@@ -92,7 +88,6 @@ public class PopupFactory {
   }
 
   /**
-   *
    * @param deleteEvent event to occur when the delete button is pressed
    * @return the PopupFactory with these changes
    */
@@ -102,7 +97,6 @@ public class PopupFactory {
   }
 
   /**
-   *
    * @param closeEvent the event to occur when the close button is pressed
    * @return the PopupFactory with these changes
    */
@@ -113,6 +107,7 @@ public class PopupFactory {
 
   /**
    * Builds the PopOver from the factory
+   *
    * @return A PopOver with the settings provided to the factory
    */
   public PopOver build() {

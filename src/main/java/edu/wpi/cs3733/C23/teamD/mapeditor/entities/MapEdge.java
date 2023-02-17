@@ -38,7 +38,7 @@ public class MapEdge {
             "Edge from Node: "
                 + this.fromNode.getNode().getNode().getNodeID()
                 + "\n"
-                + "Edge to Node"
+                + "Edge to Node: "
                 + this.toNode.getNode().getNode().getNodeID()
                 + "\n"
                 + "Edge Cost: "
@@ -58,5 +58,13 @@ public class MapEdge {
         event -> {
           Tooltip.uninstall(this.edgeRepresentation, this.tooltip);
         });
+  }
+
+  public void setFromNode(MapNode mapNode) {
+    this.fromNode = mapNode;
+  }
+
+  public void setToNode(MapNode mapNode) {
+    this.toNode = mapNode;
   }
 }

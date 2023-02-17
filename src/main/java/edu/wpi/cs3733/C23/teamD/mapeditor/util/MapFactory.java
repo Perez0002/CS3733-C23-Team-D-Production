@@ -86,7 +86,6 @@ public class MapFactory {
   }
 
   /**
-   *
    * @param edges a list of MapEdges to add to the Map
    * @return the MapFactory with these changes
    */

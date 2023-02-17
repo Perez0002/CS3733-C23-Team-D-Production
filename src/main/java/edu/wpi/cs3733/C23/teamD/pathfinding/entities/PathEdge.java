@@ -12,8 +12,16 @@ public class PathEdge {
   }
 
   public double getCost() {
-    return Math.sqrt(
-        Math.pow(toNode.getNode().getXcoord() + fromNode.getNode().getXcoord(), 2)
-            + Math.pow(toNode.getNode().getYcoord() + fromNode.getNode().getYcoord(), 2));
+    if (toNode.getLocation().getLocationType().equals("ELEV")
+        && fromNode.getLocation().getLocationType().equals("ELEV")) {
+      return 5000;
+    } else if (toNode.getLocation().getLocationType().equals("STAI")
+        && fromNode.getLocation().getLocationType().equals("STAI")) {
+      return 25000;
+    } else {
+      return Math.sqrt(
+          Math.pow(toNode.getNode().getXcoord() - fromNode.getNode().getXcoord(), 2)
+              + Math.pow(toNode.getNode().getYcoord() - fromNode.getNode().getYcoord(), 2));
+    }
   }
 }
