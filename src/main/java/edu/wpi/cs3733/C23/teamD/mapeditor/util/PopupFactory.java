@@ -34,46 +34,87 @@ public class PopupFactory {
     this.closeEvent = event -> {};
   }
 
+  /**
+   *
+   * @return new PopupFactory to chain off of
+   */
   public static PopupFactory startBuild() {
     PopupFactory returnable = new PopupFactory();
     return returnable;
   }
 
+  /**
+   * Makes the fields in the popup editable and allows submission
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory editable() {
     this.editable = true;
     return this;
   }
 
+  /**
+   * Makes the popup able to delete selected nodes
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory deletable() {
     this.deletable = true;
     return this;
   }
 
+  /**
+   *
+   * @param anchor the javafx Node to anchor this popup to
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory anchor(Node anchor) {
     this.anchor = anchor;
     return this;
   }
 
+  /**
+   *
+   * @param mapNode the MapNode to get information from and potentially mutate
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory mapNode(MapNode mapNode) {
     this.mapNode = mapNode;
     return this;
   }
 
+  /**
+   *
+   * @param submitEvent event to occur when submission button is pressed
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory submitEvent(EventHandler submitEvent) {
     this.submitEvent = submitEvent;
     return this;
   }
 
+  /**
+   *
+   * @param deleteEvent event to occur when the delete button is pressed
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory deleteEvent(EventHandler deleteEvent) {
     this.deleteEvent = deleteEvent;
     return this;
   }
 
+  /**
+   *
+   * @param closeEvent the event to occur when the close button is pressed
+   * @return the PopupFactory with these changes
+   */
   public PopupFactory closeEvent(EventHandler closeEvent) {
     this.closeEvent = closeEvent;
     return this;
   }
 
+  /**
+   * Builds the PopOver from the factory
+   * @return A PopOver with the settings provided to the factory
+   */
   public PopOver build() {
     PopOver popover = new PopOver();
 

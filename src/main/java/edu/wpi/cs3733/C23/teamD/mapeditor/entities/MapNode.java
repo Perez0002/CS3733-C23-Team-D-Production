@@ -25,31 +25,41 @@ public class MapNode {
   protected boolean allowTooltip;
 
   public MapNode(PathNode node) {
+    /* Set the underlying PathNode of this Node */
     this.node = node;
 
+    /* Default to allowing tooltips to pop up */
     this.allowTooltip = true;
 
+    /* Setting nodeX to a SimpleDoubleProperty to allow tracking as it changes */
     this.nodeX = new SimpleDoubleProperty();
     this.nodeX.set(this.node.getNode().getXcoord());
 
+    /* Setting nodeY to a SimpleDoubleProperty to allow tracking as it changes */
     this.nodeY = new SimpleDoubleProperty();
     this.nodeY.set(this.node.getNode().getYcoord());
 
+    /* Setting nodeBuilding to a SimpleStringProperty to allow tracking as it changes */
     this.nodeBuilding = new SimpleStringProperty();
     this.nodeBuilding.set(this.node.getNode().getBuilding());
 
+    /* Setting nodeFloor to a SimpleStringProperty to allow tracking as it changes */
     this.nodeFloor = new SimpleStringProperty();
     this.nodeFloor.set(this.node.getNode().getFloor());
 
+    /* Setting nodeLongName to a SimpleStringProperty to allow tracking as it changes */
     this.nodeLongName = new SimpleStringProperty();
     this.nodeLongName.set(this.node.getLocation().getLongName());
 
+    /* Setting nodeShortName to a SimpleStringProperty to allow tracking as it changes */
     this.nodeShortName = new SimpleStringProperty();
     this.nodeShortName.set(this.node.getLocation().getShortName());
 
+    /* Setting nodeType to a SimpleStringProperty to allow tracking as it changes */
     this.nodeType = new SimpleStringProperty();
     this.nodeType.set(this.node.getLocation().getLocationType());
 
+    /* Creating and formatting the tooltip */
     this.tooltip = new Tooltip();
     tooltip.setText(
         String.format(
@@ -74,22 +84,26 @@ public class MapNode {
                 + "Node Type: "
                 + this.nodeType.getValue()
                 + "\n"));
-    tooltip.setAnchorX(this.nodeX.doubleValue());
-    tooltip.setAnchorY(this.nodeY.doubleValue());
+
+    /* Ensuring the tooltip shows up instantly and does not vanish prematurely */
     tooltip.setShowDelay(Duration.ZERO);
     tooltip.setShowDuration(Duration.INDEFINITE);
 
+    /* Creating default presets for the representation on the map */
     nodeRepresentation = new Circle();
     nodeRepresentation.centerXProperty().bindBidirectional(nodeX);
     nodeRepresentation.centerYProperty().bindBidirectional(nodeY);
     nodeRepresentation.setRadius(16);
     nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
+
+    /* Allowing tooltip to appear when mouse enters the representation */
     nodeRepresentation.setOnMouseEntered(
         event -> {
           if (this.allowTooltip) {
             Tooltip.install(nodeRepresentation, this.tooltip);
           }
         });
+    /* Allowing tooltip to disappear when mouse exits the representation */
     nodeRepresentation.setOnMouseExited(
         event -> {
           Tooltip.uninstall(nodeRepresentation, this.tooltip);

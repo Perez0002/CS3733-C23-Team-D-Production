@@ -86,8 +86,8 @@ public class MapFactory {
   }
 
   /**
-   * Sets the map to be generated with Edges drawn
    *
+   * @param edges a list of MapEdges to add to the Map
    * @return the MapFactory with these changes
    */
   public MapFactory withEdges(ArrayList<MapEdge> edges) {

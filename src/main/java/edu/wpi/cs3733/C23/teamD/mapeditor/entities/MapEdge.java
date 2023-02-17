@@ -18,9 +18,11 @@ public class MapEdge {
   public MapEdge(PathEdge edge) {
     this.edge = edge;
 
+    /* This needs to be done a better way for the updating to work, but this temporarily assigns the MapNodes */
     this.toNode = new MapNode(edge.getToNode());
     this.fromNode = new MapNode(edge.getFromNode());
 
+    /* Creating and formatting the Line */
     this.edgeRepresentation = new Line();
     this.edgeRepresentation.startXProperty().bindBidirectional(this.fromNode.getNodeX());
     this.edgeRepresentation.startYProperty().bindBidirectional(this.fromNode.getNodeY());
@@ -29,6 +31,7 @@ public class MapEdge {
     this.edgeRepresentation.setStrokeWidth(5);
     this.edgeRepresentation.setStroke(Color.rgb(0x00, 0x00, 0x00));
 
+    /* Creating and formatting the Edge's tooltip */
     this.tooltip = new Tooltip();
     tooltip.setText(
         String.format(
@@ -40,14 +43,17 @@ public class MapEdge {
                 + "\n"
                 + "Edge Cost: "
                 + this.edge.getCost()));
+    /* Ensuring the tooltip shows up instantly and does not vanish prematurely */
     tooltip.setShowDelay(Duration.ZERO);
     tooltip.setShowDuration(Duration.INDEFINITE);
 
+    /* Making the tooltip appear on mouse enter */
     this.edgeRepresentation.setOnMouseEntered(
         event -> {
           Tooltip.install(this.edgeRepresentation, this.tooltip);
         });
 
+    /* Making the tooltip disappear on mouse exit */
     this.edgeRepresentation.setOnMouseExited(
         event -> {
           Tooltip.uninstall(this.edgeRepresentation, this.tooltip);
