@@ -189,7 +189,6 @@ public class PathfindingController {
 
     if (startNode != null && endNode != null) {
       path = pathfinder.pathfind(pathNodes.get(startNode), pathNodes.get(endNode), algorithm);
-      System.out.println(path.size());
       if (path.size() == 1) {
         pathResultText.setText("The Chosen Start and End Locations are Identical");
       } else if (path.size() == 0) {

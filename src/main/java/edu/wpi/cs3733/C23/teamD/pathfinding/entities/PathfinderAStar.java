@@ -57,7 +57,6 @@ public class PathfinderAStar {
         return currentPath.getKey();
       }
 
-      System.out.println("Current Edges: " + currentNode.getEdgeList());
       for (PathEdge e : currentNode.getEdgeList()) {
         if (!beenNodes.contains(e.getToNode())) {
           ArrayList<PathNode> temp = (ArrayList) currentPath.getKey().clone();
