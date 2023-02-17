@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 public class LoginController {
 
   private boolean helpVisible = false;
-  @FXML private Text incorrectUsernameOrPasswordText;
+  @FXML private Text helpText;
 
   @FXML private Text usernameText;
 
@@ -82,24 +82,28 @@ public class LoginController {
   submits information filled out in forms
   */
   public void submitLogin() throws IOException {
+    if (checkFields()) {
 
-    LoginChecker loginInfo =
-        new LoginChecker(
-            username.getText(), password.getText()); // creates PatientTransportData object
+      LoginChecker loginInfo =
+          new LoginChecker(
+              username.getText(), password.getText()); // creates PatientTransportData object
 
-    if (loginInfo.setAccessLevel()) {
+      if (loginInfo.setAccessLevel()) {
 
-      incorrectUsernameOrPasswordText.setVisible(false);
-      App.getRootPane()
-          .setLeft(
-              FXMLLoader.load(
-                  getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
+        helpText.setText("");
+        App.getRootPane()
+            .setLeft(
+                FXMLLoader.load(
+                    getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
 
-      Navigation.navigate(Screen.HOME);
-      App.getPrimaryStage().setMaximized(true);
+        Navigation.navigate(Screen.HOME);
+        App.getPrimaryStage().setMaximized(true);
 
+      } else {
+        helpText.setText("The username or password is incorrect");
+      }
     } else {
-      incorrectUsernameOrPasswordText.setVisible(true);
+      helpText.setText("Please enter a username and password");
     }
   } // end submit()
 }
