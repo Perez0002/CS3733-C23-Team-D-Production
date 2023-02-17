@@ -111,7 +111,6 @@ public class MapFactory {
    * @return An array of GesturePanes representing each floor
    */
   public GesturePane build(int floor) {
-    System.out.println("Making Map!");
     HashMap<String, Integer> converter = new HashMap<String, Integer>();
     int totalX = 0;
     int totalY = 0;
@@ -169,10 +168,8 @@ public class MapFactory {
         totalNode++;
         // Creates popup object
         holder.getChildren().add(node.getNodeRepresentation());
-        System.out.println("Added Node!");
       }
     } else {
-      System.out.println("In else!");
       holder.getChildren().add(nodeList.get(0).getNodeRepresentation());
       holder.getChildren().add(nodeList.get(nodeList.size() - 1).getNodeRepresentation());
     }
