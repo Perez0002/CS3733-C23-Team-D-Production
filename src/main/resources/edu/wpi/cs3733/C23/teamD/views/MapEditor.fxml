@@ -1,104 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="mapEditorPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.pathfinding.MapEditorPageController">
+<BorderPane fx:id="mapEditorPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.mapeditor.controllers.MapEditorPageController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="10000.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <MFXTextField fx:id="buildingTextField" floatingText="Enter the building name." prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <MFXTextField fx:id="floorTextField" floatingText="Enter the floor number" prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <MFXTextField floatingText="Enter the X-coordinate." prefHeight="49.0" prefWidth="200.0" fx:id="xCoordTextField">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <MFXTextField fx:id="yCoordTextField" floatingText="Enter the Y-coordinate" prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <MFXTextField fx:id="locationTypeTextField" floatingText="Enter the location type." prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <MFXTextField fx:id="shortNameTextField" floatingText="Enter the short name." prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </MFXTextField>
-            <MFXTextField fx:id="longNameTextField" floatingText="Enter the long name." prefHeight="49.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></MFXTextField>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="1000.0" prefWidth="100.0">
+            <VBox alignment="TOP_CENTER" prefHeight="420.0" prefWidth="250.0">
                <children>
-                  <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a node on the map, then edit the fields and press submit changes to edit it, and press delete node to delete it. Press add location to add a location and add node to add a node." visible="false" wrappingWidth="218.18597412109375">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
+                  <MFXButton fx:id="floorL1Button" prefHeight="70.0" prefWidth="200.0" text="Floor L1">
                      <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <MFXButton fx:id="downButton" onAction="#floorDown" prefHeight="26.0" prefWidth="200.0" text="Floor Down" />
-                  <MFXButton fx:id="upButton" onAction="#floorUp" prefHeight="26.0" prefWidth="200.0" text="Floor Up" />
-                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="26.0" prefWidth="200.0" text="Submit Changes">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="deleteNodeButton" onAction="#deleteNode" prefHeight="26.0" prefWidth="200.0" text="Delete Node">
+                  <MFXButton fx:id="floorL2Button" prefHeight="70.0" prefWidth="200.0" text="Floor L2">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="addLocationButton" onAction="#addLocation" prefHeight="26.0" prefWidth="200.0" text="Add Location">
+                  <MFXButton fx:id="floor1Button" prefHeight="70.0" prefWidth="200.0" text="Floor 1">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="addNodeButton" onAction="#addNode" prefHeight="26.0" prefWidth="200.0" text="Add Node">
+                  <MFXButton fx:id="floor2Button" prefHeight="70.0" prefWidth="200.0" text="Floor 2">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="clearButton" onAction="#clearFields" prefHeight="26.0" prefWidth="200.0" text="Back">
+                  <MFXButton fx:id="floor3Button" prefHeight="70.0" prefWidth="200.0" text="Floor 3">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton onAction="#displayHelp" prefHeight="26.0" prefWidth="200.0" text="Help">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </MFXButton>
-                  <MFXButton onAction="#openHomepage" prefHeight="26.0" prefWidth="200.0" text="Cancel">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </MFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="87.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="245.0" prefWidth="250.0">
+               <children>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="247.0" prefWidth="250.0">
+                     <children>
+                        <MFXButton prefHeight="26.0" prefWidth="130.0" styleClass="clearButton" text="Help">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton onAction="#openHomepage" prefHeight="27.0" prefWidth="130.0" styleClass="cancelButton" text="Cancel">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
          <padding>
             <Insets top="20.0" />
          </padding>
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin>
       </VBox>
    </left>
+   <center>
+      <BorderPane fx:id="mapPlacement" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
 </BorderPane>

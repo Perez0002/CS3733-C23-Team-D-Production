@@ -1,9 +1,9 @@
 package edu.wpi.cs3733.C23.teamD;
 
-import edu.wpi.cs3733.C23.teamD.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.entities.GraphMap;
-import edu.wpi.cs3733.C23.teamD.entities.Node;
-import edu.wpi.cs3733.C23.teamD.entities.PathfinderAStar;
+import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.GraphMap;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathfinderAStar;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

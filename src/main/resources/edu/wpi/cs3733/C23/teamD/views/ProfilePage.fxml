@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -11,18 +12,22 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.ProfilePageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.user.controllers.ProfilePageController">
    <center>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="110.0" left="90.0" right="90.0" top="110.0" />
          </BorderPane.margin>
          <children>
-            <Label text="Hello User!">
+            <Label styleClass="homepageLabel" text="Hello User!">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="40.0" right="5.0" top="5.0" />
                </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                <children>
@@ -40,7 +45,7 @@
                               </ImageView>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity">
                                  <children>
-                                    <MFXButton fx:id="changeProfilePicture" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Profile Picture" />
+                                    <MFXButton fx:id="changeProfilePicture" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="Change Profile Picture" />
                                  </children>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0">
@@ -48,13 +53,13 @@
                                     <Insets bottom="20.0" top="20.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Label text="Password:">
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Password">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXButton fx:id="viewPassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" style="-fx-text-alignment: left;" text="View Password" />
-                                    <MFXButton fx:id="changePassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" text="Change Password" />
+                                    <MFXButton fx:id="viewPassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="View Password" />
+                                    <MFXButton fx:id="changePassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="clearButton" text="Change Password" />
                                  </children>
                               </VBox>
                            </children>
@@ -64,55 +69,61 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox>
+                  <VBox minWidth="300.0">
                      <children>
-                        <VBox spacing="25.0">
+                        <VBox minWidth="300.0" spacing="25.0">
                            <children>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Email:">
+                                    <Label text="Email">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField fx:id="email" maxHeight="54.0" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="email" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Phone Number:">
+                                    <Label text="Phone Number">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField fx:id="phoneNumber" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="phoneNumber" maxHeight="42.0" minHeight="42.0" minWidth="270.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Address:">
+                                    <Label text="Address">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField fx:id="address" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="address" maxHeight="42.0" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Birthday:">
+                                    <Label text="Date of Birth">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField fx:id="birthday" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXDatePicker fx:id="birthday" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
-                              <VBox spacing="3.0">
+                              <VBox prefHeight="42.0" prefWidth="300.0" spacing="3.0">
                                  <children>
-                                    <Label text="Account Created:">
+                                    <Label text="Account Created">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin></Label>
-                                    <MFXTextField fx:id="accountCreated" prefHeight="54.0" prefWidth="270.0" />
+                                    <MFXTextField fx:id="accountCreated" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <MFXButton onAction = "#resetChanges" prefHeight="53.0" prefWidth="100.0" styleClass="clearButton" text="Reset" />
+                                    <MFXButton onAction ="#saveChanges" prefHeight="53.0" prefWidth="100.0" styleClass="submitButton" text="Save" />
+                                 </children>
+                              </HBox>
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" top="20.0" />
@@ -129,7 +140,7 @@
                            <children>
                               <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
                                  <children>
-                                    <Label text="Service Request Form History:" />
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Service Request Form History" />
                                     <TableView fx:id="serviceRequestHistory" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="400.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                                       <columns>
                                         <TableColumn fx:id="serviceRequests" maxWidth="1.7976931348623157E308" minWidth="300.0" prefWidth="-1.0" text="Service Request" />
@@ -143,7 +154,7 @@
                               </VBox>
                               <VBox spacing="10.0">
                                  <children>
-                                    <Label text="Database Edit History:" />
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Database Edit History" />
                                     <TableView fx:id="databaseEditHistory" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="400.0" prefHeight="400.0" VBox.vgrow="ALWAYS">
                                       <columns>
                                         <TableColumn fx:id="databaseEdits" maxWidth="1.7976931348623157E308" minWidth="300.0" prefWidth="-1.0" text="Database Edit" />
@@ -162,7 +173,7 @@
                         </VBox>
                         <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXButton styleClass="helpbuttonstyleclass" text="?" />
+                              <MFXButton styleClass="helpButton" text="?" />
                            </children>
                         </HBox>
                      </children>

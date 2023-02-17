@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestHubController">
    <center>
       <VBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -26,7 +26,6 @@
             </Label>
             <HBox prefHeight="53.0" prefWidth="550.0" spacing="3.0" styleClass="tabHBox">
                <children>
-                  <MFXButton fx:id="hubButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Hub" />
                   <MFXButton fx:id="transportButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Patient Transport" />
                   <MFXButton fx:id="sanitationButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Sanitation" />
                   <MFXButton fx:id="computerButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Computer" />

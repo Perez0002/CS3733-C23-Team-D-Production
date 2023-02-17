@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.SecurityServiceRequestController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.SecurityServiceRequestController">
     <children>
         <Label styleClass="serviceRequestDescription" text="This form allows employees to report any security concerns at Brigham and Women’s hospital. Please enter the staff member to assign the request to, the location of the issue, the urgency of the issue, and a description providing any details necessary." wrapText="true">
             <VBox.margin>
@@ -37,26 +37,6 @@
                 </VBox>
                 <HBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <VBox alignment="CENTER" prefHeight="119.0" prefWidth="140.0">
-                            <children>
-                                <Label maxWidth="100" minWidth="100" styleClass="serviceRequestMFXTextFieldLabel" text="Add security to location" textAlignment="CENTER" wrapText="true">
-                                    <VBox.margin>
-                                        <Insets left="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <MFXCheckbox fx:id="addSecurityNode" />
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER">
-                            <children>
-                                <Label maxWidth="100" minWidth="100" styleClass="serviceRequestMFXTextFieldLabel" text="Request review for security concern" textAlignment="CENTER" wrapText="true">
-                                    <VBox.margin>
-                                        <Insets left="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <MFXCheckbox fx:id="addRequestSecurityNode" />
-                            </children>
-                        </VBox>
                         <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                             <children>
                                 <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
@@ -72,19 +52,46 @@
                         </VBox>
                     </children>
                <VBox.margin>
-                  <Insets bottom="16.0" />
+                  <Insets />
                </VBox.margin>
                 </HBox>
-            </children>
-        </VBox>
-        <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of problem">
-                    <VBox.margin>
-                        <Insets left="5.0" />
-                    </VBox.margin>
-                </Label>
-                <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
+              <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                  <children>
+                      <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of problem">
+                          <VBox.margin>
+                              <Insets left="5.0" />
+                          </VBox.margin>
+                      </Label>
+                      <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
+                  </children>
+              </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                        <VBox alignment="CENTER">
+                            <children>
+                                <Label maxWidth="80.0" minHeight="40.0" minWidth="90.0" prefHeight="40.0" prefWidth="90.0" styleClass="serviceRequestMFXTextFieldLabel" text="Add security to location" textAlignment="CENTER" wrapText="true">
+                                    <VBox.margin>
+                                        <Insets left="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <MFXCheckbox fx:id="addSecurityNode" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                            <children>
+                                <Label maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="90.0" styleClass="serviceRequestMFXTextFieldLabel" text="Request review for security concern" textAlignment="CENTER" wrapText="true">
+                                    <VBox.margin>
+                                        <Insets left="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <MFXCheckbox fx:id="addRequestSecurityNode" />
+                            </children>
+                        </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </HBox>
             </children>
         </VBox>
     </children>
