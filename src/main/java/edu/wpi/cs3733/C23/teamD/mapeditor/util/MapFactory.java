@@ -2,6 +2,8 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.util;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
@@ -164,16 +166,11 @@ public class MapFactory {
         totalY += node.getYcoord();
         totalNode++;
         // Creates popup object
-        javafx.scene.Node tempPane =
-            MapNodeFactory.startPathBuild()
-                .posX(node.getXcoord())
-                .posY(node.getYcoord())
-                .onClick(this.nodeEvent.apply(node))
-                .onMouseEnter(this.nodeMouseEnterEvent.apply(node))
-                .onMouseExit(this.nodeMouseExitEvent.apply(node))
-                .nodeID(node.getNodeID() + "_pane")
-                .build();
-        holder.getChildren().add(tempPane);
+        final PathNode pathNode = new PathNode(node, node.getLocation());
+        final MapNode tempPane = new MapNode(pathNode);
+
+        holder.getChildren().add(tempPane.getNodeRepresentation());
+        System.out.println("Added Node!");
       }
     } else {
       System.out.println("In else!");
