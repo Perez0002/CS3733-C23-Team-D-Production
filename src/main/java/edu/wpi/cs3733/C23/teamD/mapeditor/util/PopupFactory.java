@@ -151,6 +151,14 @@ public class PopupFactory {
       submitButton.getStyleClass().add("submitButton");
       submitButton.setText("Submit");
       submitButton.setOnAction(submitEvent);
+    } else {
+      xCoordTextField.setEditable(false);
+      yCoordTextField.setEditable(false);
+      buildingTextField.setEditable(false);
+      floorTextField.setEditable(false);
+      longNameTextField.setEditable(false);
+      shortNameTextField.setEditable(false);
+      typeTextField.setEditable(false);
     }
 
     if (this.deletable) {

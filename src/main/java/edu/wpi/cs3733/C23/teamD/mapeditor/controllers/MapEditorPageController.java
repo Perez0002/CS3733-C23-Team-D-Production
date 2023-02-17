@@ -6,6 +6,7 @@ import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEditorMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
@@ -109,7 +110,7 @@ public class MapEditorPageController {
     }
 
     for (PathNode node : pathNodes) {
-      nodeList.add(new MapNode(node));
+      nodeList.add(new MapEditorMapNode(node));
     }
 
     for (PathEdge edge : pathEdges) {

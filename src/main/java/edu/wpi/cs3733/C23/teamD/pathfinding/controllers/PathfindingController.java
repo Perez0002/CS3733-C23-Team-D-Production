@@ -5,6 +5,7 @@ import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
@@ -108,7 +109,7 @@ public class PathfindingController {
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         PathNode lastNode = null;
         for (PathNode node : path) {
-          mapNodes.add(new MapNode(node));
+          mapNodes.add(new PathfindingMapNode(node));
           if (lastNode != null) {
             mapEdges.add(new MapEdge(new PathEdge(lastNode, node)));
           }

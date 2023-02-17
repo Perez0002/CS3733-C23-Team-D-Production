@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
-import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,10 +19,10 @@ public class MapNode {
   @Getter private SimpleStringProperty nodeLongName;
   @Getter private SimpleStringProperty nodeShortName;
   @Getter private SimpleStringProperty nodeType;
-  @Getter private Circle nodeRepresentation;
-  private PopOver popup;
+  @Getter protected Circle nodeRepresentation;
+  protected PopOver popup;
   private Tooltip tooltip;
-  private boolean allowTooltip;
+  protected boolean allowTooltip;
 
   public MapNode(PathNode node) {
     this.node = node;
@@ -85,10 +84,6 @@ public class MapNode {
     nodeRepresentation.centerYProperty().bindBidirectional(nodeY);
     nodeRepresentation.setRadius(16);
     nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
-    nodeRepresentation.setOnMouseClicked(
-        event -> {
-          this.MakePopup();
-        });
     nodeRepresentation.setOnMouseEntered(
         event -> {
           if (this.allowTooltip) {
@@ -99,33 +94,5 @@ public class MapNode {
         event -> {
           Tooltip.uninstall(nodeRepresentation, this.tooltip);
         });
-  }
-
-  private void MakePopup() {
-    if (this.popup == null) {
-      this.popup =
-          PopupFactory.startBuild()
-              .anchor(this.nodeRepresentation)
-              .mapNode(this)
-              .deletable()
-              .editable()
-              .closeEvent(
-                  event -> {
-                    this.RemovePopup();
-                    this.allowTooltip = true;
-                  })
-              .build();
-      this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));
-      this.allowTooltip = false;
-    }
-  }
-
-  private void RemovePopup() {
-    if (popup != null) {
-      popup.hide();
-      popup = null;
-      this.nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
-      this.allowTooltip = true;
-    }
   }
 }
