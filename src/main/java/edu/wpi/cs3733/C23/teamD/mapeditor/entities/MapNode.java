@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
+import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 import lombok.Getter;
 import org.controlsfx.control.PopOver;
 
@@ -18,14 +20,15 @@ public class MapNode {
   @Getter private SimpleStringProperty nodeLongName;
   @Getter private SimpleStringProperty nodeShortName;
   @Getter private SimpleStringProperty nodeType;
-
   @Getter private Circle nodeRepresentation;
-
   private PopOver popup;
   private Tooltip tooltip;
+  private boolean allowTooltip;
 
   public MapNode(PathNode node) {
     this.node = node;
+
+    this.allowTooltip = true;
 
     this.nodeX = new SimpleDoubleProperty();
     this.nodeX.set(this.node.getNode().getXcoord());
@@ -48,15 +51,81 @@ public class MapNode {
     this.nodeType = new SimpleStringProperty();
     this.nodeType.set(this.node.getLocation().getLocationType());
 
+    this.tooltip = new Tooltip();
+    tooltip.setText(
+        String.format(
+            "Node X Coordinate: "
+                + this.nodeX.getValue()
+                + "\n"
+                + "Node Y Coordinate: "
+                + this.nodeY.getValue()
+                + "\n"
+                + "Node Building: "
+                + this.nodeBuilding.getValue()
+                + "\n"
+                + "Node Floor: "
+                + this.nodeFloor.getValue()
+                + "\n"
+                + "Node Long Name: "
+                + this.nodeLongName.getValue()
+                + "\n"
+                + "Node Short Name: "
+                + this.nodeShortName.getValue()
+                + "\n"
+                + "Node Type: "
+                + this.nodeType.getValue()
+                + "\n"));
+    tooltip.setAnchorX(this.nodeX.doubleValue());
+    tooltip.setAnchorY(this.nodeY.doubleValue());
+    tooltip.setShowDelay(Duration.ZERO);
+    tooltip.setShowDuration(Duration.INDEFINITE);
+
     nodeRepresentation = new Circle();
     nodeRepresentation.centerXProperty().bindBidirectional(nodeX);
     nodeRepresentation.centerYProperty().bindBidirectional(nodeY);
-    nodeRepresentation.setFill(Color.rgb(1, 58, 117));
+    nodeRepresentation.setRadius(16);
+    nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
+    nodeRepresentation.setOnMouseClicked(
+        event -> {
+          this.MakePopup();
+        });
+    nodeRepresentation.setOnMouseEntered(
+        event -> {
+          if (this.allowTooltip) {
+            Tooltip.install(nodeRepresentation, this.tooltip);
+          }
+        });
+    nodeRepresentation.setOnMouseExited(
+        event -> {
+          Tooltip.uninstall(nodeRepresentation, this.tooltip);
+        });
   }
 
   private void MakePopup() {
-    popup = new PopOver();
+    if (this.popup == null) {
+      this.popup =
+          PopupFactory.startBuild()
+              .anchor(this.nodeRepresentation)
+              .mapNode(this)
+              .deletable()
+              .editable()
+              .closeEvent(
+                  event -> {
+                    this.RemovePopup();
+                    this.allowTooltip = true;
+                  })
+              .build();
+      this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));
+      this.allowTooltip = false;
+    }
+  }
 
-
+  private void RemovePopup() {
+    if (popup != null) {
+      popup.hide();
+      popup = null;
+      this.nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
+      this.allowTooltip = true;
+    }
   }
 }
