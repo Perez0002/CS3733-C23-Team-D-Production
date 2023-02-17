@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import javafx.scene.control.Tooltip;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import lombok.Getter;
@@ -25,6 +26,8 @@ public class MapEdge {
     this.edgeRepresentation.startYProperty().bindBidirectional(this.fromNode.getNodeY());
     this.edgeRepresentation.endXProperty().bindBidirectional(this.toNode.getNodeX());
     this.edgeRepresentation.endYProperty().bindBidirectional(this.toNode.getNodeY());
+    this.edgeRepresentation.setStrokeWidth(5);
+    this.edgeRepresentation.setStroke(Color.rgb(0x00, 0x00, 0x00));
 
     this.tooltip = new Tooltip();
     tooltip.setText(
@@ -39,5 +42,15 @@ public class MapEdge {
                 + this.edge.getCost()));
     tooltip.setShowDelay(Duration.ZERO);
     tooltip.setShowDuration(Duration.INDEFINITE);
+
+    this.edgeRepresentation.setOnMouseEntered(
+        event -> {
+          Tooltip.install(this.edgeRepresentation, this.tooltip);
+        });
+
+    this.edgeRepresentation.setOnMouseExited(
+        event -> {
+          Tooltip.uninstall(this.edgeRepresentation, this.tooltip);
+        });
   }
 }

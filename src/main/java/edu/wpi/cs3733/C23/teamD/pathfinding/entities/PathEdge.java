@@ -6,7 +6,7 @@ public class PathEdge {
   @Getter private PathNode toNode;
   @Getter private PathNode fromNode;
 
-  public PathEdge(PathNode toNode, PathNode fromNode) {
+  public PathEdge(PathNode fromNode, PathNode toNode) {
     this.toNode = toNode;
     this.fromNode = fromNode;
   }

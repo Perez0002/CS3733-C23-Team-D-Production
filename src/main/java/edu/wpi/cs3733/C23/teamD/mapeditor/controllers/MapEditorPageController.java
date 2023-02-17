@@ -3,26 +3,21 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 import static edu.wpi.cs3733.C23.teamD.database.util.Ddb.*;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
-import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapNodeFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -40,7 +35,8 @@ public class MapEditorPageController {
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
-  private ArrayList<Node> nodeList = new ArrayList<>();
+  private ArrayList<MapNode> nodeList = new ArrayList<>();
+  private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[5];
 
@@ -70,10 +66,7 @@ public class MapEditorPageController {
           }
 
           gesturePane =
-              MapFactory.startBuild()
-                  .withNodes(nodeList)
-                  .withEdges()
-                  .build(floor);
+              MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
 
           mapPlacement.setCenter(gesturePane);
           currentFloor = floor;
@@ -84,11 +77,44 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
-    nodeList = FDdb.getInstance().getAllNodes(); // Fetch Nodes
-    connectNodestoLocations(nodeList);
+    ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
-    ArrayList<Edge> edgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> moveList = FDdb.getInstance().getAllMoves();
+    ArrayList<PathNode> pathNodes = new ArrayList<>();
+    for (Move move : baseMoveList) {
+      pathNodes.add(new PathNode(move.getNode(), move.getLocation()));
+    }
+
+    ArrayList<PathEdge> pathEdges = new ArrayList<>();
+    PathNode[] nodeArray = new PathNode[2];
+    for (Edge edge : baseEdgeList) {
+      for (PathNode node : pathNodes) {
+        if (edge.getToNode().equals(node.getNode())) {
+          nodeArray[0] = node;
+        }
+        if (edge.getFromNode().equals(node.getNode())) {
+          nodeArray[1] = node;
+        }
+        if (nodeArray[0] != null && nodeArray[1] != null) {
+          PathEdge edge1 = new PathEdge(nodeArray[0], nodeArray[1]);
+          nodeArray[0].addEdge(edge1);
+          PathEdge edge2 = new PathEdge(nodeArray[1], nodeArray[0]);
+          nodeArray[1].addEdge(edge2);
+          pathEdges.add(edge1); // Only add one copy for drawing
+          nodeArray[0] = null;
+          nodeArray[1] = null;
+          break;
+        }
+      }
+    }
+
+    for (PathNode node : pathNodes) {
+      nodeList.add(new MapNode(node));
+    }
+
+    for (PathEdge edge : pathEdges) {
+      edgeList.add(new MapEdge(edge));
+    }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
     // Setup for calculating average x and y
@@ -107,15 +133,6 @@ public class MapEditorPageController {
     floor1Button.setOnAction(changeFloor(2));
     floor2Button.setOnAction(changeFloor(3));
     floor3Button.setOnAction(changeFloor(4));
-
-    // Calculating average x and y
-    for (Node node : nodeList) {
-      if (node.getFloor().equals("L1")) {
-        totalX += node.getXcoord();
-        totalY += node.getYcoord();
-        total++;
-      }
-    }
 
     // Creating GesturePane to show
     this.changeFloor(0).handle(null);

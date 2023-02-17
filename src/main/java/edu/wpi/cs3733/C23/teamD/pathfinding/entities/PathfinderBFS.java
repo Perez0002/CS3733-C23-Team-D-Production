@@ -1,47 +1,32 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.entities;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import java.util.*;
 
 public class PathfinderBFS {
 
-  private GraphMap fullMap;
+  public PathfinderBFS() {}
 
-  public PathfinderBFS(GraphMap fullMap) {
-    this.fullMap = fullMap;
-  }
-
-  public void init(ArrayList<Node> nodeList, ArrayList<Edge> edgeList) {
-    this.fullMap.init(nodeList, edgeList);
-  }
-
-  public void initFromDB() {
-    this.fullMap.initFromDB();
-  }
-
-  public ArrayList<Node> breadthFirstSearch(Node startNode, Node endNode) {
-    ArrayList<Node> path = new ArrayList<Node>();
-    ArrayList<Node> frontier = new ArrayList<Node>();
-    HashSet<Node> visited = new HashSet<Node>();
-    HashMap<Node, Node> nodeParentMap = new HashMap<>();
-    Node currentNode = startNode;
+  public ArrayList<PathNode> breadthFirstSearch(PathNode startNode, PathNode endNode) {
+    ArrayList<PathNode> path = new ArrayList<>();
+    ArrayList<PathNode> frontier = new ArrayList<>();
+    HashSet<PathNode> visited = new HashSet<>();
+    HashMap<PathNode, PathNode> nodeParentMap = new HashMap<>();
+    PathNode currentNode = startNode;
     frontier.add(currentNode);
     while (!frontier.isEmpty()) {
       frontier.remove(currentNode);
       visited.add(currentNode);
       if (currentNode.equals(endNode)) {
-        System.out.println(endNode.getLongName());
+
         path.add(endNode);
         while (!currentNode.equals(startNode)) {
           path.add(nodeParentMap.get(currentNode));
-          System.out.println(path.get(path.size() - 1).getLongName());
           currentNode = nodeParentMap.get(currentNode);
         }
         Collections.reverse(path);
         return path;
       }
-      for (Edge edge : currentNode.getNodeEdges()) {
+      for (PathEdge edge : currentNode.getEdgeList()) {
         if (!visited.contains(edge.getToNode()) && !frontier.contains(edge.getToNode())) {
           frontier.add(edge.getToNode());
           nodeParentMap.put(edge.getToNode(), currentNode);
