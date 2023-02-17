@@ -1,8 +1,14 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
-import edu.wpi.cs3733.C23.teamD.pathfinding.entities.GraphMap;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -58,10 +64,8 @@ public class PathfindingController {
 
   private boolean helpVisible = false;
 
-  private GraphMap mainMap;
-
   private String algorithm = "AStar";
-  private ArrayList<Node> path = new ArrayList<Node>();
+  private ArrayList<PathNode> path = new ArrayList<>();
 
   public PathfindingController() {}
 
@@ -101,8 +105,19 @@ public class PathfindingController {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
         }
+        ArrayList<MapNode> mapNodes = new ArrayList<>();
+        ArrayList<MapEdge> mapEdges = new ArrayList<>();
+        PathNode lastNode = null;
+        for (PathNode node : path) {
+          mapNodes.add(new PathfindingMapNode(node));
+          if (lastNode != null) {
+            mapEdges.add(new MapEdge(new PathEdge(lastNode, node)));
+          }
+          lastNode = node;
+        }
+
         pathfindingBorderPane.setCenter(
-            MapFactory.startBuild().withNodes(path).withEdges().build(floor));
+            MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
       }
     };
   }
@@ -122,8 +137,6 @@ public class PathfindingController {
     floorButtons[3] = floor4Button;
     floorButtons[4] = floor5Button;
 
-    this.mainMap = new GraphMap();
-    mainMap.initFromDB();
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
@@ -140,7 +153,28 @@ public class PathfindingController {
 
   @FXML
   void submit() {
-    Pathfinder pathfinder = new Pathfinder(mainMap);
+    Pathfinder pathfinder = new Pathfinder();
+
+    ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+
+    HashMap<String, PathNode> pathNodes = new HashMap<>();
+    for (Move move : baseMoveList) {
+      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+    }
+
+    for (Edge edge : baseEdgeList) {
+      PathEdge edge1 =
+          new PathEdge(
+              pathNodes.get(edge.getFromNode().getNodeID()),
+              pathNodes.get(edge.getToNode().getNodeID()));
+      PathEdge edge2 =
+          new PathEdge(
+              pathNodes.get(edge.getToNode().getNodeID()),
+              pathNodes.get(edge.getFromNode().getNodeID()));
+      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+    }
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
@@ -154,14 +188,13 @@ public class PathfindingController {
     converter.put("3", 4);
 
     if (startNode != null && endNode != null) {
-      path = pathfinder.pathfind(mainMap.getNode(startNode), mainMap.getNode(endNode), algorithm);
-      System.out.println(path.size());
+      path = pathfinder.pathfind(pathNodes.get(startNode), pathNodes.get(endNode), algorithm);
       if (path.size() == 1) {
         pathResultText.setText("The Chosen Start and End Locations are Identical");
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        changeFloor(converter.get(mainMap.getNode(startNode).getFloor())).handle(null);
+        changeFloor(converter.get(pathNodes.get(startNode).getNode().getFloor())).handle(null);
       }
     } else {
       pathResultText.setText("Incorrect Node Data Entered");
