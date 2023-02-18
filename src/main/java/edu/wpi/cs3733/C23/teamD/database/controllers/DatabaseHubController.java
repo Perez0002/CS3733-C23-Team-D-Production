@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
@@ -9,6 +10,7 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastContro
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -41,24 +43,28 @@ public class DatabaseHubController {
     return requestFormHubPane;
   }
 
+  BorderPane getMapPaneContainer() {
+    return mapPaneContainer;
+  }
+
   public void initialize() {
     createHubMap();
     currentController = ServiceRequestTableBorderPane;
-    switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton);
+    switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton, null);
     serviceTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton));
+        event -> switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton, null));
     nodeTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.NODE_TABLE, nodeTableButton));
+        event -> switchVBox(DatabasesFXML.NODE_TABLE, nodeTableButton, null));
     edgeTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.EDGES_TABLE, edgeTableButton));
+        event -> switchVBox(DatabasesFXML.EDGES_TABLE, edgeTableButton, null));
     moveTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.MOVE_TABLE, moveTableButton));
+        event -> switchVBox(DatabasesFXML.MOVE_TABLE, moveTableButton, DatabasesFXML.MOVE_REQUEST));
     locationTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.LOCATION_TABLE, locationTableButton));
+        event -> switchVBox(DatabasesFXML.LOCATION_TABLE, locationTableButton, null));
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  void switchVBox(DatabasesFXML switchTo, MFXButton button) {
+  void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {
     if (currentTab != null) {
       currentTab.getStyleClass().clear();
       currentTab.getStyleClass().add("tabButton");
@@ -66,7 +72,17 @@ public class DatabaseHubController {
     currentTab = button;
     currentTab.getStyleClass().clear();
     currentTab.getStyleClass().add("tabButtonSelected");
-    NavigationDatabases.navigate(switchTo, getRequestFormHubPane());
+    if (button == moveTableButton) {
+      try {
+        final var resource =
+            App.class.getResource("views/DatabaseTableInjections/AddMoveVBox.fxml");
+        final FXMLLoader loader = new FXMLLoader(resource);
+        mapPaneContainer.setCenter(loader.load());
+      } catch (IOException | NullPointerException e) {
+        e.printStackTrace();
+      }
+    }
+    NavigationDatabases.navigate(switchTo, getRequestFormHubPane(), addPage, getMapPaneContainer());
   }
 
   @FXML

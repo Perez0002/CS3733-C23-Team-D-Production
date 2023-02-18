@@ -3,11 +3,16 @@ package edu.wpi.cs3733.C23.teamD.database.controllers;
 import edu.wpi.cs3733.C23.teamD.App;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class NavigationDatabases {
 
-  public static void navigate(final DatabasesFXML databasesFXML, Pane requestFormHubPane) {
+  public static void navigate(
+      final DatabasesFXML databasesFXML,
+      Pane requestFormHubPane,
+      DatabasesFXML addpage,
+      BorderPane container) {
     final String filename = databasesFXML.getFilename();
     try {
       final var resource = App.class.getResource(filename);
@@ -16,6 +21,13 @@ public class NavigationDatabases {
       System.out.println("LOAD " + filename);
       requestFormHubPane.getChildren().add(loader.load());
       // App.getRootPane().setCenter(loader.load());
+    } catch (IOException | NullPointerException e) {
+      e.printStackTrace();
+    }
+    try {
+      final var resource = App.class.getResource(addpage.getFilename());
+      final FXMLLoader loader = new FXMLLoader(resource);
+      container.setCenter(loader.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

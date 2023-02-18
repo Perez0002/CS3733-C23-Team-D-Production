@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.AVRequestController">
-
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.MoveRequestController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Move a Room">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="32.0" />
+         </VBox.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
+      <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want to move">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin></Text>
+       <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/RoomPickComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move to">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin></Text>
+      <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="messageTextField" prefWidth="300.0" />
+      <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin></Text>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="255.0" prefWidth="500.0" spacing="16.0">
+         <children>
+            <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
+            <MFXButton onAction="#addMove" prefWidth="100.0" styleClass="submitButton" text="Add Move" />
+         </children>
+      </HBox>
+   </children>
 </VBox>
