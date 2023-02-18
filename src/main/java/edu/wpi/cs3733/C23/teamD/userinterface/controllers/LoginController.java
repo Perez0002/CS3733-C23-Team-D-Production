@@ -23,13 +23,25 @@ public class LoginController {
   @FXML private MFXPasswordField password;
 
   @FXML
-  /*
-  displayHelp()
-  @param void
-  @return void
-  linked to "Help" button on SceneBuilder page, when selected
-  reverts to "Help" functions (undetermined)
-  */
+  public void initialize() throws IOException {
+    password.setOnKeyPressed(
+        event -> {
+          try {
+            submitLogin();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  @FXML
+  /**
+   * displayHelp()
+   *
+   * @param void
+   * @return void linked to "Help" button on SceneBuilder page, when selected reverts to "Help"
+   *     functions (undetermined)
+   */
   private void displayHelp() {
     helpVisible = !helpVisible;
 
@@ -37,13 +49,13 @@ public class LoginController {
   }
 
   @FXML
-  /*
-  checkFields
-  @param void
-  @return boolean
-  helper function for submit() function,
-  ensures all necessary fields are filled before submission
-  */
+  /**
+   * checkFields
+   *
+   * @param void
+   * @return boolean helper function for submit() function, ensures all necessary fields are filled
+   *     before submission
+   */
   private boolean checkFields() {
     if (checkPassword() && checkUsername()) {
       return true;
@@ -74,13 +86,13 @@ public class LoginController {
   }
 
   @FXML
-  /*
-  submit()
-  @param void
-  @return void
-  linked to "submit" button on SceneBuilder page, when selected
-  submits information filled out in forms
-  */
+  /**
+   * submit()
+   *
+   * @param void
+   * @return void linked to "submit" button on SceneBuilder page, when selected submits information
+   *     filled out in forms
+   */
   public void submitLogin() throws IOException {
     if (checkFields()) {
 
