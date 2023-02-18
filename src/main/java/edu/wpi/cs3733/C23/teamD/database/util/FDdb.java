@@ -3,6 +3,8 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -280,7 +282,11 @@ public class FDdb {
     return new ArrayList<>(moveMap.values());
   }
 
-  public ArrayList<Move> getMoveFromDay(Date date) {
+  public ArrayList<Move> getMovesOnADay(Date date) {
     return moveIDao.getMovesFromDate(date);
+  }
+
+  public ArrayList<Move> getFutureMoves(LocationName l, Date date){
+    return moveIDao.getCertainMoveFromDate(date,l);
   }
 }
