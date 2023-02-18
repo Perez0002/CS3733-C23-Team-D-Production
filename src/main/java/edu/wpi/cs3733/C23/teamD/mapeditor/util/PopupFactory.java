@@ -119,10 +119,12 @@ public class PopupFactory {
     this.closeEvent = closeEvent;
     return this;
   }
+
   public PopupFactory nextEvent(EventHandler nextEvent) {
     this.nextEvent = nextEvent;
     return this;
   }
+
   public PopupFactory prevEvent(EventHandler prevEvent) {
     this.prevEvent = prevEvent;
     return this;

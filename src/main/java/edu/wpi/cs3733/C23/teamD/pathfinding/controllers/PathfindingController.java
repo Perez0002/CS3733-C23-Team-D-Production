@@ -113,9 +113,19 @@ public class PathfindingController {
           if (lastNode != null) {
             mapEdges.add(new MapEdge(new PathEdge(lastNode, node)));
           }
+
           lastNode = node;
         }
-
+        for (int i = 0; i < mapNodes.size(); i++) {
+          if (i - 1 > 0) {
+            ((PathfindingMapNode) mapNodes.get(i))
+                .addPrevNode((PathfindingMapNode) mapNodes.get(i - 1));
+          }
+          if (i + 1 < mapNodes.size()) {
+            ((PathfindingMapNode) mapNodes.get(i))
+                .addNextNode((PathfindingMapNode) mapNodes.get(i + 1));
+          }
+        }
         pathfindingBorderPane.setCenter(
             MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
       }

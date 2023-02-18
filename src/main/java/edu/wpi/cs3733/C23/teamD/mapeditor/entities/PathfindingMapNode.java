@@ -5,6 +5,9 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import javafx.scene.paint.Color;
 
 public class PathfindingMapNode extends MapNode {
+  private PathfindingMapNode prevNode = null;
+  private PathfindingMapNode nextNode = null;
+
   public PathfindingMapNode(PathNode node) {
     /* Superclass object */
     super(node);
@@ -13,6 +16,14 @@ public class PathfindingMapNode extends MapNode {
         event -> {
           this.MakePopup();
         });
+  }
+
+  public void addNextNode(PathfindingMapNode nextNode) {
+    this.nextNode = nextNode;
+  }
+
+  public void addPrevNode(PathfindingMapNode prevNode) {
+    this.prevNode = prevNode;
   }
 
   private void MakePopup() {
@@ -28,8 +39,14 @@ public class PathfindingMapNode extends MapNode {
                     this.RemovePopup();
                     this.allowTooltip = true;
                   })
-                  .nextEvent(event -> {this.focusNext();})
-                  .prevEvent(event -> {this.focusPrev();})
+              .nextEvent(
+                  event -> {
+                    this.focusNext();
+                  })
+              .prevEvent(
+                  event -> {
+                    this.focusPrev();
+                  })
               .build();
       /* Color the node on the map to represent selection */
       this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));
@@ -37,12 +54,17 @@ public class PathfindingMapNode extends MapNode {
       this.allowTooltip = false;
     }
   }
-  private void focusNext(){
 
+  private void focusNext() {
+    this.RemovePopup();
+    nextNode.MakePopup();
   }
-  private void focusPrev(){
 
+  private void focusPrev() {
+    this.RemovePopup();
+    prevNode.MakePopup();
   }
+
   private void RemovePopup() {
     if (popup != null) {
       /* Assuming the popup exists, hide and then remove it to save VRam space */
