@@ -22,11 +22,14 @@ public class PathfindingMapNode extends MapNode {
           PopupFactory.startBuild()
               .anchor(this.nodeRepresentation)
               .mapNode(this)
+              .withArrows()
               .closeEvent(
                   event -> {
                     this.RemovePopup();
                     this.allowTooltip = true;
                   })
+                  .nextEvent(event -> {this.focusNext();})
+                  .prevEvent(event -> {this.focusPrev();})
               .build();
       /* Color the node on the map to represent selection */
       this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));
@@ -34,7 +37,12 @@ public class PathfindingMapNode extends MapNode {
       this.allowTooltip = false;
     }
   }
+  private void focusNext(){
 
+  }
+  private void focusPrev(){
+
+  }
   private void RemovePopup() {
     if (popup != null) {
       /* Assuming the popup exists, hide and then remove it to save VRam space */
