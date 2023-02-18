@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,11 +14,4 @@
     </columns>
     </TableView>
     </center>
-   <bottom>
-      <MFXButton onAction="#openMoveRequest" text="Move a Room" BorderPane.alignment="TOP_LEFT">
-         <BorderPane.margin>
-            <Insets bottom="16.0" left="16.0" top="16.0" />
-         </BorderPane.margin>
-      </MFXButton>
-   </bottom>
 </BorderPane>

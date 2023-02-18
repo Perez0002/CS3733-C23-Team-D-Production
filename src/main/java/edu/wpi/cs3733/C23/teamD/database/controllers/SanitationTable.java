@@ -56,6 +56,9 @@ public class SanitationTable extends Application implements Initializable, Datab
     tablehandling();
   }
 
+  @Override
+  public void refresh() {}
+
   public Node getBox() {
     return SanitationRequestBorderPane;
   }

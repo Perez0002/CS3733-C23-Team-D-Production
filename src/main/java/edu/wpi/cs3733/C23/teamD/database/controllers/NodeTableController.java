@@ -52,6 +52,9 @@ public class NodeTableController extends Application implements Initializable, D
     tablehandling();
   }
 
+  @Override
+  public void refresh() {}
+
   public Node getBox() {
     return NodeTableBorderPane;
   }

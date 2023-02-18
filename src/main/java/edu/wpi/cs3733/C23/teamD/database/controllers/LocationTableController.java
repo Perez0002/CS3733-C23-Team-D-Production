@@ -37,6 +37,9 @@ public class LocationTableController extends Application
     tablehandling();
   }
 
+  @Override
+  public void refresh() {}
+
   public Node getBox() {
     return LocationTableBorderPane;
   }

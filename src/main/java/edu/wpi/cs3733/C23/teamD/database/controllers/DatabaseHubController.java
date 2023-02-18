@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import lombok.Getter;
+import lombok.Setter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class DatabaseHubController {
@@ -35,7 +37,7 @@ public class DatabaseHubController {
   @FXML private Parent patientTransportVBox;
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
-  private DatabaseController currentController; // tracks current VBox pane
+  @Setter @Getter private DatabaseController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
 
@@ -82,7 +84,12 @@ public class DatabaseHubController {
         e.printStackTrace();
       }
     }
-    NavigationDatabases.navigate(switchTo, getRequestFormHubPane(), addPage, getMapPaneContainer());
+    NavigationDatabases.navigate(
+        switchTo, getRequestFormHubPane(), addPage, getMapPaneContainer(), this);
+  }
+
+  public void refresh() {
+    currentController.refresh();
   }
 
   @FXML

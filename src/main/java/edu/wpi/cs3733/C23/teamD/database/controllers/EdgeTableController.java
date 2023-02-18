@@ -36,6 +36,9 @@ public class EdgeTableController extends Application implements Initializable, D
     tablehandling();
   }
 
+  @Override
+  public void refresh() {}
+
   public Node getBox() {
     return EdgeTableBorderPane;
   }

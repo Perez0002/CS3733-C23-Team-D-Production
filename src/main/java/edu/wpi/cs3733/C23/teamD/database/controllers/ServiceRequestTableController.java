@@ -52,6 +52,9 @@ public class ServiceRequestTableController extends Application
     tablehandling();
   }
 
+  @Override
+  public void refresh() {}
+
   public Node getBox() {
     return ServiceRequestTableBorderPane;
   }

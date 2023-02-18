@@ -12,7 +12,8 @@ public class NavigationDatabases {
       final DatabasesFXML databasesFXML,
       Pane requestFormHubPane,
       DatabasesFXML addpage,
-      BorderPane container) {
+      BorderPane container,
+      DatabaseHubController hub) {
     final String filename = databasesFXML.getFilename();
     try {
       final var resource = App.class.getResource(filename);
@@ -20,6 +21,7 @@ public class NavigationDatabases {
       requestFormHubPane.getChildren().clear();
       System.out.println("LOAD " + filename);
       requestFormHubPane.getChildren().add(loader.load());
+      hub.setCurrentController(loader.getController());
       // App.getRootPane().setCenter(loader.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
@@ -28,6 +30,10 @@ public class NavigationDatabases {
       final var resource = App.class.getResource(addpage.getFilename());
       final FXMLLoader loader = new FXMLLoader(resource);
       container.setCenter(loader.load());
+      if (loader.getController().getClass() == MoveRequestController.class) {
+        MoveRequestController moveRequestController = loader.getController();
+        moveRequestController.setDatabaseHubController(hub);
+      }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
