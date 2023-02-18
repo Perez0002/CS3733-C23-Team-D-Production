@@ -23,6 +23,8 @@ public class MapNode {
   protected PopOver popup;
   protected Tooltip tooltip;
   protected boolean allowTooltip;
+  protected final Color NO_SELECTION = Color.rgb(0x01, 0x3A, 0x75);
+  protected final Color SELECTED = Color.rgb(0xCC, 0x22, 0x22);
 
   public MapNode(PathNode node) {
     /* Set the underlying PathNode of this Node */
@@ -94,7 +96,7 @@ public class MapNode {
     nodeRepresentation.centerXProperty().bindBidirectional(nodeX);
     nodeRepresentation.centerYProperty().bindBidirectional(nodeY);
     nodeRepresentation.setRadius(16);
-    nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
+    nodeRepresentation.setFill(this.NO_SELECTION);
 
     /* Allowing tooltip to appear when mouse enters the representation */
     nodeRepresentation.setOnMouseEntered(
