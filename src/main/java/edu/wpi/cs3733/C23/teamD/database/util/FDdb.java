@@ -4,10 +4,11 @@ import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class FDdb {
   private static final FDdb instance = new FDdb();
-
   private final EdgeIDaoImpl edgeIDao;
   private final NodeIDaoImpl nodeIDao;
   private final LocationNameIDaoImpl locationNameIDao;
@@ -265,5 +266,17 @@ public class FDdb {
 
   public void refreshEmployees() {
     employeeIDao.refresh();
+  }
+
+  public HashMap<Node,Move> getAllCurrentMoves(Date date){
+    HashMap<Node, Move> moveMap = new HashMap<>();
+    for(Move m: getAllMoves()){
+      for(Node n: getAllNodes()){
+        if(m.getNode().nodeEquals(n)){
+        moveMap.put(n,m);
+        }
+      }
+    }
+    return moveMap;
   }
 }
