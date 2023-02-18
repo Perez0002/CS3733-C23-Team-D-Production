@@ -87,6 +87,13 @@ public class MapEditorPageController {
       pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
+    HashMap<String, MapNode> mapNodes = new HashMap<>();
+    for (String node : pathNodes.keySet().stream().toList()) {
+      MapNode tempMapNode = new MapEditorMapNode(pathNodes.get(node));
+      mapNodes.put(node, tempMapNode);
+      nodeList.add(tempMapNode);
+    }
+
     for (Edge edge : baseEdgeList) {
       PathEdge edge1 =
           new PathEdge(
@@ -102,13 +109,8 @@ public class MapEditorPageController {
       MapEdge tempMapEdge = new MapEdge(edge1);
       edgeList.add(tempMapEdge);
 
-      MapNode tempMapFromNode = new MapEditorMapNode(pathNodes.get(edge.getFromNode().getNodeID()));
-      MapNode tempMapToNode = new MapEditorMapNode(pathNodes.get(edge.getToNode().getNodeID()));
-      tempMapEdge.setFromNode(tempMapFromNode);
-      tempMapEdge.setToNode(tempMapToNode);
-
-      nodeList.add(tempMapFromNode);
-      nodeList.add(tempMapToNode);
+      tempMapEdge.setNodes(
+          mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");

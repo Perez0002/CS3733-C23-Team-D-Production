@@ -21,7 +21,7 @@ public class MapNode {
   @Getter private SimpleStringProperty nodeType;
   @Getter protected Circle nodeRepresentation;
   protected PopOver popup;
-  private Tooltip tooltip;
+  protected Tooltip tooltip;
   protected boolean allowTooltip;
 
   public MapNode(PathNode node) {
