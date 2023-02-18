@@ -48,7 +48,6 @@ dependencies {
     implementation 'junit:junit:4.13.1'
     implementation 'junit:junit:4.13.1'
     implementation 'org.kordamp.ikonli:ikonli-materialdesign-pack:12.3.1'
-    implementation 'com.fazecast:jSerialComm:2.9.3'
 
     String javaFxVersion = "19"
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'

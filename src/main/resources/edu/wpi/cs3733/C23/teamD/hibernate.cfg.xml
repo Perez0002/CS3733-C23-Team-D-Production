@@ -40,5 +40,6 @@
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.SecurityServiceRequest"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.AVRequest"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.RefreshSession"/>
     </session-factory>
 </hibernate-configuration>
