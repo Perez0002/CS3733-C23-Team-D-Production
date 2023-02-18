@@ -33,7 +33,10 @@
                   <MFXPasswordField fx:id="password" floatMode="DISABLED" floatingText="Password" prefHeight="20.0" prefWidth="200.0" promptText="Password" />
                </children>
             </VBox>
-            <Text fx:id="incorrectUsernameOrPasswordText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Username or Password" visible="false" wrappingWidth="171.09375" />
+            <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="230.09375">
+               <VBox.margin>
+                  <Insets bottom="16.0" top="16.0" />
+               </VBox.margin></Text>
             <MFXButton fx:id="loginButton" onAction="#submitLogin" prefHeight="30.0" prefWidth="200.0" text="Login">
                <VBox.margin>
                   <Insets bottom="20.0" />
