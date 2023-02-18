@@ -6,6 +6,8 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +22,8 @@ public class MapEditorMapNode extends MapNode {
   private static MapEditorMapNode FIRST_NODE = null;
   private static boolean IS_MAKING_EDGE = false;
   private static Line CURRENT_EDGE = null;
-
+  private DoubleProperty oldX = new SimpleDoubleProperty(-1);
+  private DoubleProperty oldY = new SimpleDoubleProperty(-1);
   protected final Color EDGE_CREATION = Color.rgb(0x00, 0xFF, 0x00);
 
   public MapEditorMapNode(PathNode node) {
@@ -30,8 +33,6 @@ public class MapEditorMapNode extends MapNode {
 
     nodeRepresentation.setOnMouseClicked(
         event -> {
-          ((GesturePane) this.nodeRepresentation.getParent().getParent()).setGestureEnabled(true);
-
           if (!event.isShiftDown() && !IS_MAKING_EDGE) {
             this.MakePopup();
           }
@@ -119,9 +120,24 @@ public class MapEditorMapNode extends MapNode {
           }
         });
 
+    nodeRepresentation.setOnMouseReleased(
+        event -> {
+          if (!event.isStillSincePress()) {
+            GesturePane gesturePane =
+                ((GesturePane) this.nodeRepresentation.getParent().getParent());
+            gesturePane.setGestureEnabled(true);
+          }
+        });
+
     nodeRepresentation.setOnMouseDragged(
         event -> {
           if (!event.isShiftDown() && !IS_MAKING_EDGE) {
+
+            if (oldX.getValue() == -1 && oldY.getValue() == -1) {
+              oldX.setValue(this.getNodeX().getValue());
+              oldY.setValue(this.getNodeY().getValue());
+            }
+
             GesturePane gesturePane =
                 ((GesturePane) this.nodeRepresentation.getParent().getParent());
             BorderPane borderPane = ((BorderPane) gesturePane.getParent());
@@ -141,25 +157,30 @@ public class MapEditorMapNode extends MapNode {
                     gesturePaneStartPoint.getY() + gesturePane.getViewportBound().getHeight());
             double triggerX = gesturePane.getViewportBound().getWidth() * 0.1;
             double triggerY = gesturePane.getViewportBound().getWidth() * 0.1;
+
+            double centerPointX = gesturePane.targetPointAtViewportCentre().getX();
+            double centerPointY = gesturePane.targetPointAtViewportCentre().getY();
+
             if (event.getSceneX() < gesturePaneStartPoint.getX() + triggerX) {
-              gesturePane
-                  .animate(Duration.millis(50))
-                  .centreOnX(gesturePane.targetPointAtViewportCentre().getX() - triggerX);
+              centerPointX = (gesturePane.targetPointAtViewportCentre().getX() - triggerX);
             }
 
             if (event.getSceneX() > gesturePaneEndPoint.getX() - triggerX) {
-              gesturePane
-                  .animate(Duration.millis(50))
-                  .centreOnX(gesturePane.targetPointAtViewportCentre().getX() + triggerX);
+              centerPointX = (gesturePane.targetPointAtViewportCentre().getX() + triggerX);
             }
-          }
-        });
 
-    nodeRepresentation.setOnMouseDragReleased(
-        event -> {
-          System.out.println("Fired!");
-          GesturePane gesturePane = ((GesturePane) this.nodeRepresentation.getParent().getParent());
-          gesturePane.setGestureEnabled(true);
+            if (event.getSceneY() < gesturePaneStartPoint.getY() + triggerY) {
+              centerPointY = (gesturePane.targetPointAtViewportCentre().getY() - triggerY);
+            }
+
+            if (event.getSceneY() > gesturePaneEndPoint.getY() - triggerY) {
+              centerPointY = (gesturePane.targetPointAtViewportCentre().getY() + triggerY);
+            }
+
+            gesturePane
+                .animate(Duration.millis(50))
+                .centreOn(new Point2D(centerPointX, centerPointY));
+          }
         });
   }
 
@@ -194,6 +215,12 @@ public class MapEditorMapNode extends MapNode {
       this.nodeRepresentation.setFill(this.NO_SELECTION);
       /* Allow this Node's tooltip to pop up */
       this.allowTooltip = true;
+
+      this.getNodeX().setValue(this.oldX.getValue());
+      this.getNodeY().setValue(this.oldY.getValue());
+
+      this.oldX.setValue(-1);
+      this.oldY.setValue(-1);
     }
   }
 }
