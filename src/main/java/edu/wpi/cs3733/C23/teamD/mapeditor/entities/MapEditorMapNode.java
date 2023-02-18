@@ -1,14 +1,18 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorMapNode extends MapNode {
@@ -51,11 +55,15 @@ public class MapEditorMapNode extends MapNode {
                   .getChildren()
                   .add(1, tempEdge.getEdgeRepresentation());
 
-              FDdb.getInstance()
-                  .saveEdge(
-                      new Edge(
-                          tempEdge.getEdge().getFromNode().getNode(),
-                          tempEdge.getEdge().getToNode().getNode()));
+              try {
+                FDdb.getInstance()
+                    .saveEdge(
+                        new Edge(
+                            tempEdge.getEdge().getFromNode().getNode(),
+                            tempEdge.getEdge().getToNode().getNode()));
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
 
               this.nodeRepresentation.setFill(this.NO_SELECTION);
               FIRST_NODE.nodeRepresentation.setFill(this.NO_SELECTION);
@@ -114,11 +122,44 @@ public class MapEditorMapNode extends MapNode {
     nodeRepresentation.setOnMouseDragged(
         event -> {
           if (!event.isShiftDown() && !IS_MAKING_EDGE) {
-            ((GesturePane) this.nodeRepresentation.getParent().getParent())
-                .setGestureEnabled(false);
+            GesturePane gesturePane =
+                ((GesturePane) this.nodeRepresentation.getParent().getParent());
+            BorderPane borderPane = ((BorderPane) gesturePane.getParent());
+            gesturePane.setGestureEnabled(false);
             this.getNodeX().setValue(event.getX());
             this.getNodeY().setValue(event.getY());
+
+            Point2D gesturePaneStartPoint =
+                new Point2D(
+                    borderPane.getLayoutX()
+                        + App.getRootPane().getLeft().getLayoutBounds().getWidth(),
+                    borderPane.getLayoutY()
+                        + App.getRootPane().getLeft().getLayoutBounds().getWidth());
+            Point2D gesturePaneEndPoint =
+                new Point2D(
+                    gesturePaneStartPoint.getX() + gesturePane.getViewportBound().getWidth(),
+                    gesturePaneStartPoint.getY() + gesturePane.getViewportBound().getHeight());
+            double triggerX = gesturePane.getViewportBound().getWidth() * 0.1;
+            double triggerY = gesturePane.getViewportBound().getWidth() * 0.1;
+            if (event.getSceneX() < gesturePaneStartPoint.getX() + triggerX) {
+              gesturePane
+                  .animate(Duration.millis(50))
+                  .centreOnX(gesturePane.targetPointAtViewportCentre().getX() - triggerX);
+            }
+
+            if (event.getSceneX() > gesturePaneEndPoint.getX() - triggerX) {
+              gesturePane
+                  .animate(Duration.millis(50))
+                  .centreOnX(gesturePane.targetPointAtViewportCentre().getX() + triggerX);
+            }
           }
+        });
+
+    nodeRepresentation.setOnMouseDragReleased(
+        event -> {
+          System.out.println("Fired!");
+          GesturePane gesturePane = ((GesturePane) this.nodeRepresentation.getParent().getParent());
+          gesturePane.setGestureEnabled(true);
         });
   }
 
