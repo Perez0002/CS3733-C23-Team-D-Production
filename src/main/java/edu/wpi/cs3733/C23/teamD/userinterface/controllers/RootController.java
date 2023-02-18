@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
@@ -13,39 +14,37 @@ import org.controlsfx.control.PopOver;
 
 public class RootController {
 
-  @FXML private MFXButton dbButton;
-
-  @FXML private MFXButton helpPageButton;
-
-  @FXML private MFXButton homeButton;
-
-  @FXML private MFXButton infoButton;
-
-  @FXML private MFXButton logOutButton;
-
-  @FXML private MFXButton mapEditorButton;
-
-  @FXML private MFXButton pathfindingButton;
-
-  @FXML private MFXButton profileButton;
-
-  @FXML private MFXButton serviceRequestFormsButton;
+  @FXML
+  private MFXButton homeButton,
+      profileButton,
+      serviceRequestFormsButton,
+      pathfindingButton,
+      dbButton,
+      mapEditorButton,
+      helpPageButton,
+      infoButton,
+      logOutButton;
 
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
+    checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
     setButtons();
   }
 
   public void checkAccessLevel(Employee currentUser) {
-    if (currentUser.getEmployeeType().equals("ADMIN")) {
+    String type = currentUser.getEmployeeType();
+    if (type != null && type.equals("ADMIN")) {
       dbButton.setDisable(false);
       serviceRequestFormsButton.setDisable(false);
-    } else if (currentUser.getEmployeeType().equals("STAFF")) {
+      mapEditorButton.setDisable(false);
+    } else if (type != null && type.equals("STAFF")) {
       dbButton.setDisable(true);
       serviceRequestFormsButton.setDisable(false);
+      mapEditorButton.setDisable(false);
     } else {
       dbButton.setDisable(true);
       serviceRequestFormsButton.setDisable(true);
+      mapEditorButton.setDisable(true);
     }
   }
 
@@ -79,13 +78,11 @@ public class RootController {
     helpPageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HELP_PAGE));
     helpPageButton.setTooltip(new Tooltip("Help"));
 
-    infoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     infoButton.setTooltip(new Tooltip("Information"));
+    infoButton.setOnMouseClicked(event -> showCredits());
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
-
-    infoButton.setOnMouseClicked(event -> showCredits());
   }
 
   void showCredits() {
