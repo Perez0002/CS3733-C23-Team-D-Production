@@ -268,19 +268,19 @@ public class FDdb {
     employeeIDao.refresh();
   }
 
-  public HashMap<Node,Move> getAllCurrentMoves(){
+  public ArrayList<Move> getAllCurrentMoves(Date date) {
     HashMap<Node, Move> moveMap = new HashMap<>();
-    for(Move m: getAllMoves()){
-      for(Node n: getAllNodes()){
-        if(m.getNode().nodeEquals(n)){
-        moveMap.put(n,m);
+    for (Move m : getAllMoves()) {
+      for (Node n : getAllNodes()) {
+        if (m.getNode().nodeEquals(n) && m.getMoveDate().before(date)) {
+          moveMap.put(n, m);
         }
       }
     }
-    return moveMap;
+    return new ArrayList<>(moveMap.values());
   }
 
-  public ArrayList<Move> getMoveFromDay(Date date){
+  public ArrayList<Move> getMoveFromDay(Date date) {
     return moveIDao.getMovesFromDate(date);
   }
 }

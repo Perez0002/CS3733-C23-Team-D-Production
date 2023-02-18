@@ -154,7 +154,7 @@ public class MoveIDaoImpl implements IDao<Move> {
     }
   }
 
-  public ArrayList<Move> getMovesFromDate(Date date){
+  public ArrayList<Move> getMovesFromDate(Date date) {
     session.beginTransaction();
     Query q = session.createQuery("SELECT from Move where moveDate > :now");
     q.setParameter("now", date);
