@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 public class LoginController {
@@ -16,7 +17,7 @@ public class LoginController {
   private boolean helpVisible = false;
   @FXML private Text helpText;
 
-  @FXML private Text usernameText;
+  @FXML private Label usernameLabel, passwordLabel;
 
   @FXML private MFXTextField username;
 
@@ -45,7 +46,7 @@ public class LoginController {
   private void displayHelp() {
     helpVisible = !helpVisible;
 
-    usernameText.setVisible(helpVisible);
+    usernameLabel.setVisible(helpVisible);
   }
 
   @FXML

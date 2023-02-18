@@ -4,6 +4,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -24,23 +26,26 @@
             </ImageView>
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0" spacing="5.0">
                <children>
-                  <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="200.03753662109375" />
-                  <MFXTextField fx:id="username" floatMode="DISABLED" floatingText="Enter username" prefHeight="20.0" prefWidth="200.0" promptText="Enter username">
+                  <Label fx:id="usernameLabel" prefWidth="250.0" text="Username" />
+                  <MFXTextField fx:id="username" floatMode="DISABLED" floatingText="Enter username" prefHeight="20.0" prefWidth="250.0" promptText="Enter username">
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin></MFXTextField>
-                  <Text fx:id="usernameText1" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="200.03753662109375" />
-                  <MFXPasswordField fx:id="password" floatMode="DISABLED" floatingText="Password" prefHeight="20.0" prefWidth="200.0" promptText="Enter password" />
+                  <Label fx:id="passwordLabel" prefWidth="250.0" text="Password" />
+                  <MFXPasswordField fx:id="password" floatMode="DISABLED" floatingText="Password" prefHeight="20.0" prefWidth="250.0" promptText="Enter password" />
                </children>
             </VBox>
             <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="230.09375">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin></Text>
-            <MFXButton fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitLogin" prefHeight="50.0" prefWidth="200.0" style="-fx-pref-height: 50;" text="Login">
+            <MFXButton fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#submitLogin" prefHeight="50.0" prefWidth="250.0" style="-fx-pref-height: 50;" text="Login">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
             </MFXButton>
          </children>
       </VBox>
