@@ -70,7 +70,6 @@ public class LoginController {
 
                     if (loginInfo.setAccessLevel()) {
 
-                      incorrectUsernameOrPasswordText.setVisible(false);
                       try {
                         App.getRootPane()
                             .setLeft(
