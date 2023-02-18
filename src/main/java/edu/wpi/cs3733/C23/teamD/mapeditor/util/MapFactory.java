@@ -2,13 +2,13 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.util;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,18 +16,18 @@ import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
-  private boolean withEdges;
   private boolean onlyStartEnd;
-  private ArrayList<Node> nodeList;
+  private ArrayList<MapNode> nodeList;
+  private ArrayList<MapEdge> edgeList;
   private Function<Node, EventHandler<MouseEvent>> nodeEvent;
   private Function<Node, EventHandler<MouseEvent>> nodeMouseEnterEvent;
   private Function<Node, EventHandler<MouseEvent>> nodeMouseExitEvent;
 
   /** Creates a new MapFactory Object */
   private MapFactory() {
-    this.withEdges = false;
     this.onlyStartEnd = false;
-    this.nodeList = new ArrayList<Node>();
+    this.nodeList = new ArrayList<MapNode>();
+    this.edgeList = new ArrayList<MapEdge>();
     this.nodeEvent =
         new Function<Node, EventHandler<MouseEvent>>() {
           @Override
@@ -61,7 +61,7 @@ public class MapFactory {
    * @param withNodes list of Nodes to add to the map
    * @return the MapFactory with these changes
    */
-  public MapFactory withNodes(ArrayList<Node> withNodes) {
+  public MapFactory withNodes(ArrayList<MapNode> withNodes) {
     this.nodeList = withNodes;
     return this;
   }
@@ -86,12 +86,11 @@ public class MapFactory {
   }
 
   /**
-   * Sets the map to be generated with Edges drawn
-   *
+   * @param edges a list of MapEdges to add to the Map
    * @return the MapFactory with these changes
    */
-  public MapFactory withEdges() {
-    this.withEdges = true;
+  public MapFactory withEdges(ArrayList<MapEdge> edges) {
+    this.edgeList = edges;
     return this;
   }
 
@@ -111,7 +110,6 @@ public class MapFactory {
    * @return An array of GesturePanes representing each floor
    */
   public GesturePane build(int floor) {
-    System.out.println("Making Map!");
     HashMap<String, Integer> converter = new HashMap<String, Integer>();
     int totalX = 0;
     int totalY = 0;
@@ -149,82 +147,30 @@ public class MapFactory {
               App.class.getResource("views/floorMaps/03_thethirdfloor.png").toExternalForm());
     }
 
-    Canvas canvas = new Canvas(image.getImage().getWidth(), image.getImage().getHeight());
     holder.getChildren().add(image);
-    holder.getChildren().add(canvas);
+
+    for (MapEdge edge : edgeList) {
+      if (converter.get(edge.getToNode().getNodeFloor().getValue()) == floor
+          && converter.get(edge.getFromNode().getNodeFloor().getValue()) == floor)
+        holder.getChildren().add(edge.getEdgeRepresentation());
+    }
 
     if (!this.onlyStartEnd) {
       // For every Node
-      for (Node node : nodeList) {
+      for (MapNode node : nodeList) {
 
-        if (converter.get(node.getFloor()) != floor) {
+        if (converter.get(node.getNodeFloor().getValue()) != floor) {
           continue;
         }
-        totalX += node.getXcoord();
-        totalY += node.getYcoord();
+        totalX += node.getNodeX().getValue();
+        totalY += node.getNodeY().getValue();
         totalNode++;
         // Creates popup object
-        javafx.scene.Node tempPane =
-            MapNodeFactory.startPathBuild()
-                .posX(node.getXcoord())
-                .posY(node.getYcoord())
-                .onClick(this.nodeEvent.apply(node))
-                .onMouseEnter(this.nodeMouseEnterEvent.apply(node))
-                .onMouseExit(this.nodeMouseExitEvent.apply(node))
-                .nodeID(node.getNodeID() + "_pane")
-                .build();
-        holder.getChildren().add(tempPane);
+        holder.getChildren().add(node.getNodeRepresentation());
       }
     } else {
-      System.out.println("In else!");
-
-      javafx.scene.Node startPane =
-          MapNodeFactory.startPathBuild()
-              .posX(nodeList.get(0).getXcoord())
-              .posY(nodeList.get(0).getYcoord())
-              .onClick(this.nodeEvent.apply(nodeList.get(0)))
-              .onMouseEnter(this.nodeMouseEnterEvent.apply(nodeList.get(0)))
-              .onMouseExit(this.nodeMouseExitEvent.apply(nodeList.get(0)))
-              .nodeID(nodeList.get(0).getNodeID() + "_pane")
-              .build();
-      javafx.scene.Node endPane =
-          MapNodeFactory.startPathBuild()
-              .posX(nodeList.get(nodeList.size() - 1).getXcoord())
-              .posY(nodeList.get(nodeList.size() - 1).getYcoord())
-              .onClick(this.nodeEvent.apply(nodeList.get(nodeList.size() - 1)))
-              .onMouseEnter(this.nodeMouseEnterEvent.apply(nodeList.get(nodeList.size() - 1)))
-              .onMouseExit(this.nodeMouseExitEvent.apply(nodeList.get(nodeList.size() - 1)))
-              .nodeID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
-              .build();
-      holder.getChildren().add(startPane);
-      holder.getChildren().add(endPane);
-    }
-
-    GraphicsContext context = canvas.getGraphicsContext2D();
-    boolean throughFirst = false;
-    if (this.withEdges) {
-      Node lastNode = null;
-      for (Node node : nodeList) {
-
-        if (converter.get(node.getFloor()) != floor) {
-          lastNode = node;
-          continue;
-        }
-
-        if (throughFirst) {
-          context.strokeLine(
-              lastNode.getXcoord(), lastNode.getYcoord(), node.getXcoord(), node.getYcoord());
-        } else {
-          throughFirst = true;
-          context.strokeText("START", node.getXcoord(), node.getYcoord() - 10, 40);
-          context.setLineWidth(5);
-        }
-        lastNode = node;
-      }
-      context.setLineWidth(1);
-      if (lastNode != null) {
-        context.strokeText("END", lastNode.getXcoord(), lastNode.getYcoord() - 10, 40);
-      }
+      holder.getChildren().add(nodeList.get(0).getNodeRepresentation());
+      holder.getChildren().add(nodeList.get(nodeList.size() - 1).getNodeRepresentation());
     }
 
     map.setContent(holder);

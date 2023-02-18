@@ -37,13 +37,9 @@ public class LoginChecker {
     for (Employee s : employee) {
       if (s.getEmail().equals(email)) {
         if (s.getPassword().equals(password)) {
-          if (s.getEmployeeType().equals("ADMIN")) {
-            CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
-          } else {
-            CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
-          }
+          CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
+          return true;
         }
-        return true;
       }
     }
     return false;

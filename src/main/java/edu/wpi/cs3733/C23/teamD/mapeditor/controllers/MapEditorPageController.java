@@ -2,24 +2,24 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
 import static edu.wpi.cs3733.C23.teamD.database.util.Ddb.*;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEditorMapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
-import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapNodeFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -35,11 +35,10 @@ public class MapEditorPageController {
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
 
-  private ArrayList<Node> nodeList = new ArrayList<>();
   private GesturePane gesturePane;
-  private MapEditorNodeController tempPopup;
-  private HashMap<Node, MapEditorNodeController> activePopups = new HashMap<>();
   private int currentFloor = -1;
+  private ArrayList<MapNode> nodeList = new ArrayList<>();
+  private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[5];
 
@@ -49,125 +48,11 @@ public class MapEditorPageController {
     Navigation.navigate(Screen.HOME);
   }
 
-  /**
-   * @param node Node to bind event to
-   * @return EventHandler<MouseEvent> to handle on click events
-   */
-  private EventHandler<MouseEvent> paneClickFunction(Node node) {
-    // Return a new EventHandler<MouseEvent> based on the passed Node
-    return new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-
-        GesturePane gesturePane = (GesturePane) mapPlacement.getCenter();
-        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-
-        javafx.scene.Node tempPane = null;
-        for (javafx.scene.Node n : anchor.getChildren()) {
-          if (!(n instanceof Circle)) {
-            continue;
-          }
-
-          if ((node.getNodeID() + "_pane").equals(n.getId())) {
-            // Turn this Pane to red
-            tempPane = n;
-          }
-        }
-
-        if (tempPane == null) {
-          tempPane =
-              MapNodeFactory.startPathBuild()
-                  .posX(event.getX())
-                  .posY(event.getY())
-                  .nodeID(nodeList.get(nodeList.size() - 1).getNodeID() + "_pane")
-                  .build();
-          anchor.getChildren().add(tempPane);
-        }
-
-        if (!activePopups.containsKey(node)) {
-          if (tempPopup != null) {
-            tempPopup.makePopupDisappear();
-            tempPopup = null;
-          }
-
-          MapEditorNodeController newPopup =
-              new MapEditorNodeController(node, tempPane, event.getSceneX(), event.getSceneY());
-          final Circle nodeCircle = (Circle) tempPane;
-          activePopups.put(node, newPopup);
-          newPopup.setOnClose(
-              e -> {
-                activePopups.get(node).makePopupDisappear();
-                activePopups.remove(node, newPopup);
-                nodeCircle.setFill(Color.rgb(1, 58, 117));
-              });
-          newPopup.setOnSubmit(activePopups);
-          newPopup.setOnDelete(activePopups);
-          newPopup.makePopupAppear();
-          ((Circle) tempPane).setFill(Color.rgb(204, 34, 34));
-        }
-      }
-    };
-  }
-
-  private EventHandler<MouseEvent> paneEnterFunction(Node node) {
-    // Return a new EventHandler<MouseEvent> based on the passed Node
-    return new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        GesturePane gesturePane = (GesturePane) mapPlacement.getCenter();
-        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-
-        if (tempPopup == null && !activePopups.containsKey(node)) {
-          javafx.scene.Node tempNode = null;
-          for (javafx.scene.Node n : anchor.getChildren()) {
-            if (n instanceof Circle) {
-              if (n.getId().equals(node.getNodeID() + "_pane")) {
-                tempNode = n;
-                break;
-              }
-            }
-          }
-
-          tempPopup =
-              new MapEditorNodeController(node, tempNode, event.getSceneX(), event.getSceneY());
-          tempPopup.setOnClose(
-              e -> {
-                tempPopup.makePopupDisappear();
-                tempPopup = null;
-              });
-
-          tempPopup.makePopupAppear();
-        }
-      }
-    };
-  }
-
-  private EventHandler<MouseEvent> paneExitFunction(Node node) {
-    // Return a new EventHandler<MouseEvent> based on the passed Node
-    return new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        GesturePane gesturePane = (GesturePane) mapPlacement.getCenter();
-        AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-
-        if (tempPopup != null && !activePopups.containsKey(node)) {
-          tempPopup.makePopupDisappear();
-          tempPopup = null;
-        }
-      }
-    };
-  }
-
   public EventHandler<ActionEvent> changeFloor(int floor) {
 
     return new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-
-        for (Node popupNode : activePopups.keySet()) {
-          activePopups.get(popupNode).makePopupDisappear();
-          activePopups.remove(popupNode);
-        }
 
         if (floor != currentFloor) {
           for (int i = 0; i < 5; i++) {
@@ -183,33 +68,8 @@ public class MapEditorPageController {
           }
 
           gesturePane =
-              MapFactory.startBuild()
-                  .withNodes(nodeList)
-                  .withNodeFunctions(
-                      node -> {
-                        return paneClickFunction(node);
-                      })
-                  .withNodeMouseEnterFunctions(
-                      node -> {
-                        return paneEnterFunction(node);
-                      })
-                  .withNodeMouseExitFunctions(
-                      node -> {
-                        return paneExitFunction(node);
-                      })
-                  .build(floor);
-          gesturePane
-              .getContent()
-              .setOnMouseClicked(
-                  e -> {
-                    if (e.getClickCount() >= 2) {
-                      Node tempNode = new Node();
-                      tempNode.setXcoord((int) e.getX());
-                      tempNode.setYcoord((int) e.getY());
-                      tempNode.setLocation(new LocationName());
-                      paneClickFunction(tempNode).handle(e);
-                    }
-                  });
+              MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+
           mapPlacement.setCenter(gesturePane);
           currentFloor = floor;
         }
@@ -219,8 +79,37 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
-    nodeList = FDdb.getInstance().getAllNodes(); // Fetch Nodes
-    connectNodestoLocations(nodeList);
+    ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+
+    HashMap<String, PathNode> pathNodes = new HashMap<>();
+    for (Move move : baseMoveList) {
+      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+    }
+
+    for (Edge edge : baseEdgeList) {
+      PathEdge edge1 =
+          new PathEdge(
+              pathNodes.get(edge.getFromNode().getNodeID()),
+              pathNodes.get(edge.getToNode().getNodeID()));
+      PathEdge edge2 =
+          new PathEdge(
+              pathNodes.get(edge.getToNode().getNodeID()),
+              pathNodes.get(edge.getFromNode().getNodeID()));
+      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+
+      MapEdge tempMapEdge = new MapEdge(edge1);
+      edgeList.add(tempMapEdge);
+
+      MapNode tempMapFromNode = new MapEditorMapNode(pathNodes.get(edge.getFromNode().getNodeID()));
+      MapNode tempMapToNode = new MapEditorMapNode(pathNodes.get(edge.getToNode().getNodeID()));
+      tempMapEdge.setFromNode(tempMapFromNode);
+      tempMapEdge.setToNode(tempMapToNode);
+
+      nodeList.add(tempMapFromNode);
+      nodeList.add(tempMapToNode);
+    }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
     // Setup for calculating average x and y
@@ -239,15 +128,6 @@ public class MapEditorPageController {
     floor1Button.setOnAction(changeFloor(2));
     floor2Button.setOnAction(changeFloor(3));
     floor3Button.setOnAction(changeFloor(4));
-
-    // Calculating average x and y
-    for (Node node : nodeList) {
-      if (node.getFloor().equals("L1")) {
-        totalX += node.getXcoord();
-        totalY += node.getYcoord();
-        total++;
-      }
-    }
 
     // Creating GesturePane to show
     this.changeFloor(0).handle(null);

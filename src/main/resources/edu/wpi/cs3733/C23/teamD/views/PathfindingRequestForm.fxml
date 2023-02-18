@@ -103,11 +103,11 @@
                <children>
                   <HBox alignment="CENTER" prefWidth="850.0" spacing="24.0">
                      <children>
-                        <MFXButton fx:id="floor1Button" styleClass="floorSwitchButton" text="Floor 1" />
-                        <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="Floor 2" />
-                        <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 3" />
-                        <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 4" />
-                        <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 5" />
+                        <MFXButton fx:id="floor1Button" styleClass="floorSwitchButton" text="L1" />
+                        <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="L2" />
+                        <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 1" />
+                        <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 2" />
+                        <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 3" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="30.0" top="30.0" />
