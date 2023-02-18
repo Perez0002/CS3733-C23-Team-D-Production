@@ -33,12 +33,8 @@ public class RootController {
 
   public void checkAccessLevel(Employee currentUser) {
     String type = currentUser.getEmployeeType();
-    if (type != null && type.equals("ADMIN")) {
+    if (type != null && (type.equals("ADMIN") || type.equals("STAFF"))) {
       dbButton.setDisable(false);
-      serviceRequestFormsButton.setDisable(false);
-      mapEditorButton.setDisable(false);
-    } else if (type != null && type.equals("STAFF")) {
-      dbButton.setDisable(true);
       serviceRequestFormsButton.setDisable(false);
       mapEditorButton.setDisable(false);
     } else {
