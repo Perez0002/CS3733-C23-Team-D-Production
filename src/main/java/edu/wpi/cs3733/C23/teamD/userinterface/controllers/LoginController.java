@@ -1,10 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
-import com.fazecast.jSerialComm.SerialPort;
-import com.fazecast.jSerialComm.SerialPortDataListener;
-import com.fazecast.jSerialComm.SerialPortEvent;
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.cardreader.CommPort;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.util.LoginChecker;
@@ -48,50 +44,6 @@ public class LoginController {
   helper function for submit() function,
   ensures all necessary fields are filled before submission
   */
-  public void initialize() {
-    CommPort commPort = new CommPort("NFC Card Reader");
-    commPort
-        .getPort()
-        .addDataListener(
-            new SerialPortDataListener() {
-              @Override
-              public int getListeningEvents() {
-                return SerialPort.LISTENING_EVENT_DATA_AVAILABLE;
-              }
-
-              @Override
-              public void serialEvent(SerialPortEvent event) {
-                if (event.getEventType() == SerialPort.LISTENING_EVENT_DATA_AVAILABLE) {
-                  if (commPort.readSerial().contains("41 38 EE 20")) {
-                    commPort.closeSerial();
-
-                    LoginChecker loginInfo =
-                        new LoginChecker("admin", "admin"); // creates PatientTransportData object
-
-                    if (loginInfo.setAccessLevel()) {
-
-                      try {
-                        App.getRootPane()
-                            .setLeft(
-                                FXMLLoader.load(
-                                    getClass()
-                                        .getResource(
-                                            "/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
-                      } catch (IOException e) {
-                        throw new RuntimeException(e);
-                      }
-
-                      Navigation.navigate(Screen.HOME);
-                      App.getPrimaryStage().setMaximized(true);
-                    }
-                  } else {
-                    System.out.println("Invalid Card");
-                  }
-                }
-              }
-            });
-  }
-
   private boolean checkFields() {
     if (checkPassword() && checkUsername()) {
       return true;
