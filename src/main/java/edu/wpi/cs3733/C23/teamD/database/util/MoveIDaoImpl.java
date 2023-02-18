@@ -162,9 +162,12 @@ public class MoveIDaoImpl implements IDao<Move> {
     session.getTransaction().commit();
     return moves;
   }
+
   public ArrayList<Move> getCertainMoveFromDate(Date date, LocationName loc) {
     session.beginTransaction();
-    Query q = session.createQuery("SELECT from Move where moveDate > :now where location = :thislocation");
+    Query q =
+        session.createQuery(
+            "SELECT from Move where moveDate > :now where location = :thislocation");
     q.setParameter("now", date);
     q.setParameter("thislocation", loc.getLongName());
     ArrayList<Move> moves = new ArrayList<Move>(q.getResultList());
