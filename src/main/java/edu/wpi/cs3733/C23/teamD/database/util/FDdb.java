@@ -268,7 +268,7 @@ public class FDdb {
     employeeIDao.refresh();
   }
 
-  public HashMap<Node,Move> getAllCurrentMoves(Date date){
+  public HashMap<Node,Move> getAllCurrentMoves(){
     HashMap<Node, Move> moveMap = new HashMap<>();
     for(Move m: getAllMoves()){
       for(Node n: getAllNodes()){
@@ -278,5 +278,9 @@ public class FDdb {
       }
     }
     return moveMap;
+  }
+
+  public ArrayList<Move> getMoveFromDay(Date date){
+    return moveIDao.getMovesFromDate(date);
   }
 }
