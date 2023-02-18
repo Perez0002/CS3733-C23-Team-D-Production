@@ -51,7 +51,8 @@ public class DBSingleton {
     }
   }
 
-  // runs the query on the empty RefreshSession every 2 minutes so it doesn't time out. lasts an hour
+  // runs the query on the empty RefreshSession every 2 minutes so it doesn't time out. lasts an
+  // hour
   public static void refreshSession() {
     final Runnable beeper =
         new Runnable() {
