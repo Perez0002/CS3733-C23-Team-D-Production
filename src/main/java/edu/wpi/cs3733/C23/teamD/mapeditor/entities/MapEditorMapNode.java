@@ -136,6 +136,27 @@ public class MapEditorMapNode extends MapNode {
             GesturePane gesturePane =
                 ((GesturePane) this.nodeRepresentation.getParent().getParent());
             gesturePane.setGestureEnabled(true);
+            BorderPane borderPane = ((BorderPane) gesturePane.getParent());
+
+            Point2D gesturePaneStartPoint =
+                new Point2D(
+                    borderPane.getLayoutX()
+                        + App.getRootPane().getLeft().getLayoutBounds().getWidth(),
+                    borderPane.getLayoutY()
+                        + App.getRootPane().getLeft().getLayoutBounds().getWidth());
+            Point2D gesturePaneEndPoint =
+                new Point2D(
+                    gesturePaneStartPoint.getX() + gesturePane.getViewportBound().getWidth(),
+                    gesturePaneStartPoint.getY() + gesturePane.getViewportBound().getHeight());
+
+            /* If mouse goes past specific bounds, fail to place past map */
+            if (event.getSceneX() < gesturePaneStartPoint.getX()
+                || event.getSceneX() > gesturePaneEndPoint.getX()
+                || event.getSceneY() < gesturePaneStartPoint.getY()
+                || event.getSceneY() > gesturePaneEndPoint.getY()) {
+              this.getNodeX().setValue(this.oldX.getValue());
+              this.getNodeY().setValue(this.oldY.getValue());
+            }
           }
         });
 
@@ -232,8 +253,7 @@ public class MapEditorMapNode extends MapNode {
       /* Allow this Node's tooltip to pop up */
       this.allowTooltip = true;
 
-      if(this.oldX.getValue() != -1 && this.oldY.getValue() != -1)
-      {
+      if (this.oldX.getValue() != -1 && this.oldY.getValue() != -1) {
         this.getNodeX().setValue(this.oldX.getValue());
         this.getNodeY().setValue(this.oldY.getValue());
       }
