@@ -88,7 +88,6 @@ public class MoveTableController extends Application implements Initializable, D
   @FXML
   public void getSelectedRow() {
     addFormController.dataToChange(moveTable.getSelectionModel().getSelectedItem());
-    System.out.println(moveTable.getSelectionModel().getSelectedItem().toString());
   }
 
   public void tablehandling() {

@@ -83,10 +83,6 @@ public class DatabaseHubController {
         switchTo, getRequestFormHubPane(), addPage, getMapPaneContainer(), this);
   }
 
-  public void refresh() {
-    currentController.refresh();
-  }
-
   @FXML
   void downloadData() throws IOException {
     FDdb.getInstance().downloadCSV();
@@ -107,6 +103,7 @@ public class DatabaseHubController {
     mapPaneContainer.setCenter(map);
   }
 
+  @FXML
   public void dataToChange() {
     addFormController.dataToChange(null);
   }
