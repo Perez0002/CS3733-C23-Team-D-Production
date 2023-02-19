@@ -63,6 +63,7 @@ public class PathfindingController {
   private RoomPickComboBoxController comboBox;
 
   private boolean helpVisible = false;
+  HashMap<String, Integer> converter = new HashMap<String, Integer>();
 
   private String algorithm = "AStar";
   private ArrayList<PathNode> path = new ArrayList<>();
@@ -109,7 +110,9 @@ public class PathfindingController {
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         PathNode lastNode = null;
         for (PathNode node : path) {
-          mapNodes.add(new PathfindingMapNode(node));
+          PathfindingMapNode pathNode = new PathfindingMapNode(node);
+          pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
+          mapNodes.add(pathNode);
           if (lastNode != null) {
             mapEdges.add(new MapEdge(new PathEdge(lastNode, node)));
           }
@@ -117,7 +120,7 @@ public class PathfindingController {
           lastNode = node;
         }
         for (int i = 0; i < mapNodes.size(); i++) {
-          if (i - 1 > 0) {
+          if (i - 1 >= 0) {
             ((PathfindingMapNode) mapNodes.get(i))
                 .addPrevNode((PathfindingMapNode) mapNodes.get(i - 1));
           }
@@ -134,7 +137,11 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
-
+    converter.put("L1", 0);
+    converter.put("L2", 1);
+    converter.put("1", 2);
+    converter.put("2", 3);
+    converter.put("3", 4);
     floor1Button.setOnAction(changeFloor(0));
     floor2Button.setOnAction(changeFloor(1));
     floor3Button.setOnAction(changeFloor(2));
@@ -188,14 +195,6 @@ public class PathfindingController {
 
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
-
-    HashMap<String, Integer> converter = new HashMap<String, Integer>();
-
-    converter.put("L1", 0);
-    converter.put("L2", 1);
-    converter.put("1", 2);
-    converter.put("2", 3);
-    converter.put("3", 4);
 
     if (startNode != null && endNode != null) {
       path = pathfinder.pathfind(pathNodes.get(startNode), pathNodes.get(endNode), algorithm);

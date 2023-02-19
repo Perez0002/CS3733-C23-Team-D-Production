@@ -2,11 +2,15 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 
 public class PathfindingMapNode extends MapNode {
   private PathfindingMapNode prevNode = null;
   private PathfindingMapNode nextNode = null;
+  private EventHandler floorSwitchEvent;
+  private Event changeFloor;
 
   public PathfindingMapNode(PathNode node) {
     /* Superclass object */
@@ -57,12 +61,28 @@ public class PathfindingMapNode extends MapNode {
 
   private void focusNext() {
     this.RemovePopup();
+    if (!(this.getNodeFloor().getValue().equals(nextNode.getNodeFloor().getValue()))) {
+      System.out.println("Switching Floor");
+      nextNode.switchFloor();
+    }
+
     nextNode.MakePopup();
+  }
+
+  private void switchFloor() {
+    floorSwitchEvent.handle(null);
   }
 
   private void focusPrev() {
     this.RemovePopup();
+    if (!this.getNodeFloor().getValue().equals(prevNode.getNodeFloor().getValue())) {
+      prevNode.switchFloor();
+    }
     prevNode.MakePopup();
+  }
+
+  public void setFloorSwitchEvent(javafx.event.EventHandler floorSwitchEvent) {
+    this.floorSwitchEvent = floorSwitchEvent;
   }
 
   private void RemovePopup() {
