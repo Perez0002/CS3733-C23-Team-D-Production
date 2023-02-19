@@ -20,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+import lombok.Setter;
 
 public class NodeTableController extends Application implements Initializable, DatabaseController {
   @FXML private BorderPane NodeTableBorderPane;
@@ -40,6 +41,8 @@ public class NodeTableController extends Application implements Initializable, D
 
   @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> locationType;
 
+  @Setter private AddFormController addFormController;
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -50,6 +53,14 @@ public class NodeTableController extends Application implements Initializable, D
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @Override
+  public void refresh() {}
+
+  @Override
+  public void deselect() {
+    nodeTable.getSelectionModel().clearSelection();
   }
 
   public Node getBox() {

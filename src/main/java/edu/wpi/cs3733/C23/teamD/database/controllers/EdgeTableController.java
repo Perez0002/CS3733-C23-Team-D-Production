@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Setter;
 
 public class EdgeTableController extends Application implements Initializable, DatabaseController {
   @FXML private BorderPane EdgeTableBorderPane;
@@ -23,6 +24,8 @@ public class EdgeTableController extends Application implements Initializable, D
   @FXML private TableColumn<Edge, String> edgeID;
   @FXML private TableColumn<Edge, String> startNode;
   @FXML private TableColumn<Edge, String> endNode;
+
+  @Setter private AddFormController addFormController;
 
   public static void main(String[] args) {
     launch(args);
@@ -34,6 +37,14 @@ public class EdgeTableController extends Application implements Initializable, D
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @Override
+  public void refresh() {}
+
+  @Override
+  public void deselect() {
+    edgeTable.getSelectionModel().clearSelection();
   }
 
   public Node getBox() {
