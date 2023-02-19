@@ -10,7 +10,7 @@
 
 <VBox prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.SanitationRequestController">
    <children>
-      <Label text="Use this form to report hzards in the hospital. Enter who should attend to the hazard, where the hazard is, and how urgent it is." wrapText="true">
+      <Label styleClass="serviceRequestDescription" text="Use this form to report hzards in the hospital. Enter who should attend to the hazard, where the hazard is, and how urgent it is." wrapText="true">
          <font>
             <Font size="12.0" />
          </font>
@@ -22,7 +22,7 @@
          <children>
             <VBox>
                <children>
-                  <Label text="Employee">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -42,7 +42,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Label text="Describe the Issue">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Describe the Issue">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -52,7 +52,7 @@
             </VBox>
             <VBox spacing="10.0">
                <children>
-                  <Label text="How Hazardous is the Issue">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="How Hazardous is the Issue">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
