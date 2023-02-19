@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.entities;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+
 import java.util.ArrayList;
 
 public class Pathfinder {
@@ -22,50 +24,46 @@ public class Pathfinder {
 
     return path;
   }
-  private enum direction{
-    XCHANGE,
-    YCHANGE;
-  }
   public String textPath(ArrayList<PathNode> pathList) {
     String path = "Starting at "+pathList.get(0).getLocation().getLongName()+", first ";
 
     for(int i=1; i<pathList.size();i++) {
-      int xDistance = pathList.get(i).getNode().getXcoord();
-      int yDistance = pathList.get(i).getNode().getYcoord()-pathList.get(i+1).getNode().getYcoord();
-      if(i>1 && i<pathList.size()-1) {
-        switch ((int)(Math.random() * 4)) {
-          case 0:
-            path=path.concat(", thereafter ");
-          case 1:
-            path =path.concat(", next ");
-            break;
-          case 2:
-            path = path.concat(", then ");
-            break;
-          case 3:
-            path = path.concat(", subsequently ");
-            break;
-        }
-        if(xDistance ==0){
-          if(yDistance >0){
+     Node curNode = pathList.get(i).getNode();
+      int xDistance = curNode.getXcoord()-pathList.get(i+1).getNode().getXcoord();
+      int yDistance = curNode.getYcoord()-pathList.get(i+1).getNode().getYcoord();
+      double r = Math.sqrt((xDistance*xDistance)+(yDistance*yDistance));
+      double Degrees;
+      if(yDistance==0)
+        Degrees = Math.acos(xDistance/);
+      else if(xDistance==0)
+        Degrees = Math.acos(yDistance/);
+      else
+        Degrees = Math.acos()
 
-          }
-          if(yDistance <0){
-
-          }
-        }
-        else if(xDistance>0){
-
-        }
-        else{
-
-        }
-        if(i==pathList.size()-1){
-          path = path.concat(", finally ");
-        }
-      }
     }
 
     return path;
+  }
+  private String getDirection(Direction lastD, Direction curD){
+    if(lastD.equals(Direction.STRAIGHT)){
+      if(curD.equals(Direction.RIGHT)){
+        return "go right from this kiosk";
+      }
+      else if(curD.equals(Direction.LEFT)){
+        return "go left from this kiosk";
+      }
+    }
+    if(curD.equals(lastD)){
+      return " continue straight ";
+    }
+    else{
+      if(curD.equals(Direction.RIGHT)){
+        return " turn right ";
+      }
+      else if(curD.equals(Direction.LEFT)){
+        return " turn left ";
+      }
+    }
+    return "";
   }
 }
