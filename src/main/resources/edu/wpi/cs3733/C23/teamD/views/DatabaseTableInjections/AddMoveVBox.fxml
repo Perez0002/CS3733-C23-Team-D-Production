@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -11,14 +12,11 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.MoveRequestController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Move">
+      <Label fx:id="titleLabel" prefHeight="58.0" prefWidth="307.0" text="Add a Move">
          <font>
             <Font size="24.0" />
          </font>
-         <VBox.margin>
-            <Insets bottom="32.0" />
-         </VBox.margin>
-      </Text>
+      </Label>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
       <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move">
@@ -44,7 +42,7 @@
       <HBox alignment="BOTTOM_RIGHT" prefHeight="255.0" prefWidth="500.0" spacing="16.0">
          <children>
             <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
-            <MFXButton onAction="#addMove" prefWidth="100.0" styleClass="submitButton" text="Add Move" />
+            <MFXButton fx:id="submitButton" onAction="#addMove" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Move" />
          </children>
       </HBox>
    </children>

@@ -4,6 +4,7 @@ import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.ZoneId;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import lombok.Setter;
 
@@ -23,6 +25,8 @@ public class MoveRequestController implements AddFormController<Move> {
   @FXML private Text errorText;
   @FXML private MFXTextField messageTextField;
   @Setter private DatabaseController databaseController;
+  @FXML private MFXButton submitButton;
+  @FXML private Label titleLabel;
 
   @FXML
   public void addMove() {
@@ -61,6 +65,18 @@ public class MoveRequestController implements AddFormController<Move> {
 
   @Override
   public void dataToChange(Move move) {
-    messageTextField.setText(move.getLongName());
+    if (move == null) {
+      submitButton.setText("Add Move");
+      titleLabel.setText("Add a Move");
+      clearFields();
+    } else {
+      submitButton.setText("Submit Changes");
+      titleLabel.setText("Change a Move");
+      locationBoxController.setMfxFilterComboBox(move.getLongName());
+      datePicker.setValue(move.getMoveDate().toInstant()
+              .atZone(ZoneId.systemDefault())
+              .toLocalDate());
+
+    }
   }
 }
