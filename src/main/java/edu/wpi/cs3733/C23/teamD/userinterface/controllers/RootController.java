@@ -20,6 +20,7 @@ public class RootController {
       serviceRequestFormsButton,
       pathfindingButton,
       dbButton,
+      moveTableButton,
       mapEditorButton,
       helpPageButton,
       infoButton,
@@ -67,6 +68,9 @@ public class RootController {
 
     dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     dbButton.setTooltip(new Tooltip("Database Editors"));
+
+    moveTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
+    moveTableButton.setTooltip(new Tooltip("Office Moves"));
 
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     mapEditorButton.setTooltip(new Tooltip("Map Editor"));
