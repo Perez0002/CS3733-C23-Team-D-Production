@@ -56,7 +56,9 @@ public class AddNodeController implements AddFormController<Node> {
       currentNode.setFloor(floorTextField.getText());
       currentNode.setYcoord(Integer.parseInt(yCoordTextField.getText()));
       currentNode.setXcoord(Integer.parseInt(xCoordTextField.getText()));
+      currentNode.setNodeID();
 
+      FDdb.getInstance().updateNodePK(currentNode);
       databaseController.refresh();
     }
   }

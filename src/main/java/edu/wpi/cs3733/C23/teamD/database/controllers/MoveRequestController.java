@@ -46,6 +46,7 @@ public class MoveRequestController implements AddFormController<Move> {
         currentMove.setMoveDate(
             Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         currentMove.setNode(nodeBoxController.getNode());
+        FDdb.getInstance().updateMove(currentMove);
         databaseController.refresh();
       }
     } else {

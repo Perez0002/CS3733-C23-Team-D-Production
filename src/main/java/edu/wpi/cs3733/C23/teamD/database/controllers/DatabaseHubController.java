@@ -52,7 +52,8 @@ public class DatabaseHubController {
   public void initialize() {
     createHubMap();
     currentController = ServiceRequestTableBorderPane;
-    switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton, DatabasesFXML.MOVE_REQUEST);
+    switchVBox(
+        DatabasesFXML.SERVICE_REQUEST, serviceTableButton, DatabasesFXML.CHANGE_SERVICE_REQUEST);
     serviceTableButton.setOnMouseClicked(
         event ->
             switchVBox(
