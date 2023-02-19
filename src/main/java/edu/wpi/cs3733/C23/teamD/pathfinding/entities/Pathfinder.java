@@ -23,13 +23,48 @@ public class Pathfinder {
     return path;
   }
   private enum direction{
-    RIGHT,
-    LEFT,
-    FOrward;
+    XCHANGE,
+    YCHANGE;
   }
   public String textPath(ArrayList<PathNode> pathList) {
-    String path = "";
-    for (PathNode node : pathList) {}
+    String path = "Starting at "+pathList.get(0).getLocation().getLongName()+", first ";
+
+    for(int i=1; i<pathList.size();i++) {
+      int xDistance = pathList.get(i).getNode().getXcoord();
+      int yDistance = pathList.get(i).getNode().getYcoord()-pathList.get(i+1).getNode().getYcoord();
+      if(i>1 && i<pathList.size()-1) {
+        switch ((int)(Math.random() * 4)) {
+          case 0:
+            path=path.concat(", thereafter ");
+          case 1:
+            path =path.concat(", next ");
+            break;
+          case 2:
+            path = path.concat(", then ");
+            break;
+          case 3:
+            path = path.concat(", subsequently ");
+            break;
+        }
+        if(xDistance ==0){
+          if(yDistance >0){
+
+          }
+          if(yDistance <0){
+
+          }
+        }
+        else if(xDistance>0){
+
+        }
+        else{
+
+        }
+        if(i==pathList.size()-1){
+          path = path.concat(", finally ");
+        }
+      }
+    }
 
     return path;
   }
