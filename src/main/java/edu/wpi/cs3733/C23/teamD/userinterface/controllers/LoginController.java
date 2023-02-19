@@ -5,11 +5,14 @@ import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.util.LoginChecker;
 import java.io.IOException;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 public class LoginController {
@@ -24,15 +27,17 @@ public class LoginController {
   @FXML private PasswordField password;
 
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
     password.setOnKeyPressed(
-        event -> {
-          try {
-            submitLogin();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
+            event -> {
+              if (event.getCode().equals(KeyCode.ENTER)) {
+                try {
+                  submitLogin();
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+              }
+            });
   }
 
   @FXML
