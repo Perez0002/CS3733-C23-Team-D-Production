@@ -29,16 +29,18 @@ public class MapEditorMapNode extends MapNode {
   public MapEditorMapNode(PathNode node) {
     /* Superclass object */
     super(node);
-    /* Creates popup on mouse click */
 
     nodeRepresentation.setOnMouseClicked(
         event -> {
+          /* Creates popup on mouse click, assuming an edge is not being made and shift is not being pressed */
           if (!event.isShiftDown() && !IS_MAKING_EDGE) {
             this.MakePopup();
           }
 
+          /* If shift is being pressed... */
           if (event.isShiftDown()) {
 
+            /* ...deselect the first node selected assuming that it was the node that was clicked  */
             if (IS_MAKING_EDGE && FIRST_NODE == this) {
               ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
               FIRST_NODE.nodeRepresentation.setFill(this.NO_SELECTION);
@@ -48,6 +50,7 @@ public class MapEditorMapNode extends MapNode {
               return;
             }
 
+            /* ...create an edge between first selected node and this node assuming this node is not first node  */
             if (IS_MAKING_EDGE && FIRST_NODE != this) {
               ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
               MapEdge tempEdge = new MapEdge(new PathEdge(FIRST_NODE.getNode(), this.getNode()));
@@ -74,6 +77,7 @@ public class MapEditorMapNode extends MapNode {
               return;
             }
 
+            /* ...if we are not making an edge set this node as the first node and initialize the line  */
             if (!IS_MAKING_EDGE) {
               FIRST_NODE = this;
               IS_MAKING_EDGE = true;
@@ -93,12 +97,15 @@ public class MapEditorMapNode extends MapNode {
           }
         });
 
+
     nodeRepresentation.setOnMouseEntered(
         event -> {
+          /* If tooltips are allowed, make a tooltip */
           if (this.allowTooltip) {
             Tooltip.install(nodeRepresentation, this.tooltip);
           }
 
+          /* If we are making an edge, preview the edge */
           if (IS_MAKING_EDGE && FIRST_NODE != this) {
             CURRENT_EDGE.endXProperty().bindBidirectional(this.getNodeX());
             CURRENT_EDGE.endYProperty().bindBidirectional(this.getNodeY());
@@ -108,8 +115,10 @@ public class MapEditorMapNode extends MapNode {
 
     nodeRepresentation.setOnMouseExited(
         event -> {
+          /* Remove tooltip */
           Tooltip.uninstall(nodeRepresentation, this.tooltip);
 
+          /* Remove the line preview */
           if (IS_MAKING_EDGE && FIRST_NODE != this) {
             CURRENT_EDGE.endXProperty().unbindBidirectional(this.getNodeX());
             CURRENT_EDGE.endYProperty().unbindBidirectional(this.getNodeY());
@@ -122,7 +131,9 @@ public class MapEditorMapNode extends MapNode {
 
     nodeRepresentation.setOnMouseReleased(
         event -> {
+          /* If the mouse moved since it was pressed */
           if (!event.isStillSincePress()) {
+            /* Allow the GesturePane to be moved again */
             GesturePane gesturePane =
                 ((GesturePane) this.nodeRepresentation.getParent().getParent());
             gesturePane.setGestureEnabled(true);
@@ -133,6 +144,7 @@ public class MapEditorMapNode extends MapNode {
         event -> {
           if (!event.isShiftDown() && !IS_MAKING_EDGE) {
 
+            /* If oldX and oldY are not set, set them */
             if (oldX.getValue() == -1 && oldY.getValue() == -1) {
               oldX.setValue(this.getNodeX().getValue());
               oldY.setValue(this.getNodeY().getValue());
@@ -142,8 +154,10 @@ public class MapEditorMapNode extends MapNode {
                 ((GesturePane) this.nodeRepresentation.getParent().getParent());
             BorderPane borderPane = ((BorderPane) gesturePane.getParent());
             gesturePane.setGestureEnabled(false);
+            /* Move node with mouse */
             this.getNodeX().setValue(event.getX());
             this.getNodeY().setValue(event.getY());
+
 
             Point2D gesturePaneStartPoint =
                 new Point2D(
@@ -160,23 +174,27 @@ public class MapEditorMapNode extends MapNode {
 
             double centerPointX = gesturePane.targetPointAtViewportCentre().getX();
             double centerPointY = gesturePane.targetPointAtViewportCentre().getY();
-
+            /* If mouse goes past specific bounds, scroll the GesturePane to compensate */
             if (event.getSceneX() < gesturePaneStartPoint.getX() + triggerX) {
               centerPointX = (gesturePane.targetPointAtViewportCentre().getX() - triggerX);
             }
 
+            /* If mouse goes past specific bounds, scroll the GesturePane to compensate */
             if (event.getSceneX() > gesturePaneEndPoint.getX() - triggerX) {
               centerPointX = (gesturePane.targetPointAtViewportCentre().getX() + triggerX);
             }
 
+            /* If mouse goes past specific bounds, scroll the GesturePane to compensate */
             if (event.getSceneY() < gesturePaneStartPoint.getY() + triggerY) {
               centerPointY = (gesturePane.targetPointAtViewportCentre().getY() - triggerY);
             }
 
+            /* If mouse goes past specific bounds, scroll the GesturePane to compensate */
             if (event.getSceneY() > gesturePaneEndPoint.getY() - triggerY) {
               centerPointY = (gesturePane.targetPointAtViewportCentre().getY() + triggerY);
             }
 
+            /* Actually adjust the GesturePane */
             gesturePane
                 .animate(Duration.millis(50))
                 .centreOn(new Point2D(centerPointX, centerPointY));
