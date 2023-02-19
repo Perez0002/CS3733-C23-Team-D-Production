@@ -170,13 +170,18 @@ public class MapEditorMapNode extends MapNode {
               oldY.setValue(this.getNodeY().getValue());
             }
 
+            AnchorPane holder = (AnchorPane) this.nodeRepresentation.getParent();
             GesturePane gesturePane =
                 ((GesturePane) this.nodeRepresentation.getParent().getParent());
             BorderPane borderPane = ((BorderPane) gesturePane.getParent());
             gesturePane.setGestureEnabled(false);
             /* Move node with mouse */
-            this.getNodeX().setValue(event.getX());
-            this.getNodeY().setValue(event.getY());
+            if (event.getX() < holder.getWidth() - 16 && event.getX() > 16) {
+              this.getNodeX().setValue(event.getX());
+            }
+            if (event.getY() < holder.getHeight() - 16 && event.getY() > 16) {
+              this.getNodeY().setValue(event.getY());
+            }
 
             Point2D gesturePaneStartPoint =
                 new Point2D(
