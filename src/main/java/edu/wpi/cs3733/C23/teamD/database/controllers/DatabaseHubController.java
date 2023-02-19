@@ -67,7 +67,7 @@ public class DatabaseHubController {
     locationTableButton.setOnMouseClicked(
         event ->
             switchVBox(
-                DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.MOVE_REQUEST));
+                DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 

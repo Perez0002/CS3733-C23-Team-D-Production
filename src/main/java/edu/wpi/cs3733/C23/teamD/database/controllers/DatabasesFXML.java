@@ -16,7 +16,8 @@ public enum DatabasesFXML {
   SERVICE_REQUEST("views/DatabaseTableInjections/ServiceRequestTable.fxml"),
 
   MOVE_REQUEST("views/DatabaseTableInjections/AddMoveVBox.fxml"),
-  ADD_NODE("views/DatabaseTableInjections/AddNodeVBox.fxml");
+  ADD_NODE("views/DatabaseTableInjections/AddNodeVBox.fxml"),
+  ADD_LOCATION("views/DatabaseTableInjections/AddLocationVBox.fxml");
 
   private final String filename;
 

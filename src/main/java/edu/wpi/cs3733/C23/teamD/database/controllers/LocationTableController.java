@@ -40,11 +40,18 @@ public class LocationTableController extends Application
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    locationTable.refresh();
+  }
 
   @Override
   public void deselect() {
     locationTable.getSelectionModel().clearSelection();
+  }
+
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(locationTable.getSelectionModel().getSelectedItem());
   }
 
   public Node getBox() {
