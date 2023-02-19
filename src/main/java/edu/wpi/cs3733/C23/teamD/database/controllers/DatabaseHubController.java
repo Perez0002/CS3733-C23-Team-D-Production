@@ -52,17 +52,22 @@ public class DatabaseHubController {
   public void initialize() {
     createHubMap();
     currentController = ServiceRequestTableBorderPane;
-    switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton, null);
+    switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton, DatabasesFXML.MOVE_REQUEST);
     serviceTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.SERVICE_REQUEST, serviceTableButton, null));
+        event ->
+            switchVBox(
+                DatabasesFXML.SERVICE_REQUEST, serviceTableButton, DatabasesFXML.MOVE_REQUEST));
     nodeTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.NODE_TABLE, nodeTableButton, null));
+        event -> switchVBox(DatabasesFXML.NODE_TABLE, nodeTableButton, DatabasesFXML.MOVE_REQUEST));
     edgeTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.EDGES_TABLE, edgeTableButton, null));
+        event ->
+            switchVBox(DatabasesFXML.EDGES_TABLE, edgeTableButton, DatabasesFXML.MOVE_REQUEST));
     moveTableButton.setOnMouseClicked(
         event -> switchVBox(DatabasesFXML.MOVE_TABLE, moveTableButton, DatabasesFXML.MOVE_REQUEST));
     locationTableButton.setOnMouseClicked(
-        event -> switchVBox(DatabasesFXML.LOCATION_TABLE, locationTableButton, null));
+        event ->
+            switchVBox(
+                DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.MOVE_REQUEST));
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 

@@ -21,16 +21,16 @@
       </Text>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
       <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the room you want to move">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin></Text>
-       <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/RoomPickComboBox.fxml" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move to">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move">
          <VBox.margin>
             <Insets top="32.0" />
          </VBox.margin></Text>
       <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the node you want to move to">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin></Text>
+       <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/RoomPickComboBox.fxml" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
          <VBox.margin>
             <Insets top="32.0" />

@@ -30,10 +30,8 @@ public class NavigationDatabases {
       final var resource = App.class.getResource(addpage.getFilename());
       final FXMLLoader loader = new FXMLLoader(resource);
       container.setCenter(loader.load());
-      if (loader.getController().getClass() == MoveRequestController.class) {
-        MoveRequestController moveRequestController = loader.getController();
-        moveRequestController.setDatabaseHubController(hub);
-      }
+      AddFormController addFormController = loader.getController();
+      addFormController.setDatabaseHubController(hub);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
