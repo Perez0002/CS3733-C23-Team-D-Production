@@ -3,69 +3,35 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.AVRequestController">
    <children>
-      <Label styleClass="serviceRequestDescription" text="Report any issues experienced regarding audio or visual systems throughout the hospital. This includes Intercom, malfunctioning monitors or speakers, or any video screens displayed throughout the hospital." wrapText="true">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report any issues experienced regarding audio or visual systems throughout the hospital. This includes Intercom, malfunctioning monitors or speakers, or any video screens displayed throughout the hospital. " wrappingWidth="600" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Staff member">
          <VBox.margin>
-               <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+            <Insets top="64.0" />
          </VBox.margin>
-      </Label>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
-         <children>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin>
-            </Label>
-            <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
-         </children>
-      </VBox>
-      <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-         <children>
-            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin>
-            </Label>
-            <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
-         </children>
-      </VBox>
-      <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-         <children>
-            <Label styleClass="serviceRequestMFXTextFieldLabel" text="System">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin>
-            </Label>
-            <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
-         </children>
-      </VBox>
-      <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-         <children>
-            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Date First Noticed">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin>
-            </Label>
-            <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-         </children>
-      </VBox>
-      <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-         <children>
-            <Label styleClass="serviceRequestMFXTextFieldLabel" text="Audio/Visual Request">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin>
-            </Label>
-            <MFXTextField fx:id="descriptionTextField" prefHeight="90.0" prefWidth="300.0" promptText="Enter a description of the issue" />
-         </children>
-      </VBox>
-         </children>
-      </VBox>
+      </Text>
+      <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="System">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date First Noticed">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <MFXTextField fx:id="descriptionTextField" prefHeight="90.0" prefWidth="300.0" promptText="Enter a description of the issue" />
    </children>
 </VBox>
