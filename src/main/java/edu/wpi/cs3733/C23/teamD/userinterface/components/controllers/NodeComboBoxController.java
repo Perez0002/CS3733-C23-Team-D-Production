@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.components.controllers;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Move;
+import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
@@ -8,20 +8,19 @@ import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
-public class RoomPickComboBoxController {
+public class NodeComboBoxController {
 
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
-  TreeMap<String, String> nodeToRoomMap;
+  TreeMap<String, Node> nodeToRoomMap;
 
-  public RoomPickComboBoxController() {
-    nodeToRoomMap = new TreeMap<>();
-    ArrayList<Move> moveList = FDdb.getInstance().getAllMoves();
-    for (Move m : moveList) {
-      String locName = m.getLocation().getLongName(); // long name
-      String nodeID = m.getNode().getNodeID(); // nodeID
+  public NodeComboBoxController() {
+    nodeToRoomMap = new TreeMap<String, Node>();
+    ArrayList<Node> nodeList = FDdb.getInstance().getAllNodes();
+    for (Node n : nodeList) {
+      String nodeID = n.getNodeID(); // long name
       // TODO: need to figure out how to grab newest record by date
       // most likely will use ORDER-BY in SQL
-      nodeToRoomMap.put(locName, nodeID);
+      nodeToRoomMap.put(nodeID, n);
     }
   }
 
@@ -29,16 +28,16 @@ public class RoomPickComboBoxController {
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
   }
 
-  public String getNodeValue() {
+  public Node getNode() {
     return nodeToRoomMap.get(mfxFilterComboBox.getValue());
   }
 
-  public String getLocationName() {
+  public String getNodeID() {
     return mfxFilterComboBox.getValue();
   }
 
-  public void setLocationName(String s) {
-    this.mfxFilterComboBox.setValue(s);
+  public void setNodeID(String s) {
+    mfxFilterComboBox.setValue(s);
   }
 
   public void clearForm() {

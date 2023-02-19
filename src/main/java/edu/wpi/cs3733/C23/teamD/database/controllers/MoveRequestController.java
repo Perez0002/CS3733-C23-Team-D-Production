@@ -3,7 +3,7 @@ package edu.wpi.cs3733.C23.teamD.database.controllers;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
-import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.NodeComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -19,7 +19,7 @@ import lombok.Setter;
 public class MoveRequestController implements AddFormController<Move> {
   @FXML private MFXDatePicker datePicker;
   @FXML private Parent nodeBox;
-  @FXML private RoomPickComboBoxController nodeBoxController;
+  @FXML private NodeComboBoxController nodeBoxController;
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
@@ -36,11 +36,7 @@ public class MoveRequestController implements AddFormController<Move> {
       Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
       ArrayList<Move> moveList = FDdb.getInstance().getAllMoves();
 
-      Move move =
-          new Move(
-              FDdb.getInstance().getNode(nodeBoxController.getNodeValue()),
-              locationBoxController.getLocation(),
-              date);
+      Move move = new Move(nodeBoxController.getNode(), locationBoxController.getLocation(), date);
       FDdb.getInstance().saveMove(move);
       databaseController.refresh();
     } else {
@@ -50,7 +46,7 @@ public class MoveRequestController implements AddFormController<Move> {
 
   private boolean checkFields() {
     return !(datePicker.getValue() == null
-        || nodeBoxController.getNodeValue().isEmpty()
+        || nodeBoxController.getNodeID().isEmpty()
         || locationBoxController.getLocationLongName().isEmpty()
         || messageTextField.getText().isEmpty());
   }
@@ -72,11 +68,10 @@ public class MoveRequestController implements AddFormController<Move> {
     } else {
       submitButton.setText("Submit Changes");
       titleLabel.setText("Change a Move");
-      locationBoxController.setMfxFilterComboBox(move.getLongName());
-      datePicker.setValue(move.getMoveDate().toInstant()
-              .atZone(ZoneId.systemDefault())
-              .toLocalDate());
-
+      locationBoxController.setLocationName(move.getLongName());
+      datePicker.setValue(
+          move.getMoveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+      nodeBoxController.setNodeID(move.getNodeID());
     }
   }
 }

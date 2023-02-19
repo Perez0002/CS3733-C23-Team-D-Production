@@ -28,7 +28,7 @@
          <VBox.margin>
             <Insets top="32.0" />
          </VBox.margin></Text>
-       <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/RoomPickComboBox.fxml" />
+       <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/NodeComboBox.fxml" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
          <VBox.margin>
             <Insets top="32.0" />

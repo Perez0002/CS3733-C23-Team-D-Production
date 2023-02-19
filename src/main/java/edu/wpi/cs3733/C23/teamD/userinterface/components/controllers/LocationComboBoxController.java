@@ -36,7 +36,7 @@ public class LocationComboBoxController {
     return mfxFilterComboBox.getValue();
   }
 
-  public void setMfxFilterComboBox(String s) {
+  public void setLocationName(String s) {
     mfxFilterComboBox.setValue(s);
   }
 
