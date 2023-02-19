@@ -47,11 +47,12 @@
 
 }
 
-#hubLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 24pt;
+.hubLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 36pt;
     -fx-max-width: 400px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
+    -fx-text-fill: #011830;
 }
 
 .homepageLabel { /* defines the format for the header on Service Request page */
@@ -158,8 +159,8 @@
 }
 
 .mapEditorMapHolder { /* defines the format for the map holder on the mapEditor */
-    -fx-border-color: #012D5A;
-    -fx-border-width: 5px;
+    -fx-border-color: #1D4E8D;
+    -fx-border-width: 3px;
 }
 
 .mapEditorFloorButton { /* defines the format for the floor buttons on the mapEditor */
@@ -208,4 +209,15 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Nunito Sans Bold";
 }
+
+.hubVBox {
+    -fx-pref-width: 400;
+    -fx-pref-height: 699;
+    -fx-spacing: 15;
+    -fx-padding: 50px;
+    -fx-border-insets: 50px;
+    -fx-background-insets: 50px;
+}
+
+
 

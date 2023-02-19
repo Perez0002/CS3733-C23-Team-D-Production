@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestHubController">
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="700.0" prefWidth="1300.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestHubController">
    <center>
-      <VBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" prefWidth="640.0" styleClass="hubVBox" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="25.0" left="25.0" top="25.0" />
+            <Insets />
          </BorderPane.margin>
          <children>
-            <Label fx:id="hubLabel" prefHeight="158.0" prefWidth="245.0" text="Service Request Hub">
+            <Label fx:id="hubLabel" maxWidth="490.0" minWidth="-Infinity" prefHeight="68.0" prefWidth="490.0" styleClass="hubLabel" stylesheets="@updatedStyleGuide.css" text="Service Request Hub">
                <VBox.margin>
-                  <Insets left="5.0" />
+                  <Insets />
                </VBox.margin>
                <font>
                   <Font size="16.0" />
@@ -52,9 +52,6 @@
          <opaqueInsets>
             <Insets left="25.0" />
          </opaqueInsets>
-         <padding>
-            <Insets left="25.0" />
-         </padding>
       </VBox>
    </center>
    <right>
@@ -66,7 +63,7 @@
             <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="CENTER_RIGHT" />
          </bottom>
          <center>
-            <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-border-color: #012D5A; -fx-border-width: 5;" BorderPane.alignment="CENTER" />
+            <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mapEditorMapHolder" BorderPane.alignment="CENTER" />
          </center>
          <opaqueInsets>
             <Insets right="25.0" />
