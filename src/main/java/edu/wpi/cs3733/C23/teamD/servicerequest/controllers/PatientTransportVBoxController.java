@@ -3,20 +3,17 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class PatientTransportVBoxController implements ServiceRequestVBoxController {
 
   @FXML private VBox patientTransportRequestVBox;
 
-  @FXML private MFXComboBox employeeBox;
-  @FXML private MFXComboBox startLocationComboBox;
-  @FXML private MFXComboBox endLocationComboBox;
-  @FXML private MFXComboBox urgencyBox;
-  @FXML private MFXTextField descriptionBox;
+  @FXML private MFXComboBox employeeBox, startLocationComboBox, endLocationComboBox, urgencyBox;
+  @FXML private TextField descriptionBox;
 
   public PatientTransportVBoxController() {}
 
