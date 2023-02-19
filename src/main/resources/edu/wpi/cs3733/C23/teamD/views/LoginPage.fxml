@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -27,12 +27,9 @@
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0" spacing="5.0">
                <children>
                   <Label fx:id="usernameLabel" prefWidth="250.0" text="Username" />
-                  <MFXTextField fx:id="username" floatMode="DISABLED" floatingText="Enter username" prefHeight="20.0" prefWidth="250.0" promptText="Enter username" style="-fx-border-width: 0px;">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin></MFXTextField>
+                  <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Enter Username" />
                   <Label fx:id="passwordLabel" prefWidth="250.0" text="Password" />
-                  <MFXPasswordField fx:id="password" floatMode="DISABLED" floatingText="Password" prefHeight="20.0" prefWidth="250.0" promptText="Enter password" />
+                  <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Enter Password" />
                </children>
             </VBox>
             <Text fx:id="helpText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="230.09375">

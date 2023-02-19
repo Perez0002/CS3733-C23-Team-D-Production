@@ -29,14 +29,18 @@
     -fx-font-family: 'Nunito Sans Regular';
 }
 
-.mfx-text-field { /* sets base format for MFXTextFields */
-    -fx-border-width: 0px;
+.text-field { /* sets base format for MFXTextFields */
     -fx-background-color: #EEEEEE;
-    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-min-height: 40px;
-    -fx-border-color: #012D5A;
+    -fx-border-width: 0px;
     -fx-font-family: "Nunito Sans Regular";
 
+}
+.text-field:focused { /* sets base format for MFXTextFields */
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
 }
 
 .button {

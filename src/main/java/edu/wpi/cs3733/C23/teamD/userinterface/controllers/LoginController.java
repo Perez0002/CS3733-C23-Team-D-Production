@@ -4,12 +4,12 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.util.LoginChecker;
-import io.github.palexdev.materialfx.controls.MFXPasswordField;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class LoginController {
@@ -19,9 +19,9 @@ public class LoginController {
 
   @FXML private Label usernameLabel, passwordLabel;
 
-  @FXML private MFXTextField username;
+  @FXML private TextField username;
 
-  @FXML private MFXPasswordField password;
+  @FXML private PasswordField password;
 
   @FXML
   public void initialize() throws IOException {
