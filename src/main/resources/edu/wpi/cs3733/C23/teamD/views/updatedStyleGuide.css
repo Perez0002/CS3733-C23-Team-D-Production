@@ -43,11 +43,21 @@
     -fx-border-width: 2px;
 }
 
+.mfx-text-field { /* sets base format for MFXTextFields */
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 10px;
+    -fx-min-height: 40px;
+    -fx-border-width: 0px;
+    -fx-font-family: "Nunito Sans Regular";
+
+}
+
+
 .button {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-    -fx-max-width: 128px;
-    -fx-max-height: 53px;
+    -fx-max-width: 100px;
+    -fx-max-height: 40px;
     -fx-font-family: "Nunito Sans Regular";
 
 }

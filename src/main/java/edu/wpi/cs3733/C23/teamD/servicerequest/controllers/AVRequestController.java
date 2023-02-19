@@ -19,7 +19,6 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   public void clearTransportForms() {
     employeeBoxController.clearForm();
-    datePicker.clear();
     systemFailureTextField.clear();
     descriptionTextField.clear();
   }
