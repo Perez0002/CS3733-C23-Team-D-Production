@@ -39,7 +39,6 @@
     -fx-min-height: 40px;
     -fx-border-color: #012D5A;
     -fx-font-family: "Nunito Sans Regular";
-
 }
 
 .button {
@@ -53,8 +52,7 @@
 
 .hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 36pt;
-    -fx-max-width: 400px;
-    -fx-max-height: 100px;
+    -fx-pref-width: 500px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
 }
@@ -64,7 +62,6 @@
     -fx-max-width: 400px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
-
 }
 
 .imageBorder {
@@ -80,8 +77,11 @@
     -fx-border-radius: 16px 16px 0px 0px; /* Makes button a circle */
     -fx-text-size: 12pt;
     -fx-max-width: 100px;
-    -fx-pref-height: 40px;
+    -fx-min-height: 30px;
+    -fx-pref-height: 30px;
+    -fx-max-height: 30px;
     -fx-font-family: 'Nunito Sans Regular';
+
 }
 
 .tabButtonSelected { /* defines the format for the selected tab Button on the service request page */
@@ -92,7 +92,11 @@
     -fx-text-size: 12pt;
     -fx-max-width: 100px;
     -fx-font-family: 'Nunito Sans Regular';
+    -fx-min-height: 30px;
+    -fx-pref-height: 30px;
+    -fx-max-height: 30px;
 }
+
 .floorSwitchButton{
 
     -fx-gap-start-and-end: 12px;
@@ -111,20 +115,27 @@
     -fx-border-color: transparent transparent #012D5A transparent;
     -fx-border-width: 5px;
     -fx-font-family: 'Nunito Sans Regular';
-
+    -fx-min-height: 36px;
+    -fx-alignment: bottom-left;
 }
 
-/*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
+.serviceRequestDescription {
+    -fx-wrap-text: true;
+    -fx-text-fill: #012D5A;
+}
 
 .serviceRequestMFXTextFieldLabel {
     -fx-text-size: 12pt;
-    -fx-font-family: 'Nunito Sans Regular';
+    -fx-font-family: 'Nunito Sans Bold';
 
 }
 
-/*.individualServiceRequestTextFieldVBox { !* defines the format for the individual vBox that contains service Request Text Fields *!*/
-
-/*}*/
+.individualServiceRequestTextFieldVBox { /* defines the format for the individual vBox that contains service Request Text Fields */
+    -fx-spacing: 3;
+    -fx-padding: 0px;
+    -fx-border-insets: 0px;
+    -fx-background-insets: 0px;
+}
 
 /*.serviceRequestMFXTextField { !* defines the format for each MFXTextField *!*/
 /*    -fx-background-color: #EEEEEE;*/
@@ -145,7 +156,6 @@
     -fx-border-color: white;
     -fx-pref-height: 40px;
     -fx-font-family: 'Nunito Sans Regular';
-
 }
 
 .cancelButton { /* defines the format for the cancel button */
