@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.entities;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 
@@ -7,18 +9,18 @@ import lombok.Getter;
 public class SecurityServiceRequest extends ServiceRequest {
   @Getter private String typeOfSecurityRequest;
 
-  @Getter private String urgency;
-
   public SecurityServiceRequest(
-      String typeOfSecurityRequest, String urgency, String staff, String reason) {
-    super(staff, reason, "Security");
+      String typeOfSecurityRequest,
+      Employee staff,
+      String reason,
+      LocationName location,
+      String urgency) {
+    super(staff, reason, "Security", location, urgency);
     this.typeOfSecurityRequest = typeOfSecurityRequest;
-    this.urgency = urgency;
   }
 
   public SecurityServiceRequest() {
     super();
     this.typeOfSecurityRequest = "";
-    this.urgency = "";
   }
 }

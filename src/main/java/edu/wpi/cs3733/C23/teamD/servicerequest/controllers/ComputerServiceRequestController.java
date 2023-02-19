@@ -2,22 +2,28 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 
 public class ComputerServiceRequestController extends ServiceRequestController
     implements ServiceRequestVBoxController {
   @FXML private ArrayList<String> deviceType;
-
   @FXML private MFXComboBox deviceTypeBox;
   @FXML private MFXComboBox urgencyBox;
-  @FXML private MFXComboBox employeeBox;
+
+  @FXML private Parent employeeBox;
+  @FXML private EmployeeDropdownComboBoxController employeeBoxController;
+
   @FXML private MFXTextField descriptionBox;
-  @FXML private MFXComboBox locationBox;
+  @FXML private Parent locationBox;
+  @FXML private LocationComboBoxController locationBoxController;
 
   public ComputerServiceRequestController() {
     deviceType = new ArrayList<String>();
@@ -39,18 +45,18 @@ public class ComputerServiceRequestController extends ServiceRequestController
 
     if (descriptionBox.getText() != null
         && urgencyBox.getText() != null
-        && employeeBox.getText() != null
-        && descriptionBox.getText() != null
-        && locationBox.getText() != null) {
+        && deviceTypeBox.getText() != null
+        && employeeBoxController.getEmployeeName() != null
+        && locationBoxController.getLocation() != null) {
       System.out.println("Submit computer request");
 
       ComputerServiceRequest computerServiceRequest =
           new ComputerServiceRequest(
               descriptionBox.getText(),
-              employeeBox.getText(),
+              employeeBoxController.getEmployee(),
               urgencyBox.getText(),
               deviceTypeBox.getText(),
-              locationBox.getText());
+              locationBoxController.getLocation());
       FDdb.getInstance().saveServiceRequest(computerServiceRequest);
 
       return true;
@@ -67,8 +73,8 @@ public class ComputerServiceRequestController extends ServiceRequestController
   public void clearComputerForms() {
     deviceTypeBox.clearSelection();
     urgencyBox.clearSelection();
-    locationBox.clearSelection();
+    locationBoxController.clearForm();
     descriptionBox.clear();
-    employeeBox.clearSelection();
+    employeeBoxController.clearForm();
   }
 }

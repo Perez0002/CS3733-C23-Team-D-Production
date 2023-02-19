@@ -6,10 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.SecurityServiceRequestController">
     <children>
-        <Label styleClass="serviceRequestDescription" text="This form allows employees to report any security concerns at Brigham and Women’s hospital. Please enter the staff member to assign the request to, the location of the issue, the urgency of the issue, and a description providing any details necessary." wrapText="true">
+        <Label styleClass="serviceRequestDescription" text="Use this form to report any security concerns at Brigham and Women’s hospital. Please enter the staff member to assign the request to, the location of the issue, the urgency of the issue, and a description providing any details necessary." wrapText="true">
             <VBox.margin>
                 <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
             </VBox.margin>
@@ -18,12 +19,27 @@
             <children>
 
                 <VBox fx:id="staffDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Staff">
+                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
                         <VBox.margin>
                             <Insets left="5.0" />
                         </VBox.margin>
                     </Label>
                     <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+                </VBox>
+                <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox fx:id="urgencyDropdownBox1" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
+                    </children>
                 </VBox>
                 <VBox fx:id="locationDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
@@ -32,41 +48,26 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
+                        <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/LocationPickComboBox.fxml" />
                     </children>
                 </VBox>
                 <HBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                    <children>
-                        <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                            <children>
-                                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
-                                    <VBox.margin>
-                                        <Insets left="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
-                            </children>
-                     <HBox.margin>
-                        <Insets top="4.0" />
-                     </HBox.margin>
-                        </VBox>
-                    </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
                 </HBox>
-              <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                  <children>
-                      <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of problem">
-                          <VBox.margin>
-                              <Insets left="5.0" />
-                          </VBox.margin>
-                      </Label>
-                      <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
-                  </children>
-              </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of Problem">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
+                    </children>
+                </VBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                    <children>
                         <VBox alignment="CENTER">
                             <children>
                                 <Label maxWidth="80.0" minHeight="40.0" minWidth="90.0" prefHeight="40.0" prefWidth="90.0" styleClass="serviceRequestMFXTextFieldLabel" text="Add security to location" textAlignment="CENTER" wrapText="true">
@@ -87,11 +88,11 @@
                                 <MFXCheckbox fx:id="addRequestSecurityNode" />
                             </children>
                         </VBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="20.0" />
-               </VBox.margin>
-            </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="20.0" />
+                    </VBox.margin>
+                </HBox>
             </children>
         </VBox>
     </children>

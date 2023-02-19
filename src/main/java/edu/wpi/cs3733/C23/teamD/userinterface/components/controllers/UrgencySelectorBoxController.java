@@ -22,7 +22,7 @@ public class UrgencySelectorBoxController {
     mfxComboBox.setItems(FXCollections.observableArrayList(urgency));
   }
 
-  public String getEmployeeName() {
+  public String getUrgency() {
     return mfxComboBox.getText();
   }
 
