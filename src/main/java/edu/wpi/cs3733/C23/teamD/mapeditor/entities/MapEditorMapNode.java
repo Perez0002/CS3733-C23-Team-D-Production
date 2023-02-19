@@ -53,18 +53,27 @@ public class MapEditorMapNode extends MapNode {
             /* ...create an edge between first selected node and this node assuming this node is not first node  */
             if (IS_MAKING_EDGE && FIRST_NODE != this) {
               ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
-              MapEdge tempEdge = new MapEdge(new PathEdge(FIRST_NODE.getNode(), this.getNode()));
-              tempEdge.setNodes(FIRST_NODE, this);
+              PathEdge tempEdge = new PathEdge(FIRST_NODE.getNode(), this.getNode());
+              tempEdge.setEdge(new Edge(FIRST_NODE.getNode().getNode(), this.getNode().getNode()));
+              MapEdge tempMapEdge = new MapEdge(tempEdge);
+              tempMapEdge.setDeleteEvent(
+                  e -> {
+                    ((AnchorPane) tempMapEdge.getEdgeRepresentation().getParent())
+                        .getChildren()
+                        .remove(tempMapEdge.getEdgeRepresentation());
+                    try {
+                      FDdb.getInstance().deleteEdge(tempMapEdge.getEdge().getEdge());
+                    } catch (Exception ex) {
+                      ex.printStackTrace();
+                    }
+                  });
+              tempMapEdge.setNodes(FIRST_NODE, this);
               ((AnchorPane) this.nodeRepresentation.getParent())
                   .getChildren()
-                  .add(1, tempEdge.getEdgeRepresentation());
+                  .add(1, tempMapEdge.getEdgeRepresentation());
 
               try {
-                FDdb.getInstance()
-                    .saveEdge(
-                        new Edge(
-                            tempEdge.getEdge().getFromNode().getNode(),
-                            tempEdge.getEdge().getToNode().getNode()));
+                FDdb.getInstance().saveEdge(tempEdge.getEdge());
               } catch (Exception e) {
                 e.printStackTrace();
               }

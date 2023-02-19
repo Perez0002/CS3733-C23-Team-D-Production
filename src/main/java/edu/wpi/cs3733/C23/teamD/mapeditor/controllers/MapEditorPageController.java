@@ -19,6 +19,7 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -56,12 +57,10 @@ public class MapEditorPageController {
       public void handle(ActionEvent event) {
         edgesShown = !edgesShown;
 
-        if(edgesShown)
-        {
+        if (edgesShown) {
           toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
           toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
-        } else
-        {
+        } else {
           toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
         }
@@ -124,14 +123,27 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getFromNode().getNodeID()),
               pathNodes.get(edge.getToNode().getNodeID()));
+      edge1.setEdge(edge);
       PathEdge edge2 =
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
       pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
       pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
-
+      edge2.setEdge(edge);
       MapEdge tempMapEdge = new MapEdge(edge1);
+      tempMapEdge.setDeleteEvent(
+          event -> {
+            edgeList.remove(tempMapEdge);
+            GesturePane gesturePane = ((GesturePane) mapPlacement.getCenter());
+            AnchorPane anchor = (AnchorPane) gesturePane.getContent();
+            anchor.getChildren().remove(tempMapEdge.getEdgeRepresentation());
+            try {
+              FDdb.getInstance().deleteEdge(tempMapEdge.getEdge().getEdge());
+            } catch (Exception ex) {
+              ex.printStackTrace();
+            }
+          });
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(
