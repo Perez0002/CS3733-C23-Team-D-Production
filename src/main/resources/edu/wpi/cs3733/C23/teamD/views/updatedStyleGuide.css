@@ -114,17 +114,25 @@
 
 }
 
-/*.serviceRequestDescription { !* defines format for service Request Descriptions *!*/
+.serviceRequestDescription {
+    -fx-wrap-text: true;
+    -fx-pref-width: 400pt;
+    -fx-pref-width: 550pt;
+    -fx-text-fill: #012D5A;
+}
 
 .serviceRequestMFXTextFieldLabel {
     -fx-text-size: 12pt;
-    -fx-font-family: 'Nunito Sans Regular';
+    -fx-font-family: 'Nunito Sans Bold';
 
 }
 
-/*.individualServiceRequestTextFieldVBox { !* defines the format for the individual vBox that contains service Request Text Fields *!*/
-
-/*}*/
+.individualServiceRequestTextFieldVBox { /* defines the format for the individual vBox that contains service Request Text Fields */
+    -fx-spacing: 3;
+    -fx-padding: 0px;
+    -fx-border-insets: 0px;
+    -fx-background-insets: 0px;
+}
 
 /*.serviceRequestMFXTextField { !* defines the format for each MFXTextField *!*/
 /*    -fx-background-color: #EEEEEE;*/
@@ -145,7 +153,6 @@
     -fx-border-color: white;
     -fx-pref-height: 40px;
     -fx-font-family: 'Nunito Sans Regular';
-
 }
 
 .cancelButton { /* defines the format for the cancel button */
