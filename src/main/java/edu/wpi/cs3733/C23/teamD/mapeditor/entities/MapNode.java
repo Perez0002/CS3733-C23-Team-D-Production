@@ -65,7 +65,11 @@ public class MapNode {
     this.tooltip = new Tooltip();
     tooltip.setText(
         String.format(
-            "Node X Coordinate: "
+            "--------"
+                + this.nodeLongName.getValue()
+                + "--------"
+                + "\n"
+                + "Node X Coordinate: "
                 + this.nodeX.getValue()
                 + "\n"
                 + "Node Y Coordinate: "
@@ -76,9 +80,6 @@ public class MapNode {
                 + "\n"
                 + "Node Floor: "
                 + this.nodeFloor.getValue()
-                + "\n"
-                + "Node Long Name: "
-                + this.nodeLongName.getValue()
                 + "\n"
                 + "Node Short Name: "
                 + this.nodeShortName.getValue()
