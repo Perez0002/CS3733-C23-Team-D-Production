@@ -30,6 +30,7 @@
 }
 
 .mfx-text-field { /* sets base format for MFXTextFields */
+    -fx-border-width: 0px;
     -fx-background-color: #EEEEEE;
     -fx-border-radius: 10px;
     -fx-min-height: 40px;

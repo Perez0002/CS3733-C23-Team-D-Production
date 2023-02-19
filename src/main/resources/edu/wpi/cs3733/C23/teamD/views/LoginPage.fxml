@@ -27,7 +27,7 @@
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="600.0" spacing="5.0">
                <children>
                   <Label fx:id="usernameLabel" prefWidth="250.0" text="Username" />
-                  <MFXTextField fx:id="username" floatMode="DISABLED" floatingText="Enter username" prefHeight="20.0" prefWidth="250.0" promptText="Enter username">
+                  <MFXTextField fx:id="username" floatMode="DISABLED" floatingText="Enter username" prefHeight="20.0" prefWidth="250.0" promptText="Enter username" style="-fx-border-width: 0px;">
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin></MFXTextField>
