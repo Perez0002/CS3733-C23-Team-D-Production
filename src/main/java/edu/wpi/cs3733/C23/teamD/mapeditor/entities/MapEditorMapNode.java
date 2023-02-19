@@ -97,7 +97,6 @@ public class MapEditorMapNode extends MapNode {
           }
         });
 
-
     nodeRepresentation.setOnMouseEntered(
         event -> {
           /* If tooltips are allowed, make a tooltip */
@@ -157,7 +156,6 @@ public class MapEditorMapNode extends MapNode {
             /* Move node with mouse */
             this.getNodeX().setValue(event.getX());
             this.getNodeY().setValue(event.getY());
-
 
             Point2D gesturePaneStartPoint =
                 new Point2D(
