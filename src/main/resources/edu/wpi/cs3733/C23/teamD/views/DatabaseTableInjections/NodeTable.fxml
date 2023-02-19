@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane fx:id="NodeTableBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.NodeTableController">
     <center>
-        <TableView fx:id="nodeTable" prefHeight="300.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="nodeTable" onMouseClicked="#getSelectedRow" prefHeight="300.0" prefWidth="800.0" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="nodeID" prefWidth="100.0" styleClass="tableCSS.css" text="nodeID" />
                 <TableColumn prefWidth="100.0" styleClass="tableCSS.css" text="x Coord" fx:id="xCoord" />

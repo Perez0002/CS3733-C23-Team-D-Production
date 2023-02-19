@@ -8,7 +8,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -28,17 +27,27 @@ public class MoveRequestController implements AddFormController<Move> {
   @FXML private MFXButton submitButton;
   @FXML private Label titleLabel;
 
+  private Move currentMove;
+
   @FXML
   public void addMove() {
     if (checkFields()) {
-      errorText.setVisible(false);
-      ZoneId defaultZoneId = ZoneId.systemDefault();
-      Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
-      ArrayList<Move> moveList = FDdb.getInstance().getAllMoves();
+      if (currentMove == null) {
+        errorText.setVisible(false);
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
 
-      Move move = new Move(nodeBoxController.getNode(), locationBoxController.getLocation(), date);
-      FDdb.getInstance().saveMove(move);
-      databaseController.refresh();
+        Move move =
+            new Move(nodeBoxController.getNode(), locationBoxController.getLocation(), date);
+        FDdb.getInstance().saveMove(move);
+        databaseController.refresh();
+      } else {
+        currentMove.setLocation(locationBoxController.getLocation());
+        currentMove.setMoveDate(
+            Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        currentMove.setNode(nodeBoxController.getNode());
+        databaseController.refresh();
+      }
     } else {
       errorText.setVisible(true);
     }
@@ -47,8 +56,7 @@ public class MoveRequestController implements AddFormController<Move> {
   private boolean checkFields() {
     return !(datePicker.getValue() == null
         || nodeBoxController.getNodeID().isEmpty()
-        || locationBoxController.getLocationLongName().isEmpty()
-        || messageTextField.getText().isEmpty());
+        || locationBoxController.getLocationLongName().isEmpty());
   }
 
   @FXML
@@ -61,6 +69,7 @@ public class MoveRequestController implements AddFormController<Move> {
 
   @Override
   public void dataToChange(Move move) {
+    currentMove = move;
     if (move == null) {
       submitButton.setText("Add Move");
       titleLabel.setText("Add a Move");
