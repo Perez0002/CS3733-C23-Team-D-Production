@@ -4,16 +4,14 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.AVRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 
 public class AVRequestController implements ServiceRequestVBoxController {
   @FXML private Parent employeeBox;
-  @FXML private MFXTextField descriptionTextField;
-
-  @FXML private MFXTextField systemFailureTextField;
+  @FXML private TextField descriptionTextField, systemFailureTextField;
 
   @FXML private MFXDatePicker datePicker;
 

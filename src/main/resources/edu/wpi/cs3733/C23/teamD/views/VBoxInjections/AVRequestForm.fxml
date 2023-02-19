@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -20,7 +20,7 @@
             <Insets top="32.0" />
          </VBox.margin>
       </Text>
-      <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+      <TextField fx:id="systemFailureTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date First Noticed">
          <VBox.margin>
             <Insets top="32.0" />
@@ -32,6 +32,6 @@
             <Insets top="32.0" />
          </VBox.margin>
       </Text>
-      <MFXTextField fx:id="descriptionTextField" prefHeight="90.0" prefWidth="300.0" promptText="Enter a description of the issue" />
+      <TextField fx:id="descriptionTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" promptText="Enter a description of the issue" />
    </children>
 </VBox>
