@@ -6,32 +6,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.AVRequestController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" spacing="22.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.AVRequestController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report any issues experienced regarding audio or visual systems throughout the hospital. This includes Intercom, malfunctioning monitors or speakers, or any video screens displayed throughout the hospital. " wrappingWidth="600" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Staff member">
+      <VBox>
          <VBox.margin>
-            <Insets top="64.0" />
+            <Insets />
          </VBox.margin>
-      </Text>
-      <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="System">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Staff member" />
+            <fx:include fx:id="employeeBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" source="Components/EmployeeDropdownComboBox.fxml" />
+         </children>
+      </VBox>
+      <VBox>
          <VBox.margin>
-            <Insets top="32.0" />
+            <Insets />
          </VBox.margin>
-      </Text>
-      <TextField fx:id="systemFailureTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date First Noticed">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="System" />
+            <TextField fx:id="systemFailureTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+         </children>
+      </VBox>
+      <VBox>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date First Noticed" />
+            <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
+         </children>
+      </VBox>
+      <VBox>
          <VBox.margin>
-            <Insets top="32.0" />
+            <Insets />
          </VBox.margin>
-      </Text>
-      <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin>
-      </Text>
-      <TextField fx:id="descriptionTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" promptText="Enter a description of the issue" />
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audio/Visual Request" />
+            <TextField fx:id="descriptionTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" promptText="Enter a description of the issue" />
+         </children>
+      </VBox>
    </children>
 </VBox>

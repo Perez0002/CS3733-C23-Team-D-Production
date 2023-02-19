@@ -3,21 +3,17 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 
 public class ComputerServiceRequestController extends ServiceRequestController
     implements ServiceRequestVBoxController {
   @FXML private ArrayList<String> deviceType;
-
-  @FXML private MFXComboBox deviceTypeBox;
-  @FXML private MFXComboBox urgencyBox;
-  @FXML private MFXComboBox employeeBox;
-  @FXML private MFXTextField descriptionBox;
-  @FXML private MFXComboBox locationBox;
+  @FXML private MFXComboBox deviceTypeBox, urgencyBox, locationBox, employeeBox;
+  @FXML private TextField descriptionBox;
 
   public ComputerServiceRequestController() {
     deviceType = new ArrayList<String>();
