@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
@@ -66,7 +67,7 @@ public class PathfindingMapNode extends MapNode {
       nextNode.switchFloor();
     }
 
-    nextNode.MakePopup();
+    Platform.runLater(() -> nextNode.MakePopup());
   }
 
   private void switchFloor() {
@@ -78,7 +79,7 @@ public class PathfindingMapNode extends MapNode {
     if (!this.getNodeFloor().getValue().equals(prevNode.getNodeFloor().getValue())) {
       prevNode.switchFloor();
     }
-    prevNode.MakePopup();
+    Platform.runLater(() -> prevNode.MakePopup());
   }
 
   public void setFloorSwitchEvent(javafx.event.EventHandler floorSwitchEvent) {

@@ -298,7 +298,14 @@ public class PopupFactory {
     popover.setContentNode(fullContainer);
 
     if (this.anchor != null) {
-      popover.show(anchor);
+
+      try {
+        popover.show(anchor);
+      } catch (Exception e) {
+        System.out.println(anchor.getBoundsInLocal());
+        System.out.println(anchor.getLayoutBounds());
+        System.out.println(anchor.getBoundsInParent());
+      }
     }
 
     return popover;
