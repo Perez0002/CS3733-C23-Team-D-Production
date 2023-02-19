@@ -114,7 +114,7 @@
     -fx-border-width: 5px;
     -fx-font-family: 'Nunito Sans Regular';
     -fx-min-height: 36px;
-    -fx-alignment: bottom-center;
+    -fx-alignment: bottom-left;
 }
 
 .serviceRequestDescription {

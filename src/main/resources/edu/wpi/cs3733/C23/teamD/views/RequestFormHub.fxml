@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.controllers.serviceRequestControllers.ServiceRequestHubController">
+<BorderPane fx:id="requestFormHubBorderPane" prefHeight="768.0" prefWidth="1366.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestHubController">
    <center>
       <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="636.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
