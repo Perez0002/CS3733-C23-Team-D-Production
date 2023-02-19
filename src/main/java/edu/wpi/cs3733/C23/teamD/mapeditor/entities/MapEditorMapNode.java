@@ -232,8 +232,11 @@ public class MapEditorMapNode extends MapNode {
       /* Allow this Node's tooltip to pop up */
       this.allowTooltip = true;
 
-      this.getNodeX().setValue(this.oldX.getValue());
-      this.getNodeY().setValue(this.oldY.getValue());
+      if(this.oldX.getValue() != -1 && this.oldY.getValue() != -1)
+      {
+        this.getNodeX().setValue(this.oldX.getValue());
+        this.getNodeY().setValue(this.oldY.getValue());
+      }
 
       this.oldX.setValue(-1);
       this.oldY.setValue(-1);
