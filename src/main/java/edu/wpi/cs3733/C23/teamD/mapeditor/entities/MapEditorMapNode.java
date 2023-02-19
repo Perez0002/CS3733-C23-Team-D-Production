@@ -175,6 +175,7 @@ public class MapEditorMapNode extends MapNode {
                 ((GesturePane) this.nodeRepresentation.getParent().getParent());
             BorderPane borderPane = ((BorderPane) gesturePane.getParent());
             gesturePane.setGestureEnabled(false);
+
             /* Move node with mouse */
             if (event.getX() < holder.getWidth() - 16 && event.getX() > 16) {
               this.getNodeX().setValue(event.getX());
