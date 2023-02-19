@@ -137,6 +137,7 @@ public class PopupFactory {
 
     popover.setCloseButtonEnabled(false);
     popover.setAutoHide(false);
+    popover.setArrowSize(0);
 
     popover.setTitle("Node Editor");
 
@@ -206,7 +207,7 @@ public class PopupFactory {
 
     closeButton = new MFXButton();
     closeButton.getStyleClass().add("cancelButton");
-    closeButton.setText("Close");
+    closeButton.setText("Cancel");
     closeButton.setOnAction(closeEvent);
 
     HBox buttonBox;
