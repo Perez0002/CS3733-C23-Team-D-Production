@@ -22,4 +22,15 @@ public class Pathfinder {
 
     return path;
   }
+  private enum direction{
+    RIGHT,
+    LEFT,
+    FOrward;
+  }
+  public String textPath(ArrayList<PathNode> pathList) {
+    String path = "";
+    for (PathNode node : pathList) {}
+
+    return path;
+  }
 }
