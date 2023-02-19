@@ -5,10 +5,10 @@ import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class SanitationRequestController implements ServiceRequestVBoxController {
@@ -16,11 +16,8 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   private boolean helpDisplayed = false;
 
   @FXML private Text textHelp;
-  @FXML private MFXRadioButton radioBSL1;
-  @FXML private MFXRadioButton radioBSL2;
-  @FXML private MFXRadioButton radioBSL3;
-  @FXML private MFXRadioButton radioBSL4;
-  @FXML private MFXTextField fieldReason;
+  @FXML private MFXRadioButton radioBSL1, radioBSL2, radioBSL3, radioBSL4;
+  @FXML private TextField fieldReason;
   @FXML private MFXComboBox staffIDTextField;
 
   @FXML private Parent fieldLocation;
