@@ -52,8 +52,7 @@
 
 .hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 36pt;
-    -fx-max-width: 400px;
-    -fx-max-height: 100px;
+    -fx-pref-width: 500px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
 }
@@ -63,7 +62,6 @@
     -fx-max-width: 400px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
-
 }
 
 .imageBorder {
@@ -123,7 +121,6 @@
 
 .serviceRequestDescription {
     -fx-wrap-text: true;
-    -fx-pref-width: 350pt;
     -fx-text-fill: #012D5A;
 }
 
