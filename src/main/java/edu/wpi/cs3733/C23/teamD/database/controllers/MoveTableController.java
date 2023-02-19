@@ -57,8 +57,13 @@ public class MoveTableController extends Application implements Initializable, D
   }
 
   public void tablehandling() {
-    ObservableList<Move> moveList =
-        FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+    ObservableList<Move> moveList = null;
+    try {
+      moveList =
+          FXCollections.observableArrayList(FDdb.getInstance().getAllCurrentMoves(new Date()));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
     moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
     moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
