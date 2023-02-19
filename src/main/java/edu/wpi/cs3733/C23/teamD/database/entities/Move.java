@@ -29,6 +29,7 @@ public class Move {
   private LocationName location;
 
   @Id Date moveDate;
+  String message;
 
   @Override
   public boolean equals(Object obj) {
@@ -41,6 +42,13 @@ public class Move {
   @Override
   public int hashCode() {
     return Objects.hash(moveDate, location, node);
+  }
+
+  public Move(Node node, LocationName locationName, Date moveDate, String message) {
+    this.location = locationName;
+    this.node = node;
+    this.moveDate = moveDate;
+    this.message = message;
   }
 
   public Move(Node node, LocationName locationName, Date moveDate) {
