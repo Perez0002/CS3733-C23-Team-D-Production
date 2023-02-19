@@ -137,6 +137,7 @@ public class PopupFactory {
 
     popover.setCloseButtonEnabled(false);
     popover.setAutoHide(false);
+    popover.setArrowSize(0);
 
     popover.setTitle("Node Editor");
 
