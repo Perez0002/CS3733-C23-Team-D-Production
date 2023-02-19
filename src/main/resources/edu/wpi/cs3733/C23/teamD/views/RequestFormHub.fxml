@@ -16,7 +16,7 @@
             <Insets bottom="25.0" left="25.0" top="25.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="hubLabel" prefHeight="158.0" prefWidth="245.0" styleClass="hubLabel" text="Service Request Hub">
+            <Label fx:id="hubLabel" prefHeight="158.0" prefWidth="350.0" styleClass="hubLabel" text="Service Request Hub">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin>
