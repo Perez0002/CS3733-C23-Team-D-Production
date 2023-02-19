@@ -16,22 +16,22 @@ public class NavigationDatabases {
       DatabaseHubController hub) {
     final String filename = databasesFXML.getFilename();
     try {
+      final var addresource = App.class.getResource(addpage.getFilename());
+      final FXMLLoader addloader = new FXMLLoader(addresource);
+      container.setCenter(addloader.load());
+      AddFormController addFormController = addloader.getController();
+
       final var resource = App.class.getResource(filename);
       final FXMLLoader loader = new FXMLLoader(resource);
       requestFormHubPane.getChildren().clear();
       System.out.println("LOAD " + filename);
       requestFormHubPane.getChildren().add(loader.load());
       hub.setCurrentController(loader.getController());
+
+      DatabaseController databaseController = loader.getController();
+      databaseController.setAddFormController(addFormController);
+      addFormController.setDatabaseController(databaseController);
       // App.getRootPane().setCenter(loader.load());
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
-    }
-    try {
-      final var resource = App.class.getResource(addpage.getFilename());
-      final FXMLLoader loader = new FXMLLoader(resource);
-      container.setCenter(loader.load());
-      AddFormController addFormController = loader.getController();
-      addFormController.setDatabaseHubController(hub);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

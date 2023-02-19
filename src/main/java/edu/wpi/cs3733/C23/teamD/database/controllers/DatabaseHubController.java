@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
-import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
@@ -10,7 +9,6 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastContro
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -38,6 +36,8 @@ public class DatabaseHubController {
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
   @Setter @Getter private DatabaseController currentController; // tracks current VBox pane
+
+  @Setter private AddFormController addFormController;
 
   private MFXButton currentTab;
 
@@ -79,16 +79,6 @@ public class DatabaseHubController {
     currentTab = button;
     currentTab.getStyleClass().clear();
     currentTab.getStyleClass().add("tabButtonSelected");
-    if (button == moveTableButton) {
-      try {
-        final var resource =
-            App.class.getResource("views/DatabaseTableInjections/AddMoveVBox.fxml");
-        final FXMLLoader loader = new FXMLLoader(resource);
-        mapPaneContainer.setCenter(loader.load());
-      } catch (IOException | NullPointerException e) {
-        e.printStackTrace();
-      }
-    }
     NavigationDatabases.navigate(
         switchTo, getRequestFormHubPane(), addPage, getMapPaneContainer(), this);
   }
@@ -115,5 +105,9 @@ public class DatabaseHubController {
     map.setStyle("-fx-border-color: #012D5A; -fx-border-width:3px;");
     map.setMaxSize(600, 500);
     mapPaneContainer.setCenter(map);
+  }
+
+  public void dataToChange() {
+    addFormController.dataToChange(null);
   }
 }

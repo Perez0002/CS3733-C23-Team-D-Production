@@ -5,8 +5,6 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -21,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Setter;
 
 public class MoveTableController extends Application implements Initializable, DatabaseController {
   @FXML private BorderPane MoveTableBorderPane;
@@ -28,6 +27,7 @@ public class MoveTableController extends Application implements Initializable, D
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
+  @Setter private AddFormController addFormController;
 
   @FXML
   public void openMoveRequest() {
@@ -83,6 +83,12 @@ public class MoveTableController extends Application implements Initializable, D
                 }
               }
             });
+  }
+
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(moveTable.getSelectionModel().getSelectedItem());
+    System.out.println(moveTable.getSelectionModel().getSelectedItem().toString());
   }
 
   public void tablehandling() {

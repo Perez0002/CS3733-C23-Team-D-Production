@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Setter;
 
 public class LocationTableController extends Application
     implements Initializable, DatabaseController {
@@ -24,6 +25,7 @@ public class LocationTableController extends Application
   @FXML private TableColumn<LocationName, String> longName;
   @FXML private TableColumn<LocationName, String> locationType;
   @FXML private TableColumn<LocationName, String> shortName;
+  @Setter private AddFormController addFormController;
 
   public static void main(String[] args) {
     launch(args);

@@ -4,6 +4,8 @@ import javafx.scene.Node;
 
 public interface DatabaseController {
 
+  public void setAddFormController(AddFormController addFormController);
+
   public void refresh();
 
   Node getBox();

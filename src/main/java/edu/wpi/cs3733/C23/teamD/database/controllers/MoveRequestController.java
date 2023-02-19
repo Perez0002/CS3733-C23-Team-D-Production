@@ -12,10 +12,9 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
-import lombok.Getter;
 import lombok.Setter;
 
-public class MoveRequestController extends AddFormController {
+public class MoveRequestController implements AddFormController<Move> {
   @FXML private MFXDatePicker datePicker;
   @FXML private Parent nodeBox;
   @FXML private RoomPickComboBoxController nodeBoxController;
@@ -23,7 +22,7 @@ public class MoveRequestController extends AddFormController {
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
   @FXML private MFXTextField messageTextField;
-  @Getter @Setter private DatabaseHubController databaseHubController;
+  @Setter private DatabaseController databaseController;
 
   @FXML
   public void addMove() {
@@ -39,7 +38,7 @@ public class MoveRequestController extends AddFormController {
               locationBoxController.getLocation(),
               date);
       FDdb.getInstance().saveMove(move);
-      databaseHubController.refresh();
+      databaseController.refresh();
     } else {
       errorText.setVisible(true);
     }
@@ -61,5 +60,7 @@ public class MoveRequestController extends AddFormController {
   }
 
   @Override
-  public void switchToAdd(boolean b) {}
+  public void dataToChange(Move move) {
+    messageTextField.setText(move.getLongName());
+  }
 }
