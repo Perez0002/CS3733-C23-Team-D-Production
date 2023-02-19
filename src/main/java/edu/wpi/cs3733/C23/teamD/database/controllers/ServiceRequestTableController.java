@@ -58,6 +58,11 @@ public class ServiceRequestTableController extends Application
   @Override
   public void refresh() {}
 
+  @Override
+  public void deselect() {
+    serviceTable.getSelectionModel().clearSelection();
+  }
+
   public Node getBox() {
     return ServiceRequestTableBorderPane;
   }

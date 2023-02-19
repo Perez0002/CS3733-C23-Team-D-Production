@@ -42,6 +42,11 @@ public class LocationTableController extends Application
   @Override
   public void refresh() {}
 
+  @Override
+  public void deselect() {
+    locationTable.getSelectionModel().clearSelection();
+  }
+
   public Node getBox() {
     return LocationTableBorderPane;
   }

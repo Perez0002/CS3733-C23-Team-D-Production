@@ -32,6 +32,7 @@ public class NavigationDatabases {
       databaseController.setAddFormController(addFormController);
       addFormController.setDatabaseController(databaseController);
       hub.setAddFormController(addFormController);
+      hub.setCurrentController(databaseController);
       // App.getRootPane().setCenter(loader.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();

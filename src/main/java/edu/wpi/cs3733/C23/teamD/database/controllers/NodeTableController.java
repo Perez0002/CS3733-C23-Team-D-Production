@@ -58,6 +58,11 @@ public class NodeTableController extends Application implements Initializable, D
   @Override
   public void refresh() {}
 
+  @Override
+  public void deselect() {
+    nodeTable.getSelectionModel().clearSelection();
+  }
+
   public Node getBox() {
     return NodeTableBorderPane;
   }

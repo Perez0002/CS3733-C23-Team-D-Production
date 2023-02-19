@@ -85,6 +85,11 @@ public class MoveTableController extends Application implements Initializable, D
             });
   }
 
+  @Override
+  public void deselect() {
+    moveTable.getSelectionModel().clearSelection();
+  }
+
   @FXML
   public void getSelectedRow() {
     addFormController.dataToChange(moveTable.getSelectionModel().getSelectedItem());

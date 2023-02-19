@@ -61,6 +61,11 @@ public class SanitationTable extends Application implements Initializable, Datab
   @Override
   public void refresh() {}
 
+  @Override
+  public void deselect() {
+    sanitationTable.getSelectionModel().clearSelection();
+  }
+
   public Node getBox() {
     return SanitationRequestBorderPane;
   }

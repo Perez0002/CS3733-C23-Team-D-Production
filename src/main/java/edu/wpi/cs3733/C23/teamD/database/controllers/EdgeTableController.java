@@ -42,6 +42,11 @@ public class EdgeTableController extends Application implements Initializable, D
   @Override
   public void refresh() {}
 
+  @Override
+  public void deselect() {
+    edgeTable.getSelectionModel().clearSelection();
+  }
+
   public Node getBox() {
     return EdgeTableBorderPane;
   }

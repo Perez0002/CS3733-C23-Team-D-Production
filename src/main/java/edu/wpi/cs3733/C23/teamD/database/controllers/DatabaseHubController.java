@@ -106,5 +106,6 @@ public class DatabaseHubController {
   @FXML
   public void dataToChange() {
     addFormController.dataToChange(null);
+    currentController.deselect();
   }
 }

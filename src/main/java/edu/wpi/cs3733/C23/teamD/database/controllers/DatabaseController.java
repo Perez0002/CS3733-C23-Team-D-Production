@@ -8,5 +8,7 @@ public interface DatabaseController {
 
   public void refresh();
 
+  public void deselect();
+
   Node getBox();
 }
