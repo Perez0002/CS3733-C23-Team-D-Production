@@ -16,60 +16,64 @@
         </Label>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
             <children>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />
-            <children>
-                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
-                    <VBox.margin>
-                        <Insets left="5.0" />
-                    </VBox.margin>
-                </Label>
-                <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
-            </children>
-        </VBox>
-        <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
-                    <VBox.margin>
-                        <Insets left="5.0" />
-                    </VBox.margin>
-                </Label>
-                <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
-            </children>
-        </VBox>
-        <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-                <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
-            </children>
-        </VBox>
-        <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-                <Label styleClass="serviceRequestMFXTextFieldLabel" text="System">
-                    <VBox.margin>
-                        <Insets left="5.0" />
-                    </VBox.margin>
-                </Label>
-                <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
-            </children>
-        </VBox>
-        <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Date First Noticed">
-                    <VBox.margin>
-                        <Insets left="5.0" />
-                    </VBox.margin>
-                </Label>
-                <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-            </children>
-        </VBox>
-        <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-            <children>
-                <Label styleClass="serviceRequestMFXTextFieldLabel" text="Audio/Visual Request">
-                    <VBox.margin>
-                        <Insets left="5.0" />
-                    </VBox.margin>
-                </Label>
-                <MFXTextField fx:id="descriptionTextField" prefHeight="90.0" prefWidth="300.0" promptText="Enter a description of the issue" />
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Date First Noticed">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="System">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />
             </children>
         </VBox>
     </children>
 </VBox>
+
