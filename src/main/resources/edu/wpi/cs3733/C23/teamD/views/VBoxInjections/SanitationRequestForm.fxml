@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -67,7 +67,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fieldReason" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter a Description" />
+                  <MFXTextField fx:id="fieldReason" minHeight="-Infinity" prefHeight="42.0" prefWidth="300.0" promptText="Description" />
                </children>
             </VBox>
             <VBox spacing="10.0">

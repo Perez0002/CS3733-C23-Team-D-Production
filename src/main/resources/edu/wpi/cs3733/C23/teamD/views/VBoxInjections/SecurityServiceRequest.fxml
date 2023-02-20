@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -24,7 +24,7 @@
                             <Insets left="5.0" />
                         </VBox.margin>
                     </Label>
-                    <fx:include fx:id="employeeBox" source="Components/EmployeeDropdownComboBox.fxml" />
+                    <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
                 </VBox>
                 <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
@@ -65,7 +65,6 @@
                         </Label>
                         <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
                     </children>
-
                 </VBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                     <children>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
@@ -67,7 +67,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="descriptionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter a Description" />
+                  <MFXTextField fx:id="descriptionBox" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
                </children>
             </VBox>
          </children>

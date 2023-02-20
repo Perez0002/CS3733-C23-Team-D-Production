@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
@@ -48,7 +48,6 @@
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Describe the problem">
                   <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
                </children>
             </VBox>
@@ -59,7 +58,6 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="descriptionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter Description" />
                   <MFXComboBox fx:id="deviceTypeBox" prefWidth="300.0" promptText="Select Device Type" styleClass="serviceRequestMFXComboBox" />
                </children>
             </VBox>

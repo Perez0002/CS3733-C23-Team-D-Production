@@ -5,21 +5,22 @@ import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 
 public class ComputerServiceRequestController extends ServiceRequestController
     implements ServiceRequestVBoxController {
   @FXML private ArrayList<String> deviceType;
-  @FXML private TextField descriptionBox;
   @FXML private MFXComboBox deviceTypeBox;
   @FXML private MFXComboBox urgencyBox;
   @FXML private Parent employeeBox;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
+
+  @FXML private MFXTextField descriptionBox;
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
 

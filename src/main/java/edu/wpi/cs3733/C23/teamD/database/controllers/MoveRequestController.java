@@ -6,12 +6,13 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationCom
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.NodeComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import lombok.Setter;
 
@@ -22,7 +23,7 @@ public class MoveRequestController implements AddFormController<Move> {
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
-  @FXML private TextField messageTextField;
+  @FXML private MFXTextField messageTextField;
   @Setter private DatabaseController databaseController;
   @FXML private MFXButton submitButton;
   @FXML private Label titleLabel;

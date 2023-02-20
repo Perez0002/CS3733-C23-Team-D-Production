@@ -33,34 +33,19 @@
     -fx-font-family: 'Nunito Sans Regular';
 }
 
-.text-field { /* sets base format for TextFields */
+.mfx-text-field { /* sets base format for MFXTextFields */
     -fx-background-color: #EEEEEE;
-    -fx-background-radius: 10px;
-    -fx-prompt-text-fill: gray;
-    -fx-min-height: 40px;
-    -fx-border-width: 0px;
-    -fx-font-family: "Nunito Sans Regular";
-
-}
-.text-field:focused { /* sets border when TextFields focus */
-    -fx-border-color: #012D5A;
     -fx-border-radius: 10px;
-    -fx-border-width: 2px;
-}
-
-.mfx-text-field { /* sets base format for MFX properties */
-    -fx-background-color: #EEEEEE;
-    -fx-background-radius: 10px;
     -fx-min-height: 40px;
-    -fx-border-width: 0px;
+    -fx-border-color: #012D5A;
     -fx-font-family: "Nunito Sans Regular";
 }
 
 .button {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-    -fx-max-width: 100px;
-    -fx-max-height: 40px;
+    -fx-max-width: 128px;
+    -fx-max-height: 53px;
     -fx-font-family: "Nunito Sans Regular";
 
 }

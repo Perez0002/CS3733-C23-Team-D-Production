@@ -6,17 +6,20 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDro
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class SanitationRequestController implements ServiceRequestVBoxController {
 
   @FXML private Text textHelp;
-  @FXML private MFXRadioButton radioBSL1, radioBSL2, radioBSL3, radioBSL4;
-  @FXML private TextField fieldReason;
+  @FXML private MFXRadioButton radioBSL1;
+  @FXML private MFXRadioButton radioBSL2;
+  @FXML private MFXRadioButton radioBSL3;
+  @FXML private MFXRadioButton radioBSL4;
+  @FXML private MFXTextField fieldReason;
   @FXML private Parent staffIDTextField;
   @FXML private EmployeeDropdownComboBoxController staffIDTextFieldController;
   @FXML private Parent fieldLocation;
