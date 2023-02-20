@@ -149,10 +149,7 @@ public class ServiceRequestHubController {
   }
 
   void createHubMap() {
-    GesturePane map = MapFactory.startBuild().build(0);
-    map.setStyle("-fx-border-color: #012D5A;");
-    map.setMaxSize(700, 500);
-    mapPaneContainer.setCenter(map);
+    ServiceRequestMap map = new ServiceRequestMap(mapPaneContainer);
   }
 
   void help() throws IOException {
