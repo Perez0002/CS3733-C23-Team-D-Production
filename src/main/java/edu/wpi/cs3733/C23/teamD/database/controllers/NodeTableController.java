@@ -33,13 +33,6 @@ public class NodeTableController extends Application implements Initializable, D
   @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, Integer> xCoord;
 
   @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, Integer> yCoord;
-
-  @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> shortName;
-
-  @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> longName;
-
-  @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> locationType;
-
   @Setter private AddFormController addFormController;
 
   public static void main(String[] args) {
