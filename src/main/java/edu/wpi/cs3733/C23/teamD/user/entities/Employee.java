@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-public class Employee {
+public class Employee implements Comparable<Employee> {
   @Getter
   @Setter
   @Id
@@ -36,10 +36,21 @@ public class Employee {
 
   @Getter
   @Setter
-  @OneToMany(mappedBy = "staffAssigned")
+  @OneToMany(mappedBy = "associatedStaff")
   private List<ServiceRequest> serviceRequest;
 
+  @Getter
+  @Setter
+  @OneToMany(mappedBy = "staffAssigning")
+  private List<ServiceRequest> serviceRequests;
+
   public Employee() {}
+
+  @Override
+  public int compareTo(Employee o) {
+    // implement comparison here
+    return 0;
+  }
 
   public Employee(
       int employeeID,

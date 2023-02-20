@@ -6,11 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.SanitationRequestController">
    <children>
-      <Label text="Use this form to report hzards in the hospital. Enter who should attend to the hazard, where the hazard is, and how urgent it is." wrapText="true">
+      <Label text="Use this form to report hazards in the hospital. Enter the employee assigned to attend to the hazard, the urgency level and where the hazard is located. Describe the issue if necessary and select a hazard level." wrapText="true">
          <font>
             <Font size="12.0" />
          </font>
@@ -30,14 +31,32 @@
                   <fx:include fx:id="staffIDTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
                </children>
             </VBox>
-            <VBox>
+            <VBox prefWidth="300.0">
                <children>
-                  <Label text="Select Area That Needs Service">
+                  <Label text="Urgency">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="fieldLocation" prefWidth="300.0" source="Components/RoomPickComboBox.fxml" />
+                  <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="Location">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="fieldLocation" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
+               </children>
+            </VBox>
+            <VBox prefWidth="300.0">
+               <children>
+                  <Line endX="200.0" startX="-100.0" stroke="#012d5a">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Line>
                </children>
             </VBox>
             <VBox>
@@ -58,10 +77,10 @@
                      </VBox.margin>
                   </Label>
                   <MFXRadioButton fx:id="radioBSL1" text="BSL-1 - Minimal Hazards">
-      
-                  <toggleGroup>
-                     <ToggleGroup fx:id="Button" />
-                  </toggleGroup>
+
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Button" />
+                     </toggleGroup>
                   </MFXRadioButton>
                   <MFXRadioButton fx:id="radioBSL2" styleClass="serviceRequestMFXTextField" text="BSL-2 - Moderate Hazards" toggleGroup="$Button" />
                   <MFXRadioButton fx:id="radioBSL3" styleClass="serviceRequestMFXTextField" text="BSL-3 - Serious Hazards" toggleGroup="$Button" />
