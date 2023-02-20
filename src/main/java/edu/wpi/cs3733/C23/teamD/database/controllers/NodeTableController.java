@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
-import edu.wpi.cs3733.C23.teamD.database.util.Ddb;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,13 +32,6 @@ public class NodeTableController extends Application implements Initializable, D
   @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, Integer> xCoord;
 
   @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, Integer> yCoord;
-
-  @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> shortName;
-
-  @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> longName;
-
-  @FXML private TableColumn<edu.wpi.cs3733.C23.teamD.database.entities.Node, String> locationType;
-
   @Setter private AddFormController addFormController;
 
   public static void main(String[] args) {
@@ -85,7 +77,6 @@ public class NodeTableController extends Application implements Initializable, D
     nodeTable.setEditable(true);
     ArrayList<edu.wpi.cs3733.C23.teamD.database.entities.Node> nodes =
         FDdb.getInstance().getAllNodes();
-    Ddb.connectNodestoLocations(nodes);
     ObservableList<edu.wpi.cs3733.C23.teamD.database.entities.Node> nodeList =
         FXCollections.observableArrayList(nodes);
     nodeID.setCellValueFactory(
@@ -108,18 +99,6 @@ public class NodeTableController extends Application implements Initializable, D
         new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>(
             "building"));
     building.setCellFactory(TextFieldTableCell.forTableColumn());
-    shortName.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>(
-            "shortName"));
-    shortName.setCellFactory(TextFieldTableCell.forTableColumn());
-    longName.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>(
-            "longName"));
-    longName.setCellFactory(TextFieldTableCell.forTableColumn());
-    locationType.setCellValueFactory(
-        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>(
-            "locationType"));
-    locationType.setCellFactory(TextFieldTableCell.forTableColumn());
     nodeTable.setItems(nodeList);
     nodeTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     nodeTable.getColumns().stream()

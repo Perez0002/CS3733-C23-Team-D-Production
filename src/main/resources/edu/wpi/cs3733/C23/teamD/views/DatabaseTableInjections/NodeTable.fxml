@@ -13,9 +13,6 @@
                 <TableColumn fx:id="yCoord" prefWidth="100.0" styleClass="tableCSS.css" text="y Coord" />
                 <TableColumn fx:id="building" prefWidth="100.0" styleClass="tableCSS.css" text="building" />
                 <TableColumn fx:id="floor" prefWidth="100.0" styleClass="tableCSS.css" text="floor" />
-                <TableColumn fx:id="longName" prefWidth="100.0" styleClass="tableCSS.css" text="longName" />
-                <TableColumn fx:id="shortName" prefWidth="100.0" styleClass="tableCSS.css" text="shortName" />
-                <TableColumn fx:id="locationType" prefWidth="100.0" text="locationType" />
             </columns>
         </TableView>
     </center>
