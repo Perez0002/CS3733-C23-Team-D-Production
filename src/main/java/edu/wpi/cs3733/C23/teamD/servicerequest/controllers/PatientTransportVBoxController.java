@@ -6,14 +6,15 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDro
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
 public class PatientTransportVBoxController implements ServiceRequestVBoxController {
   @FXML private VBox patientTransportRequestVBox;
+  @FXML private TextField descriptionBox;
   @FXML private Parent employeeComboBox;
   @FXML private EmployeeDropdownComboBoxController employeeComboBoxController;
   @FXML private Parent startingLocation;
@@ -21,7 +22,6 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
   @FXML private Parent endLocationComboBox;
   @FXML private RoomPickComboBoxController endLocationComboBoxController;
   @FXML private MFXComboBox urgencyBox;
-  @FXML private MFXTextField descriptionBox;
 
   public PatientTransportVBoxController() {}
 

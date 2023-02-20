@@ -6,20 +6,19 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDro
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.UrgencySelectorBoxController;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 
 public class SecurityServiceRequestController extends ServiceRequestController
     implements ServiceRequestVBoxController {
+  @FXML private MFXCheckbox addSecurityNode, addRequestSecurityNode;
+  @FXML private TextField problemTextField; 
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Parent urgencyBox;
   @FXML private UrgencySelectorBoxController urgencyBoxController;
-  @FXML private MFXCheckbox addSecurityNode;
-  @FXML private MFXCheckbox addRequestSecurityNode;
-  @FXML private MFXTextField problemTextField;
   @FXML private Parent employeeBox;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
 

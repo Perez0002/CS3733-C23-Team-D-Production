@@ -6,22 +6,18 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDro
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 
 public class AVRequestController implements ServiceRequestVBoxController {
   @FXML private Parent employeeBox;
+  @FXML private TextField descriptionTextField, systemFailureTextField;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
-
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
-
   @FXML private MFXComboBox urgencyBox;
-
-  @FXML private MFXTextField systemFailureTextField;
-
   @FXML private MFXDatePicker datePicker;
 
   public void clearTransportForms() {

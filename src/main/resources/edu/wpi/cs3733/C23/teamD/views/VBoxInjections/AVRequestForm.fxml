@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -68,7 +68,7 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+                        <TextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
                     </children>
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />
