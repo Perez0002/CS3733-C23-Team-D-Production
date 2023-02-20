@@ -20,8 +20,6 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   @FXML private MFXComboBox urgencyBox;
 
-  @FXML private MFXTextField descriptionTextField;
-
   @FXML private MFXTextField systemFailureTextField;
 
   @FXML private MFXDatePicker datePicker;
@@ -32,7 +30,6 @@ public class AVRequestController implements ServiceRequestVBoxController {
     urgencyBox.clearSelection();
     datePicker.clear();
     systemFailureTextField.clear();
-    descriptionTextField.clear();
   }
 
   public boolean submit() {
@@ -40,9 +37,8 @@ public class AVRequestController implements ServiceRequestVBoxController {
       AVRequest request =
           new AVRequest(
               employeeBoxController.getEmployee(),
-              descriptionTextField.getText(),
-              "AVRequest",
               systemFailureTextField.getText(),
+              "AVRequest",
               datePicker.getValue(),
               locationBoxController.getLocation(),
               urgencyBox.getValue().toString());
@@ -55,8 +51,7 @@ public class AVRequestController implements ServiceRequestVBoxController {
   }
 
   private boolean checkFields() {
-    return !(descriptionTextField.getText().isEmpty()
-        || employeeBoxController.getEmployeeName().isEmpty()
+    return !(employeeBoxController.getEmployeeName().isEmpty()
         || systemFailureTextField.getText().isEmpty());
   }
 

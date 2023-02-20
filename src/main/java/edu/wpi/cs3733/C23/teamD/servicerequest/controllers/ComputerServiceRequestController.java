@@ -17,7 +17,6 @@ public class ComputerServiceRequestController extends ServiceRequestController
   @FXML private ArrayList<String> deviceType;
   @FXML private MFXComboBox deviceTypeBox;
   @FXML private MFXComboBox urgencyBox;
-
   @FXML private Parent employeeBox;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
 

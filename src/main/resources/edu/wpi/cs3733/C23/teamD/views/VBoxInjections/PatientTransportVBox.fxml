@@ -35,14 +35,14 @@
                   <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
                </children>
             </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+            <VBox prefWidth="200.0" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
                   <Label styleClass="serviceRequestMFXTextFieldLabel" text="Start Location">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="startLocationComboBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
+                  <fx:include fx:id="startingLocation" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">

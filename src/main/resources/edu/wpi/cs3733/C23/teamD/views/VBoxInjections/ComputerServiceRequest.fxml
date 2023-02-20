@@ -33,7 +33,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/LocationPickComboBox.fxml" />
+                  <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">

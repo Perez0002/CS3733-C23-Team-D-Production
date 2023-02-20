@@ -10,19 +10,16 @@ import lombok.Setter;
 @Entity
 public class AVRequest extends ServiceRequest {
 
-  @Getter @Setter private String systemFailureTextField;
   @Getter @Setter private LocalDate dateFirstSeen;
 
   public AVRequest(
       Employee associatedStaff,
       String reason,
       String serviceRequestType,
-      String systemFailureTextField,
       LocalDate dateFirstSeen,
       LocationName location,
       String urgency) {
     super(associatedStaff, reason, serviceRequestType, location, urgency);
-    this.systemFailureTextField = systemFailureTextField;
     this.dateFirstSeen = dateFirstSeen;
   }
 

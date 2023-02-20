@@ -16,8 +16,8 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
   @FXML private VBox patientTransportRequestVBox;
   @FXML private Parent employeeComboBox;
   @FXML private EmployeeDropdownComboBoxController employeeComboBoxController;
-  @FXML private Parent startLocationComboBox;
-  @FXML private LocationComboBoxController startLocationComboBoxController;
+  @FXML private Parent startingLocation;
+  @FXML private LocationComboBoxController startingLocationController;
   @FXML private Parent endLocationComboBox;
   @FXML private RoomPickComboBoxController endLocationComboBoxController;
   @FXML private MFXComboBox urgencyBox;
@@ -33,7 +33,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
 
   public void clearTransportForms() {
     employeeComboBoxController.clearForm();
-    startLocationComboBoxController.clearForm();
+    startingLocationController.clearForm();
     endLocationComboBoxController.clearForm();
     urgencyBox.clearSelection();
     descriptionBox.clear();
@@ -41,7 +41,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
 
   boolean checkFieldsFull() {
     if (employeeComboBoxController.getEmployeeName() != null
-        && startLocationComboBoxController.getLocation() != null
+        && startingLocationController.getLocationLongName() != null
         && endLocationComboBoxController.getLocationName() != null
         && urgencyBox.getValue() != null
         && descriptionBox.getText() != null) {
@@ -59,7 +59,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
               descriptionBox.getText(),
               employeeComboBoxController.getEmployee(),
               urgencyBox.getValue().toString(),
-              startLocationComboBoxController.getLocation());
+              startingLocationController.getLocation());
       FDdb.getInstance().saveServiceRequest(newForm);
       return true;
     }
