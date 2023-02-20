@@ -1,51 +1,24 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.entities;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.*;
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class SanitationRequest extends ServiceRequest {
   // attributes
-  String location;
-  int bioLevel;
-
-  public String getLocation() {
-    return location;
-  }
-
-  public int getBioLevel() {
-    return bioLevel;
-  }
-
-  public SanitationRequest(String location, String reason, int bioLevel, String staff) {
-    super(staff, reason, "SanitationRequestData");
-    this.location = location;
-    this.bioLevel = bioLevel;
-  }
+  @Getter @Setter int bioLevel;
 
   public SanitationRequest(
-      int serviceId, String location, String reason, int bioLevel, String staff, Date date) {
-    super(serviceId, staff, reason, "SanitationRequestData", date);
-    this.location = location;
+      String reason, int bioLevel, Employee staff, LocationName location, String urgency) {
+    super(staff, reason, "SanitationRequestData", location, urgency);
     this.bioLevel = bioLevel;
   }
 
   public SanitationRequest() {
     super();
-    this.location = "";
     this.bioLevel = 0;
-  }
-
-  // for debugging
-  public void printSanititationInfo() {
-    System.out.println("location: " + this.location + "\nBio Hazard Level: " + this.bioLevel);
-  }
-
-  public void setLocation(String location) {
-    this.location = location;
-  }
-
-  public void setBioLevel(int bioLevel) {
-    this.bioLevel = bioLevel;
   }
 }

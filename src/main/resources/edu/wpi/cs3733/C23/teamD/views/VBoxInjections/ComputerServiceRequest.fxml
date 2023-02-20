@@ -5,10 +5,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ComputerServiceRequestController">
    <children>
-      <Label styleClass="serviceRequestDescription" text="This form allows employees to report any issues with technology devices at Brigham and Women’s hospital. Please enter the type of device, the urgency of the issue, a brief description of the type of problem, the staff to send the report to, and the location of the broken device." wrapText="true">
+      <Label styleClass="serviceRequestDescription" text="Use this form to report any issues with technology devices at Brigham and Women’s hospital. Please enter the type of device, the urgency of the issue, a brief description of the type of problem, the staff to send the report to, and the location of the broken device." wrapText="true">
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
@@ -17,22 +18,22 @@
          <children>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+               </children>
+            </VBox>
+            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+               <children>
                   <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/RoomPickComboBox.fxml" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of device">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <MFXComboBox fx:id="deviceTypeBox" promptText="Select Device Type" prefWidth="300.0" styleClass="serviceRequestMFXComboBox" />
+                  <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -47,22 +48,27 @@
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
+                  <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
+               </children>
+            </VBox>
+            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of device">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <MFXComboBox fx:id="deviceTypeBox" prefWidth="300.0" promptText="Select Device Type" styleClass="serviceRequestMFXComboBox" />
+               </children>
+            </VBox>
+            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+               <children>
                   <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of problem">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXTextField fx:id="descriptionBox" minHeight="42.0" promptText="Enter a Description" prefHeight="42.0" prefWidth="300.0" styleClass="serviceRequestMFXTextField" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Staff">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+                  <MFXTextField fx:id="descriptionBox" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
                </children>
             </VBox>
          </children>

@@ -27,11 +27,11 @@ public class ToastController {
     toastStage.setY(y);
 
     Text text = new Text(toastMsg);
-    text.setFont(Font.font("Nunito Sans", 16));
+    text.setFont(Font.font("Nunito Sans", 12));
     text.setFill(Color.DARKGREEN);
 
     StackPane root = new StackPane(text);
-    root.setStyle("-fx-background-radius: 20; -fx-background-color: #BBF391; -fx-padding: 18px;");
+    root.setStyle("-fx-background-radius: 15; -fx-background-color: #BBF391; -fx-padding: 12px;");
     root.setOpacity(0);
 
     Scene scene = new Scene(root);
