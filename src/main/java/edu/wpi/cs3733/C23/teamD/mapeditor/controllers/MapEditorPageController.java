@@ -15,11 +15,11 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -103,8 +103,11 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+    nodeList = new ArrayList<>();
+    edgeList = new ArrayList<>();
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllCurrentMoves(new Date());
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
@@ -132,18 +135,6 @@ public class MapEditorPageController {
       pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
       edge2.setEdge(edge);
       MapEdge tempMapEdge = new MapEdge(edge1);
-      tempMapEdge.setDeleteEvent(
-          event -> {
-            edgeList.remove(tempMapEdge);
-            GesturePane gesturePane = ((GesturePane) mapPlacement.getCenter());
-            AnchorPane anchor = (AnchorPane) gesturePane.getContent();
-            anchor.getChildren().remove(tempMapEdge.getEdgeRepresentation());
-            try {
-              FDdb.getInstance().deleteEdge(tempMapEdge.getEdge().getEdge());
-            } catch (Exception ex) {
-              ex.printStackTrace();
-            }
-          });
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(

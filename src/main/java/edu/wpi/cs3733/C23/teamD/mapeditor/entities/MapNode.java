@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
+import java.util.ArrayList;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Tooltip;
@@ -20,6 +21,7 @@ public class MapNode {
   @Getter private SimpleStringProperty nodeShortName;
   @Getter private SimpleStringProperty nodeType;
   @Getter protected Circle nodeRepresentation;
+  @Getter private ArrayList<MapEdge> mapEdgeList = new ArrayList<>();
   protected PopOver popup;
   protected Tooltip tooltip;
   protected boolean allowTooltip;

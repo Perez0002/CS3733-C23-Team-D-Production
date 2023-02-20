@@ -1,15 +1,14 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import lombok.Getter;
-import lombok.Setter;
 import org.controlsfx.control.PopOver;
 
 public class MapEdge {
@@ -21,17 +20,11 @@ public class MapEdge {
   private Tooltip tooltip;
   private boolean allowTooltip;
   private PopOver popup;
-  @Setter EventHandler<ActionEvent> deleteEvent;
   private final Color SELECTED = Color.rgb(0xCD, 0xDF, 0xF6);
   private final Color NO_SELECTION = Color.rgb(0x00, 0x00, 0x00);
 
   public MapEdge(PathEdge edge) {
     this.edge = edge;
-    this.deleteEvent =
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {}
-        };
 
     /* This needs to be done a better way for the updating to work, but this temporarily assigns the MapNodes */
     this.toNode = null; // new MapNode(edge.getToNode());
@@ -72,6 +65,9 @@ public class MapEdge {
     this.fromNode = fromNode;
     this.toNode = toNode;
 
+    fromNode.getMapEdgeList().add(this);
+    toNode.getMapEdgeList().add(this);
+
     this.edgeRepresentation.startXProperty().bindBidirectional(this.fromNode.getNodeX());
     this.edgeRepresentation.startYProperty().bindBidirectional(this.fromNode.getNodeY());
     this.edgeRepresentation.endXProperty().bindBidirectional(this.toNode.getNodeX());
@@ -102,7 +98,19 @@ public class MapEdge {
                     this.RemovePopup();
                     this.allowTooltip = true;
                   })
-              .deleteEvent(this.deleteEvent)
+              .deleteEvent(
+                  event -> {
+                    this.RemovePopup();
+                    ((AnchorPane) this.edgeRepresentation.getParent())
+                        .getChildren()
+                        .remove(this.edgeRepresentation);
+
+                    try {
+                      FDdb.getInstance().deleteEdge(this.edge.getEdge());
+                    } catch (Exception e) {
+                      e.printStackTrace();
+                    }
+                  })
               .build();
       /* Color the node on the map to represent selection */
       this.edgeRepresentation.setStroke(this.SELECTED);
