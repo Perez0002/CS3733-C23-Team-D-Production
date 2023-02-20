@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
     <center>
         <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
