@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,23 +13,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.user.controllers.ProfilePageController">
    <center>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="110.0" left="90.0" right="90.0" top="110.0" />
          </BorderPane.margin>
          <children>
-            <Label styleClass="homepageLabel" text="Hello User!">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="40.0" right="5.0" top="5.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                <children>
                   <VBox spacing="30.0">
@@ -36,30 +30,81 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <VBox alignment="TOP_CENTER" spacing="30.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="485.0" prefWidth="273.0" spacing="30.0">
                            <children>
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <ImageView fitHeight="169.0" fitWidth="162.0">
                                  <image>
-                                    <Image url="@images/ProfilePicture.jpg" />
+                                    <Image url="@images/128-1280406_view-user-icon-png-user-circle-icon-png.png.jpeg" />
                                  </image>
                               </ImageView>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity">
                                  <children>
-                                    <MFXButton fx:id="changeProfilePicture" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="Change Profile Picture" />
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity">
+                                       <children>
+                                          <MFXButton fx:id="changeProfilePicture21" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="Change Profile Picture" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </VBox>
-                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0">
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity">
+                                 <children>
+                                    <Line endX="270.0" stroke="#012d5a" strokeWidth="3.0" />
+                                 </children>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="15.0">
                                  <VBox.margin>
-                                    <Insets bottom="20.0" top="20.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <children>
                                     <Label styleClass="serviceRequestMFXTextFieldLabel" text="Password">
                                        <VBox.margin>
-                                          <Insets left="5.0" right="5.0" />
+                                          <Insets bottom="-5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXButton fx:id="viewPassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="View Password" />
-                                    <MFXButton fx:id="changePassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="clearButton" text="Change Password" />
+                                    <MFXButton fx:id="changePassword" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="Change Password" />
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity">
+                                       <children>
+                                          <Line endX="270.0" stroke="#012d5a" strokeWidth="3.0">
+                                             <rotationAxis>
+                                                <Point3D />
+                                             </rotationAxis>
+                                          </Line>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="94.0" prefWidth="273.0" spacing="15.0">
+                                 <children>
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Settings">
+                                       <VBox.margin>
+                                          <Insets bottom="-5.0" left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="273.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="230.0" text="Confetti Control                                            ">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin></Label>
+                                          <MFXToggleButton fx:id="confettiButton" gap="6.0" prefHeight="41.0" prefWidth="53.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="-10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="273.0">
+                                       <children>
+                                          <Label prefHeight="17.0" prefWidth="230.0" text="Dark Mode">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <MFXToggleButton fx:id="darkModeButton" gap="6.0" prefHeight="41.0" prefWidth="53.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="-10.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -71,14 +116,35 @@
                   </VBox>
                   <VBox minWidth="300.0">
                      <children>
-                        <VBox minWidth="300.0" spacing="25.0">
+                        <VBox minWidth="300.0" prefHeight="589.0" prefWidth="300.0" spacing="25.0">
                            <children>
+                              <VBox spacing="3.0">
+                                 <children>
+                                    <Label text="First Name">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXTextField fx:id="firstNameBox" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="42.0" prefWidth="300.0" spacing="3.0">
+                                 <children>
+                                    <Label text="Last Name">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXTextField fx:id="lastNameBox" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                 </children>
+                              </VBox>
                               <VBox spacing="3.0">
                                  <children>
                                     <Label text="Email">
                                        <VBox.margin>
                                           <Insets left="5.0" />
-                                       </VBox.margin></Label>
+                                       </VBox.margin>
+                                    </Label>
                                     <MFXTextField fx:id="email" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
@@ -87,7 +153,8 @@
                                     <Label text="Phone Number">
                                        <VBox.margin>
                                           <Insets left="5.0" />
-                                       </VBox.margin></Label>
+                                       </VBox.margin>
+                                    </Label>
                                     <MFXTextField fx:id="phoneNumber" maxHeight="42.0" minHeight="42.0" minWidth="270.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
@@ -96,37 +163,23 @@
                                     <Label text="Address">
                                        <VBox.margin>
                                           <Insets left="5.0" />
-                                       </VBox.margin></Label>
+                                       </VBox.margin>
+                                    </Label>
                                     <MFXTextField fx:id="address" maxHeight="42.0" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
-                                 </children>
-                              </VBox>
-                              <VBox spacing="3.0">
-                                 <children>
-                                    <Label text="Date of Birth">
-                                       <VBox.margin>
-                                          <Insets left="5.0" />
-                                       </VBox.margin></Label>
-                                    <MFXDatePicker fx:id="birthday" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="42.0" prefWidth="300.0" spacing="3.0">
-                                 <children>
-                                    <Label text="Account Created">
-                                       <VBox.margin>
-                                          <Insets left="5.0" />
-                                       </VBox.margin></Label>
-                                    <MFXTextField fx:id="accountCreated" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <MFXButton onAction = "#resetChanges" prefHeight="53.0" prefWidth="100.0" styleClass="clearButton" text="Reset" />
-                                    <MFXButton onAction ="#saveChanges" prefHeight="53.0" prefWidth="100.0" styleClass="submitButton" text="Save" />
+                                    <MFXButton onAction="#resetChanges" prefHeight="53.0" prefWidth="100.0" styleClass="clearButton" text="Reset" />
+                                    <MFXButton onAction="#saveChanges" prefHeight="53.0" prefWidth="100.0" styleClass="submitButton" text="Save" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="20.0" top="20.0" />
+                              <Insets bottom="15.0" top="20.0" />
                            </VBox.margin>
                         </VBox>
                      </children>
@@ -189,4 +242,23 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <VBox prefHeight="64.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="helloBox" styleClass="homepageLabel" text="Hello ">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="80.0" right="5.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Line endX="1080.0" startX="-100.0" stroke="#012d5a" strokeWidth="3.0">
+               <VBox.margin>
+                  <Insets left="70.0" right="70.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+      </VBox>
+   </top>
 </BorderPane>

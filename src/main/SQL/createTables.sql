@@ -4,6 +4,8 @@ CREATE TABLE teamdSchema.Move();
 
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 
+delete from securityservicerequest;
+delete from avrequest;
 delete from computerservicerequest;
 delete from patienttransportrequest;
 delete from sanitationrequest;
@@ -27,6 +29,20 @@ insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FI
 values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'admin', 'ADMIN', 'Admin', 'Admin', 'admin', 9999555955);
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff', 'STAFF', 'Staff', 'Staff', 'admin', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '100 Institute Road', 'gphilips@wpi.edu', 'STAFF', 'Gibson', 'Philips', 'password', 9999555955);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Wyatt House', 'wharris@wpi.edu', 'STAFF', 'Wyatt', 'Harris', 'password', 9845077315);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Jonathan House', 'jasher@wpi.edu', 'STAFF', 'Jonathan', 'Asher', 'password', 9845077315);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Theo House', 'thouse@wpi.edu', 'STAFF', 'Theo', 'House', 'password', 9845077315);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Mike House', 'mwilkinson@wpi.edu', 'STAFF', 'Mike', 'Wilkinson', 'password', 9845077315);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Qui House', 'qnguyen@wpi.edu', 'ADMIN', 'Qui', 'Nguyen', 'password', 234798234);
+insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Michael House', 'mconnor@wpi.edu', 'ADMIN', 'Michael', 'Connor', 'password', 234798234);
 
 /*
 drop table Move;

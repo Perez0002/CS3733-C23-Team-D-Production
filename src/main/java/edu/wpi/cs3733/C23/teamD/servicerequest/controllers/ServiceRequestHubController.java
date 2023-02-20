@@ -4,6 +4,7 @@ import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequest
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
+import edu.wpi.cs3733.C23.teamD.user.controllers.ProfilePageController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -140,7 +141,10 @@ public class ServiceRequestHubController {
     if (submission) {
       clearFields();
       ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 740);
-      ConfettiController.makeConfetti(1500, 50, 100);
+      ProfilePageController aProfile = new ProfilePageController();
+      if (aProfile.confettiButton()) {
+        ConfettiController.makeConfetti(1500, 50, 100);
+      }
     }
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController
