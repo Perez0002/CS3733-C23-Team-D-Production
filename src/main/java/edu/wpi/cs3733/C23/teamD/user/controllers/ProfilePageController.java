@@ -58,7 +58,7 @@ public class ProfilePageController {
     setText();
   }
 
-  public boolean confettiButton(){
+  public boolean confettiButton() {
     return confettiButton.isSelected();
   }
 
