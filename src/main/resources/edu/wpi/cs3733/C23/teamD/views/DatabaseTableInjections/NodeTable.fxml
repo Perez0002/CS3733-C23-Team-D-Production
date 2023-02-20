@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,9 +13,6 @@
                 <TableColumn fx:id="yCoord" prefWidth="100.0" styleClass="tableCSS.css" text="y Coord" />
                 <TableColumn fx:id="building" prefWidth="100.0" styleClass="tableCSS.css" text="building" />
                 <TableColumn fx:id="floor" prefWidth="100.0" styleClass="tableCSS.css" text="floor" />
-                <TableColumn fx:id="longName" prefWidth="100.0" styleClass="tableCSS.css" text="longName" />
-                <TableColumn fx:id="shortName" prefWidth="100.0" styleClass="tableCSS.css" text="shortName" />
-                <TableColumn fx:id="locationType" prefWidth="100.0" text="locationType" />
             </columns>
         </TableView>
     </center>
