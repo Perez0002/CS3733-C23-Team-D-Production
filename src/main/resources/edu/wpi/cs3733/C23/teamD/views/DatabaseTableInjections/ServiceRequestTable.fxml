@@ -6,7 +6,7 @@
 
 <BorderPane fx:id="ServiceRequestTableBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ServiceRequestTableController">
     <center>
-        <TableView fx:id="serviceTable" onMouseClicked="#getSelectedRow" BorderPane.alignment="CENTER">
+        <TableView fx:id="serviceTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="formID" minWidth="100.0" prefWidth="-1.0" text="serviceRequestID" />
                 <TableColumn fx:id="staff" minWidth="100.0" prefWidth="-1.0" text="associatedStaff" />

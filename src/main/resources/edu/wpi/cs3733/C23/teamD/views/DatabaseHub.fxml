@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<?import org.kordamp.ikonli.javafx.FontIcon?>
-<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
+<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
     <center>
-        <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+        <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
             <BorderPane.margin>
-                <Insets bottom="25.0" left="25.0" top="25.0" />
+                <Insets bottom="25.0" left="25.0" right="25.0" />
             </BorderPane.margin>
             <children>
                 <Label fx:id="hubLabel" maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" styleClass="hubLabel" text="Database Hub">
@@ -74,13 +71,7 @@
             </opaqueInsets>
         </VBox>
     </center>
-    <right>
-        <BorderPane maxHeight="Infinity" maxWidth="-Infinity" prefWidth="500.0" BorderPane.alignment="TOP_RIGHT">
-            <BorderPane.margin>
-                <Insets left="20.0" right="25.0" />
-            </BorderPane.margin>
-         <center>
-            <BorderPane fx:id="mapPaneContainer" maxHeight="Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" styleClass="mapEditorMapHolder" BorderPane.alignment="CENTER" />
-         </center></BorderPane>
-    </right>
+   <right>
+      <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="1500.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>
