@@ -40,7 +40,14 @@ public class EdgeTableController extends Application implements Initializable, D
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    edgeTable.refresh();
+  }
+
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(edgeTable.getSelectionModel().getSelectedItem());
+  }
 
   @Override
   public void deselect() {

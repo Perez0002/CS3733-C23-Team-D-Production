@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.AddEdgeController">
+   <children>
+      <Label fx:id="titleLabel" prefHeight="58.0" prefWidth="307.0" text="Add an Edge">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From Node" />
+      <fx:include fx:id="fromNodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/NodeComboBox.fxml" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Node">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <fx:include fx:id="toNodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/NodeComboBox.fxml" />
+      <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
+         <VBox.margin>
+            <Insets top="32.0" />
+         </VBox.margin>
+      </Text>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="448.0" prefWidth="500.0" spacing="16.0">
+         <children>
+            <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
+            <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Edge" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
