@@ -55,7 +55,9 @@ public class ServiceRequestTableController extends Application
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    serviceTable.refresh();
+  }
 
   @Override
   public void deselect() {

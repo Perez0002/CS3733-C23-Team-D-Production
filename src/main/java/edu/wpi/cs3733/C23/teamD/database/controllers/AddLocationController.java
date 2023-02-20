@@ -26,7 +26,11 @@ public class AddLocationController implements AddFormController<LocationName> {
   @FXML private Label titleLabel;
 
   @FXML
-  void clearFields() {}
+  void clearFields() {
+    shortNameTextField.clear();
+    longNameTextField.clear();
+    nodeTypeTextField.clear();
+  }
 
   @FXML
   void submit() {
