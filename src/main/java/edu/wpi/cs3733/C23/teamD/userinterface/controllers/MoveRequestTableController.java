@@ -2,7 +2,6 @@ package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
-import edu.wpi.cs3733.C23.teamD.database.util.Ddb;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -79,7 +78,6 @@ public class MoveRequestTableController implements Initializable {
 
   public void tablehandling() {
     ArrayList<Node> nodes = FDdb.getInstance().getAllNodes();
-    Ddb.connectNodestoLocations(nodes);
     ObservableList<Move> moveList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
 
