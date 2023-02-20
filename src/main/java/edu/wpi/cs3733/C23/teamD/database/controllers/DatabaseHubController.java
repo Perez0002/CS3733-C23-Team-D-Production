@@ -11,7 +11,6 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import lombok.Getter;
 import lombok.Setter;
 import net.kurobako.gesturefx.GesturePane;
@@ -31,7 +30,7 @@ public class DatabaseHubController {
   @FXML private MFXButton uploadButton;
 
   @FXML private ServiceRequestTableController ServiceRequestTableBorderPane;
-  @FXML private Pane requestFormHubPane;
+  @FXML private BorderPane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
@@ -41,7 +40,7 @@ public class DatabaseHubController {
 
   private MFXButton currentTab;
 
-  Pane getRequestFormHubPane() {
+  BorderPane getRequestFormHubPane() {
     return requestFormHubPane;
   }
 

@@ -7,14 +7,14 @@
 <?import javafx.scene.text.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
+<BorderPane fx:id="requestFormHubBorderPane" maxHeight="Infinity" maxWidth="Infinity" onMouseClicked="#dataToChange" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
     <center>
-        <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+        <VBox alignment="CENTER_LEFT" maxHeight="Infinity" maxWidth="Infinity" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
             <BorderPane.margin>
-                <Insets bottom="75.0" left="25.0" top="75.0" />
+                <Insets bottom="25.0" left="25.0" top="25.0" />
             </BorderPane.margin>
             <children>
-                <Label fx:id="hubLabel" maxHeight="Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" text="Database Hub">
+                <Label fx:id="hubLabel" maxHeight="-Infinity" maxWidth="Infinity" prefHeight="100.0" prefWidth="600.0" text="Database Hub">
                     <VBox.margin>
                         <Insets left="5.0" />
                     </VBox.margin>
@@ -22,9 +22,9 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="600.0" spacing="3.0" styleClass="tabHBox">
+                <HBox maxHeight="-Infinity" maxWidth="Infinity" prefHeight="53.0" prefWidth="600.0" spacing="3.0" styleClass="tabHBox">
                     <children>
-                        <MFXButton fx:id="serviceTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="159.0" styleClass="tabButton" text="Service Requests" />
+                        <MFXButton fx:id="serviceTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="159.0" styleClass="tabButton" text="Service Requests" />
                         <MFXButton fx:id="nodeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Node" />
                         <MFXButton fx:id="edgeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Edge" />
                         <MFXButton fx:id="moveTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Move" />
@@ -34,7 +34,7 @@
                         <Insets top="10.0" />
                     </padding>
                 </HBox>
-                <Pane fx:id="requestFormHubPane" maxWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" />
+            <BorderPane fx:id="requestFormHubPane" maxHeight="Infinity" maxWidth="Infinity" prefHeight="1000.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 5; -fx-border-radius: 5;" />
                 <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
                     <children>
                   <BorderPane prefHeight="45.0" prefWidth="483.0">
@@ -72,12 +72,12 @@
         </VBox>
     </center>
     <right>
-        <BorderPane maxWidth="-Infinity" prefHeight="1080.0" prefWidth="700.0" BorderPane.alignment="TOP_RIGHT">
+        <BorderPane maxHeight="Infinity" maxWidth="-Infinity" prefWidth="500.0" BorderPane.alignment="TOP_RIGHT">
             <BorderPane.margin>
                 <Insets left="20.0" right="25.0" />
             </BorderPane.margin>
          <center>
-            <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+            <BorderPane fx:id="mapPaneContainer" maxHeight="Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" BorderPane.alignment="CENTER" />
          </center></BorderPane>
     </right>
 </BorderPane>

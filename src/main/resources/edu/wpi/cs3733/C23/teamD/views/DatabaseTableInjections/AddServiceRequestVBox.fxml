@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ChangeServiceRequestController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ChangeServiceRequestController">
    <children>
-      <Label fx:id="titleLabel" prefHeight="58.0" prefWidth="307.0" text="Change a Service Request">
+      <Label fx:id="titleLabel" prefHeight="58.0" prefWidth="307.0" styleClass="addFormLabel" text="Change a Service Request">
          <font>
             <Font size="24.0" />
          </font>
@@ -48,7 +48,7 @@
             <Insets top="32.0" />
          </VBox.margin>
       </Text>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="255.0" prefWidth="500.0" spacing="16.0">
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="69.0" prefWidth="450.0" spacing="16.0" style="-fx-fill-height: true;">
          <children>
             <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
             <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Submit Changes" />
