@@ -2,18 +2,26 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
 public class PatientTransportVBoxController implements ServiceRequestVBoxController {
-
   @FXML private VBox patientTransportRequestVBox;
-
-  @FXML private MFXComboBox employeeBox, startLocationComboBox, endLocationComboBox, urgencyBox;
   @FXML private TextField descriptionBox;
+  @FXML private Parent employeeComboBox;
+  @FXML private EmployeeDropdownComboBoxController employeeComboBoxController;
+  @FXML private Parent startingLocation;
+  @FXML private LocationComboBoxController startingLocationController;
+  @FXML private Parent endLocationComboBox;
+  @FXML private RoomPickComboBoxController endLocationComboBoxController;
+  @FXML private MFXComboBox urgencyBox;
 
   public PatientTransportVBoxController() {}
 
@@ -24,17 +32,17 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
   }
 
   public void clearTransportForms() {
-    employeeBox.clearSelection();
-    startLocationComboBox.clearSelection();
-    endLocationComboBox.clearSelection();
+    employeeComboBoxController.clearForm();
+    startingLocationController.clearForm();
+    endLocationComboBoxController.clearForm();
     urgencyBox.clearSelection();
     descriptionBox.clear();
   }
 
   boolean checkFieldsFull() {
-    if (employeeBox.getValue() != null
-        && startLocationComboBox.getValue() != null
-        && endLocationComboBox.getValue() != null
+    if (employeeComboBoxController.getEmployeeName() != null
+        && startingLocationController.getLocationLongName() != null
+        && endLocationComboBoxController.getLocationName() != null
         && urgencyBox.getValue() != null
         && descriptionBox.getText() != null) {
       return true;
@@ -45,14 +53,13 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
   public boolean submit() {
     // if the fields are full, go to submit item
     if (checkFieldsFull()) {
-      System.out.println(startLocationComboBox.getValue().toString());
       PatientTransportRequest newForm =
           new PatientTransportRequest(
-              startLocationComboBox.getValue().toString(),
-              endLocationComboBox.getValue().toString(),
+              endLocationComboBoxController.getLocationName(),
               descriptionBox.getText(),
-              employeeBox.getValue().toString(),
-              urgencyBox.getValue().toString());
+              employeeComboBoxController.getEmployee(),
+              urgencyBox.getValue().toString(),
+              startingLocationController.getLocation());
       FDdb.getInstance().saveServiceRequest(newForm);
       return true;
     }

@@ -2,7 +2,8 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
-import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import javafx.fxml.FXML;
@@ -13,16 +14,15 @@ import javafx.scene.text.Text;
 
 public class SanitationRequestController implements ServiceRequestVBoxController {
 
-  private boolean helpDisplayed = false;
-
   @FXML private Text textHelp;
   @FXML private MFXRadioButton radioBSL1, radioBSL2, radioBSL3, radioBSL4;
   @FXML private TextField fieldReason;
-  @FXML private MFXComboBox staffIDTextField;
-
+  @FXML private Parent staffIDTextField;
+  @FXML private EmployeeDropdownComboBoxController staffIDTextFieldController;
   @FXML private Parent fieldLocation;
-
-  @FXML private RoomPickComboBoxController fieldLocationController;
+  @FXML private LocationComboBoxController fieldLocationController;
+  @FXML private MFXComboBox urgencyBox;
+  private boolean helpDisplayed = false;
 
   @Override
   public void clearTransportForms() {}
@@ -43,10 +43,11 @@ public class SanitationRequestController implements ServiceRequestVBoxController
       }
       SanitationRequest requestData =
           new SanitationRequest(
-              fieldLocationController.getNodeValue(),
               fieldReason.getText(),
               i,
-              staffIDTextField.getText());
+              staffIDTextFieldController.getEmployee(),
+              fieldLocationController.getLocation(),
+              urgencyBox.getValue().toString());
       FDdb.getInstance().saveServiceRequest(requestData);
       return true;
 
@@ -64,11 +65,12 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   public boolean clearSanitationForms() {
     fieldLocationController.clearForm();
     fieldReason.clear();
-    staffIDTextField.clear();
+    staffIDTextFieldController.clearForm();
     radioBSL1.setSelected(false);
     radioBSL2.setSelected(false);
     radioBSL3.setSelected(false);
     radioBSL4.setSelected(false);
+    urgencyBox.clearSelection();
     return true;
     // System.out.print("Fields Cleared\n");
   }
@@ -76,11 +78,12 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   private boolean isFieldsSaturated() {
     // System.out.print("Submit Success2: ");
     return (fieldReason.getText() != ""
-        && (fieldLocationController.getNodeValue() != null)
-        && staffIDTextField.getText() != null
+        && (fieldLocationController.getLocation() != null)
+        && staffIDTextFieldController.getEmployeeName() != null
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()
             || radioBSL3.isSelected()
-            || radioBSL4.isSelected()));
+            || radioBSL4.isSelected())
+        && urgencyBox.getValue() != null);
   }
 }

@@ -34,9 +34,11 @@ public class MapEditorPageController {
   @FXML private MFXButton floor1Button;
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
+  @FXML private MFXButton toggleEdgesButton;
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
+  private boolean edgesShown = true;
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
@@ -46,6 +48,27 @@ public class MapEditorPageController {
   void openHomepage() {
     // Navigates to home page
     Navigation.navigate(Screen.HOME);
+  }
+
+  public EventHandler<ActionEvent> toggleEdges() {
+    return new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        edgesShown = !edgesShown;
+
+        if (edgesShown) {
+          toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
+        } else {
+          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
+        }
+
+        for (MapEdge edge : edgeList) {
+          edge.getEdgeRepresentation().setVisible(edgesShown);
+        }
+      }
+    };
   }
 
   public EventHandler<ActionEvent> changeFloor(int floor) {
@@ -114,6 +137,8 @@ public class MapEditorPageController {
     }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
+    toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+
     // Setup for calculating average x and y
     double totalX = 0;
     double totalY = 0;
@@ -130,6 +155,7 @@ public class MapEditorPageController {
     floor1Button.setOnAction(changeFloor(2));
     floor2Button.setOnAction(changeFloor(3));
     floor3Button.setOnAction(changeFloor(4));
+    toggleEdgesButton.setOnAction(toggleEdges());
 
     // Creating GesturePane to show
     this.changeFloor(0).handle(null);

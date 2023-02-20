@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 public class LocationComboBoxController {
-
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
   TreeMap<String, LocationName> nodeToRoomMap;
 
