@@ -28,22 +28,22 @@
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
                   <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
                   <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
+               </children>
+            </VBox>
+            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">

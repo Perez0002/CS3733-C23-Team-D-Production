@@ -11,7 +11,7 @@
 
 <VBox prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.SanitationRequestController">
    <children>
-      <Label styleClass="serviceRequestDescription" text="Use this form to report hazards in the hospital. Enter who should attend to the hazard, where the hazard is, and how urgent it is." wrapText="true">
+      <Label styleClass="serviceRequestDescription" text="Use this form to report  sanitation needs in the hospital. Enter the employee that should attend to the request, the urgency of the request and the location. Please also describe the issue and specify a hazard level from 1-4 as shown below. This will help the assigned employee be prepared to complete their request." wrapText="true">
          <font>
             <Font size="12.0" />
          </font>
@@ -33,12 +33,7 @@
             </VBox>
             <VBox prefWidth="300.0">
                <children>
-                  <Label text="Urgency"/>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Select Area That Needs Service">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
+                  <Label text="Urgency" />
                   <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
                </children>
             </VBox>

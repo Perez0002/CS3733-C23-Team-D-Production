@@ -36,11 +36,6 @@
                         <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
                     </children>
                 </VBox>
-                <VBox fx:id="urgencyDropdownBox1" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                    <children>
-                        <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
-                    </children>
-                </VBox>
                 <VBox fx:id="locationDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
                         <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
@@ -51,11 +46,11 @@
                   <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                     </children>
                 </VBox>
-                <HBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </HBox>
+            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+               <children>
+                  <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
+               </children>
+            </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
                         <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of Problem">
