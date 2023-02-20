@@ -18,9 +18,10 @@ public class StatusComboBoxController {
     nodeToRoomMap = new TreeMap<String, ServiceRequest.Status>();
     ArrayList<Node> nodeList = FDdb.getInstance().getAllNodes();
 
-    nodeToRoomMap.put("BLANK", ServiceRequest.Status.BLANK);
-    nodeToRoomMap.put("PROGRESSING", ServiceRequest.Status.PROCESSING);
-    nodeToRoomMap.put("DONE", ServiceRequest.Status.DONE);
+    nodeToRoomMap.put(ServiceRequest.Status.BLANK.toString(), ServiceRequest.Status.BLANK);
+    nodeToRoomMap.put(
+        ServiceRequest.Status.PROCESSING.toString(), ServiceRequest.Status.PROCESSING);
+    nodeToRoomMap.put(ServiceRequest.Status.DONE.toString(), ServiceRequest.Status.DONE);
   }
 
   public void initialize() {
@@ -31,7 +32,9 @@ public class StatusComboBoxController {
     return nodeToRoomMap.get(mfxFilterComboBox.getValue());
   }
 
-  public void setStatus(String s) {}
+  public void setStatus(String s) {
+    mfxFilterComboBox.setValue(s);
+  }
 
   public void clearForm() {
     mfxFilterComboBox.setValue(null);

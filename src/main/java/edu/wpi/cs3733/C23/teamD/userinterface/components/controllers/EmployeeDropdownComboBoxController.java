@@ -33,4 +33,8 @@ public class EmployeeDropdownComboBoxController {
   public void clearForm() {
     mfxFilterComboBox.setValue(null);
   }
+
+  public void setEmployeeName(String s) {
+    mfxFilterComboBox.setValue(s);
+  }
 }

@@ -57,7 +57,9 @@ public class DatabaseHubController {
     serviceTableButton.setOnMouseClicked(
         event ->
             switchVBox(
-                DatabasesFXML.SERVICE_REQUEST, serviceTableButton, DatabasesFXML.MOVE_REQUEST));
+                DatabasesFXML.SERVICE_REQUEST,
+                serviceTableButton,
+                DatabasesFXML.CHANGE_SERVICE_REQUEST));
     nodeTableButton.setOnMouseClicked(
         event -> switchVBox(DatabasesFXML.NODE_TABLE, nodeTableButton, DatabasesFXML.ADD_NODE));
     edgeTableButton.setOnMouseClicked(

@@ -24,13 +24,13 @@
             <Insets top="32.0" />
          </VBox.margin>
       </Text>
-      <fx:include fx:id="statusBox" source="../VBoxInjections/Components/StatusComboBox.fxml" />
+      <fx:include fx:id="statusBox" prefWidth="300.0" source="../VBoxInjections/Components/StatusComboBox.fxml" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select an employee">
          <VBox.margin>
             <Insets top="32.0" />
          </VBox.margin>
       </Text>
-       <fx:include fx:id="employeeBox" source="../VBoxInjections/Components/EmployeeDropdownComboBox.fxml" />
+       <fx:include fx:id="employeeBox" prefWidth="300.0" source="../VBoxInjections/Components/EmployeeDropdownComboBox.fxml" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Request Type">
          <VBox.margin>
             <Insets top="32.0" />

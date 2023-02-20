@@ -10,7 +10,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -67,6 +66,11 @@ public class ServiceRequestTableController extends Application
     return ServiceRequestTableBorderPane;
   }
 
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(serviceTable.getSelectionModel().getSelectedItem());
+  }
+
   public void setVisible() {
     if (ServiceRequestTableBorderPane.isVisible()) {
       ServiceRequestTableBorderPane.setVisible(false);
@@ -90,21 +94,6 @@ public class ServiceRequestTableController extends Application
             public ObservableValue<String> call(
                 TableColumn.CellDataFeatures<ServiceRequest, String> param) {
               return new SimpleStringProperty(param.getValue().getStat().toString());
-            }
-          });
-      status.setOnEditCommit(
-          new EventHandler<TableColumn.CellEditEvent<ServiceRequest, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ServiceRequest, String> event) {
-              ServiceRequest form = event.getRowValue();
-              String newStatus = event.getNewValue();
-              try {
-                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
-                form.setStat(stat1);
-                FDdb.getInstance().updateServiceRequest(form);
-              } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-              }
             }
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());
