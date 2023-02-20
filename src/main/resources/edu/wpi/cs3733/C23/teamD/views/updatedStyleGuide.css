@@ -50,21 +50,10 @@
 
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-#hubLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 24pt;
-=======
-.hubLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 36pt;
->>>>>>> parent of e421dd8 (Revert "Merge pull request #111 from CS3733-C23-Team-D/fixingtheFonts")
-    -fx-max-width: 400px;
-    -fx-max-height: 100px;
-=======
+
 .hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 36pt;
     -fx-pref-width: 500px;
->>>>>>> parent of f928ae0 (Revert "Merge pull request #113 from CS3733-C23-Team-D/fixingtheFonts")
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
 }
