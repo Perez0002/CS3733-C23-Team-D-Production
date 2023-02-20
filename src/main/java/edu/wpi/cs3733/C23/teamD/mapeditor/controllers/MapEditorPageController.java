@@ -56,10 +56,12 @@ public class MapEditorPageController {
       public void handle(ActionEvent event) {
         edgesShown = !edgesShown;
 
-        if (edgesShown) {
+        if(edgesShown)
+        {
           toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
           toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
-        } else {
+        } else
+        {
           toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
         }
