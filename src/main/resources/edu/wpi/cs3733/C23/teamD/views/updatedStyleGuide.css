@@ -234,5 +234,17 @@
     -fx-background-insets: 50px;
 }
 
+.changePasswordVBox
+{
+    -fx-border-color: #012D5A;
+    -fx-border-width: 4pt;
+    -fx-border-radius: 16pt;
+}
+
+.changePasswordInsideVBox
+{
+    -fx-border-color: #012D5A transparent transparent transparent;
+    -fx-border-width: 5pt;
+}
 
 
