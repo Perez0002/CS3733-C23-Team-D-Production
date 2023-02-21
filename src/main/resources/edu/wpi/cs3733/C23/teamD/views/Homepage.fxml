@@ -14,13 +14,9 @@
    <center>
       <VBox fx:id="serviceRequestButtonVbox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <HBox alignment="CENTER_RIGHT" spacing="25.0">
                <children>
-                  <Label fx:id="clock" text="Current Time">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <fx:include fx:id="clock" source="VBoxInjections/Components/Clock.fxml" />
                   <MFXButton fx:id="profileButton" contentDisplay="GRAPHIC_ONLY" prefHeight="13.0" prefWidth="7.0" styleClass="imageBorder">
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="71.0" preserveRatio="true">
