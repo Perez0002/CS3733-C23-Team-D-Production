@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -397,8 +398,11 @@ public class MapEditorMapNode extends MapNode {
     warning.setArrowSize(0);
     warning.centerOnScreen();
     MFXButton yesButton = new MFXButton();
+    yesButton.getStyleClass().add("submitButton");
     MFXButton noButton = new MFXButton();
+    noButton.getStyleClass().add("cancelButton");
     HBox buttonHolder = new HBox(yesButton, noButton);
+    buttonHolder.setAlignment(Pos.CENTER);
     Text prompt = new Text("Do you want to auto repair edges?");
     warning.setContentNode(new VBox(prompt, buttonHolder));
     warning.show(App.getPrimaryStage());
@@ -425,6 +429,27 @@ public class MapEditorMapNode extends MapNode {
 
     noButton.setOnAction(
         evt -> {
+          for (MapEdge edge : this.getMapEdgeList()) {
+            ((AnchorPane) edge.getEdgeRepresentation().getParent())
+                .getChildren()
+                .remove(edge.getEdgeRepresentation());
+            try {
+              FDdb.getInstance().deleteEdge(edge.getEdge().getEdge());
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+          }
+
+          Node n = this.getNode().getNode();
+
+          try {
+            FDdb.getInstance().deleteNode(n);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+          ((AnchorPane) this.nodeRepresentation.getParent())
+              .getChildren()
+              .remove(this.nodeRepresentation);
           warning.hide();
         });
   }
@@ -440,8 +465,11 @@ public class MapEditorMapNode extends MapNode {
     warning.setArrowSize(0);
     warning.centerOnScreen();
     MFXButton yesButton = new MFXButton();
+    yesButton.getStyleClass().add("submitButton");
     MFXButton noButton = new MFXButton();
+    noButton.getStyleClass().add("cancelButton");
     HBox buttonHolder = new HBox(yesButton, noButton);
+    buttonHolder.setAlignment(Pos.CENTER);
     Text prompt = new Text("Do you want to keep edges?");
     warning.setContentNode(new VBox(prompt, buttonHolder));
     warning.show(App.getPrimaryStage());
@@ -460,7 +488,7 @@ public class MapEditorMapNode extends MapNode {
           n.setFloor(this.getNodeFloor().getValue());
           n.setBuilding(this.getNodeBuilding().getValue());
           System.out.println(n.getXcoord() + ", " + n.getYcoord());
-          // TODO need to update location / move?
+
           try {
             FDdb.getInstance().updateNodePK(n);
           } catch (Exception e) {
@@ -471,7 +499,6 @@ public class MapEditorMapNode extends MapNode {
 
     noButton.setOnAction(
         evt -> {
-          // TODO remove associated edges
           for (MapEdge edge : this.getMapEdgeList()) {
             ((AnchorPane) edge.getEdgeRepresentation().getParent())
                 .getChildren()
@@ -488,8 +515,6 @@ public class MapEditorMapNode extends MapNode {
           n.setYcoord(this.getNodeY().getValue().intValue());
           n.setFloor(this.getNodeFloor().getValue());
           n.setBuilding(this.getNodeBuilding().getValue());
-
-          // TODO need to update location / move?
 
           try {
             FDdb.getInstance().updateNodePK(n);
