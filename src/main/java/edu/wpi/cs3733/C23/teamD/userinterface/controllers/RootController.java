@@ -79,13 +79,13 @@ public class RootController {
     helpPageButton.setTooltip(new Tooltip("Help"));
 
     infoButton.setTooltip(new Tooltip("Information"));
-    infoButton.setOnMouseClicked(event -> showCredits());
+    infoButton.setOnMouseClicked(event -> showAbout());
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
   }
 
-  void showCredits() {
+  void showAbout() {
     try {
       final var resource = App.class.getResource("views/about.fxml");
       final FXMLLoader loader = new FXMLLoader(resource);

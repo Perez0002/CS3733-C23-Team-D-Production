@@ -14,7 +14,7 @@
          <children>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="Team Members" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="aboutLabel" text="Team Members" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
@@ -218,7 +218,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="Special Thanks" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="aboutLabel" text="Special Thanks" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
