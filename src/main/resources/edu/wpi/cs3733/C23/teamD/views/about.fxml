@@ -326,6 +326,15 @@
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Esc To Close" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </top>
