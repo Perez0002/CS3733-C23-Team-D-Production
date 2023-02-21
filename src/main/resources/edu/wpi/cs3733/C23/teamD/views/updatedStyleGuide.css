@@ -273,17 +273,22 @@
 .homepageStatsText
 {
     -fx-text-fill: #004D97;
-    -fx-font-size: 16pt;
-    -fx-min-width: 300;
-    -fx-min-height: 50;
+    -fx-font-size: 12pt;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
 }
 
 .homepageStatsNumberText
 {
     -fx-text-fill: #004D97;
-    -fx-font-size: 40pt;
-    -fx-min-width: 300;
-    -fx-min-height: 50;
+    -fx-font-size: 22pt;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 40;
+    -fx-text-alignment: center;
 
 }
 

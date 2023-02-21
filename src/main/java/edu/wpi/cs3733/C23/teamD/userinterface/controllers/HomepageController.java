@@ -10,19 +10,30 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javax.swing.*;
 import org.controlsfx.control.PopOver;
 
 public class HomepageController {
 
-  @FXML private BorderPane homepageBorderPane;
+  @FXML private VBox homepageBorderPane;
 
   @FXML private MFXButton profileButton;
   @FXML private MFXButton helpButton;
 
+  @FXML private Label welcomeText;
+
+  @FXML private Label allPendingRequests;
+
+  @FXML private Label pendingRequests;
+
+  @FXML private Label movesTomorrow;
+
   @FXML
   public void initialize() {
     checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
+    welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     helpButton.setOnMouseClicked(
         event -> {
