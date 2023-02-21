@@ -247,7 +247,7 @@ public class PopupFactory {
 
       nextButton.getStyleClass().add("cancelButton");
       prevButton.getStyleClass().add("cancelButton");
-      
+
       nextButton.setOnAction(nextEvent);
       prevButton.setOnAction(prevEvent);
     }
