@@ -46,6 +46,8 @@ public class ServiceRequestHubController {
 
   private MFXButton currentTab;
 
+  private boolean hubMapCreated = false;
+
   Pane getRequestFormHubPane() {
     return requestFormHubPane;
   }
@@ -59,7 +61,6 @@ public class ServiceRequestHubController {
 
   public void initialize() {
 
-    createHubMap();
     switchVBox(PATIENT_TRANSPORT, transportButton);
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB,
     // hubButton);
@@ -97,6 +98,9 @@ public class ServiceRequestHubController {
     floor3Button.setOnMouseClicked(event -> changeFloor(2));
     floor4Button.setOnMouseClicked(event -> changeFloor(3));
     floor5Button.setOnMouseClicked(event -> changeFloor(4));
+
+    System.out.println("changeFloor CALL");
+    changeFloor(0);
   }
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
@@ -166,6 +170,11 @@ public class ServiceRequestHubController {
   }
 
   public void changeFloor(int floor) {
+
+    if (hubMapCreated == false) {
+      hubMapCreated = true;
+      createHubMap();
+    }
 
     switch (currentFloor) {
       case 0:
