@@ -71,6 +71,12 @@
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
 }
+.aboutLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 36pt;
+    -fx-pref-width: 1350px;
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-text-fill: #011830;
+}
 
 .homepageLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
