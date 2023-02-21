@@ -2,10 +2,10 @@ package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
-import edu.wpi.cs3733.C23.teamD.database.util.Ddb;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.net.URL;
@@ -32,7 +32,7 @@ public class MoveRequestTableController implements Initializable {
   @FXML private Parent nodeBox;
   @FXML private RoomPickComboBoxController nodeBoxController;
   @FXML private Parent locationBox;
-  @FXML private RoomPickComboBoxController locationBoxController;
+  @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
 
   @Override
@@ -49,7 +49,7 @@ public class MoveRequestTableController implements Initializable {
       Move move =
           new Move(
               FDdb.getInstance().getNode(nodeBoxController.getNodeValue()),
-              FDdb.getInstance().getNode(locationBoxController.getNodeValue()).getLocation(),
+              FDdb.getInstance().getNode(locationBoxController.getLocation()),
               date);
       FDdb.getInstance().saveMove(move);
     } else {
@@ -60,7 +60,7 @@ public class MoveRequestTableController implements Initializable {
   private boolean checkFields() {
     return !(datePicker.getValue() == null
         || nodeBoxController.getNodeValue().isEmpty()
-        || locationBoxController.getLocationName().isEmpty());
+        || locationBoxController.getLocationLongName().isEmpty());
   }
 
   @FXML
@@ -78,7 +78,6 @@ public class MoveRequestTableController implements Initializable {
 
   public void tablehandling() {
     ArrayList<Node> nodes = FDdb.getInstance().getAllNodes();
-    Ddb.connectNodestoLocations(nodes);
     ObservableList<Move> moveList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
 

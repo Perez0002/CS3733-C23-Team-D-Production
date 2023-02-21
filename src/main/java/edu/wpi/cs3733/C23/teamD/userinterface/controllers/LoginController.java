@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 public class LoginController {
@@ -16,34 +17,46 @@ public class LoginController {
   private boolean helpVisible = false;
   @FXML private Text helpText;
 
-  @FXML private Text usernameText;
+  @FXML private Label usernameLabel, passwordLabel;
 
   @FXML private MFXTextField username;
 
   @FXML private MFXPasswordField password;
 
   @FXML
-  /*
-  displayHelp()
-  @param void
-  @return void
-  linked to "Help" button on SceneBuilder page, when selected
-  reverts to "Help" functions (undetermined)
-  */
-  private void displayHelp() {
-    helpVisible = !helpVisible;
-
-    usernameText.setVisible(helpVisible);
+  public void initialize() throws IOException {
+    password.setOnKeyPressed(
+        event -> {
+          try {
+            submitLogin();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
   }
 
   @FXML
-  /*
-  checkFields
-  @param void
-  @return boolean
-  helper function for submit() function,
-  ensures all necessary fields are filled before submission
-  */
+  /**
+   * displayHelp()
+   *
+   * @param void
+   * @return void linked to "Help" button on SceneBuilder page, when selected reverts to "Help"
+   *     functions (undetermined)
+   */
+  private void displayHelp() {
+    helpVisible = !helpVisible;
+
+    usernameLabel.setVisible(helpVisible);
+  }
+
+  @FXML
+  /**
+   * checkFields
+   *
+   * @param void
+   * @return boolean helper function for submit() function, ensures all necessary fields are filled
+   *     before submission
+   */
   private boolean checkFields() {
     if (checkPassword() && checkUsername()) {
       return true;
@@ -74,13 +87,13 @@ public class LoginController {
   }
 
   @FXML
-  /*
-  submit()
-  @param void
-  @return void
-  linked to "submit" button on SceneBuilder page, when selected
-  submits information filled out in forms
-  */
+  /**
+   * submit()
+   *
+   * @param void
+   * @return void linked to "submit" button on SceneBuilder page, when selected submits information
+   *     filled out in forms
+   */
   public void submitLogin() throws IOException {
     if (checkFields()) {
 

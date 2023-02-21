@@ -1,4 +1,3 @@
-
 CREATE TABLE teamdSchema.Node();
 CREATE TABLE teamdSchema.LocationName();
 CREATE TABLE teamdSchema.Move();
@@ -25,9 +24,9 @@ values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'aralbuquerque@wpi.edu', '
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dorm', 'azimmerman@wpi.edu', 'STAFF', 'Annie', 'Zimmerman', 'password', 9999555955);
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
-values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'admin', 'ADMIN', 'Admin', 'Admin', 'password', 9999555955);
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'admin', 'ADMIN', 'Admin', 'Admin', 'admin', 9999555955);
 insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
-values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff', 'STAFF', 'Staff', 'Staff', 'password', 9999555955);
+values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff', 'STAFF', 'Staff', 'Staff', 'admin', 9999555955);
 
 /*
 drop table Move;
@@ -42,13 +41,11 @@ create table Node(
                      floor varchar(2) NOT NULL,
                      building varchar(255) NOT NULL
 );
-
 create table LocationName(
                              longName varchar(255) primary key,
                              shortName varchar(255) NOT NULL,
                              locationType char(4) NOT NULL
 );
-
 create table Move(
                      nodeID varchar(12),
                      longName varchar(255),
@@ -58,7 +55,6 @@ create table Move(
                      CONSTRAINT fkey_longName
                          FOREIGN KEY (longName) REFERENCES LocationName(longName)
 );
-
 create table Edge(
                      node1 varchar(12),
                      node2 varchar(12),
@@ -67,9 +63,7 @@ create table Edge(
                      CONSTRAINT fkey_node2
                          FOREIGN KEY (node2) REFERENCES Node(nodeID)
 );
-
 create type stat as enum ('DONE', 'BLANK', 'PROCESSING');
-
 create table PatientTransportData(
                                      patientID varchar(255) NOT NULL,
                                      patientTransportID SERIAL primary key,

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,13 +10,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.pathfinding.controllers.PathfindingController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: white;" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.pathfinding.controllers.PathfindingController">
    <left>
-      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="699.0" prefWidth="400.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="699.0" prefWidth="400.0" spacing="15.0" styleClass="hubVBox" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#011830" strokeType="OUTSIDE" strokeWidth="0.0" text="Get Directions">
+            <Text fill="#011830" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="hubLabel" text="Get Directions">
                <font>
-                  <Font name="System Bold" size="36.0" />
+                  <Font size="36.0" />
                </font>
             </Text>
             <HBox prefHeight="1.0" prefWidth="200.0" styleClass="tabHBox">
@@ -32,6 +33,19 @@
                </VBox.margin></Label>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <VBox prefHeight="75.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Date">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <MFXDatePicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="400.0" promptText="Pick a Date" styleClass="mfx-text-field">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding></MFXDatePicker>
+                     </children>
+                  </VBox>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false" styleClass="serviceRequestMFXComboBox">
                      <children>
                         <Label text="Starting Location">
@@ -39,7 +53,7 @@
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <fx:include fx:id="startRoomComboBox" prefHeight="55.0" prefWidth="400.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
+                        <fx:include fx:id="startRoomComboBox" prefWidth="400.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" styleClass="serviceRequestMFXComboBox">
@@ -49,7 +63,7 @@
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <fx:include fx:id="endRoomComboBox" prefHeight="55.0" prefWidth="400.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
+                        <fx:include fx:id="endRoomComboBox" prefWidth="400.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -89,7 +103,7 @@
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets left="50.0" right="50.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </left>
@@ -117,7 +131,7 @@
             </VBox>
          </bottom>
          <center>
-            <BorderPane fx:id="pathfindingBorderPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #1D4E8D; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
+            <BorderPane fx:id="pathfindingBorderPane" prefHeight="200.0" prefWidth="200.0" styleClass="mapEditorMapHolder" BorderPane.alignment="CENTER" />
          </center>
          <BorderPane.margin>
             <Insets top="30.0" />

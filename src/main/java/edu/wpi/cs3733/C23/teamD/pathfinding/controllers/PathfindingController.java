@@ -107,13 +107,16 @@ public class PathfindingController {
         }
         ArrayList<MapNode> mapNodes = new ArrayList<>();
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
-        PathNode lastNode = null;
+        MapNode lastNode = null;
         for (PathNode node : path) {
-          mapNodes.add(new PathfindingMapNode(node));
+          MapNode mapNode = new PathfindingMapNode(node);
+          mapNodes.add(mapNode);
           if (lastNode != null) {
-            mapEdges.add(new MapEdge(new PathEdge(lastNode, node)));
+            MapEdge tempEdge = new MapEdge(new PathEdge(lastNode.getNode(), node));
+            tempEdge.setNodes(lastNode, mapNode);
+            mapEdges.add(tempEdge);
           }
-          lastNode = node;
+          lastNode = mapNode;
         }
 
         pathfindingBorderPane.setCenter(

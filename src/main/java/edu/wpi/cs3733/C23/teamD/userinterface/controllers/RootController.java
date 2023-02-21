@@ -20,6 +20,7 @@ public class RootController {
       serviceRequestFormsButton,
       pathfindingButton,
       dbButton,
+      moveTableButton,
       mapEditorButton,
       helpPageButton,
       infoButton,
@@ -33,12 +34,8 @@ public class RootController {
 
   public void checkAccessLevel(Employee currentUser) {
     String type = currentUser.getEmployeeType();
-    if (type != null && type.equals("ADMIN")) {
+    if (type != null && (type.equals("ADMIN") || type.equals("STAFF"))) {
       dbButton.setDisable(false);
-      serviceRequestFormsButton.setDisable(false);
-      mapEditorButton.setDisable(false);
-    } else if (type != null && type.equals("STAFF")) {
-      dbButton.setDisable(true);
       serviceRequestFormsButton.setDisable(false);
       mapEditorButton.setDisable(false);
     } else {
@@ -71,6 +68,9 @@ public class RootController {
 
     dbButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
     dbButton.setTooltip(new Tooltip("Database Editors"));
+
+    moveTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
+    moveTableButton.setTooltip(new Tooltip("Office Moves"));
 
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     mapEditorButton.setTooltip(new Tooltip("Map Editor"));

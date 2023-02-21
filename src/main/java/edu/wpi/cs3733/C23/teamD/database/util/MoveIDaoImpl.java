@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
 
@@ -151,5 +152,26 @@ public class MoveIDaoImpl implements IDao<Move> {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public ArrayList<Move> getMovesFromDate(Date date) {
+    session.beginTransaction();
+    Query q = session.createQuery("SELECT from Move where moveDate > :now");
+    q.setParameter("now", date);
+    ArrayList<Move> moves = new ArrayList<Move>(q.getResultList());
+    session.getTransaction().commit();
+    return moves;
+  }
+
+  public ArrayList<Move> getCertainMoveFromDate(Date date, LocationName loc) {
+    session.beginTransaction();
+    Query q =
+        session.createQuery(
+            "SELECT from Move where moveDate > :now where location = :thislocation");
+    q.setParameter("now", date);
+    q.setParameter("thislocation", loc.getLongName());
+    ArrayList<Move> moves = new ArrayList<Move>(q.getResultList());
+    session.getTransaction().commit();
+    return moves;
   }
 }

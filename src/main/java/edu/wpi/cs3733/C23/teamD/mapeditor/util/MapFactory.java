@@ -121,8 +121,8 @@ public class MapFactory {
     converter.put("2", 3);
     converter.put("3", 4);
 
-    AnchorPane holder = new AnchorPane();
     ImageView image = new ImageView();
+    AnchorPane holder = new AnchorPane();
     GesturePane map = new GesturePane();
 
     if (floor == 0) {

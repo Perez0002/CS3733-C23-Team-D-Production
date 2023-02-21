@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Setter;
 
 public class MoveTableController extends Application implements Initializable, DatabaseController {
   @FXML private BorderPane MoveTableBorderPane;
@@ -26,6 +27,7 @@ public class MoveTableController extends Application implements Initializable, D
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
+  @Setter private AddFormController addFormController;
 
   @FXML
   public void openMoveRequest() {
@@ -56,9 +58,51 @@ public class MoveTableController extends Application implements Initializable, D
     }
   }
 
-  public void tablehandling() {
+  public void refresh() {
     ObservableList<Move> moveList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+    moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
+    moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
+    moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
+    moveTable.setItems(moveList);
+    moveTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    moveTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = moveTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < moveTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
+  }
+
+  @Override
+  public void deselect() {
+    moveTable.getSelectionModel().clearSelection();
+  }
+
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(moveTable.getSelectionModel().getSelectedItem());
+  }
+
+  public void tablehandling() {
+    ObservableList<Move> moveList = null;
+    try {
+      moveList =
+          FXCollections.observableArrayList(FDdb.getInstance().getAllCurrentMoves(new Date()));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
     moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
     moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));

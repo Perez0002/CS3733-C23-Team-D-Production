@@ -24,6 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lombok.Setter;
 
 public class SanitationTable extends Application implements Initializable, DatabaseController {
   @FXML private BorderPane SanitationRequestBorderPane;
@@ -43,6 +44,7 @@ public class SanitationTable extends Application implements Initializable, Datab
   @FXML private TableColumn<SanitationRequest, Date> date;
 
   @FXML private MFXButton cancelButton;
+  @Setter private AddFormController addFormController;
 
   public static void main(String[] args) {
     launch(args);
@@ -54,6 +56,14 @@ public class SanitationTable extends Application implements Initializable, Datab
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @Override
+  public void refresh() {}
+
+  @Override
+  public void deselect() {
+    sanitationTable.getSelectionModel().clearSelection();
   }
 
   public Node getBox() {
