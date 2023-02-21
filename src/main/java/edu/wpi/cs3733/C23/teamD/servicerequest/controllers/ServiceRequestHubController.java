@@ -189,22 +189,32 @@ public class ServiceRequestHubController {
       case 0:
         floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
         currentFloor = 0;
+        ServiceRequestMap.getMapSingleton().setFloor(0);
+        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
         break;
       case 1:
         floor2Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
         currentFloor = 1;
+        ServiceRequestMap.getMapSingleton().setFloor(1);
+        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
         break;
       case 2:
         floor3Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
         currentFloor = 2;
+        ServiceRequestMap.getMapSingleton().setFloor(2);
+        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
         break;
       case 3:
         floor4Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
         currentFloor = 3;
+        ServiceRequestMap.getMapSingleton().setFloor(3);
+        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
         break;
       case 4:
         floor5Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
         currentFloor = 4;
+        ServiceRequestMap.getMapSingleton().setFloor(4);
+        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
         break;
     }
 

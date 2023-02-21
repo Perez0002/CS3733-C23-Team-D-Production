@@ -27,11 +27,12 @@ public class ServiceRequestMap {
     map = MapFactory.startBuild().build(floor);
     map.setStyle("-fx-border-color: #012D5A;");
     map.setMaxSize(700, 500);
-    this.mapSingleton = this;
+    centerOnNode(1400, 800);
   }
 
-  private void setFloor(int f) {
+  public void setFloor(int f) {
     floor = f;
+    createMap();
   }
 
   int getFloor() {
