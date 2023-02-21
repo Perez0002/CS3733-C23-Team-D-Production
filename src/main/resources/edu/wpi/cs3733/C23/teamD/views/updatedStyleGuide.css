@@ -257,8 +257,27 @@
     -fx-background-image: url('images/emptyPFP.png');
     -fx-min-height: 40px;
     -fx-min-width:  40px;
+    -fx-max-height: 40px;
+    -fx-max-width:  40px;
     -fx-border-color: #012D5A;
     -fx-border-radius: 0px;
+}
+
+.homepageStatsText
+{
+    -fx-text-fill: #004D97;
+    -fx-font-size: 16pt;
+    -fx-min-width: 300;
+    -fx-min-height: 50;
+}
+
+.homepageStatsNumberText
+{
+    -fx-text-fill: #004D97;
+    -fx-font-size: 40pt;
+    -fx-min-width: 300;
+    -fx-min-height: 50;
+
 }
 
 

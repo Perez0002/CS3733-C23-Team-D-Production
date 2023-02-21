@@ -1,124 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="homepageBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.HomepageController">
    <center>
       <VBox fx:id="serviceRequestButtonVbox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" spacing="20.0">
+            <HBox alignment="TOP_RIGHT" spacing="20.0">
                <children>
                   <fx:include fx:id="clock" source="VBoxInjections/Components/Clock.fxml" />
                   <MFXButton fx:id="profileButton" contentDisplay="GRAPHIC_ONLY" prefHeight="40.0" prefWidth="40.0" styleClass="smallPFP" text="Button" />
                </children>
             </HBox>
-            <HBox VBox.vgrow="ALWAYS">
+            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox minHeight="-Infinity" minWidth="-Infinity" HBox.hgrow="NEVER">
+                  <Label fx:id="welcomeText" styleClass="hubLabel" text="Welcome User!" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="22.0">
                      <children>
-                        <VBox styleClass="homepageLabel" VBox.vgrow="NEVER">
-                           <children>
-                              <Label styleClass="homepageLabel" text="Directions">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font></Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox>
-                           <children>
-                              <MFXButton fx:id="mapEditorButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="700.0" styleClass="imageBorder" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="333.0" fitWidth="687.0" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/MapImage.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></MFXButton>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox styleClass="homepageLabel">
-                           <children>
-                              <Label text="Recent Databases">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font></Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <VBox />
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <MFXButton fx:id="DBEditorButton" contentDisplay="GRAPHIC_ONLY" styleClass="imageBorder" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="171.0" fitWidth="680.0" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/DatabaseImage.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MFXButton>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                        </VBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox alignment="TOP_RIGHT" spacing="20.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <HBox>
-                           <children>
-                              <Label styleClass="homepageLabel" text="Recent Request Forms">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font></Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets bottom="30.0" />
-                           </VBox.margin>
-                           <children>
-                              <MFXButton fx:id="serviceRequestFormButton" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="imageBorder" text="Button">
-                                 <graphic>
-                                    <ImageView fitHeight="470.0" fitWidth="380.0" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/ServiceRequestForm.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MFXButton>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="24.0">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" styleClass="homepageStatsText" text="All Pending Requests" />
+                                          <Label styleClass="homepageStatsNumberText" text="Num" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" styleClass="homepageStatsText" text="Your Pending Requests" />
+                                          <Label styleClass="homepageStatsNumberText" text="Num" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" styleClass="homepageStatsText" text="Total Moves Tomorrow" />
+                                          <Label styleClass="homepageStatsNumberText" text="Num" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageLabel" text="Hospital Notifications" />
+                                    <TableView prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="homepageLabel" text="Label" />
+                                    <TableView prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="homepageLabel" text="Label" />
+                                    <MFXScrollPane />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
                      </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </VBox>
+                  </HBox>
                </children>
-            </HBox>
+               <VBox.margin>
+                  <Insets left="48.0" right="48.0" top="24.0" />
+               </VBox.margin>
+            </VBox>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <MFXButton fx:id="helpButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" styleClass="helpButton" text="?" />

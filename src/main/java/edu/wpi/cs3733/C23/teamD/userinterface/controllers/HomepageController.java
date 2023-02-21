@@ -10,41 +10,12 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
 
 public class HomepageController {
 
-  @FXML private MFXButton DBEditorButton;
-
-  @FXML private Label aboutLabel;
-
-  @FXML private Label bottomHelpText;
-
-  @FXML private HBox bottomVbox;
-
-  @FXML private MenuItem exitButton;
-
-  @FXML private MenuButton exitButtonMenu;
-
-  @FXML private MFXButton mapEditorButton;
-
   @FXML private BorderPane homepageBorderPane;
-
-  @FXML private MFXButton homepageHelpButton;
-
-  @FXML private MFXButton serviceRequestFormButton;
-
-  @FXML private Label serviceRequestHelpText;
-
-  @FXML private Text currentUserText;
-
-  @FXML private Label titleLabel;
 
   @FXML private MFXButton profileButton;
   @FXML private MFXButton helpButton;
@@ -52,10 +23,6 @@ public class HomepageController {
   @FXML
   public void initialize() {
     checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
-    serviceRequestFormButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.REQUEST_FORM_HUB));
-    DBEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_HUB));
-    mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     helpButton.setOnMouseClicked(
         event -> {
@@ -86,19 +53,19 @@ public class HomepageController {
   }
 
   private void checkAccessLevel(Employee currentUser) {
-    if (currentUser.getEmployeeType().equals("ADMIN")) {
-      serviceRequestFormButton.setDisable(false);
-      mapEditorButton.setDisable(false);
-      DBEditorButton.setDisable(false);
-    } else if (currentUser.equals("STAFF")) {
-      serviceRequestFormButton.setDisable(false);
-      mapEditorButton.setDisable(false);
-      DBEditorButton.setDisable(true);
-    } else {
-      serviceRequestFormButton.setDisable(true);
-      mapEditorButton.setDisable(true);
-      DBEditorButton.setDisable(true);
-    }
+    //    if (currentUser.getEmployeeType().equals("ADMIN")) {
+    //      serviceRequestFormButton.setDisable(false);
+    //      mapEditorButton.setDisable(false);
+    //      DBEditorButton.setDisable(false);
+    //    } else if (currentUser.equals("STAFF")) {
+    //      serviceRequestFormButton.setDisable(false);
+    //      mapEditorButton.setDisable(false);
+    //      DBEditorButton.setDisable(true);
+    //    } else {
+    //      serviceRequestFormButton.setDisable(true);
+    //      mapEditorButton.setDisable(true);
+    //      DBEditorButton.setDisable(true);
+    //    }
   }
 
   @FXML
