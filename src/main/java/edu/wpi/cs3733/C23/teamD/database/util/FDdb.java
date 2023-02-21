@@ -287,4 +287,8 @@ public class FDdb {
   public ArrayList<Move> getFutureMoves(LocationName l, Date date) {
     return moveIDao.getCertainMoveFromDate(date, l);
   }
+
+  public Node getAssociatedNode(LocationName l){
+    return nodeIDao.getAssociatedNode(l);
+  }
 }
