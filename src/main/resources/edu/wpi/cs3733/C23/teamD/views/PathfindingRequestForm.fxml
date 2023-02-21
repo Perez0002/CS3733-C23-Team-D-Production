@@ -123,9 +123,6 @@
                         <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 2" />
                         <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 3" />
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="30.0" top="30.0" />
-                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>

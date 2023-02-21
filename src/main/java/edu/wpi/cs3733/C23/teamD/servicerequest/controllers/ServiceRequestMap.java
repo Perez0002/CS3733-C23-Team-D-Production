@@ -53,7 +53,4 @@ public class ServiceRequestMap {
   void centerOnNode(int x, int y) {
     map.animate(Duration.millis(50)).centreOn(new Point2D(x, y));
   }
-
-
-
 }
