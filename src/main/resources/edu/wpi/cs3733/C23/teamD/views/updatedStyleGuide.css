@@ -15,9 +15,24 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
+.mfx-text-field {
+    -fx-border-color: #EEEEEE;
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 10;
+    -fx-min-height: 40;
+    -fx-min-width: 300;
+}
+
+.mfx-text-field:focus-within {
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10;
+}
+
+
 .label { /* sets base format for labels */
     -fx-text-fill: #012D5A;
     -fx-text-size: 12pt;
+    -fx-min-width: 300;
 }
 
 .root {
@@ -31,14 +46,6 @@
 
 .ourText {
     -fx-font-family: 'Nunito Sans Regular';
-}
-
-.mfx-text-field { /* sets base format for MFXTextFields */
-    -fx-background-color: #EEEEEE;
-    -fx-border-radius: 10px;
-    -fx-min-height: 40px;
-    -fx-border-color: #012D5A;
-    -fx-font-family: "Nunito Sans Regular";
 }
 
 .button {
@@ -203,10 +210,8 @@
     -fx-text-fill: white;
     -fx-border-color: white;
     -fx-font-family: 'Nunito Sans Regular';
-    -fx-max-width: 200px;
-    -fx-max-height: 40px;
-    -fx-pref-height: 40px;
-    -fx-min-height: 40px;
+    -fx-max-width: 300px;
+    -fx-max-height: 45px;
 }
 
 #loginBorderPane {
