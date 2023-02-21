@@ -171,6 +171,18 @@ public class NodeIDaoImpl implements IDao<Node> {
       session.beginTransaction();
       org.hibernate.query.Query query = session.createQuery("DELETE FROM Edge");
       query.executeUpdate();
+      query = session.createQuery("DELETE FROM SecurityServiceRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM ComputerServiceRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM SanitationRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM AVRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM PatientTransportRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM ServiceRequest");
+      query.executeUpdate();
       query = session.createQuery("DELETE FROM Move");
       query.executeUpdate();
       query = session.createQuery("DELETE FROM LocationName ");
