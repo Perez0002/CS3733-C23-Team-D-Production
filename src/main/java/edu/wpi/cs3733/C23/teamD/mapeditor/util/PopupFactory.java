@@ -17,15 +17,10 @@ import org.controlsfx.control.PopOver;
 public class PopupFactory {
   private boolean editable;
   private boolean deletable;
-  private boolean drawArrows;
-
   private Node anchor;
   private MapNode mapNode;
 
   private EventHandler<ActionEvent> submitEvent;
-  private EventHandler<ActionEvent> nextEvent;
-  private EventHandler<ActionEvent> prevEvent;
-
   private EventHandler<ActionEvent> deleteEvent;
   private EventHandler<ActionEvent> closeEvent;
 
@@ -37,7 +32,6 @@ public class PopupFactory {
     this.submitEvent = event -> {};
     this.deleteEvent = event -> {};
     this.closeEvent = event -> {};
-    this.drawArrows = false;
   }
 
   /** @return new PopupFactory to chain off of */
@@ -53,15 +47,6 @@ public class PopupFactory {
    */
   public PopupFactory editable() {
     this.editable = true;
-    return this;
-  }
-  /**
-   * Allow for the drawing of next/prev arrows on the popup
-   *
-   * @return the PopupFactory with these changes
-   */
-  public PopupFactory withArrows() {
-    this.drawArrows = true;
     return this;
   }
 
@@ -120,15 +105,6 @@ public class PopupFactory {
     return this;
   }
 
-  public PopupFactory nextEvent(EventHandler nextEvent) {
-    this.nextEvent = nextEvent;
-    return this;
-  }
-
-  public PopupFactory prevEvent(EventHandler prevEvent) {
-    this.prevEvent = prevEvent;
-    return this;
-  }
   /**
    * Builds the PopOver from the factory
    *
@@ -140,8 +116,6 @@ public class PopupFactory {
     MFXButton closeButton = null;
     MFXButton deleteButton = null;
     MFXButton submitButton = null;
-    MFXButton nextButton = null;
-    MFXButton prevButton = null;
 
     MFXTextField xCoordTextField = new MFXTextField();
     MFXTextField yCoordTextField = new MFXTextField();
@@ -163,66 +137,58 @@ public class PopupFactory {
 
     popover.setCloseButtonEnabled(false);
     popover.setAutoHide(false);
+    popover.setArrowSize(0);
+
+    popover.setTitle("Node Editor");
+
+    Label xCoordLabel = new Label("X Coordinate");
+    xCoordTextField.setPrefWidth(190);
+    xCoordTextField.setText(Double.toString(mapNode.getNodeX().getValue()));
+    VBox xCoordVBox = new VBox(xCoordLabel, xCoordTextField);
+    VBox.setMargin(xCoordVBox, new Insets(5, 5, 5, 5));
+
+    Label yCoordLabel = new Label("Y Coordinate");
+    yCoordTextField.setPrefWidth(190);
+    yCoordTextField.setText(Double.toString(mapNode.getNodeY().getValue()));
+    VBox yCoordVBox = new VBox(yCoordLabel, yCoordTextField);
+    VBox.setMargin(yCoordVBox, new Insets(5, 5, 5, 5));
+
+    Label shortNameLabel = new Label("Short Name");
+    shortNameTextField.setPrefWidth(190);
+    shortNameTextField.setText(mapNode.getNodeShortName().getValue());
+    VBox shortNameVBox = new VBox(shortNameLabel, shortNameTextField);
+    VBox.setMargin(shortNameVBox, new Insets(5, 5, 5, 5));
+
+    Label longNameLabel = new Label("Long Name");
+    longNameTextField.setPrefWidth(190);
+    longNameTextField.setText(mapNode.getNodeLongName().getValue());
+    VBox longNameVBox = new VBox(longNameLabel, longNameTextField);
+    VBox.setMargin(longNameVBox, new Insets(5, 5, 5, 5));
+
+    Label buildingLabel = new Label("Building");
+    buildingTextField.setPrefWidth(190);
+    buildingTextField.setText(mapNode.getNodeBuilding().getValue());
+    VBox buildingVBox = new VBox(buildingLabel, buildingTextField);
+    VBox.setMargin(buildingVBox, new Insets(5, 5, 5, 5));
+
+    Label floorLabel = new Label("Floor");
+    floorTextField.setPrefWidth(190);
+    floorTextField.setText(mapNode.getNodeFloor().getValue());
+    VBox floorVBox = new VBox(floorLabel, floorTextField);
+    VBox.setMargin(floorVBox, new Insets(5, 5, 5, 5));
+
+    Label typeLabel = new Label("Type");
+    typeTextField.setPrefWidth(190);
+    typeTextField.setText(mapNode.getNodeType().getValue());
+    VBox typeVBox = new VBox(typeLabel, typeTextField);
+    VBox.setMargin(typeVBox, new Insets(5, 5, 10, 5));
 
     if (this.editable) {
-      Label xCoordLabel = new Label("X Coordinate");
-      xCoordTextField.setPrefWidth(190);
-      xCoordTextField.setText(Double.toString(mapNode.getNodeX().getValue()));
-      VBox xCoordVBox = new VBox(xCoordLabel, xCoordTextField);
-      VBox.setMargin(xCoordVBox, new Insets(5, 5, 5, 5));
-
-      Label yCoordLabel = new Label("Y Coordinate");
-      yCoordTextField.setPrefWidth(190);
-      yCoordTextField.setText(Double.toString(mapNode.getNodeY().getValue()));
-      VBox yCoordVBox = new VBox(yCoordLabel, yCoordTextField);
-      VBox.setMargin(yCoordVBox, new Insets(5, 5, 5, 5));
-
-      Label shortNameLabel = new Label("Short Name");
-      shortNameTextField.setPrefWidth(190);
-      shortNameTextField.setText(mapNode.getNodeShortName().getValue());
-      VBox shortNameVBox = new VBox(shortNameLabel, shortNameTextField);
-      VBox.setMargin(shortNameVBox, new Insets(5, 5, 5, 5));
-
-      Label longNameLabel = new Label("Long Name");
-      longNameTextField.setPrefWidth(190);
-      longNameTextField.setText(mapNode.getNodeLongName().getValue());
-      VBox longNameVBox = new VBox(longNameLabel, longNameTextField);
-      VBox.setMargin(longNameVBox, new Insets(5, 5, 5, 5));
-
-      Label buildingLabel = new Label("Building");
-      buildingTextField.setPrefWidth(190);
-      buildingTextField.setText(mapNode.getNodeBuilding().getValue());
-      VBox buildingVBox = new VBox(buildingLabel, buildingTextField);
-      VBox.setMargin(buildingVBox, new Insets(5, 5, 5, 5));
-
-      Label floorLabel = new Label("Floor");
-      floorTextField.setPrefWidth(190);
-      floorTextField.setText(mapNode.getNodeFloor().getValue());
-      VBox floorVBox = new VBox(floorLabel, floorTextField);
-      VBox.setMargin(floorVBox, new Insets(5, 5, 5, 5));
-
-      Label typeLabel = new Label("Type");
-      typeTextField.setPrefWidth(190);
-      typeTextField.setText(mapNode.getNodeType().getValue());
-      VBox typeVBox = new VBox(typeLabel, typeTextField);
-      VBox.setMargin(typeVBox, new Insets(5, 5, 10, 5));
-
-      popover.setTitle("Node Editor");
       submitButton = new MFXButton();
       submitButton.getStyleClass().add("submitButton");
       submitButton.setText("Submit");
       submitButton.setOnAction(submitEvent);
-
-      vBox.getChildren().add(xCoordVBox);
-      vBox.getChildren().add(yCoordVBox);
-      vBox.getChildren().add(shortNameVBox);
-      vBox.getChildren().add(longNameVBox);
-      vBox.getChildren().add(buildingVBox);
-      vBox.getChildren().add(floorVBox);
-      vBox.getChildren().add(typeVBox);
-
     } else {
-      popover.setTitle(mapNode.getNodeLongName().getValue());
       xCoordTextField.setEditable(false);
       yCoordTextField.setEditable(false);
       buildingTextField.setEditable(false);
@@ -238,19 +204,6 @@ public class PopupFactory {
       deleteButton.setText("Delete");
       deleteButton.setOnAction(deleteEvent);
     }
-    if (this.drawArrows) {
-      nextButton = new MFXButton();
-      prevButton = new MFXButton();
-
-      nextButton.setText("Next");
-      prevButton.setText("Prev");
-
-      nextButton.getStyleClass().add("cancelButton");
-      prevButton.getStyleClass().add("cancelButton");
-
-      nextButton.setOnAction(nextEvent);
-      prevButton.setOnAction(prevEvent);
-    }
 
     closeButton = new MFXButton();
     closeButton.getStyleClass().add("cancelButton");
@@ -261,8 +214,6 @@ public class PopupFactory {
 
     if (deleteButton != null) {
       buttonBox = new HBox(closeButton, deleteButton);
-    } else if (nextButton != null && prevButton != null) {
-      buttonBox = new HBox(prevButton, closeButton, nextButton);
     } else {
       buttonBox = new HBox(closeButton);
     }
@@ -270,10 +221,6 @@ public class PopupFactory {
     HBox.setMargin(buttonBox, new Insets(10, 5, 5, 5));
     if (deleteButton != null) {
       HBox.setMargin(deleteButton, new Insets(0, 0, 5, 5));
-    }
-    if (nextButton != null) {
-      HBox.setMargin(prevButton, new Insets(0, 5, 5, 0));
-      HBox.setMargin(nextButton, new Insets(0, 5, 5, 0));
     }
     HBox.setMargin(closeButton, new Insets(0, 5, 5, 0));
     buttonBox.setAlignment(Pos.CENTER);
@@ -289,6 +236,14 @@ public class PopupFactory {
     VBox.setMargin(submitButtonHolder, new Insets(5, 5, 5, 5));
     submitButtonHolder.setAlignment(Pos.CENTER);
 
+    vBox.getChildren().add(xCoordVBox);
+    vBox.getChildren().add(yCoordVBox);
+    vBox.getChildren().add(shortNameVBox);
+    vBox.getChildren().add(longNameVBox);
+    vBox.getChildren().add(buildingVBox);
+    vBox.getChildren().add(floorVBox);
+    vBox.getChildren().add(typeVBox);
+
     fullContainer.getChildren().add(scrollPane);
     fullContainer.getChildren().add(buttonBox);
     fullContainer.getChildren().add(submitButtonHolder);
@@ -299,14 +254,7 @@ public class PopupFactory {
     popover.setContentNode(fullContainer);
 
     if (this.anchor != null) {
-
-      try {
-        popover.show(anchor);
-      } catch (Exception e) {
-        System.out.println(anchor.getBoundsInLocal());
-        System.out.println(anchor.getLayoutBounds());
-        System.out.println(anchor.getBoundsInParent());
-      }
+      popover.show(anchor);
     }
 
     return popover;

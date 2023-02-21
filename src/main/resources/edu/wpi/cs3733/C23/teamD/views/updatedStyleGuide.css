@@ -15,14 +15,6 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
-.mfx-date-picker .date-picker-popup .years-combo,
-.mfx-date-picker .date-picker-popup .months-combo,
-.mfx-date-picker .date-picker-popup .week-day,
-.mfx-date-picker .date-picker-popup .mfx-date-cell {
-    -fx-min-width: 10;
-    -fx-text-fill: #012D5A;
-}
-
 .mfx-text-field {
     -fx-border-color: #E4E1E6;
     -fx-background-color: #E4E1E6;
@@ -35,6 +27,7 @@
     -fx-border-color: #012D5A;
     -fx-border-radius: 10;
 }
+
 
 .label { /* sets base format for labels */
     -fx-text-fill: #012D5A;
@@ -68,12 +61,6 @@
 .hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 36pt;
     -fx-pref-width: 500px;
-    -fx-font-family: "Nunito Sans Bold";
-    -fx-text-fill: #011830;
-}
-.aboutLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 36pt;
-    -fx-pref-width: 1350px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
 }

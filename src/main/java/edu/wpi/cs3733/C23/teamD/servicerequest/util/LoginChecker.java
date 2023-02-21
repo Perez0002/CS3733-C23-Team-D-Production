@@ -3,7 +3,6 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.util;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
-import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
@@ -32,7 +31,6 @@ public class LoginChecker {
   public boolean setAccessLevel() {
     Hashtable<Employee, String> employeeInfo = exisitngUserInfo();
     Set<Employee> employee = employeeInfo.keySet();
-    ArrayList<Setting> settingList = FDdb.getInstance().getAllSettings();
 
     // looks through each username if exists, checks if correct password, checks the employeetype
     // for access
@@ -40,10 +38,6 @@ public class LoginChecker {
       if (s.getEmail().equals(email)) {
         if (s.getPassword().equals(password)) {
           CurrentUserEnum._CURRENTUSER.setCurrentUser(s);
-          for (Setting set : settingList) {
-            if (set.getEmployeeID().getEmployeeID() == s.getEmployeeID())
-              CurrentUserEnum._CURRENTUSER.setCurrentSetting(set);
-          }
           return true;
         }
       }
