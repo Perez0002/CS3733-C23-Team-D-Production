@@ -15,9 +15,31 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
+.mfx-date-picker .date-picker-popup .years-combo,
+.mfx-date-picker .date-picker-popup .months-combo,
+.mfx-date-picker .date-picker-popup .week-day,
+.mfx-date-picker .date-picker-popup .mfx-date-cell {
+    -fx-min-width: 10;
+    -fx-text-fill: #012D5A;
+}
+
+.mfx-text-field {
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: #E4E1E6;
+    -fx-background-radius: 10;
+    -fx-min-height: 40;
+    -fx-min-width: 300;
+}
+
+.mfx-text-field:focus-within {
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10;
+}
+
 .label { /* sets base format for labels */
     -fx-text-fill: #012D5A;
     -fx-text-size: 12pt;
+    -fx-min-width: 300;
 }
 
 .root {
@@ -31,14 +53,6 @@
 
 .ourText {
     -fx-font-family: 'Nunito Sans Regular';
-}
-
-.mfx-text-field { /* sets base format for MFXTextFields */
-    -fx-background-color: #EEEEEE;
-    -fx-border-radius: 10px;
-    -fx-min-height: 40px;
-    -fx-border-color: #012D5A;
-    -fx-font-family: "Nunito Sans Regular";
 }
 
 .button {
@@ -203,10 +217,8 @@
     -fx-text-fill: white;
     -fx-border-color: white;
     -fx-font-family: 'Nunito Sans Regular';
-    -fx-max-width: 200px;
-    -fx-max-height: 40px;
-    -fx-pref-height: 40px;
-    -fx-min-height: 40px;
+    -fx-max-width: 300px;
+    -fx-max-height: 45px;
 }
 
 #loginBorderPane {
@@ -234,5 +246,17 @@
     -fx-background-insets: 50px;
 }
 
+.changePasswordVBox
+{
+    -fx-border-color: #012D5A;
+    -fx-border-width: 4pt;
+    -fx-border-radius: 16pt;
+}
+
+.changePasswordInsideVBox
+{
+    -fx-border-color: #012D5A transparent transparent transparent;
+    -fx-border-width: 5pt;
+}
 
 
