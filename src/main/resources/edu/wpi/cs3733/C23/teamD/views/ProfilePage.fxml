@@ -86,7 +86,7 @@
                                              <HBox.margin>
                                                 <Insets left="5.0" />
                                              </HBox.margin></Label>
-                                          <MFXToggleButton fx:id="confettiButton" gap="6.0" prefHeight="41.0" prefWidth="53.0" />
+                                          <MFXToggleButton fx:id="confettiButton" gap="6.0" prefHeight="41.0" prefWidth="53.0" onAction = "#setConfettiDatabase" />
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="-10.0" />
@@ -99,7 +99,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <MFXToggleButton fx:id="darkModeButton" gap="6.0" prefHeight="41.0" prefWidth="53.0" />
+                                          <MFXToggleButton fx:id="darkModeButton" gap="6.0" prefHeight="41.0" prefWidth="53.0" onAction = "#setNightModeDatabase"/>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="-10.0" />

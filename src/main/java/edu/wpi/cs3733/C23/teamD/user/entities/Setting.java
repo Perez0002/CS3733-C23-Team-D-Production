@@ -8,16 +8,17 @@ import lombok.Setter;
 public class Setting {
 
   @Id
-  @Getter @Setter
+  @Getter
+  @Setter
   @OneToOne
   @JoinColumn(
-      name = "employee",
+      name = "employeeID",
       foreignKey =
           @ForeignKey(
               name = "employee_fk",
               foreignKeyDefinition =
-                  "FOREIGN KEY (employee) REFERENCES Employee(employeeID) ON UPDATE CASCADE ON DELETE CASCADE"))
-  private Employee employee;
+                  "FOREIGN KEY (employeeID) REFERENCES Employee(employeeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  private Employee employeeID;
 
   @Getter @Setter private int confetti;
 
@@ -25,8 +26,8 @@ public class Setting {
 
   public Setting() {}
 
-  public Setting(Employee employee, int confetti, int darkmode) {
-    this.employee = employee;
+  public Setting(Employee employeeID, int confetti, int darkmode) {
+    this.employeeID = employeeID;
     this.confetti = confetti;
     this.darkmode = darkmode;
   }

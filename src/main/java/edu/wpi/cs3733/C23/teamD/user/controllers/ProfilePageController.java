@@ -4,6 +4,7 @@ import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -55,11 +56,9 @@ public class ProfilePageController {
 
   public void initialize() {
     serviceRequestTable();
+    setConfettiToggle();
+    setDarkModeToggle();
     setText();
-  }
-
-  public boolean confettiButton() {
-    return confettiButton.isSelected();
   }
 
   private void setText() {
@@ -92,9 +91,53 @@ public class ProfilePageController {
     }
   }
 
+  private void setConfettiToggle() {
+    Setting currentSetting = CurrentUserEnum._CURRENTUSER.getSetting();
+    if (currentSetting.getConfetti() == 1) {
+      confettiButton.setSelected(true);
+    } else {
+      confettiButton.setSelected(false);
+    }
+  }
+
+  private void setDarkModeToggle() {
+    Setting currentSetting = CurrentUserEnum._CURRENTUSER.getSetting();
+    if (currentSetting.getConfetti() == 1) {
+      confettiButton.setSelected(true);
+    } else {
+      confettiButton.setSelected(false);
+    }
+  }
+
   @FXML
   private void resetChanges() {
     setText();
+  }
+
+  @FXML
+  private void setConfettiDatabase() {
+    Setting currentSetting = CurrentUserEnum._CURRENTUSER.getSetting();
+
+    if (confettiButton.isSelected()) {
+      currentSetting.setConfetti(1);
+      FDdb.getInstance().updateSetting(currentSetting);
+    } else {
+      currentSetting.setConfetti(0);
+      FDdb.getInstance().updateSetting(currentSetting);
+    }
+  }
+
+  @FXML
+  private void setNightModeDatabase() {
+    Setting currentSetting = CurrentUserEnum._CURRENTUSER.getSetting();
+
+    if (darkModeButton.isSelected()) {
+      currentSetting.setConfetti(1);
+      FDdb.getInstance().updateSetting(currentSetting);
+    } else {
+      currentSetting.setConfetti(0);
+      FDdb.getInstance().updateSetting(currentSetting);
+    }
   }
 
   @FXML

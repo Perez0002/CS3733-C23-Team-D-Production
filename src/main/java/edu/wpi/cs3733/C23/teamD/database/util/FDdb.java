@@ -4,7 +4,6 @@ import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -229,8 +228,6 @@ public class FDdb {
   public void refreshPastMoves() {
     pastMovesIDao.refresh();
   }
-
-
 
   // EmployeeDao wrappers
   public Employee getEmployee(Employee e) {

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.user.controllers.ProfilePageController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
@@ -142,7 +143,7 @@ public class ServiceRequestHubController {
       clearFields();
       ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 740);
       ProfilePageController aProfile = new ProfilePageController();
-      if (aProfile.confettiButton()) {
+      if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
         ConfettiController.makeConfetti(1500, 50, 100);
       }
     }
