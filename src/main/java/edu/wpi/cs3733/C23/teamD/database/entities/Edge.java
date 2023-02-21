@@ -77,22 +77,6 @@ public class Edge {
   }
 
   /** generates and sets the cost of a node to the euclidian distance between its two nodes */
-  public void genCost() {
-
-    if (getToNode().getLocationType().equals("ELEV")
-        && getFromNode().getLocationType().equals("ELEV")) {
-      this.cost = 5000;
-    } else if (getToNode().getLocationType().equals("STAI")
-        && getFromNode().getLocationType().equals("STAI")) {
-      this.cost = 25000;
-    } else if (getToNode().getFloor().equals(getFromNode().getFloor())) {
-      this.cost =
-          Math.sqrt(
-              Math.pow(fromNode.getXcoord() - toNode.getXcoord(), 2)
-                  + Math.pow(fromNode.getYcoord() - toNode.getYcoord(), 2));
-    }
-  }
-
   @Override
   public boolean equals(Object obj) {
     if (this.getEdgeID().equals(((Edge) obj).getEdgeID())) {

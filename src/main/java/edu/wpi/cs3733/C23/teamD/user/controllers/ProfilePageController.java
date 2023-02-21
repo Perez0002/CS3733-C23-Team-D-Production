@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.user.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
@@ -8,13 +9,16 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastContro
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.controlsfx.control.PopOver;
 
 public class ProfilePageController {
 
@@ -54,6 +58,25 @@ public class ProfilePageController {
     //    serviceRequestTable();
     accountCreated.setDisable(true);
     birthday.setDisable(true);
+    changePassword.setOnMouseClicked(
+        event -> {
+          try {
+            changePasswordPopup();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  private void changePasswordPopup() throws IOException {
+    final var resource =
+        App.class.getResource("views/VBoxInjections/ProfilePageChangePassword.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    PopOver popover = new PopOver(loader.load());
+    popover.setArrowSize(0);
+    popover.setCornerRadius(32);
+    popover.setTitle("Change Password");
+    popover.show(App.getPrimaryStage());
   }
 
   private void setText() {
