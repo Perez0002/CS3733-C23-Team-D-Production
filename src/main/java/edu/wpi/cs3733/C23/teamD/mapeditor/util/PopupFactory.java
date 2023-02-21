@@ -163,57 +163,65 @@ public class PopupFactory {
 
     popover.setCloseButtonEnabled(false);
     popover.setAutoHide(false);
-
-    Label xCoordLabel = new Label("X Coordinate");
-    xCoordTextField.setPrefWidth(190);
-    xCoordTextField.setText(Double.toString(mapNode.getNodeX().getValue()));
-    VBox xCoordVBox = new VBox(xCoordLabel, xCoordTextField);
-    VBox.setMargin(xCoordVBox, new Insets(5, 5, 5, 5));
-
-    Label yCoordLabel = new Label("Y Coordinate");
-    yCoordTextField.setPrefWidth(190);
-    yCoordTextField.setText(Double.toString(mapNode.getNodeY().getValue()));
-    VBox yCoordVBox = new VBox(yCoordLabel, yCoordTextField);
-    VBox.setMargin(yCoordVBox, new Insets(5, 5, 5, 5));
-
-    Label shortNameLabel = new Label("Short Name");
-    shortNameTextField.setPrefWidth(190);
-    shortNameTextField.setText(mapNode.getNodeShortName().getValue());
-    VBox shortNameVBox = new VBox(shortNameLabel, shortNameTextField);
-    VBox.setMargin(shortNameVBox, new Insets(5, 5, 5, 5));
-
-    Label longNameLabel = new Label("Long Name");
-    longNameTextField.setPrefWidth(190);
-    longNameTextField.setText(mapNode.getNodeLongName().getValue());
-    VBox longNameVBox = new VBox(longNameLabel, longNameTextField);
-    VBox.setMargin(longNameVBox, new Insets(5, 5, 5, 5));
-
-    Label buildingLabel = new Label("Building");
-    buildingTextField.setPrefWidth(190);
-    buildingTextField.setText(mapNode.getNodeBuilding().getValue());
-    VBox buildingVBox = new VBox(buildingLabel, buildingTextField);
-    VBox.setMargin(buildingVBox, new Insets(5, 5, 5, 5));
-
-    Label floorLabel = new Label("Floor");
-    floorTextField.setPrefWidth(190);
-    floorTextField.setText(mapNode.getNodeFloor().getValue());
-    VBox floorVBox = new VBox(floorLabel, floorTextField);
-    VBox.setMargin(floorVBox, new Insets(5, 5, 5, 5));
-
-    Label typeLabel = new Label("Type");
-    typeTextField.setPrefWidth(190);
-    typeTextField.setText(mapNode.getNodeType().getValue());
-    VBox typeVBox = new VBox(typeLabel, typeTextField);
-    VBox.setMargin(typeVBox, new Insets(5, 5, 10, 5));
-
     if (this.editable) {
+      Label xCoordLabel = new Label("X Coordinate");
+      xCoordTextField.setPrefWidth(190);
+      xCoordTextField.setText(Double.toString(mapNode.getNodeX().getValue()));
+      VBox xCoordVBox = new VBox(xCoordLabel, xCoordTextField);
+      VBox.setMargin(xCoordVBox, new Insets(5, 5, 5, 5));
+
+      Label yCoordLabel = new Label("Y Coordinate");
+      yCoordTextField.setPrefWidth(190);
+      yCoordTextField.setText(Double.toString(mapNode.getNodeY().getValue()));
+      VBox yCoordVBox = new VBox(yCoordLabel, yCoordTextField);
+      VBox.setMargin(yCoordVBox, new Insets(5, 5, 5, 5));
+
+      Label shortNameLabel = new Label("Short Name");
+      shortNameTextField.setPrefWidth(190);
+      shortNameTextField.setText(mapNode.getNodeShortName().getValue());
+      VBox shortNameVBox = new VBox(shortNameLabel, shortNameTextField);
+      VBox.setMargin(shortNameVBox, new Insets(5, 5, 5, 5));
+
+      Label longNameLabel = new Label("Long Name");
+      longNameTextField.setPrefWidth(190);
+      longNameTextField.setText(mapNode.getNodeLongName().getValue());
+      VBox longNameVBox = new VBox(longNameLabel, longNameTextField);
+      VBox.setMargin(longNameVBox, new Insets(5, 5, 5, 5));
+
+      Label buildingLabel = new Label("Building");
+      buildingTextField.setPrefWidth(190);
+      buildingTextField.setText(mapNode.getNodeBuilding().getValue());
+      VBox buildingVBox = new VBox(buildingLabel, buildingTextField);
+      VBox.setMargin(buildingVBox, new Insets(5, 5, 5, 5));
+
+      Label floorLabel = new Label("Floor");
+      floorTextField.setPrefWidth(190);
+      floorTextField.setText(mapNode.getNodeFloor().getValue());
+      VBox floorVBox = new VBox(floorLabel, floorTextField);
+      VBox.setMargin(floorVBox, new Insets(5, 5, 5, 5));
+
+      Label typeLabel = new Label("Type");
+      typeTextField.setPrefWidth(190);
+      typeTextField.setText(mapNode.getNodeType().getValue());
+      VBox typeVBox = new VBox(typeLabel, typeTextField);
+      VBox.setMargin(typeVBox, new Insets(5, 5, 10, 5));
+
       popover.setTitle("Node Editor");
       submitButton = new MFXButton();
       submitButton.getStyleClass().add("submitButton");
       submitButton.setText("Submit");
       submitButton.setOnAction(submitEvent);
+
+      vBox.getChildren().add(xCoordVBox);
+      vBox.getChildren().add(yCoordVBox);
+      vBox.getChildren().add(shortNameVBox);
+      vBox.getChildren().add(longNameVBox);
+      vBox.getChildren().add(buildingVBox);
+      vBox.getChildren().add(floorVBox);
+      vBox.getChildren().add(typeVBox);
+
     } else {
-      popover.setTitle("Node Info");
+      popover.setTitle(mapNode.getNodeLongName().getValue());
       xCoordTextField.setEditable(false);
       yCoordTextField.setEditable(false);
       buildingTextField.setEditable(false);
@@ -238,7 +246,7 @@ public class PopupFactory {
 
       nextButton.getStyleClass().add("cancelButton");
       prevButton.getStyleClass().add("cancelButton");
-
+      
       nextButton.setOnAction(nextEvent);
       prevButton.setOnAction(prevEvent);
     }
@@ -279,14 +287,6 @@ public class PopupFactory {
 
     VBox.setMargin(submitButtonHolder, new Insets(5, 5, 5, 5));
     submitButtonHolder.setAlignment(Pos.CENTER);
-
-    vBox.getChildren().add(xCoordVBox);
-    vBox.getChildren().add(yCoordVBox);
-    vBox.getChildren().add(shortNameVBox);
-    vBox.getChildren().add(longNameVBox);
-    vBox.getChildren().add(buildingVBox);
-    vBox.getChildren().add(floorVBox);
-    vBox.getChildren().add(typeVBox);
 
     fullContainer.getChildren().add(scrollPane);
     fullContainer.getChildren().add(buttonBox);
