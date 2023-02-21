@@ -45,9 +45,11 @@ public class ServiceRequestMap {
       MapNode tempMapNode = new MapNode(pathNodes.get(node));
       mapNodes.put(node, tempMapNode);
       nodeList.add(tempMapNode);
-      sumX += tempMapNode.getNodeX().getValue();
-      sumY += tempMapNode.getNodeY().getValue();
-      totalNodes++;
+      if (makeFloorIntoInt(tempMapNode.getNodeFloor().getValue()) == floor) {
+        sumX += tempMapNode.getNodeX().getValue();
+        sumY += tempMapNode.getNodeY().getValue();
+        totalNodes++;
+      }
     }
 
     int AverageX = sumX / totalNodes;
@@ -57,7 +59,26 @@ public class ServiceRequestMap {
     map.setStyle("-fx-border-color: #012D5A;");
     map.setMaxSize(700, 500);
 
-    centerOnNode(sumX, sumY);
+    centerOnNode(AverageX, AverageY);
+  }
+
+  private int makeFloorIntoInt(String floorString) {
+    switch (floorString) {
+      case "L1":
+        return 0;
+      case "L2":
+        return 1;
+      case "1":
+        return 2;
+      case "2":
+        return 3;
+      case "3":
+        return 4;
+      case "G":
+        System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
+        break;
+    }
+    return 100; // error if this is hit
   }
 
   public void setFloor(int f) {
@@ -90,7 +111,28 @@ public class ServiceRequestMap {
       int x = node.getXcoord();
       int y = node.getYcoord();
       String floor = node.getFloor();
-      // TODO: switch statement for floor switch
+
+      switch (floor) {
+        case "L1":
+          setFloor(0);
+          break;
+        case "L2":
+          setFloor(1);
+          break;
+        case "1":
+          setFloor(2);
+          break;
+        case "2":
+          setFloor(3);
+          break;
+        case "3":
+          setFloor(4);
+          break;
+        case "G":
+          System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
+          break;
+      }
+
       mapSingleton.centerOnNode(x, y);
     } else {
       System.out.println("DEV Error: The node was null in ServiceRequestMap");
