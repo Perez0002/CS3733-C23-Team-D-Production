@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.C23.teamD.database.util;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
-import edu.wpi.cs3733.C23.teamD.database.entities.Move;
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
-import edu.wpi.cs3733.C23.teamD.database.entities.PastMoves;
+import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import jakarta.persistence.Query;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import org.hibernate.Session;
 
 public class NodeIDaoImpl implements IDao<Node> {
@@ -98,7 +96,7 @@ public class NodeIDaoImpl implements IDao<Node> {
       }
     }
     for (Move m : movesWithNode) {
-        PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
+      PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
     }
 
@@ -173,6 +171,18 @@ public class NodeIDaoImpl implements IDao<Node> {
       session.beginTransaction();
       org.hibernate.query.Query query = session.createQuery("DELETE FROM Edge");
       query.executeUpdate();
+      query = session.createQuery("DELETE FROM SecurityServiceRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM ComputerServiceRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM SanitationRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM AVRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM PatientTransportRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM ServiceRequest");
+      query.executeUpdate();
       query = session.createQuery("DELETE FROM Move");
       query.executeUpdate();
       query = session.createQuery("DELETE FROM LocationName ");
@@ -217,5 +227,16 @@ public class NodeIDaoImpl implements IDao<Node> {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public Node getAssociatedNode(LocationName loc) {
+    FDdb dbFacade = FDdb.getInstance();
+    ArrayList<Move> moves = dbFacade.getAllCurrentMoves(new Date());
+    for (Move m : moves) {
+      if (m.getLocation().getLongName().equals(loc.getLongName())) {
+        return m.getNode();
+      }
+    }
+    return null;
   }
 }
