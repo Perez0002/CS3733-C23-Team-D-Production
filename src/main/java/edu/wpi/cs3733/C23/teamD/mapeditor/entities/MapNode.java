@@ -4,6 +4,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import java.util.ArrayList;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -20,6 +21,7 @@ public class MapNode {
   @Getter private SimpleStringProperty nodeLongName;
   @Getter private SimpleStringProperty nodeShortName;
   @Getter private SimpleStringProperty nodeType;
+  @Getter private StringProperty toolTipMessage;
   @Getter protected Circle nodeRepresentation;
   @Getter private ArrayList<MapEdge> mapEdgeList = new ArrayList<>();
   protected PopOver popup;
@@ -65,30 +67,41 @@ public class MapNode {
 
     /* Creating and formatting the tooltip */
     this.tooltip = new Tooltip();
-    tooltip.setText(
+
+    this.toolTipMessage = new SimpleStringProperty();
+    this.toolTipMessage.setValue(
         String.format(
             "--------"
-                + this.nodeLongName.getValue()
+                + "%s"
                 + "--------"
                 + "\n"
                 + "Node X Coordinate: "
-                + this.nodeX.getValue()
+                + "%s"
                 + "\n"
                 + "Node Y Coordinate: "
-                + this.nodeY.getValue()
+                + "%s"
                 + "\n"
                 + "Node Building: "
-                + this.nodeBuilding.getValue()
+                + "%s"
                 + "\n"
                 + "Node Floor: "
-                + this.nodeFloor.getValue()
+                + "%s"
                 + "\n"
                 + "Node Short Name: "
-                + this.nodeShortName.getValue()
+                + "%s"
                 + "\n"
                 + "Node Type: "
-                + this.nodeType.getValue()
-                + "\n"));
+                + "%s"
+                + "\n",
+            this.getNodeLongName().getValue(),
+            this.getNodeX().getValue(),
+            this.getNodeY().getValue(),
+            this.getNodeBuilding().getValue(),
+            this.getNodeFloor().getValue(),
+            this.getNodeShortName().getValue(),
+            this.getNodeType().getValue()));
+
+    tooltip.textProperty().bindBidirectional(toolTipMessage);
 
     /* Ensuring the tooltip shows up instantly and does not vanish prematurely */
     tooltip.setShowDelay(Duration.ZERO);
@@ -113,5 +126,39 @@ public class MapNode {
         event -> {
           Tooltip.uninstall(nodeRepresentation, this.tooltip);
         });
+  }
+
+  public void refreshTooltip() {
+    this.toolTipMessage.setValue(
+        String.format(
+            "--------"
+                + "%s"
+                + "--------"
+                + "\n"
+                + "Node X Coordinate: "
+                + "%s"
+                + "\n"
+                + "Node Y Coordinate: "
+                + "%s"
+                + "\n"
+                + "Node Building: "
+                + "%s"
+                + "\n"
+                + "Node Floor: "
+                + "%s"
+                + "\n"
+                + "Node Short Name: "
+                + "%s"
+                + "\n"
+                + "Node Type: "
+                + "%s"
+                + "\n",
+            this.getNodeLongName().getValue(),
+            this.getNodeX().getValue(),
+            this.getNodeY().getValue(),
+            this.getNodeBuilding().getValue(),
+            this.getNodeFloor().getValue(),
+            this.getNodeShortName().getValue(),
+            this.getNodeType().getValue()));
   }
 }

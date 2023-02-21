@@ -108,6 +108,7 @@ public class MapEditorMapNode extends MapNode {
         event -> {
           /* If tooltips are allowed, make a tooltip */
           if (this.allowTooltip) {
+            this.refreshTooltip();
             Tooltip.install(nodeRepresentation, this.tooltip);
           }
 
