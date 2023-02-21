@@ -46,7 +46,7 @@
             <VBox alignment="BOTTOM_CENTER" prefHeight="245.0" prefWidth="250.0">
                <children>
                   <MFXButton fx:id="toggleEdgesButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="200.0" text="Toggle Edges" />
-                  <MFXToggleButton fx:id="serviceRequestLocationToggle" contentDisposition="RIGHT" gap="10.0" length="38.0" onAction="#showServiceRequestLocations" text="Toggle Active Service Requests" />
+                  <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="CENTER" contentDisplay="TOP" contentDisposition="BOTTOM" gap="10.0" length="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="200.0" text="Toggle Active Service Requests:" />
                   <HBox alignment="BOTTOM_CENTER" prefHeight="160.0" prefWidth="250.0">
                      <children>
                         <MFXButton prefHeight="26.0" prefWidth="130.0" styleClass="clearButton" text="Help">

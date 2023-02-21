@@ -16,7 +16,6 @@
 }
 
 .mfx-toggle-button:selected {
-    -fx-background-color: #012D5A;
 }
 
 .mfx-date-picker .date-picker-popup .years-combo,
