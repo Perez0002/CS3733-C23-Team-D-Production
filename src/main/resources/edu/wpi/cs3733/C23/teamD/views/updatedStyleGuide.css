@@ -15,9 +15,17 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
+.mfx-date-picker .date-picker-popup .years-combo,
+.mfx-date-picker .date-picker-popup .months-combo,
+.mfx-date-picker .date-picker-popup .week-day,
+.mfx-date-picker .date-picker-popup .mfx-date-cell {
+    -fx-min-width: 10;
+    -fx-text-fill: #012D5A;
+}
+
 .mfx-text-field {
-    -fx-border-color: #EEEEEE;
-    -fx-background-color: #EEEEEE;
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: #E4E1E6;
     -fx-background-radius: 10;
     -fx-min-height: 40;
     -fx-min-width: 300;
@@ -27,7 +35,6 @@
     -fx-border-color: #012D5A;
     -fx-border-radius: 10;
 }
-
 
 .label { /* sets base format for labels */
     -fx-text-fill: #012D5A;
