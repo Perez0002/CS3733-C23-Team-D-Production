@@ -84,6 +84,7 @@ public class MoveRequestController implements AddFormController<Move> {
 
   @FXML
   public void clearFields() {
+    errorText.setVisible(false);
     datePicker.setValue(null);
     locationBoxController.clearForm();
     nodeBoxController.clearForm();
