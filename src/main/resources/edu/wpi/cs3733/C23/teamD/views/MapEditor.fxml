@@ -37,7 +37,10 @@
                         <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="floorGButton" prefHeight="70.0" prefWidth="200.0" text="Floor G" />
+                  <MFXButton fx:id="floorGButton" prefHeight="70.0" prefWidth="200.0" text="Floor G">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
+                     </VBox.margin></MFXButton>
                </children>
                <VBox.margin>
                   <Insets bottom="87.0" />

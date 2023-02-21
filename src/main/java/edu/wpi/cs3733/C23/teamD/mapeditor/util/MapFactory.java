@@ -115,11 +115,12 @@ public class MapFactory {
     int totalY = 0;
     int totalNode = 0;
 
-    converter.put("L1", 0);
-    converter.put("L2", 1);
-    converter.put("1", 2);
-    converter.put("2", 3);
-    converter.put("3", 4);
+    converter.put("G", 0);
+    converter.put("L1", 1);
+    converter.put("L2", 2);
+    converter.put("1", 3);
+    converter.put("2", 4);
+    converter.put("3", 5);
 
     ImageView image = new ImageView();
     AnchorPane holder = new AnchorPane();
@@ -128,20 +129,24 @@ public class MapFactory {
     if (floor == 0) {
       image =
           new ImageView(
-              App.class.getResource("views/floorMaps/00_thelowerlevel1.png").toExternalForm());
+              App.class.getResource("views/floorMaps/00_thegroundfloor.png").toExternalForm());
     } else if (floor == 1) {
       image =
           new ImageView(
-              App.class.getResource("views/floorMaps/00_thelowerlevel2.png").toExternalForm());
+              App.class.getResource("views/floorMaps/00_thelowerlevel1.png").toExternalForm());
     } else if (floor == 2) {
       image =
           new ImageView(
-              App.class.getResource("views/floorMaps/01_thefirstfloor.png").toExternalForm());
+              App.class.getResource("views/floorMaps/00_thelowerlevel2.png").toExternalForm());
     } else if (floor == 3) {
       image =
           new ImageView(
-              App.class.getResource("views/floorMaps/02_thesecondfloor.png").toExternalForm());
+              App.class.getResource("views/floorMaps/01_thefirstfloor.png").toExternalForm());
     } else if (floor == 4) {
+      image =
+          new ImageView(
+              App.class.getResource("views/floorMaps/02_thesecondfloor.png").toExternalForm());
+    } else if (floor == 5) {
       image =
           new ImageView(
               App.class.getResource("views/floorMaps/03_thethirdfloor.png").toExternalForm());
