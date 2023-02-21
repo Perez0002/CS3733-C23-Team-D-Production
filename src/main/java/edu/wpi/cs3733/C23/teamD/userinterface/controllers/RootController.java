@@ -24,6 +24,7 @@ public class RootController {
       mapEditorButton,
       helpPageButton,
       infoButton,
+      creditsButton,
       logOutButton;
 
   @FXML
@@ -78,8 +79,11 @@ public class RootController {
     helpPageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HELP_PAGE));
     helpPageButton.setTooltip(new Tooltip("Help"));
 
-    infoButton.setTooltip(new Tooltip("Information"));
     infoButton.setOnMouseClicked(event -> showAbout());
+    infoButton.setTooltip(new Tooltip("Information"));
+
+    // creditsButton.setOnMouseClicked(event -> showCredits()); /* <-- uncomment when finished */
+    creditsButton.setTooltip(new Tooltip("Credits"));
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
