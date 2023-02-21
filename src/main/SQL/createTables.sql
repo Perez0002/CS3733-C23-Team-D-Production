@@ -3,6 +3,10 @@ CREATE TABLE teamdSchema.LocationName();
 CREATE TABLE teamdSchema.Move();
 
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
+
+update employee set password = 'admin' where employeeid = 37;
+update employee set password = 'staff' where employeeid = 38;
+
 --
 -- delete from securityservicerequest;
 -- delete from avrequest;
@@ -45,20 +49,20 @@ ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Michael House', 'mconnor@wpi.edu', 'ADMIN', 'Michael', 'Connor', 'password', 234798234);
 
 -- insert into setting (confetti, darkmode, employeeid)  values (1,0,31);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,32);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,33);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,34);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,35);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,36);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,37);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,38);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,39);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,40);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,41);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,42);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,43);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,44);
-insert into setting (confetti, darkmode, employeeid)  values (1,0,45);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,32);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,33);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,34);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,35);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,36);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,37);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,38);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,39);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,40);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,41);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,42);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,43);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,44);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,45);
 
 /*
 drop table Move;

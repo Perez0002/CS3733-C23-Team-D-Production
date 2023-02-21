@@ -9,8 +9,8 @@ import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.io.IOException;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,14 +19,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.controlsfx.control.PopOver;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import lombok.Getter;
+import org.controlsfx.control.PopOver;
 
 public class ProfilePageController {
+
+  @FXML private Label helloBox;
 
   @FXML private MFXButton changeProfilePicture;
 
@@ -45,17 +48,6 @@ public class ProfilePageController {
   @FXML private TableColumn<ServiceRequest, String> serviceRequests;
   @FXML private TableColumn<ServiceRequest, Date> serviceDates;
   @FXML private TableColumn<ServiceRequest, Integer> requestID;
-
-  //
-  //  @FXML private TableView databaseEditHistory;
-  //
-  //  @FXML private TableColumn serviceRequests;
-  //
-  //  @FXML private TableColumn serviceDates;
-  //
-  //  @FXML private TableColumn databaseEdits;
-  //
-  //  @FXML private TableColumn databaseEditDates;
 
   public ProfilePageController() {}
 
@@ -87,6 +79,8 @@ public class ProfilePageController {
 
   private void setText() {
     Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    helloBox.setText(
+        "Hello, " + currentUser.getFirstName() + " " + currentUser.getLastName() + "!");
     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     if (currentUser.getFirstName() == null) {
       firstNameBox.setText("Information Unavailable");
@@ -167,11 +161,14 @@ public class ProfilePageController {
   @FXML
   private void saveChanges() {
     Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    currentUser.setFirstName(firstNameBox.getText());
+    currentUser.setLastName(lastNameBox.getText());
     currentUser.setEmail(email.getText());
     currentUser.setAddress(address.getText());
     currentUser.setPhoneNumber(phoneNumber.getText());
     FDdb.getInstance().updateEmployee(currentUser);
     ToastController.makeText("Changes Saved.", 1500, 50, 50, 675, 750);
+    resetChanges();
   }
 
   public void serviceRequestTable() {
