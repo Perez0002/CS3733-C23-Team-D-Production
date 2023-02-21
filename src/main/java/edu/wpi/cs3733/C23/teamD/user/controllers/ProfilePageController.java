@@ -40,6 +40,7 @@ public class ProfilePageController {
   @FXML private TableView<ServiceRequest> serviceRequestHistory;
   @FXML private TableColumn<ServiceRequest, String> serviceRequests;
   @FXML private TableColumn<ServiceRequest, Date> serviceDates;
+  @FXML private TableColumn<ServiceRequest, Integer> requestID;
 
   //
   //  @FXML private TableView databaseEditHistory;
@@ -154,22 +155,28 @@ public class ProfilePageController {
     Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     ArrayList<ServiceRequest> genericServiceList =
         FDdb.getInstance().getAllGenericServiceRequests();
-    ArrayList<ServiceRequest> employeeServiceList = new ArrayList<>();
+    ArrayList<ServiceRequest> employeeServiceRequests = new ArrayList<>();
 
     for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
       if (s.getAssociatedStaff() == null) {
         continue;
-      } else if (s.getAssociatedStaff().equals(currentuser)) {
-        employeeServiceList.add(s);
+      } else if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()) {
+        employeeServiceRequests.add(s);
       }
     }
 
     ObservableList<ServiceRequest> listserviceRequests =
-        FXCollections.observableArrayList(employeeServiceList);
+        FXCollections.observableArrayList(employeeServiceRequests);
 
-    serviceDates.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
     serviceRequests.setCellValueFactory(
         new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
+    serviceDates.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
+    requestID.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
+
     serviceRequestHistory.setItems(listserviceRequests);
     serviceRequestHistory.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     serviceRequestHistory.getColumns().stream()
