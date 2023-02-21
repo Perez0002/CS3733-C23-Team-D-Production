@@ -60,6 +60,26 @@ public class EdgeIDaoImpl implements IDao<Edge> {
     }
   }
 
+  public void updatePK(Edge oldEdge, Edge newEdge) {
+    try {
+      this.delete(oldEdge);
+      this.save(newEdge);
+
+      ArrayList<Edge> oldEdges = oldEdge.getFromNode().getNodeEdges();
+      oldEdges.remove(oldEdge);
+      oldEdge.getFromNode().setNodeEdges(oldEdges);
+      FDdb.getInstance().updateNode(oldEdge.getFromNode());
+
+      ArrayList<Edge> newEdges = newEdge.getFromNode().getNodeEdges();
+      newEdges.add(newEdge);
+      newEdge.getFromNode().setNodeEdges(newEdges);
+      FDdb.getInstance().updateNode(oldEdge.getFromNode());
+
+    } catch (Exception ex) {
+      session.getTransaction().rollback();
+    }
+  }
+
   @Override
   public ArrayList<Edge> getAll() {
     return this.edges;

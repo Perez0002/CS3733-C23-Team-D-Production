@@ -41,7 +41,34 @@ public class LocationTableController extends Application
 
   @Override
   public void refresh() {
-    locationTable.refresh();
+    ObservableList<LocationName> locationList =
+        FXCollections.observableArrayList(FDdb.getInstance().getAllLocationNames());
+    for (LocationName l : locationList) {
+      System.out.println(l.getLongName());
+    }
+    longName.setCellValueFactory(new PropertyValueFactory<LocationName, String>("longName"));
+    locationType.setCellValueFactory(
+        new PropertyValueFactory<LocationName, String>("locationType"));
+    shortName.setCellValueFactory(new PropertyValueFactory<LocationName, String>("shortName"));
+    locationTable.setItems(locationList);
+    locationTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    locationTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = locationTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < locationTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
   }
 
   @Override

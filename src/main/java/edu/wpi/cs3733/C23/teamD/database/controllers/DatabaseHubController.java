@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
-import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
-import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -19,9 +17,6 @@ public class DatabaseHubController {
   @FXML private MFXButton edgeTableButton;
   @FXML private MFXButton moveTableButton;
   @FXML private MFXButton locationTableButton;
-  @FXML private MFXButton cancelButton;
-
-  @FXML private MFXButton submitButton;
 
   @FXML private MFXButton downloadButton;
 
@@ -66,7 +61,6 @@ public class DatabaseHubController {
         event ->
             switchVBox(
                 DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {

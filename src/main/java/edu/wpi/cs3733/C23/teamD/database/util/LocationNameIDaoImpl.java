@@ -1,12 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.database.util;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
-import edu.wpi.cs3733.C23.teamD.database.entities.Move;
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import jakarta.persistence.Query;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
 
@@ -67,10 +64,6 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
     try {
       this.delete(oldLoc);
       this.save(newLoc);
-
-      this.locationNames.remove(oldLoc);
-      this.locationNames.add(newLoc);
-
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }

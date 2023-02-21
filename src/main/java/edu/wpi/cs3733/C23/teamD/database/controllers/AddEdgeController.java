@@ -28,9 +28,11 @@ public class AddEdgeController implements AddFormController<Edge> {
           .saveEdge(new Edge(fromNodeBoxController.getNode(), toNodeBoxController.getNode()));
       databaseController.refresh();
     } else {
-      currentEdge.setFromNode(fromNodeBoxController.getNode());
-      currentEdge.setToNode(toNodeBoxController.getNode());
-      FDdb.getInstance().updateEdge(currentEdge);
+      Edge newEdge = currentEdge;
+      newEdge.setFromNode(fromNodeBoxController.getNode());
+      newEdge.setToNode(toNodeBoxController.getNode());
+      newEdge.genEdgeID();
+      FDdb.getInstance().updateEdgePK(currentEdge, newEdge);
       databaseController.refresh();
     }
   }

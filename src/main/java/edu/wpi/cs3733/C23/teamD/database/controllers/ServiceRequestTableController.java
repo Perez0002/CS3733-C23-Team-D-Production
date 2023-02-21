@@ -56,7 +56,48 @@ public class ServiceRequestTableController extends Application
 
   @Override
   public void refresh() {
-    serviceTable.refresh();
+    serviceTable.setEditable(true);
+    ObservableList<ServiceRequest> requestList =
+        FXCollections.observableArrayList(FDdb.getInstance().getAllGenericServiceRequests());
+    if (requestList.size() != 0) {
+      formID.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
+      reason.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("reason"));
+      status.setCellValueFactory(
+          new Callback<
+              TableColumn.CellDataFeatures<ServiceRequest, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(
+                TableColumn.CellDataFeatures<ServiceRequest, String> param) {
+              return new SimpleStringProperty(param.getValue().getStat().toString());
+            }
+          });
+      status.setCellFactory(TextFieldTableCell.forTableColumn());
+      staff.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequest, String>("associatedStaff"));
+      date.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
+      requestType.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
+    }
+    serviceTable.setItems(requestList);
+    serviceTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    serviceTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = serviceTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < serviceTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
   }
 
   @Override

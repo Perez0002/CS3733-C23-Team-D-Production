@@ -44,9 +44,15 @@ public class AddLocationController implements AddFormController<LocationName> {
                   nodeTypeTextField.getText()));
       databaseController.refresh();
     } else {
-      currentLocation.setLocationType(nodeTypeTextField.getText());
-      currentLocation.setLongName(longNameTextField.getText());
-      currentLocation.setShortName(shortNameTextField.getText());
+      LocationName newLocation = new LocationName();
+      newLocation.setLocationType(nodeTypeTextField.getText());
+      newLocation.setLongName(longNameTextField.getText());
+      newLocation.setShortName(shortNameTextField.getText());
+
+      System.out.println(currentLocation.getLongName());
+      System.out.println(newLocation.getLongName());
+
+      FDdb.getInstance().updateLocationNamePK(currentLocation, newLocation);
 
       databaseController.refresh();
     }

@@ -48,7 +48,50 @@ public class NodeTableController extends Application implements Initializable, D
 
   @Override
   public void refresh() {
-    nodeTable.refresh();
+    nodeTable.setEditable(true);
+    ArrayList<edu.wpi.cs3733.C23.teamD.database.entities.Node> nodes =
+        FDdb.getInstance().getAllNodes();
+    ObservableList<edu.wpi.cs3733.C23.teamD.database.entities.Node> nodeList =
+        FXCollections.observableArrayList(nodes);
+    nodeID.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>(
+            "nodeID"));
+    xCoord.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, Integer>(
+            "xcoord"));
+    xCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+    yCoord.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, Integer>(
+            "ycoord"));
+    yCoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    floor.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>("floor"));
+    floor.setCellFactory(TextFieldTableCell.forTableColumn());
+
+    building.setCellValueFactory(
+        new PropertyValueFactory<edu.wpi.cs3733.C23.teamD.database.entities.Node, String>(
+            "building"));
+    building.setCellFactory(TextFieldTableCell.forTableColumn());
+    nodeTable.setItems(nodeList);
+    nodeTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    nodeTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = nodeTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < nodeTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
   }
 
   @Override

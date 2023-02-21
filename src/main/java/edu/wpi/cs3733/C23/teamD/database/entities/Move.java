@@ -3,6 +3,8 @@ package edu.wpi.cs3733.C23.teamD.database.entities;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class Move {
@@ -29,7 +31,7 @@ public class Move {
   private LocationName location;
 
   @Id Date moveDate;
-  String message;
+  @Getter @Setter String message;
 
   @Override
   public boolean equals(Object obj) {

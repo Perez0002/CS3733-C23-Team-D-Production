@@ -61,7 +61,35 @@ public class MoveTableController extends Application implements Initializable, D
   }
 
   public void refresh() {
-    moveTable.refresh();
+    ObservableList<Move> moveList = null;
+    try {
+      moveList = FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
+    moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
+    moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
+    message.setCellValueFactory(new PropertyValueFactory<Move, String>("message"));
+    moveTable.setItems(moveList);
+    moveTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    moveTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = moveTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < moveTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
   }
 
   @Override
@@ -77,8 +105,7 @@ public class MoveTableController extends Application implements Initializable, D
   public void tablehandling() {
     ObservableList<Move> moveList = null;
     try {
-      moveList =
-          FXCollections.observableArrayList(FDdb.getInstance().getAllCurrentMoves(new Date()));
+      moveList = FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
     } catch (Exception e) {
       e.printStackTrace();
     }
