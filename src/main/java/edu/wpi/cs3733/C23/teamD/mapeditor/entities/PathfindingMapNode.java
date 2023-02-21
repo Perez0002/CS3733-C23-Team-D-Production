@@ -2,9 +2,17 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
+import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 
 public class PathfindingMapNode extends MapNode {
+  private PathfindingMapNode prevNode = null;
+  private PathfindingMapNode nextNode = null;
+  private EventHandler floorSwitchEvent;
+  private Event changeFloor;
+
   public PathfindingMapNode(PathNode node) {
     /* Superclass object */
     super(node);
@@ -15,6 +23,14 @@ public class PathfindingMapNode extends MapNode {
         });
   }
 
+  public void addNextNode(PathfindingMapNode nextNode) {
+    this.nextNode = nextNode;
+  }
+
+  public void addPrevNode(PathfindingMapNode prevNode) {
+    this.prevNode = prevNode;
+  }
+
   private void MakePopup() {
     if (this.popup == null) {
       /* Assuming the popup does not exist, build a new one from the factory */
@@ -22,10 +38,19 @@ public class PathfindingMapNode extends MapNode {
           PopupFactory.startBuild()
               .anchor(this.nodeRepresentation)
               .mapNode(this)
+              .withArrows()
               .closeEvent(
                   event -> {
                     this.RemovePopup();
                     this.allowTooltip = true;
+                  })
+              .nextEvent(
+                  event -> {
+                    this.focusNext();
+                  })
+              .prevEvent(
+                  event -> {
+                    this.focusPrev();
                   })
               .build();
       /* Color the node on the map to represent selection */
@@ -33,6 +58,32 @@ public class PathfindingMapNode extends MapNode {
       /* Prevent this Node's tooltip from popping up */
       this.allowTooltip = false;
     }
+  }
+
+  private void focusNext() {
+    this.RemovePopup();
+    if (!(this.getNodeFloor().getValue().equals(nextNode.getNodeFloor().getValue()))) {
+      System.out.println("Switching Floor");
+      nextNode.switchFloor();
+    }
+
+    Platform.runLater(() -> nextNode.MakePopup());
+  }
+
+  private void switchFloor() {
+    floorSwitchEvent.handle(null);
+  }
+
+  private void focusPrev() {
+    this.RemovePopup();
+    if (!this.getNodeFloor().getValue().equals(prevNode.getNodeFloor().getValue())) {
+      prevNode.switchFloor();
+    }
+    Platform.runLater(() -> prevNode.MakePopup());
+  }
+
+  public void setFloorSwitchEvent(javafx.event.EventHandler floorSwitchEvent) {
+    this.floorSwitchEvent = floorSwitchEvent;
   }
 
   private void RemovePopup() {
