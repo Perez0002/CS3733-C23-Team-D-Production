@@ -60,7 +60,7 @@ public class MoveIDaoImpl implements IDao<Move> {
 
       //      this.moves.remove(index);
       //      this.moves.add(m);
-
+      session.getTransaction().commit();
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
