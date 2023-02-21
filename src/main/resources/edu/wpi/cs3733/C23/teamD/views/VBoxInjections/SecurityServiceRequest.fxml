@@ -12,7 +12,7 @@
     <children>
         <Label styleClass="serviceRequestDescription" text="Use this form to report any security concerns at Brigham and Women’s hospital. Please enter the staff member to assign the request to, the location of the issue, the urgency of the issue, and a description providing any details necessary." wrapText="true">
             <VBox.margin>
-                <Insets bottom="10.0" left="5.0" right="150.0" top="10.0" />
+                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
             </VBox.margin>
         </Label>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
@@ -36,6 +36,11 @@
                         <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
                     </children>
                 </VBox>
+                <VBox fx:id="urgencyDropdownBox1" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
+                    </children>
+                </VBox>
                 <VBox fx:id="locationDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
                         <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
@@ -46,11 +51,11 @@
                   <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                     </children>
                 </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
-               </children>
-            </VBox>
+                <HBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
                         <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of Problem">
