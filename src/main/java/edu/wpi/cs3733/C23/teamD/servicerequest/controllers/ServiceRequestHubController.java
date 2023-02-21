@@ -3,10 +3,20 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -33,6 +43,15 @@ public class ServiceRequestHubController {
   @FXML private MFXButton helpButton;
 
   @FXML private Label successfulSubmissionText;
+
+  @FXML private MFXButton floor1Button;
+  @FXML private MFXButton floor2Button;
+  @FXML private MFXButton floor3Button;
+  @FXML private MFXButton floor4Button;
+  @FXML private MFXButton floor5Button;
+
+  private MFXButton[] floorButtons = new MFXButton[5];
+
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
@@ -148,6 +167,27 @@ public class ServiceRequestHubController {
 
   void createHubMap() {
     mapPaneContainer.setCenter(ServiceRequestMap.getMap());
+  }
+
+  public EventHandler<ActionEvent> changeFloor(int floor) {
+
+    return new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        for (int i = 0; i < 5; i++) {
+          if (i == floor) {
+            floorButtons[i].setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+          } else {
+            floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
+          }
+        }
+      }
+    };
+
+    /* TODO: what this does currently is just handles the button color changes.
+    What do I need to do now? I need to handle the map changes in the actual ServiceRequestMap class.
+     */
+
   }
 
   void help() throws IOException {
