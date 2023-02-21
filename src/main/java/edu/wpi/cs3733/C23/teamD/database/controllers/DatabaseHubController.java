@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
-import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
@@ -13,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import lombok.Getter;
 import lombok.Setter;
-import net.kurobako.gesturefx.GesturePane;
 
 public class DatabaseHubController {
   @FXML private MFXButton serviceTableButton;
@@ -49,7 +47,6 @@ public class DatabaseHubController {
   }
 
   public void initialize() {
-    createHubMap();
     currentController = ServiceRequestTableBorderPane;
     switchVBox(
         DatabasesFXML.SERVICE_REQUEST, serviceTableButton, DatabasesFXML.CHANGE_SERVICE_REQUEST);
@@ -95,13 +92,6 @@ public class DatabaseHubController {
   void uploadData() {
     FDdb.getInstance().uploadCSV();
     ToastController.makeText("Your data has been uploaded!", 1000, 50, 50, 275, 720);
-  }
-
-  void createHubMap() {
-    GesturePane map = MapFactory.startBuild().build(0);
-    map.setStyle("-fx-border-color: #012D5A; -fx-border-width:3px;");
-    map.setMaxSize(600, 500);
-    mapPaneContainer.setCenter(map);
   }
 
   @FXML
