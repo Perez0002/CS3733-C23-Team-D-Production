@@ -92,7 +92,7 @@ public class PathfindingMapNode extends MapNode {
       popup.hide();
       popup = null;
       /* Set the color of the Node on the map to represent deselection */
-      this.nodeRepresentation.setFill(Color.rgb(0x01, 0x3A, 0x75));
+      this.nodeRepresentation.setFill(this.NO_SELECTION);
       /* Allow this Node's tooltip to pop up */
       this.allowTooltip = true;
     }

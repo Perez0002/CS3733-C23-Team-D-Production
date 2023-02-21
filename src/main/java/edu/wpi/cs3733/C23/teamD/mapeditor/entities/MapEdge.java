@@ -19,30 +19,17 @@ public class MapEdge {
     this.edge = edge;
 
     /* This needs to be done a better way for the updating to work, but this temporarily assigns the MapNodes */
-    this.toNode = new MapNode(edge.getToNode());
-    this.fromNode = new MapNode(edge.getFromNode());
+    this.toNode = null; // new MapNode(edge.getToNode());
+    this.fromNode = null; // new MapNode(edge.getFromNode());
 
     /* Creating and formatting the Line */
     this.edgeRepresentation = new Line();
-    this.edgeRepresentation.startXProperty().bindBidirectional(this.fromNode.getNodeX());
-    this.edgeRepresentation.startYProperty().bindBidirectional(this.fromNode.getNodeY());
-    this.edgeRepresentation.endXProperty().bindBidirectional(this.toNode.getNodeX());
-    this.edgeRepresentation.endYProperty().bindBidirectional(this.toNode.getNodeY());
     this.edgeRepresentation.setStrokeWidth(5);
     this.edgeRepresentation.setStroke(Color.rgb(0x00, 0x00, 0x00));
 
     /* Creating and formatting the Edge's tooltip */
     this.tooltip = new Tooltip();
-    tooltip.setText(
-        String.format(
-            "Edge from Node: "
-                + this.fromNode.getNode().getNode().getNodeID()
-                + "\n"
-                + "Edge to Node: "
-                + this.toNode.getNode().getNode().getNodeID()
-                + "\n"
-                + "Edge Cost: "
-                + this.edge.getCost()));
+
     /* Ensuring the tooltip shows up instantly and does not vanish prematurely */
     tooltip.setShowDelay(Duration.ZERO);
     tooltip.setShowDuration(Duration.INDEFINITE);
@@ -60,11 +47,24 @@ public class MapEdge {
         });
   }
 
-  public void setFromNode(MapNode mapNode) {
-    this.fromNode = mapNode;
-  }
+  public void setNodes(MapNode fromNode, MapNode toNode) {
+    this.fromNode = fromNode;
+    this.toNode = toNode;
 
-  public void setToNode(MapNode mapNode) {
-    this.toNode = mapNode;
+    this.edgeRepresentation.startXProperty().bindBidirectional(this.fromNode.getNodeX());
+    this.edgeRepresentation.startYProperty().bindBidirectional(this.fromNode.getNodeY());
+    this.edgeRepresentation.endXProperty().bindBidirectional(this.toNode.getNodeX());
+    this.edgeRepresentation.endYProperty().bindBidirectional(this.toNode.getNodeY());
+
+    tooltip.setText(
+        String.format(
+            "Edge from Node: "
+                + this.fromNode.getNode().getNode().getNodeID()
+                + "\n"
+                + "Edge to Node: "
+                + this.toNode.getNode().getNode().getNodeID()
+                + "\n"
+                + "Edge Cost: "
+                + this.edge.getCost()));
   }
 }

@@ -108,30 +108,6 @@ public class PathfindingController {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
         }
-        //        ArrayList<MapNode> mapNodes = new ArrayList<>();
-        //        ArrayList<MapEdge> mapEdges = new ArrayList<>();
-        //        PathNode lastNode = null;
-        //        for (PathNode node : path) {
-        //          PathfindingMapNode pathNode = new PathfindingMapNode(node);
-        //
-        // pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
-        //          mapNodes.add(pathNode);
-        //          if (lastNode != null) {
-        //            mapEdges.add(new MapEdge(new PathEdge(lastNode, node)));
-        //          }
-        //
-        //          lastNode = node;
-        //        }
-        //        for (int i = 0; i < mapNodes.size(); i++) {
-        //          if (i - 1 >= 0) {
-        //            ((PathfindingMapNode) mapNodes.get(i))
-        //                .addPrevNode((PathfindingMapNode) mapNodes.get(i - 1));
-        //          }
-        //          if (i + 1 < mapNodes.size()) {
-        //            ((PathfindingMapNode) mapNodes.get(i))
-        //                .addNextNode((PathfindingMapNode) mapNodes.get(i + 1));
-        //          }
-        //        }
         pathfindingBorderPane.setCenter(
             MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
       }

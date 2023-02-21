@@ -22,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lombok.Setter;
 
 public class ServiceRequestTableController extends Application
     implements Initializable, DatabaseController {
@@ -40,6 +41,8 @@ public class ServiceRequestTableController extends Application
 
   @FXML private TableColumn<ServiceRequest, String> status;
 
+  @Setter private AddFormController addFormController;
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -50,6 +53,14 @@ public class ServiceRequestTableController extends Application
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @Override
+  public void refresh() {}
+
+  @Override
+  public void deselect() {
+    serviceTable.getSelectionModel().clearSelection();
   }
 
   public Node getBox() {

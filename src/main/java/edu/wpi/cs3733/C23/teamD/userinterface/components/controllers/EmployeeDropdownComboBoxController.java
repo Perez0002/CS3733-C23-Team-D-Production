@@ -4,30 +4,37 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 public class EmployeeDropdownComboBoxController {
 
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
-  @FXML private ArrayList<String> employeeNames;
+  TreeMap<String, Employee> employeeToEmployeeName;
 
   public EmployeeDropdownComboBoxController() {
-    employeeNames = new ArrayList<>();
+    employeeToEmployeeName = new TreeMap<>();
     ArrayList<Employee> employees = FDdb.getInstance().getAllEmployees();
     for (Employee e : employees) {
+      Employee employee = e;
       String firstName = e.getFirstName();
       String lastName = e.getLastName();
-      employeeNames.add(firstName + " " + lastName);
+      String fullname = firstName + " " + lastName;
+      employeeToEmployeeName.put(fullname, employee);
     }
   }
 
   public void initialize() {
-    mfxFilterComboBox.setItems(FXCollections.observableArrayList(employeeNames));
+    mfxFilterComboBox.setItems(FXCollections.observableArrayList(employeeToEmployeeName.keySet()));
   }
 
   public String getEmployeeName() {
-    return mfxFilterComboBox.getValue();
+    return mfxFilterComboBox.getText();
+  }
+
+  public Employee getEmployee() {
+    return employeeToEmployeeName.get(mfxFilterComboBox.getValue());
   }
 
   public void clearForm() {

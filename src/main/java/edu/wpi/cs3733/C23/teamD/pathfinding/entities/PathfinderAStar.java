@@ -61,7 +61,7 @@ public class PathfinderAStar {
         if (!beenNodes.contains(e.getToNode())) {
           ArrayList<PathNode> temp = (ArrayList) currentPath.getKey().clone();
           temp.add(e.getToNode());
-          queue.add(new PathCostPair(temp, e.getCost()));
+          queue.add(new PathCostPair(temp, currentPath.getValue() + e.getCost()));
         }
       }
     }

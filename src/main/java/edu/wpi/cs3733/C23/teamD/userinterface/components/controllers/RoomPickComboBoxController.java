@@ -37,6 +37,10 @@ public class RoomPickComboBoxController {
     return mfxFilterComboBox.getValue();
   }
 
+  public void setLocationName(String s) {
+    this.mfxFilterComboBox.setValue(s);
+  }
+
   public void clearForm() {
     mfxFilterComboBox.setValue(null);
   }

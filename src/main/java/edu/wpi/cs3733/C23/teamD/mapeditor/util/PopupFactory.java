@@ -163,6 +163,7 @@ public class PopupFactory {
 
     popover.setCloseButtonEnabled(false);
     popover.setAutoHide(false);
+
     if (this.editable) {
       Label xCoordLabel = new Label("X Coordinate");
       xCoordTextField.setPrefWidth(190);
@@ -253,7 +254,7 @@ public class PopupFactory {
 
     closeButton = new MFXButton();
     closeButton.getStyleClass().add("cancelButton");
-    closeButton.setText("Close");
+    closeButton.setText("Cancel");
     closeButton.setOnAction(closeEvent);
 
     HBox buttonBox;
