@@ -21,10 +21,15 @@ import org.controlsfx.control.PopOver;
 public class PopupFactory {
   private boolean editable;
   private boolean deletable;
+  private boolean drawArrows;
+
   private Node anchor;
   private MapNode mapNode;
   private MapEdge mapEdge;
   private EventHandler<ActionEvent> submitEvent;
+  private EventHandler<ActionEvent> nextEvent;
+  private EventHandler<ActionEvent> prevEvent;
+
   private EventHandler<ActionEvent> deleteEvent;
   private EventHandler<ActionEvent> closeEvent;
 
@@ -37,6 +42,7 @@ public class PopupFactory {
     this.submitEvent = event -> {};
     this.deleteEvent = event -> {};
     this.closeEvent = event -> {};
+    this.drawArrows = false;
   }
 
   /** @return new PopupFactory to chain off of */
@@ -52,6 +58,15 @@ public class PopupFactory {
    */
   public PopupFactory editable() {
     this.editable = true;
+    return this;
+  }
+  /**
+   * Allow for the drawing of next/prev arrows on the popup
+   *
+   * @return the PopupFactory with these changes
+   */
+  public PopupFactory withArrows() {
+    this.drawArrows = true;
     return this;
   }
 
@@ -119,6 +134,15 @@ public class PopupFactory {
     return this;
   }
 
+  public PopupFactory nextEvent(EventHandler nextEvent) {
+    this.nextEvent = nextEvent;
+    return this;
+  }
+
+  public PopupFactory prevEvent(EventHandler prevEvent) {
+    this.prevEvent = prevEvent;
+    return this;
+  }
   /**
    * Builds the PopOver from the factory
    *
@@ -134,6 +158,8 @@ public class PopupFactory {
     MFXButton closeButton = null;
     MFXButton deleteButton = null;
     MFXButton submitButton = null;
+    MFXButton nextButton = null;
+    MFXButton prevButton = null;
 
     if (this.mapNode != null) {
       MFXTextField xCoordTextField = new MFXTextField();
@@ -221,6 +247,25 @@ public class PopupFactory {
         deleteButton.setText("Delete");
         deleteButton.setOnAction(deleteEvent);
       }
+    if (this.deletable) {
+      deleteButton = new MFXButton();
+      deleteButton.getStyleClass().add("deleteButton");
+      deleteButton.setText("Delete");
+      deleteButton.setOnAction(deleteEvent);
+    }
+    if (this.drawArrows) {
+      nextButton = new MFXButton();
+      prevButton = new MFXButton();
+
+      nextButton.setText("Next");
+      prevButton.setText("Prev");
+
+      nextButton.getStyleClass().add("cancelButton");
+      prevButton.getStyleClass().add("cancelButton");
+
+      nextButton.setOnAction(nextEvent);
+      prevButton.setOnAction(prevEvent);
+    }
 
       closeButton = new MFXButton();
       closeButton.getStyleClass().add("cancelButton");
@@ -229,18 +274,24 @@ public class PopupFactory {
 
       HBox buttonBox;
 
-      if (deleteButton != null) {
-        buttonBox = new HBox(closeButton, deleteButton);
-      } else {
-        buttonBox = new HBox(closeButton);
-      }
+    if (deleteButton != null) {
+      buttonBox = new HBox(closeButton, deleteButton);
+    } else if (nextButton != null && prevButton != null) {
+      buttonBox = new HBox(prevButton, closeButton, nextButton);
+    } else {
+      buttonBox = new HBox(closeButton);
+    }
 
-      HBox.setMargin(buttonBox, new Insets(10, 5, 5, 5));
-      if (deleteButton != null) {
-        HBox.setMargin(deleteButton, new Insets(0, 0, 5, 5));
-      }
-      HBox.setMargin(closeButton, new Insets(0, 5, 5, 0));
-      buttonBox.setAlignment(Pos.CENTER);
+    HBox.setMargin(buttonBox, new Insets(10, 5, 5, 5));
+    if (deleteButton != null) {
+      HBox.setMargin(deleteButton, new Insets(0, 0, 5, 5));
+    }
+    if (nextButton != null) {
+      HBox.setMargin(prevButton, new Insets(0, 5, 5, 0));
+      HBox.setMargin(nextButton, new Insets(0, 5, 5, 0));
+    }
+    HBox.setMargin(closeButton, new Insets(0, 5, 5, 0));
+    buttonBox.setAlignment(Pos.CENTER);
 
       VBox submitButtonHolder;
 
@@ -266,6 +317,11 @@ public class PopupFactory {
       fullContainer.getChildren().add(submitButtonHolder);
       VBox.setMargin(scrollPane, new Insets(5, 0, 5, 0));
       VBox.setMargin(buttonBox, new Insets(5, 0, 5, 0));
+    fullContainer.getChildren().add(scrollPane);
+    fullContainer.getChildren().add(buttonBox);
+    fullContainer.getChildren().add(submitButtonHolder);
+    VBox.setMargin(scrollPane, new Insets(5, 0, 5, 0));
+    VBox.setMargin(buttonBox, new Insets(5, 0, 5, 0));
 
       popover.setHeaderAlwaysVisible(true);
       popover.setContentNode(fullContainer);
@@ -298,7 +354,14 @@ public class PopupFactory {
     }
 
     if (this.anchor != null) {
-      popover.show(anchor);
+
+      try {
+        popover.show(anchor);
+      } catch (Exception e) {
+        System.out.println(anchor.getBoundsInLocal());
+        System.out.println(anchor.getLayoutBounds());
+        System.out.println(anchor.getBoundsInParent());
+      }
     }
 
     return popover;
