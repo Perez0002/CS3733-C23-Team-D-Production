@@ -34,12 +34,12 @@ public class AddEdgeController implements AddFormController<Edge> {
         databaseController.refresh();
         dataToChange(null);
         ToastController.makeText(
-                "Your edge has been added!",
-                1500,
-                50,
-                100,
-                (int) Screen.getPrimary().getBounds().getWidth() - 375,
-                (int) Screen.getPrimary().getBounds().getHeight() - 350);
+            "Your edge has been added!",
+            1500,
+            50,
+            100,
+            (int) Screen.getPrimary().getBounds().getWidth() - 375,
+            (int) Screen.getPrimary().getBounds().getHeight() - 275);
       } else {
         Edge newEdge = currentEdge;
         newEdge.setFromNode(fromNodeBoxController.getNode());
@@ -49,12 +49,12 @@ public class AddEdgeController implements AddFormController<Edge> {
         databaseController.refresh();
         clearFields();
         ToastController.makeText(
-                "Your edge has been changed!",
-                1500,
-                50,
-                100,
-                (int) Screen.getPrimary().getBounds().getWidth() - 375,
-                (int) Screen.getPrimary().getBounds().getHeight() - 350);
+            "Your edge has been changed!",
+            1500,
+            50,
+            100,
+            (int) Screen.getPrimary().getBounds().getWidth() - 375,
+            (int) Screen.getPrimary().getBounds().getHeight() - 275);
       }
     } else {
       errorText.setVisible(true);

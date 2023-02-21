@@ -53,7 +53,7 @@ public class AddLocationController implements AddFormController<LocationName> {
             50,
             100,
             (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 350);
+            (int) Screen.getPrimary().getBounds().getHeight() - 275);
         clearFields();
       } else {
         LocationName newLocation = new LocationName();
@@ -74,7 +74,7 @@ public class AddLocationController implements AddFormController<LocationName> {
             50,
             100,
             (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 350);
+            (int) Screen.getPrimary().getBounds().getHeight() - 275);
       }
     } else {
       errorText.setVisible(true);

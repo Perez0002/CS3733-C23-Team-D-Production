@@ -32,11 +32,12 @@ public class AddNodeController implements AddFormController<Node> {
   private Node currentNode;
 
   private boolean checkFields() {
-    return !(xCoordTextField.getText().isEmpty() ||
-            yCoordTextField.getText().isEmpty() ||
-            buildingTextField.getText().isEmpty() ||
-            floorTextField.getText().isEmpty());
+    return !(xCoordTextField.getText().isEmpty()
+        || yCoordTextField.getText().isEmpty()
+        || buildingTextField.getText().isEmpty()
+        || floorTextField.getText().isEmpty());
   }
+
   @FXML
   void clearFields() {
     errorText.setVisible(false);
@@ -53,19 +54,19 @@ public class AddNodeController implements AddFormController<Node> {
         errorText.setVisible(false);
         ZoneId defaultZoneId = ZoneId.systemDefault();
         FDdb.getInstance()
-                .saveNode(
-                        new Node(
-                                Integer.parseInt(xCoordTextField.getText()),
-                                Integer.parseInt(yCoordTextField.getText()),
-                                floorTextField.getText(),
-                                buildingTextField.getText()));
+            .saveNode(
+                new Node(
+                    Integer.parseInt(xCoordTextField.getText()),
+                    Integer.parseInt(yCoordTextField.getText()),
+                    floorTextField.getText(),
+                    buildingTextField.getText()));
         ToastController.makeText(
-                "Your node has been added!",
-                1500,
-                50,
-                100,
-                (int) Screen.getPrimary().getBounds().getWidth() - 375,
-                (int) Screen.getPrimary().getBounds().getHeight() - 350);
+            "Your node has been added!",
+            1500,
+            50,
+            100,
+            (int) Screen.getPrimary().getBounds().getWidth() - 375,
+            (int) Screen.getPrimary().getBounds().getHeight() - 275);
         databaseController.refresh();
       } else {
         dataToChange(null);
@@ -75,12 +76,12 @@ public class AddNodeController implements AddFormController<Node> {
         currentNode.setXcoord(Integer.parseInt(xCoordTextField.getText()));
 
         ToastController.makeText(
-                "Your node has been changed!",
-                1500,
-                50,
-                100,
-                (int) Screen.getPrimary().getBounds().getWidth() - 375,
-                (int) Screen.getPrimary().getBounds().getHeight() - 350);
+            "Your node has been changed!",
+            1500,
+            50,
+            100,
+            (int) Screen.getPrimary().getBounds().getWidth() - 375,
+            (int) Screen.getPrimary().getBounds().getHeight() - 275);
 
         FDdb.getInstance().updateNodePK(currentNode);
         databaseController.refresh();
