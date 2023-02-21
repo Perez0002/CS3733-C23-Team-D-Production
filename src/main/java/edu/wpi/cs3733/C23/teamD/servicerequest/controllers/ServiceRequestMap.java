@@ -12,16 +12,30 @@ public class ServiceRequestMap {
   private static ServiceRequestMap mapSingleton;
   private static GesturePane map;
 
+  int floor = 0;
+
   private ServiceRequestMap() {
     if (mapSingleton == null) {
-      map = MapFactory.startBuild().build(0);
-
-      map.setStyle("-fx-border-color: #012D5A;");
-      map.setMaxSize(700, 500);
+      createMap();
       this.mapSingleton = this;
     } else {
       System.out.println("DEV ERROR: ServiceRequestMap already created. Can not create another.");
     }
+  }
+
+  private void createMap() {
+    map = MapFactory.startBuild().build(floor);
+    map.setStyle("-fx-border-color: #012D5A;");
+    map.setMaxSize(700, 500);
+    this.mapSingleton = this;
+  }
+
+  private void setFloor(int f) {
+    floor = f;
+  }
+
+  int getFloor() {
+    return floor;
   }
 
   public static ServiceRequestMap getMapSingleton() {

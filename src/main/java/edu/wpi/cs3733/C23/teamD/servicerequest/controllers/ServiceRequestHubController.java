@@ -3,20 +3,10 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
-import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
-import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
-import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
-import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
-import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
-import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -50,7 +40,7 @@ public class ServiceRequestHubController {
   @FXML private MFXButton floor4Button;
   @FXML private MFXButton floor5Button;
 
-  private MFXButton[] floorButtons = new MFXButton[5];
+  private int currentFloor = 0;
 
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
@@ -101,6 +91,12 @@ public class ServiceRequestHubController {
           }
         });
     clearButton.setOnMouseClicked(event -> clearFields());
+
+    floor1Button.setOnMouseClicked(event -> changeFloor(0));
+    floor2Button.setOnMouseClicked(event -> changeFloor(1));
+    floor3Button.setOnMouseClicked(event -> changeFloor(2));
+    floor4Button.setOnMouseClicked(event -> changeFloor(3));
+    floor5Button.setOnMouseClicked(event -> changeFloor(4));
   }
 
   // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
@@ -169,20 +165,48 @@ public class ServiceRequestHubController {
     mapPaneContainer.setCenter(ServiceRequestMap.getMap());
   }
 
-  public EventHandler<ActionEvent> changeFloor(int floor) {
+  public void changeFloor(int floor) {
 
-    return new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        for (int i = 0; i < 5; i++) {
-          if (i == floor) {
-            floorButtons[i].setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-          } else {
-            floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
-          }
-        }
-      }
-    };
+    switch (currentFloor) {
+      case 0:
+        floor1Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
+      case 1:
+        floor2Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
+      case 2:
+        floor3Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
+      case 3:
+        floor4Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
+      case 4:
+        floor5Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
+    }
+
+    switch (floor) {
+      case 0:
+        floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+        currentFloor = 0;
+        break;
+      case 1:
+        floor2Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+        currentFloor = 1;
+        break;
+      case 2:
+        floor3Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+        currentFloor = 2;
+        break;
+      case 3:
+        floor4Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+        currentFloor = 3;
+        break;
+      case 4:
+        floor5Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+        currentFloor = 4;
+        break;
+    }
 
     /* TODO: what this does currently is just handles the button color changes.
     What do I need to do now? I need to handle the map changes in the actual ServiceRequestMap class.
