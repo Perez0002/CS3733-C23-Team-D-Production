@@ -74,6 +74,7 @@ public class ProfilePageController {
     final FXMLLoader loader = new FXMLLoader(resource);
     PopOver popover = new PopOver(loader.load());
     popover.setArrowSize(0);
+    popover.setCornerRadius(32);
     popover.setTitle("Change Password");
     popover.show(App.getPrimaryStage());
   }
