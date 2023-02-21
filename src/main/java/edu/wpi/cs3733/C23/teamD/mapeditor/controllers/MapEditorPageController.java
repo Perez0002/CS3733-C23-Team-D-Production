@@ -124,14 +124,19 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      try {
+        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
 
-      MapEdge tempMapEdge = new MapEdge(edge1);
-      edgeList.add(tempMapEdge);
+        MapEdge tempMapEdge = new MapEdge(edge1);
+        edgeList.add(tempMapEdge);
 
-      tempMapEdge.setNodes(
-          mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
+        tempMapEdge.setNodes(
+            mapNodes.get(edge.getFromNode().getNodeID()),
+            mapNodes.get(edge.getToNode().getNodeID()));
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
