@@ -73,6 +73,7 @@ public class HomepageController {
     //    } else {
     //      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
     //    }
+
   }
 
   private void help() throws IOException {

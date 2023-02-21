@@ -75,7 +75,7 @@
 .imageBorder {
     -fx-border-color: #012D5A;
     /*-fx-border-radius: 16;*/
-    -fx-border-width: 4;
+    -fx-border-width: 2;
 
 }
 
@@ -250,6 +250,15 @@
 {
     -fx-border-color: #012D5A transparent transparent transparent;
     -fx-border-width: 5pt;
+}
+
+.smallPFP
+{
+    -fx-background-image: url('images/emptyPFP.png');
+    -fx-min-height: 40px;
+    -fx-min-width:  40px;
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 0px;
 }
 
 
