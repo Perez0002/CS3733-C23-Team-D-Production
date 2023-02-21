@@ -168,8 +168,12 @@ public class PathfindingController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      try {
+        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
 
     String startNode = startRoomComboBoxController.getNodeValue();
