@@ -98,7 +98,7 @@ public class NodeIDaoImpl implements IDao<Node> {
       }
     }
     for (Move m : movesWithNode) {
-      PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
+        PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
     }
 
