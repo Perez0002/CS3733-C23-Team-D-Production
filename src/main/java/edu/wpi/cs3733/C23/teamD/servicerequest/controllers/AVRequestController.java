@@ -11,8 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
-import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestMap.mapSingleton;
-
 public class AVRequestController implements ServiceRequestVBoxController {
   @FXML private Parent employeeBox;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
@@ -26,11 +24,11 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   @FXML private MFXDatePicker datePicker;
 
-
-   public void initialize() {
-     if (locationBoxController.getLocation() != null) {
-       mapSingleton.centerOnNode(100, 100);
-     }
+  public void initialize() {
+    locationBoxController
+        .giveComboBox()
+        .setOnAction(
+            event -> ServiceRequestMap.getMapSingleton().mapCenters(locationBoxController));
   }
 
   public void clearTransportForms() {

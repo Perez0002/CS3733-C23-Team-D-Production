@@ -3,17 +3,25 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
+import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
 public class ServiceRequestHubController {
@@ -149,7 +157,7 @@ public class ServiceRequestHubController {
   }
 
   void createHubMap() {
-    ServiceRequestMap map = new ServiceRequestMap(mapPaneContainer);
+    mapPaneContainer.setCenter(ServiceRequestMap.getMap());
   }
 
   void help() throws IOException {
