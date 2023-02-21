@@ -31,6 +31,7 @@ public class Move {
   private LocationName location;
 
   @Id Date moveDate;
+
   @Getter @Setter String message;
 
   @Override

@@ -79,19 +79,19 @@ public class RootController {
     helpPageButton.setTooltip(new Tooltip("Help"));
 
     infoButton.setTooltip(new Tooltip("Information"));
-    infoButton.setOnMouseClicked(event -> showCredits());
+    infoButton.setOnMouseClicked(event -> showAbout());
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
   }
 
-  void showCredits() {
+  void showAbout() {
     try {
-      final var resource = App.class.getResource("views/credits.fxml");
+      final var resource = App.class.getResource("views/about.fxml");
       final FXMLLoader loader = new FXMLLoader(resource);
       PopOver popover = new PopOver(loader.load());
       popover.setArrowSize(0);
-      popover.setTitle("Credits");
+      popover.setTitle("About");
       popover.show(App.getPrimaryStage());
     } catch (IOException e) {
       e.printStackTrace();
