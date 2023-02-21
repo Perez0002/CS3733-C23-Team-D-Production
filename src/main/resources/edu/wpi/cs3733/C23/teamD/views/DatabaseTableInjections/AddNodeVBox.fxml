@@ -4,48 +4,73 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.AddNodeController">
-   <children>
-      <Label fx:id="titleLabel" prefHeight="58.0" prefWidth="307.0" text="Add a Node">
+<BorderPane maxWidth="500.0" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.AddNodeController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16;" BorderPane.alignment="CENTER">
+         <center>
+            <VBox prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate" />
+                  <MFXTextField fx:id="yCoordTextField" prefWidth="300.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X-Coordinate">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <MFXTextField prefHeight="49.0" prefWidth="300.0" fx:id="xCoordTextField" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <MFXTextField fx:id="buildingTextField" prefWidth="300.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <MFXTextField fx:id="floorTextField" prefWidth="300.0" />
+                  <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+         <bottom>
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="500.0" spacing="16.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Node" />
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" right="25.0" />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+         <BorderPane.margin>
+            <Insets top="59.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
+   <top>
+      <Label fx:id="titleLabel" prefHeight="66.0" prefWidth="307.0" styleClass="addFormLabel" text="Add a Node" BorderPane.alignment="TOP_LEFT">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate" />
-      <MFXTextField fx:id="yCoordTextField" prefWidth="300.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X-Coordinate">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin>
-      </Text>
-      <MFXTextField prefHeight="49.0" prefWidth="300.0" fx:id="xCoordTextField" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin>
-      </Text>
-      <MFXTextField fx:id="buildingTextField" prefWidth="300.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin>
-      </Text>
-      <MFXTextField fx:id="floorTextField" prefWidth="300.0" />
-      <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin>
-      </Text>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="255.0" prefWidth="500.0" spacing="16.0">
-         <children>
-            <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
-            <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Node" />
-         </children>
-      </HBox>
-   </children>
-</VBox>
+   </top>
+   <padding>
+      <Insets bottom="75.0" right="35.0" />
+   </padding>
+</BorderPane>

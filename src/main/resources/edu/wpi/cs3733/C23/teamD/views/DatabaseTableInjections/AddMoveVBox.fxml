@@ -5,45 +5,73 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.MoveRequestController">
-   <children>
-      <Label fx:id="titleLabel" prefHeight="58.0" prefWidth="307.0" text="Add a Move">
+<BorderPane maxWidth="500.0" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.MoveRequestController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16;" BorderPane.alignment="CENTER">
+         <center>
+            <VBox maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
+                  <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <fx:include fx:id="locationBox" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the node you want to move to">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <fx:include fx:id="nodeBox" source="../VBoxInjections/Components/NodeComboBox.fxml" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <MFXTextField fx:id="messageTextField" prefWidth="300.0" />
+                  <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+         <bottom>
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="494.0" spacing="16.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" onAction="#addMove" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Move" />
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" right="25.0" />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+         <BorderPane.margin>
+            <Insets top="59.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
+   <top>
+      <Label fx:id="titleLabel" prefHeight="66.0" prefWidth="307.0" styleClass="addFormLabel" text="Add a Move" BorderPane.alignment="TOP_LEFT">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
-      <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin></Text>
-      <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the node you want to move to">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin></Text>
-       <fx:include fx:id="nodeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="../VBoxInjections/Components/NodeComboBox.fxml" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin>
-      </Text>
-      <MFXTextField fx:id="messageTextField" prefWidth="300.0" />
-      <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
-         <VBox.margin>
-            <Insets top="32.0" />
-         </VBox.margin></Text>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="255.0" prefWidth="500.0" spacing="16.0">
-         <children>
-            <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
-            <MFXButton fx:id="submitButton" onAction="#addMove" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Move" />
-         </children>
-      </HBox>
-   </children>
-</VBox>
+   </top>
+   <padding>
+      <Insets bottom="75.0" right="35.0" />
+   </padding>
+</BorderPane>

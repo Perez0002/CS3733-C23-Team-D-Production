@@ -6,7 +6,7 @@
 
 <BorderPane fx:id="NodeTableBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.NodeTableController">
     <center>
-        <TableView fx:id="nodeTable" onMouseClicked="#getSelectedRow" BorderPane.alignment="CENTER">
+        <TableView fx:id="nodeTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="nodeID" prefWidth="100.0" styleClass="tableCSS.css" text="nodeID" />
                 <TableColumn prefWidth="100.0" styleClass="tableCSS.css" text="x Coord" fx:id="xCoord" />

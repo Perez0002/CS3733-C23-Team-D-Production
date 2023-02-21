@@ -19,7 +19,10 @@
          </font>
       </Label>
    </top>
-   <right>
+   <padding>
+      <Insets bottom="75.0" right="35.0" />
+   </padding>
+   <center>
       <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="469.0" spacing="16.0" style="-fx-fill-height: true;" BorderPane.alignment="CENTER">
@@ -79,8 +82,5 @@
             <Insets top="59.0" />
          </BorderPane.margin>
       </BorderPane>
-   </right>
-   <padding>
-      <Insets bottom="75.0" right="35.0" />
-   </padding>
+   </center>
 </BorderPane>
