@@ -163,6 +163,6 @@ public class MapEditorPageController {
     toggleEdgesButton.setOnAction(toggleEdges());
 
     // Creating GesturePane to show
-    this.changeFloor(0).handle(null);
+    this.changeFloor(1).handle(null);
   }
 }

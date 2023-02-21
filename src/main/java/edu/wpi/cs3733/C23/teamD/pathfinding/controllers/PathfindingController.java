@@ -42,6 +42,7 @@ public class PathfindingController {
 
   @FXML private BorderPane pathfindingBorderPane;
 
+  @FXML private MFXButton floorGButton;
   @FXML private MFXButton floor1Button;
 
   @FXML private MFXButton floor2Button;
@@ -52,7 +53,7 @@ public class PathfindingController {
 
   @FXML private MFXButton floor5Button;
 
-  private MFXButton[] floorButtons = new MFXButton[5];
+  private MFXButton[] floorButtons = new MFXButton[6];
 
   @FXML private MFXButton aStarButton;
 
@@ -101,7 +102,7 @@ public class PathfindingController {
     return new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
           if (i == floor) {
             floorButtons[i].setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           } else {
@@ -116,24 +117,27 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
-    converter.put("L1", 0);
-    converter.put("L2", 1);
-    converter.put("1", 2);
-    converter.put("2", 3);
-    converter.put("3", 4);
-    floor1Button.setOnAction(changeFloor(0));
-    floor2Button.setOnAction(changeFloor(1));
-    floor3Button.setOnAction(changeFloor(2));
-    floor4Button.setOnAction(changeFloor(3));
-    floor5Button.setOnAction(changeFloor(4));
+    converter.put("G", 0);
+    converter.put("L1", 1);
+    converter.put("L2", 2);
+    converter.put("1", 3);
+    converter.put("2", 4);
+    converter.put("3", 5);
+    floorGButton.setOnAction(changeFloor(0));
+    floor1Button.setOnAction(changeFloor(1));
+    floor2Button.setOnAction(changeFloor(2));
+    floor3Button.setOnAction(changeFloor(3));
+    floor4Button.setOnAction(changeFloor(4));
+    floor5Button.setOnAction(changeFloor(5));
 
-    floorButtons[0] = floor1Button;
-    floorButtons[1] = floor2Button;
-    floorButtons[2] = floor3Button;
-    floorButtons[3] = floor4Button;
-    floorButtons[4] = floor5Button;
+    floorButtons[0] = floorGButton;
+    floorButtons[1] = floor1Button;
+    floorButtons[2] = floor2Button;
+    floorButtons[3] = floor3Button;
+    floorButtons[4] = floor4Button;
+    floorButtons[5] = floor5Button;
 
-    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
+    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(1));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
   }
