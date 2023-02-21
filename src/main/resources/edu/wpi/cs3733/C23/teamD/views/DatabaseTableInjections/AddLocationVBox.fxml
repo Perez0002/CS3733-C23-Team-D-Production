@@ -53,7 +53,7 @@
             </VBox>
          </center>
          <BorderPane.margin>
-            <Insets top="59.0" />
+            <Insets top="19.0" />
          </BorderPane.margin>
       </BorderPane>
    </center>
@@ -61,10 +61,13 @@
       <Insets bottom="75.0" right="35.0" />
    </padding>
    <top>
-      <Label fx:id="titleLabel" prefHeight="66.0" prefWidth="307.0" styleClass="addFormLabel" text="Add a Location" BorderPane.alignment="TOP_LEFT">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="66.0" prefWidth="465.0" styleClass="addFormLabel" text="Add a Location" BorderPane.alignment="TOP_LEFT">
          <font>
             <Font size="24.0" />
          </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
       </Label>
    </top>
 </BorderPane>

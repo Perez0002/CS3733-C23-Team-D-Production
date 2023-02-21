@@ -59,15 +59,18 @@
             </HBox>
          </bottom>
          <BorderPane.margin>
-            <Insets top="59.0" />
+            <Insets top="19.0" />
          </BorderPane.margin>
       </BorderPane>
    </center>
    <top>
-      <Label fx:id="titleLabel" prefHeight="66.0" prefWidth="307.0" styleClass="addFormLabel" text="Add a Node" BorderPane.alignment="TOP_LEFT">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="66.0" prefWidth="465.0" styleClass="addFormLabel" text="Add a Node" BorderPane.alignment="TOP_LEFT">
          <font>
             <Font size="24.0" />
          </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
       </Label>
    </top>
    <padding>

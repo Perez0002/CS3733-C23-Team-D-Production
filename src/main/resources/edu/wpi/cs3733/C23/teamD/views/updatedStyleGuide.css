@@ -60,8 +60,7 @@
 
 .addFormLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
-    -fx-max-width: 400px;
-    -fx-max-height: 100px;
+    -fx-text-fill: #011830;
     -fx-font-family: "Nunito Sans Bold";
 }
 

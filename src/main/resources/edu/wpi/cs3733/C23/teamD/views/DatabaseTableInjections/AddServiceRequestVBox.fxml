@@ -13,17 +13,20 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="500.0" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ChangeServiceRequestController">
    <top>
-      <Label fx:id="titleLabel" prefHeight="66.0" prefWidth="307.0" styleClass="addFormLabel" text="Change a Service Request" BorderPane.alignment="TOP_LEFT">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="66.0" prefWidth="465.0" styleClass="addFormLabel" text="Change a Service Request" BorderPane.alignment="TOP_LEFT">
          <font>
             <Font size="24.0" />
          </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
       </Label>
    </top>
    <padding>
       <Insets bottom="75.0" right="35.0" />
    </padding>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16;" BorderPane.alignment="CENTER">
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="469.0" spacing="16.0" style="-fx-fill-height: true;" BorderPane.alignment="CENTER">
                <children>
@@ -45,13 +48,13 @@
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Text>
-                  <fx:include fx:id="statusBox" source="../VBoxInjections/Components/StatusComboBox.fxml" />
+                  <fx:include fx:id="statusBox" prefWidth="300.0" source="../VBoxInjections/Components/StatusComboBox.fxml" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select an employee">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Text>
-                  <fx:include fx:id="employeeBox" source="../VBoxInjections/Components/EmployeeDropdownComboBox.fxml" />
+                  <fx:include fx:id="employeeBox" prefWidth="300.0" source="../VBoxInjections/Components/EmployeeDropdownComboBox.fxml" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Request Type">
                      <VBox.margin>
                         <Insets top="32.0" />
@@ -79,7 +82,7 @@
             </VBox>
          </center>
          <BorderPane.margin>
-            <Insets top="59.0" />
+            <Insets top="19.0" />
          </BorderPane.margin>
       </BorderPane>
    </center>

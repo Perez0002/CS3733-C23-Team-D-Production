@@ -24,13 +24,13 @@
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Text>
-                  <fx:include fx:id="locationBox" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
+                  <fx:include fx:id="locationBox" prefWidth="300.0" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the node you want to move to">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Text>
-                  <fx:include fx:id="nodeBox" source="../VBoxInjections/Components/NodeComboBox.fxml" />
+                  <fx:include fx:id="nodeBox" prefWidth="300.0" source="../VBoxInjections/Components/NodeComboBox.fxml" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
                      <VBox.margin>
                         <Insets top="32.0" />
@@ -60,15 +60,18 @@
             </HBox>
          </bottom>
          <BorderPane.margin>
-            <Insets top="59.0" />
+            <Insets top="19.0" />
          </BorderPane.margin>
       </BorderPane>
    </center>
    <top>
-      <Label fx:id="titleLabel" prefHeight="66.0" prefWidth="307.0" styleClass="addFormLabel" text="Add a Move" BorderPane.alignment="TOP_LEFT">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="66.0" prefWidth="465.0" styleClass="addFormLabel" text="Add a Move" BorderPane.alignment="TOP_LEFT">
          <font>
             <Font size="24.0" />
          </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
       </Label>
    </top>
    <padding>
