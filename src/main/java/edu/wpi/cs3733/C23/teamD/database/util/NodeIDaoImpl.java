@@ -58,13 +58,14 @@ public class NodeIDaoImpl implements IDao<Node> {
   }
 
   public void updatePK(Node n) {
-    Node oldNode = new Node(n);
-    n.setNodeID();
+    // Node oldNode = new Node(n);
     Node newNode = new Node(n);
+    newNode.setNodeID();
     this.save(newNode);
-    this.nodeMoveSwap(oldNode, newNode);
-    this.nodeEdgeSwap(oldNode, newNode);
-    this.delete(n);
+    this.nodeMoveSwap(n, newNode);
+    this.nodeEdgeSwap(n, newNode);
+    System.out.println("Node ID: " + n.getNodeID());
+    this.deleteOnlyNode(n);
   }
 
   @Override
@@ -141,13 +142,32 @@ public class NodeIDaoImpl implements IDao<Node> {
 
     for (Edge oldEdge : edges) {
       Edge newEdge;
-      if (oldEdge.getFromNode().equals(oldNode)) {
+      if (oldEdge.getFromNode().nodeEquals(oldNode)) {
         newEdge = new Edge(newNode, oldEdge.getToNode());
-      } else {
+        System.out.println("From Node: " + newEdge.getFromNodeID());
+      } else if (oldEdge.getToNode().nodeEquals(oldNode)) {
         newEdge = new Edge(oldEdge.getFromNode(), newNode);
+        System.out.println("To Node: " + newEdge.getToNodeID());
+      } else {
+        newEdge = new Edge();
       }
       dbFacade.deleteEdge(oldEdge);
       dbFacade.saveEdge(newEdge);
+    }
+  }
+
+  private void deleteOnlyNode(Node n) {
+    session.beginTransaction();
+    try {
+      Query q2 = session.createQuery("DELETE Node where nodeID=:id");
+      q2.setParameter("id", n.getNodeID());
+      int deleted = q2.executeUpdate();
+      session.getTransaction().commit();
+
+      this.nodes.remove(n);
+
+    } catch (Exception ex) {
+      session.getTransaction().rollback();
     }
   }
 
@@ -157,7 +177,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     for (int i = 0; i < moves.size(); i++) {
       if (moves.get(i).getNodeID().equals(oldNode.getNodeID())) {
         FDdb.getInstance().deleteMove(moves.get(i));
-        System.out.println("Long Name: " + moves.get(i).getLongName());
+        moves.get(i).setNode(newNode);
         FDdb.getInstance().saveMove(moves.get(i));
       }
     }
