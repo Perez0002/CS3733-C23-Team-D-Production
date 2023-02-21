@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
@@ -233,7 +234,7 @@ public class MapEditorMapNode extends MapNode {
         });
   }
 
-  private void MakePopup() {
+  public void MakePopup() {
     if (this.popup == null) {
       /* Assuming the popup does not exist, build a new one from the factory */
       this.popup =
@@ -263,7 +264,35 @@ public class MapEditorMapNode extends MapNode {
     }
   }
 
-  private void RemovePopup() {
+  public void MakePopup(boolean adding) {
+    if (this.popup == null && adding) {
+      /* Assuming the popup does not exist, build a new one from the factory */
+      this.popup =
+          PopupFactory.startBuild()
+              .anchor(this.nodeRepresentation)
+              .mapNode(this)
+              .editable()
+              .closeEvent(
+                  event -> {
+                    this.RemovePopup();
+                    ((AnchorPane) this.nodeRepresentation.getParent())
+                        .getChildren()
+                        .remove(this.nodeRepresentation);
+                    this.allowTooltip = true;
+                  })
+              .submitEvent(
+                  event -> {
+                    this.addNode();
+                  })
+              .build();
+      /* Color the node on the map to represent selection */
+      this.nodeRepresentation.setFill(this.SELECTED);
+      /* Prevent this Node's tooltip from popping up */
+      this.allowTooltip = false;
+    }
+  }
+
+  public void RemovePopup() {
     if (popup != null) {
       /* Assuming the popup exists, hide and then remove it to save VRam space */
       popup.hide();
@@ -323,6 +352,31 @@ public class MapEditorMapNode extends MapNode {
       }
     }
     FDdb.getInstance().deleteNode(n.getNode());
+  }
+
+  public void addNode() {
+     if(this.getNodeX() != null && this.getNodeY() != null && !this.getNodeFloor().isEmpty().getValue() && !this.getNodeBuilding().isEmpty().getValue())
+     {
+        // TODO proceed with node save
+        Node node = new Node(this.getNodeX().intValue(), this.getNodeY().intValue(), this.getNodeFloor().getValue(), this.getNodeBuilding().getValue());
+        if(!FDdb.getInstance().getAllNodes().contains(node))
+        {
+           FDdb.getInstance().saveNode(node);
+        }
+     }
+
+     if(!this.getNodeLongName().isEmpty().getValue() && !this.getNodeShortName().isEmpty().getValue() && !this.getNodeType().isEmpty().getValue())
+     {
+        LocationName locationName = new LocationName(this.getNodeLongName().getValue(), this.getNodeShortName().getValue(), this.getNodeType().getValue());
+        if(!FDdb.getInstance().getAllLocationNames().contains(locationName))
+        {
+           FDdb.getInstance().saveLocationName(locationName);
+        } else
+        {
+           FDdb.getInstance().updateLocationName(locationName);
+        }
+     }
+     // Save move
   }
 
   public void deleteNode() {

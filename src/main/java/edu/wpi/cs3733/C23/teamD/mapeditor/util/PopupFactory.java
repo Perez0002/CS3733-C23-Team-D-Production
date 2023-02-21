@@ -172,31 +172,31 @@ public class PopupFactory {
 
       Label shortNameLabel = new Label("Short Name");
       shortNameTextField.setPrefWidth(190);
-      shortNameTextField.setText(mapNode.getNodeShortName().getValue());
+      shortNameTextField.textProperty().bindBidirectional(mapNode.getNodeShortName());
       VBox shortNameVBox = new VBox(shortNameLabel, shortNameTextField);
       VBox.setMargin(shortNameVBox, new Insets(5, 5, 5, 5));
 
       Label longNameLabel = new Label("Long Name");
       longNameTextField.setPrefWidth(190);
-      longNameTextField.setText(mapNode.getNodeLongName().getValue());
+      longNameTextField.textProperty().bindBidirectional(mapNode.getNodeLongName());
       VBox longNameVBox = new VBox(longNameLabel, longNameTextField);
       VBox.setMargin(longNameVBox, new Insets(5, 5, 5, 5));
 
       Label buildingLabel = new Label("Building");
       buildingTextField.setPrefWidth(190);
-      buildingTextField.setText(mapNode.getNodeBuilding().getValue());
+      buildingTextField.textProperty().bindBidirectional(mapNode.getNodeBuilding());
       VBox buildingVBox = new VBox(buildingLabel, buildingTextField);
       VBox.setMargin(buildingVBox, new Insets(5, 5, 5, 5));
 
       Label floorLabel = new Label("Floor");
       floorTextField.setPrefWidth(190);
-      floorTextField.setText(mapNode.getNodeFloor().getValue());
+      floorTextField.textProperty().bindBidirectional(mapNode.getNodeFloor());
       VBox floorVBox = new VBox(floorLabel, floorTextField);
       VBox.setMargin(floorVBox, new Insets(5, 5, 5, 5));
 
       Label typeLabel = new Label("Type");
       typeTextField.setPrefWidth(190);
-      typeTextField.setText(mapNode.getNodeType().getValue());
+      typeTextField.textProperty().bindBidirectional(mapNode.getNodeType());
       VBox typeVBox = new VBox(typeLabel, typeTextField);
       VBox.setMargin(typeVBox, new Insets(5, 5, 10, 5));
 

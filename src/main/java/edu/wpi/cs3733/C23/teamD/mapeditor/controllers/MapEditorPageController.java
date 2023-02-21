@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
@@ -97,7 +98,42 @@ public class MapEditorPageController {
 
           gesturePane =
               MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+          gesturePane
+              .getContent()
+              .setOnMouseClicked(
+                  e -> {
+                    if (e.getClickCount() == 2) {
+                      String nodeFloor = "";
+                      switch (floor) {
+                        case 0:
+                          nodeFloor = "L1";
+                          break;
+                        case 1:
+                          nodeFloor = "L2";
+                          break;
+                        case 2:
+                          nodeFloor = "1";
+                          break;
+                        case 3:
+                          nodeFloor = "2";
+                          break;
+                        case 4:
+                          nodeFloor = "3";
+                          break;
+                      }
+                      edu.wpi.cs3733.C23.teamD.database.entities.Node newBaseNode =
+                          new edu.wpi.cs3733.C23.teamD.database.entities.Node(
+                              (int) e.getX(), (int) e.getY(), nodeFloor, "");
+                      LocationName nodeLocation = new LocationName("", "", "");
+                      PathNode newPathNode = new PathNode(newBaseNode, new LocationName());
+                      MapEditorMapNode newMapNode = new MapEditorMapNode(newPathNode);
 
+                      ((AnchorPane) gesturePane.getContent())
+                          .getChildren()
+                          .add(newMapNode.getNodeRepresentation());
+                      newMapNode.MakePopup(true);
+                    }
+                  });
           mapPlacement.setCenter(gesturePane);
           currentFloor = floor;
         }
@@ -135,14 +171,19 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
-      edge2.setEdge(edge);
-      MapEdge tempMapEdge = new MapEdge(edge1);
-      edgeList.add(tempMapEdge);
+      try {
+        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        edge2.setEdge(edge);
+        MapEdge tempMapEdge = new MapEdge(edge1);
+        edgeList.add(tempMapEdge);
 
-      tempMapEdge.setNodes(
-          mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
+        tempMapEdge.setNodes(
+            mapNodes.get(edge.getFromNode().getNodeID()),
+            mapNodes.get(edge.getToNode().getNodeID()));
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
