@@ -24,7 +24,7 @@ public class ClockController {
                 e ->
                     timer.setText(
                         LocalDateTime.now()
-                            .format(DateTimeFormatter.ofPattern("EEE, LLL dd, hh:mm a")))),
+                            .format(DateTimeFormatter.ofPattern("EEE, LLL dd, h:mm a")))),
             new KeyFrame(Duration.seconds(1)));
     clock.setCycleCount(Animation.INDEFINITE);
     clock.play();
