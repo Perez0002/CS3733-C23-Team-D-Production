@@ -98,7 +98,7 @@ public class NodeIDaoImpl implements IDao<Node> {
       }
     }
     for (Move m : movesWithNode) {
-        PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
+      PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
     }
 
@@ -155,11 +155,12 @@ public class NodeIDaoImpl implements IDao<Node> {
 
   private void nodeMoveSwap(Node oldNode, Node newNode) {
     FDdb dbFacade = FDdb.getInstance();
-
-    for (Move m : dbFacade.getAllMoves()) {
-      if (m.getNodeID().equals(oldNode.getNodeID())) {
-        m.setNode(newNode);
-        dbFacade.updateMove(m);
+    ArrayList<Move> moves = new ArrayList<>(dbFacade.getAllMoves());
+    for (int i = 0; i < moves.size(); i++) {
+      if (moves.get(i).getNodeID().equals(oldNode.getNodeID())) {
+        FDdb.getInstance().deleteMove(moves.get(i));
+        System.out.println("Long Name: " + moves.get(i).getLongName());
+        FDdb.getInstance().saveMove(moves.get(i));
       }
     }
   }

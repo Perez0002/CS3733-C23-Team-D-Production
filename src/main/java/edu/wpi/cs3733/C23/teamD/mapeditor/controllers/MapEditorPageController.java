@@ -18,7 +18,10 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -63,8 +66,11 @@ public class MapEditorPageController {
           toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
         }
 
-        for (MapEdge edge : edgeList) {
-          edge.getEdgeRepresentation().setVisible(edgesShown);
+        for (Node line :
+            ((AnchorPane) ((GesturePane) mapPlacement.getCenter()).getContent()).getChildren()) {
+          if (line instanceof Line) {
+            line.setVisible(edgesShown);
+          }
         }
       }
     };

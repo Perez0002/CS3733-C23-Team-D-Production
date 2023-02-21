@@ -5,6 +5,7 @@ import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 import org.controlsfx.control.PopOver;
 
 public class PopupFactory {
@@ -153,15 +156,17 @@ public class PopupFactory {
 
       popover.setTitle("Node Editor");
 
+      StringConverter<Number> converter = new NumberStringConverter();
+
       Label xCoordLabel = new Label("X Coordinate");
       xCoordTextField.setPrefWidth(190);
-      xCoordTextField.setText(Double.toString(mapNode.getNodeX().getValue()));
+      Bindings.bindBidirectional(xCoordTextField.textProperty(), mapNode.getNodeX(), converter);
       VBox xCoordVBox = new VBox(xCoordLabel, xCoordTextField);
       VBox.setMargin(xCoordVBox, new Insets(5, 5, 5, 5));
 
       Label yCoordLabel = new Label("Y Coordinate");
       yCoordTextField.setPrefWidth(190);
-      yCoordTextField.setText(Double.toString(mapNode.getNodeY().getValue()));
+      Bindings.bindBidirectional(yCoordTextField.textProperty(), mapNode.getNodeY(), converter);
       VBox yCoordVBox = new VBox(yCoordLabel, yCoordTextField);
       VBox.setMargin(yCoordVBox, new Insets(5, 5, 5, 5));
 

@@ -105,6 +105,7 @@ public class PathfindingController {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
         }
+
         ArrayList<MapNode> mapNodes = new ArrayList<>();
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         MapNode lastNode = null;

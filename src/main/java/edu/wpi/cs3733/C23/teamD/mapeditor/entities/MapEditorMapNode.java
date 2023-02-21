@@ -388,11 +388,14 @@ public class MapEditorMapNode extends MapNode {
 
     yesButton.setOnAction(
         evt -> {
+          System.out.println(
+              this.getNode().getNode().getXcoord() + ", " + this.getNode().getNode().getYcoord());
           Node n = new Node(this.getNode().getNode());
           n.setXcoord(this.getNodeX().getValue().intValue());
-          n.setYcoord(this.getNodeX().getValue().intValue());
+          n.setYcoord(this.getNodeY().getValue().intValue());
           n.setFloor(this.getNodeFloor().getValue());
           n.setBuilding(this.getNodeBuilding().getValue());
+          System.out.println(n.getXcoord() + ", " + n.getYcoord());
           // TODO need to update location / move?
           try {
             FDdb.getInstance().updateNodePK(n);
@@ -418,7 +421,7 @@ public class MapEditorMapNode extends MapNode {
 
           Node n = new Node(this.getNode().getNode());
           n.setXcoord(this.getNodeX().getValue().intValue());
-          n.setYcoord(this.getNodeX().getValue().intValue());
+          n.setYcoord(this.getNodeY().getValue().intValue());
           n.setFloor(this.getNodeFloor().getValue());
           n.setBuilding(this.getNodeBuilding().getValue());
 
