@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
-import static edu.wpi.cs3733.C23.teamD.database.util.Ddb.*;
-
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
@@ -34,9 +32,11 @@ public class MapEditorPageController {
   @FXML private MFXButton floor1Button;
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
+  @FXML private MFXButton toggleEdgesButton;
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
+  private boolean edgesShown = true;
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
@@ -46,6 +46,27 @@ public class MapEditorPageController {
   void openHomepage() {
     // Navigates to home page
     Navigation.navigate(Screen.HOME);
+  }
+
+  public EventHandler<ActionEvent> toggleEdges() {
+    return new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        edgesShown = !edgesShown;
+
+        if (edgesShown) {
+          toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
+        } else {
+          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
+        }
+
+        for (MapEdge edge : edgeList) {
+          edge.getEdgeRepresentation().setVisible(edgesShown);
+        }
+      }
+    };
   }
 
   public EventHandler<ActionEvent> changeFloor(int floor) {
@@ -87,6 +108,13 @@ public class MapEditorPageController {
       pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
+    HashMap<String, MapNode> mapNodes = new HashMap<>();
+    for (String node : pathNodes.keySet().stream().toList()) {
+      MapNode tempMapNode = new MapEditorMapNode(pathNodes.get(node));
+      mapNodes.put(node, tempMapNode);
+      nodeList.add(tempMapNode);
+    }
+
     for (Edge edge : baseEdgeList) {
       PathEdge edge1 =
           new PathEdge(
@@ -102,16 +130,13 @@ public class MapEditorPageController {
       MapEdge tempMapEdge = new MapEdge(edge1);
       edgeList.add(tempMapEdge);
 
-      MapNode tempMapFromNode = new MapEditorMapNode(pathNodes.get(edge.getFromNode().getNodeID()));
-      MapNode tempMapToNode = new MapEditorMapNode(pathNodes.get(edge.getToNode().getNodeID()));
-      tempMapEdge.setFromNode(tempMapFromNode);
-      tempMapEdge.setToNode(tempMapToNode);
-
-      nodeList.add(tempMapFromNode);
-      nodeList.add(tempMapToNode);
+      tempMapEdge.setNodes(
+          mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
+    toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+
     // Setup for calculating average x and y
     double totalX = 0;
     double totalY = 0;
@@ -128,6 +153,7 @@ public class MapEditorPageController {
     floor1Button.setOnAction(changeFloor(2));
     floor2Button.setOnAction(changeFloor(3));
     floor3Button.setOnAction(changeFloor(4));
+    toggleEdgesButton.setOnAction(toggleEdges());
 
     // Creating GesturePane to show
     this.changeFloor(0).handle(null);

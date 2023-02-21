@@ -6,23 +6,24 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.SanitationRequestController">
    <children>
-      <Label text="Use this form to report hzards in the hospital. Enter who should attend to the hazard, where the hazard is, and how urgent it is." wrapText="true">
+      <Label styleClass="serviceRequestDescription" text="Use this form to report  sanitation needs in the hospital. Enter the employee that should attend to the request, the urgency of the request and the location. Please also describe the issue and specify a hazard level from 1-4 as shown below." wrapText="true">
          <font>
             <Font size="12.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+            <Insets bottom="10.0" left="5.0" right="150.0" top="10.0" />
          </VBox.margin>
       </Label>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
          <children>
             <VBox>
                <children>
-                  <Label text="Employee">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -30,19 +31,33 @@
                   <fx:include fx:id="staffIDTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
                </children>
             </VBox>
-            <VBox>
+            <VBox prefWidth="300.0">
                <children>
-                  <Label text="Select Area That Needs Service">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <fx:include fx:id="fieldLocation" prefWidth="300.0" source="Components/RoomPickComboBox.fxml" />
+                  <Label text="Urgency" />
+                  <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
                </children>
             </VBox>
             <VBox>
                <children>
-                  <Label text="Describe the Issue">
+                  <Label text="Location">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="fieldLocation" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
+               </children>
+            </VBox>
+            <VBox prefWidth="300.0">
+               <children>
+                  <Line endX="200.0" startX="-100.0" stroke="#012d5a">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Line>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Describe the Issue">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -52,16 +67,16 @@
             </VBox>
             <VBox spacing="10.0">
                <children>
-                  <Label text="How Hazardous is the Issue">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="How Hazardous is the Issue">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
                   <MFXRadioButton fx:id="radioBSL1" text="BSL-1 - Minimal Hazards">
-      
-                  <toggleGroup>
-                     <ToggleGroup fx:id="Button" />
-                  </toggleGroup>
+
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Button" />
+                     </toggleGroup>
                   </MFXRadioButton>
                   <MFXRadioButton fx:id="radioBSL2" styleClass="serviceRequestMFXTextField" text="BSL-2 - Moderate Hazards" toggleGroup="$Button" />
                   <MFXRadioButton fx:id="radioBSL3" styleClass="serviceRequestMFXTextField" text="BSL-3 - Serious Hazards" toggleGroup="$Button" />
