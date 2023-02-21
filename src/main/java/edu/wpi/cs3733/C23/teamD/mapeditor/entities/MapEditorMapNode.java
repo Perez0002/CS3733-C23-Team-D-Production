@@ -259,6 +259,7 @@ public class MapEditorMapNode extends MapNode {
                     this.saveNode();
                   })
               .build();
+      popup.setHideOnEscape(false);
       /* Color the node on the map to represent selection */
       this.nodeRepresentation.setFill(this.SELECTED);
       /* Prevent this Node's tooltip from popping up */
