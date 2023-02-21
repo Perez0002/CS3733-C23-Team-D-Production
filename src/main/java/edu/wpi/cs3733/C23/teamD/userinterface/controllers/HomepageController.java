@@ -4,6 +4,9 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.NavigationServiceRequests;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestVBoxController;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
@@ -11,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javax.swing.*;
 import org.controlsfx.control.PopOver;
@@ -29,6 +34,31 @@ public class HomepageController {
   @FXML private Label pendingRequests;
 
   @FXML private Label movesTomorrow;
+
+  @FXML private ScrollPane scrollPane;
+
+  @FXML private Pane pane;
+
+  private ServiceRequestVBoxController currentController;
+
+  Pane getPane() {
+    return pane;
+  }
+
+  @FXML
+  public void navToSanitation() {
+    switchVBox(ServiceRequests.SANITATION_REQUEST);
+  }
+
+  @FXML
+  public void navToSecurity() {
+    switchVBox(ServiceRequests.SECURITY_REQUEST);
+  }
+
+  @FXML
+  public void navToTransport() {
+    switchVBox(ServiceRequests.PATIENT_TRANSPORT);
+  }
 
   @FXML
   public void initialize() {
@@ -101,5 +131,10 @@ public class HomepageController {
     //      serviceRequestHelpText.setText("");
     //      bottomHelpText.setText("");
     //    }
+  }
+
+  // takes in a service request enum, sets controller to it
+  void switchVBox(ServiceRequests switchTo) {
+    currentController = NavigationServiceRequests.navigate(switchTo, getPane());
   }
 }

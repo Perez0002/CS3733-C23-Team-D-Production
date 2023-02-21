@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="homepageBorderPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="720.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.HomepageController">
@@ -20,10 +21,10 @@
             <Insets left="48.0" right="48.0" top="48.0" />
          </VBox.margin>
       </HBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" VBox.vgrow="ALWAYS">
+      <VBox spacing="8.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="welcomeText" styleClass="hubLabel" text="Welcome User!" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+            <Label fx:id="welcomeText" styleClass="hubLabel" text="Welcome User!" VBox.vgrow="NEVER" />
+            <HBox spacing="40.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
@@ -69,11 +70,14 @@
                               </TableView>
                            </children>
                         </VBox>
+                        <MFXButton onAction="#navToSanitation" text="Stupif button, testing" />
+                        <MFXButton onAction="#navToTransport" text="Stupif button, testing" />
+                        <MFXButton onAction="#navToSecurity" text="Stupif button, testing" />
                      </children>
                   </VBox>
-                  <VBox spacing="20.0">
+                  <VBox spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" VBox.vgrow="NEVER">
                            <children>
                               <Label styleClass="homepageLabel" text="Outgoing Service Requests" />
                               <TableView prefHeight="200.0" prefWidth="200.0">
@@ -84,10 +88,19 @@
                               </TableView>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label styleClass="homepageLabel" text="Request Details" />
-                              <MFXScrollPane />
+                              <MFXScrollPane fx:id="scrollPane" maxHeight="230.0" maxWidth="1000.0" minHeight="160.0" minWidth="500.0" prefHeight="230.0" prefWidth="1000.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <Pane fx:id="pane" />
+                                 </content>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></MFXScrollPane>
                            </children>
                         </VBox>
                      </children>
@@ -96,15 +109,15 @@
             </HBox>
          </children>
          <VBox.margin>
-            <Insets left="48.0" right="48.0" top="24.0" />
+            <Insets left="48.0" right="48.0" top="12.0" />
          </VBox.margin>
       </VBox>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity">
          <children>
-            <MFXButton fx:id="helpButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" styleClass="helpButton" text="?" />
+            <MFXButton fx:id="helpButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" styleClass="helpButton" text="?" HBox.hgrow="SOMETIMES" />
          </children>
          <VBox.margin>
-            <Insets bottom="48.0" left="48.0" right="48.0" />
+            <Insets bottom="48.0" left="48.0" right="48.0" top="10.0" />
          </VBox.margin>
       </HBox>
    </children>
