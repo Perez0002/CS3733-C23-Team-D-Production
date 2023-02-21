@@ -355,28 +355,37 @@ public class MapEditorMapNode extends MapNode {
   }
 
   public void addNode() {
-     if(this.getNodeX() != null && this.getNodeY() != null && !this.getNodeFloor().isEmpty().getValue() && !this.getNodeBuilding().isEmpty().getValue())
-     {
-        // TODO proceed with node save
-        Node node = new Node(this.getNodeX().intValue(), this.getNodeY().intValue(), this.getNodeFloor().getValue(), this.getNodeBuilding().getValue());
-        if(!FDdb.getInstance().getAllNodes().contains(node))
-        {
-           FDdb.getInstance().saveNode(node);
-        }
-     }
+    if (this.getNodeX() != null
+        && this.getNodeY() != null
+        && !this.getNodeFloor().isEmpty().getValue()
+        && !this.getNodeBuilding().isEmpty().getValue()) {
+      // TODO proceed with node save
+      Node node =
+          new Node(
+              this.getNodeX().intValue(),
+              this.getNodeY().intValue(),
+              this.getNodeFloor().getValue(),
+              this.getNodeBuilding().getValue());
+      if (!FDdb.getInstance().getAllNodes().contains(node)) {
+        FDdb.getInstance().saveNode(node);
+      }
+    }
 
-     if(!this.getNodeLongName().isEmpty().getValue() && !this.getNodeShortName().isEmpty().getValue() && !this.getNodeType().isEmpty().getValue())
-     {
-        LocationName locationName = new LocationName(this.getNodeLongName().getValue(), this.getNodeShortName().getValue(), this.getNodeType().getValue());
-        if(!FDdb.getInstance().getAllLocationNames().contains(locationName))
-        {
-           FDdb.getInstance().saveLocationName(locationName);
-        } else
-        {
-           FDdb.getInstance().updateLocationName(locationName);
-        }
-     }
-     // Save move
+    if (!this.getNodeLongName().isEmpty().getValue()
+        && !this.getNodeShortName().isEmpty().getValue()
+        && !this.getNodeType().isEmpty().getValue()) {
+      LocationName locationName =
+          new LocationName(
+              this.getNodeLongName().getValue(),
+              this.getNodeShortName().getValue(),
+              this.getNodeType().getValue());
+      if (!FDdb.getInstance().getAllLocationNames().contains(locationName)) {
+        FDdb.getInstance().saveLocationName(locationName);
+      } else {
+        FDdb.getInstance().updateLocationName(locationName);
+      }
+    }
+    // Save move
   }
 
   public void deleteNode() {

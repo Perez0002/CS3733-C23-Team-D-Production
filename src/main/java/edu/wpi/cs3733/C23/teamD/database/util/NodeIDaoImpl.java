@@ -172,14 +172,19 @@ public class NodeIDaoImpl implements IDao<Node> {
   }
 
   private void nodeMoveSwap(Node oldNode, Node newNode) {
-    FDdb dbFacade = FDdb.getInstance();
-    ArrayList<Move> moves = new ArrayList<>(dbFacade.getAllMoves());
-    for (int i = 0; i < moves.size(); i++) {
-      if (moves.get(i).getNodeID().equals(oldNode.getNodeID())) {
-        FDdb.getInstance().deleteMove(moves.get(i));
-        moves.get(i).setNode(newNode);
-        FDdb.getInstance().saveMove(moves.get(i));
+    try {
+      FDdb dbFacade = FDdb.getInstance();
+      ArrayList<Move> moves = new ArrayList<>(dbFacade.getAllMoves());
+      for (int i = 0; i < moves.size(); i++) {
+        Move m = moves.get(i);
+        if (moves.get(i).getNode().nodeEquals(oldNode)) {
+          Move move = new Move(newNode, m.getLocation(), m.getMoveDate());
+          FDdb.getInstance().deleteMove(m);
+          FDdb.getInstance().saveMove(move);
+        }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -211,16 +216,18 @@ public class NodeIDaoImpl implements IDao<Node> {
       query = session.createQuery("DELETE FROM Node");
       query.executeUpdate();
       session.getTransaction().commit();
+      Node n = new Node();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        Node n = new Node();
+        n = new Node();
         n.setNodeID(data[0]);
         n.setXcoord(Integer.parseInt(data[1]));
         n.setYcoord(Integer.parseInt(data[2]));
         n.setFloor(data[3]);
         n.setBuilding(data[4]);
-        FDdb.getInstance().saveNode(n);
+        this.save(n);
       }
+      FDdb.getInstance().saveNode(n);
       fileReader.close();
     } catch (IOException e) {
       e.printStackTrace();
