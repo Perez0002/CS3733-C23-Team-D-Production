@@ -2,12 +2,14 @@ package edu.wpi.cs3733.C23.teamD.database.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.ZoneId;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import lombok.Setter;
 
 public class AddNodeController implements AddFormController<Node> {
@@ -29,8 +31,15 @@ public class AddNodeController implements AddFormController<Node> {
 
   private Node currentNode;
 
+  private boolean checkFields() {
+    return !(xCoordTextField.getText().isEmpty() ||
+            yCoordTextField.getText().isEmpty() ||
+            buildingTextField.getText().isEmpty() ||
+            floorTextField.getText().isEmpty());
+  }
   @FXML
   void clearFields() {
+    errorText.setVisible(false);
     yCoordTextField.clear();
     xCoordTextField.clear();
     buildingTextField.clear();
@@ -39,26 +48,45 @@ public class AddNodeController implements AddFormController<Node> {
 
   @FXML
   void submit() {
-    if (currentNode == null) {
-      errorText.setVisible(false);
-      ZoneId defaultZoneId = ZoneId.systemDefault();
+    if (checkFields()) {
+      if (currentNode == null) {
+        errorText.setVisible(false);
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        FDdb.getInstance()
+                .saveNode(
+                        new Node(
+                                Integer.parseInt(xCoordTextField.getText()),
+                                Integer.parseInt(yCoordTextField.getText()),
+                                floorTextField.getText(),
+                                buildingTextField.getText()));
+        ToastController.makeText(
+                "Your node has been added!",
+                1500,
+                50,
+                100,
+                (int) Screen.getPrimary().getBounds().getWidth() - 375,
+                (int) Screen.getPrimary().getBounds().getHeight() - 350);
+        databaseController.refresh();
+      } else {
+        dataToChange(null);
+        currentNode.setBuilding(buildingTextField.getText());
+        currentNode.setFloor(floorTextField.getText());
+        currentNode.setYcoord(Integer.parseInt(yCoordTextField.getText()));
+        currentNode.setXcoord(Integer.parseInt(xCoordTextField.getText()));
 
-      FDdb.getInstance()
-          .saveNode(
-              new Node(
-                  Integer.parseInt(xCoordTextField.getText()),
-                  Integer.parseInt(yCoordTextField.getText()),
-                  floorTextField.getText(),
-                  buildingTextField.getText()));
-      databaseController.refresh();
+        ToastController.makeText(
+                "Your node has been changed!",
+                1500,
+                50,
+                100,
+                (int) Screen.getPrimary().getBounds().getWidth() - 375,
+                (int) Screen.getPrimary().getBounds().getHeight() - 350);
+
+        FDdb.getInstance().updateNodePK(currentNode);
+        databaseController.refresh();
+      }
     } else {
-      currentNode.setBuilding(buildingTextField.getText());
-      currentNode.setFloor(floorTextField.getText());
-      currentNode.setYcoord(Integer.parseInt(yCoordTextField.getText()));
-      currentNode.setXcoord(Integer.parseInt(xCoordTextField.getText()));
-
-      FDdb.getInstance().updateNodePK(currentNode);
-      databaseController.refresh();
+      errorText.setVisible(true);
     }
   }
 

@@ -43,6 +43,13 @@ public class ChangeServiceRequestController implements AddFormController<Service
     }
   }
 
+  private boolean checkFields() {
+    return !(reasonTextField.getText().isEmpty() ||
+            employeeBoxController.getEmployeeName() == null ||
+            statusBoxController.getStatus() == null ||
+            datePicker.getValue() == null ||
+            requestTypeTextField.getText() == null);
+  }
   @FXML
   public void clearFields() {
     statusBoxController.clearForm();
