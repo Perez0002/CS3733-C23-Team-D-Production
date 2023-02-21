@@ -49,7 +49,7 @@ public class ProfilePageChangePasswordController {
       help.setText("Fill all fields.");
       return false;
     } else if (!originalP.equals(currentUser.getPassword())) {
-      help.setText("Original password is incorrect. -" + originalP);
+      help.setText("Original password is incorrect.");
       return false;
     } else if (!confirmNewP.equals(newP)) {
       help.setText("New and Confirmed passwords don't match.");
