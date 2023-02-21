@@ -10,11 +10,11 @@
 
 <BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <VBox fx:id="creditsVbox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="1500.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="creditsVbox1" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0">
+            <HBox alignment="TOP_CENTER">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="About" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="Team Members" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
@@ -215,6 +215,98 @@
                      </children>
                   </VBox>
                </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="Special Thanks" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox styleClass="imageBorder">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/T049PKBST52-U04JG4CCLF5-eb3ac96122ee-512.jpeg" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Qui Nguyen" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Team Coach" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/laser%20eyes.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wilson Wong" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="CS-3733-C23 Instructor" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logo.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="BWH Hospital" textAlignment="CENTER" wrapText="true" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sponsor" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/WPI_Seal_FulClr.jpg" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="WPI CS Department" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

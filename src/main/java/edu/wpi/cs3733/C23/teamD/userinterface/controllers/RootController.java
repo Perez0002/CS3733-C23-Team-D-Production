@@ -87,11 +87,11 @@ public class RootController {
 
   void showCredits() {
     try {
-      final var resource = App.class.getResource("views/credits.fxml");
+      final var resource = App.class.getResource("views/about.fxml");
       final FXMLLoader loader = new FXMLLoader(resource);
       PopOver popover = new PopOver(loader.load());
       popover.setArrowSize(0);
-      popover.setTitle("Credits");
+      popover.setTitle("About");
       popover.show(App.getPrimaryStage());
     } catch (IOException e) {
       e.printStackTrace();
