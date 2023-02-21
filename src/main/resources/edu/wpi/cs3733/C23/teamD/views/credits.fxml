@@ -14,7 +14,7 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="Credits" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="creditsLabel" text="About" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
@@ -44,11 +44,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Abagail Albuquerque" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -66,10 +63,7 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -86,11 +80,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Bryce Lukens" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Assistant Lead Engineer" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -107,11 +98,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Gibson Phillips" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -128,11 +116,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Jonathan Asher" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -153,11 +138,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wyatt Harris" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Documentation Analyst" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -174,11 +156,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Annie Zimmerman" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Project Manager" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -195,11 +174,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Theo Winter" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Scrum Master" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -216,11 +192,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Liv Perez" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Assistant Lead Engineer" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -237,11 +210,8 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="womp" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Ari Schecter" textAlignment="CENTER" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Lead Software Engineer" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
