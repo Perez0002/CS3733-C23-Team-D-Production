@@ -17,6 +17,10 @@ public class PathfindingMapNode extends MapNode {
     /* Superclass object */
     super(node);
     /* Creates popup on mouse click */
+
+    if (this.getNodeType().getValue().equals("HALL")) {
+      nodeRepresentation.setVisible(false);
+    }
     nodeRepresentation.setOnMouseClicked(
         event -> {
           this.MakePopup();
