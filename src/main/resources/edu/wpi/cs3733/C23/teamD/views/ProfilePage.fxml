@@ -131,7 +131,7 @@
                            <children>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="First Name">
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="First Name">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -144,7 +144,7 @@
                               </VBox>
                               <VBox prefHeight="42.0" prefWidth="300.0" spacing="3.0">
                                  <children>
-                                    <Label text="Last Name">
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Last Name">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -154,7 +154,7 @@
                               </VBox>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Email">
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Email">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -164,7 +164,7 @@
                               </VBox>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Phone Number">
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Phone Number">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -174,7 +174,7 @@
                               </VBox>
                               <VBox spacing="3.0">
                                  <children>
-                                    <Label text="Address">
+                                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Address">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>

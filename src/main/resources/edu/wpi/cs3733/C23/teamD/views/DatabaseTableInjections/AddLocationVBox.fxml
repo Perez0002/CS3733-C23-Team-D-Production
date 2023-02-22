@@ -16,8 +16,8 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="459.0" spacing="16.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
-                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Location" />
+                  <MFXButton onAction="#clearFields" prefHeight="53.0" prefWidth="128.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Add Location" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="25.0" right="25.0" />
@@ -27,19 +27,19 @@
          <center>
             <VBox prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Long Name" />
                   <MFXTextField fx:id="longNameTextField" prefWidth="300.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Short Name">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Short Name">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <MFXTextField fx:id="shortNameTextField" prefHeight="49.0" prefWidth="300.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location Type">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <MFXTextField fx:id="nodeTypeTextField" prefWidth="300.0" />
                   <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
                      <VBox.margin>

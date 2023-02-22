@@ -19,12 +19,12 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <HBox minHeight="26.0" prefHeight="26.0" prefWidth="380.0" styleClass="tabHBox">
+            <HBox prefHeight="1.0" prefWidth="200.0" styleClass="tabHBox">
                <VBox.margin>
-                  <Insets right="20.0" top="-30.0" />
+                  <Insets right="20.0" />
                </VBox.margin>
             </HBox>
-            <Label prefHeight="33.0" prefWidth="380.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
+            <Label prefWidth="400.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -35,7 +35,7 @@
                <children>
                   <VBox prefHeight="75.0" prefWidth="100.0">
                      <children>
-                        <Label text="Date">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Date">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -45,13 +45,10 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding></MFXDatePicker>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false" styleClass="serviceRequestMFXComboBox">
                      <children>
-                        <Label text="Starting Location">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Starting Location">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -61,7 +58,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" styleClass="serviceRequestMFXComboBox">
                      <children>
-                        <Label text="Destination">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Destination">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -112,11 +109,8 @@
    </left>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <right>
-            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="50.0" BorderPane.alignment="BOTTOM_RIGHT" />
-         </right>
          <bottom>
-            <VBox prefWidth="850.0" BorderPane.alignment="CENTER">
+            <VBox prefWidth="740.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefWidth="756.0" spacing="24.0">
                      <children>
@@ -128,14 +122,17 @@
                         <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 3" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="30.0" top="30.0" />
+                        <Insets bottom="30.0" right="50.0" top="30.0" />
                      </VBox.margin>
                   </HBox>
                </children>
             </VBox>
          </bottom>
          <center>
-            <BorderPane fx:id="pathfindingBorderPane" prefHeight="200.0" prefWidth="200.0" styleClass="mapEditorMapHolder" BorderPane.alignment="CENTER" />
+            <BorderPane fx:id="pathfindingBorderPane" prefHeight="200.0" prefWidth="200.0" styleClass="mapEditorMapHolder" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="50.0" />
+               </BorderPane.margin></BorderPane>
          </center>
          <BorderPane.margin>
             <Insets top="30.0" />
