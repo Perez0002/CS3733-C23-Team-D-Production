@@ -125,10 +125,7 @@ public class ServiceRequestHubController {
   }
 
   void submit() throws IOException {
-    System.out.println("Submit Pressed");
     boolean submission = false;
-    submission = currentController.submit();
-    System.out.println("Submitting");
 
     if (currentController instanceof HubBoxController) {
     } else if (currentController instanceof PatientTransportVBoxController) {
