@@ -12,7 +12,10 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -52,6 +55,8 @@ public class PathfindingController {
   @FXML private MFXButton floor4Button;
 
   @FXML private MFXButton floor5Button;
+
+  @FXML private MFXDatePicker datePicker;
 
   private MFXButton[] floorButtons = new MFXButton[6];
 
@@ -155,12 +160,28 @@ public class PathfindingController {
   void submit() {
     Pathfinder pathfinder = new Pathfinder();
 
+    Date dateToRun =
+        datePicker.getValue() == null
+            ? new Date()
+            : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllCurrentMoves(dateToRun);
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      Move currentMove = move;
+      for (int i = 0; i < baseMoveList.size(); i++) {
+        if (baseMoveList.get(i).getLongName().equals(currentMove.getLongName())) {
+          System.out.println("SAME");
+          if (baseMoveList.get(i).getMoveDate().after(currentMove.getMoveDate())) {
+            currentMove = baseMoveList.get(i);
+            System.out.println(currentMove.getLongName());
+          }
+        }
+      }
+      pathNodes.put(
+          currentMove.getNodeID(), new PathNode(currentMove.getNode(), currentMove.getLocation()));
     }
 
     for (Edge edge : baseEdgeList) {
@@ -172,11 +193,12 @@ public class PathfindingController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      try {
+      if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
         pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      }
+
+      if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
         pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
-      } catch (Exception e) {
-        e.printStackTrace();
       }
     }
 
