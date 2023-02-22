@@ -26,7 +26,6 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   @FXML private Parent fieldLocation;
   @FXML private LocationComboBoxController fieldLocationController;
   @FXML private MFXComboBox urgencyBox;
-  private boolean helpDisplayed = false;
 
   @Override
   public void clearTransportForms() {}
@@ -107,13 +106,10 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     radioBSL4.setSelected(false);
     urgencyBox.clearSelection();
     return true;
-    // System.out.print("Fields Cleared\n");
   }
 
   private boolean isFieldsSaturated() {
-    // System.out.print("Submit Success2: ");
-    return (fieldReason.getText() != ""
-        && (fieldLocationController.getLocation() != null)
+    return ((fieldLocationController.getLocationLongName() != null)
         && staffIDTextFieldController.getEmployeeName() != null
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()

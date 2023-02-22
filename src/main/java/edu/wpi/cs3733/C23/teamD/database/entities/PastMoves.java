@@ -17,4 +17,10 @@ public class PastMoves {
   @Id @Getter @Setter private Date moveDate;
 
   public PastMoves() {}
+
+  public PastMoves(Move m) {
+    this.nodeID = m.getNodeID();
+    this.locationName = m.getLongName();
+    this.moveDate = m.getMoveDate();
+  }
 }

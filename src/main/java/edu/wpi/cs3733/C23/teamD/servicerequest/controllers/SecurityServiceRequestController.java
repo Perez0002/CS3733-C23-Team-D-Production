@@ -70,8 +70,7 @@ public class SecurityServiceRequestController extends ServiceRequestController
 
   private boolean checkFields() {
     if (employeeBoxController.getEmployeeName() != null
-        && locationBoxController.getLocation() != null
-        && problemTextField.getText() != null
+        && locationBoxController.getLocationLongName() != null
         && urgencyBoxController.getUrgency() != null) {
       return true;
     } else return false;

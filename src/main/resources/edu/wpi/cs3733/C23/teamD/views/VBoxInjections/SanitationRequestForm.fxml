@@ -23,7 +23,7 @@
          <children>
             <VBox>
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee *">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -33,13 +33,13 @@
             </VBox>
             <VBox prefWidth="300.0">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text=" Urgency" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text=" Urgency *" />
                   <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
                </children>
             </VBox>
             <VBox>
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location *">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -55,19 +55,19 @@
                      </VBox.margin></Line>
                </children>
             </VBox>
-            <VBox>
+            <VBox styleClass="mfx-textfield" stylesheets="@../updatedStyleGuide.css">
                <children>
                   <Label styleClass="serviceRequestMFXTextFieldLabel" text="Describe the Issue">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXTextField fx:id="fieldReason" floatMode="DISABLED" minHeight="-Infinity" prefHeight="42.0" prefWidth="300.0" promptText="Description" />
+                  <MFXTextField fx:id="fieldReason" floatMode="DISABLED" minHeight="-Infinity" prefHeight="109.0" prefWidth="221.0" promptText="Description" />
                </children>
             </VBox>
-            <VBox spacing="10.0">
+            <VBox spacing="5.0">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="How Hazardous is the Issue">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="How Hazardous is the Issue *">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
