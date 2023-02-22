@@ -28,7 +28,8 @@ public class AVRequestController implements ServiceRequestVBoxController {
     locationBoxController
         .giveComboBox()
         .setOnAction(
-            event -> ServiceRequestMap.getMapSingleton().mapCenters(locationBoxController));
+            event ->
+                ServiceRequestMapController.getMapSingleton().mapCenters(locationBoxController));
   }
 
   public void clearTransportForms() {

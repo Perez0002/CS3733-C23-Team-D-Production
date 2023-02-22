@@ -55,7 +55,7 @@
       </VBox>
    </center>
    <right>
-      <BorderPane prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="theContainerForMap" prefHeight="768.0" prefWidth="615.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="25.0" left="20.0" right="25.0" top="25.0" />
          </BorderPane.margin>

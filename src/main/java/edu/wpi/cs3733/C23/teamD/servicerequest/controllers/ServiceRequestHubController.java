@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.PopOver;
 
@@ -27,6 +28,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton submitButton;
 
   @FXML private MFXButton helpButton;
+
+  @FXML private BorderPane theContainerForMap;
 
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 

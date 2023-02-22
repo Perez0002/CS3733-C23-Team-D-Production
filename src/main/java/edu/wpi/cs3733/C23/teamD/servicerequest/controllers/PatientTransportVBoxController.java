@@ -28,11 +28,15 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     startingLocationController
         .giveComboBox()
         .setOnAction(
-            event -> ServiceRequestMap.getMapSingleton().mapCenters(startingLocationController));
+            event ->
+                ServiceRequestMapController.getMapSingleton()
+                    .mapCenters(startingLocationController));
     endLocationComboBoxController
         .giveComboBox()
         .setOnAction(
-            event -> ServiceRequestMap.getMapSingleton().mapCenters(endLocationComboBoxController));
+            event ->
+                ServiceRequestMapController.getMapSingleton()
+                    .mapCenters(endLocationComboBoxController));
   };
 
   public Node getVBox() {

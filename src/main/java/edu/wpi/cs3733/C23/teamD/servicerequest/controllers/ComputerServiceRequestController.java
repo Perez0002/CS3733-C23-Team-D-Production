@@ -38,7 +38,8 @@ public class ComputerServiceRequestController extends ServiceRequestController
     locationBoxController
         .giveComboBox()
         .setOnAction(
-            event -> ServiceRequestMap.getMapSingleton().mapCenters(locationBoxController));
+            event ->
+                ServiceRequestMapController.getMapSingleton().mapCenters(locationBoxController));
   }
 
   @Override

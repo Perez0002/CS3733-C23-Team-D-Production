@@ -17,7 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
-public class ServiceRequestMap {
+public class ServiceRequestMapController {
 
   @FXML private BorderPane mapPaneContainer;
   @FXML private MFXButton floor1Button;
@@ -26,7 +26,7 @@ public class ServiceRequestMap {
   @FXML private MFXButton floor4Button;
   @FXML private MFXButton floor5Button;
 
-  static ServiceRequestMap mapSingleton;
+  static ServiceRequestMapController mapSingleton;
   GesturePane map;
 
   int currentFloor = 0;
@@ -40,7 +40,7 @@ public class ServiceRequestMap {
     floor5Button.setOnMouseClicked(event -> changeFloor(4));
   }
 
-  public ServiceRequestMap() {
+  public ServiceRequestMapController() {
     this.createMap();
     mapSingleton = this;
   }
@@ -75,9 +75,9 @@ public class ServiceRequestMap {
     int AverageY = sumY / totalNodes;
 
     map = MapFactory.startBuild().withNodes(nodeList).build(currentFloor);
-    mapPaneContainer.setCenter(map);
     map.setStyle("-fx-border-color: #012D5A;");
     map.setMaxSize(700, 500);
+    mapPaneContainer.setCenter(map);
 
     centerOnNode(AverageX, AverageY);
   }
@@ -115,9 +115,9 @@ public class ServiceRequestMap {
     createMap();
   }
 
-  public static ServiceRequestMap getMapSingleton() {
+  public static ServiceRequestMapController getMapSingleton() {
     if (mapSingleton == null) {
-      new ServiceRequestMap();
+      new ServiceRequestMapController();
     }
     return mapSingleton;
   }

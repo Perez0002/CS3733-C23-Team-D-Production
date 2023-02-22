@@ -31,7 +31,8 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     fieldLocationController
         .giveComboBox()
         .setOnAction(
-            event -> ServiceRequestMap.getMapSingleton().mapCenters(fieldLocationController));
+            event ->
+                ServiceRequestMapController.getMapSingleton().mapCenters(fieldLocationController));
   }
 
   @Override
