@@ -50,6 +50,7 @@ public class PathfindingController {
 
   @FXML private BorderPane pathfindingBorderPane;
 
+  @FXML private MFXButton floorGButton;
   @FXML private MFXButton floor1Button;
 
   @FXML private MFXButton floor2Button;
@@ -59,24 +60,18 @@ public class PathfindingController {
   @FXML private MFXButton floor4Button;
 
   @FXML private MFXButton floor5Button;
-  @FXML private MFXButton floorGButton;
 
   @FXML private MFXDatePicker datePicker;
 
   private MFXButton[] floorButtons = new MFXButton[6];
-
   @FXML private MFXButton aStarButton;
-
   @FXML private MFXButton BFSButton;
-
   @FXML private MFXButton DFSButton;
   @FXML private MFXToggleButton serviceRequestLocationToggle;
 
   private RoomPickComboBoxController comboBox;
-
   private boolean helpVisible = false;
   HashMap<String, Integer> converter = new HashMap<String, Integer>();
-
   private String algorithm = "AStar";
   private ArrayList<PathNode> path = new ArrayList<>();
   private ArrayList<MapNode> mapNodes = new ArrayList<>();
@@ -113,7 +108,7 @@ public class PathfindingController {
     return new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
           if (i == floor) {
             floorButtons[i].setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           } else {
@@ -285,6 +280,15 @@ public class PathfindingController {
 
           lastNode = pathNode;
         }
+
+        for (MapNode node : mapNodes) {
+          ArrayList<Move> futureMoves =
+              FDdb.getInstance().getFutureMoves(node.getNode().getLocation(), dateToRun);
+
+          ((PathfindingMapNode) node)
+              .setMove(futureMoves.size() > 0 ? futureMoves.get(0) : new Move());
+        }
+
         for (int i = 0; i < mapNodes.size(); i++) {
           if (i - 1 >= 0) {
             ((PathfindingMapNode) mapNodes.get(i))
