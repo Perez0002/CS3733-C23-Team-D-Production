@@ -2,39 +2,37 @@ package edu.wpi.cs3733.C23.teamD.userinterface.components.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
-public class NodeComboBoxController {
+public class StatusComboBoxController {
 
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
-  TreeMap<String, Node> nodeToRoomMap;
+  TreeMap<String, ServiceRequest.Status> nodeToRoomMap;
 
-  public NodeComboBoxController() {
-    nodeToRoomMap = new TreeMap<String, Node>();
+  public StatusComboBoxController() {
+    nodeToRoomMap = new TreeMap<String, ServiceRequest.Status>();
     ArrayList<Node> nodeList = FDdb.getInstance().getAllNodes();
-    for (Node n : nodeList) {
-      String nodeID = n.getNodeID(); // long name
-      nodeToRoomMap.put(nodeID, n);
-    }
+
+    nodeToRoomMap.put(ServiceRequest.Status.BLANK.toString(), ServiceRequest.Status.BLANK);
+    nodeToRoomMap.put(
+        ServiceRequest.Status.PROCESSING.toString(), ServiceRequest.Status.PROCESSING);
+    nodeToRoomMap.put(ServiceRequest.Status.DONE.toString(), ServiceRequest.Status.DONE);
   }
 
   public void initialize() {
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
   }
 
-  public Node getNode() {
+  public ServiceRequest.Status getStatus() {
     return nodeToRoomMap.get(mfxFilterComboBox.getValue());
   }
 
-  public String getNodeID() {
-    return mfxFilterComboBox.getValue();
-  }
-
-  public void setNodeID(String s) {
+  public void setStatus(String s) {
     mfxFilterComboBox.setValue(s);
   }
 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="500.0" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ChangeServiceRequestController">
+   <top>
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="66.0" prefWidth="465.0" styleClass="addFormLabel" text="Change a Service Request" BorderPane.alignment="TOP_LEFT">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <padding>
+      <Insets bottom="75.0" right="35.0" />
+   </padding>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16;" BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="70.0" prefWidth="434.0" spacing="16.0" style="-fx-fill-height: true;" BorderPane.alignment="CENTER">
+               <children>
+                  <MFXButton onAction="#clearFields" prefHeight="53.0" prefWidth="128.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Submit Changes" />
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" right="25.0" />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+         <center>
+            <VBox maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a date" />
+                  <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the Status of the Service Request">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="statusBox" prefWidth="300.0" source="../VBoxInjections/Components/StatusComboBox.fxml" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select an employee">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="employeeBox" prefWidth="300.0" source="../VBoxInjections/Components/EmployeeDropdownComboBox.fxml" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Request Type">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Label>
+                  <fx:include fx:id="requestTypeBox" prefWidth="300.0" source="../VBoxInjections/Components/RequestTypeComboBox.fxml" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Reason">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Label>
+                  <MFXTextField fx:id="reasonTextField" prefWidth="300.0" />
+                  <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+         <BorderPane.margin>
+            <Insets top="19.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
+</BorderPane>

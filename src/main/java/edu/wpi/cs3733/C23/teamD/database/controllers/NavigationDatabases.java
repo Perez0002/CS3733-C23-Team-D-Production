@@ -4,13 +4,12 @@ import edu.wpi.cs3733.C23.teamD.App;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 
 public class NavigationDatabases {
 
   public static void navigate(
       final DatabasesFXML databasesFXML,
-      Pane requestFormHubPane,
+      BorderPane requestFormHubPane,
       DatabasesFXML addpage,
       BorderPane container,
       DatabaseHubController hub) {
@@ -23,9 +22,8 @@ public class NavigationDatabases {
 
       final var resource = App.class.getResource(filename);
       final FXMLLoader loader = new FXMLLoader(resource);
-      requestFormHubPane.getChildren().clear();
       System.out.println("LOAD " + filename);
-      requestFormHubPane.getChildren().add(loader.load());
+      requestFormHubPane.setCenter(loader.load());
       hub.setCurrentController(loader.getController());
 
       DatabaseController databaseController = loader.getController();

@@ -26,7 +26,6 @@ public class MapEditorPageController {
 
   @FXML private BorderPane mapEditorPane;
   @FXML private BorderPane mapPlacement;
-
   @FXML private MFXButton floorL1Button;
   @FXML private MFXButton floorL2Button;
   @FXML private MFXButton floor1Button;
@@ -49,51 +48,43 @@ public class MapEditorPageController {
   }
 
   public EventHandler<ActionEvent> toggleEdges() {
-    return new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        edgesShown = !edgesShown;
+    return event -> {
+      edgesShown = !edgesShown;
 
-        if (edgesShown) {
-          toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
-          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
-        } else {
-          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
-          toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
-        }
+      if (edgesShown) {
+        toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+        toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
+      } else {
+        toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+        toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
+      }
 
-        for (MapEdge edge : edgeList) {
-          edge.getEdgeRepresentation().setVisible(edgesShown);
-        }
+      for (MapEdge edge : edgeList) {
+        edge.getEdgeRepresentation().setVisible(edgesShown);
       }
     };
   }
 
   public EventHandler<ActionEvent> changeFloor(int floor) {
 
-    return new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-
-        if (floor != currentFloor) {
-          for (int i = 0; i < 5; i++) {
-            if (i == floor) {
-              // floorButtons[i].setDisable(true);
-              floorButtons[i].getStyleClass().remove("mapEditorFloorButton");
-              floorButtons[i].getStyleClass().add("mapEditorFloorButtonSelected");
-            } else {
-              floorButtons[i].setDisable(false);
-              floorButtons[i].getStyleClass().remove("mapEditorFloorButtonSelected");
-              floorButtons[i].getStyleClass().add("mapEditorFloorButton");
-            }
+    return event -> {
+      if (floor != currentFloor) {
+        for (int i = 0; i < 5; i++) {
+          if (i == floor) {
+            // floorButtons[i].setDisable(true);
+            floorButtons[i].getStyleClass().remove("mapEditorFloorButton");
+            floorButtons[i].getStyleClass().add("mapEditorFloorButtonSelected");
+          } else {
+            floorButtons[i].setDisable(false);
+            floorButtons[i].getStyleClass().remove("mapEditorFloorButtonSelected");
+            floorButtons[i].getStyleClass().add("mapEditorFloorButton");
           }
-
-          gesturePane =
-              MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
-
-          mapPlacement.setCenter(gesturePane);
-          currentFloor = floor;
         }
+
+        gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+
+        mapPlacement.setCenter(gesturePane);
+        currentFloor = floor;
       }
     };
   }
@@ -105,7 +96,9 @@ public class MapEditorPageController {
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      if (move.getNode() != null) {
+        pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      }
     }
 
     HashMap<String, MapNode> mapNodes = new HashMap<>();

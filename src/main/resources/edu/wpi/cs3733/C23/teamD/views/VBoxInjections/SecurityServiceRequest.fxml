@@ -19,7 +19,7 @@
             <children>
 
                 <VBox fx:id="staffDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
+                    <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee *">
                         <VBox.margin>
                             <Insets left="5.0" />
                         </VBox.margin>
@@ -28,7 +28,7 @@
                 </VBox>
                 <VBox fx:id="urgencyDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency *">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
@@ -38,7 +38,7 @@
                 </VBox>
                 <VBox fx:id="locationDropdownBox" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location *">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
@@ -58,34 +58,23 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
+                        <MFXTextField fx:id="problemTextField" floatMode="DISABLED" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
                     </children>
                 </VBox>
-                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <Label text="Select one of the fields below *">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin></Label>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                     <children>
-                        <VBox alignment="CENTER">
-                            <children>
-                                <Label maxWidth="80.0" minHeight="40.0" minWidth="90.0" prefHeight="40.0" prefWidth="90.0" styleClass="serviceRequestMFXTextFieldLabel" text="Add security to location" textAlignment="CENTER" wrapText="true">
-                                    <VBox.margin>
-                                        <Insets left="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <MFXCheckbox fx:id="addSecurityNode" />
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER">
-                            <children>
-                                <Label maxHeight="40.0" maxWidth="90.0" minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="90.0" styleClass="serviceRequestMFXTextFieldLabel" text="Request review for security concern" textAlignment="CENTER" wrapText="true">
-                                    <VBox.margin>
-                                        <Insets left="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <MFXCheckbox fx:id="addRequestSecurityNode" />
-                            </children>
-                        </VBox>
+                          <MFXCheckbox fx:id="addRequestSecurityNode" text="Request review for security concern">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></MFXCheckbox>
+                          <MFXCheckbox fx:id="addSecurityNode" text="Add security to location" />
                     </children>
                     <VBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="12.0" top="-10.0" />
                     </VBox.margin>
                 </HBox>
             </children>
