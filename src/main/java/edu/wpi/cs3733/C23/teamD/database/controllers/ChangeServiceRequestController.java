@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.database.controllers;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RequestTypeComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.StatusComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -28,7 +29,8 @@ public class ChangeServiceRequestController implements AddFormController<Service
 
   @FXML private MFXDatePicker datePicker;
 
-  @FXML private MFXTextField requestTypeTextField;
+  @FXML private Parent requestTypeBox;
+  @FXML private RequestTypeComboBoxController requestTypeBoxController;
 
   @FXML private StatusComboBoxController statusBoxController;
   @FXML private Text errorText;
@@ -37,7 +39,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
   public void submit() {
     if (checkFields()) {
       if (currentRequest != null) {
-        currentRequest.setServiceRequestType(requestTypeTextField.getText());
+        currentRequest.setServiceRequestType(requestTypeBoxController.getRequestType());
         currentRequest.setReason(reasonTextField.getText());
         currentRequest.setStat(statusBoxController.getStatus());
         currentRequest.setDateAndTime(
@@ -64,7 +66,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
         || employeeBoxController.getEmployeeName() == null
         || statusBoxController.getStatus() == null
         || datePicker.getValue() == null
-        || requestTypeTextField.getText() == null);
+        || requestTypeBoxController.getRequestType() == null);
   }
 
   @FXML
@@ -89,7 +91,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
               + " "
               + serviceRequest.getAssociatedStaff().getLastName());
       reasonTextField.setText(serviceRequest.getReason());
-      requestTypeTextField.setText(serviceRequest.getServiceRequestType());
+      requestTypeBoxController.setRequestType(serviceRequest.getServiceRequestType());
       datePicker.setValue(
           serviceRequest.getDateAndTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }

@@ -60,7 +60,7 @@
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Text>
-                  <MFXTextField fx:id="requestTypeTextField" prefWidth="300.0" />
+                  <fx:include fx:id="requestTypeBox" prefWidth="300.0" source="../VBoxInjections/Components/RequestTypeComboBox.fxml" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reason">
                      <VBox.margin>
                         <Insets top="32.0" />
