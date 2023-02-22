@@ -17,6 +17,10 @@ public class PathfindingMapNode extends MapNode {
     /* Superclass object */
     super(node);
     /* Creates popup on mouse click */
+
+    if (this.getNodeType().getValue().equals("HALL")) {
+      nodeRepresentation.setVisible(false);
+    }
     nodeRepresentation.setOnMouseClicked(
         event -> {
           this.MakePopup();
@@ -66,8 +70,19 @@ public class PathfindingMapNode extends MapNode {
       System.out.println("Switching Floor");
       nextNode.switchFloor();
     }
+    if (nextNode.getNodeType().getValue().equals("HALL")) {
+      nextNode.fastForward();
+    } else {
+      Platform.runLater(() -> nextNode.MakePopup());
+    }
+  }
 
-    Platform.runLater(() -> nextNode.MakePopup());
+  private void fastForward() {
+    this.focusNext();
+  }
+
+  private void rewind() {
+    this.focusPrev();
   }
 
   private void switchFloor() {
@@ -79,7 +94,11 @@ public class PathfindingMapNode extends MapNode {
     if (!this.getNodeFloor().getValue().equals(prevNode.getNodeFloor().getValue())) {
       prevNode.switchFloor();
     }
-    Platform.runLater(() -> prevNode.MakePopup());
+    if (prevNode.getNodeType().getValue().equals("HALL")) {
+      prevNode.rewind();
+    } else {
+      Platform.runLater(() -> prevNode.MakePopup());
+    }
   }
 
   public void setFloorSwitchEvent(javafx.event.EventHandler floorSwitchEvent) {
