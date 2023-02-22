@@ -24,6 +24,13 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   @FXML private MFXDatePicker datePicker;
 
+  public void initialize() {
+    locationBoxController
+        .giveComboBox()
+        .setOnAction(
+            event -> ServiceRequestMap.getMapSingleton().mapCenters(locationBoxController));
+  }
+
   public void clearTransportForms() {
     employeeBoxController.clearForm();
     locationBoxController.clearForm();

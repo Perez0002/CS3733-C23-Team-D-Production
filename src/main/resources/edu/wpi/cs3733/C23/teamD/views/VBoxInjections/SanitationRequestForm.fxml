@@ -33,13 +33,13 @@
             </VBox>
             <VBox prefWidth="300.0">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text=" Urgency" />
+                  <Label text="Urgency" />
                   <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
                </children>
             </VBox>
             <VBox>
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                  <Label text="Location">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>

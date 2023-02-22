@@ -63,12 +63,9 @@ public class PathfindingController {
   private RoomPickComboBoxController comboBox;
 
   private boolean helpVisible = false;
-  HashMap<String, Integer> converter = new HashMap<String, Integer>();
 
   private String algorithm = "AStar";
   private ArrayList<PathNode> path = new ArrayList<>();
-  private ArrayList<MapNode> mapNodes = new ArrayList<>();
-  private ArrayList<MapEdge> mapEdges = new ArrayList<>();
 
   public PathfindingController() {}
 
@@ -108,6 +105,20 @@ public class PathfindingController {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
         }
+        ArrayList<MapNode> mapNodes = new ArrayList<>();
+        ArrayList<MapEdge> mapEdges = new ArrayList<>();
+        MapNode lastNode = null;
+        for (PathNode node : path) {
+          MapNode mapNode = new PathfindingMapNode(node);
+          mapNodes.add(mapNode);
+          if (lastNode != null) {
+            MapEdge tempEdge = new MapEdge(new PathEdge(lastNode.getNode(), node));
+            tempEdge.setNodes(lastNode, mapNode);
+            mapEdges.add(tempEdge);
+          }
+          lastNode = mapNode;
+        }
+
         pathfindingBorderPane.setCenter(
             MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
       }
@@ -116,11 +127,7 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
-    converter.put("L1", 0);
-    converter.put("L2", 1);
-    converter.put("1", 2);
-    converter.put("2", 3);
-    converter.put("3", 4);
+
     floor1Button.setOnAction(changeFloor(0));
     floor2Button.setOnAction(changeFloor(1));
     floor3Button.setOnAction(changeFloor(2));
@@ -179,6 +186,14 @@ public class PathfindingController {
     String startNode = startRoomComboBoxController.getNodeValue();
     String endNode = endRoomComboBoxController.getNodeValue();
 
+    HashMap<String, Integer> converter = new HashMap<String, Integer>();
+
+    converter.put("L1", 0);
+    converter.put("L2", 1);
+    converter.put("1", 2);
+    converter.put("2", 3);
+    converter.put("3", 4);
+
     if (startNode != null && endNode != null) {
       path = pathfinder.pathfind(pathNodes.get(startNode), pathNodes.get(endNode), algorithm);
       if (path.size() == 1) {
@@ -186,36 +201,6 @@ public class PathfindingController {
       } else if (path.size() == 0) {
         pathResultText.setText("There is no Valid Path Between These Two Locations");
       } else {
-        ArrayList<MapNode> mapNodes = new ArrayList<>();
-        ArrayList<MapEdge> mapEdges = new ArrayList<>();
-        MapNode lastNode = null;
-        for (PathNode node : path) {
-          PathfindingMapNode pathNode = new PathfindingMapNode(node);
-          pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
-          mapNodes.add(pathNode);
-          if (lastNode != null) {
-            MapEdge edge = new MapEdge(new PathEdge(lastNode.getNode(), node));
-            edge.setNodes(lastNode, pathNode);
-            mapEdges.add(edge);
-          }
-
-          lastNode = pathNode;
-        }
-        for (int i = 0; i < mapNodes.size(); i++) {
-          if (i - 1 >= 0) {
-            ((PathfindingMapNode) mapNodes.get(i))
-                .addPrevNode((PathfindingMapNode) mapNodes.get(i - 1));
-          }
-          if (i + 1 < mapNodes.size()) {
-            ((PathfindingMapNode) mapNodes.get(i))
-                .addNextNode((PathfindingMapNode) mapNodes.get(i + 1));
-          }
-        }
-        this.mapEdges.clear();
-        this.mapNodes.clear();
-        this.mapEdges.addAll(mapEdges);
-        this.mapNodes.addAll(mapNodes);
-
         changeFloor(converter.get(pathNodes.get(startNode).getNode().getFloor())).handle(null);
       }
     } else {

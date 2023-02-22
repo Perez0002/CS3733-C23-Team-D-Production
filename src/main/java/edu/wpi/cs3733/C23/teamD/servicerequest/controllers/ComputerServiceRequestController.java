@@ -35,6 +35,10 @@ public class ComputerServiceRequestController extends ServiceRequestController
 
   public void initialize() {
     deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));
+    locationBoxController
+        .giveComboBox()
+        .setOnAction(
+            event -> ServiceRequestMap.getMapSingleton().mapCenters(locationBoxController));
   }
 
   @Override

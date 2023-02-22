@@ -42,4 +42,8 @@ public class LocationComboBoxController {
   public void clearForm() {
     mfxFilterComboBox.setValue(null);
   }
+
+  public MFXFilterComboBox<String> giveComboBox() {
+    return mfxFilterComboBox;
+  }
 }

@@ -25,7 +25,12 @@ public class SecurityServiceRequestController extends ServiceRequestController
 
   public SecurityServiceRequestController() {}
 
-  public void initialize() {}
+  public void initialize() {
+    locationBoxController
+        .giveComboBox()
+        .setOnAction(
+            event -> ServiceRequestMap.getMapSingleton().mapCenters(locationBoxController));
+  }
 
   public void clearFields() {
     employeeBoxController.clearForm();
