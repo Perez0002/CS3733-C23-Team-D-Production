@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.database.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -72,9 +73,18 @@ public class ServiceRequestTableController extends Application
               return new SimpleStringProperty(param.getValue().getStat().toString());
             }
           });
-      status.setCellFactory(TextFieldTableCell.forTableColumn());
       staff.setCellValueFactory(
-          new PropertyValueFactory<ServiceRequest, String>("associatedStaff"));
+          new Callback<
+              TableColumn.CellDataFeatures<ServiceRequest, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(
+                TableColumn.CellDataFeatures<ServiceRequest, String> param) {
+              Employee e = FDdb.getInstance().getEmployee(param.getValue().getAssociatedStaff());
+              String employee = e.getFirstName() + " " + e.getLastName();
+              return new SimpleStringProperty(employee);
+            }
+          });
+      staff.setCellFactory(TextFieldTableCell.forTableColumn());
       date.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
       requestType.setCellValueFactory(
           new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
@@ -141,7 +151,17 @@ public class ServiceRequestTableController extends Application
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());
       staff.setCellValueFactory(
-          new PropertyValueFactory<ServiceRequest, String>("associatedStaff"));
+          new Callback<
+              TableColumn.CellDataFeatures<ServiceRequest, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(
+                TableColumn.CellDataFeatures<ServiceRequest, String> param) {
+              Employee e = FDdb.getInstance().getEmployee(param.getValue().getAssociatedStaff());
+              String employee = e.getFirstName() + " " + e.getLastName();
+              return new SimpleStringProperty(employee);
+            }
+          });
+      staff.setCellFactory(TextFieldTableCell.forTableColumn());
       date.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
       requestType.setCellValueFactory(
           new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
