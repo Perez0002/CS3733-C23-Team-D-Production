@@ -64,10 +64,6 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
     try {
       this.delete(oldLoc);
       this.save(newLoc);
-
-      this.locationNames.remove(oldLoc);
-      this.locationNames.add(newLoc);
-
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }

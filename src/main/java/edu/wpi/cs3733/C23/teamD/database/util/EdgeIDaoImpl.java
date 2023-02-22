@@ -60,6 +60,15 @@ public class EdgeIDaoImpl implements IDao<Edge> {
     }
   }
 
+  public void updatePK(Edge oldEdge, Edge newEdge) {
+    try {
+      this.delete(oldEdge);
+      this.save(newEdge);
+    } catch (Exception ex) {
+      session.getTransaction().rollback();
+    }
+  }
+
   @Override
   public ArrayList<Edge> getAll() {
     return this.edges;
