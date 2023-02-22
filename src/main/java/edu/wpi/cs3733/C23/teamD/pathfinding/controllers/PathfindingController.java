@@ -15,8 +15,8 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
@@ -280,6 +280,15 @@ public class PathfindingController {
 
           lastNode = pathNode;
         }
+
+        for (MapNode node : mapNodes) {
+          ArrayList<Move> futureMoves =
+              FDdb.getInstance().getFutureMoves(node.getNode().getLocation(), dateToRun);
+
+          ((PathfindingMapNode) node)
+              .setMove(futureMoves.size() > 0 ? futureMoves.get(0) : new Move());
+        }
+
         for (int i = 0; i < mapNodes.size(); i++) {
           if (i - 1 >= 0) {
             ((PathfindingMapNode) mapNodes.get(i))
