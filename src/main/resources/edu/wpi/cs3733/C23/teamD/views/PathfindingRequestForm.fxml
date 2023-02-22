@@ -118,8 +118,9 @@
          <bottom>
             <VBox prefWidth="850.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefWidth="850.0" spacing="24.0">
+                  <HBox alignment="CENTER" prefWidth="756.0" spacing="24.0">
                      <children>
+                        <MFXButton fx:id="floorGButton" styleClass="floorSwitchButton" text="G" />
                         <MFXButton fx:id="floor1Button" styleClass="floorSwitchButton" text="L1" />
                         <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="L2" />
                         <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 1" />

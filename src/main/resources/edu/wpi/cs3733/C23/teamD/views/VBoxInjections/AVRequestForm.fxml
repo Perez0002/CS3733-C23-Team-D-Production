@@ -68,7 +68,7 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="systemFailureTextField" prefHeight="30.0" prefWidth="300.0" promptText="Enter what system isn't working properly. " />
+                        <MFXTextField fx:id="systemFailureTextField" floatMode="DISABLED" prefHeight="134.0" prefWidth="300.0" promptText="Enter the system working incorrectly." styleClass="mfx-text-field" stylesheets="@../updatedStyleGuide.css" />
                     </children>
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />

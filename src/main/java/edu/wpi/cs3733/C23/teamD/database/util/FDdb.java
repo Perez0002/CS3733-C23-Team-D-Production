@@ -101,6 +101,10 @@ public class FDdb {
     edgeIDao.update(e);
   }
 
+  public void updateEdgePK(Edge oldEdge, Edge newEdge) {
+    edgeIDao.updatePK(oldEdge, newEdge);
+  }
+
   public void deleteEdge(Edge e) {
     edgeIDao.delete(e);
   }
@@ -124,6 +128,10 @@ public class FDdb {
 
   public void updateLocationName(LocationName l) {
     locationNameIDao.update(l);
+  }
+
+  public void updateLocationNamePK(LocationName oldLoc, LocationName newLoc) {
+    locationNameIDao.updatePK(oldLoc, newLoc);
   }
 
   public void deleteLocationName(LocationName l) {

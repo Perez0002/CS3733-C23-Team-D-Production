@@ -10,7 +10,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -56,7 +55,50 @@ public class ServiceRequestTableController extends Application
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    serviceTable.setEditable(true);
+    ObservableList<ServiceRequest> requestList =
+        FXCollections.observableArrayList(FDdb.getInstance().getAllGenericServiceRequests());
+    if (requestList.size() != 0) {
+      formID.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
+      reason.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("reason"));
+      status.setCellValueFactory(
+          new Callback<
+              TableColumn.CellDataFeatures<ServiceRequest, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(
+                TableColumn.CellDataFeatures<ServiceRequest, String> param) {
+              return new SimpleStringProperty(param.getValue().getStat().toString());
+            }
+          });
+      status.setCellFactory(TextFieldTableCell.forTableColumn());
+      staff.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequest, String>("associatedStaff"));
+      date.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
+      requestType.setCellValueFactory(
+          new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
+    }
+    serviceTable.setItems(requestList);
+    serviceTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    serviceTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = serviceTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < serviceTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
+  }
 
   @Override
   public void deselect() {
@@ -65,6 +107,11 @@ public class ServiceRequestTableController extends Application
 
   public Node getBox() {
     return ServiceRequestTableBorderPane;
+  }
+
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(serviceTable.getSelectionModel().getSelectedItem());
   }
 
   public void setVisible() {
@@ -90,21 +137,6 @@ public class ServiceRequestTableController extends Application
             public ObservableValue<String> call(
                 TableColumn.CellDataFeatures<ServiceRequest, String> param) {
               return new SimpleStringProperty(param.getValue().getStat().toString());
-            }
-          });
-      status.setOnEditCommit(
-          new EventHandler<TableColumn.CellEditEvent<ServiceRequest, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ServiceRequest, String> event) {
-              ServiceRequest form = event.getRowValue();
-              String newStatus = event.getNewValue();
-              try {
-                ServiceRequest.Status stat1 = Enum.valueOf(ServiceRequest.Status.class, newStatus);
-                form.setStat(stat1);
-                FDdb.getInstance().updateServiceRequest(form);
-              } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-              }
             }
           });
       status.setCellFactory(TextFieldTableCell.forTableColumn());

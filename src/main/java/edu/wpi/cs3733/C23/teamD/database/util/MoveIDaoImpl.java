@@ -89,8 +89,12 @@ public class MoveIDaoImpl implements IDao<Move> {
   public void delete(Move m) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE Move where moveDate=:id");
+      Query q =
+          session.createQuery(
+              "DELETE Move where moveDate=:id AND node=:node AND location=:location");
       q.setParameter("id", m.getMoveDate());
+      q.setParameter("node", m.getNode());
+      q.setParameter("location", m.getLocation());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
 
@@ -128,7 +132,7 @@ public class MoveIDaoImpl implements IDao<Move> {
           }
         }
         Move m = new Move(curNode, curLocat, format.parse(data[2]));
-        FDdb.getInstance().saveMove(m);
+        this.save(m);
       }
       fileReader.close();
     } catch (IOException | ParseException e) {
