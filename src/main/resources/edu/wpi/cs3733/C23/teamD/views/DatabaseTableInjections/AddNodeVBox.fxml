@@ -16,14 +16,17 @@
          <center>
             <VBox prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate" />
-                  <MFXTextField fx:id="yCoordTextField" prefWidth="300.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X-Coordinate">
                      <VBox.margin>
-                        <Insets top="32.0" />
+                        <Insets />
                      </VBox.margin>
                   </Text>
                   <MFXTextField prefHeight="49.0" prefWidth="300.0" fx:id="xCoordTextField" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin></Text>
+                  <MFXTextField fx:id="yCoordTextField" prefWidth="300.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building">
                      <VBox.margin>
                         <Insets top="32.0" />

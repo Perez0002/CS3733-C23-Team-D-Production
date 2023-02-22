@@ -25,9 +25,9 @@
          <center>
             <VBox prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From Node" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Start Node" />
                   <fx:include fx:id="fromNodeBox" prefWidth="300.0" source="../VBoxInjections/Components/NodeComboBox.fxml" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Node">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End Node">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>

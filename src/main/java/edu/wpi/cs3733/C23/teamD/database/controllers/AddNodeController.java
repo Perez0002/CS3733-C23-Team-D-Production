@@ -68,8 +68,8 @@ public class AddNodeController implements AddFormController<Node> {
             (int) Screen.getPrimary().getBounds().getWidth() - 375,
             (int) Screen.getPrimary().getBounds().getHeight() - 275);
         databaseController.refresh();
-      } else {
         dataToChange(null);
+      } else {
         currentNode.setBuilding(buildingTextField.getText());
         currentNode.setFloor(floorTextField.getText());
         currentNode.setYcoord(Integer.parseInt(yCoordTextField.getText()));
@@ -85,6 +85,7 @@ public class AddNodeController implements AddFormController<Node> {
 
         FDdb.getInstance().updateNodePK(currentNode);
         databaseController.refresh();
+        dataToChange(null);
       }
     } else {
       errorText.setVisible(true);

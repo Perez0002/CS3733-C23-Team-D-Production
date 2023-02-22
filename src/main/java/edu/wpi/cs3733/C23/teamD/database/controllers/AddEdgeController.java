@@ -41,7 +41,7 @@ public class AddEdgeController implements AddFormController<Edge> {
             (int) Screen.getPrimary().getBounds().getWidth() - 375,
             (int) Screen.getPrimary().getBounds().getHeight() - 275);
       } else {
-        Edge newEdge = currentEdge;
+        Edge newEdge = new Edge();
         newEdge.setFromNode(fromNodeBoxController.getNode());
         newEdge.setToNode(toNodeBoxController.getNode());
         newEdge.genEdgeID();
