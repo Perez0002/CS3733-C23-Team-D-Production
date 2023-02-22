@@ -336,7 +336,7 @@ public class MapEditorMapNode extends MapNode {
         nodeList.add(e.getToNode());
       }
     }
-    System.out.println(nodeList.size());
+
     for (int i = 0; i < nodeList.size(); i++) {
       for (int j = i + 1; j < nodeList.size(); j++) {
         Edge temp =
