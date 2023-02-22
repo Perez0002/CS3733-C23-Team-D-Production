@@ -28,10 +28,10 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="500.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16;" BorderPane.alignment="CENTER">
          <bottom>
-            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="469.0" spacing="16.0" style="-fx-fill-height: true;" BorderPane.alignment="CENTER">
+            <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="70.0" prefWidth="434.0" spacing="16.0" style="-fx-fill-height: true;" BorderPane.alignment="CENTER">
                <children>
-                  <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
-                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Submit Changes" />
+                  <MFXButton onAction="#clearFields" prefHeight="53.0" prefWidth="128.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Submit Changes" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="25.0" right="25.0" />
@@ -41,31 +41,31 @@
          <center>
             <VBox maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a date" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a date" />
                   <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the Status of the Service Request">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the Status of the Service Request">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <fx:include fx:id="statusBox" prefWidth="300.0" source="../VBoxInjections/Components/StatusComboBox.fxml" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select an employee">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select an employee">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <fx:include fx:id="employeeBox" prefWidth="300.0" source="../VBoxInjections/Components/EmployeeDropdownComboBox.fxml" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Request Type">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Request Type">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <fx:include fx:id="requestTypeBox" prefWidth="300.0" source="../VBoxInjections/Components/RequestTypeComboBox.fxml" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reason">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Reason">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <MFXTextField fx:id="reasonTextField" prefWidth="300.0" />
                   <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
                      <VBox.margin>
