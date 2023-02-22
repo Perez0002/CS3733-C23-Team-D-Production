@@ -19,9 +19,6 @@ public class Pathfinder {
       PathfinderBFS pathfinderBFS = new PathfinderBFS();
       path.addAll(pathfinderBFS.breadthFirstSearch(startNode, endNode));
     }
-    for (String s : this.textPath(path)) {
-      System.out.println(s);
-    }
     return path;
   }
 
