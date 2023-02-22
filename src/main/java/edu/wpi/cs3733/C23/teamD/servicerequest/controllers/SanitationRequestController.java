@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
-import edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
@@ -44,12 +43,13 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     urgencyBox.setDisable(true);
 
     // TODO set the radio buttions and check the employeebox
-    if (serviceRequest.getClass().equals(PatientTransportRequest.class)) {
+    if (serviceRequest.getClass().equals(SanitationRequest.class)) {
       fieldLocationController.setLocationName(serviceRequest.getLocation().getLongName());
       fieldReason.setText(serviceRequest.getUrgency());
       // staffIDTextFieldController.setText(true);
       SanitationRequest sRequest = (SanitationRequest) serviceRequest;
-
+      staffIDTextFieldController.setEmployeeName(
+          serviceRequest.getAssociatedStaff().getFirstName());
       radioBSL1.setSelected(sRequest.getBioLevel() == 1);
       radioBSL2.setSelected(sRequest.getBioLevel() == 2);
       radioBSL3.setSelected(sRequest.getBioLevel() == 3);

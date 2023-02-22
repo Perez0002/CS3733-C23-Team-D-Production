@@ -109,7 +109,10 @@ public class SecurityServiceRequestController extends ServiceRequestController
         addRequestSecurityNode.setSelected(false);
         addSecurityNode.setSelected(false);
       }
-      // employeeBoxController.s.getEmployee()
+      employeeBoxController.setEmployeeName(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
     }
   }
 

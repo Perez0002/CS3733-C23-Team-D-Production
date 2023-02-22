@@ -44,7 +44,8 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     if (serviceRequest.getClass().equals(PatientTransportRequest.class)) {
       endLocationComboBoxController.setLocationName(serviceRequest.getLocation().getLongName());
       descriptionBox.setText(serviceRequest.getReason());
-      // employeeComboBoxController.setText();
+      employeeComboBoxController.setEmployeeName(
+          serviceRequest.getAssociatedStaff().getFirstName());
       urgencyBox.setText(serviceRequest.getUrgency());
       startingLocationController.setLocationName(serviceRequest.getLocation().getLongName());
     }
