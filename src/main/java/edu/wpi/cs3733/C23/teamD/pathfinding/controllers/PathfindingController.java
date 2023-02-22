@@ -142,17 +142,13 @@ public class PathfindingController {
           }
         }
         for (MapNode mn : mapNodes) {
-          System.out.println("Checking node " + mn.getNode().getNode().getNodeID());
+          // System.out.println("Checking node " + mn.getNode().getNode().getNodeID());
           if (nodesWithSR.contains(mn.getNode().getNode().getNodeID())) {
-            System.out.println("Adding service request display to node");
+            // System.out.println("Adding service request display to node");
             mn.getNodeRepresentation().setFill(Color.AQUAMARINE);
           }
         }
       }
-
-      // for every node, if nodeid is in list
-      // then color that node purple
-
     };
   }
 
@@ -170,6 +166,7 @@ public class PathfindingController {
     floor5Button.setOnAction(changeFloor(4));
 
     serviceRequestLocationToggle.setOnAction(toggleServiceRequestLocations());
+    serviceRequestLocationToggle.setDisable(true);
 
     floorButtons[0] = floor1Button;
     floorButtons[1] = floor2Button;
@@ -261,5 +258,6 @@ public class PathfindingController {
     } else {
       pathResultText.setText("Incorrect Node Data Entered");
     }
+    serviceRequestLocationToggle.setDisable(false);
   }
 }
