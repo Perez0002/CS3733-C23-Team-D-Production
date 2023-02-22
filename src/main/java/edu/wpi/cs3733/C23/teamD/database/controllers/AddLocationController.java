@@ -27,6 +27,25 @@ public class AddLocationController implements AddFormController<LocationName> {
 
   @FXML private Label titleLabel;
 
+  @FXML private MFXButton deleteButton;
+
+  @FXML
+  public void initialize() {
+    deleteButton.setOnMouseClicked(event -> deleteRow());
+  }
+
+  private void deleteRow() {
+    databaseController.delete();
+    ToastController.makeText(
+        "the location has been deleted!",
+        1500,
+        50,
+        100,
+        (int) Screen.getPrimary().getBounds().getWidth() - 375,
+        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    dataToChange(null);
+  }
+
   @FXML
   void clearFields() {
     errorText.setVisible(false);
@@ -94,7 +113,9 @@ public class AddLocationController implements AddFormController<LocationName> {
       submitButton.setText("Add Location");
       titleLabel.setText("Add a Location");
       clearFields();
+      deleteButton.setDisable(true);
     } else {
+      deleteButton.setDisable(false);
       submitButton.setText("Submit Changes");
       titleLabel.setText("Change a Location");
       longNameTextField.setText(currentLocation.getLongName());

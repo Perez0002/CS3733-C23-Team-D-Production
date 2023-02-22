@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<?import org.kordamp.ikonli.javafx.FontIcon?>
-<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
+<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
     <center>
         <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
             <BorderPane.margin>
@@ -53,11 +51,6 @@
                      </graphic>
                                  <HBox.margin>
                         <Insets right="50.0" />
-                     </HBox.margin>
-                  </MFXButton>
-                  <MFXButton onAction="#delete" prefHeight="45.0" prefWidth="128.0" text="Delete">
-                     <HBox.margin>
-                        <Insets right="32.0" />
                      </HBox.margin>
                   </MFXButton>
                     </children>

@@ -78,6 +78,13 @@
     -fx-text-fill: #011830;
 }
 
+.rowDeleteButton {
+    -fx-pref-width: 128px;
+    -fx-pref-height: 53px;
+    -fx-background-color: #d73e3e;
+    -fx-text-fill: #ffffff;
+}
+
 .addFormLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
     -fx-text-fill: #011830;
