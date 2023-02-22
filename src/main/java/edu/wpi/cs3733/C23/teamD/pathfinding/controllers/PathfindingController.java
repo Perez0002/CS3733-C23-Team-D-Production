@@ -59,6 +59,7 @@ public class PathfindingController {
   @FXML private MFXButton floor4Button;
 
   @FXML private MFXButton floor5Button;
+  @FXML private MFXButton floorGButton;
 
   @FXML private MFXDatePicker datePicker;
 
