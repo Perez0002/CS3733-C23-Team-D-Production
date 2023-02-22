@@ -190,9 +190,15 @@ public class PathfindingController {
         ArrayList<MapNode> mapNodes = new ArrayList<>();
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         MapNode lastNode = null;
+        ArrayList<String> text = pathfinder.textPath(path);
         for (PathNode node : path) {
           PathfindingMapNode pathNode = new PathfindingMapNode(node);
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
+          if (text.size() > 0) {
+            pathNode.addDirections(text.get(0));
+
+            text.remove(0);
+          }
           mapNodes.add(pathNode);
           if (lastNode != null) {
             MapEdge edge = new MapEdge(new PathEdge(lastNode.getNode(), node));
