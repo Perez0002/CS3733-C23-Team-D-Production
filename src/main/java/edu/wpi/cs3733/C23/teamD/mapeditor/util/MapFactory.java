@@ -23,6 +23,8 @@ public class MapFactory {
   private Function<Node, EventHandler<MouseEvent>> nodeMouseEnterEvent;
   private Function<Node, EventHandler<MouseEvent>> nodeMouseExitEvent;
 
+  private AnchorPane holder;
+
   /** Creates a new MapFactory Object */
   private MapFactory() {
     this.onlyStartEnd = false;
@@ -123,7 +125,7 @@ public class MapFactory {
     converter.put("3", 5);
 
     ImageView image = new ImageView();
-    AnchorPane holder = new AnchorPane();
+    holder = new AnchorPane();
     GesturePane map = new GesturePane();
 
     if (floor == 0) {
