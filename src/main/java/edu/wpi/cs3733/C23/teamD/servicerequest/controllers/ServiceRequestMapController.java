@@ -133,16 +133,22 @@ public class ServiceRequestMapController {
       switch (floor) {
         case "L1":
           setFloor(0);
+          break;
         case "L2":
           setFloor(1);
+          break;
         case "1":
           setFloor(2);
+          break;
         case "2":
           setFloor(3);
+          break;
         case "3":
           setFloor(4);
+          break;
         case "G":
           System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
+          break;
       }
       centerOnNode(x, y);
     } else {
