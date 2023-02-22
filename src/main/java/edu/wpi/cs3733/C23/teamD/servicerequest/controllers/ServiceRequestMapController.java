@@ -32,6 +32,8 @@ public class ServiceRequestMapController {
   int currentFloor = 0;
 
   public void initialize() {
+    this.createMap();
+    mapSingleton = this;
     changeFloor(1);
     floor1Button.setOnMouseClicked(event -> changeFloor(0));
     floor2Button.setOnMouseClicked(event -> changeFloor(1));
@@ -40,10 +42,7 @@ public class ServiceRequestMapController {
     floor5Button.setOnMouseClicked(event -> changeFloor(4));
   }
 
-  public ServiceRequestMapController() {
-    this.createMap();
-    mapSingleton = this;
-  }
+  public ServiceRequestMapController() {}
 
   public void createMap() {
 
@@ -75,9 +74,10 @@ public class ServiceRequestMapController {
     int AverageY = sumY / totalNodes;
 
     map = MapFactory.startBuild().withNodes(nodeList).build(currentFloor);
-    map.setStyle("-fx-border-color: #012D5A;");
     map.setMaxSize(700, 500);
     mapPaneContainer.setCenter(map);
+    //    mapPaneContainer.setStyle("-fx-border-color: #012D5A;");
+    //    mapPaneContainer.setStyle("fx-border-width: 3px");
 
     centerOnNode(AverageX, AverageY);
   }
@@ -156,17 +156,22 @@ public class ServiceRequestMapController {
 
   public void changeFloor(int floor) {
 
-    switch (floor) {
+    switch (currentFloor) {
       case 0:
         floor1Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
       case 1:
         floor2Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
       case 2:
         floor3Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
       case 3:
         floor4Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
       case 4:
         floor5Button.setStyle("-fx-background-color: #C9E0F8");
+        break;
     }
 
     switch (floor) {
@@ -175,30 +180,35 @@ public class ServiceRequestMapController {
           floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 0;
           setFloor(0);
+          break;
         }
       case 1:
         {
           floor2Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 1;
           setFloor(1);
+          break;
         }
       case 2:
         {
           floor3Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 2;
           setFloor(2);
+          break;
         }
       case 3:
         {
           floor4Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 3;
           setFloor(3);
+          break;
         }
       case 4:
         {
           floor5Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 4;
           setFloor(4);
+          break;
         }
     }
   }
