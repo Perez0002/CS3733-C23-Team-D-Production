@@ -58,7 +58,7 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="problemTextField" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
+                        <MFXTextField fx:id="problemTextField" floatMode="DISABLED" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter more details about your request" styleClass="serviceRequestMFXTextField" />
                     </children>
                 </VBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">

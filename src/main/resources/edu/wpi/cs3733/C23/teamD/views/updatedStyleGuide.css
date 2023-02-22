@@ -15,9 +15,31 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
+.mfx-date-picker .date-picker-popup .years-combo,
+.mfx-date-picker .date-picker-popup .months-combo,
+.mfx-date-picker .date-picker-popup .week-day,
+.mfx-date-picker .date-picker-popup .mfx-date-cell {
+    -fx-min-width: 10;
+    -fx-text-fill: #012D5A;
+}
+
+.mfx-text-field {
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: #E4E1E6;
+    -fx-background-radius: 10;
+    -fx-min-height: 40;
+    -fx-min-width: 300;
+}
+
+.mfx-text-field:focus-within {
+    -fx-border-color: #012D5A;
+    -fx-border-radius: 10;
+}
+
 .label { /* sets base format for labels */
     -fx-text-fill: #012D5A;
     -fx-text-size: 12pt;
+    -fx-min-width: 300;
 }
 
 .root {
@@ -33,14 +55,6 @@
     -fx-font-family: 'Nunito Sans Regular';
 }
 
-.mfx-text-field { /* sets base format for MFXTextFields */
-    -fx-background-color: #EEEEEE;
-    -fx-border-radius: 10px;
-    -fx-min-height: 40px;
-    -fx-border-color: #012D5A;
-    -fx-font-family: "Nunito Sans Regular";
-}
-
 .button {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
@@ -54,6 +68,12 @@
 .hubLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 36pt;
     -fx-pref-width: 500px;
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-text-fill: #011830;
+}
+.aboutLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 36pt;
+    -fx-pref-width: 1350px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
 }
@@ -203,10 +223,8 @@
     -fx-text-fill: white;
     -fx-border-color: white;
     -fx-font-family: 'Nunito Sans Regular';
-    -fx-max-width: 200px;
-    -fx-max-height: 40px;
-    -fx-pref-height: 40px;
-    -fx-min-height: 40px;
+    -fx-max-width: 300px;
+    -fx-max-height: 45px;
 }
 
 #loginBorderPane {

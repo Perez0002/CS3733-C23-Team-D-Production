@@ -33,13 +33,13 @@
             </VBox>
             <VBox prefWidth="300.0">
                <children>
-                  <Label text="Urgency" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text=" Urgency" />
                   <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
                </children>
             </VBox>
             <VBox>
                <children>
-                  <Label text="Location">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -62,7 +62,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXTextField fx:id="fieldReason" minHeight="-Infinity" prefHeight="42.0" prefWidth="300.0" promptText="Description" />
+                  <MFXTextField fx:id="fieldReason" floatMode="DISABLED" minHeight="-Infinity" prefHeight="42.0" prefWidth="300.0" promptText="Description" />
                </children>
             </VBox>
             <VBox spacing="10.0">
