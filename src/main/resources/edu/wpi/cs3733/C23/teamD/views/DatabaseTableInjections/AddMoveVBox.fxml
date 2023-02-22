@@ -17,25 +17,25 @@
          <center>
             <VBox maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a move date" />
                   <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the location you want to move">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <fx:include fx:id="locationBox" prefWidth="300.0" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the node you want to move to">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the node you want to move to">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <fx:include fx:id="nodeBox" prefWidth="300.0" source="../VBoxInjections/Components/NodeComboBox.fxml" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Message">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Message">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
-                  </Text>
+                  </Label>
                   <MFXTextField fx:id="messageTextField" prefWidth="300.0" />
                   <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
                      <VBox.margin>
@@ -51,8 +51,8 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="494.0" spacing="16.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXButton onAction="#clearFields" prefWidth="100.0" styleClass="clearButton" text="Clear" />
-                  <MFXButton fx:id="submitButton" onAction="#addMove" prefHeight="25.0" prefWidth="126.0" styleClass="submitButton" text="Add Move" />
+                  <MFXButton onAction="#clearFields" prefHeight="53.0" prefWidth="128.0" styleClass="clearButton" text="Clear" />
+                  <MFXButton fx:id="submitButton" onAction="#addMove" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Add Move" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="25.0" right="25.0" />

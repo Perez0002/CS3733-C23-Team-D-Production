@@ -96,7 +96,9 @@ public class MapEditorPageController {
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      if (move.getNode() != null) {
+        pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      }
     }
 
     HashMap<String, MapNode> mapNodes = new HashMap<>();

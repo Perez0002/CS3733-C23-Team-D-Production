@@ -63,12 +63,12 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Line>
-                  <Label text="* Required Fields">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="* Required Fields">
                      <VBox.margin>
                         <Insets bottom="70.0" />
                      </VBox.margin>
                   </Label>
-                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a move date *">
+                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text="Pick a move date *">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -83,19 +83,19 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Line>
-                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the location you want to move*">
+                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text="Select the location you want to move*">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Text>
                   <fx:include fx:id="locationBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="VBoxInjections/Components/LocationPickComboBox.fxml" />
-                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the node you want to move to*">
+                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text="Select the node you want to move to*">
                      <VBox.margin>
                         <Insets bottom="5.0" top="16.0" />
                      </VBox.margin>
                   </Text>
                   <fx:include fx:id="nodeBox" source="VBoxInjections/Components/NodeComboBox.fxml" />
-                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Message">
+                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text="Move Message">
                      <VBox.margin>
                         <Insets bottom="5.0" top="16.0" />
                      </VBox.margin>

@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.database.util.ServiceRequestIDaoImpl;
@@ -15,7 +16,10 @@ import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -56,7 +60,9 @@ public class PathfindingController {
 
   @FXML private MFXButton floor5Button;
 
-  private MFXButton[] floorButtons = new MFXButton[5];
+  @FXML private MFXDatePicker datePicker;
+
+  private MFXButton[] floorButtons = new MFXButton[6];
 
   @FXML private MFXButton aStarButton;
 
@@ -158,27 +164,40 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
-    converter.put("L1", 0);
-    converter.put("L2", 1);
-    converter.put("1", 2);
-    converter.put("2", 3);
-    converter.put("3", 4);
-    floor1Button.setOnAction(changeFloor(0));
-    floor2Button.setOnAction(changeFloor(1));
-    floor3Button.setOnAction(changeFloor(2));
-    floor4Button.setOnAction(changeFloor(3));
-    floor5Button.setOnAction(changeFloor(4));
-
+    converter.put("G", 0);
+    converter.put("L1", 1);
+    converter.put("L2", 2);
+    converter.put("1", 3);
+    converter.put("2", 4);
+    converter.put("3", 5);
+    floorGButton.setOnAction(changeFloor(0));
+    floor1Button.setOnAction(changeFloor(1));
+    floor2Button.setOnAction(changeFloor(2));
+    floor3Button.setOnAction(changeFloor(3));
+    floor4Button.setOnAction(changeFloor(4));
+    floor5Button.setOnAction(changeFloor(5));
+    
     serviceRequestLocationToggle.setOnAction(toggleServiceRequestLocations());
     serviceRequestLocationToggle.setDisable(true);
+    
+    floorButtons[0] = floorGButton;
+    floorButtons[1] = floor1Button;
+    floorButtons[2] = floor2Button;
+    floorButtons[3] = floor3Button;
+    floorButtons[4] = floor4Button;
+    floorButtons[5] = floor5Button;
 
-    floorButtons[0] = floor1Button;
-    floorButtons[1] = floor2Button;
-    floorButtons[2] = floor3Button;
-    floorButtons[3] = floor4Button;
-    floorButtons[4] = floor5Button;
+    datePicker.setOnAction(
+        event -> {
+          Date dateToRun =
+              datePicker.getValue() == null
+                  ? new Date()
+                  : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
+          startRoomComboBoxController.updateMapping(dateToRun);
+          endRoomComboBoxController.updateMapping(dateToRun);
+        });
 
-    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(0));
+    pathfindingBorderPane.setCenter(MapFactory.startBuild().build(1));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
   }
@@ -196,25 +215,42 @@ public class PathfindingController {
   void submit() {
     Pathfinder pathfinder = new Pathfinder();
 
+    Date dateToRun =
+        datePicker.getValue() == null
+            ? new Date()
+            : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+    ArrayList<LocationName> baseLocationList = FDdb.getInstance().getAllLocationNames();
+
+    ArrayList<Move> moves = FDdb.getInstance().getAllCurrentMoves(dateToRun);
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
-    for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+
+    for (Move move : moves) {
+      if (move.getNode() != null)
+        pathNodes.put(move.getNode().getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
     for (Edge edge : baseEdgeList) {
-      PathEdge edge1 =
-          new PathEdge(
-              pathNodes.get(edge.getFromNode().getNodeID()),
-              pathNodes.get(edge.getToNode().getNodeID()));
-      PathEdge edge2 =
-          new PathEdge(
-              pathNodes.get(edge.getToNode().getNodeID()),
-              pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      if (pathNodes.containsKey(edge.getToNodeID())
+          && pathNodes.containsKey(edge.getFromNodeID())) {
+        PathEdge edge1 =
+            new PathEdge(
+                pathNodes.get(edge.getFromNode().getNodeID()),
+                pathNodes.get(edge.getToNode().getNodeID()));
+        PathEdge edge2 =
+            new PathEdge(
+                pathNodes.get(edge.getToNode().getNodeID()),
+                pathNodes.get(edge.getFromNode().getNodeID()));
+        if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+          pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        }
+
+        if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+          pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        }
+      }
     }
 
     String startNode = startRoomComboBoxController.getNodeValue();
@@ -230,9 +266,15 @@ public class PathfindingController {
         ArrayList<MapNode> mapNodes = new ArrayList<>();
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         MapNode lastNode = null;
+        ArrayList<String> text = pathfinder.textPath(path);
         for (PathNode node : path) {
           PathfindingMapNode pathNode = new PathfindingMapNode(node);
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
+          if (text.size() > 0) {
+            pathNode.addDirections(text.get(0));
+
+            text.remove(0);
+          }
           mapNodes.add(pathNode);
           if (lastNode != null) {
             MapEdge edge = new MapEdge(new PathEdge(lastNode.getNode(), node));
