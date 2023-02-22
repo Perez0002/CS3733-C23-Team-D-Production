@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class FDdb {
 
   private final PastMovesIDaoImpl pastMovesIDao;
   private final EmployeeIDaoImpl employeeIDao;
+  private final SettingIDaoImpl settingIDao;
 
   private FDdb() {
     this.edgeIDao = new EdgeIDaoImpl();
@@ -27,6 +29,7 @@ public class FDdb {
     this.serviceRequestIDao = new ServiceRequestIDaoImpl();
     this.pastMovesIDao = new PastMovesIDaoImpl();
     this.employeeIDao = new EmployeeIDaoImpl();
+    this.settingIDao = new SettingIDaoImpl();
   }
 
   public void refreshAll() {
@@ -37,6 +40,7 @@ public class FDdb {
     serviceRequestIDao.refresh();
     pastMovesIDao.refresh();
     employeeIDao.refresh();
+    settingIDao.refresh();
   }
 
   public static FDdb getInstance() {
@@ -69,7 +73,12 @@ public class FDdb {
   }
 
   public void deleteNode(Node n) {
+    ArrayList<Move> moves = moveIDao.getAssociatedMoves(n);
     nodeIDao.delete(n);
+    for (Move m : moves) {
+      pastMovesIDao.save(new PastMoves(m));
+      moveIDao.delete(m);
+    }
   }
 
   public void nodeEdgeSwap(Node oldNode, Node newNode) {
@@ -97,6 +106,10 @@ public class FDdb {
     edgeIDao.update(e);
   }
 
+  public void updateEdgePK(Edge oldEdge, Edge newEdge) {
+    edgeIDao.updatePK(oldEdge, newEdge);
+  }
+
   public void deleteEdge(Edge e) {
     edgeIDao.delete(e);
   }
@@ -120,6 +133,10 @@ public class FDdb {
 
   public void updateLocationName(LocationName l) {
     locationNameIDao.update(l);
+  }
+
+  public void updateLocationNamePK(LocationName oldLoc, LocationName newLoc) {
+    locationNameIDao.updatePK(oldLoc, newLoc);
   }
 
   public void deleteLocationName(LocationName l) {
@@ -225,24 +242,6 @@ public class FDdb {
     pastMovesIDao.refresh();
   }
 
-  public void downloadCSV() {
-    nodeIDao.downloadCSV(new Node());
-    locationNameIDao.downloadCSV(new LocationName());
-    moveIDao.downloadCSV(new Move());
-    edgeIDao.downloadCSV(new Edge());
-  }
-
-  public void uploadCSV() {
-    nodeIDao.uploadCSV(new Node());
-    locationNameIDao.uploadCSV(new LocationName());
-    moveIDao.uploadCSV(new Move());
-    edgeIDao.uploadCSV(new Edge());
-    refreshEdges();
-    refreshNodes();
-    refreshMoves();
-    refreshLocationNames();
-  }
-
   // EmployeeDao wrappers
   public Employee getEmployee(Employee e) {
     return employeeIDao.get(e);
@@ -288,7 +287,46 @@ public class FDdb {
     return moveIDao.getCertainMoveFromDate(date, l);
   }
 
-  public Node getAssociatedNode(LocationName l) {
-    return nodeIDao.getAssociatedNode(l);
+  // SettingDao wrappers
+  public Setting getSetting(Setting s) {
+    return settingIDao.get(s);
+  }
+
+  public ArrayList<Setting> getAllSettings() {
+    return settingIDao.getAll();
+  }
+
+  public void saveSetting(Setting s) {
+    settingIDao.save(s);
+  }
+
+  public void updateSetting(Setting s) {
+    settingIDao.update(s);
+  }
+
+  public void deleteSetting(Setting s) {
+    settingIDao.delete(s);
+  }
+
+  public void refreshSettings() {
+    settingIDao.refresh();
+  }
+
+  public void downloadCSV() {
+    nodeIDao.downloadCSV(new Node());
+    locationNameIDao.downloadCSV(new LocationName());
+    moveIDao.downloadCSV(new Move());
+    edgeIDao.downloadCSV(new Edge());
+  }
+
+  public void uploadCSV() {
+    nodeIDao.uploadCSV(new Node());
+    locationNameIDao.uploadCSV(new LocationName());
+    moveIDao.uploadCSV(new Move());
+    edgeIDao.uploadCSV(new Edge());
+    refreshEdges();
+    refreshNodes();
+    refreshMoves();
+    refreshLocationNames();
   }
 }

@@ -19,7 +19,6 @@ public class ComputerServiceRequestController extends ServiceRequestController
   @FXML private MFXComboBox urgencyBox;
   @FXML private Parent employeeBox;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
-
   @FXML private MFXTextField descriptionBox;
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
@@ -41,14 +40,9 @@ public class ComputerServiceRequestController extends ServiceRequestController
   public void clearTransportForms() {}
 
   public boolean submit() {
-
-    if (descriptionBox.getText() != null
-        && urgencyBox.getText() != null
-        && deviceTypeBox.getText() != null
-        && employeeBoxController.getEmployeeName() != null
-        && locationBoxController.getLocation() != null) {
+    // if the fields are full, go to submit item
+    if (checkFieldsFull()) {
       System.out.println("Submit computer request");
-
       ComputerServiceRequest computerServiceRequest =
           new ComputerServiceRequest(
               descriptionBox.getText(),
@@ -57,7 +51,16 @@ public class ComputerServiceRequestController extends ServiceRequestController
               deviceTypeBox.getText(),
               locationBoxController.getLocation());
       FDdb.getInstance().saveServiceRequest(computerServiceRequest);
+      return true;
+    }
+    return false;
+  }
 
+  boolean checkFieldsFull() {
+    if (urgencyBox.getText() != null
+        && deviceTypeBox.getText() != null
+        && employeeBoxController.getEmployeeName() != null
+        && locationBoxController.getLocationLongName() != null) {
       return true;
     }
     return false;
