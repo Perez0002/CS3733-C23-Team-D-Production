@@ -20,13 +20,11 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
 
@@ -132,25 +130,28 @@ public class PathfindingController {
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
     ArrayList<String> nodesWithSR = new ArrayList<String>();
 
-
     return event -> {
-      if(serviceRequestLocationToggle.isSelected()) {
+      if (serviceRequestLocationToggle.isSelected()) {
         for (ServiceRequest sr : srList) {
           String srLocation = sr.getLocation().getLongName();
           for (Move move : baseMoveList) {
             if (move.getLocation().getLongName().equals(srLocation)) {
               nodesWithSR.add(move.getNodeID());
-             // System.out.println(move.getNodeID());
+              // System.out.println(move.getNodeID());
             }
           }
         }
-
+        for (MapNode mn : mapNodes) {
+          System.out.println("Checking node " + mn.getNode().getNode().getNodeID());
+          if (nodesWithSR.contains(mn.getNode().getNode().getNodeID())) {
+            System.out.println("Adding service request display to node");
+            mn.getNodeRepresentation().setFill(Color.AQUAMARINE);
+          }
+        }
       }
 
-
-
-      //for every node, if nodeid is in list
-      //then color that node purple
+      // for every node, if nodeid is in list
+      // then color that node purple
 
     };
   }
