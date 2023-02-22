@@ -143,12 +143,16 @@ public class PathfindingController {
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
 
-    datePicker.setOnCommit(
+    datePicker.setOnAction(
         event -> {
-          System.out.println("Ran");
-          startRoomComboBoxController.updateMapping();
-          endRoomComboBoxController.updateMapping();
+          Date dateToRun =
+              datePicker.getValue() == null
+                  ? new Date()
+                  : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
+          startRoomComboBoxController.updateMapping(dateToRun);
+          endRoomComboBoxController.updateMapping(dateToRun);
         });
+
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(1));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");

@@ -255,20 +255,32 @@ public class FDdb {
   }
 
   public ArrayList<Move> getAllCurrentMoves(Date date) {
-    HashMap<Node, Move> moveMap = new HashMap<>();
-    for (Node n : getAllNodes()) {
-      moveMap.put(n, new Move(null, null, new Date(0L)));
+    HashMap<LocationName, Move> moveMap = new HashMap<>();
+    for (LocationName l : getAllLocationNames()) {
+      moveMap.put(l, new Move(null, null, new Date(0L)));
     }
     for (Move m : getAllMoves()) {
-      for (Node n : getAllNodes()) {
-        if (m.getNode().nodeEquals(n)
+      for (LocationName l : getAllLocationNames()) {
+        if (m.getLocation().getLongName().equals(l.getLongName())
             && m.getMoveDate().before(date)
-            && moveMap.get(n).getMoveDate().before(m.getMoveDate())) {
-          moveMap.put(n, m);
+            && moveMap.get(l).getMoveDate().before(m.getMoveDate())) {
+          moveMap.put(l, m);
         }
       }
     }
-    return new ArrayList<>(moveMap.values());
+    return checkNodes(new ArrayList<>(moveMap.values()));
+  }
+
+  public ArrayList<Move> checkNodes(ArrayList<Move> moves) {
+    HashMap<Node, Move> nodeMap = new HashMap<>();
+    for (Move m : moves) {
+      if ((nodeMap.containsKey(m.getNode())
+              && nodeMap.get(m.getNode()).getMoveDate().before(m.getMoveDate()))
+          || nodeMap.get(m.getNode()) == null) {
+        nodeMap.put(m.getNode(), m);
+      }
+    }
+    return new ArrayList<>(nodeMap.values());
   }
 
   public ArrayList<Move> getMovesOnADay(Date date) {
