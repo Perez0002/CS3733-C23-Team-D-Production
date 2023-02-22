@@ -256,9 +256,12 @@ public class FDdb {
 
   public ArrayList<Move> getAllCurrentMoves(Date date) {
     HashMap<Node, Move> moveMap = new HashMap<>();
+    for (Node n : getAllNodes()) {
+    moveMap.put(n,new Move(null, null, new Date(0L)));
+    }
     for (Move m : getAllMoves()) {
       for (Node n : getAllNodes()) {
-        if (m.getNode().nodeEquals(n) && m.getMoveDate().before(date)) {
+        if (m.getNode().nodeEquals(n) && m.getMoveDate().before(date) && moveMap.get(n).getMoveDate().before(m.getMoveDate())) {
           moveMap.put(n, m);
         }
       }
