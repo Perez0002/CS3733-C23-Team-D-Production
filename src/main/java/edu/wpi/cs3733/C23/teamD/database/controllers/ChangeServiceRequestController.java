@@ -76,7 +76,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
     datePicker.setValue(null);
     employeeBoxController.clearForm();
     reasonTextField.clear();
-    reasonTextField.clear();
+    requestTypeBoxController.clearForm();
   }
 
   @Override

@@ -95,6 +95,17 @@ public class NodeTableController extends Application implements Initializable, D
   }
 
   @Override
+  public boolean delete() {
+    if (nodeTable.getSelectionModel().getSelectedItem() != null) {
+      FDdb.getInstance().deleteNode(nodeTable.getSelectionModel().getSelectedItem());
+      refresh();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
   public void deselect() {
     nodeTable.getSelectionModel().clearSelection();
   }

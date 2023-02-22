@@ -11,4 +11,6 @@ public interface DatabaseController {
   public void deselect();
 
   Node getBox();
+
+  public boolean delete();
 }

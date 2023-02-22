@@ -81,6 +81,17 @@ public class EdgeTableController extends Application implements Initializable, D
     return EdgeTableBorderPane;
   }
 
+  @Override
+  public boolean delete() {
+    if (edgeTable.getSelectionModel().getSelectedItem() != null) {
+      FDdb.getInstance().deleteEdge(edgeTable.getSelectionModel().getSelectedItem());
+      refresh();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public void setVisible() {
     if (EdgeTableBorderPane.isVisible()) {
       EdgeTableBorderPane.setVisible(false);

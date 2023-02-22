@@ -93,6 +93,17 @@ public class LocationTableController extends Application
     }
   }
 
+  @Override
+  public boolean delete() {
+    if (locationTable.getSelectionModel().getSelectedItem() != null) {
+      FDdb.getInstance().deleteLocationName(locationTable.getSelectionModel().getSelectedItem());
+      refresh();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public void tablehandling() {
     ObservableList<LocationName> locationList =
         FXCollections.observableArrayList(FDdb.getInstance().getAllLocationNames());

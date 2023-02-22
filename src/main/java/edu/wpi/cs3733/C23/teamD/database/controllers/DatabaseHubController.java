@@ -29,6 +29,14 @@ public class DatabaseHubController {
   @FXML private BorderPane requestFormHubBorderPane;
   @Setter @Getter private DatabaseController currentController; // tracks current VBox pane
 
+  @FXML
+  public void delete() {
+    if (currentController.delete()) {
+      dataToChange();
+      ToastController.makeText("The row has been deleted", 1500, 50, 100, 500, 500);
+    }
+  }
+
   @Setter private AddFormController addFormController;
 
   private MFXButton currentTab;

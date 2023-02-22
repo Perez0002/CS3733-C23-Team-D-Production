@@ -56,6 +56,17 @@ public class ServiceRequestTableController extends Application
   }
 
   @Override
+  public boolean delete() {
+    if (serviceTable.getSelectionModel().getSelectedItem() != null) {
+      FDdb.getInstance().deleteServiceRequest(serviceTable.getSelectionModel().getSelectedItem());
+      refresh();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
   public void refresh() {
     serviceTable.setEditable(true);
     ObservableList<ServiceRequest> requestList =
