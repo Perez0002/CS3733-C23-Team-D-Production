@@ -9,14 +9,11 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.PopOver;
 
 public class ServiceRequestHubController {
 
-  @FXML private MFXButton hubButton;
   @FXML private MFXButton transportButton;
   @FXML private MFXButton sanitationButton;
   @FXML private MFXButton computerButton;
@@ -24,23 +21,12 @@ public class ServiceRequestHubController {
   @FXML private MFXButton avButton;
 
   @FXML private Pane requestFormHubPane;
-  @FXML private BorderPane mapPaneContainer;
 
   @FXML private MFXButton clearButton;
 
   @FXML private MFXButton submitButton;
 
   @FXML private MFXButton helpButton;
-
-  @FXML private Label successfulSubmissionText;
-
-  @FXML private MFXButton floor1Button;
-  @FXML private MFXButton floor2Button;
-  @FXML private MFXButton floor3Button;
-  @FXML private MFXButton floor4Button;
-  @FXML private MFXButton floor5Button;
-
-  private int currentFloor = 0;
 
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
@@ -92,18 +78,10 @@ public class ServiceRequestHubController {
           }
         });
     clearButton.setOnMouseClicked(event -> clearFields());
-
-    floor1Button.setOnMouseClicked(event -> changeFloor(0));
-    floor2Button.setOnMouseClicked(event -> changeFloor(1));
-    floor3Button.setOnMouseClicked(event -> changeFloor(2));
-    floor4Button.setOnMouseClicked(event -> changeFloor(3));
-    floor5Button.setOnMouseClicked(event -> changeFloor(4));
-
     System.out.println("changeFloor CALL");
-    changeFloor(0);
   }
 
-  // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
+  // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALIZE
   void switchVBox(ServiceRequests switchTo, MFXButton button) {
 
     if (currentTab != null) {
@@ -141,14 +119,14 @@ public class ServiceRequestHubController {
     System.out.println("Submit Pressed");
     boolean submission = false;
     if (currentController instanceof PatientTransportVBoxController) {
-      submission = ((PatientTransportVBoxController) currentController).submit();
+      submission = currentController.submit();
 
     } else if (currentController instanceof ComputerServiceRequestController) {
       System.out.println("Submitting");
-      submission = ((ComputerServiceRequestController) currentController).submit();
+      submission = currentController.submit();
     } else if (currentController instanceof SecurityServiceRequestController) {
       System.out.println("Submitting");
-      submission = ((SecurityServiceRequestController) currentController).submit();
+      submission = currentController.submit();
     } else {
       submission = currentController.submit();
       System.out.println("Submitting");
@@ -162,74 +140,6 @@ public class ServiceRequestHubController {
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController
     // same as ClearFields. This function calls the controller class function for submission.
-
-  }
-
-  void createHubMap() {
-    mapPaneContainer.setCenter(ServiceRequestMap.getMap());
-  }
-
-  public void changeFloor(int floor) {
-
-    if (hubMapCreated == false) {
-      hubMapCreated = true;
-      createHubMap();
-    }
-
-    switch (currentFloor) {
-      case 0:
-        floor1Button.setStyle("-fx-background-color: #C9E0F8");
-        break;
-      case 1:
-        floor2Button.setStyle("-fx-background-color: #C9E0F8");
-        break;
-      case 2:
-        floor3Button.setStyle("-fx-background-color: #C9E0F8");
-        break;
-      case 3:
-        floor4Button.setStyle("-fx-background-color: #C9E0F8");
-        break;
-      case 4:
-        floor5Button.setStyle("-fx-background-color: #C9E0F8");
-        break;
-    }
-
-    switch (floor) {
-      case 0:
-        floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-        currentFloor = 0;
-        ServiceRequestMap.getMapSingleton().setFloor(0);
-        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
-        break;
-      case 1:
-        floor2Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-        currentFloor = 1;
-        ServiceRequestMap.getMapSingleton().setFloor(1);
-        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
-        break;
-      case 2:
-        floor3Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-        currentFloor = 2;
-        ServiceRequestMap.getMapSingleton().setFloor(2);
-        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
-        break;
-      case 3:
-        floor4Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-        currentFloor = 3;
-        ServiceRequestMap.getMapSingleton().setFloor(3);
-        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
-        break;
-      case 4:
-        floor5Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-        currentFloor = 4;
-        ServiceRequestMap.getMapSingleton().setFloor(4);
-        mapPaneContainer.setCenter(ServiceRequestMap.getMap());
-        break;
-    }
-
-    /* TODO: what this does currently is just handles the button color changes.
-    What do I need to do now? I need to handle the map changes in the actual ServiceRequestMap class.
-     */
 
   }
 
