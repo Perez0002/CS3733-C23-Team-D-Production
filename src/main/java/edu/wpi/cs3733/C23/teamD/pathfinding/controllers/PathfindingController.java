@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.database.util.ServiceRequestIDaoImpl;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
@@ -10,6 +11,7 @@ import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -18,10 +20,13 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
 
@@ -116,6 +121,40 @@ public class PathfindingController {
     };
   }
 
+  /**
+   * when toggled on, finds locations of all service requests, finds the nodeID of the location of
+   * the sr, and turns that node purple in the pathfinder map
+   *
+   * @return
+   */
+  public EventHandler<ActionEvent> toggleServiceRequestLocations() {
+    ArrayList<ServiceRequest> srList = new ServiceRequestIDaoImpl().getAll();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+    ArrayList<String> nodesWithSR = new ArrayList<String>();
+
+
+    return event -> {
+      if(serviceRequestLocationToggle.isSelected()) {
+        for (ServiceRequest sr : srList) {
+          String srLocation = sr.getLocation().getLongName();
+          for (Move move : baseMoveList) {
+            if (move.getLocation().getLongName().equals(srLocation)) {
+              nodesWithSR.add(move.getNodeID());
+             // System.out.println(move.getNodeID());
+            }
+          }
+        }
+
+      }
+
+
+
+      //for every node, if nodeid is in list
+      //then color that node purple
+
+    };
+  }
+
   @FXML
   public void initialize() {
     converter.put("L1", 0);
@@ -128,6 +167,8 @@ public class PathfindingController {
     floor3Button.setOnAction(changeFloor(2));
     floor4Button.setOnAction(changeFloor(3));
     floor5Button.setOnAction(changeFloor(4));
+
+    serviceRequestLocationToggle.setOnAction(toggleServiceRequestLocations());
 
     floorButtons[0] = floor1Button;
     floorButtons[1] = floor2Button;
