@@ -15,6 +15,12 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
+.mfx-toggle-button{
+    -fx-text-fill: #012D5A;
+    -fx-text-size: 12pt;
+    -fx-font-family: 'Nunito Sans Bold';
+}
+
 .mfx-date-picker .date-picker-popup .years-combo,
 .mfx-date-picker .date-picker-popup .months-combo,
 .mfx-date-picker .date-picker-popup .week-day,
@@ -128,7 +134,7 @@
 
     -fx-gap-start-and-end: 12px;
     -fx-text-size: 16pt;
-    -fx-pref-width: 128px;
+    -fx-pref-width: 100px;
     -fx-pref-height: 53px;
 
     -fx-background-color: #C9E0F8;
