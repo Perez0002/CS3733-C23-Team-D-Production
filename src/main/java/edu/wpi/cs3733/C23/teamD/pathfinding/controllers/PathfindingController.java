@@ -180,7 +180,8 @@ public class PathfindingController {
     HashMap<String, PathNode> pathNodes = new HashMap<>();
 
     for (Move move : moves) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      if (move.getNode() != null)
+        pathNodes.put(move.getNode().getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
     for (Edge edge : baseEdgeList) {
