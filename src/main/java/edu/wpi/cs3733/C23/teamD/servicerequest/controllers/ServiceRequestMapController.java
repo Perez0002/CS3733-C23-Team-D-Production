@@ -31,6 +31,8 @@ public class ServiceRequestMapController {
 
   int currentFloor = 0;
 
+  edu.wpi.cs3733.C23.teamD.database.entities.Node currentNode;
+
   public void initialize() {
     this.createMap();
     mapSingleton = this;
@@ -123,6 +125,7 @@ public class ServiceRequestMapController {
   }
 
   public void mapCenters(LocationComboBoxController locationController) {
+
     if (locationController.getLocation() != null) {
       edu.wpi.cs3733.C23.teamD.database.entities.Node node =
           FDdb.getInstance().getAssociatedNode(locationController.getLocation());

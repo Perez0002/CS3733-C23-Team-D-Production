@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -41,6 +42,28 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
 
   public Node getVBox() {
     return patientTransportRequestVBox;
+  }
+
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+    endLocationComboBoxController.setDisable(true);
+    descriptionBox.setDisable(true);
+    employeeComboBoxController.setDisable(true);
+    urgencyBox.setDisable(true);
+    startingLocationController.setDisable(true);
+
+    // TODO fix/check employeebox and also test the start and end locations are correct
+    if (serviceRequest.getClass().equals(PatientTransportRequest.class)) {
+      endLocationComboBoxController.setText(
+          ((PatientTransportRequest) serviceRequest).getEndRoom());
+      descriptionBox.setText(serviceRequest.getReason());
+      employeeComboBoxController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
+      urgencyBox.setText(serviceRequest.getUrgency());
+      startingLocationController.setText(serviceRequest.getLocation().getLongName());
+    }
   }
 
   public void clearTransportForms() {

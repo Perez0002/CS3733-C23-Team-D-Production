@@ -304,10 +304,7 @@ public class FDdb {
     return moveIDao.getCertainMoveFromDate(date, l);
   }
 
-  public Node getAssociatedNode(LocationName l) {
-    return nodeIDao.getAssociatedNode(l);
-
-    // SettingDao wrappers
+  // SettingDao wrappers
   public Setting getSetting(Setting s) {
     return settingIDao.get(s);
   }
@@ -348,5 +345,9 @@ public class FDdb {
     refreshNodes();
     refreshMoves();
     refreshLocationNames();
+  }
+
+  public Node getAssociatedNode(LocationName l) {
+    return nodeIDao.getAssociatedNode(l);
   }
 }
