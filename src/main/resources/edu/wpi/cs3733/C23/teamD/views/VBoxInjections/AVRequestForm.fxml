@@ -18,7 +18,7 @@
             <children>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee *">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
@@ -28,7 +28,7 @@
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency *">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
@@ -38,7 +38,7 @@
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location *">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
@@ -63,7 +63,7 @@
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="System">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="System *">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>

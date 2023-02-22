@@ -19,12 +19,12 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <HBox prefHeight="1.0" prefWidth="200.0" styleClass="tabHBox">
+            <HBox minHeight="26.0" prefHeight="26.0" prefWidth="380.0" styleClass="tabHBox">
                <VBox.margin>
-                  <Insets right="20.0" />
+                  <Insets right="20.0" top="-30.0" />
                </VBox.margin>
             </HBox>
-            <Label prefWidth="400.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
+            <Label prefHeight="33.0" prefWidth="380.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -45,6 +45,9 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding></MFXDatePicker>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="25.0" />
+                     </VBox.margin>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0" snapToPixel="false" styleClass="serviceRequestMFXComboBox">
                      <children>
