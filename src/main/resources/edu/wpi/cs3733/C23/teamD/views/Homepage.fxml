@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -59,15 +61,18 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox spacing="20.0">
+                        <VBox spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageLabel" text="Hospital Notifications" />
-                              <TableView>
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
-                                </columns>
-                              </TableView>
+                              <Label contentDisplay="GRAPHIC_ONLY" text="Label">
+                                 <graphic>
+                                    <ImageView fitHeight="600.0" fitWidth="500.0" preserveRatio="true" smooth="false">
+                                       <image>
+                                          <Image url="@images/NotifsScreenshot.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
