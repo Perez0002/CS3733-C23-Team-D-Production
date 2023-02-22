@@ -15,8 +15,8 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
@@ -177,10 +177,10 @@ public class PathfindingController {
     floor3Button.setOnAction(changeFloor(3));
     floor4Button.setOnAction(changeFloor(4));
     floor5Button.setOnAction(changeFloor(5));
-    
+
     serviceRequestLocationToggle.setOnAction(toggleServiceRequestLocations());
     serviceRequestLocationToggle.setDisable(true);
-    
+
     floorButtons[0] = floorGButton;
     floorButtons[1] = floor1Button;
     floorButtons[2] = floor2Button;
