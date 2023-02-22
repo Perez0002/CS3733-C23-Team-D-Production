@@ -89,6 +89,7 @@
     -fx-pref-height: 53px;
     -fx-background-color: #d73e3e;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "Nunito Sans Bold";
 }
 
 .addFormLabel { /* defines the format for the header on Service Request page */
