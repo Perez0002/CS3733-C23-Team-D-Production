@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
@@ -172,23 +173,20 @@ public class PathfindingController {
             : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
 
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllCurrentMoves(dateToRun);
+    ArrayList<LocationName> baseLocationList = FDdb.getInstance().getAllLocationNames();
+
+    ArrayList<Move> moves = new ArrayList<>();
+    for (LocationName locationName : baseLocationList) {
+      Move tempMove = FDdb.getInstance().getRelevantMove(dateToRun, locationName);
+      if (tempMove != null) {
+        moves.add(tempMove);
+      }
+    }
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
-    for (Move move : baseMoveList) {
-      Move currentMove = move;
-      for (int i = 0; i < baseMoveList.size(); i++) {
-        if (baseMoveList.get(i).getLongName().equals(currentMove.getLongName())) {
-          System.out.println("SAME");
-          if (baseMoveList.get(i).getMoveDate().after(currentMove.getMoveDate())
-              && baseMoveList.get(i).getMoveDate().before(dateToRun)) {
-            currentMove = baseMoveList.get(i);
-            System.out.println(currentMove.getLongName());
-          }
-        }
-      }
-      pathNodes.put(
-          currentMove.getNodeID(), new PathNode(currentMove.getNode(), currentMove.getLocation()));
+
+    for (Move move : moves) {
+      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
     for (Edge edge : baseEdgeList) {
