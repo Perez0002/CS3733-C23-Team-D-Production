@@ -73,7 +73,12 @@ public class FDdb {
   }
 
   public void deleteNode(Node n) {
+    ArrayList<Move> moves = moveIDao.getAssociatedMoves(n);
     nodeIDao.delete(n);
+    for (Move m : moves) {
+      pastMovesIDao.save(new PastMoves(m));
+      moveIDao.delete(m);
+    }
   }
 
   public void nodeEdgeSwap(Node oldNode, Node newNode) {
@@ -101,6 +106,10 @@ public class FDdb {
     edgeIDao.update(e);
   }
 
+  public void updateEdgePK(Edge oldEdge, Edge newEdge) {
+    edgeIDao.updatePK(oldEdge, newEdge);
+  }
+
   public void deleteEdge(Edge e) {
     edgeIDao.delete(e);
   }
@@ -124,6 +133,10 @@ public class FDdb {
 
   public void updateLocationName(LocationName l) {
     locationNameIDao.update(l);
+  }
+
+  public void updateLocationNamePK(LocationName oldLoc, LocationName newLoc) {
+    locationNameIDao.updatePK(oldLoc, newLoc);
   }
 
   public void deleteLocationName(LocationName l) {

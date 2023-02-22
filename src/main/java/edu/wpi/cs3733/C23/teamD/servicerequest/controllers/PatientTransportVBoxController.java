@@ -43,8 +43,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     if (employeeComboBoxController.getEmployeeName() != null
         && startingLocationController.getLocationLongName() != null
         && endLocationComboBoxController.getLocationName() != null
-        && urgencyBox.getValue() != null
-        && descriptionBox.getText() != null) {
+        && urgencyBox.getValue() != null) {
       return true;
     }
     return false;
@@ -62,10 +61,7 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
               startingLocationController.getLocation());
       FDdb.getInstance().saveServiceRequest(newForm);
       return true;
-    }
-    // else, display text that says you need to fill fields
-    else {
-      // TODO: write text that says fields must be full
+    } else {
       return false;
     }
   }

@@ -40,7 +40,37 @@ public class EdgeTableController extends Application implements Initializable, D
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    ObservableList<Edge> edgeList =
+        FXCollections.observableArrayList(FDdb.getInstance().getAllEdges());
+    edgeID.setCellValueFactory(new PropertyValueFactory<Edge, String>("edgeID"));
+    startNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("fromNodeID"));
+    endNode.setCellValueFactory(new PropertyValueFactory<Edge, String>("toNodeID"));
+    edgeTable.setItems(edgeList);
+    edgeTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    edgeTable.getColumns().stream()
+        .forEach(
+            (column) -> {
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              double currentMax = edgeTable.getLayoutBounds().getWidth();
+              for (int i = 0; i < edgeTable.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                  double width = serviceTableValue.getLayoutBounds().getWidth();
+                  if (width > currentMax) {
+                    currentMax = width;
+                  }
+                }
+              }
+            });
+  }
+
+  @FXML
+  public void getSelectedRow() {
+    addFormController.dataToChange(edgeTable.getSelectionModel().getSelectedItem());
+  }
 
   @Override
   public void deselect() {

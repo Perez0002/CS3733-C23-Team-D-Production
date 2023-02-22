@@ -115,6 +115,7 @@ public class PathfindingController {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
         }
+
         pathfindingBorderPane.setCenter(
             MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
       }
