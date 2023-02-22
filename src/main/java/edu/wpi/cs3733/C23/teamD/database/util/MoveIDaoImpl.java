@@ -181,8 +181,8 @@ public class MoveIDaoImpl implements IDao<Move> {
 
   public ArrayList<Move> getAssociatedMoves(Node node) {
     session.beginTransaction();
-    Query q = session.createQuery("SELECT from Move where node = :node");
-    q.setParameter("now", node);
+    Query q = session.createQuery("SELECT m from Move m where node = :node");
+    q.setParameter("node", node);
     ArrayList<Move> moves = new ArrayList<Move>(q.getResultList());
     session.getTransaction().commit();
     return moves;
