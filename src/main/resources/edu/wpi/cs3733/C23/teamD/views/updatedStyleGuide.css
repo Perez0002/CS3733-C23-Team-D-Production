@@ -78,6 +78,12 @@
     -fx-text-fill: #011830;
 }
 
+.addFormLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 24pt;
+    -fx-text-fill: #011830;
+    -fx-font-family: "Nunito Sans Bold";
+}
+
 .homepageLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
     -fx-max-width: 400px;
