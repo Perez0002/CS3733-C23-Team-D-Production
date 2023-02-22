@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.entities;
 
-import edu.wpi.cs3733.C23.teamD.database.entities.Node;
-
 import java.util.ArrayList;
 
 public class Pathfinder {
@@ -21,49 +19,78 @@ public class Pathfinder {
       PathfinderBFS pathfinderBFS = new PathfinderBFS();
       path.addAll(pathfinderBFS.breadthFirstSearch(startNode, endNode));
     }
-
+    for (String s : this.textPath(path)) {
+      System.out.println(s);
+    }
     return path;
   }
-  public String textPath(ArrayList<PathNode> pathList) {
-    String path = "Starting at "+pathList.get(0).getLocation().getLongName()+", first ";
 
-    for(int i=1; i<pathList.size();i++) {
-     Node curNode = pathList.get(i).getNode();
-      int xDistance = curNode.getXcoord()-pathList.get(i+1).getNode().getXcoord();
-      int yDistance = curNode.getYcoord()-pathList.get(i+1).getNode().getYcoord();
-      double r = Math.sqrt((xDistance*xDistance)+(yDistance*yDistance));
-      double Degrees;
-      if(yDistance==0)
-        Degrees = Math.acos(xDistance/);
-      else if(xDistance==0)
-        Degrees = Math.acos(yDistance/);
-      else
-        Degrees = Math.acos()
-
-    }
-
-    return path;
-  }
-  private String getDirection(Direction lastD, Direction curD){
-    if(lastD.equals(Direction.STRAIGHT)){
-      if(curD.equals(Direction.RIGHT)){
-        return "go right from this kiosk";
+  public ArrayList<String> textPath(ArrayList<PathNode> pathList) {
+    ArrayList<String> directions = new ArrayList<>();
+    for (int i = 0; i < pathList.size() - 1; i++) {
+      int curX = pathList.get(i).getNode().getXcoord();
+      int nextX = pathList.get(i + 1).getNode().getXcoord();
+      int curY = pathList.get(i).getNode().getYcoord();
+      int nextY = pathList.get(i + 1).getNode().getYcoord();
+      int eucDistance =
+          (int) Math.sqrt(Math.abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
+      if (i == 0) {
+        directions.add(
+            "Starting at "
+                + pathList.get(i).getLocation().getLongName()
+                + ", first go "
+                + eucDistance
+                + " meters to "
+                + pathList.get(i + 1).getLocation().getLongName());
+      } else if (i < pathList.size() - 2) {
+        switch ((int) (Math.random() * 4)) {
+          case 0:
+            directions.add(
+                "Thereafter, from "
+                    + pathList.get(i).getLocation().getLongName()
+                    + " go "
+                    + eucDistance
+                    + " meters to "
+                    + pathList.get(i + 1).getLocation().getLongName());
+            break;
+          case 1:
+            directions.add(
+                "Next, from "
+                    + pathList.get(i).getLocation().getLongName()
+                    + " go "
+                    + eucDistance
+                    + " meters to "
+                    + pathList.get(i + 1).getLocation().getLongName());
+            break;
+          case 2:
+            directions.add(
+                "Then, from "
+                    + pathList.get(i).getLocation().getLongName()
+                    + " go "
+                    + eucDistance
+                    + " meters to "
+                    + pathList.get(i + 1).getLocation().getLongName());
+            break;
+          case 3:
+            directions.add(
+                "Subsequently, from "
+                    + pathList.get(i).getLocation().getLongName()
+                    + " go "
+                    + eucDistance
+                    + " meters to "
+                    + pathList.get(i + 1).getLocation().getLongName());
+            break;
+        }
+      } else {
+        directions.add(
+            "Finally, from "
+                + pathList.get(i).getLocation().getLongName()
+                + " go "
+                + eucDistance
+                + " meters to "
+                + pathList.get(i + 1).getLocation().getLongName());
       }
-      else if(curD.equals(Direction.LEFT)){
-        return "go left from this kiosk";
-      }
     }
-    if(curD.equals(lastD)){
-      return " continue straight ";
-    }
-    else{
-      if(curD.equals(Direction.RIGHT)){
-        return " turn right ";
-      }
-      else if(curD.equals(Direction.LEFT)){
-        return " turn left ";
-      }
-    }
-    return "";
+    return directions;
   }
 }
