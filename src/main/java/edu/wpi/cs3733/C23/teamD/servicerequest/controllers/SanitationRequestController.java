@@ -27,13 +27,6 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   @FXML private MFXComboBox urgencyBox;
   private boolean helpDisplayed = false;
 
-  public void initialize() {
-    fieldLocationController
-        .giveComboBox()
-        .setOnAction(
-            event -> ServiceRequestMap.getMapSingleton().mapCenters(fieldLocationController));
-  }
-
   @Override
   public void clearTransportForms() {}
 

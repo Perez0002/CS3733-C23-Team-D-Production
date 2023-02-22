@@ -40,7 +40,7 @@
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXDatePicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="400.0" promptText="Pick a Date" styleClass="mfx-text-field">
+                        <MFXDatePicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="400.0" promptText="Pick a Date" stylesheets="@updatedStyleGuide.css">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding></MFXDatePicker>
@@ -123,6 +123,9 @@
                         <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 2" />
                         <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 3" />
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="30.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>

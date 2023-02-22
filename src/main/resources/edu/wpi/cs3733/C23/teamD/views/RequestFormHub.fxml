@@ -60,19 +60,7 @@
             <Insets bottom="25.0" left="20.0" right="25.0" top="25.0" />
          </BorderPane.margin>
          <bottom>
-            <VBox prefWidth="850.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" prefWidth="850.0" spacing="24.0">
-                     <children>
-                        <MFXButton fx:id="floor1Button" styleClass="floorSwitchButton" text="L1" />
-                        <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="L2" />
-                        <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 1" />
-                        <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 2" />
-                        <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 3" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="CENTER_RIGHT" />
          </bottom>
          <center>
             <BorderPane fx:id="mapPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mapEditorMapHolder" BorderPane.alignment="CENTER" />
@@ -83,9 +71,6 @@
          <padding>
             <Insets right="25.0" />
          </padding>
-         <top>
-            <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="TOP_RIGHT" />
-         </top>
       </BorderPane>
    </right>
 </BorderPane>
