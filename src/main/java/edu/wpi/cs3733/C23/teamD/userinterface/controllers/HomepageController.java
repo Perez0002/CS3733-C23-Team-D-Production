@@ -8,7 +8,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.NavigationServiceRequests;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestVBoxController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
-import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
@@ -55,25 +55,16 @@ public class HomepageController {
 
   @FXML private TableView<ServiceRequest> serviceRequestHistory;
 
+  @FXML
+  public void setDetails() {
+    ServiceRequest request = serviceRequestHistory.getSelectionModel().getSelectedItem();
+    switchVBox(request);
+  }
+
   private ServiceRequestVBoxController currentController;
 
   Pane getPane() {
     return pane;
-  }
-
-  @FXML
-  public void navToSanitation() {
-    switchVBox(ServiceRequests.SANITATION_REQUEST);
-  }
-
-  @FXML
-  public void navToSecurity() {
-    switchVBox(ServiceRequests.SECURITY_REQUEST);
-  }
-
-  @FXML
-  public void navToTransport() {
-    switchVBox(ServiceRequests.PATIENT_TRANSPORT);
   }
 
   @FXML
@@ -151,8 +142,28 @@ public class HomepageController {
   }
 
   // takes in a service request enum, sets controller to it
-  void switchVBox(ServiceRequests switchTo) {
-    currentController = NavigationServiceRequests.navigate(switchTo, getPane());
+  void switchVBox(ServiceRequest request) {
+    if (request.getClass().equals(AVRequest.class)) {
+      currentController =
+          NavigationServiceRequests.navigateHomepage(
+              ServiceRequests.AV_REQUEST, getPane(), request);
+    } else if (request.getClass().equals(ComputerServiceRequest.class)) {
+      currentController =
+          NavigationServiceRequests.navigateHomepage(
+              ServiceRequests.COMPUTER_REQUEST, getPane(), request);
+    } else if (request.getClass().equals(PatientTransportRequest.class)) {
+      currentController =
+          NavigationServiceRequests.navigateHomepage(
+              ServiceRequests.PATIENT_TRANSPORT, getPane(), request);
+    } else if (request.getClass().equals(SanitationRequest.class)) {
+      currentController =
+          NavigationServiceRequests.navigateHomepage(
+              ServiceRequests.SANITATION_REQUEST, getPane(), request);
+    } else if (request.getClass().equals(SecurityServiceRequest.class)) {
+      currentController =
+          NavigationServiceRequests.navigateHomepage(
+              ServiceRequests.SECURITY_REQUEST, getPane(), request);
+    }
   }
 
   public void serviceRequestTable() {

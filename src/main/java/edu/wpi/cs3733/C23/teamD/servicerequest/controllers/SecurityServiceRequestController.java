@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SecurityServiceRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.UrgencySelectorBoxController;
@@ -74,6 +75,42 @@ public class SecurityServiceRequestController extends ServiceRequestController
         && urgencyBoxController.getUrgency() != null) {
       return true;
     } else return false;
+  }
+
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+
+    employeeBoxController.setDisable(true);
+    problemTextField.setDisable(true);
+    locationBoxController.setDisable(true);
+    urgencyBoxController.setDisable(true);
+    addSecurityNode.setDisable(true);
+    addRequestSecurityNode.setDisable(true);
+    if (serviceRequest.getClass().equals(SecurityServiceRequest.class)) {
+      problemTextField.setText(serviceRequest.getReason().toString());
+      urgencyBoxController.setText(serviceRequest.getUrgency());
+      locationBoxController.setLocationName(serviceRequest.getLocation().getLongName());
+      if (((SecurityServiceRequest) serviceRequest)
+          .getTypeOfSecurityRequest()
+          .equals("Add Security")) {
+        addSecurityNode.setSelected(true);
+        addRequestSecurityNode.setSelected(false);
+      } else if (((SecurityServiceRequest) serviceRequest)
+          .getTypeOfSecurityRequest()
+          .equals("Request Security")) {
+        addRequestSecurityNode.setSelected(true);
+        addSecurityNode.setSelected(false);
+      } else if (((SecurityServiceRequest) serviceRequest)
+          .getTypeOfSecurityRequest()
+          .equals("Add Security,Request Security")) {
+        addRequestSecurityNode.setSelected(true);
+        addSecurityNode.setSelected(true);
+      } else {
+        addRequestSecurityNode.setSelected(false);
+        addSecurityNode.setSelected(false);
+      }
+      // employeeBoxController.s.getEmployee()
+    }
   }
 
   @Override

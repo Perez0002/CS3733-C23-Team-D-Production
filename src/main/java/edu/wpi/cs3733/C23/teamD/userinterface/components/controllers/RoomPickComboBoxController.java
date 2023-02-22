@@ -44,4 +44,8 @@ public class RoomPickComboBoxController {
   public void clearForm() {
     mfxFilterComboBox.setValue(null);
   }
+
+  public void setDisable(boolean b) {
+    mfxFilterComboBox.setDisable(b);
+  }
 }

@@ -1,7 +1,9 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.PatientTransportRequest;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -29,6 +31,33 @@ public class SanitationRequestController implements ServiceRequestVBoxController
 
   @Override
   public void clearTransportForms() {}
+
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+    fieldLocationController.setDisable(true);
+    fieldReason.setDisable(true);
+    staffIDTextFieldController.setDisable(true);
+    radioBSL1.setDisable(true);
+    radioBSL2.setDisable(true);
+    radioBSL3.setDisable(true);
+    radioBSL4.setDisable(true);
+    urgencyBox.setDisable(true);
+
+    // TODO set the radio buttions and check the employeebox
+    if (serviceRequest.getClass().equals(PatientTransportRequest.class)) {
+      fieldLocationController.setLocationName(serviceRequest.getLocation().getLongName());
+      fieldReason.setText(serviceRequest.getUrgency());
+      // staffIDTextFieldController.setText(true);
+      SanitationRequest sRequest = (SanitationRequest) serviceRequest;
+
+      radioBSL1.setSelected(sRequest.getBioLevel() == 1);
+      radioBSL2.setSelected(sRequest.getBioLevel() == 2);
+      radioBSL3.setSelected(sRequest.getBioLevel() == 3);
+      radioBSL4.setSelected(sRequest.getBioLevel() == 4);
+
+      urgencyBox.setText(serviceRequest.getUrgency());
+    }
+  }
 
   @FXML
   public boolean submit() {
