@@ -18,8 +18,6 @@ public class NodeComboBoxController {
     ArrayList<Node> nodeList = FDdb.getInstance().getAllNodes();
     for (Node n : nodeList) {
       String nodeID = n.getNodeID(); // long name
-      // TODO: need to figure out how to grab newest record by date
-      // most likely will use ORDER-BY in SQL
       nodeToRoomMap.put(nodeID, n);
     }
   }
