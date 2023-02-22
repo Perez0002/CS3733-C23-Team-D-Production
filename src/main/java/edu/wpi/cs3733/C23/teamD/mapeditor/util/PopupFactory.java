@@ -247,25 +247,25 @@ public class PopupFactory {
         deleteButton.setText("Delete");
         deleteButton.setOnAction(deleteEvent);
       }
-    if (this.deletable) {
-      deleteButton = new MFXButton();
-      deleteButton.getStyleClass().add("deleteButton");
-      deleteButton.setText("Delete");
-      deleteButton.setOnAction(deleteEvent);
-    }
-    if (this.drawArrows) {
-      nextButton = new MFXButton();
-      prevButton = new MFXButton();
+      if (this.deletable) {
+        deleteButton = new MFXButton();
+        deleteButton.getStyleClass().add("deleteButton");
+        deleteButton.setText("Delete");
+        deleteButton.setOnAction(deleteEvent);
+      }
+      if (this.drawArrows) {
+        nextButton = new MFXButton();
+        prevButton = new MFXButton();
 
-      nextButton.setText("Next");
-      prevButton.setText("Prev");
+        nextButton.setText("Next");
+        prevButton.setText("Prev");
 
-      nextButton.getStyleClass().add("cancelButton");
-      prevButton.getStyleClass().add("cancelButton");
+        nextButton.getStyleClass().add("cancelButton");
+        prevButton.getStyleClass().add("cancelButton");
 
-      nextButton.setOnAction(nextEvent);
-      prevButton.setOnAction(prevEvent);
-    }
+        nextButton.setOnAction(nextEvent);
+        prevButton.setOnAction(prevEvent);
+      }
 
       closeButton = new MFXButton();
       closeButton.getStyleClass().add("cancelButton");
@@ -274,24 +274,24 @@ public class PopupFactory {
 
       HBox buttonBox;
 
-    if (deleteButton != null) {
-      buttonBox = new HBox(closeButton, deleteButton);
-    } else if (nextButton != null && prevButton != null) {
-      buttonBox = new HBox(prevButton, closeButton, nextButton);
-    } else {
-      buttonBox = new HBox(closeButton);
-    }
+      if (deleteButton != null) {
+        buttonBox = new HBox(closeButton, deleteButton);
+      } else if (nextButton != null && prevButton != null) {
+        buttonBox = new HBox(prevButton, closeButton, nextButton);
+      } else {
+        buttonBox = new HBox(closeButton);
+      }
 
-    HBox.setMargin(buttonBox, new Insets(10, 5, 5, 5));
-    if (deleteButton != null) {
-      HBox.setMargin(deleteButton, new Insets(0, 0, 5, 5));
-    }
-    if (nextButton != null) {
-      HBox.setMargin(prevButton, new Insets(0, 5, 5, 0));
-      HBox.setMargin(nextButton, new Insets(0, 5, 5, 0));
-    }
-    HBox.setMargin(closeButton, new Insets(0, 5, 5, 0));
-    buttonBox.setAlignment(Pos.CENTER);
+      HBox.setMargin(buttonBox, new Insets(10, 5, 5, 5));
+      if (deleteButton != null) {
+        HBox.setMargin(deleteButton, new Insets(0, 0, 5, 5));
+      }
+      if (nextButton != null) {
+        HBox.setMargin(prevButton, new Insets(0, 5, 5, 0));
+        HBox.setMargin(nextButton, new Insets(0, 5, 5, 0));
+      }
+      HBox.setMargin(closeButton, new Insets(0, 5, 5, 0));
+      buttonBox.setAlignment(Pos.CENTER);
 
       VBox submitButtonHolder;
 
@@ -317,11 +317,6 @@ public class PopupFactory {
       fullContainer.getChildren().add(submitButtonHolder);
       VBox.setMargin(scrollPane, new Insets(5, 0, 5, 0));
       VBox.setMargin(buttonBox, new Insets(5, 0, 5, 0));
-    fullContainer.getChildren().add(scrollPane);
-    fullContainer.getChildren().add(buttonBox);
-    fullContainer.getChildren().add(submitButtonHolder);
-    VBox.setMargin(scrollPane, new Insets(5, 0, 5, 0));
-    VBox.setMargin(buttonBox, new Insets(5, 0, 5, 0));
 
       popover.setHeaderAlwaysVisible(true);
       popover.setContentNode(fullContainer);
