@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
@@ -35,7 +36,7 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton helpButton;
 
-  @FXML private Label successfulSubmissionText;
+  @FXML private Label requiredFieldsText;
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
@@ -109,6 +110,8 @@ public class ServiceRequestHubController {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
     } else if (currentController instanceof SecurityServiceRequestController) {
       ((SecurityServiceRequestController) currentController).clearFields();
+    } else if (currentController instanceof SanitationRequestController) {
+      ((SanitationRequestController) currentController).clearSanitationForms();
     } else {
       currentController.clearTransportForms();
     }
@@ -124,18 +127,20 @@ public class ServiceRequestHubController {
   void submit() throws IOException {
     System.out.println("Submit Pressed");
     boolean submission = false;
-    if (currentController instanceof PatientTransportVBoxController) {
-      submission = ((PatientTransportVBoxController) currentController).submit();
+    submission = currentController.submit();
+    System.out.println("Submitting");
 
+    if (currentController instanceof HubBoxController) {
+    } else if (currentController instanceof PatientTransportVBoxController) {
+      submission = ((PatientTransportVBoxController) currentController).submit();
     } else if (currentController instanceof ComputerServiceRequestController) {
-      System.out.println("Submitting");
       submission = ((ComputerServiceRequestController) currentController).submit();
     } else if (currentController instanceof SecurityServiceRequestController) {
-      System.out.println("Submitting");
       submission = ((SecurityServiceRequestController) currentController).submit();
+    } else if (currentController instanceof SanitationRequestController) {
+      submission = ((SanitationRequestController) currentController).submit();
     } else {
-      submission = currentController.submit();
-      System.out.println("Submitting");
+      currentController.submit();
     }
 
     if (submission) {
@@ -144,11 +149,12 @@ public class ServiceRequestHubController {
       if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
         ConfettiController.makeConfetti(1500, 50, 100);
       }
+      requiredFieldsText.setText("* Required fields.");
+      requiredFieldsText.setTextFill(Color.rgb(1, 45, 90));
+    } else {
+      requiredFieldsText.setText("* Please fill out the required fields.");
+      requiredFieldsText.setTextFill(Color.color(1, 0, 0));
     }
-
-    // TODO: add your submit function here in the exact same format as the PatientVBoxController
-    // same as ClearFields. This function calls the controller class function for submission.
-
   }
 
   void createHubMap() {
