@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import org.controlsfx.control.PopOver;
 
@@ -27,9 +28,13 @@ public class RootController {
       creditsButton,
       logOutButton;
 
+  @FXML private ScrollPane navbarScrollPane;
+
   @FXML
   public void initialize() {
     checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
+    navbarScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+    navbarScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     setButtons();
   }
 
