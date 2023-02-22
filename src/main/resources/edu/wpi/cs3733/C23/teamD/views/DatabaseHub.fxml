@@ -36,8 +36,8 @@
                         <Insets top="10.0" />
                     </padding>
                 </HBox>
-            <BorderPane fx:id="requestFormHubPane" maxHeight="Infinity" maxWidth="Infinity" prefHeight="1000.0" stylesheets="@tableCSS.css" />
-                <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
+            <BorderPane fx:id="requestFormHubPane" maxHeight="Infinity" maxWidth="Infinity" prefHeight="1000.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
                     <children>
                   <MFXButton fx:id="DownloadButton" onAction="#downloadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
                      <HBox.margin>

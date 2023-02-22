@@ -29,6 +29,25 @@ public class AddNodeController implements AddFormController<Node> {
 
   @FXML private MFXTextField yCoordTextField;
 
+  @FXML private MFXButton deleteButton;
+
+  @FXML
+  public void initialize() {
+    deleteButton.setOnMouseClicked(event -> deleteRow());
+  }
+
+  private void deleteRow() {
+    databaseController.delete();
+    ToastController.makeText(
+        "the node has been deleted!",
+        1500,
+        50,
+        100,
+        (int) Screen.getPrimary().getBounds().getWidth() - 375,
+        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    dataToChange(null);
+  }
+
   private Node currentNode;
 
   private boolean checkFields() {
@@ -99,7 +118,9 @@ public class AddNodeController implements AddFormController<Node> {
       submitButton.setText("Add Node");
       titleLabel.setText("Add a Node");
       clearFields();
+      deleteButton.setDisable(true);
     } else {
+      deleteButton.setDisable(false);
       submitButton.setText("Submit Changes");
       titleLabel.setText("Change a Node");
       xCoordTextField.setText(Integer.toString(node.getXcoord()));

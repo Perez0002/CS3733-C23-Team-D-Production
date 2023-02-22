@@ -31,6 +31,25 @@ public class MoveRequestController implements AddFormController<Move> {
 
   private Move currentMove;
 
+  @FXML private MFXButton deleteButton;
+
+  @FXML
+  public void initialize() {
+    deleteButton.setOnMouseClicked(event -> deleteRow());
+  }
+
+  private void deleteRow() {
+    databaseController.delete();
+    ToastController.makeText(
+        "the move has been deleted!",
+        1500,
+        50,
+        100,
+        (int) Screen.getPrimary().getBounds().getWidth() - 375,
+        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    dataToChange(null);
+  }
+
   @FXML
   public void addMove() {
     if (checkFields()) {
@@ -98,7 +117,9 @@ public class MoveRequestController implements AddFormController<Move> {
       submitButton.setText("Add Move");
       titleLabel.setText("Add a Move");
       clearFields();
+      deleteButton.setDisable(true);
     } else {
+      deleteButton.setDisable(false);
       submitButton.setText("Submit Changes");
       titleLabel.setText("Change a Move");
       locationBoxController.setLocationName(move.getLongName());

@@ -16,6 +16,7 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="459.0" spacing="16.0" BorderPane.alignment="CENTER">
                <children>
+                  <MFXButton fx:id="deleteButton" disable="true" styleClass="rowDeleteButton" text="Delete" />
                   <MFXButton onAction="#clearFields" prefHeight="53.0" prefWidth="128.0" styleClass="clearButton" text="Clear" />
                   <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Add Location" />
                </children>
