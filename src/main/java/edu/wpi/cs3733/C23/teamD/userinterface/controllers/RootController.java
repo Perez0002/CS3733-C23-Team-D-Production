@@ -38,10 +38,16 @@ public class RootController {
       dbButton.setDisable(false);
       moveTableButton.setDisable(false);
       mapEditorButton.setDisable(false);
+      dbButton.setManaged(true);
+      moveTableButton.setManaged(true);
+      mapEditorButton.setManaged(true);
     } else {
       dbButton.setDisable(true);
       moveTableButton.setDisable(true);
       mapEditorButton.setDisable(true);
+      dbButton.setManaged(false);
+      moveTableButton.setManaged(false);
+      mapEditorButton.setManaged(false);
     }
   }
 
