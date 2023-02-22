@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -114,24 +115,25 @@ public class HomepageController {
   private void initializeAdminStats() {
     firstStat.setText(counterTotal());
     secondStat.setText(counterYourOutgoing());
-    thirdStat.setText(Integer.toString(FDdb.getInstance().getAllPastMoves().size()));
+    thirdStat.setText(counterCompletedMoves());
+  }
+
+  private String counterCompletedMoves() {
+    ArrayList<Move> allMoves = FDdb.getInstance().getAllMoves();
+    int count = 0;
+    for (Move m : allMoves) {
+      if (m.getMoveDate().before(new Date())) count++;
+    }
+    return Integer.toString(count);
   }
 
   private String counterTotal() {
-    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     ArrayList<ServiceRequest> genericServiceList =
         FDdb.getInstance().getAllGenericServiceRequests();
 
     int count = 0;
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
-
-      if (s.getAssociatedStaff() == null) {
-        continue;
-      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)) {
-        count++;
-      }
+      if (s.getStat().equals(ServiceRequest.Status.PROCESSING)) count++;
     }
     return Integer.toString(count);
   }
@@ -143,15 +145,8 @@ public class HomepageController {
 
     int count = 0;
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
-
-      if (s.getAssociatedStaff() == null) {
-        continue;
-      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)
-          && s.getStaffAssigning().equals(currentuser)) {
-        count++;
-      }
+      if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()
+          && s.getStat().equals(ServiceRequest.Status.PROCESSING)) count++;
     }
     return Integer.toString(count);
   }
@@ -163,15 +158,8 @@ public class HomepageController {
 
     int count = 0;
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
-
-      if (s.getAssociatedStaff() == null) {
-        continue;
-      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)
-          && s.getAssociatedStaff().equals(currentuser)) {
-        count++;
-      }
+      if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()
+          && s.getStat().equals(ServiceRequest.Status.PROCESSING)) count++;
     }
     return Integer.toString(count);
   }
@@ -183,15 +171,8 @@ public class HomepageController {
 
     int count = 0;
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
-
-      if (s.getAssociatedStaff() == null) {
-        continue;
-      } else if (s.getStat().equals(ServiceRequest.Status.DONE)
-          && s.getAssociatedStaff().equals(currentuser)) {
-        count++;
-      }
+      if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()
+          && s.getStat().equals(ServiceRequest.Status.DONE)) count++;
     }
     return Integer.toString(count);
   }
@@ -243,8 +224,6 @@ public class HomepageController {
     ArrayList<ServiceRequest> employeeServiceRequests = new ArrayList<>();
 
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
 
       if (s.getAssociatedStaff() == null) {
         continue;
@@ -286,8 +265,6 @@ public class HomepageController {
     ArrayList<ServiceRequest> employeeServiceRequests = new ArrayList<>();
 
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
 
       if (s.getAssociatedStaff() == null) {
         continue;

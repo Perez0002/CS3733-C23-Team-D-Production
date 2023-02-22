@@ -22,6 +22,24 @@ public class AddEdgeController implements AddFormController<Edge> {
   @FXML private MFXButton submitButton;
   @FXML private Label titleLabel;
   @FXML private Text errorText;
+  @FXML private MFXButton deleteButton;
+
+  @FXML
+  public void initialize() {
+    deleteButton.setOnMouseClicked(event -> deleteRow());
+  }
+
+  private void deleteRow() {
+    databaseController.delete();
+    ToastController.makeText(
+        "the edge has been deleted!",
+        1500,
+        50,
+        100,
+        (int) Screen.getPrimary().getBounds().getWidth() - 375,
+        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    dataToChange(null);
+  }
 
   private Edge currentEdge;
 
@@ -79,7 +97,9 @@ public class AddEdgeController implements AddFormController<Edge> {
       submitButton.setText("Add Edge");
       titleLabel.setText("Add an Edge");
       clearFields();
+      deleteButton.setDisable(true);
     } else {
+      deleteButton.setDisable(false);
       submitButton.setText("Submit Changes");
       titleLabel.setText("Change an Edge");
       toNodeBoxController.setNodeID(edge.getToNodeID());

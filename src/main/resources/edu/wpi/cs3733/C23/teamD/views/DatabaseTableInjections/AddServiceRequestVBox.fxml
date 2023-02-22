@@ -30,6 +30,7 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="70.0" prefWidth="434.0" spacing="16.0" style="-fx-fill-height: true;" BorderPane.alignment="CENTER">
                <children>
+                  <MFXButton fx:id="deleteButton" disable="true" prefWidth="128.0" styleClass="rowDeleteButton" text="Delete" />
                   <MFXButton onAction="#clearFields" prefHeight="53.0" prefWidth="128.0" styleClass="clearButton" text="Clear" />
                   <MFXButton fx:id="submitButton" onAction="#submit" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" text="Submit Changes" />
                </children>
@@ -41,15 +42,15 @@
          <center>
             <VBox maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a date" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a date *" />
                   <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the Status of the Service Request">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the Status of the Service Request *">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Label>
                   <fx:include fx:id="statusBox" prefWidth="300.0" source="../VBoxInjections/Components/StatusComboBox.fxml" />
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select an employee">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select an employee *">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
@@ -60,14 +61,14 @@
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="requestTypeBox" prefWidth="300.0" source="../VBoxInjections/Components/RequestTypeComboBox.fxml" />
+                  <fx:include fx:id="requestTypeBox" prefWidth="300.0" source="../VBoxInjections/Components/RequestTypeComboBox.fxml" disable="true" />
                   <Label styleClass="serviceRequestMFXTextFieldLabel" text="Reason">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Label>
                   <MFXTextField fx:id="reasonTextField" prefWidth="300.0" />
-                  <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting" visible="false">
+                  <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all required fields before submitting" visible="false">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>

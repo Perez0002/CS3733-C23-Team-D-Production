@@ -26,6 +26,8 @@ public class MapEditorPageController {
 
   @FXML private BorderPane mapEditorPane;
   @FXML private BorderPane mapPlacement;
+
+  @FXML private MFXButton floorGButton;
   @FXML private MFXButton floorL1Button;
   @FXML private MFXButton floorL2Button;
   @FXML private MFXButton floor1Button;
@@ -39,7 +41,7 @@ public class MapEditorPageController {
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
-  private MFXButton[] floorButtons = new MFXButton[5];
+  private MFXButton[] floorButtons = new MFXButton[6];
 
   @FXML
   void openHomepage() {
@@ -69,7 +71,7 @@ public class MapEditorPageController {
 
     return event -> {
       if (floor != currentFloor) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
           if (i == floor) {
             // floorButtons[i].setDisable(true);
             floorButtons[i].getStyleClass().remove("mapEditorFloorButton");
@@ -135,20 +137,22 @@ public class MapEditorPageController {
     double totalY = 0;
     int total = 0;
 
-    floorButtons[0] = floorL1Button;
-    floorButtons[1] = floorL2Button;
-    floorButtons[2] = floor1Button;
-    floorButtons[3] = floor2Button;
-    floorButtons[4] = floor3Button;
+    floorButtons[0] = floorGButton;
+    floorButtons[1] = floorL1Button;
+    floorButtons[2] = floorL2Button;
+    floorButtons[3] = floor1Button;
+    floorButtons[4] = floor2Button;
+    floorButtons[5] = floor3Button;
 
-    floorL1Button.setOnAction(changeFloor(0));
-    floorL2Button.setOnAction(changeFloor(1));
-    floor1Button.setOnAction(changeFloor(2));
-    floor2Button.setOnAction(changeFloor(3));
-    floor3Button.setOnAction(changeFloor(4));
+    floorGButton.setOnAction(changeFloor(0));
+    floorL1Button.setOnAction(changeFloor(1));
+    floorL2Button.setOnAction(changeFloor(2));
+    floor1Button.setOnAction(changeFloor(3));
+    floor2Button.setOnAction(changeFloor(4));
+    floor3Button.setOnAction(changeFloor(5));
     toggleEdgesButton.setOnAction(toggleEdges());
 
     // Creating GesturePane to show
-    this.changeFloor(0).handle(null);
+    this.changeFloor(1).handle(null);
   }
 }

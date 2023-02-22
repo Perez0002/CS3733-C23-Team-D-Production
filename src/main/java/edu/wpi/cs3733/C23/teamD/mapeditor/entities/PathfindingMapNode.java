@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
+import lombok.Getter;
 
 public class PathfindingMapNode extends MapNode {
   private PathfindingMapNode prevNode = null;
@@ -13,12 +15,13 @@ public class PathfindingMapNode extends MapNode {
   private EventHandler floorSwitchEvent;
   private Event changeFloor;
   private String directions;
+  @Getter private Move recentMove;
 
   public PathfindingMapNode(PathNode node) {
     /* Superclass object */
     super(node);
     /* Creates popup on mouse click */
-
+    recentMove = null;
     if (this.getNodeType().getValue().equals("BLUBBERSNUFF")) {
       nodeRepresentation.setVisible(false);
     }
@@ -26,6 +29,10 @@ public class PathfindingMapNode extends MapNode {
         event -> {
           this.MakePopup();
         });
+  }
+
+  public void setMove(Move newMove) {
+    this.recentMove = newMove;
   }
 
   public void addNextNode(PathfindingMapNode nextNode) {
@@ -48,6 +55,7 @@ public class PathfindingMapNode extends MapNode {
               .anchor(this.nodeRepresentation)
               .mapNode(this)
               .withArrows()
+              .showMoveMessage()
               .closeEvent(
                   event -> {
                     this.RemovePopup();

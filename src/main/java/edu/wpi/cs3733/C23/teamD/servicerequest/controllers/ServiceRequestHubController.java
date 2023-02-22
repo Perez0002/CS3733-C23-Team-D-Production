@@ -5,7 +5,6 @@ import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequest
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
-import edu.wpi.cs3733.C23.teamD.user.controllers.ProfilePageController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -126,10 +125,7 @@ public class ServiceRequestHubController {
   }
 
   void submit() throws IOException {
-    System.out.println("Submit Pressed");
     boolean submission = false;
-    submission = currentController.submit();
-    System.out.println("Submitting");
 
     if (currentController instanceof HubBoxController) {
     } else if (currentController instanceof PatientTransportVBoxController) {
@@ -147,7 +143,6 @@ public class ServiceRequestHubController {
     if (submission) {
       clearFields();
       ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 740);
-      ProfilePageController aProfile = new ProfilePageController();
       if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
         ConfettiController.makeConfetti(1500, 50, 100);
       }

@@ -102,6 +102,17 @@ public class MoveTableController extends Application implements Initializable, D
     addFormController.dataToChange(moveTable.getSelectionModel().getSelectedItem());
   }
 
+  @Override
+  public boolean delete() {
+    if (moveTable.getSelectionModel().getSelectedItem() != null) {
+      FDdb.getInstance().deleteMove(moveTable.getSelectionModel().getSelectedItem());
+      refresh();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public void tablehandling() {
     ObservableList<Move> moveList = null;
     try {

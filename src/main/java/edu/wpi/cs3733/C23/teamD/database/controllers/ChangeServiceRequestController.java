@@ -35,6 +35,25 @@ public class ChangeServiceRequestController implements AddFormController<Service
   @FXML private StatusComboBoxController statusBoxController;
   @FXML private Text errorText;
 
+  @FXML private MFXButton deleteButton;
+
+  @FXML
+  public void initialize() {
+    deleteButton.setOnMouseClicked(event -> deleteRow());
+  }
+
+  private void deleteRow() {
+    databaseController.delete();
+    ToastController.makeText(
+        "the service request has been deleted!",
+        1500,
+        50,
+        100,
+        (int) Screen.getPrimary().getBounds().getWidth() - 375,
+        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    dataToChange(null);
+  }
+
   @FXML
   public void submit() {
     if (checkFields()) {
@@ -62,8 +81,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
   }
 
   private boolean checkFields() {
-    return !(reasonTextField.getText().isEmpty()
-        || employeeBoxController.getEmployeeName() == null
+    return !(employeeBoxController.getEmployeeName() == null
         || statusBoxController.getStatus() == null
         || datePicker.getValue() == null
         || requestTypeBoxController.getRequestType() == null);
@@ -76,7 +94,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
     datePicker.setValue(null);
     employeeBoxController.clearForm();
     reasonTextField.clear();
-    reasonTextField.clear();
+    requestTypeBoxController.clearForm();
   }
 
   @Override
@@ -84,7 +102,9 @@ public class ChangeServiceRequestController implements AddFormController<Service
     currentRequest = serviceRequest;
     if (serviceRequest == null) {
       clearFields();
+      deleteButton.setDisable(true);
     } else {
+      deleteButton.setDisable(false);
       statusBoxController.setStatus(serviceRequest.getStat().toString());
       employeeBoxController.setEmployeeName(
           serviceRequest.getAssociatedStaff().getFirstName()
