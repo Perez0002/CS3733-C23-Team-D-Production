@@ -27,7 +27,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javax.swing.*;
 import org.controlsfx.control.PopOver;
 
 public class HomepageController {
@@ -44,6 +43,8 @@ public class HomepageController {
   @FXML private Label pendingRequests;
 
   @FXML private Label movesTomorrow;
+
+  @FXML private Label outgoingIncoming;
 
   @FXML private ScrollPane scrollPane;
 
@@ -69,8 +70,13 @@ public class HomepageController {
 
   @FXML
   public void initialize() {
-    checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
-    serviceRequestTable();
+    if (CurrentUserEnum._CURRENTUSER.getCurrentUser().getEmployeeType().equals("ADMIN")) {
+      outgoingIncoming.setText("Outgoing Service Requests");
+      serviceRequestTableOutgoing();
+    } else if (CurrentUserEnum._CURRENTUSER.getCurrentUser().getEmployeeType().equals("STAFF")) {
+      outgoingIncoming.setText("Incoming Service Requests");
+      serviceRequestTableIncoming();
+    }
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     helpButton.setOnMouseClicked(
@@ -99,22 +105,6 @@ public class HomepageController {
     popover.setArrowSize(0);
     popover.setTitle("Help");
     popover.show(App.getPrimaryStage());
-  }
-
-  private void checkAccessLevel(Employee currentUser) {
-    //    if (currentUser.getEmployeeType().equals("ADMIN")) {
-    //      serviceRequestFormButton.setDisable(false);
-    //      mapEditorButton.setDisable(false);
-    //      DBEditorButton.setDisable(false);
-    //    } else if (currentUser.equals("STAFF")) {
-    //      serviceRequestFormButton.setDisable(false);
-    //      mapEditorButton.setDisable(false);
-    //      DBEditorButton.setDisable(true);
-    //    } else {
-    //      serviceRequestFormButton.setDisable(true);
-    //      mapEditorButton.setDisable(true);
-    //      DBEditorButton.setDisable(true);
-    //    }
   }
 
   @FXML
@@ -166,7 +156,7 @@ public class HomepageController {
     }
   }
 
-  public void serviceRequestTable() {
+  public void serviceRequestTableIncoming() {
     Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     ArrayList<ServiceRequest> genericServiceList =
         FDdb.getInstance().getAllGenericServiceRequests();
@@ -178,7 +168,51 @@ public class HomepageController {
 
       if (s.getAssociatedStaff() == null) {
         continue;
-      } else if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()) {
+      } else if ((s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID())
+          && (s.getStat().equals(ServiceRequest.Status.PROCESSING))) {
+        employeeServiceRequests.add(s);
+      }
+    }
+
+    ObservableList<ServiceRequest> listserviceRequests =
+        FXCollections.observableArrayList(employeeServiceRequests);
+
+    serviceRequests.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
+    serviceDates.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
+    requestID.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
+
+    serviceRequestHistory.setItems(listserviceRequests);
+    serviceRequestHistory.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = serviceRequestHistory.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              for (int i = 0; i < serviceRequestHistory.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                }
+              }
+            });
+  }
+
+  public void serviceRequestTableOutgoing() {
+    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    ArrayList<ServiceRequest> genericServiceList =
+        FDdb.getInstance().getAllGenericServiceRequests();
+    ArrayList<ServiceRequest> employeeServiceRequests = new ArrayList<>();
+
+    for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
+      if (s.getAssociatedStaff() == null) {
+        continue;
+      } else if ((s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID())
+          && (s.getStat().equals(ServiceRequest.Status.PROCESSING))) {
         employeeServiceRequests.add(s);
       }
     }
