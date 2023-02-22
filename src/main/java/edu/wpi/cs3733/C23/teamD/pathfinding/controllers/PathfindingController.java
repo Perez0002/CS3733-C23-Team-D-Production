@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
@@ -12,7 +13,10 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -52,6 +56,8 @@ public class PathfindingController {
   @FXML private MFXButton floor4Button;
 
   @FXML private MFXButton floor5Button;
+
+  @FXML private MFXDatePicker datePicker;
 
   private MFXButton[] floorButtons = new MFXButton[6];
 
@@ -138,6 +144,16 @@ public class PathfindingController {
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
 
+    datePicker.setOnAction(
+        event -> {
+          Date dateToRun =
+              datePicker.getValue() == null
+                  ? new Date()
+                  : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
+          startRoomComboBoxController.updateMapping(dateToRun);
+          endRoomComboBoxController.updateMapping(dateToRun);
+        });
+
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(1));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
@@ -156,25 +172,42 @@ public class PathfindingController {
   void submit() {
     Pathfinder pathfinder = new Pathfinder();
 
+    Date dateToRun =
+        datePicker.getValue() == null
+            ? new Date()
+            : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+    ArrayList<LocationName> baseLocationList = FDdb.getInstance().getAllLocationNames();
+
+    ArrayList<Move> moves = FDdb.getInstance().getAllCurrentMoves(dateToRun);
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
-    for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+
+    for (Move move : moves) {
+      if (move.getNode() != null)
+        pathNodes.put(move.getNode().getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
     for (Edge edge : baseEdgeList) {
-      PathEdge edge1 =
-          new PathEdge(
-              pathNodes.get(edge.getFromNode().getNodeID()),
-              pathNodes.get(edge.getToNode().getNodeID()));
-      PathEdge edge2 =
-          new PathEdge(
-              pathNodes.get(edge.getToNode().getNodeID()),
-              pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      if (pathNodes.containsKey(edge.getToNodeID())
+          && pathNodes.containsKey(edge.getFromNodeID())) {
+        PathEdge edge1 =
+            new PathEdge(
+                pathNodes.get(edge.getFromNode().getNodeID()),
+                pathNodes.get(edge.getToNode().getNodeID()));
+        PathEdge edge2 =
+            new PathEdge(
+                pathNodes.get(edge.getToNode().getNodeID()),
+                pathNodes.get(edge.getFromNode().getNodeID()));
+        if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+          pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        }
+
+        if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+          pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        }
+      }
     }
 
     String startNode = startRoomComboBoxController.getNodeValue();
