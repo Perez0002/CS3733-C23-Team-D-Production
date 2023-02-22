@@ -257,11 +257,13 @@ public class FDdb {
   public ArrayList<Move> getAllCurrentMoves(Date date) {
     HashMap<Node, Move> moveMap = new HashMap<>();
     for (Node n : getAllNodes()) {
-    moveMap.put(n,new Move(null, null, new Date(0L)));
+      moveMap.put(n, new Move(null, null, new Date(0L)));
     }
     for (Move m : getAllMoves()) {
       for (Node n : getAllNodes()) {
-        if (m.getNode().nodeEquals(n) && m.getMoveDate().before(date) && moveMap.get(n).getMoveDate().before(m.getMoveDate())) {
+        if (m.getNode().nodeEquals(n)
+            && m.getMoveDate().before(date)
+            && moveMap.get(n).getMoveDate().before(m.getMoveDate())) {
           moveMap.put(n, m);
         }
       }
@@ -319,7 +321,8 @@ public class FDdb {
     refreshMoves();
     refreshLocationNames();
   }
-  public Move getRelevantMove(Date date, LocationName l){
+
+  public Move getRelevantMove(Date date, LocationName l) {
     return moveIDao.getRelevantMove(date, l);
   }
 }
