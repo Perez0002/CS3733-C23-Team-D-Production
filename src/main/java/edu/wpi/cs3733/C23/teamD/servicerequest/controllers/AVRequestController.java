@@ -71,8 +71,11 @@ public class AVRequestController implements ServiceRequestVBoxController {
       urgencyBox.setText(serviceRequest.getUrgency());
       datePicker.setText(serviceRequest.getDateAndTime().toString());
       systemFailureTextField.setText(serviceRequest.getReason());
-      locationBoxController.setLocationName(serviceRequest.getLocation().getLongName());
-      // employeeBoxController.s.getEmployee()
+      locationBoxController.setText(serviceRequest.getLocation().getLongName());
+      employeeBoxController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
     }
   }
 }

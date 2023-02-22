@@ -45,10 +45,13 @@ public class ComputerServiceRequestController extends ServiceRequestController
     if (serviceRequest.getClass().equals(ComputerServiceRequest.class)) {
       // TODO fix/check the employee box
       descriptionBox.setText(serviceRequest.getReason());
-      employeeBoxController.setEmployeeName(serviceRequest.getAssociatedStaff().getFirstName());
+      employeeBoxController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
       urgencyBox.setText(serviceRequest.getUrgency());
       deviceTypeBox.setText(((ComputerServiceRequest) serviceRequest).getDeviceType());
-      locationBoxController.setLocationName(serviceRequest.getLocation().getLongName());
+      locationBoxController.setText(serviceRequest.getLocation().getLongName());
     }
   }
 

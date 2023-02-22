@@ -42,12 +42,15 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
 
     // TODO fix/check employeebox and also test the start and end locations are correct
     if (serviceRequest.getClass().equals(PatientTransportRequest.class)) {
-      endLocationComboBoxController.setLocationName(serviceRequest.getLocation().getLongName());
+      endLocationComboBoxController.setText(
+          ((PatientTransportRequest) serviceRequest).getEndRoom());
       descriptionBox.setText(serviceRequest.getReason());
-      employeeComboBoxController.setEmployeeName(
-          serviceRequest.getAssociatedStaff().getFirstName());
+      employeeComboBoxController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
       urgencyBox.setText(serviceRequest.getUrgency());
-      startingLocationController.setLocationName(serviceRequest.getLocation().getLongName());
+      startingLocationController.setText(serviceRequest.getLocation().getLongName());
     }
   }
 

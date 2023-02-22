@@ -89,7 +89,7 @@ public class SecurityServiceRequestController extends ServiceRequestController
     if (serviceRequest.getClass().equals(SecurityServiceRequest.class)) {
       problemTextField.setText(serviceRequest.getReason().toString());
       urgencyBoxController.setText(serviceRequest.getUrgency());
-      locationBoxController.setLocationName(serviceRequest.getLocation().getLongName());
+      locationBoxController.setText(serviceRequest.getLocation().getLongName());
       if (((SecurityServiceRequest) serviceRequest)
           .getTypeOfSecurityRequest()
           .equals("Add Security")) {
@@ -109,7 +109,7 @@ public class SecurityServiceRequestController extends ServiceRequestController
         addRequestSecurityNode.setSelected(false);
         addSecurityNode.setSelected(false);
       }
-      employeeBoxController.setEmployeeName(
+      employeeBoxController.setText(
           serviceRequest.getAssociatedStaff().getFirstName()
               + " "
               + serviceRequest.getAssociatedStaff().getLastName());
