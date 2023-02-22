@@ -34,8 +34,8 @@
                            <children>
                               <VBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="All Pending Requests" textAlignment="CENTER" />
-                                    <Label fx:id="allPendingRequests" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" wrapText="true" />
+                                    <Label fx:id="firstStatText" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="All Pending Requests" textAlignment="CENTER" />
+                                    <Label fx:id="firstStat" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" wrapText="true" />
                                  </children>
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -43,8 +43,8 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="Your Pending Requests" textAlignment="CENTER" wrapText="true" />
-                                    <Label fx:id="pendingRequests" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="secondStatText" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="Your Pending Requests" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="secondStat" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" textAlignment="CENTER" wrapText="true" />
                                  </children>
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -52,8 +52,8 @@
                               </VBox>
                               <VBox alignment="CENTER" spacing="10.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="Total Moves Tomorrow" textAlignment="CENTER" wrapText="true" />
-                                    <Label fx:id="movesTomorrow" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="thirdStatText" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="Total Completed Moves" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="thirdStat" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" textAlignment="CENTER" wrapText="true" />
                                  </children>
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

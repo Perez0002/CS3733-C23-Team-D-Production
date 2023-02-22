@@ -38,11 +38,17 @@ public class HomepageController {
 
   @FXML private Label welcomeText;
 
-  @FXML private Label allPendingRequests;
+  @FXML private Label firstStatText;
 
-  @FXML private Label pendingRequests;
+  @FXML private Label secondStatText;
 
-  @FXML private Label movesTomorrow;
+  @FXML private Label thirdStatText;
+
+  @FXML private Label firstStat;
+
+  @FXML private Label secondStat;
+
+  @FXML private Label thirdStat;
 
   @FXML private Label outgoingIncoming;
 
@@ -70,13 +76,17 @@ public class HomepageController {
 
   @FXML
   public void initialize() {
-    if (CurrentUserEnum._CURRENTUSER.getCurrentUser().getEmployeeType().equals("ADMIN")) {
+    Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    if (currentUser.getEmployeeType().equals("ADMIN")) {
       outgoingIncoming.setText("Outgoing Service Requests");
       serviceRequestTableOutgoing();
+      initializeAdminStats();
     } else if (CurrentUserEnum._CURRENTUSER.getCurrentUser().getEmployeeType().equals("STAFF")) {
       outgoingIncoming.setText("Incoming Service Requests");
       serviceRequestTableIncoming();
+      initializeStaffStats();
     }
+
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     helpButton.setOnMouseClicked(
@@ -87,15 +97,103 @@ public class HomepageController {
             throw new RuntimeException(e);
           }
         });
+  }
 
-    Employee currentUser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+  private void initializeStaffStats() {
+    String toDo = counterYourToDo();
+    String done = counterYourDone();
+    String total = Integer.toString(Integer.parseInt(toDo) + Integer.parseInt(done));
+    firstStatText.setText("Total Assigned Requests");
+    secondStatText.setText("To Do Requests");
+    thirdStatText.setText("Completed Requests");
+    firstStat.setText(total);
+    secondStat.setText(toDo);
+    thirdStat.setText(done);
+  }
 
-    //    if (currentUser.getAccessLevel() == 0) {
-    //      currentUserText.setText("please log in");
-    //    } else {
-    //      currentUserText.setText("You are logged in as: \n" + currentUser.getUsername());
-    //    }
+  private void initializeAdminStats() {
+    firstStat.setText(counterTotal());
+    secondStat.setText(counterYourOutgoing());
+    thirdStat.setText(Integer.toString(FDdb.getInstance().getAllPastMoves().size()));
+  }
 
+  private String counterTotal() {
+    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    ArrayList<ServiceRequest> genericServiceList =
+        FDdb.getInstance().getAllGenericServiceRequests();
+
+    int count = 0;
+    for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
+      if (s.getAssociatedStaff() == null) {
+        continue;
+      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)) {
+        count++;
+      }
+    }
+    return Integer.toString(count);
+  }
+
+  private String counterYourOutgoing() {
+    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    ArrayList<ServiceRequest> genericServiceList =
+        FDdb.getInstance().getAllGenericServiceRequests();
+
+    int count = 0;
+    for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
+      if (s.getAssociatedStaff() == null) {
+        continue;
+      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)
+          && s.getStaffAssigning().equals(currentuser)) {
+        count++;
+      }
+    }
+    return Integer.toString(count);
+  }
+
+  private String counterYourToDo() {
+    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    ArrayList<ServiceRequest> genericServiceList =
+        FDdb.getInstance().getAllGenericServiceRequests();
+
+    int count = 0;
+    for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
+      if (s.getAssociatedStaff() == null) {
+        continue;
+      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)
+          && s.getAssociatedStaff().equals(currentuser)) {
+        count++;
+      }
+    }
+    return Integer.toString(count);
+  }
+
+  private String counterYourDone() {
+    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    ArrayList<ServiceRequest> genericServiceList =
+        FDdb.getInstance().getAllGenericServiceRequests();
+
+    int count = 0;
+    for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
+      if (s.getAssociatedStaff() == null) {
+        continue;
+      } else if (s.getStat().equals(ServiceRequest.Status.DONE)
+          && s.getAssociatedStaff().equals(currentuser)) {
+        count++;
+      }
+    }
+    return Integer.toString(count);
   }
 
   private void help() throws IOException {
@@ -111,24 +209,6 @@ public class HomepageController {
   /** user open menubutton, clicks Exit, and it closes the window. */
   void closeApplication(ActionEvent event) {
     homepageBorderPane.getScene().getWindow().hide();
-  }
-
-  @FXML
-  /**
-   * checks label text. Sets label text to help text when button clicked, and sets label text to
-   * empty when button clicked again
-   */
-  void toggleHelpText(ActionEvent event) {
-    //    if (serviceRequestHelpText.getText().equals("") || bottomHelpText.getText().equals("")) {
-    //      serviceRequestHelpText.setText("Click the buttons below to fill out service request
-    // forms!");
-    //      bottomHelpText.setText(
-    //          "<-Use the leftmost button to exit the program  \n  Click the rightmost button to
-    // remove the help text->");
-    //    } else {
-    //      serviceRequestHelpText.setText("");
-    //      bottomHelpText.setText("");
-    //    }
   }
 
   // takes in a service request enum, sets controller to it
@@ -211,8 +291,7 @@ public class HomepageController {
 
       if (s.getAssociatedStaff() == null) {
         continue;
-      } else if ((s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID())
-          && (s.getStat().equals(ServiceRequest.Status.PROCESSING))) {
+      } else if (s.getStat().equals(ServiceRequest.Status.PROCESSING)) {
         employeeServiceRequests.add(s);
       }
     }
