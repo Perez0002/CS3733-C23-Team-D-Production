@@ -70,6 +70,11 @@ public class SanitationTable extends Application implements Initializable, Datab
     return SanitationRequestBorderPane;
   }
 
+  @Override
+  public boolean delete() {
+    return false;
+  }
+
   public void tablehandling() {
     sanitationTable.setEditable(true);
     ObservableList<SanitationRequest> requestList =

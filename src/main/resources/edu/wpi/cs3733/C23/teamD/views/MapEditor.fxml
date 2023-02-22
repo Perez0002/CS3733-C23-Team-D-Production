@@ -12,17 +12,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="420.0" prefWidth="250.0">
                <children>
-                  <MFXButton fx:id="floorL1Button" prefHeight="70.0" prefWidth="200.0" text="Floor L1">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="5.0" top="10.0" />
-                     </VBox.margin>
-                  </MFXButton>
-                  <MFXButton fx:id="floorL2Button" prefHeight="70.0" prefWidth="200.0" text="Floor L2">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="5.0" top="10.0" />
-                     </VBox.margin>
-                  </MFXButton>
-                  <MFXButton fx:id="floor1Button" prefHeight="70.0" prefWidth="200.0" text="Floor 1">
+                  <MFXButton fx:id="floor3Button" prefHeight="70.0" prefWidth="200.0" text="Floor 3">
                      <VBox.margin>
                         <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
@@ -32,11 +22,25 @@
                         <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="floor3Button" prefHeight="70.0" prefWidth="200.0" text="Floor 3">
+                  <MFXButton fx:id="floor1Button" prefHeight="70.0" prefWidth="200.0" text="Floor 1">
                      <VBox.margin>
                         <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
                   </MFXButton>
+                  <MFXButton fx:id="floorL2Button" prefHeight="70.0" prefWidth="200.0" text="Floor L2">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="floorL1Button" prefHeight="70.0" prefWidth="200.0" text="Floor L1">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="floorGButton" prefHeight="70.0" prefWidth="200.0" text="Floor G">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
+                     </VBox.margin></MFXButton>
                </children>
                <VBox.margin>
                   <Insets bottom="87.0" />

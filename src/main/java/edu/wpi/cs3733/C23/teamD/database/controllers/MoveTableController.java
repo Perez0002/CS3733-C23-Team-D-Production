@@ -27,6 +27,8 @@ public class MoveTableController extends Application implements Initializable, D
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
+
+  @FXML private TableColumn<Move, String> message;
   @Setter private AddFormController addFormController;
 
   @FXML
@@ -59,11 +61,16 @@ public class MoveTableController extends Application implements Initializable, D
   }
 
   public void refresh() {
-    ObservableList<Move> moveList =
-        FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+    ObservableList<Move> moveList = null;
+    try {
+      moveList = FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
     moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
     moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
+    message.setCellValueFactory(new PropertyValueFactory<Move, String>("message"));
     moveTable.setItems(moveList);
     moveTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     moveTable.getColumns().stream()
@@ -95,17 +102,28 @@ public class MoveTableController extends Application implements Initializable, D
     addFormController.dataToChange(moveTable.getSelectionModel().getSelectedItem());
   }
 
+  @Override
+  public boolean delete() {
+    if (moveTable.getSelectionModel().getSelectedItem() != null) {
+      FDdb.getInstance().deleteMove(moveTable.getSelectionModel().getSelectedItem());
+      refresh();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public void tablehandling() {
     ObservableList<Move> moveList = null;
     try {
-      moveList =
-          FXCollections.observableArrayList(FDdb.getInstance().getAllCurrentMoves(new Date()));
+      moveList = FXCollections.observableArrayList(FDdb.getInstance().getAllMoves());
     } catch (Exception e) {
       e.printStackTrace();
     }
     moveNodeID.setCellValueFactory(new PropertyValueFactory<Move, String>("nodeID"));
     moveDate.setCellValueFactory(new PropertyValueFactory<Move, Date>("moveDate"));
     moveLongName.setCellValueFactory(new PropertyValueFactory<Move, String>("longName"));
+    message.setCellValueFactory(new PropertyValueFactory<Move, String>("message"));
     moveTable.setItems(moveList);
     moveTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
     moveTable.getColumns().stream()

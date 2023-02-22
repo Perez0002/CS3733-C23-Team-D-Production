@@ -27,6 +27,7 @@ public class MapEditorPageController {
   @FXML private BorderPane mapEditorPane;
   @FXML private BorderPane mapPlacement;
 
+  @FXML private MFXButton floorGButton;
   @FXML private MFXButton floorL1Button;
   @FXML private MFXButton floorL2Button;
   @FXML private MFXButton floor1Button;
@@ -40,7 +41,7 @@ public class MapEditorPageController {
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
-  private MFXButton[] floorButtons = new MFXButton[5];
+  private MFXButton[] floorButtons = new MFXButton[6];
 
   @FXML
   void openHomepage() {
@@ -49,51 +50,43 @@ public class MapEditorPageController {
   }
 
   public EventHandler<ActionEvent> toggleEdges() {
-    return new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        edgesShown = !edgesShown;
+    return event -> {
+      edgesShown = !edgesShown;
 
-        if (edgesShown) {
-          toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
-          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
-        } else {
-          toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
-          toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
-        }
+      if (edgesShown) {
+        toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+        toggleEdgesButton.getStyleClass().remove("mapEditorFloorButton");
+      } else {
+        toggleEdgesButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+        toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
+      }
 
-        for (MapEdge edge : edgeList) {
-          edge.getEdgeRepresentation().setVisible(edgesShown);
-        }
+      for (MapEdge edge : edgeList) {
+        edge.getEdgeRepresentation().setVisible(edgesShown);
       }
     };
   }
 
   public EventHandler<ActionEvent> changeFloor(int floor) {
 
-    return new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-
-        if (floor != currentFloor) {
-          for (int i = 0; i < 5; i++) {
-            if (i == floor) {
-              // floorButtons[i].setDisable(true);
-              floorButtons[i].getStyleClass().remove("mapEditorFloorButton");
-              floorButtons[i].getStyleClass().add("mapEditorFloorButtonSelected");
-            } else {
-              floorButtons[i].setDisable(false);
-              floorButtons[i].getStyleClass().remove("mapEditorFloorButtonSelected");
-              floorButtons[i].getStyleClass().add("mapEditorFloorButton");
-            }
+    return event -> {
+      if (floor != currentFloor) {
+        for (int i = 0; i < 6; i++) {
+          if (i == floor) {
+            // floorButtons[i].setDisable(true);
+            floorButtons[i].getStyleClass().remove("mapEditorFloorButton");
+            floorButtons[i].getStyleClass().add("mapEditorFloorButtonSelected");
+          } else {
+            floorButtons[i].setDisable(false);
+            floorButtons[i].getStyleClass().remove("mapEditorFloorButtonSelected");
+            floorButtons[i].getStyleClass().add("mapEditorFloorButton");
           }
-
-          gesturePane =
-              MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
-
-          mapPlacement.setCenter(gesturePane);
-          currentFloor = floor;
         }
+
+        gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+
+        mapPlacement.setCenter(gesturePane);
+        currentFloor = floor;
       }
     };
   }
@@ -105,7 +98,9 @@ public class MapEditorPageController {
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      if (move.getNode() != null) {
+        pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      }
     }
 
     HashMap<String, MapNode> mapNodes = new HashMap<>();
@@ -142,20 +137,22 @@ public class MapEditorPageController {
     double totalY = 0;
     int total = 0;
 
-    floorButtons[0] = floorL1Button;
-    floorButtons[1] = floorL2Button;
-    floorButtons[2] = floor1Button;
-    floorButtons[3] = floor2Button;
-    floorButtons[4] = floor3Button;
+    floorButtons[0] = floorGButton;
+    floorButtons[1] = floorL1Button;
+    floorButtons[2] = floorL2Button;
+    floorButtons[3] = floor1Button;
+    floorButtons[4] = floor2Button;
+    floorButtons[5] = floor3Button;
 
-    floorL1Button.setOnAction(changeFloor(0));
-    floorL2Button.setOnAction(changeFloor(1));
-    floor1Button.setOnAction(changeFloor(2));
-    floor2Button.setOnAction(changeFloor(3));
-    floor3Button.setOnAction(changeFloor(4));
+    floorGButton.setOnAction(changeFloor(0));
+    floorL1Button.setOnAction(changeFloor(1));
+    floorL2Button.setOnAction(changeFloor(2));
+    floor1Button.setOnAction(changeFloor(3));
+    floor2Button.setOnAction(changeFloor(4));
+    floor3Button.setOnAction(changeFloor(5));
     toggleEdgesButton.setOnAction(toggleEdges());
 
     // Creating GesturePane to show
-    this.changeFloor(0).handle(null);
+    this.changeFloor(1).handle(null);
   }
 }

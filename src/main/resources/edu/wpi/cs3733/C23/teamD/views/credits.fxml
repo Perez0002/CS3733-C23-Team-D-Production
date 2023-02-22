@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <VBox fx:id="creditsVbox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="494.0" BorderPane.alignment="CENTER">
+      <Label text="Credits" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <AnchorPane prefHeight="151.0" prefWidth="495.0">
+            <VBox alignment="CENTER">
                <children>
-                  <ImageView fitHeight="165.0" fitWidth="156.0" layoutX="338.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/Dapperdingo.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="CreditsLabel1" alignment="CENTER" layoutX="194.0" layoutY="56.0" styleClass="homepageLabel" stylesheets="@updatedStyleGuide.css" text="Credits" />
-                  <ImageView fitHeight="155.0" fitWidth="156.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/Dapperdingo.png" />
-                     </image>
-                  </ImageView>
+                  <Label text="JavaFX Extensions:" />
+                  <Label text="GestureFX" />
+                  <Label text="Material FX" />
                </children>
-            </AnchorPane>
-            <TextArea editable="false" prefHeight="313.0" prefWidth="494.0" styleClass="label" stylesheets="@updatedStyleGuide.css" text="Service Request Pages:&#10;     Hub: Annie Zimmerman&#10;     Patient Transport: Annie Zimmerman&#10;     Sanitation:&#10;     Audio/Visual: Mike Wilkinson, Gibson Phillips&#10;     Security:&#10;     Computer: Wyatt Harris&#10;Database Pages:&#10;     Hub: Abigail Albuquerque&#10;     Tables: Abigail Albuquerque, Bryce Lukens, Ari Scheter&#10;     Upload/Download buttons: Abigail Albuquerque, Bryce Lukens&#10;Pathfinding Pages:&#10;     Pathfinding Form: Jonathan Asher, Theo Winter&#10;     Map editor: Jonathan Asher, Theo Winter&#10;Profile:&#10;     Profile Page: Abigail Albuquerque, Wyatt Harris&#10;     Login Page: Mike Wilkinson&#10;Home:&#10;     Homepage: Wyatt Harris&#10;Navbar:&#10;     Navigation Bar and Icons: Liv Perez" />
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Icons: Ikonli" />
+                  <Label text="FluentUI pack" />
+               </children>
+            </VBox>
+            <Label text="Hibernate" />
          </children>
       </VBox>
-   </top>
+   </center>
 </BorderPane>

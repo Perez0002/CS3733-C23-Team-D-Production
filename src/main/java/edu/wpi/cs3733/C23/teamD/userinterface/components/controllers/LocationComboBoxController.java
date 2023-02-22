@@ -43,7 +43,11 @@ public class LocationComboBoxController {
     mfxFilterComboBox.setValue(null);
   }
 
-  public MFXFilterComboBox<String> giveComboBox() {
-    return mfxFilterComboBox;
+  public void setDisable(boolean b) {
+    mfxFilterComboBox.setDisable(b);
+  }
+
+  public void setText(String s) {
+    mfxFilterComboBox.setText(s);
   }
 }

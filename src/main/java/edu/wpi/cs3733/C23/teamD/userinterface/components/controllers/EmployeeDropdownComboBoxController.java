@@ -40,4 +40,16 @@ public class EmployeeDropdownComboBoxController {
   public void clearForm() {
     mfxFilterComboBox.setValue(null);
   }
+
+  public void setEmployeeName(String s) {
+    mfxFilterComboBox.setValue(s);
+  }
+
+  public void setDisable(boolean b) {
+    mfxFilterComboBox.setDisable(b);
+  }
+
+  public void setText(String s) {
+    mfxFilterComboBox.setText(s);
+  }
 }

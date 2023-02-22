@@ -17,7 +17,7 @@
          <children>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee *">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -27,7 +27,7 @@
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency *">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -37,7 +37,7 @@
             </VBox>
             <VBox prefWidth="200.0" spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Start Location">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Start Location *">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
@@ -52,12 +52,12 @@
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="End Location">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="End Location *">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="endLocationComboBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
+                  <fx:include fx:id="endLocationComboBox" prefWidth="300.0" source="Components/RoomPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -67,7 +67,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXTextField fx:id="descriptionBox" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
+                  <MFXTextField fx:id="descriptionBox" floatMode="DISABLED" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
                </children>
             </VBox>
          </children>

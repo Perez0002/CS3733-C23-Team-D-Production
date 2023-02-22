@@ -58,13 +58,14 @@ public class NodeIDaoImpl implements IDao<Node> {
   }
 
   public void updatePK(Node n) {
-    Node oldNode = new Node(n);
-    n.setNodeID();
+    // Node oldNode = new Node(n);
     Node newNode = new Node(n);
+    newNode.setNodeID();
     this.save(newNode);
-    this.nodeMoveSwap(oldNode, newNode);
-    this.nodeEdgeSwap(oldNode, newNode);
-    this.delete(n);
+    this.nodeMoveSwap(n, newNode);
+    this.nodeEdgeSwap(n, newNode);
+    System.out.println("Node ID: " + n.getNodeID());
+    this.deleteOnlyNode(n);
   }
 
   @Override
@@ -141,24 +142,49 @@ public class NodeIDaoImpl implements IDao<Node> {
 
     for (Edge oldEdge : edges) {
       Edge newEdge;
-      if (oldEdge.getFromNode().equals(oldNode)) {
+      if (oldEdge.getFromNode().nodeEquals(oldNode)) {
         newEdge = new Edge(newNode, oldEdge.getToNode());
-      } else {
+        System.out.println("From Node: " + newEdge.getFromNodeID());
+      } else if (oldEdge.getToNode().nodeEquals(oldNode)) {
         newEdge = new Edge(oldEdge.getFromNode(), newNode);
+        System.out.println("To Node: " + newEdge.getToNodeID());
+      } else {
+        newEdge = new Edge();
       }
       dbFacade.deleteEdge(oldEdge);
       dbFacade.saveEdge(newEdge);
     }
   }
 
-  private void nodeMoveSwap(Node oldNode, Node newNode) {
-    FDdb dbFacade = FDdb.getInstance();
+  private void deleteOnlyNode(Node n) {
+    session.beginTransaction();
+    try {
+      Query q2 = session.createQuery("DELETE Node where nodeID=:id");
+      q2.setParameter("id", n.getNodeID());
+      int deleted = q2.executeUpdate();
+      session.getTransaction().commit();
 
-    for (Move m : dbFacade.getAllMoves()) {
-      if (m.getNodeID().equals(oldNode.getNodeID())) {
-        m.setNode(newNode);
-        dbFacade.updateMove(m);
+      this.nodes.remove(n);
+
+    } catch (Exception ex) {
+      session.getTransaction().rollback();
+    }
+  }
+
+  private void nodeMoveSwap(Node oldNode, Node newNode) {
+    try {
+      FDdb dbFacade = FDdb.getInstance();
+      ArrayList<Move> moves = new ArrayList<>(dbFacade.getAllMoves());
+      for (int i = 0; i < moves.size(); i++) {
+        Move m = moves.get(i);
+        if (moves.get(i).getNode().nodeEquals(oldNode)) {
+          Move move = new Move(newNode, m.getLocation(), m.getMoveDate());
+          FDdb.getInstance().deleteMove(m);
+          FDdb.getInstance().saveMove(move);
+        }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -171,6 +197,18 @@ public class NodeIDaoImpl implements IDao<Node> {
       session.beginTransaction();
       org.hibernate.query.Query query = session.createQuery("DELETE FROM Edge");
       query.executeUpdate();
+      query = session.createQuery("DELETE FROM SecurityServiceRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM ComputerServiceRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM SanitationRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM AVRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM PatientTransportRequest ");
+      query.executeUpdate();
+      query = session.createQuery("DELETE FROM ServiceRequest");
+      query.executeUpdate();
       query = session.createQuery("DELETE FROM Move");
       query.executeUpdate();
       query = session.createQuery("DELETE FROM LocationName ");
@@ -178,16 +216,18 @@ public class NodeIDaoImpl implements IDao<Node> {
       query = session.createQuery("DELETE FROM Node");
       query.executeUpdate();
       session.getTransaction().commit();
+      Node n = new Node();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        Node n = new Node();
+        n = new Node();
         n.setNodeID(data[0]);
         n.setXcoord(Integer.parseInt(data[1]));
         n.setYcoord(Integer.parseInt(data[2]));
         n.setFloor(data[3]);
         n.setBuilding(data[4]);
-        FDdb.getInstance().saveNode(n);
+        this.save(n);
       }
+      FDdb.getInstance().saveNode(n);
       fileReader.close();
     } catch (IOException e) {
       e.printStackTrace();
