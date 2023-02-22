@@ -29,7 +29,7 @@ public class ServiceRequestMapController {
   static ServiceRequestMapController mapSingleton;
   GesturePane map;
 
-  int currentFloor = 0;
+  int currentFloor = 1;
 
   edu.wpi.cs3733.C23.teamD.database.entities.Node currentNode;
 
@@ -37,11 +37,11 @@ public class ServiceRequestMapController {
     this.createMap();
     mapSingleton = this;
     changeFloor(1);
-    floor1Button.setOnMouseClicked(event -> changeFloor(0));
-    floor2Button.setOnMouseClicked(event -> changeFloor(1));
-    floor3Button.setOnMouseClicked(event -> changeFloor(2));
-    floor4Button.setOnMouseClicked(event -> changeFloor(3));
-    floor5Button.setOnMouseClicked(event -> changeFloor(4));
+    floor1Button.setOnMouseClicked(event -> changeFloor(1));
+    floor2Button.setOnMouseClicked(event -> changeFloor(2));
+    floor3Button.setOnMouseClicked(event -> changeFloor(3));
+    floor4Button.setOnMouseClicked(event -> changeFloor(4));
+    floor5Button.setOnMouseClicked(event -> changeFloor(5));
   }
 
   public ServiceRequestMapController() {}
@@ -88,26 +88,26 @@ public class ServiceRequestMapController {
     switch (floorString) {
       case "L1":
         {
-          return 0;
+          return 1;
         }
       case "L2":
         {
-          return 1;
+          return 2;
         }
       case "1":
         {
-          return 2;
+          return 3;
         }
       case "2":
         {
-          return 3;
+          return 4;
         }
       case "3":
         {
-          return 4;
+          return 5;
         }
       case "G":
-        System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
+        return 0;
     }
     return 100; // error if this is hit
   }
@@ -135,19 +135,19 @@ public class ServiceRequestMapController {
 
       switch (floor) {
         case "L1":
-          changeFloor(0);
-          break;
-        case "L2":
           changeFloor(1);
           break;
-        case "1":
+        case "L2":
           changeFloor(2);
           break;
-        case "2":
+        case "1":
           changeFloor(3);
           break;
-        case "3":
+        case "2":
           changeFloor(4);
+          break;
+        case "3":
+          changeFloor(5);
           break;
         case "G":
           System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
@@ -166,57 +166,57 @@ public class ServiceRequestMapController {
   public void changeFloor(int floor) {
 
     switch (currentFloor) {
-      case 0:
+      case 1:
         floor1Button.setStyle("-fx-background-color: #C9E0F8");
         break;
-      case 1:
+      case 2:
         floor2Button.setStyle("-fx-background-color: #C9E0F8");
         break;
-      case 2:
+      case 3:
         floor3Button.setStyle("-fx-background-color: #C9E0F8");
         break;
-      case 3:
+      case 4:
         floor4Button.setStyle("-fx-background-color: #C9E0F8");
         break;
-      case 4:
+      case 5:
         floor5Button.setStyle("-fx-background-color: #C9E0F8");
         break;
     }
 
     switch (floor) {
-      case 0:
-        {
-          floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
-          currentFloor = 0;
-          setFloor(0);
-          break;
-        }
       case 1:
         {
-          floor2Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+          floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 1;
           setFloor(1);
           break;
         }
       case 2:
         {
-          floor3Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+          floor2Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 2;
           setFloor(2);
           break;
         }
       case 3:
         {
-          floor4Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+          floor3Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 3;
           setFloor(3);
           break;
         }
       case 4:
         {
-          floor5Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+          floor4Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
           currentFloor = 4;
           setFloor(4);
+          break;
+        }
+      case 5:
+        {
+          floor5Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
+          currentFloor = 5;
+          setFloor(5);
           break;
         }
     }
