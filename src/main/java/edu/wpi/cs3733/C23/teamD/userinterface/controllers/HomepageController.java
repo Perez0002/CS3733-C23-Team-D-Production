@@ -2,21 +2,31 @@ package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.NavigationServiceRequests;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestVBoxController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javax.swing.*;
 import org.controlsfx.control.PopOver;
 
@@ -38,6 +48,12 @@ public class HomepageController {
   @FXML private ScrollPane scrollPane;
 
   @FXML private Pane pane;
+
+  @FXML private TableColumn<ServiceRequest, String> serviceRequests;
+  @FXML private TableColumn<ServiceRequest, Date> serviceDates;
+  @FXML private TableColumn<ServiceRequest, Integer> requestID;
+
+  @FXML private TableView<ServiceRequest> serviceRequestHistory;
 
   private ServiceRequestVBoxController currentController;
 
@@ -63,6 +79,7 @@ public class HomepageController {
   @FXML
   public void initialize() {
     checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
+    serviceRequestTable();
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     helpButton.setOnMouseClicked(
@@ -136,5 +153,47 @@ public class HomepageController {
   // takes in a service request enum, sets controller to it
   void switchVBox(ServiceRequests switchTo) {
     currentController = NavigationServiceRequests.navigate(switchTo, getPane());
+  }
+
+  public void serviceRequestTable() {
+    Employee currentuser = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    ArrayList<ServiceRequest> genericServiceList =
+        FDdb.getInstance().getAllGenericServiceRequests();
+    ArrayList<ServiceRequest> employeeServiceRequests = new ArrayList<>();
+
+    for (ServiceRequest s : genericServiceList) {
+      System.out.println(s.getAssociatedStaff().getEmployeeID());
+      System.out.println(currentuser.getEmployeeID());
+
+      if (s.getAssociatedStaff() == null) {
+        continue;
+      } else if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()) {
+        employeeServiceRequests.add(s);
+      }
+    }
+
+    ObservableList<ServiceRequest> listserviceRequests =
+        FXCollections.observableArrayList(employeeServiceRequests);
+
+    serviceRequests.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequest, String>("serviceRequestType"));
+    serviceDates.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Date>("dateAndTime"));
+    requestID.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
+
+    serviceRequestHistory.setItems(listserviceRequests);
+    serviceRequestHistory.getColumns().stream()
+        .forEach(
+            (column) -> {
+              double size = serviceRequestHistory.getColumns().size();
+              Text serviceTableValue = new Text(column.getText());
+              Object cellData;
+              for (int i = 0; i < serviceRequestHistory.getItems().size(); i++) {
+                cellData = column.getCellData(i);
+                if (cellData != null) {
+                  serviceTableValue = new Text(cellData.toString());
+                }
+              }
+            });
   }
 }
