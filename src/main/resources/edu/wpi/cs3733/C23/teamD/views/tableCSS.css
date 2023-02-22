@@ -1,18 +1,93 @@
-/** color the arrow */
-.table-view .column-header .arrow {
-    -fx-background-color: white;
-}
-
-/** color the column header text */
-.table-view .column-header .label {
-    -fx-text-fill: white;
-}
-.table-view .scroll-bar .thumb {
-    -fx-background-color: lightblue;
-}
-
 .Button { /* defines the format for the submit button */
     -fx-background-color: #012D5A;
     -fx-text-fill: white;
     -fx-border-color: white;
 }
+
+.table-view:focused {
+    -fx-background-color: transparent;
+    -fx-background-insets: -1.4, 0, 1;
+    -fx-background-radius: 1.4, 0, 0;
+    -fx-padding: 1;
+    -fx-text-fill: white;
+}
+
+/*.table-row-cell:focused {*/
+/*    -fx-background-color: #012D5A;*/
+/*    -fx-text-fill: white;*/
+/*}*/
+
+.table-row-cell:selected {
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:hover {
+    -fx-text-fill: white;
+}
+
+.table-row:selected {
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell{
+    -fx-cell-size: 25px;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-view .column-header-background{
+    -fx-underline: #012D5A;
+    -fx-font-weight: bold;
+    -fx-background-color: lightgrey;
+}
+
+/** Setting the background color **/
+/*.table-view {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+/*.table-view .column {*/
+/*    -fx-border: 3px;*/
+/*    -fx-border-color: transparent;*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+/*.table-view .column-header-background{*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-background-insets: 0 11px 0 0;*/
+/*    -fx-padding: 0 0 5px 0;*/
+/*}*/
+
+
+/*.table-view .column-header.label {*/
+/*    -fx-underline: #012D5A;*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-background-radius: 5;*/
+/*    -fx-font-weight: bold;*/
+/*}*/
+
+/*.table-row {*/
+/*    -fx-background-radius: 10;*/
+/*    -fx-text-alignment: center;*/
+/*}*/
+
+
+
+/*.table-view .table-cell{*/
+/*    -fx-padding: 2 0 2 10px;*/
+/*    -fx-background-radius: 7px 7px 7px 7px;*/
+/*}*/
+
+
+
+/*.table-view .scroll-bar .thumb {*/
+/*    -fx-background-color: lightgrey;*/
+/*}*/
+
+/*!** Scroll Bar **!*/
+/*.table-view .scroll-bar {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+
+

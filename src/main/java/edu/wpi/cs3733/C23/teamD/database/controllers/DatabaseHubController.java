@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.controllers;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
@@ -78,14 +79,19 @@ public class DatabaseHubController {
   @FXML
   void downloadData() throws IOException {
     FDdb.getInstance().downloadCSV();
-    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50, 275, 720);
-    ConfettiController.makeConfetti(1000, 50, 50);
+    if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
+      ConfettiController.makeConfetti(1500, 50, 100);
+    }
+    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50, 275, 770);
   }
 
   @FXML
-  void uploadData() {
+  void uploadData() throws IOException {
     FDdb.getInstance().uploadCSV();
-    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50, 275, 720);
+    if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
+      ConfettiController.makeConfetti(1500, 50, 100);
+    }
+    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50, 275, 770);
   }
 
   @FXML

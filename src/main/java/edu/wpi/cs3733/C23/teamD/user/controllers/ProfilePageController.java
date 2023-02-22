@@ -178,12 +178,10 @@ public class ProfilePageController {
     ArrayList<ServiceRequest> employeeServiceRequests = new ArrayList<>();
 
     for (ServiceRequest s : genericServiceList) {
-      System.out.println(s.getAssociatedStaff().getEmployeeID());
-      System.out.println(currentuser.getEmployeeID());
-
       if (s.getAssociatedStaff() == null) {
         continue;
-      } else if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()) {
+      } else if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()
+          && s.getStat().equals(ServiceRequest.Status.DONE)) {
         employeeServiceRequests.add(s);
       }
     }
