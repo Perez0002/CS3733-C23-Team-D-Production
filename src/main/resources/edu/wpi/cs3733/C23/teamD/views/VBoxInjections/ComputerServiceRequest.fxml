@@ -58,7 +58,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXComboBox fx:id="deviceTypeBox" prefWidth="300.0" promptText="Select Device Type" styleClass="serviceRequestMFXComboBox" />
+                  <MFXComboBox fx:id="deviceTypeBox" floatMode="DISABLED" prefWidth="300.0" promptText="Select Device Type" styleClass="serviceRequestMFXComboBox" stylesheets="@../updatedStyleGuide.css" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -68,7 +68,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXTextField fx:id="descriptionBox" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
+                  <MFXTextField fx:id="descriptionBox" floatMode="DISABLED" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
                </children>
             </VBox>
          </children>

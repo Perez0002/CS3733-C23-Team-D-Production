@@ -41,7 +41,10 @@ public class ProfilePageChangePasswordController {
 
     // checks to see if fields are filled and confirm and new pass match
     if (originalP.equals("") || (newP.equals("")) || (confirmNewP.equals(""))) {
-      help.setText("Fill all fields");
+      help.setText("Fill all fields.");
+      return false;
+    } else if (!originalP.equals(currentUser.getPassword())) {
+      help.setText("Original password is incorrect.");
       return false;
     } else if (!confirmNewP.equals(newP)) {
       help.setText("New and Confirmed passwords don't match");
