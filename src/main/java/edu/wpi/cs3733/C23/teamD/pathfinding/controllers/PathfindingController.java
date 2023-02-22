@@ -142,6 +142,12 @@ public class PathfindingController {
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
 
+    datePicker.setOnCommit(
+        event -> {
+          System.out.println("Ran");
+          startRoomComboBoxController.updateMapping();
+          endRoomComboBoxController.updateMapping();
+        });
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(1));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
@@ -174,7 +180,8 @@ public class PathfindingController {
       for (int i = 0; i < baseMoveList.size(); i++) {
         if (baseMoveList.get(i).getLongName().equals(currentMove.getLongName())) {
           System.out.println("SAME");
-          if (baseMoveList.get(i).getMoveDate().after(currentMove.getMoveDate())) {
+          if (baseMoveList.get(i).getMoveDate().after(currentMove.getMoveDate())
+              && baseMoveList.get(i).getMoveDate().before(dateToRun)) {
             currentMove = baseMoveList.get(i);
             System.out.println(currentMove.getLongName());
           }
@@ -185,20 +192,23 @@ public class PathfindingController {
     }
 
     for (Edge edge : baseEdgeList) {
-      PathEdge edge1 =
-          new PathEdge(
-              pathNodes.get(edge.getFromNode().getNodeID()),
-              pathNodes.get(edge.getToNode().getNodeID()));
-      PathEdge edge2 =
-          new PathEdge(
-              pathNodes.get(edge.getToNode().getNodeID()),
-              pathNodes.get(edge.getFromNode().getNodeID()));
-      if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
-        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      }
+      if (pathNodes.containsKey(edge.getToNodeID())
+          && pathNodes.containsKey(edge.getFromNodeID())) {
+        PathEdge edge1 =
+            new PathEdge(
+                pathNodes.get(edge.getFromNode().getNodeID()),
+                pathNodes.get(edge.getToNode().getNodeID()));
+        PathEdge edge2 =
+            new PathEdge(
+                pathNodes.get(edge.getToNode().getNodeID()),
+                pathNodes.get(edge.getFromNode().getNodeID()));
+        if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+          pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        }
 
-      if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
-        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+          pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        }
       }
     }
 
