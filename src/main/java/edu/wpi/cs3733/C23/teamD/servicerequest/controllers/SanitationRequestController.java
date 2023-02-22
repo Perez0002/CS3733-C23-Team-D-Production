@@ -44,7 +44,7 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     // TODO set the radio buttions and check the employeebox
     if (serviceRequest.getClass().equals(SanitationRequest.class)) {
       fieldLocationController.setText(serviceRequest.getLocation().getLongName());
-      fieldReason.setText(serviceRequest.getUrgency());
+      fieldReason.setText(serviceRequest.getReason());
       staffIDTextFieldController.setText(
           serviceRequest.getAssociatedStaff().getFirstName()
               + " "
