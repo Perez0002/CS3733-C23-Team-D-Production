@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
@@ -142,6 +143,12 @@ public class PathfindingController {
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
 
+    datePicker.setOnCommit(
+        event -> {
+          System.out.println("Ran");
+          startRoomComboBoxController.updateMapping();
+          endRoomComboBoxController.updateMapping();
+        });
     pathfindingBorderPane.setCenter(MapFactory.startBuild().build(1));
     setAStar();
     floor1Button.setStyle("-fx-text-fill: #ffffff;-fx-background-color: #012D5A");
@@ -166,39 +173,34 @@ public class PathfindingController {
             : Date.from(datePicker.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
 
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllCurrentMoves(dateToRun);
+    ArrayList<LocationName> baseLocationList = FDdb.getInstance().getAllLocationNames();
+
+    ArrayList<Move> moves = FDdb.getInstance().getAllCurrentMoves(dateToRun);
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
-    for (Move move : baseMoveList) {
-      Move currentMove = move;
-      for (int i = 0; i < baseMoveList.size(); i++) {
-        if (baseMoveList.get(i).getLongName().equals(currentMove.getLongName())) {
-          System.out.println("SAME");
-          if (baseMoveList.get(i).getMoveDate().after(currentMove.getMoveDate())) {
-            currentMove = baseMoveList.get(i);
-            System.out.println(currentMove.getLongName());
-          }
-        }
-      }
-      pathNodes.put(
-          currentMove.getNodeID(), new PathNode(currentMove.getNode(), currentMove.getLocation()));
+
+    for (Move move : moves) {
+      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
     }
 
     for (Edge edge : baseEdgeList) {
-      PathEdge edge1 =
-          new PathEdge(
-              pathNodes.get(edge.getFromNode().getNodeID()),
-              pathNodes.get(edge.getToNode().getNodeID()));
-      PathEdge edge2 =
-          new PathEdge(
-              pathNodes.get(edge.getToNode().getNodeID()),
-              pathNodes.get(edge.getFromNode().getNodeID()));
-      if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
-        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      }
+      if (pathNodes.containsKey(edge.getToNodeID())
+          && pathNodes.containsKey(edge.getFromNodeID())) {
+        PathEdge edge1 =
+            new PathEdge(
+                pathNodes.get(edge.getFromNode().getNodeID()),
+                pathNodes.get(edge.getToNode().getNodeID()));
+        PathEdge edge2 =
+            new PathEdge(
+                pathNodes.get(edge.getToNode().getNodeID()),
+                pathNodes.get(edge.getFromNode().getNodeID()));
+        if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+          pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+        }
 
-      if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
-        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+          pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+        }
       }
     }
 

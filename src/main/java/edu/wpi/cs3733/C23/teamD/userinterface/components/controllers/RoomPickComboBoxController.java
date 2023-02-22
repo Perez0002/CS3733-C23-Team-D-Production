@@ -25,6 +25,19 @@ public class RoomPickComboBoxController {
     }
   }
 
+  public void updateMapping() {
+    nodeToRoomMap = new TreeMap<>();
+    ArrayList<Move> moveList = FDdb.getInstance().getAllMoves();
+    for (Move m : moveList) {
+      String locName = m.getLocation().getLongName(); // long name
+      String nodeID = m.getNode().getNodeID(); // nodeID
+      // TODO: need to figure out how to grab newest record by date
+      // most likely will use ORDER-BY in SQL
+      nodeToRoomMap.put(locName, nodeID);
+    }
+    this.initialize();
+  }
+
   public void initialize() {
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
   }
