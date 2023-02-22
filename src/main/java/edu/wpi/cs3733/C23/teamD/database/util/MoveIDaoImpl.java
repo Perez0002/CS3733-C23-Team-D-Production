@@ -174,4 +174,23 @@ public class MoveIDaoImpl implements IDao<Move> {
     session.getTransaction().commit();
     return moves;
   }
+  public Move getRelevantMove(Date date, LocationName loc){
+    Move max = new Move(null,null,new Date(0L));
+    session.beginTransaction();
+    Query q =
+            session.createQuery(
+                    "SELECT from Move where moveDate <= :now where location = :thislocation");
+    q.setParameter("now", date);
+    q.setParameter("thislocation", loc.getLongName());
+    ArrayList<Move> moves = new ArrayList<>(q.getResultList());
+    if(moves.size()==0){
+      return null;
+    }
+    for(Move m: moves){
+      if(m.getMoveDate().after(m.getMoveDate())){
+        max=m;
+      }
+    }
+  return max;
+  }
 }

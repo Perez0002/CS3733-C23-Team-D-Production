@@ -316,4 +316,7 @@ public class FDdb {
     refreshMoves();
     refreshLocationNames();
   }
+  public Move getRelevantMove(Date date, LocationName l){
+    return moveIDao.getRelevantMove(date, l);
+  }
 }
