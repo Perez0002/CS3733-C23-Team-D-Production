@@ -43,7 +43,7 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" spacing="10.0">
                                  <children>
-                                    <Label fx:id="secondStatText" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="Your Pending Requests" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="secondStatText" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="homepageStatsText" text="Your Outgoing Requests" textAlignment="CENTER" wrapText="true" />
                                     <Label fx:id="secondStat" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageStatsNumberText" text="Num" textAlignment="CENTER" wrapText="true" />
                                  </children>
                                  <HBox.margin>
@@ -81,7 +81,7 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" VBox.vgrow="NEVER">
                            <children>
-                              <Label fx:id="outgoingIncoming" styleClass="homepageLabel" text="Outgoing Service Requests" />
+                              <Label fx:id="outgoingIncoming" minHeight="-Infinity" minWidth="500.0" prefWidth="500.0" styleClass="homepageLabel" text="Outstanding Service Requests" />
                               <TableView fx:id="serviceRequestHistory" maxHeight="584.0" minWidth="375.0" onMouseClicked="#setDetails" prefHeight="504.0">
                                  <columns>
                                     <TableColumn fx:id="serviceDates" editable="false" maxWidth="140.0" minWidth="100.0" prefWidth="140.0" sortType="DESCENDING" text="Date" />
