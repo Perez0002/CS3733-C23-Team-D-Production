@@ -29,4 +29,12 @@ public class UrgencySelectorBoxController {
   public void clearForm() {
     mfxComboBox.setValue(null);
   }
+
+  public void setText(String s) {
+    mfxComboBox.setText(s);
+  }
+
+  public void setDisable(boolean b) {
+    mfxComboBox.setDisable(b);
+  }
 }

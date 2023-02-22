@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.AVRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -70,5 +71,24 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   public Node getVBox() {
     return null;
+  }
+
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+    urgencyBox.setDisable(true);
+    datePicker.setDisable((true));
+    systemFailureTextField.setDisable(true);
+    locationBoxController.setDisable(true);
+    employeeBoxController.setDisable(true);
+    if (serviceRequest.getClass().equals(AVRequest.class)) {
+      urgencyBox.setText(serviceRequest.getUrgency());
+      datePicker.setText(serviceRequest.getDateAndTime().toString());
+      systemFailureTextField.setText(serviceRequest.getReason());
+      locationBoxController.setText(serviceRequest.getLocation().getLongName());
+      employeeBoxController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
+    }
   }
 }

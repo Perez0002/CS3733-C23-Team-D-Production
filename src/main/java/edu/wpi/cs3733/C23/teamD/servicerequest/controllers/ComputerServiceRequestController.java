@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ComputerServiceRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -30,6 +31,27 @@ public class ComputerServiceRequestController extends ServiceRequestController
     deviceType.add("Tablet");
     deviceType.add("Kiosk");
     deviceType.add("Other");
+  }
+
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+    descriptionBox.setDisable(true);
+    employeeBoxController.setDisable(true);
+    urgencyBox.setDisable(true);
+    deviceTypeBox.setDisable(true);
+    locationBoxController.setDisable(true);
+
+    if (serviceRequest.getClass().equals(ComputerServiceRequest.class)) {
+      // TODO fix/check the employee box
+      descriptionBox.setText(serviceRequest.getReason());
+      employeeBoxController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
+      urgencyBox.setText(serviceRequest.getUrgency());
+      deviceTypeBox.setText(((ComputerServiceRequest) serviceRequest).getDeviceType());
+      locationBoxController.setText(serviceRequest.getLocation().getLongName());
+    }
   }
 
   public void initialize() {

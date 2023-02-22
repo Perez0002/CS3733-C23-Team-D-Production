@@ -1,9 +1,17 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
 public class HubBoxController implements ServiceRequestVBoxController {
+
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+
+    // TODO FILL FIELDS
+
+  }
 
   @FXML private VBox serviceRequestHubVBox;
 
