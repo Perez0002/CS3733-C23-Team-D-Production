@@ -12,6 +12,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
@@ -59,6 +60,7 @@ public class PathfindingController {
   @FXML private MFXButton BFSButton;
 
   @FXML private MFXButton DFSButton;
+  @FXML private MFXToggleButton serviceRequestLocationToggle;
 
   private RoomPickComboBoxController comboBox;
 

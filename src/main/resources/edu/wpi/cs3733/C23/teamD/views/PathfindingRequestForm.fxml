@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
@@ -24,7 +25,7 @@
                   <Insets right="20.0" />
                </VBox.margin>
             </HBox>
-            <Label prefWidth="400.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="380.0" text="Use this to find directions between two points in the hospital. Select the start point and the destination and the pathing algorithim. For most purposes, the best algoithim is AStar" wrapText="true">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -85,6 +86,7 @@
                         <Insets top="20.0" />
                      </padding>
                   </VBox>
+                  <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="BASELINE_LEFT" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="300.0" text="Toggle Service Request Locations:" />
                   <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" wrapText="true" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="175.0">
                      <children>

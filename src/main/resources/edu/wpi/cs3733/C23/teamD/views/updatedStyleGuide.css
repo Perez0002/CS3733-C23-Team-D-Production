@@ -15,9 +15,6 @@
     src: url('images/Nunito_Sans/NunitoSans-Bold.ttf');
 }
 
-.mfx-toggle-button:selected {
-}
-
 .mfx-date-picker .date-picker-popup .years-combo,
 .mfx-date-picker .date-picker-popup .months-combo,
 .mfx-date-picker .date-picker-popup .week-day,

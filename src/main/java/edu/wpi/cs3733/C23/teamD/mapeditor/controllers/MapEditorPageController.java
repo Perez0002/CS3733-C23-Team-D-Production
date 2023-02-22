@@ -12,7 +12,6 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
@@ -33,7 +32,6 @@ public class MapEditorPageController {
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
   @FXML private MFXButton toggleEdgesButton;
-  @FXML private MFXToggleButton serviceReuestLocationToggle;
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
@@ -47,16 +45,6 @@ public class MapEditorPageController {
   void openHomepage() {
     // Navigates to home page
     Navigation.navigate(Screen.HOME);
-  }
-
-  public EventHandler<ActionEvent> showServiceRequestLocations() {
-    return event -> {
-      if (serviceReuestLocationToggle.isSelected()) {
-        // color changes to purple or something
-      } else {
-        // color goes back to default
-      }
-    };
   }
 
   public EventHandler<ActionEvent> toggleEdges() {
