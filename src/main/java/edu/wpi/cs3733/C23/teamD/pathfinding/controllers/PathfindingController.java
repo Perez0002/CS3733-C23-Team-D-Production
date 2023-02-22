@@ -145,8 +145,12 @@ public class PathfindingController {
           // System.out.println("Checking node " + mn.getNode().getNode().getNodeID());
           if (nodesWithSR.contains(mn.getNode().getNode().getNodeID())) {
             // System.out.println("Adding service request display to node");
-            mn.getNodeRepresentation().setFill(Color.AQUAMARINE);
+            mn.getNodeRepresentation().setFill(Color.PURPLE);
           }
+        }
+      } else {
+        for (MapNode mn : mapNodes) {
+          mn.getNodeRepresentation().setFill(Color.rgb(1, 45, 90));
         }
       }
     };
