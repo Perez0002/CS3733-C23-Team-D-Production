@@ -54,18 +54,12 @@ public class PathfindingController {
   @FXML private MFXButton floor5Button;
 
   private MFXButton[] floorButtons = new MFXButton[6];
-
   @FXML private MFXButton aStarButton;
-
   @FXML private MFXButton BFSButton;
-
   @FXML private MFXButton DFSButton;
-
   private RoomPickComboBoxController comboBox;
-
   private boolean helpVisible = false;
   HashMap<String, Integer> converter = new HashMap<String, Integer>();
-
   private String algorithm = "AStar";
   private ArrayList<PathNode> path = new ArrayList<>();
   private ArrayList<MapNode> mapNodes = new ArrayList<>();
@@ -160,8 +154,10 @@ public class PathfindingController {
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
+    HashMap<String, Move> moveAssociation = new HashMap<>();
     for (Move move : baseMoveList) {
       pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      moveAssociation.put(move.getNodeID(), move);
     }
 
     for (Edge edge : baseEdgeList) {
@@ -208,6 +204,7 @@ public class PathfindingController {
 
           lastNode = pathNode;
         }
+
         for (int i = 0; i < mapNodes.size(); i++) {
           if (i - 1 >= 0) {
             ((PathfindingMapNode) mapNodes.get(i))

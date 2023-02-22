@@ -2,6 +2,7 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.util;
 
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -22,14 +23,13 @@ public class PopupFactory {
   private boolean editable;
   private boolean deletable;
   private boolean drawArrows;
-
   private Node anchor;
   private MapNode mapNode;
   private MapEdge mapEdge;
+  private boolean moveMessage;
   private EventHandler<ActionEvent> submitEvent;
   private EventHandler<ActionEvent> nextEvent;
   private EventHandler<ActionEvent> prevEvent;
-
   private EventHandler<ActionEvent> deleteEvent;
   private EventHandler<ActionEvent> closeEvent;
   private String directions;
@@ -40,6 +40,7 @@ public class PopupFactory {
     this.anchor = null;
     this.mapNode = null;
     this.mapEdge = null;
+    this.moveMessage = false;
     this.submitEvent = event -> {};
     this.deleteEvent = event -> {};
     this.closeEvent = event -> {};
@@ -105,6 +106,12 @@ public class PopupFactory {
    */
   public PopupFactory mapEdge(MapEdge mapEdge) {
     this.mapEdge = mapEdge;
+    return this;
+  }
+
+  /** @return the PopupFactory with these changes */
+  public PopupFactory showMoveMessage() {
+    this.moveMessage = true;
     return this;
   }
 
@@ -236,13 +243,15 @@ public class PopupFactory {
         submitButton.setText("Submit");
         submitButton.setOnAction(submitEvent);
 
-        vBox.getChildren().add(xCoordVBox);
-        vBox.getChildren().add(yCoordVBox);
-        vBox.getChildren().add(shortNameVBox);
-        vBox.getChildren().add(longNameVBox);
-        vBox.getChildren().add(buildingVBox);
-        vBox.getChildren().add(floorVBox);
-        vBox.getChildren().add(typeVBox);
+        if (!this.moveMessage) {
+          vBox.getChildren().add(xCoordVBox);
+          vBox.getChildren().add(yCoordVBox);
+          vBox.getChildren().add(shortNameVBox);
+          vBox.getChildren().add(longNameVBox);
+          vBox.getChildren().add(buildingVBox);
+          vBox.getChildren().add(floorVBox);
+          vBox.getChildren().add(typeVBox);
+        }
 
       } else {
         popover.setTitle(mapNode.getNodeLongName().getValue());
@@ -286,6 +295,19 @@ public class PopupFactory {
         VBox directionsVbox = new VBox(directions);
         VBox.setMargin(directionsVbox, new Insets(5, 5, 5, 5));
         vBox.getChildren().add(directionsVbox);
+
+        if (this.moveMessage) {
+          if (this.mapNode instanceof PathfindingMapNode) {
+            Label moveText = new Label();
+            moveText.setText(
+                "Move Message: "
+                    + ((PathfindingMapNode) this.mapNode).getRecentMove().getMessage());
+            moveText.setWrapText(true);
+            VBox messageVbox = new VBox(moveText);
+            VBox.setMargin(messageVbox, new Insets(5, 5, 5, 5));
+            vBox.getChildren().add(messageVbox);
+          }
+        }
       }
 
       closeButton = new MFXButton();
