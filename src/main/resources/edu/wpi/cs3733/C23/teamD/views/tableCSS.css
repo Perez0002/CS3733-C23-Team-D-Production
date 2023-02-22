@@ -12,10 +12,10 @@
     -fx-text-fill: white;
 }
 
-.table-row-cell:focused {
-    -fx-background-color: #012D5A;
-    -fx-text-fill: white;
-}
+/*.table-row-cell:focused {*/
+/*    -fx-background-color: #012D5A;*/
+/*    -fx-text-fill: white;*/
+/*}*/
 
 .table-row-cell:selected {
     -fx-background-color: #012D5A;
