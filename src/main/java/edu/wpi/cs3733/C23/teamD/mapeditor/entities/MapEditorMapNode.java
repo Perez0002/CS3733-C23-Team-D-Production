@@ -327,10 +327,6 @@ public class MapEditorMapNode extends MapNode {
       } else if (!edge.getFromNode().equals(node)) {
         edge.getFromNode().getMapEdgeList().remove(edge);
       }
-
-      ((AnchorPane) edge.getEdgeRepresentation().getParent())
-          .getChildren()
-          .remove(edge.getEdgeRepresentation());
     }
 
     for (MapEdge e : edgeList) {
@@ -417,6 +413,11 @@ public class MapEditorMapNode extends MapNode {
           try {
             this.nodeRepresentation.setRadius(0);
             autoRepairEdges(this);
+            for (MapEdge edge : this.getMapEdgeList()) {
+              ((AnchorPane) edge.getEdgeRepresentation().getParent())
+                  .getChildren()
+                  .remove(edge.getEdgeRepresentation());
+            }
             ((AnchorPane) this.nodeRepresentation.getParent())
                 .getChildren()
                 .remove(this.nodeRepresentation);
