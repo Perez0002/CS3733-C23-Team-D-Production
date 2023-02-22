@@ -17,15 +17,15 @@
          <center>
             <VBox maxHeight="1.7976931348623157E308" prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a move date" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Pick a move date *" />
                   <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the location you want to move">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the location you want to move *">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Label>
                   <fx:include fx:id="locationBox" prefWidth="300.0" source="../VBoxInjections/Components/LocationPickComboBox.fxml" />
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the node you want to move to">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Select the node you want to move to *">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>

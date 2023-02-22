@@ -28,15 +28,15 @@
          <center>
             <VBox prefHeight="800.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Long Name" />
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Long Name *" />
                   <MFXTextField fx:id="longNameTextField" prefWidth="300.0" />
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Short Name">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Short Name *">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>
                   </Label>
                   <MFXTextField fx:id="shortNameTextField" prefHeight="49.0" prefWidth="300.0" />
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location Type">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location Type *">
                      <VBox.margin>
                         <Insets top="32.0" />
                      </VBox.margin>

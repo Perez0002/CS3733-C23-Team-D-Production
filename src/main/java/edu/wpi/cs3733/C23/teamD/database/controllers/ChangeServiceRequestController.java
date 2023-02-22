@@ -81,8 +81,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
   }
 
   private boolean checkFields() {
-    return !(reasonTextField.getText().isEmpty()
-        || employeeBoxController.getEmployeeName() == null
+    return !(employeeBoxController.getEmployeeName() == null
         || statusBoxController.getStatus() == null
         || datePicker.getValue() == null
         || requestTypeBoxController.getRequestType() == null);
