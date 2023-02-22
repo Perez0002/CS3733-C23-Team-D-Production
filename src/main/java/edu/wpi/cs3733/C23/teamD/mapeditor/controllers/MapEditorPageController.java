@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
@@ -13,11 +14,15 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -62,8 +67,11 @@ public class MapEditorPageController {
           toggleEdgesButton.getStyleClass().add("mapEditorFloorButton");
         }
 
-        for (MapEdge edge : edgeList) {
-          edge.getEdgeRepresentation().setVisible(edgesShown);
+        for (Node line :
+            ((AnchorPane) ((GesturePane) mapPlacement.getCenter()).getContent()).getChildren()) {
+          if (line instanceof Line) {
+            line.setVisible(edgesShown);
+          }
         }
       }
     };
@@ -90,7 +98,42 @@ public class MapEditorPageController {
 
           gesturePane =
               MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+          gesturePane
+              .getContent()
+              .setOnMouseClicked(
+                  e -> {
+                    if (e.getClickCount() == 2) {
+                      String nodeFloor = "";
+                      switch (floor) {
+                        case 0:
+                          nodeFloor = "L1";
+                          break;
+                        case 1:
+                          nodeFloor = "L2";
+                          break;
+                        case 2:
+                          nodeFloor = "1";
+                          break;
+                        case 3:
+                          nodeFloor = "2";
+                          break;
+                        case 4:
+                          nodeFloor = "3";
+                          break;
+                      }
+                      edu.wpi.cs3733.C23.teamD.database.entities.Node newBaseNode =
+                          new edu.wpi.cs3733.C23.teamD.database.entities.Node(
+                              (int) e.getX(), (int) e.getY(), nodeFloor, "");
+                      LocationName nodeLocation = new LocationName("", "", "");
+                      PathNode newPathNode = new PathNode(newBaseNode, new LocationName());
+                      MapEditorMapNode newMapNode = new MapEditorMapNode(newPathNode);
 
+                      ((AnchorPane) gesturePane.getContent())
+                          .getChildren()
+                          .add(newMapNode.getNodeRepresentation());
+                      newMapNode.MakePopup(true);
+                    }
+                  });
           mapPlacement.setCenter(gesturePane);
           currentFloor = floor;
         }
@@ -100,8 +143,11 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+    nodeList = new ArrayList<>();
+    edgeList = new ArrayList<>();
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
-    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
+    ArrayList<Move> baseMoveList = FDdb.getInstance().getAllCurrentMoves(new Date());
 
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
@@ -120,6 +166,7 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getFromNode().getNodeID()),
               pathNodes.get(edge.getToNode().getNodeID()));
+      edge1.setEdge(edge);
       PathEdge edge2 =
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
@@ -127,7 +174,7 @@ public class MapEditorPageController {
       try {
         pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
         pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
-
+        edge2.setEdge(edge);
         MapEdge tempMapEdge = new MapEdge(edge1);
         edgeList.add(tempMapEdge);
 

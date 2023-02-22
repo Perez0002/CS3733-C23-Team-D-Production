@@ -109,6 +109,7 @@ public class PathfindingController {
             floorButtons[i].setStyle("-fx-background-color: #C9E0F8");
           }
         }
+
         pathfindingBorderPane.setCenter(
             MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
       }
@@ -172,12 +173,8 @@ public class PathfindingController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      try {
-        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
     }
 
     String startNode = startRoomComboBoxController.getNodeValue();

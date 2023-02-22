@@ -89,8 +89,12 @@ public class MoveIDaoImpl implements IDao<Move> {
   public void delete(Move m) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE Move where moveDate=:id");
+      Query q =
+          session.createQuery(
+              "DELETE Move where moveDate=:id AND node=:node AND location=:location");
       q.setParameter("id", m.getMoveDate());
+      q.setParameter("node", m.getNode());
+      q.setParameter("location", m.getLocation());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
 
@@ -128,7 +132,7 @@ public class MoveIDaoImpl implements IDao<Move> {
           }
         }
         Move m = new Move(curNode, curLocat, format.parse(data[2]));
-        FDdb.getInstance().saveMove(m);
+        this.save(m);
       }
       fileReader.close();
     } catch (IOException | ParseException e) {
@@ -170,6 +174,15 @@ public class MoveIDaoImpl implements IDao<Move> {
             "SELECT from Move where moveDate > :now where location = :thislocation");
     q.setParameter("now", date);
     q.setParameter("thislocation", loc.getLongName());
+    ArrayList<Move> moves = new ArrayList<Move>(q.getResultList());
+    session.getTransaction().commit();
+    return moves;
+  }
+
+  public ArrayList<Move> getAssociatedMoves(Node node) {
+    session.beginTransaction();
+    Query q = session.createQuery("SELECT from Move where node = :node");
+    q.setParameter("now", node);
     ArrayList<Move> moves = new ArrayList<Move>(q.getResultList());
     session.getTransaction().commit();
     return moves;
