@@ -8,6 +8,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
@@ -128,7 +131,7 @@ public class MapFactory {
 
     ImageView image = new ImageView();
     holder = new AnchorPane();
-    GesturePane map = new GesturePane();
+    final GesturePane map = new GesturePane();
 
     if (floor == 0) {
       image =
@@ -180,22 +183,38 @@ public class MapFactory {
         holder.getChildren().add(node.getNodeRepresentation());
 
         if (!node.getNodeType().getValue().equals("HALL")) {
-          Label nodeLabel = new Label();
+          final Label nodeLabel = new Label();
 
-          nodeLabel.textProperty().bind(node.getNodeLongName());
+          nodeLabel.textProperty().bindBidirectional(node.getNodeLongName());
 
-          /*
           Platform.runLater(
               () -> {
-                nodeLabel
-                    .layoutXProperty()
-                    .bind(node.getNodeX().subtract(nodeLabel.getWidth() / 4));
-                nodeLabel.layoutYProperty().bind(node.getNodeY().subtract(30));
+                nodeLabel.setLayoutX(node.getNodeX().getValue() - (nodeLabel.getWidth() / 4));
+                nodeLabel.setLayoutY(node.getNodeY().getValue() - 30);
               });
-           */
 
-          nodeLabel.setLayoutX(node.getNodeX().getValue() - nodeLabel.getWidth() / 4);
-          nodeLabel.setLayoutY(node.getNodeY().getValue() - 30);
+          node.getNodeY()
+              .addListener(
+                  new ChangeListener<Number>() {
+                    @Override
+                    public void changed(
+                        ObservableValue<? extends Number> observable,
+                        Number oldValue,
+                        Number newValue) {
+                      nodeLabel.setLayoutY(newValue.doubleValue() - 30);
+                    }
+                  });
+          node.getNodeX()
+              .addListener(
+                  new ChangeListener<Number>() {
+                    @Override
+                    public void changed(
+                        ObservableValue<? extends Number> observable,
+                        Number oldValue,
+                        Number newValue) {
+                      nodeLabel.setLayoutX(newValue.doubleValue() - (nodeLabel.getWidth() / 4));
+                    }
+                  });
 
           holder.getChildren().add(nodeLabel);
         }

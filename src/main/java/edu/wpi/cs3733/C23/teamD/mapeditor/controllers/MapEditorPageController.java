@@ -112,7 +112,6 @@ public class MapEditorPageController {
         }
 
         gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
-
         mapPlacement.setCenter(gesturePane);
         currentFloor = floor;
       }
