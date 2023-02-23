@@ -17,6 +17,9 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -34,10 +37,14 @@ public class MapEditorPageController {
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
   @FXML private MFXButton toggleEdgesButton;
+  @FXML private MFXButton toggleLabelsButton;
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
   private boolean edgesShown = true;
+
+  private boolean labelsShown = true;
+
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
@@ -63,6 +70,27 @@ public class MapEditorPageController {
 
       for (MapEdge edge : edgeList) {
         edge.getEdgeRepresentation().setVisible(edgesShown);
+      }
+    };
+  }
+
+  public EventHandler<ActionEvent> toggleLabels() {
+    return event -> {
+      labelsShown = !labelsShown;
+
+      if (labelsShown) {
+        toggleLabelsButton.getStyleClass().add("mapEditorFloorButtonSelected");
+        toggleLabelsButton.getStyleClass().remove("mapEditorFloorButton");
+      } else {
+        toggleLabelsButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+        toggleLabelsButton.getStyleClass().add("mapEditorFloorButton");
+      }
+
+      AnchorPane holder = (AnchorPane) ((GesturePane) mapPlacement.getCenter()).getContent();
+      for (Node node : holder.getChildren()) {
+        if (node instanceof Label) {
+          node.setVisible(labelsShown);
+        }
       }
     };
   }
@@ -131,6 +159,7 @@ public class MapEditorPageController {
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
     toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+    toggleLabelsButton.getStyleClass().add("mapEditorFloorButtonSelected");
 
     // Setup for calculating average x and y
     double totalX = 0;
@@ -151,6 +180,7 @@ public class MapEditorPageController {
     floor2Button.setOnAction(changeFloor(4));
     floor3Button.setOnAction(changeFloor(5));
     toggleEdgesButton.setOnAction(toggleEdges());
+    toggleLabelsButton.setOnAction(toggleLabels());
 
     // Creating GesturePane to show
     this.changeFloor(1).handle(null);

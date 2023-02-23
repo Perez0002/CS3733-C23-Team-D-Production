@@ -4,11 +4,13 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -169,11 +171,34 @@ public class MapFactory {
         if (converter.get(node.getNodeFloor().getValue()) != floor) {
           continue;
         }
+
         totalX += node.getNodeX().getValue();
         totalY += node.getNodeY().getValue();
         totalNode++;
         // Creates popup object
+
         holder.getChildren().add(node.getNodeRepresentation());
+
+        if (!node.getNodeType().getValue().equals("HALL")) {
+          Label nodeLabel = new Label();
+
+          nodeLabel.textProperty().bind(node.getNodeLongName());
+
+          /*
+          Platform.runLater(
+              () -> {
+                nodeLabel
+                    .layoutXProperty()
+                    .bind(node.getNodeX().subtract(nodeLabel.getWidth() / 4));
+                nodeLabel.layoutYProperty().bind(node.getNodeY().subtract(30));
+              });
+           */
+
+          nodeLabel.setLayoutX(node.getNodeX().getValue() - nodeLabel.getWidth() / 4);
+          nodeLabel.setLayoutY(node.getNodeY().getValue() - 30);
+
+          holder.getChildren().add(nodeLabel);
+        }
       }
     } else {
       holder.getChildren().add(nodeList.get(0).getNodeRepresentation());
