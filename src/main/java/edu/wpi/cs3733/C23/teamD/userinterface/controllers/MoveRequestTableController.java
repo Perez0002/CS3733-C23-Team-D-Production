@@ -4,6 +4,8 @@ import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.*;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -41,6 +43,11 @@ public class MoveRequestTableController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @FXML
+  public void displayMove() {
+    Navigation.navigate(Screen.MOVE_DISPLAY);
   }
 
   @FXML

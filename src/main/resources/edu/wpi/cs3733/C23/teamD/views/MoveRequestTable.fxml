@@ -115,6 +115,11 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="Infinity" maxWidth="Infinity" prefHeight="158.0" prefWidth="505.0" spacing="16.0" BorderPane.alignment="BOTTOM_RIGHT">
                <children>
+                  <MFXButton onAction="#displayMove" prefHeight="53.0" prefWidth="113.0" text="Display Move">
+                     <HBox.margin>
+                        <Insets bottom="70.0" />
+                     </HBox.margin>
+                  </MFXButton>
                   <MFXButton onAction="#clearFields" prefWidth="80.0" styleClass="clearButton" text="Clear">
                      <HBox.margin>
                         <Insets bottom="70.0" />

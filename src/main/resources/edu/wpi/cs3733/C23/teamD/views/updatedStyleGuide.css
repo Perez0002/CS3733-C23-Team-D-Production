@@ -256,6 +256,12 @@
     -fx-background-size: cover;
 }
 
+#moveDisplayborderPane {
+    -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
 .helpButton {
     -fx-background-color: #012D5A; /* Blue */
     -fx-text-fill: #ffffff; /* White */
