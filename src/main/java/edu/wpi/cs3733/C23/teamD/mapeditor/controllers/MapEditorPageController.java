@@ -106,6 +106,7 @@ public class MapEditorPageController {
     HashMap<String, MapNode> mapNodes = new HashMap<>();
     for (String node : pathNodes.keySet().stream().toList()) {
       MapNode tempMapNode = new MapEditorMapNode(pathNodes.get(node));
+      System.out.println(node);
       mapNodes.put(node, tempMapNode);
       nodeList.add(tempMapNode);
     }
@@ -119,8 +120,26 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      } else {
+        System.out.println(
+            "No node for edge with nodes (To: "
+                + edge.getToNodeID()
+                + " | From: "
+                + edge.getFromNodeID());
+      }
+
+      if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      } else {
+        System.out.println(
+            "No node for edge with nodes (To: "
+                + edge.getToNodeID()
+                + " | From: "
+                + edge.getFromNodeID()
+                + ")");
+      }
 
       MapEdge tempMapEdge = new MapEdge(edge1);
       edgeList.add(tempMapEdge);

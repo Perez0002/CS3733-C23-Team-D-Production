@@ -101,15 +101,6 @@ public class MapEdge {
               .deleteEvent(
                   event -> {
                     this.RemovePopup();
-                    ((AnchorPane) this.edgeRepresentation.getParent())
-                        .getChildren()
-                        .remove(this.edgeRepresentation);
-
-                    try {
-                      FDdb.getInstance().deleteEdge(this.edge.getEdge());
-                    } catch (Exception e) {
-                      e.printStackTrace();
-                    }
                   })
               .build();
       /* Color the node on the map to represent selection */
@@ -128,6 +119,50 @@ public class MapEdge {
       this.edgeRepresentation.setStroke(this.NO_SELECTION);
       /* Allow this Node's tooltip to pop up */
       this.allowTooltip = true;
+    }
+  }
+
+  private void deleteEdge(MapEdge edge) {
+    ((AnchorPane) this.edgeRepresentation.getParent())
+        .getChildren()
+        .remove(this.edgeRepresentation);
+
+    if (edge.getFromNode().getMapEdgeList().contains(edge)) {
+      edge.getFromNode().getMapEdgeList().remove(edge);
+    }
+
+    if (edge.getToNode().getMapEdgeList().contains(edge)) {
+      edge.getToNode().getMapEdgeList().remove(edge);
+    }
+
+    PathEdge removeable = null;
+    for (PathEdge e : edge.getToNode().getNode().getEdgeList()) {
+      if (e.getToNode().equals(edge.getToNode().getNode())
+          && e.getFromNode().equals(edge.getFromNode().getNode())) {
+        removeable = e;
+      }
+    }
+
+    if (removeable != null) {
+      edge.getToNode().getNode().getEdgeList().remove(removeable);
+    }
+
+    removeable = null;
+    for (PathEdge e : edge.getFromNode().getNode().getEdgeList()) {
+      if (e.getToNode().equals(edge.getToNode().getNode())
+          && e.getFromNode().equals(edge.getFromNode().getNode())) {
+        removeable = e;
+      }
+    }
+
+    if (removeable != null) {
+      edge.getFromNode().getNode().getEdgeList().remove(removeable);
+    }
+
+    try {
+      FDdb.getInstance().deleteEdge(this.edge.getEdge());
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 }

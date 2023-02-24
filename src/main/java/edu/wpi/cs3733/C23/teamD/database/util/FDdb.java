@@ -68,7 +68,7 @@ public class FDdb {
     nodeIDao.update(n);
   }
 
-  public Node updateNodePK(Node n) {
+  public ArrayList<Object> updateNodePK(Node n) {
     return nodeIDao.updatePK(n);
   }
 

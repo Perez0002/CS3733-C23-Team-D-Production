@@ -63,8 +63,8 @@ public class NodeIDaoImpl implements IDao<Node> {
     Node newNode = new Node(n);
     newNode.setNodeID();
     this.save(newNode);
-    objectList.add(this.nodeMoveSwap(n, newNode));
-    objectList.add(this.nodeEdgeSwap(n, newNode));
+    objectList.addAll(this.nodeMoveSwap(n, newNode));
+    objectList.addAll(this.nodeEdgeSwap(n, newNode));
     System.out.println("Node ID: " + n.getNodeID());
     this.deleteOnlyNode(n);
     objectList.add(newNode);
@@ -103,6 +103,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     for (Move m : movesWithNode) {
       PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
+      dbFacade.getAllMoves().remove(m);
     }
 
     session.beginTransaction();
