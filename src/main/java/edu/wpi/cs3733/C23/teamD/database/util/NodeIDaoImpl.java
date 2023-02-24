@@ -57,15 +57,19 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
   }
 
-  public void updatePK(Node n) {
-    // Node oldNode = new Node(n);
+  public ArrayList<Object> updatePK(Node n) {
+    ArrayList<Object> objectList = new ArrayList<>();
+
     Node newNode = new Node(n);
     newNode.setNodeID();
     this.save(newNode);
-    this.nodeMoveSwap(n, newNode);
-    this.nodeEdgeSwap(n, newNode);
+    objectList.add(this.nodeMoveSwap(n, newNode));
+    objectList.add(this.nodeEdgeSwap(n, newNode));
     System.out.println("Node ID: " + n.getNodeID());
     this.deleteOnlyNode(n);
+    objectList.add(newNode);
+
+    return objectList;
   }
 
   @Override
@@ -129,9 +133,10 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
   }
 
-  public void nodeEdgeSwap(Node oldNode, Node newNode) {
+  public ArrayList<Edge> nodeEdgeSwap(Node oldNode, Node newNode) {
     FDdb dbFacade = FDdb.getInstance();
 
+    ArrayList<Edge> edgeList = new ArrayList<>();
     session.beginTransaction();
     Query q =
         session.createQuery("SELECT e FROM Edge e WHERE fromNode=:fromnode OR toNode=:tonode");
@@ -153,7 +158,9 @@ public class NodeIDaoImpl implements IDao<Node> {
       }
       dbFacade.deleteEdge(oldEdge);
       dbFacade.saveEdge(newEdge);
+      edgeList.add(newEdge);
     }
+    return edgeList;
   }
 
   private void deleteOnlyNode(Node n) {
@@ -171,7 +178,8 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
   }
 
-  private void nodeMoveSwap(Node oldNode, Node newNode) {
+  private ArrayList<Move> nodeMoveSwap(Node oldNode, Node newNode) {
+    ArrayList<Move> moveList = new ArrayList<>();
     try {
       FDdb dbFacade = FDdb.getInstance();
       ArrayList<Move> moves = new ArrayList<>(dbFacade.getAllMoves());
@@ -179,6 +187,7 @@ public class NodeIDaoImpl implements IDao<Node> {
         Move m = moves.get(i);
         if (moves.get(i).getNode().nodeEquals(oldNode)) {
           Move move = new Move(newNode, m.getLocation(), m.getMoveDate());
+          moveList.add(move);
           FDdb.getInstance().deleteMove(m);
           FDdb.getInstance().saveMove(move);
         }
@@ -186,6 +195,8 @@ public class NodeIDaoImpl implements IDao<Node> {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+    return moveList;
   }
 
   @Override

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
@@ -525,5 +526,67 @@ public class MapEditorMapNode extends MapNode {
           }
           warning.hide();
         });
+  }
+
+  public void saveNodeChanges(MapNode node)
+  {
+     String oldNodeID = node.getNode().getNode().getNodeID();
+
+     node.getNode().getNode().setXcoord(node.getNodeX().getValue().intValue());
+     node.getNode().getNode().setYcoord(node.getNodeY().getValue().intValue());
+     node.getNode().getNode().setFloor(node.getNodeFloor().getValue());
+     node.getNode().getNode().setBuilding(node.getNodeBuilding().getValue());
+
+     ArrayList<Object> updateList = new ArrayList<>();
+
+     try {
+        FDdb.getInstance().updateNodePK(node.getNode().getNode());
+     } catch(Exception e)
+     {
+        e.printStackTrace();
+     }
+
+     for(Object changeable : updateList)
+     {
+        if(changeable instanceof Node)
+        {
+           Node nodeInstance = (Node)changeable;
+        }
+
+        if(changeable instanceof Edge)
+        {
+           Edge edgeInstance = (Edge)changeable;
+        }
+
+        if(changeable instanceof Move)
+        {
+           Move moveInstance = (Move)changeable;
+        }
+     }
+  }
+
+  public void addNodeToMap()
+  {
+     // TODO
+     Node newNode = new Node();
+  }
+
+  private void deleteNodeFixEdges()
+  {
+     // TODO
+  }
+
+   private void deleteNodeVoidEdges()
+   {
+      // TODO
+   }
+
+  private void addEdge()
+  {
+     // TODO
+  }
+  private void deleteEdge()
+  {
+     // TODO
   }
 }
