@@ -12,11 +12,17 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -191,6 +197,19 @@ public class MapFactory {
               () -> {
                 nodeLabel.setLayoutX(node.getNodeX().getValue() - (nodeLabel.getWidth() / 4));
                 nodeLabel.setLayoutY(node.getNodeY().getValue() - 30);
+                nodeLabel.setRotate(-45);
+                nodeLabel.setCenterShape(true);
+                nodeLabel.setBackground(
+                    new Background(
+                        new BackgroundFill(
+                            Paint.valueOf("white"),
+                            CornerRadii.EMPTY,
+                            new Insets(
+                                0,
+                                (nodeLabel.getWidth() - nodeLabel.getText().length() * 7) / 2,
+                                0,
+                                (nodeLabel.getWidth() - nodeLabel.getText().length() * 7) / 2))));
+                nodeLabel.toFront();
               });
 
           node.getNodeY()
@@ -215,7 +234,8 @@ public class MapFactory {
                       nodeLabel.setLayoutX(newValue.doubleValue() - (nodeLabel.getWidth() / 4));
                     }
                   });
-
+          nodeLabel.setAlignment(Pos.CENTER);
+          // nodeLabel.setStyle("-fx-background-color: '#FFFFFF'; -fx-padding: 5");
           holder.getChildren().add(nodeLabel);
         }
       }

@@ -179,6 +179,7 @@ public class PathfindingController {
 
   @FXML
   public void initialize() {
+
     converter.put("G", 0);
     converter.put("L1", 1);
     converter.put("L2", 2);
@@ -206,6 +207,7 @@ public class PathfindingController {
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
 
+    datePicker.setValue(datePicker.getCurrentDate());
     datePicker.setOnAction(
         event -> {
           Date dateToRun =
