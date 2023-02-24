@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests.*;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import org.controlsfx.control.PopOver;
 
 public class ServiceRequestHubController {
@@ -138,7 +140,14 @@ public class ServiceRequestHubController {
     if (submission) {
       clearFields();
       ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 740);
-      ConfettiController.makeConfetti(1500, 50, 100);
+      if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
+        ConfettiController.makeConfetti(1500, 50, 100);
+      }
+      requiredFieldsText.setText("* Required fields.");
+      requiredFieldsText.setTextFill(Color.rgb(1, 45, 90));
+    } else {
+      requiredFieldsText.setText("* Please fill out the required fields.");
+      requiredFieldsText.setTextFill(Color.color(1, 0, 0));
     }
 
     // TODO: add your submit function here in the exact same format as the PatientVBoxController
