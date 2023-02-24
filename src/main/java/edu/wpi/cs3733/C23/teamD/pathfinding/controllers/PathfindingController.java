@@ -198,7 +198,7 @@ public class PathfindingController {
     serviceRequestLocationToggle.setDisable(true);
 
     nodeNameToggle.setOnAction(toggleNodeNames());
-    nodeNameToggle.setSelected(true);
+    nodeNameToggle.setSelected(false);
     nodeNameToggle.setDisable(true);
 
     floorButtons[0] = floorGButton;
@@ -337,5 +337,6 @@ public class PathfindingController {
     }
     serviceRequestLocationToggle.setDisable(false);
     nodeNameToggle.setDisable(false);
+    toggleNodeNames().handle(null);
   }
 }
