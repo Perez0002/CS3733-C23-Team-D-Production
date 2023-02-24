@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -169,7 +170,7 @@ public class PathfindingController {
         AnchorPane holder =
             (AnchorPane) ((GesturePane) pathfindingBorderPane.getCenter()).getContent();
         for (Node node : holder.getChildren()) {
-          if (node instanceof Label) {
+          if (node instanceof TextArea) {
             node.setVisible(nodeNameToggle.isSelected());
           }
         }

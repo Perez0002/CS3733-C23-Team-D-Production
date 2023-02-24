@@ -187,7 +187,7 @@ public class MapFactory {
           final TextArea nodeLabel = new TextArea();
           nodeLabel.setEditable(false);
           nodeLabel.textProperty().bindBidirectional(node.getNodeLongName());
-          nodeLabel.setFont(javafx.scene.text.Font.font("Serif", 5));
+          nodeLabel.setFont(javafx.scene.text.Font.font("Nunito Sans", 5));
           Platform.runLater(
               () -> {
                 nodeLabel.setPrefColumnCount(node.getNodeLongName().getValue().length() / 2);
