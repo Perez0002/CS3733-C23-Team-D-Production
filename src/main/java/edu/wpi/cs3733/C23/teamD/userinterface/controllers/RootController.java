@@ -87,7 +87,7 @@ public class RootController {
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     mapEditorButton.setTooltip(new Tooltip("Map Editor"));
 
-    helpPageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HELP_PAGE));
+    helpPageButton.setOnMouseClicked(event -> showHelp());
     helpPageButton.setTooltip(new Tooltip("Help"));
 
     infoButton.setOnMouseClicked(event -> showAbout());
@@ -98,6 +98,19 @@ public class RootController {
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
+  }
+
+  private void showHelp() {
+    try {
+      final var resource = App.class.getResource("views/ApplicationHelpPage.fxml");
+      final FXMLLoader loader = new FXMLLoader(resource);
+      PopOver popover = new PopOver(loader.load());
+      popover.setArrowSize(0);
+      popover.setTitle("Help");
+      popover.show(App.getPrimaryStage());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   void showAbout() {
