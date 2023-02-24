@@ -18,7 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import net.kurobako.gesturefx.GesturePane;
@@ -88,7 +88,7 @@ public class MapEditorPageController {
 
       AnchorPane holder = (AnchorPane) ((GesturePane) mapPlacement.getCenter()).getContent();
       for (Node node : holder.getChildren()) {
-        if (node instanceof Label) {
+        if (node instanceof TextArea) {
           node.setVisible(labelsShown);
         }
       }
@@ -183,5 +183,6 @@ public class MapEditorPageController {
 
     // Creating GesturePane to show
     this.changeFloor(1).handle(null);
+    this.toggleLabels().handle(null);
   }
 }
