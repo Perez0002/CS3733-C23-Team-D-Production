@@ -12,17 +12,11 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -34,6 +28,7 @@ public class MapFactory {
   private Function<Node, EventHandler<MouseEvent>> nodeMouseEnterEvent;
   private Function<Node, EventHandler<MouseEvent>> nodeMouseExitEvent;
 
+  private boolean flipLabel = true;
   private AnchorPane holder;
 
   /** Creates a new MapFactory Object */
@@ -189,26 +184,37 @@ public class MapFactory {
         holder.getChildren().add(node.getNodeRepresentation());
 
         if (!node.getNodeType().getValue().equals("HALL")) {
-          final Label nodeLabel = new Label();
-
+          final TextArea nodeLabel = new TextArea();
+          nodeLabel.setEditable(false);
           nodeLabel.textProperty().bindBidirectional(node.getNodeLongName());
-
+          nodeLabel.setFont(javafx.scene.text.Font.font("Serif", 5));
           Platform.runLater(
               () -> {
-                nodeLabel.setLayoutX(node.getNodeX().getValue() - (nodeLabel.getWidth() / 4));
+                nodeLabel.setPrefColumnCount(node.getNodeLongName().getValue().length() / 2);
+                nodeLabel.setPrefRowCount(0);
+                nodeLabel.setLayoutX(node.getNodeX().getValue());
+
                 nodeLabel.setLayoutY(node.getNodeY().getValue() - 30);
-                nodeLabel.setRotate(-45);
-                nodeLabel.setCenterShape(true);
-                nodeLabel.setBackground(
-                    new Background(
-                        new BackgroundFill(
-                            Paint.valueOf("white"),
-                            CornerRadii.EMPTY,
-                            new Insets(
-                                0,
-                                (nodeLabel.getWidth() - nodeLabel.getText().length() * 7) / 2,
-                                0,
-                                (nodeLabel.getWidth() - nodeLabel.getText().length() * 7) / 2))));
+                nodeLabel.setRotate(-30);
+                nodeLabel.setWrapText(true);
+
+                //                nodeLabel.setStyle(
+                //                    "-fx-background-color:white;  -fx-background-insets: 1, 1; +
+                // -fx-background-radius: 3, 2;");
+                // nodeLabel.setCenterShape(true);
+                //                nodeLabel.setBackground(
+                //                    new Background(
+                //                        new BackgroundFill(
+                //                            Paint.valueOf("white"),
+                //                            CornerRadii.EMPTY,
+                //                            new Insets(
+                //                                0,
+                //                                (nodeLabel.getWidth() -
+                // nodeLabel.getText().length() * 7) / 2,
+                //                                0,
+                //                                (nodeLabel.getWidth() -
+                // nodeLabel.getText().length() * 7) / 2))));
+
                 nodeLabel.toFront();
               });
 
@@ -231,10 +237,10 @@ public class MapFactory {
                         ObservableValue<? extends Number> observable,
                         Number oldValue,
                         Number newValue) {
-                      nodeLabel.setLayoutX(newValue.doubleValue() - (nodeLabel.getWidth() / 4));
+                      nodeLabel.setLayoutX(newValue.doubleValue());
                     }
                   });
-          nodeLabel.setAlignment(Pos.CENTER);
+          // nodeLabel.setAlignment(Pos.CENTER);
           // nodeLabel.setStyle("-fx-background-color: '#FFFFFF'; -fx-padding: 5");
           holder.getChildren().add(nodeLabel);
         }
