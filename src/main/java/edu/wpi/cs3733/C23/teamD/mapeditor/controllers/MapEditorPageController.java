@@ -49,17 +49,19 @@ public class MapEditorPageController {
 
   private BooleanProperty nodeMode;
   private BooleanProperty edgeMode;
+  private BooleanProperty multiNodeMode;
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[6];
-  private MFXButton[] modeButtons = new MFXButton[2];
 
   public MapEditorPageController() {
     nodeMode = new SimpleBooleanProperty();
     nodeMode.setValue(true);
     edgeMode = new SimpleBooleanProperty();
     edgeMode.setValue(false);
+    multiNodeMode = new SimpleBooleanProperty();
+    multiNodeMode.setValue(false);
   }
 
   @FXML
@@ -125,7 +127,8 @@ public class MapEditorPageController {
 
     HashMap<String, MapNode> mapNodes = new HashMap<>();
     for (String node : pathNodes.keySet().stream().toList()) {
-      MapNode tempMapNode = new MapEditorMapNode(pathNodes.get(node), nodeMode, edgeMode);
+      MapNode tempMapNode =
+          new MapEditorMapNode(pathNodes.get(node), nodeMode, edgeMode, multiNodeMode);
       mapNodes.put(node, tempMapNode);
       nodeList.add(tempMapNode);
     }
@@ -149,51 +152,75 @@ public class MapEditorPageController {
           mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
 
-    modeButtons[0] = nodeButton;
-    modeButtons[1] = edgeButton;
-
     nodeButton.setDisable(true);
     edgeButton.setDisable(false);
+    multiNodeButton.setDisable(false);
     nodeButton.getStyleClass().add("mapEditorFloorButtonSelected");
     edgeButton.getStyleClass().add("mapEditorFloorButton");
+    multiNodeButton.getStyleClass().add("mapEditorFloorButton");
 
     nodeButton.setOnAction(
         event -> {
           nodeMode.setValue(true);
           edgeMode.setValue(false);
+          multiNodeMode.setValue(false);
 
           nodeButton.setDisable(true);
           edgeButton.setDisable(false);
+          multiNodeButton.setDisable(false);
 
           nodeButton.getStyleClass().add("mapEditorFloorButtonSelected");
           nodeButton.getStyleClass().remove("mapEditorFloorButton");
 
           edgeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           edgeButton.getStyleClass().add("mapEditorFloorButton");
+
+          multiNodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          multiNodeButton.getStyleClass().add("mapEditorFloorButton");
         });
 
     edgeButton.setOnAction(
         event -> {
           nodeMode.setValue(false);
-          edgeMode.setValue(true);
+          edgeMode.setValue(false);
+          multiNodeMode.setValue(true);
 
-          edgeButton.setDisable(true);
           nodeButton.setDisable(false);
+          edgeButton.setDisable(true);
+          multiNodeButton.setDisable(false);
+
+          nodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          nodeButton.getStyleClass().add("mapEditorFloorButton");
 
           edgeButton.getStyleClass().add("mapEditorFloorButtonSelected");
           edgeButton.getStyleClass().remove("mapEditorFloorButton");
 
+          multiNodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          multiNodeButton.getStyleClass().add("mapEditorFloorButton");
+        });
+
+    multiNodeButton.setOnAction(
+        event -> {
+          nodeMode.setValue(false);
+          edgeMode.setValue(false);
+          multiNodeMode.setValue(true);
+
+          nodeButton.setDisable(false);
+          edgeButton.setDisable(false);
+          multiNodeButton.setDisable(true);
+
           nodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           nodeButton.getStyleClass().add("mapEditorFloorButton");
+
+          edgeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          edgeButton.getStyleClass().add("mapEditorFloorButton");
+
+          multiNodeButton.getStyleClass().add("mapEditorFloorButtonSelected");
+          multiNodeButton.getStyleClass().remove("mapEditorFloorButton");
         });
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
     toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
-
-    // Setup for calculating average x and y
-    double totalX = 0;
-    double totalY = 0;
-    int total = 0;
 
     floorButtons[0] = floorGButton;
     floorButtons[1] = floorL1Button;

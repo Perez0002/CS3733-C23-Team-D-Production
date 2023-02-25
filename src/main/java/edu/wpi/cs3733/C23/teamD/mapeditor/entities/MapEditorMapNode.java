@@ -37,19 +37,27 @@ public class MapEditorMapNode extends MapNode {
   private DoubleProperty oldY = new SimpleDoubleProperty(-1);
   private BooleanProperty nodeMode;
   private BooleanProperty edgeMode;
+  private BooleanProperty multiNodeMode;
   protected final Color EDGE_CREATION = Color.rgb(0x00, 0xFF, 0x00);
 
-  public MapEditorMapNode(PathNode node, BooleanProperty nodeLink, BooleanProperty edgeLink) {
+  public MapEditorMapNode(
+      PathNode node,
+      BooleanProperty nodeLink,
+      BooleanProperty edgeLink,
+      BooleanProperty multiNodeLink) {
     /* Superclass object */
     super(node);
 
-    nodeMode = new SimpleBooleanProperty();
-    nodeMode.setValue(true);
-    edgeMode = new SimpleBooleanProperty();
-    edgeMode.setValue(false);
+    this.nodeMode = new SimpleBooleanProperty();
+    this.nodeMode.setValue(true);
+    this.edgeMode = new SimpleBooleanProperty();
+    this.edgeMode.setValue(false);
+    this.multiNodeMode = new SimpleBooleanProperty();
+    this.multiNodeMode.setValue(false);
 
-    nodeMode.bindBidirectional(nodeLink);
-    edgeMode.bindBidirectional(edgeLink);
+    this.nodeMode.bindBidirectional(nodeLink);
+    this.edgeMode.bindBidirectional(edgeLink);
+    this.multiNodeMode.bindBidirectional(multiNodeLink);
 
     nodeRepresentation.setOnMouseClicked(
         event -> {
