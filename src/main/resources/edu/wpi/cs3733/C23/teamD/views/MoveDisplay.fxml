@@ -1,39 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="moveDisplayborderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayController">
+<BorderPane fx:id="moveDisplayborderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1007.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayController">
    <center>
-      <BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="200.0" prefWidth="902.0" style="-fx-background-color: rgba(205, 223, 246, 0.8);" BorderPane.alignment="CENTER">
-         <left>
-            <VBox fx:id="move" prefHeight="400.0" prefWidth="250.0" spacing="16.0" BorderPane.alignment="CENTER">
-               <children>
-                  <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
-                  <MFXFilterComboBox fx:id="mfxFilterComboBox" floatMode="DISABLED" minWidth="237.0" prefHeight="40.0" prefWidth="237.0" promptText="Pick a Room" styleClass="mfx-text-field" stylesheets="@updatedStyleGuide.css" />
-                  <MFXButton onAction="#logout" prefHeight="52.0" prefWidth="300.0" text="Logout and Display" />
-               </children>
-               <BorderPane.margin>
-                  <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
-               </BorderPane.margin>
-            </VBox>
-         </left>
+      <BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="200.0" prefWidth="902.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
          <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <center>
-                  <BorderPane fx:id="mapBorderPane" maxHeight="Infinity" maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16; -fx-background-color: transparent;" BorderPane.alignment="CENTER" />
-               </center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
                <bottom>
                   <HBox prefHeight="43.0" prefWidth="488.0" spacing="8.0" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="700.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+                        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="900.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                            <children>
                               <Text fx:id="leftRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Left" />
                            </children>
@@ -41,8 +23,8 @@
                               <Insets right="16.0" />
                            </padding>
                         </HBox>
-                        <MFXButton minWidth="50.0" onAction="#switchLocations" prefHeight="43.0" prefWidth="35.0" text="Swap" />
-                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="700.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+                        <MFXButton fx:id="swapButton" minWidth="50.0" prefHeight="43.0" prefWidth="35.0" text="Swap" />
+                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="900.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                            <children>
                               <Text fx:id="rightRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Right" />
                            </children>

@@ -257,9 +257,9 @@
 }
 
 #moveDisplayborderPane {
-    -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    /*-fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
+    -fx-background-size: cover;*/
 }
 
 .helpButton {

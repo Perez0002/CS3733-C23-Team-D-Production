@@ -20,7 +20,7 @@ public enum Screen {
   SERVICE_TABLE("views/ServiceRequestTable.fxml"),
   MOVES_TABLE("views/MoveRequestTable.fxml"),
   PROFILE_PAGE("views/ProfilePage.fxml"),
-  MOVE_DISPLAY("views/MoveDisplay.fxml");
+  MOVE_DISPLAY("views/MoveDisplayStack.fxml");
 
   private final String filename;
 
