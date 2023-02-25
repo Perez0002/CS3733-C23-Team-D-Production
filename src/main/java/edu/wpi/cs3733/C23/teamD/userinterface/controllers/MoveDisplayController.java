@@ -4,6 +4,7 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
@@ -26,11 +27,14 @@ public class MoveDisplayController {
   @FXML private Text rightRoomText;
   @FXML private Text leftRoomText;
   @FXML private MFXButton swapButton;
+
+  private ArrayList<Edge> edges = new ArrayList<Edge>();
   TreeMap<String, String> nodeToRoomMap;
   private Date currentDate;
   private Node currentNode;
+  private ArrayList<Move> moves;
   @Setter @Getter private MoveDisplayStackController moveDisplayStackController;
-  @Setter private MoveDisplayPopupController moveDisplayPopupController;
+  @Setter private MoveDisplayContainerController moveDisplayContainerController;
 
   @FXML
   public void initialize() {
@@ -44,13 +48,15 @@ public class MoveDisplayController {
           }
         });
     swapButton.setOnAction(event -> switchLocations());
+    edges = FDdb.getInstance().getAllEdges();
+    moves = FDdb.getInstance().getAllMoves();
   }
 
   private void login() throws IOException {
     App.getRootPane()
         .setLeft(
             FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
-    moveDisplayPopupController.login();
+    moveDisplayContainerController.login();
     LoginButton.setDisable(true);
     swapButton.setVisible(true);
     swapButton.setManaged(true);
@@ -73,13 +79,34 @@ public class MoveDisplayController {
     messageText.setText(m.getMessage());
     Node currentNode = m.getNode();
 
-    ArrayList<Edge> edges = currentNode.getNodeEdges();
-    if (edges.size() > 0) {
-      leftRoomText.setText(edges.get(0).getToNode().getLongName());
+    boolean leftAssigned = true;
+    for (Edge e : edges) {
+      if (currentNode == e.getToNode()) {
+        if (leftAssigned) {
+          leftRoomText.setText(getLocationName(e.getFromNode()));
+          leftAssigned = false;
+        } else {
+          rightRoomText.setText(getLocationName(e.getFromNode()));
+          break;
+        }
+      } else if (currentNode == e.getFromNode()) {
+        if (leftAssigned) {
+          leftRoomText.setText(getLocationName(e.getToNode()));
+          leftAssigned = false;
+        } else {
+          rightRoomText.setText(getLocationName(e.getToNode()));
+          break;
+        }
+      }
     }
+  }
 
-    if (edges.size() > 1) {
-      leftRoomText.setText(edges.get(1).getToNode().getLongName());
+  private String getLocationName(Node n) {
+    for (Move m : moves) {
+      if (m.getNode() == n) {
+        return m.getLongName();
+      }
     }
+    return "";
   }
 }

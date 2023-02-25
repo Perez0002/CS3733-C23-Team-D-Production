@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
 
-public class MoveDisplayPopupController {
+public class MoveDisplayContainerController {
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
   @FXML private VBox move;
   private Node currentNode;
@@ -48,7 +48,7 @@ public class MoveDisplayPopupController {
 
     borderPane.setCenter(loader.load());
     moveDisplayStackController = loader.getController();
-    moveDisplayStackController.getMoveDisplayController().setMoveDisplayPopupController(this);
+    moveDisplayStackController.getMoveDisplayController().setMoveDisplayContainerController(this);
 
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
