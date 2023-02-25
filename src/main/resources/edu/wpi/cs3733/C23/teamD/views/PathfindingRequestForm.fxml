@@ -91,7 +91,7 @@
                         <Insets top="20.0" />
                      </padding>
                   </VBox>
-                  <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="BASELINE_LEFT" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="300.0" text="Toggle Service Request Locations">
+                  <MFXToggleButton fx:id="serviceRequestLocationToggle" contentDisplay="CENTER" gap="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="367.0" text="Toggle Service Request Locations">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></MFXToggleButton>

@@ -32,7 +32,7 @@ public class FDdb {
     this.settingIDao = new SettingIDaoImpl();
   }
 
-  public void refreshAll() {
+  public boolean refreshAll() {
     edgeIDao.refresh();
     nodeIDao.refresh();
     locationNameIDao.refresh();
@@ -41,6 +41,7 @@ public class FDdb {
     pastMovesIDao.refresh();
     employeeIDao.refresh();
     settingIDao.refresh();
+    return true;
   }
 
   public static FDdb getInstance() {

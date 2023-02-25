@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.C23.teamD;
 
+import edu.wpi.cs3733.C23.teamD.database.util.DBSingleton;
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import java.io.IOException;
@@ -44,8 +46,13 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.setMaximized(true);
     rootPane.setLeft(null);
-    Navigation.navigate(Screen.LOGIN_PAGE);
+    Navigation.navigate(Screen.LOADING_PAGE);
     primaryStage.show();
+    Boolean startApp = FDdb.getInstance().refreshAll();
+    DBSingleton.refreshSession();
+    if (startApp) {
+      Navigation.navigate(Screen.LOGIN_PAGE);
+    }
   }
 
   @Override
