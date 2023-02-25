@@ -4,8 +4,12 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
@@ -25,10 +29,14 @@ public class MoveDisplayContainerController {
   @FXML private VBox move;
   private Node currentNode;
   @FXML BorderPane borderPane;
+  @FXML MFXDatePicker datePicker;
 
   @Setter @Getter private MoveDisplayStackController moveDisplayStackController;
 
   TreeMap<String, Move> nodeToRoomMap;
+
+  private ArrayList<Move> moves = new ArrayList<>();
+  private ArrayList<Move> locationMoves = new ArrayList<>();
 
   @FXML
   public void initialize() throws IOException {
@@ -52,12 +60,34 @@ public class MoveDisplayContainerController {
 
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
+    datePicker.setOnAction(setDate);
   }
 
   EventHandler<ActionEvent> setLocation =
       new EventHandler<ActionEvent>() {
         public void handle(ActionEvent e) {
           moveDisplayStackController.setMove(nodeToRoomMap.get(mfxFilterComboBox.getValue()));
+          locationMoves =
+              FDdb.getInstance()
+                  .getFutureMoves(
+                      nodeToRoomMap.get(mfxFilterComboBox.getValue()).getLocation(), new Date());
+        }
+      };
+
+  EventHandler<ActionEvent> setDate =
+      new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent e) {
+
+          for (Move m : locationMoves) {
+
+            LocalDate localDate =
+                Instant.ofEpochMilli(m.getMoveDate().getTime())
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            if (localDate.equals(datePicker.getValue())) {
+              moveDisplayStackController.setFutureMove(m);
+            }
+          }
         }
       };
 
