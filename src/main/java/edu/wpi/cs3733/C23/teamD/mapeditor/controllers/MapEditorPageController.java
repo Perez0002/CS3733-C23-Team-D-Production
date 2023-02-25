@@ -127,7 +127,9 @@ public class MapEditorPageController {
             "No node for edge with nodes (To: "
                 + edge.getToNodeID()
                 + " | From: "
-                + edge.getFromNodeID());
+                + edge.getFromNodeID()
+                + "Edge id"
+                + edge.getEdgeID());
       }
 
       if (pathNodes.get(edge.getToNode().getNodeID()) != null) {

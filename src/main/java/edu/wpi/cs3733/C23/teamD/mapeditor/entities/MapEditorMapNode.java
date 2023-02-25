@@ -448,34 +448,34 @@ public class MapEditorMapNode extends MapNode {
             .remove(edge.getEdgeRepresentation());
       }
     }
-
     // Removing Edges from nodes connected to initial node
     for (MapNode n : nodesToModify) {
-      MapEdge edgeToRemove = n.getMapEdgeList().get(0);
+      MapEdge edgeToRemove = null;
       for (MapEdge edge : n.getMapEdgeList()) {
         if (edge.getEdge().getToNode().getNode().getNodeID().equals(oldNodeID)) {
           edgeToRemove = edge;
+          break;
+        } else if (edge.getEdge().getFromNode().getNode().getNodeID().equals(oldNodeID)) {
+          edgeToRemove = edge;
+          break;
         }
       }
       n.getMapEdgeList().remove(edgeToRemove);
-    }
-
-    // Delete old Edges
+    } // Delete old Edges
     for (MapEdge edge : node.getMapEdgeList()) {
       try {
         FDdb.getInstance().deleteEdge(edge.getEdge().getEdge());
       } catch (Exception e) {
         e.printStackTrace();
       }
-    }
-
-    // Delete old Node
+    } // Delete old Node
     try {
+      System.out.println("Node ID: " + node.getNode().getNode().getNodeID());
       FDdb.getInstance().deleteNode(node.getNode().getNode());
     } catch (Exception e) {
+      System.out.println("failed");
       e.printStackTrace();
     }
-
     System.out.println(nodesToModify.size());
     // Create new patched Edges
     for (int i = 0; i < nodesToModify.size(); i++) {
@@ -494,7 +494,6 @@ public class MapEditorMapNode extends MapNode {
           } catch (Exception e) {
             e.printStackTrace();
           }
-
           ((AnchorPane) node.getNodeRepresentation().getParent())
               .getChildren()
               .add(newMapEdge.getEdgeRepresentation());

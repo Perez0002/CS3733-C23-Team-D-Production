@@ -103,7 +103,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     for (Move m : movesWithNode) {
       PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
-      dbFacade.getAllMoves().remove(m);
+      dbFacade.deleteMove(m);
     }
 
     session.beginTransaction();
@@ -123,10 +123,10 @@ public class NodeIDaoImpl implements IDao<Node> {
     session.beginTransaction();
     try {
       Query q2 = session.createQuery("DELETE Node where nodeID=:id");
+      System.out.print("Node deletion: " + n.getNodeID());
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();
-
       this.nodes.remove(n);
 
     } catch (Exception ex) {

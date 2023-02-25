@@ -32,7 +32,7 @@ public class FDdb {
     this.settingIDao = new SettingIDaoImpl();
   }
 
-  public void refreshAll() {
+  public boolean refreshAll() {
     edgeIDao.refresh();
     nodeIDao.refresh();
     locationNameIDao.refresh();
@@ -41,6 +41,7 @@ public class FDdb {
     pastMovesIDao.refresh();
     employeeIDao.refresh();
     settingIDao.refresh();
+    return true;
   }
 
   public static FDdb getInstance() {
@@ -75,10 +76,10 @@ public class FDdb {
   public void deleteNode(Node n) {
     ArrayList<Move> moves = moveIDao.getAssociatedMoves(n);
     nodeIDao.delete(n);
-    for (Move m : moves) {
-      pastMovesIDao.save(new PastMoves(m));
-      moveIDao.delete(m);
-    }
+    //    for (Move m : moves) {
+    //      pastMovesIDao.save(new PastMoves(m));
+    //
+    //    }
   }
 
   public void nodeEdgeSwap(Node oldNode, Node newNode) {
