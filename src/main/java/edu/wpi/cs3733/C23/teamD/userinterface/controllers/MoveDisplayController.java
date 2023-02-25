@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 import javafx.fxml.FXML;
@@ -16,7 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class MoveDisplayController {
-  @FXML private MFXButton loginButton;
+  @FXML private MFXButton LoginButton;
   @FXML private BorderPane moveDisplayborderPane;
   @FXML private Text locationNameText;
   @FXML private Text messageText;
@@ -31,8 +33,8 @@ public class MoveDisplayController {
 
   @FXML
   public void initialize() {
-    loginButton.setDisable(true);
-    loginButton.setOnAction(
+    LoginButton.setDisable(true);
+    LoginButton.setOnAction(
         event -> {
           try {
             login();
@@ -43,27 +45,12 @@ public class MoveDisplayController {
     swapButton.setOnAction(event -> switchLocations());
   }
 
-  /*
-  EventHandler<ActionEvent> updateLocation =
-      new EventHandler<ActionEvent>() {
-        public void handle(ActionEvent e) {
-          locationNameText.setText(mfxFilterComboBox.getValue() + " selected");
-          currentNode = FDdb.getInstance().getNode(nodeToRoomMap.get(mfxFilterComboBox.getValue()));
-        }
-      };
-
-   */
-
-  private void getAdjacentLocations() {
-    // TODO
-  }
-
   private void login() throws IOException {
     App.getRootPane()
         .setLeft(
             FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
     moveDisplayStackController.login();
-    loginButton.setDisable(true);
+    LoginButton.setDisable(true);
     swapButton.setVisible(true);
     swapButton.setManaged(true);
   }
@@ -75,7 +62,7 @@ public class MoveDisplayController {
   }
 
   public void logout() {
-    loginButton.setDisable(false);
+    LoginButton.setDisable(false);
     swapButton.setVisible(false);
     swapButton.setManaged(false);
   }
@@ -83,5 +70,15 @@ public class MoveDisplayController {
   public void setLocation(Move m) {
     locationNameText.setText(m.getLongName());
     messageText.setText(m.getMessage());
+    Node currentNode = m.getNode();
+
+    ArrayList<Edge> edges = currentNode.getNodeEdges();
+    if (edges.size() > 0) {
+      leftRoomText.setText(edges.get(0).getToNode().getLongName());
+    }
+
+    if (edges.size() > 1) {
+      leftRoomText.setText(edges.get(1).getToNode().getLongName());
+    }
   }
 }

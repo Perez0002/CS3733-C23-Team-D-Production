@@ -7,74 +7,72 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="moveDisplayborderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1007.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayController">
-   <center>
-      <BorderPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="200.0" prefWidth="902.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
-         <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
-               <bottom>
-                  <HBox prefHeight="43.0" prefWidth="488.0" spacing="8.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="900.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
-                           <children>
-                              <Text fx:id="leftRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Left" />
-                           </children>
-                           <padding>
-                              <Insets right="16.0" />
-                           </padding>
-                        </HBox>
-                        <MFXButton fx:id="swapButton" minWidth="50.0" prefHeight="43.0" prefWidth="35.0" text="Swap" />
-                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="900.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
-                           <children>
-                              <Text fx:id="rightRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Right" />
-                           </children>
-                           <padding>
-                              <Insets left="16.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets top="16.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </bottom>
-               <BorderPane.margin>
-                  <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
-               </BorderPane.margin>
-               <top>
-                  <HBox prefHeight="43.0" prefWidth="573.0" spacing="16.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: EEEEEE; -fx-border-color: #041140; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
-                           <children>
-                              <Text fx:id="locationNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="16.0" right="16.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1300.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #041140; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
-                           <children>
-                              <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Move message" wrappingWidth="415.47003173828125" />
-                           </children>
-                           <padding>
-                              <Insets left="16.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets bottom="16.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </top>
-            </BorderPane>
-         </center>
-         <top>
-            <MFXButton fx:id="loginButton" prefHeight="48.0" prefWidth="75.0" text="Login" BorderPane.alignment="TOP_RIGHT" />
-         </top>
-      </BorderPane>
-   </center>
+<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayController">
+   <bottom>
+      <HBox prefHeight="60.0" prefWidth="488.0" spacing="8.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="900.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+               <children>
+                  <Text fx:id="leftRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Left">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets right="16.0" />
+               </padding>
+            </HBox>
+            <MFXButton fx:id="swapButton" minWidth="50.0" prefHeight="60.0" prefWidth="35.0" text="Swap" />
+            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="900.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+               <children>
+                  <Text fx:id="rightRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Right">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="16.0" />
+               </padding>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="16.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox prefHeight="43.0" prefWidth="573.0" spacing="16.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: EEEEEE; -fx-border-color: #041140; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+               <children>
+                  <Text fx:id="locationNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="16.0" right="16.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1300.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #041140; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+               <children>
+                  <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Move message" wrappingWidth="415.47003173828125" />
+               </children>
+               <padding>
+                  <Insets left="16.0" />
+               </padding>
+            </HBox>
+            <MFXButton fx:id="LoginButton" minWidth="80.0" prefHeight="48.0" prefWidth="75.0" text="Login" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="16.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <padding>
+      <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+   </padding>
 </BorderPane>
