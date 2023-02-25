@@ -85,7 +85,7 @@ public class Pathfinder {
                     + pathList.get(i).getLocation().getLongName()
                     + " "
                     + angleText
-                    + "and then go"
+                    + " and then go "
                     + eucDistance
                     + " meters to "
                     + pathList.get(i + 1).getLocation().getLongName());
