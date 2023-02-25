@@ -91,13 +91,13 @@ public class HomepageController {
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     /*helpButton.setOnMouseClicked(
-        event -> {
-          try {
-            help();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });*/
+    event -> {
+      try {
+        help();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    });*/
   }
 
   private void initializeStaffStats() {
