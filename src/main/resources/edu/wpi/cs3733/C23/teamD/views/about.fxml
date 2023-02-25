@@ -34,9 +34,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="imageBorder">
+                              <ImageView fx:id="imageOne" fitHeight="150.0" fitWidth="200.0"  preserveRatio="true" styleClass="imageBorder">
                                  <image>
-                                    <Image url="@images/teamPhotos/Abigail.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -52,9 +52,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageTwo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/img_1651_720.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -70,9 +70,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/image.png" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -88,9 +88,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageFour" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/PXL_20230104_144603134.MP.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -106,9 +106,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageFive" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/IMG_1590.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -128,9 +128,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageSix" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/Screenshot%202023-02-20%20214714.png" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -146,9 +146,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageSeven" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/F8C2120A-2857-4CB3-A3DB-8D79B573E6FB_1_105_c.jpeg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -164,9 +164,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageEight" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/IMG_1647.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -182,9 +182,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageNine" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/FB41F3AD-DBA9-4153-A9AD-9A914B29D316.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -200,9 +200,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageTen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/IMG_0091.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -235,9 +235,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageEleven" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/T049PKBST52-U04JG4CCLF5-eb3ac96122ee-512.jpeg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -253,9 +253,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageTwelve" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/laser%20eyes.png" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -271,9 +271,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageThirteen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/1516478534508.jpeg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -289,9 +289,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageFourteen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/logo.png" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -307,9 +307,9 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageFifteen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/teamPhotos/WPI_Seal_FulClr.jpg" />
+                                    <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
