@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
+
+  private static final GesturePane gesturePane = new GesturePane();
   private boolean onlyStartEnd;
   private ArrayList<MapNode> nodeList;
   private ArrayList<MapEdge> edgeList;
@@ -124,7 +124,6 @@ public class MapFactory {
 
     ImageView image = new ImageView();
     AnchorPane holder = new AnchorPane();
-    GesturePane map = new GesturePane();
 
     if (floor == 0) {
       image =
@@ -178,17 +177,10 @@ public class MapFactory {
       holder.getChildren().add(nodeList.get(nodeList.size() - 1).getNodeRepresentation());
     }
 
-    map.setContent(holder);
-    map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
-    map.zoomTo(0, Point2D.ZERO);
-    map.animate(Duration.millis(300))
-        .centreOn(
-            new Point2D(
-                (totalX / (totalNode == 0 ? 1 : totalNode)
-                    - App.getPrimaryStage().getScene().getWidth() / 2),
-                (totalY / (totalNode == 0 ? 1 : totalNode)
-                    - App.getPrimaryStage().getScene().getHeight() / 2)));
+    gesturePane.setContent(holder);
+    gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+
     // Return the GesturePane
-    return map;
+    return gesturePane;
   }
 }
