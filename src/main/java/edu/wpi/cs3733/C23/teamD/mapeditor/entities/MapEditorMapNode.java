@@ -10,7 +10,9 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -33,31 +35,41 @@ public class MapEditorMapNode extends MapNode {
   private static Line CURRENT_EDGE = null;
   private DoubleProperty oldX = new SimpleDoubleProperty(-1);
   private DoubleProperty oldY = new SimpleDoubleProperty(-1);
+  private BooleanProperty nodeMode;
+  private BooleanProperty edgeMode;
   protected final Color EDGE_CREATION = Color.rgb(0x00, 0xFF, 0x00);
 
-  public MapEditorMapNode(PathNode node) {
+  public MapEditorMapNode(PathNode node, BooleanProperty nodeLink, BooleanProperty edgeLink) {
     /* Superclass object */
     super(node);
 
+    nodeMode = new SimpleBooleanProperty();
+    nodeMode.setValue(true);
+    edgeMode = new SimpleBooleanProperty();
+    edgeMode.setValue(false);
+
+    nodeMode.bindBidirectional(nodeLink);
+    edgeMode.bindBidirectional(edgeLink);
+
     nodeRepresentation.setOnMouseClicked(
         event -> {
-          /* Creates popup on mouse click, assuming an edge is not being made and shift is not being pressed */
-          if (!event.isShiftDown() && !IS_MAKING_EDGE) {
+          /* Creates popup on mouse click, assuming an edge is not being made and editing nodes */
+          if (nodeMode.getValue() && !IS_MAKING_EDGE) {
             this.MakePopup();
           }
 
-          /* If shift is being pressed... */
-          if (event.isShiftDown()) {
+          /* ...deselect the first node selected assuming that it was the node that was clicked  */
+          if (IS_MAKING_EDGE && FIRST_NODE == this) {
+            ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
+            FIRST_NODE.nodeRepresentation.setFill(this.NO_SELECTION);
+            IS_MAKING_EDGE = false;
+            CURRENT_EDGE = null;
+            FIRST_NODE = null;
+            return;
+          }
 
-            /* ...deselect the first node selected assuming that it was the node that was clicked  */
-            if (IS_MAKING_EDGE && FIRST_NODE == this) {
-              ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
-              FIRST_NODE.nodeRepresentation.setFill(this.NO_SELECTION);
-              IS_MAKING_EDGE = false;
-              CURRENT_EDGE = null;
-              FIRST_NODE = null;
-              return;
-            }
+          /* If editing edges... */
+          if (edgeMode.getValue()) {
 
             /* ...create an edge between first selected node and this node assuming this node is not first node  */
             if (IS_MAKING_EDGE && FIRST_NODE != this) {
@@ -114,7 +126,7 @@ public class MapEditorMapNode extends MapNode {
           }
 
           /* If we are making an edge, preview the edge */
-          if (IS_MAKING_EDGE && FIRST_NODE != this) {
+          if (edgeMode.getValue() && IS_MAKING_EDGE && FIRST_NODE != this) {
             CURRENT_EDGE.endXProperty().bindBidirectional(this.getNodeX());
             CURRENT_EDGE.endYProperty().bindBidirectional(this.getNodeY());
             this.nodeRepresentation.setFill(this.EDGE_CREATION);
@@ -171,7 +183,7 @@ public class MapEditorMapNode extends MapNode {
 
     nodeRepresentation.setOnMouseDragged(
         event -> {
-          if (!event.isShiftDown() && !IS_MAKING_EDGE) {
+          if (nodeMode.getValue() && !IS_MAKING_EDGE) {
 
             /* If oldX and oldY are not set, set them */
             if (oldX.getValue() == -1 && oldY.getValue() == -1) {
