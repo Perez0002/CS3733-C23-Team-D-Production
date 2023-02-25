@@ -10,7 +10,4 @@ public class Main {
     DBSingleton.refreshSession();
     App.launch(App.class, args);
   }
-
-  // shortcut: psvm
-
 }

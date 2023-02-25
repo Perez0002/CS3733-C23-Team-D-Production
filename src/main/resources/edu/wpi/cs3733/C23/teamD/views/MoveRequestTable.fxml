@@ -95,12 +95,12 @@
                      </VBox.margin>
                   </Text>
                   <fx:include fx:id="nodeBox" source="VBoxInjections/Components/NodeComboBox.fxml" />
-                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text="Move Message">
+                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text=" Move Message">
                      <VBox.margin>
                         <Insets bottom="5.0" top="16.0" />
                      </VBox.margin>
                   </Text>
-                  <TextArea fx:id="messageBox" maxWidth="300.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" promptText="Insert a message" styleClass="text-area" stylesheets="@updatedStyleGuide.css" />
+                  <TextArea fx:id="messageBox" maxWidth="300.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" styleClass="text-area" stylesheets="@updatedStyleGuide.css" wrapText="true" />
                </children>
                <BorderPane.margin>
                   <Insets left="50.0" />
