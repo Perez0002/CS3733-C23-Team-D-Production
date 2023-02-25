@@ -122,28 +122,14 @@ public class MapEditorPageController {
               pathNodes.get(edge.getFromNode().getNodeID()));
       if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
         pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      } else {
-        System.out.println(
-            "No node for edge with nodes (To: "
-                + edge.getToNodeID()
-                + " | From: "
-                + edge.getFromNodeID()
-                + "Edge id"
-                + edge.getEdgeID());
       }
 
       if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
         pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
-      } else {
-        System.out.println(
-            "No node for edge with nodes (To: "
-                + edge.getToNodeID()
-                + " | From: "
-                + edge.getFromNodeID()
-                + ")");
       }
 
       MapEdge tempMapEdge = new MapEdge(edge1);
+      tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(

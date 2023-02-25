@@ -101,6 +101,7 @@ public class MapEdge {
               .deleteEvent(
                   event -> {
                     this.RemovePopup();
+                    this.deleteEdge(this);
                   })
               .build();
       /* Color the node on the map to represent selection */
