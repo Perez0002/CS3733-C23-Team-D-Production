@@ -33,12 +33,28 @@
     -fx-border-color: #E4E1E6;
     -fx-background-color: #E4E1E6;
     -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-min-height: 40;
     -fx-min-width: 300;
 }
 
 .mfx-text-field:focus-within {
     -fx-border-color: #012D5A;
+    -fx-border-radius: 10;
+}
+
+.text-area{
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+}
+
+.text-area .content {
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: #E4E1E6;
+    -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
 
