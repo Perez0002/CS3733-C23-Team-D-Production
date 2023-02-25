@@ -1,104 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.ApplicationHelpPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.ApplicationHelpPageController">
+   <top>
+      <Label fx:id="titleLabel" text="Help Page" BorderPane.alignment="CENTER" />
+   </top>
    <center>
-      <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Home Page">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltral-home-20" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" text="View your service request history and notifications" wrapText="true" />
-               </children>
-            </VBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Profile Page">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltrmz-person-20" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" text="View and manage your personal infromation, password, and completed service request history." wrapText="true" />
-               </children>
-            </VBox>
-            <HBox layoutX="70.0" layoutY="118.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Service Request Hub ">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltral-document-one-page-20" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" text="Fill out forms for when an employee needs to take care of something at a certain location in the hospital." wrapText="true" />
-               </children>
-            </VBox>
-            <HBox layoutX="70.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Getting Directions">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltral-location-20" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" text="Find a path between two rooms in the hospital." wrapText="true" />
-               </children>
-            </VBox>
-            <HBox layoutX="70.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Database Hub">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltrmz-table-20" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" text="Find a path between two rooms in the hospital." wrapText="true" />
-               </children>
-            </VBox>
-            <HBox layoutX="70.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Creating Department/Office Moves">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltral-arrow-swap-20" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" text="Plan a room change for a future date." wrapText="true" />
-               </children>
-            </VBox>
-            <HBox layoutX="70.0" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
-            <VBox alignment="CENTER">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Map Editor">
-                     <graphic>
-                        <FontIcon iconColor="#012d5a" iconLiteral="fltrmz-map-24" iconSize="25" />
-                     </graphic>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" text="Manage room locations and connections." wrapText="true" />
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+      <fx:include fx:id="cancelButton" maxWidth="-Infinity" minWidth="-Infinity" snapToPixel="false" source="cancelButton.fxml" />
    </center>
-   <bottom>
-      <Label alignment="CENTER" text="Press 'esc' to Close" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <padding>
-            <Insets bottom="15.0" />
-         </padding>
-      </Label>
-   </bottom>
 </BorderPane>

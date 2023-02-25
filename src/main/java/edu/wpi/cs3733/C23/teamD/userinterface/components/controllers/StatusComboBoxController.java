@@ -1,33 +1,35 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.components.controllers;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.Node;
+import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 public class StatusComboBoxController {
 
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
-  private ArrayList<String> statusValues = new ArrayList<>();
+  TreeMap<String, ServiceRequest.Status> nodeToRoomMap;
 
   public StatusComboBoxController() {
-    statusValues.add("BLANK");
-    statusValues.add("PROCESSING");
-    statusValues.add("DONE");
+    nodeToRoomMap = new TreeMap<String, ServiceRequest.Status>();
+    ArrayList<Node> nodeList = FDdb.getInstance().getAllNodes();
+
+    nodeToRoomMap.put(ServiceRequest.Status.BLANK.toString(), ServiceRequest.Status.BLANK);
+    nodeToRoomMap.put(
+        ServiceRequest.Status.PROCESSING.toString(), ServiceRequest.Status.PROCESSING);
+    nodeToRoomMap.put(ServiceRequest.Status.DONE.toString(), ServiceRequest.Status.DONE);
   }
 
   public void initialize() {
-    mfxFilterComboBox.setItems(FXCollections.observableArrayList(statusValues));
+    mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
   }
 
   public ServiceRequest.Status getStatus() {
-    String statusBoxVal = mfxFilterComboBox.getValue();
-    System.out.println(statusBoxVal);
-    ServiceRequest.Status status = ServiceRequest.Status.BLANK;
-    if (statusBoxVal.equals("DONE")) status = ServiceRequest.Status.DONE;
-    else if (statusBoxVal.equals("PROCESSING")) status = ServiceRequest.Status.PROCESSING;
-    return status;
+    return nodeToRoomMap.get(mfxFilterComboBox.getValue());
   }
 
   public void setStatus(String s) {

@@ -44,7 +44,6 @@ public class ProfilePageController {
   @FXML private MFXTextField address;
   @Getter @FXML private MFXToggleButton confettiButton;
   @FXML private MFXToggleButton darkModeButton;
-  @FXML private MFXButton helpButton;
   @FXML private TableView<ServiceRequest> serviceRequestHistory;
   @FXML private TableColumn<ServiceRequest, String> serviceRequests;
   @FXML private TableColumn<ServiceRequest, Date> serviceDates;
@@ -61,15 +60,6 @@ public class ProfilePageController {
         event -> {
           try {
             changePasswordPopup();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
-
-    helpButton.setOnMouseClicked(
-        event -> {
-          try {
-            help();
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -179,15 +169,6 @@ public class ProfilePageController {
     FDdb.getInstance().updateEmployee(currentUser);
     ToastController.makeText("Changes Saved.", 1500, 50, 50, 675, 750);
     resetChanges();
-  }
-
-  void help() throws IOException {
-    final var resource = App.class.getResource("views/VBoxInjections/ProfilePageHelp.fxml");
-    final FXMLLoader loader = new FXMLLoader(resource);
-    PopOver popover = new PopOver(loader.load());
-    popover.setArrowSize(0);
-    popover.setTitle("Help");
-    popover.show(App.getPrimaryStage());
   }
 
   public void serviceRequestTable() {

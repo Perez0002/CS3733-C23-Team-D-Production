@@ -1,94 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="serviceRequestHelpPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="serviceRequestHelpPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="430.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="CENTER" spacing="10.0">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Mandatory Fields:" underline="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="300.0" text="These fields are the first 3 fields to fill out in each service request form.  These fields get saved to a database to let employees know when and where they're needed and update maps shown to administrators." wrapText="true">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <VBox alignment="CENTER" spacing="5.0">
-                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Employee*   /  Urgency*  /   Location*" />
-                        <MFXTextField disable="true" floatMode="DISABLED" stylesheets="@../updatedStyleGuide.css" text="Select Mandatory Fields" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="-Infinity" prefHeight="10.0" prefWidth="350.0" styleClass="tabHBox" stylesheets="@../updatedStyleGuide.css">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </HBox>
-            <VBox alignment="CENTER" spacing="10.0">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Extra Fields:" underline="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0" text="These fields are extra fields needed to fill out specific requests. Some are required to be filled out properly, and others are optional. It is recommended to fill in all fields so that those involved in handling the service request better understand what to do." wrapText="true" />
-                  <VBox alignment="CENTER" spacing="10.0" stylesheets="@../updatedStyleGuide.css">
-                     <children>
-                        <VBox alignment="CENTER" spacing="5.0">
-                           <children>
-                              <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Select Date" />
-                              <MFXDatePicker disable="true" text=" Select Date Of Issue" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="215.0" spacing="5.0">
-                           <children>
-                              <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Select Up To Multiple Extra Options" />
-                              <MFXCheckbox disable="true" stylesheets="@../updatedStyleGuide.css" text="Checkbox Option 1" />
-                              <MFXCheckbox disable="true" selected="true" stylesheets="@../updatedStyleGuide.css" text="Checkbox Option 2" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="215.0" spacing="5.0">
-                           <children>
-                              <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Select Only One Of Many Options" />
-                              <MFXRadioButton disable="true" text="Radio Button 1" />
-                              <MFXRadioButton disable="true" selected="true" text="Radio Button 2" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" spacing="5.0">
-                           <children>
-                              <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@../updatedStyleGuide.css" text="Reason   /  Explain Issues  /  Additonal Details" />
-                              <MFXTextField disable="true" floatMode="DISABLED" text="Extra information about request" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <Label text="Press 'esc' To Close">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Include image of help stuff here" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

@@ -57,7 +57,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <fx:include fx:id="endLocationComboBox" prefWidth="300.0" source="Components/RoomPickComboBox.fxml" />
+                  <fx:include fx:id="endLocationComboBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
                </children>
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">

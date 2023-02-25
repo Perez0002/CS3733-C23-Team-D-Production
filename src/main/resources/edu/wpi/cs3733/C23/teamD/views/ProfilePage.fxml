@@ -275,7 +275,7 @@
       </VBox>
    </top>
    <bottom>
-      <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="BOTTOM_RIGHT">
+      <MFXButton styleClass="helpButton" text="?" BorderPane.alignment="BOTTOM_RIGHT">
          <BorderPane.margin>
             <Insets bottom="20.0" right="20.0" />
          </BorderPane.margin>

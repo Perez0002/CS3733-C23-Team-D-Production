@@ -91,13 +91,6 @@
                         <Insets top="20.0" />
                      </padding>
                   </VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="215.0" text="Toggle Service Request Locations:" />
-                        <MFXToggleButton fx:id="nodeNameToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="185.0" text="Toggle Names" />
-                     </children>
-                  </HBox>
-                  <Label fx:id="pathResultText" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" prefWidth="300.0" wrapText="true" />
                   <MFXToggleButton fx:id="serviceRequestLocationToggle" contentDisplay="CENTER" gap="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="367.0" text="Toggle Service Request Locations">
                      <VBox.margin>
                         <Insets top="10.0" />

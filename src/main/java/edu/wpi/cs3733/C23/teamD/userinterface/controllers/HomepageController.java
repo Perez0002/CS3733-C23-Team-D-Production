@@ -178,7 +178,7 @@ public class HomepageController {
   }
 
   private void help() throws IOException {
-    final var resource = App.class.getResource("views/VBoxInjections/HomepageHelp.fxml");
+    final var resource = App.class.getResource("views/VBoxInjections/ServiceRequestHubHelp.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
     PopOver popover = new PopOver(loader.load());
     popover.setArrowSize(0);

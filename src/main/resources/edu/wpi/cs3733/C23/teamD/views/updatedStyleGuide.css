@@ -30,9 +30,7 @@
 }
 
 .mfx-text-field {
-    -fx-border-color: transparent;
-    -fx-border-radius: 10;
-    -fx-border-width: 2;
+    -fx-border-color: #E4E1E6;
     -fx-background-color: #E4E1E6;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
@@ -42,6 +40,7 @@
 
 .mfx-text-field:focus-within {
     -fx-border-color: #012D5A;
+    -fx-border-radius: 10;
 }
 
 .text-area{
@@ -121,7 +120,7 @@
 
 .homepageLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
-    -fx-max-width: 400px;
+    -fx-max-width: 550px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
 }

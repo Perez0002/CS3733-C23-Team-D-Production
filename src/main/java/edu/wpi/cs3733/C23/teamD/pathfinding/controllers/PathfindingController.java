@@ -24,15 +24,11 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
 
@@ -72,7 +68,6 @@ public class PathfindingController {
   @FXML private MFXButton BFSButton;
   @FXML private MFXButton DFSButton;
   @FXML private MFXToggleButton serviceRequestLocationToggle;
-  @FXML private MFXToggleButton nodeNameToggle;
 
   private RoomPickComboBoxController comboBox;
   private boolean helpVisible = false;
@@ -163,24 +158,8 @@ public class PathfindingController {
     };
   }
 
-  private EventHandler<ActionEvent> toggleNodeNames() {
-    return new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        AnchorPane holder =
-            (AnchorPane) ((GesturePane) pathfindingBorderPane.getCenter()).getContent();
-        for (Node node : holder.getChildren()) {
-          if (node instanceof TextArea) {
-            node.setVisible(nodeNameToggle.isSelected());
-          }
-        }
-      }
-    };
-  }
-
   @FXML
   public void initialize() {
-
     converter.put("G", 0);
     converter.put("L1", 1);
     converter.put("L2", 2);
@@ -197,10 +176,6 @@ public class PathfindingController {
     serviceRequestLocationToggle.setOnAction(toggleServiceRequestLocations());
     serviceRequestLocationToggle.setDisable(true);
 
-    nodeNameToggle.setOnAction(toggleNodeNames());
-    nodeNameToggle.setSelected(false);
-    nodeNameToggle.setDisable(true);
-
     floorButtons[0] = floorGButton;
     floorButtons[1] = floor1Button;
     floorButtons[2] = floor2Button;
@@ -208,7 +183,6 @@ public class PathfindingController {
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
 
-    datePicker.setValue(datePicker.getCurrentDate());
     datePicker.setOnAction(
         event -> {
           Date dateToRun =
@@ -336,7 +310,5 @@ public class PathfindingController {
       pathResultText.setText("Incorrect Node Data Entered");
     }
     serviceRequestLocationToggle.setDisable(false);
-    nodeNameToggle.setDisable(false);
-    toggleNodeNames().handle(null);
   }
 }
