@@ -21,7 +21,8 @@ public enum DatabasesFXML {
   ADD_NODE("views/DatabaseTableInjections/AddNodeVBox.fxml"),
   ADD_LOCATION("views/DatabaseTableInjections/AddLocationVBox.fxml"),
   CHANGE_SERVICE_REQUEST("views/DatabaseTableInjections/AddServiceRequestVBox.fxml"),
-  ADD_EDGE("views/DatabaseTableInjections/AddEdgeVBox.fxml");
+  ADD_EDGE("views/DatabaseTableInjections/AddEdgeVBox.fxml"),
+  ANAYLTIC_BUTTONS("views/DatabaseTableInjections/AnalyticsButtonsVBox.fxml");
 
   private final String filename;
 

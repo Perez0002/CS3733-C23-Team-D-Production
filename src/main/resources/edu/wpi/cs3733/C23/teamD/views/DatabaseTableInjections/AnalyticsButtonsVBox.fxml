@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="75.0" right="35.0" />
+   </padding>
+   <top>
+      <Label alignment="CENTER" prefHeight="66.0" prefWidth="465.0" styleClass="addFormLabel" stylesheets="@../updatedStyleGuide.css" text="Select Analytic Charts" BorderPane.alignment="TOP_LEFT">
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 16; -fx-border-radius: 16;">
+         <children>
+            <MFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="250.0" styleClass="floorSwitchButton" stylesheets="@../updatedStyleGuide.css" text="Cahrt 1" />
+            <MFXButton layoutX="179.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="250.0" styleClass="floorSwitchButton" stylesheets="@../updatedStyleGuide.css" text="Chart 2" />
+            <MFXButton layoutX="179.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="250.0" styleClass="floorSwitchButton" stylesheets="@../updatedStyleGuide.css" text="chart 3" />
+            <MFXButton layoutX="179.0" layoutY="347.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="250.0" styleClass="floorSwitchButton" stylesheets="@../updatedStyleGuide.css" text="4" />
+            <MFXButton layoutX="179.0" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="250.0" styleClass="floorSwitchButton" stylesheets="@../updatedStyleGuide.css" text="etc. " />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

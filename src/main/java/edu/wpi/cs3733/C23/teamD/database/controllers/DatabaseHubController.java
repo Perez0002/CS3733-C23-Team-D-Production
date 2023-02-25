@@ -62,7 +62,12 @@ public class DatabaseHubController {
                 DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
     analyticsButton.setOnMouseClicked(
         event ->
-            switchVBox(DatabasesFXML.ANALYTICS_PAGE, analyticsButton, DatabasesFXML.ADD_LOCATION));
+            NavigationDatabases.navigate(
+                DatabasesFXML.ANALYTICS_PAGE,
+                getRequestFormHubPane(),
+                DatabasesFXML.ANAYLTIC_BUTTONS,
+                getMapPaneContainer(),
+                this));
   }
 
   void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {
