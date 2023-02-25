@@ -51,6 +51,13 @@ public class Pathfinder {
             .getFloor()
             .equals(pathList.get(i + 1).getNode().getFloor())) {
           directions.add("Take the elevator to floor " + pathList.get(i + 1).getNode().getFloor());
+        } else if (!pathList
+            .get(i)
+            .getNode()
+            .getFloor()
+            .equals(pathList.get(i - 1).getNode().getFloor())) {
+          directions.add(
+              "From the elevator go to " + pathList.get(i + 1).getLocation().getLongName());
         } else {
           double angle = findAngle(pathList.get(i - 1), pathList.get(i), pathList.get(i + 1));
           if (angle > 0.2) {
@@ -84,7 +91,7 @@ public class Pathfinder {
                         + pathList.get(i).getLocation().getLongName()
                         + " "
                         + angleText
-                        + "and then go"
+                        + "and then go "
                         + eucDistance
                         + " meters to "
                         + nextNonStraight.getLocation().getLongName());
@@ -124,8 +131,9 @@ public class Pathfinder {
         //                + " meters to "
         //                + pathList.get(i + 1).getLocation().getLongName());
       }
-      directions.add("You have reached your destination");
     }
+    directions.add("You have reached your destination");
+
     return directions;
   }
 
@@ -145,7 +153,12 @@ public class Pathfinder {
     PathNode nextNonStraight = null;
     for (int i = index + 1; i < pathList.size() - 1; i++) {
       double angle = findAngle(pathList.get(i - 1), pathList.get(i), pathList.get(i + 1));
-      if (abs(angle) > 0.2) {
+      if (abs(angle) > 0.2
+          || !pathList
+              .get(i)
+              .getNode()
+              .getFloor()
+              .equals(pathList.get(i + 1).getNode().getFloor())) {
         nextNonStraight = pathList.get(i);
         break;
       }
