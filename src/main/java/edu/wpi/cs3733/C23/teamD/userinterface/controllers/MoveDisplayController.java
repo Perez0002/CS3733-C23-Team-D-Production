@@ -30,6 +30,7 @@ public class MoveDisplayController {
   private Date currentDate;
   private Node currentNode;
   @Setter @Getter private MoveDisplayStackController moveDisplayStackController;
+  @Setter private MoveDisplayPopupController moveDisplayPopupController;
 
   @FXML
   public void initialize() {
@@ -49,7 +50,7 @@ public class MoveDisplayController {
     App.getRootPane()
         .setLeft(
             FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
-    moveDisplayStackController.login();
+    moveDisplayPopupController.login();
     LoginButton.setDisable(true);
     swapButton.setVisible(true);
     swapButton.setManaged(true);

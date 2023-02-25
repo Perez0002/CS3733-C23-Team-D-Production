@@ -4,15 +4,23 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="move" prefHeight="295.0" prefWidth="350.0" spacing="16.0" style="-fx-background-color: #CDDFF6; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-color: #041140; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayPopupController">
-   <children>
-      <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
-      <MFXFilterComboBox fx:id="mfxFilterComboBox" floatMode="DISABLED" minWidth="237.0" prefHeight="40.0" prefWidth="300.0" promptText="Pick a Room" styleClass="mfx-text-field" stylesheets="@updatedStyleGuide.css" />
-      <MFXButton onAction="#logout" prefHeight="52.0" prefWidth="300.0" text="Logout and Display" />
-   </children>
+<BorderPane fx:id="borderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayPopupController">
+   <left>
+      <VBox fx:id="move" prefHeight="200.0" prefWidth="350.0" spacing="16.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
+            <MFXFilterComboBox fx:id="mfxFilterComboBox" floatMode="DISABLED" minWidth="237.0" prefHeight="40.0" prefWidth="300.0" promptText="Pick a Room" styleClass="mfx-text-field" stylesheets="@updatedStyleGuide.css" />
+            <MFXButton onAction="#logout" prefHeight="52.0" prefWidth="300.0" text="Logout and Display" />
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+      </VBox>
+   </left>
    <padding>
-      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+      <Insets bottom="32.0" right="32.0" top="32.0" />
    </padding>
-</VBox>
+</BorderPane>
