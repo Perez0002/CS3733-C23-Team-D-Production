@@ -18,11 +18,9 @@ public class DatabaseHubController {
   @FXML private MFXButton edgeTableButton;
   @FXML private MFXButton moveTableButton;
   @FXML private MFXButton locationTableButton;
-
+  @FXML private MFXButton analyticsButton;
   @FXML private MFXButton downloadButton;
-
   @FXML private MFXButton uploadButton;
-
   @FXML private ServiceRequestTableController ServiceRequestTableBorderPane;
   @FXML private BorderPane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
@@ -62,6 +60,9 @@ public class DatabaseHubController {
         event ->
             switchVBox(
                 DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
+    analyticsButton.setOnMouseClicked(
+        event ->
+            switchVBox(DatabasesFXML.ANALYTICS_PAGE, analyticsButton, DatabasesFXML.ADD_LOCATION));
   }
 
   void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {

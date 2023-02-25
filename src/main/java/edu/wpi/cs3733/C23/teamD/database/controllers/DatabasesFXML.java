@@ -13,6 +13,8 @@ public enum DatabasesFXML {
 
   LOCATION_TABLE("views/DatabaseTableInjections/LocationTable.fxml"),
 
+  ANALYTICS_PAGE("views/DatabaseTableInjections/AnalyticsPage.fxml"),
+
   SERVICE_REQUEST("views/DatabaseTableInjections/ServiceRequestTable.fxml"),
 
   MOVE_REQUEST("views/DatabaseTableInjections/AddMoveVBox.fxml"),
