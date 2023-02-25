@@ -99,6 +99,7 @@ public class EdgeIDaoImpl implements IDao<Edge> {
       this.edges.remove(e);
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }

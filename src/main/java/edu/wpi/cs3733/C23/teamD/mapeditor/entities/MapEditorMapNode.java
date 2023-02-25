@@ -451,13 +451,18 @@ public class MapEditorMapNode extends MapNode {
 
     // Removing Edges from nodes connected to initial node
     for (MapNode n : nodesToModify) {
-      MapEdge edgeToRemove = n.getMapEdgeList().get(0);
+      MapEdge edgeToRemove = null;
       for (MapEdge edge : n.getMapEdgeList()) {
         if (edge.getEdge().getToNode().getNode().getNodeID().equals(oldNodeID)) {
           edgeToRemove = edge;
+        } else if (edge.getEdge().getFromNode().getNode().getNodeID().equals(oldNodeID)) {
+          edgeToRemove = edge;
         }
       }
-      n.getMapEdgeList().remove(edgeToRemove);
+
+      if (edgeToRemove != null) {
+        n.getMapEdgeList().remove(edgeToRemove);
+      }
     }
 
     // Delete old Edges
@@ -517,11 +522,15 @@ public class MapEditorMapNode extends MapNode {
     for (MapEdge edge : node.getMapEdgeList()) {
       if (edge.getFromNode().getNode().getNode().getNodeID().equals(oldNodeID)) {
         nodesToModify.add(edge.getToNode());
+      } else if (edge.getToNode().getNode().getNode().getNodeID().equals(oldNodeID)) {
+        nodesToModify.add(edge.getFromNode());
       }
 
-      ((AnchorPane) edge.getEdgeRepresentation().getParent())
-          .getChildren()
-          .remove(edge.getEdgeRepresentation());
+      if (edge.getEdgeRepresentation().getParent() != null) {
+        ((AnchorPane) edge.getEdgeRepresentation().getParent())
+            .getChildren()
+            .remove(edge.getEdgeRepresentation());
+      }
     }
 
     // Removing Edges from nodes connected to initial node

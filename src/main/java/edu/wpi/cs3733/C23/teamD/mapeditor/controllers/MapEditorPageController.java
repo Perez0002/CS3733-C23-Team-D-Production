@@ -126,7 +126,7 @@ public class MapEditorPageController {
         System.out.println(
             "No node for edge with nodes (To: "
                 + edge.getToNodeID()
-                + " | From: "
+                + " | *From: "
                 + edge.getFromNodeID());
       }
 
@@ -134,7 +134,7 @@ public class MapEditorPageController {
         pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
       } else {
         System.out.println(
-            "No node for edge with nodes (To: "
+            "No node for edge with nodes (*To: "
                 + edge.getToNodeID()
                 + " | From: "
                 + edge.getFromNodeID()
@@ -142,6 +142,7 @@ public class MapEditorPageController {
       }
 
       MapEdge tempMapEdge = new MapEdge(edge1);
+      tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(
