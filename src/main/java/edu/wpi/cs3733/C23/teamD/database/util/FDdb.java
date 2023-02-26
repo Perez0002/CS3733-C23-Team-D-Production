@@ -343,4 +343,8 @@ public class FDdb {
     refreshMoves();
     refreshLocationNames();
   }
+
+  public void run(){
+    refreshAll();
+  }
 }

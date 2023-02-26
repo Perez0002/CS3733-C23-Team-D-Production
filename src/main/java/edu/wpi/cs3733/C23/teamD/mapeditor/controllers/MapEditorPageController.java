@@ -121,6 +121,7 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
@@ -162,13 +163,13 @@ public class MapEditorPageController {
       edgeList.add(tempMapEdge);
       if (mapNodes.get(edge.getFromNode().getNodeID()) != null
           || mapNodes.get(edge.getToNode().getNodeID()) != null) {
-        //        System.out.println(
-        //            "To Node: "
-        //                + edge.getFromNodeID()
-        //                + " From Node: "
-        //                + edge.getToNodeID()
-        //                + " Edge: "
-        //                + edge.getEdgeID());
+        System.out.println(
+            "To Node: "
+                + edge.getFromNodeID()
+                + " From Node: "
+                + edge.getToNodeID()
+                + " Edge: "
+                + edge.getEdgeID());
       }
       tempMapEdge.setNodes(
           mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
