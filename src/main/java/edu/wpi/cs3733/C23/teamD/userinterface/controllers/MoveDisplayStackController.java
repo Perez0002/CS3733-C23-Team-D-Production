@@ -19,8 +19,10 @@ import java.util.Date;
 import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,27 +41,63 @@ public class MoveDisplayStackController {
   @FXML
   public void initialize() throws IOException {
     mapPane.setCenter(MapFactory.startBuild().build(1));
+    mapPane.setBorder(
+        new Border(
+            new BorderStroke(
+                Color.rgb(4, 17, 64),
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(3, 3, 3, 3))));
     stackPane.getChildren().add(mapPane);
+    stackPane.setPickOnBounds(false);
 
     final FXMLLoader loader =
         new FXMLLoader(App.class.getResource("/edu/wpi/cs3733/C23/teamD/views/MoveDisplay.fxml"));
-    stackPane.getChildren().add(loader.load());
+    loader.load();
+
+    // stackPane.getChildren().add(loader.load());
 
     // stage.setScene(scene);
     // stage.show();
 
     moveDisplayController = loader.getController();
+    HBox bottom = moveDisplayController.getBottomHBox();
+    HBox top = moveDisplayController.getTopHBox();
+    stackPane.setPadding(new Insets(32, 32, 32, 32));
+    stackPane.getChildren().add(bottom);
+    stackPane.getChildren().add(top);
+    stackPane.setAlignment(bottom, Pos.BOTTOM_CENTER);
+    stackPane.setAlignment(top, Pos.TOP_CENTER);
     moveDisplayController.setMoveDisplayStackController(this);
   }
 
   public void logout() {
-    App.getRootPane().setLeft(null);
     moveDisplayController.logout();
+  }
+
+  public void display() {
+    App.getRootPane().setLeft(null);
+    moveDisplayController.display();
+    mapPane.setDisable(true);
+    stackPane.setPadding(new Insets(0, 0, 0, 0));
+    mapPane.setBorder(null);
+  }
+
+  public void back() {
+    mapPane.setDisable(false);
+    mapPane.setBorder(
+        new Border(
+            new BorderStroke(
+                Color.rgb(4, 17, 64),
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(3, 3, 3, 3))));
+    stackPane.setPadding(new Insets(32, 32, 32, 32));
   }
 
   public void setFutureMove(Move m) {
     futureMove = m;
-
+    moveDisplayController.setLocation(m);
     Date dateToRun = new Date();
 
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
@@ -138,7 +176,7 @@ public class MoveDisplayStackController {
     } else if (floor.equals("L2")) {
       return 2;
     } else if (floor.equals("1")) {
-      return 2;
+      return 3;
     } else if (floor.equals("2")) {
       return 4;
     } else {

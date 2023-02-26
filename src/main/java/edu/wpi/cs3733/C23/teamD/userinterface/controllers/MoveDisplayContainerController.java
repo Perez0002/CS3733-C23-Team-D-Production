@@ -93,23 +93,21 @@ public class MoveDisplayContainerController {
 
   @FXML
   public void logout() {
+    display();
     moveDisplayStackController.logout();
-    borderPane.setPadding(new Insets(0, 0, 0, 0));
-    move.setVisible(false);
-    move.setManaged(false);
-
-    /*
-    move.setVisible(false);
-    move.setManaged(false);
-    loginButton.setVisible(true);
-    loginButton.setManaged(true);
-    App.getRootPane().setLeft(null);
-
-     */
   }
 
-  public void login() {
-    move.setVisible(true);
+  @FXML
+  public void display() {
+    borderPane.setPadding(new Insets(0, 0, 0, 0));
+    move.setManaged(false);
+    moveDisplayStackController.display();
+  }
+
+  @FXML
+  public void viewServiceRequests() {}
+
+  public void back() {
     move.setManaged(true);
     borderPane.setPadding(new Insets(32, 32, 32, 0));
   }

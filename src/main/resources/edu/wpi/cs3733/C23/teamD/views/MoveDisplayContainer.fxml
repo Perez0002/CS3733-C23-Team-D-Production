@@ -4,19 +4,28 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayContainerController">
    <left>
       <VBox fx:id="move" prefHeight="200.0" prefWidth="350.0" spacing="16.0" BorderPane.alignment="CENTER">
          <children>
+            <Label styleClass="addFormLabel" text="Display a Move">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
             <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
             <MFXFilterComboBox fx:id="mfxFilterComboBox" floatMode="DISABLED" minWidth="237.0" prefHeight="40.0" prefWidth="300.0" promptText="Pick a Room" styleClass="mfx-text-field" stylesheets="@updatedStyleGuide.css" />
-            <MFXButton onAction="#logout" prefHeight="52.0" prefWidth="300.0" text="Logout and Display" />
+            <MFXButton onAction="#logout" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Logout and Display" />
+            <MFXButton onAction="#display" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Display" />
+            <MFXButton onAction="#viewServiceRequests" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="View Service Requests" />
          </children>
          <padding>
-            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            <Insets bottom="25.0" left="25.0" right="25.0" top="64.0" />
          </padding>
       </VBox>
    </left>
