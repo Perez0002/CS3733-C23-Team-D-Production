@@ -362,7 +362,7 @@
     -fx-border-color: transparent #CFCFCF #CFCFCF transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
-    -fx-min-width: fit-content;
+    -fx-min-width: 0;
 }
 
 .requestDetailsTopMenuTopRight
@@ -370,6 +370,6 @@
     -fx-border-color: transparent transparent #CFCFCF transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
-    -fx-min-width: fit-content;
+    -fx-min-width: 0;
 
 }

@@ -11,6 +11,7 @@ import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.RequestDetailsController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.userinterface.entities.Notif;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
 
 public class HomepageController {
@@ -59,6 +59,9 @@ public class HomepageController {
   @FXML private TableColumn<ServiceRequest, Integer> requestID;
 
   @FXML private TableView<ServiceRequest> serviceRequestHistory;
+  @FXML private TableView<Notif> notifTable;
+
+  @FXML private TableColumn<Notif, String> notification;
 
   @FXML
   public void setDetails() {
@@ -85,12 +88,15 @@ public class HomepageController {
       initializeStaffStats();
     }
 
+    notificationTableHandling();
+
     currentController =
         NavigationServiceRequests.navigateHomepage(
             ServiceRequests.TEMPLATE_REQUEST_DETAILS, getPane(), new ServiceRequest());
 
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
+
     helpButton.setOnMouseClicked(
         event -> {
           try {
@@ -111,6 +117,40 @@ public class HomepageController {
     firstStat.setText(total);
     secondStat.setText(toDo);
     thirdStat.setText(done);
+  }
+
+  public void notificationTableHandling() {
+    ArrayList<Move> allmoves = FDdb.getInstance().getAllMoves();
+    ArrayList<Notif> futureMoveList = new ArrayList<>();
+
+    long millis = System.currentTimeMillis();
+    Date todayDate = new java.sql.Date(millis);
+    for (Move m : allmoves) {
+      Move aNewMove = new Move();
+      if (m.getMoveDate().after(todayDate)) {
+        aNewMove.setMoveDate(m.getMoveDate());
+        aNewMove.setLocation(m.getLocation());
+        aNewMove.setNode(m.getNode());
+        if (m.getMessage() == null) {
+          aNewMove.setMessage("null");
+        } else {
+          aNewMove.setMessage(m.getMessage());
+        }
+        Notif notif =
+            new Notif(
+                aNewMove.getLocation().getShortName()
+                    + " will be moving on "
+                    + aNewMove.getMoveDate()
+                    + ", here is the attached message: \n"
+                    + aNewMove.getMessage());
+        futureMoveList.add(notif);
+      }
+    }
+
+    ObservableList<Notif> notificationList = FXCollections.observableArrayList(futureMoveList);
+
+    notification.setCellValueFactory(new PropertyValueFactory<Notif, String>("notification"));
+    notifTable.setItems(notificationList);
   }
 
   private void initializeAdminStats() {
@@ -244,19 +284,6 @@ public class HomepageController {
         new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
 
     serviceRequestHistory.setItems(listserviceRequests);
-    serviceRequestHistory.getColumns().stream()
-        .forEach(
-            (column) -> {
-              double size = serviceRequestHistory.getColumns().size();
-              Text serviceTableValue = new Text(column.getText());
-              Object cellData;
-              for (int i = 0; i < serviceRequestHistory.getItems().size(); i++) {
-                cellData = column.getCellData(i);
-                if (cellData != null) {
-                  serviceTableValue = new Text(cellData.toString());
-                }
-              }
-            });
   }
 
   public void serviceRequestTableOutgoing() {
@@ -284,18 +311,5 @@ public class HomepageController {
         new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
 
     serviceRequestHistory.setItems(listserviceRequests);
-    serviceRequestHistory.getColumns().stream()
-        .forEach(
-            (column) -> {
-              double size = serviceRequestHistory.getColumns().size();
-              Text serviceTableValue = new Text(column.getText());
-              Object cellData;
-              for (int i = 0; i < serviceRequestHistory.getItems().size(); i++) {
-                cellData = column.getCellData(i);
-                if (cellData != null) {
-                  serviceTableValue = new Text(cellData.toString());
-                }
-              }
-            });
   }
 }
