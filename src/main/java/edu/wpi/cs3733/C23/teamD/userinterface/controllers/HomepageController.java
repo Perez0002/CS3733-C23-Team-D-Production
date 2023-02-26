@@ -7,8 +7,8 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.NavigationServiceRequests;
-import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestVBoxController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.RequestDetailsController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -21,7 +21,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -53,8 +52,6 @@ public class HomepageController {
 
   @FXML private Label outgoingIncoming;
 
-  @FXML private ScrollPane scrollPane;
-
   @FXML private Pane pane;
 
   @FXML private TableColumn<ServiceRequest, String> serviceRequests;
@@ -69,7 +66,7 @@ public class HomepageController {
     switchVBox(request);
   }
 
-  private ServiceRequestVBoxController currentController;
+  private RequestDetailsController currentController;
 
   Pane getPane() {
     return pane;
@@ -87,6 +84,10 @@ public class HomepageController {
       serviceRequestTableIncoming();
       initializeStaffStats();
     }
+
+    currentController =
+        NavigationServiceRequests.navigateHomepage(
+            ServiceRequests.TEMPLATE_REQUEST_DETAILS, getPane(), new ServiceRequest());
 
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
@@ -197,7 +198,7 @@ public class HomepageController {
     if (request.getClass().equals(AVRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.AV_REQUEST, getPane(), request);
+              ServiceRequests.AV_REQUEST_DETAILS, getPane(), request);
     } else if (request.getClass().equals(ComputerServiceRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
@@ -205,15 +206,15 @@ public class HomepageController {
     } else if (request.getClass().equals(PatientTransportRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.PATIENT_TRANSPORT, getPane(), request);
+              ServiceRequests.PATIENT_TRANSPORT_DETAILS, getPane(), request);
     } else if (request.getClass().equals(SanitationRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.SANITATION_REQUEST, getPane(), request);
+              ServiceRequests.SANITATION_REQUEST_DETAILS, getPane(), request);
     } else if (request.getClass().equals(SecurityServiceRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.SECURITY_REQUEST, getPane(), request);
+              ServiceRequests.SECURITY_REQUEST_DETAILS, getPane(), request);
     }
   }
 

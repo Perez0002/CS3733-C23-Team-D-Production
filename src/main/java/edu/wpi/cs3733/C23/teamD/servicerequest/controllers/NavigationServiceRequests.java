@@ -28,7 +28,7 @@ public class NavigationServiceRequests {
     return loader.getController();
   }
 
-  public static ServiceRequestVBoxController navigateHomepage(
+  public static RequestDetailsController navigateHomepage(
       final ServiceRequests serviceRequest, Pane requestFormHubPane, ServiceRequest data) {
     final String filename = serviceRequest.getFilename();
     try {

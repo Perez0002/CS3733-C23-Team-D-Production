@@ -106,6 +106,13 @@
     -fx-font-family: "Nunito Sans Bold";
 }
 
+.homepageLabelBig { /* defines the format for the header on Service Request page */
+    -fx-font-size: 30pt;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
+}
+
 .imageBorder {
     -fx-border-color: #012D5A;
     /*-fx-border-radius: 16;*/
@@ -327,7 +334,7 @@
     -fx-border-color: transparent #CFCFCF transparent transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
-    -fx-min-width: USE_PREF_SIZE;
+
 }
 
 .requestDetailsTopMenu
@@ -335,7 +342,7 @@
     -fx-border-color: transparent #CFCFCF #CFCFCF transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
-    -fx-min-width: USE_PREF_SIZE;
+    -fx-min-width: fit-content;
 }
 
 .requestDetailsTopMenuTopRight
@@ -343,5 +350,6 @@
     -fx-border-color: transparent transparent #CFCFCF transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
-    -fx-min-width: USE_PREF_SIZE;
+    -fx-min-width: fit-content;
+
 }
