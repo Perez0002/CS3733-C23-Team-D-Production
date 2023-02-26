@@ -179,10 +179,11 @@ public class MapEditorMapNode extends MapNode {
                     gesturePaneStartPoint.getY() + gesturePane.getViewportBound().getHeight());
 
             /* If mouse goes past specific bounds, fail to place past map */
-            if (event.getSceneX() < gesturePaneStartPoint.getX()
-                || event.getSceneX() > gesturePaneEndPoint.getX()
-                || event.getSceneY() < gesturePaneStartPoint.getY()
-                || event.getSceneY() > gesturePaneEndPoint.getY()) {
+            if (nodeMode.getValue()
+                && (event.getSceneX() < gesturePaneStartPoint.getX()
+                    || event.getSceneX() > gesturePaneEndPoint.getX()
+                    || event.getSceneY() < gesturePaneStartPoint.getY()
+                    || event.getSceneY() > gesturePaneEndPoint.getY())) {
               this.getNodeX().setValue(this.oldX.getValue());
               this.getNodeY().setValue(this.oldY.getValue());
             }

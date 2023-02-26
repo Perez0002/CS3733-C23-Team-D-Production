@@ -22,9 +22,10 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -63,6 +64,9 @@ public class MapEditorPageController {
   DoubleProperty rectStartY;
   DoubleProperty rectEndX;
   DoubleProperty rectEndY;
+
+  double lastXPos;
+  double lastYPos;
   private BooleanProperty nodeMode;
   private BooleanProperty edgeMode;
   private BooleanProperty multiNodeMode;
@@ -146,23 +150,55 @@ public class MapEditorPageController {
         }
 
         gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+        gesturePane.requestFocus();
+        gesturePane.setOnKeyReleased(
+            e -> {
+              System.out.println("Here!");
+              if (!selected.isEmpty()) {
+                int totalX = 0;
+                int totalY = 0;
+                int totalNum = selected.size();
+                for (MapNode node : selected) {
+                  totalX += ((MapEditorMapNode) node).getNodeX().getValue();
+                  totalY += ((MapEditorMapNode) node).getNodeY().getValue();
+                }
 
+                if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
+                  for (MapNode node : selected) {
+                    ((MapEditorMapNode) node).getNodeY().setValue(totalY / totalNum);
+                  }
+                }
+
+                if (e.getCode() == KeyCode.LEFT || e.getCode() == KeyCode.RIGHT) {
+                  for (MapNode node : selected) {
+                    ((MapEditorMapNode) node).getNodeX().setValue(totalX / totalNum);
+                  }
+                }
+              }
+            });
         ((AnchorPane) gesturePane.getContent())
             .setOnMouseClicked(
                 e -> {
                   if (e.isStillSincePress() && multiNodeMode.getValue()) {
                     for (MapNode node : selected) {
                       node.getNodeRepresentation().setFill(MapNode.NO_SELECTION);
+                      try {
+                        // TODO when merge from saving is complete, need to save to DB
+                      } catch (Exception ex)
+                      {
+                         ex.printStackTrace();
+                      }
                     }
                     selected.clear();
+
                   }
                 });
 
         ((AnchorPane) gesturePane.getContent())
             .setOnMouseDragged(
                 e -> {
-                  if (multiNodeMode.getValue()) {
-                    gesturePane.setGestureEnabled(false);
+                  gesturePane.setGestureEnabled(false);
+                  if (multiNodeMode.getValue() && selected.isEmpty()) {
                     if (selectArea == null) {
                       selectArea = new Rectangle();
 
@@ -195,11 +231,33 @@ public class MapEditorPageController {
                       rectEndY.setValue(e.getY());
                     }
                   }
+
+                  if (multiNodeMode.getValue() && !selected.isEmpty()) {
+                    if (lastXPos != 0 && lastYPos != 0) {
+                      for (MapNode node : selected) {
+                        ((MapEditorMapNode) node)
+                            .getNodeX()
+                            .setValue(
+                                ((MapEditorMapNode) node).getNodeX().getValue()
+                                    + (e.getX() - lastXPos));
+                        ((MapEditorMapNode) node)
+                            .getNodeY()
+                            .setValue(
+                                ((MapEditorMapNode) node).getNodeY().getValue()
+                                    + (e.getY() - lastYPos));
+                      }
+                    }
+
+                    lastXPos = e.getX();
+                    lastYPos = e.getY();
+                  }
                 });
 
         ((AnchorPane) gesturePane.getContent())
             .setOnMouseReleased(
                 e -> {
+                  lastXPos = 0;
+                  lastYPos = 0;
                   if (multiNodeMode.getValue()) {
                     gesturePane.setGestureEnabled(true);
 
@@ -374,5 +432,6 @@ public class MapEditorPageController {
     // Creating GesturePane to show
     this.changeFloor(1).handle(null);
     this.toggleLabels().handle(null);
+    gesturePane.requestFocus();
   }
 }
