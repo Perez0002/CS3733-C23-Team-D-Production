@@ -31,7 +31,9 @@ public class EdgeIDaoImpl implements IDao<Edge> {
     try {
       session.persist(e);
       session.getTransaction().commit();
-
+      //      System.out.println("Edge added: " + e.getEdgeID());
+      //      System.out.println("Edge fromNode: " + e.getFromNode().getNodeID());
+      //      System.out.println("Edge toNode: " + e.getToNode().getNodeID());
       this.edges.add(e);
 
     } catch (Exception ex) {
@@ -95,9 +97,8 @@ public class EdgeIDaoImpl implements IDao<Edge> {
       q.setParameter("id", e.getEdgeID());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
-
       this.edges.remove(e);
-
+      //      System.out.println("Edge deleted: " + e.getEdgeID());
     } catch (Exception ex) {
       ex.printStackTrace();
       session.getTransaction().rollback();

@@ -65,7 +65,7 @@ public class NodeIDaoImpl implements IDao<Node> {
     this.save(newNode);
     objectList.addAll(this.nodeMoveSwap(n, newNode));
     objectList.addAll(this.nodeEdgeSwap(n, newNode));
-    System.out.println("Node ID: " + n.getNodeID());
+    //    System.out.println("Node ID: " + n.getNodeID());
     this.deleteOnlyNode(n);
     objectList.add(newNode);
 
@@ -101,8 +101,8 @@ public class NodeIDaoImpl implements IDao<Node> {
       }
     }
     for (Move m : movesWithNode) {
-      PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
-      dbFacade.savePastMove(tempMove);
+      // PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
+      // dbFacade.savePastMove(tempMove);
       dbFacade.deleteMove(m);
     }
 
@@ -113,7 +113,6 @@ public class NodeIDaoImpl implements IDao<Node> {
     q.setParameter("tonode", n);
     ArrayList<Edge> edges = (ArrayList<Edge>) q.getResultList();
     session.getTransaction().commit();
-
     if (edges.size() > 0) {
       for (Edge oldEdge : edges) {
         dbFacade.deleteEdge(oldEdge);
@@ -123,10 +122,10 @@ public class NodeIDaoImpl implements IDao<Node> {
     session.beginTransaction();
     try {
       Query q2 = session.createQuery("DELETE Node where nodeID=:id");
-      System.out.print("Node deletion: " + n.getNodeID());
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();
+      //      System.out.println("node being deleted" + n.getNodeID());
       this.nodes.remove(n);
 
     } catch (Exception ex) {
@@ -150,10 +149,8 @@ public class NodeIDaoImpl implements IDao<Node> {
       Edge newEdge;
       if (oldEdge.getFromNode().nodeEquals(oldNode)) {
         newEdge = new Edge(newNode, oldEdge.getToNode());
-        System.out.println("From Node: " + newEdge.getFromNodeID());
       } else if (oldEdge.getToNode().nodeEquals(oldNode)) {
         newEdge = new Edge(oldEdge.getFromNode(), newNode);
-        System.out.println("To Node: " + newEdge.getToNodeID());
       } else {
         newEdge = new Edge();
       }

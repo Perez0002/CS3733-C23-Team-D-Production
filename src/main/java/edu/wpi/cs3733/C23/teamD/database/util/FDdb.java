@@ -76,10 +76,6 @@ public class FDdb {
   public void deleteNode(Node n) {
     ArrayList<Move> moves = moveIDao.getAssociatedMoves(n);
     nodeIDao.delete(n);
-    //    for (Move m : moves) {
-    //      pastMovesIDao.save(new PastMoves(m));
-    //
-    //    }
   }
 
   public void nodeEdgeSwap(Node oldNode, Node newNode) {

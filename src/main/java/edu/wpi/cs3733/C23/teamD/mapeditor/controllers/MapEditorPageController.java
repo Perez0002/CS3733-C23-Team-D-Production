@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -45,8 +46,8 @@ public class MapEditorPageController {
 
   private boolean labelsShown = true;
 
-  private ArrayList<MapNode> nodeList = new ArrayList<>();
-  private ArrayList<MapEdge> edgeList = new ArrayList<>();
+  @Getter public static ArrayList<MapNode> nodeList = new ArrayList<>();
+  @Getter public static ArrayList<MapEdge> edgeList = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[6];
 
@@ -126,6 +127,7 @@ public class MapEditorPageController {
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
       if (move.getNode() != null) {
+        // System.out.println("Move: " + move.getNodeID());
         pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
       }
     }
@@ -133,7 +135,7 @@ public class MapEditorPageController {
     HashMap<String, MapNode> mapNodes = new HashMap<>();
     for (String node : pathNodes.keySet().stream().toList()) {
       MapNode tempMapNode = new MapEditorMapNode(pathNodes.get(node));
-      System.out.println(node);
+      // System.out.println(node);
       mapNodes.put(node, tempMapNode);
       nodeList.add(tempMapNode);
     }
@@ -158,7 +160,16 @@ public class MapEditorPageController {
       MapEdge tempMapEdge = new MapEdge(edge1);
       tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
-
+      if (mapNodes.get(edge.getFromNode().getNodeID()) != null
+          || mapNodes.get(edge.getToNode().getNodeID()) != null) {
+        //        System.out.println(
+        //            "To Node: "
+        //                + edge.getFromNodeID()
+        //                + " From Node: "
+        //                + edge.getToNodeID()
+        //                + " Edge: "
+        //                + edge.getEdgeID());
+      }
       tempMapEdge.setNodes(
           mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
