@@ -41,7 +41,6 @@ public class MapEditorPageController {
   @FXML private MFXButton nodeButton;
   @FXML private MFXButton edgeButton;
   @FXML private MFXButton multiNodeButton;
-  @FXML private MFXButton multiEdgeButton;
   @FXML private HBox modeHolder;
   @FXML private MFXButton floorGButton;
   @FXML private MFXButton floorL1Button;
@@ -184,13 +183,11 @@ public class MapEditorPageController {
                       node.getNodeRepresentation().setFill(MapNode.NO_SELECTION);
                       try {
                         // TODO when merge from saving is complete, need to save to DB
-                      } catch (Exception ex)
-                      {
-                         ex.printStackTrace();
+                      } catch (Exception ex) {
+                        ex.printStackTrace();
                       }
                     }
                     selected.clear();
-
                   }
                 });
 
@@ -424,8 +421,6 @@ public class MapEditorPageController {
                   + edgeButton.getWidth()
                   + 10
                   + multiNodeButton.getWidth()
-                  + 10
-                  + multiEdgeButton.getWidth()
                   + 5);
         });
 
