@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.navigation;
 
 public enum Screen {
+  LOADING_PAGE("views/loadingPage.fxml"),
   ROOT("views/Root.fxml"),
   PATHFINDING_REQUEST_PAGE("views/PathfindingRequestForm.fxml"),
   HOME("views/Homepage.fxml"),
@@ -15,7 +16,6 @@ public enum Screen {
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
   ANALYTICS_PAGE("views/DatabaseTableInjections/AnalyticsPage.fxml"),
   DATABASE_HUB("views/DatabaseHub.fxml"),
-  HELP_PAGE("views/ApplicationHelpPage.fxml"),
   REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml"),
   MOVES_TABLE("views/MoveRequestTable.fxml"),

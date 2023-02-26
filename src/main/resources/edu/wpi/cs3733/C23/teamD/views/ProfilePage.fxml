@@ -136,7 +136,7 @@
                                           <Insets left="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXTextField fx:id="firstNameBox" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                    <MFXTextField fx:id="firstNameBox" floatMode="DISABLED" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="10.0" />
@@ -149,7 +149,7 @@
                                           <Insets left="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXTextField fx:id="lastNameBox" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                    <MFXTextField fx:id="lastNameBox" floatMode="DISABLED" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -159,7 +159,7 @@
                                           <Insets left="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXTextField fx:id="email" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                    <MFXTextField fx:id="email" floatMode="DISABLED" maxHeight="42.0" minHeight="42.0" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -169,7 +169,7 @@
                                           <Insets left="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXTextField fx:id="phoneNumber" maxHeight="42.0" minHeight="42.0" minWidth="270.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                    <MFXTextField fx:id="phoneNumber" floatMode="DISABLED" maxHeight="42.0" minHeight="42.0" minWidth="270.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox spacing="3.0">
@@ -179,7 +179,7 @@
                                           <Insets left="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <MFXTextField fx:id="address" maxHeight="42.0" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
+                                    <MFXTextField fx:id="address" floatMode="DISABLED" maxHeight="42.0" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" styleClass="mfx-text-field" />
                                  </children>
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT" spacing="25.0">
@@ -275,7 +275,7 @@
       </VBox>
    </top>
    <bottom>
-      <MFXButton styleClass="helpButton" text="?" BorderPane.alignment="BOTTOM_RIGHT">
+      <MFXButton fx:id="helpButton" styleClass="helpButton" text="?" BorderPane.alignment="BOTTOM_RIGHT">
          <BorderPane.margin>
             <Insets bottom="20.0" right="20.0" />
          </BorderPane.margin>
