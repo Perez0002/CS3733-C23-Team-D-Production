@@ -344,7 +344,7 @@ public class FDdb {
     refreshLocationNames();
   }
 
-  public void run(){
+  public void run() {
     refreshAll();
   }
 }

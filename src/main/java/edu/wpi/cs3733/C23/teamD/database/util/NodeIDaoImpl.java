@@ -96,13 +96,13 @@ public class NodeIDaoImpl implements IDao<Node> {
     FDdb dbFacade = FDdb.getInstance();
     ArrayList<Move> movesWithNode = new ArrayList<>();
     for (Move m : dbFacade.getAllMoves()) {
-      if (m.getNodeID().equals(n.getNodeID())) {
+      if (m.getNode().nodeEquals(n)) {
         movesWithNode.add(m);
       }
     }
     for (Move m : movesWithNode) {
-      // PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
-      // dbFacade.savePastMove(tempMove);
+      PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
+      dbFacade.savePastMove(tempMove);
       dbFacade.deleteMove(m);
     }
 

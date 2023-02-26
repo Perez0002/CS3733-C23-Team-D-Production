@@ -128,7 +128,11 @@ public class MapEditorPageController {
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
       if (move.getNode() != null) {
-        // System.out.println("Move: " + move.getNodeID());
+        System.out.println("Move in baseMoveList: " + move.getNodeID());
+        pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      }
+      if (move.getNode() == null) {
+        System.out.println("Move in null: " + move.getNodeID());
         pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
       }
     }
@@ -161,16 +165,14 @@ public class MapEditorPageController {
       MapEdge tempMapEdge = new MapEdge(edge1);
       tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
-      if (mapNodes.get(edge.getFromNode().getNodeID()) != null
-          || mapNodes.get(edge.getToNode().getNodeID()) != null) {
-        System.out.println(
-            "To Node: "
-                + edge.getFromNodeID()
-                + " From Node: "
-                + edge.getToNodeID()
-                + " Edge: "
-                + edge.getEdgeID());
+      if (mapNodes.get(edge.getFromNode().getNodeID()) == null) {
+        System.out.println("Edge " + edge.getFromNode().getNodeID());
       }
+
+      if (mapNodes.get(edge.getToNode().getNodeID()) == null) {
+        System.out.println("Edge " + edge.getToNode().getNodeID());
+      }
+
       tempMapEdge.setNodes(
           mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
