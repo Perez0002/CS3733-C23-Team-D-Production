@@ -49,7 +49,12 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="245.0" prefWidth="250.0">
                <children>
-                  <MFXButton fx:id="toggleEdgesButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="200.0" text="Toggle Edges" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <MFXButton fx:id="toggleEdgesButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="200.0" text="Toggle Edges" />
+                        <MFXButton fx:id="toggleLabelsButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="200.0" text="Toggle Labels" />
+                     </children>
+                  </HBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="160.0" prefWidth="250.0">
                      <children>
                         <MFXButton prefHeight="26.0" prefWidth="130.0" styleClass="clearButton" text="Help">

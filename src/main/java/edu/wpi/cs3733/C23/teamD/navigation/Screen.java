@@ -15,7 +15,6 @@ public enum Screen {
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
 
   DATABASE_HUB("views/DatabaseHub.fxml"),
-  HELP_PAGE("views/ApplicationHelpPage.fxml"),
   REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml"),
   MOVES_TABLE("views/MoveRequestTable.fxml"),

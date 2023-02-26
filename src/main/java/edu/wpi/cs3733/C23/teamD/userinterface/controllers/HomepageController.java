@@ -90,14 +90,14 @@ public class HomepageController {
 
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
-    /*helpButton.setOnMouseClicked(
-    event -> {
-      try {
-        help();
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    });*/
+    helpButton.setOnMouseClicked(
+        event -> {
+          try {
+            help();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
   }
 
   private void initializeStaffStats() {
@@ -178,7 +178,7 @@ public class HomepageController {
   }
 
   private void help() throws IOException {
-    final var resource = App.class.getResource("views/VBoxInjections/ServiceRequestHubHelp.fxml");
+    final var resource = App.class.getResource("views/VBoxInjections/HomepageHelp.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
     PopOver popover = new PopOver(loader.load());
     popover.setArrowSize(0);
