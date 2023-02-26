@@ -201,7 +201,7 @@ public class HomepageController {
     } else if (request.getClass().equals(ComputerServiceRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.COMPUTER_REQUEST, getPane(), request);
+              ServiceRequests.COMPUTER_REQUEST_DETAILS, getPane(), request);
     } else if (request.getClass().equals(PatientTransportRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(

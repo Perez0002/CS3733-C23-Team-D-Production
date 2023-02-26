@@ -322,4 +322,26 @@
 
 }
 
+.requestDetailsField
+{
+    -fx-border-color: transparent #CFCFCF transparent transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: USE_PREF_SIZE;
+}
 
+.requestDetailsTopMenu
+{
+    -fx-border-color: transparent #CFCFCF #CFCFCF transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: USE_PREF_SIZE;
+}
+
+.requestDetailsTopMenuTopRight
+{
+    -fx-border-color: transparent transparent #CFCFCF transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: USE_PREF_SIZE;
+}

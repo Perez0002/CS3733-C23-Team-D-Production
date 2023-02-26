@@ -1,15 +1,10 @@
-package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
+package edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers;
 
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import javafx.scene.Node;
 
-public interface ServiceRequestVBoxController {
-
-  public void clearTransportForms();
-
-  public boolean submit();
-
+public interface RequestDetailsController {
   Node getVBox();
 
-  public void setFieldsDisable(ServiceRequest serviceRequest);
+  public void setFields(ServiceRequest serviceRequest);
 }

@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.App;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.RequestDetailsController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -37,8 +38,8 @@ public class NavigationServiceRequests {
       System.out.println("LOAD " + filename);
       requestFormHubPane.getChildren().add(loader.load());
       System.out.println("CONTROLLER" + loader.getController());
-      ServiceRequestVBoxController controller = loader.getController();
-      controller.setFieldsDisable(data);
+      RequestDetailsController controller = loader.getController();
+      controller.setFields(data);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

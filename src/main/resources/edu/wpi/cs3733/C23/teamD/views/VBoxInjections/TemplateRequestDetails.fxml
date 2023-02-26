@@ -1,77 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.TemplateController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="16.0" stylesheets="@../updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.TemplateController">
    <children>
-      <Label styleClass="serviceRequestDescription" text="Use this form to report any issues with technology devices at the hospital. Please enter the type of device, the urgency of the issue, a brief description of the type of problem, the employee assigned to the request, and the location of the broken device." wrapText="true">
-         <VBox.margin>
-            <Insets bottom="10.0" left="5.0" right="150.0" top="10.0" />
-         </VBox.margin>
-      </Label>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+      <HBox>
          <children>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee *">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency *">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <fx:include fx:id="urgencyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/UrgencySelectorBox.fxml" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location *">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of device *">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <MFXComboBox fx:id="deviceTypeBox" floatMode="DISABLED" prefWidth="300.0" promptText="Select Device Type" styleClass="serviceRequestMFXComboBox" stylesheets="@updatedStyleGuide.css" />
-               </children>
-            </VBox>
-            <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
-               <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of problem">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <MFXTextField fx:id="descriptionBox" floatMode="DISABLED" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
-               </children>
-            </VBox>
+            <Label fx:id="employeeBox" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsTopMenu" text="Assigned Staff: " textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="urgencyBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsTopMenu" text="Urgency: " textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="date" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsTopMenu" text="Date:  " textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="requestID" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsTopMenuTopRight" text="Request ID: " textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
          </children>
-      </VBox>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox maxWidth="1.7976931348623157E308" spacing="15.0">
+         <children>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="assignedBy" maxWidth="1.7976931348623157E308" styleClass="requestDetailsField" text="Assigned By: ">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="location1" maxWidth="1.7976931348623157E308" styleClass="requestDetailsField" text="Location: ">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="additionalField" maxWidth="1.7976931348623157E308" styleClass="requestDetailsField" text="Additional Field: ">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+            <Label fx:id="descriptionBox" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsField" text="Type of problem: " HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </VBox>
