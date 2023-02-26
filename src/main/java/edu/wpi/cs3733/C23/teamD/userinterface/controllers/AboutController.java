@@ -23,10 +23,10 @@ public class AboutController {
 
   @FXML
   public void initialize() {
-    imageOne.setViewport(new Rectangle2D(0, 0, 720, 720));
+    imageOne.setViewport(new Rectangle2D(2162, 722, 714, 714));
     imageOne.setFitHeight(150);
 
-    imageTwo.setViewport(new Rectangle2D(0, 0, 720, 720));
+    imageTwo.setViewport(new Rectangle2D(722, 0, 720, 720));
     imageTwo.setFitHeight(150);
 
     imageThree.setViewport(new Rectangle2D(0, 0, 720, 720));
