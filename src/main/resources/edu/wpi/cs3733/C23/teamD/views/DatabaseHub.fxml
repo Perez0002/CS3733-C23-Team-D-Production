@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
+<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" prefHeight="600.0" prefWidth="800.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
     <center>
         <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
             <BorderPane.margin>
@@ -66,4 +66,7 @@
    <right>
       <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="1500.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
    </right>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="60.0" />
+   </padding>
 </BorderPane>

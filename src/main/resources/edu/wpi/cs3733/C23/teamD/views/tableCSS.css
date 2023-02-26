@@ -10,12 +10,14 @@
 }
 
 .table-row-cell:focused{
+    -fx-alignment: center;
     -fx-border-radius: 10;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 .table-row-cell:hover {
+    -fx-alignment: center;
     -fx-background-radius: 10;
     -fx-background-color: #98AABC;
     -fx-text-background-color: white;
@@ -58,6 +60,7 @@
 }
 
 .table-view .cell:filled{
+    -fx-alignment: center;
     -fx-font-weight: bold;
 }
 
