@@ -347,8 +347,4 @@ public class FDdb {
     refreshMoves();
     refreshLocationNames();
   }
-
-  public Node getAssociatedNode(LocationName l) {
-    return nodeIDao.getAssociatedNode(l);
-  }
 }

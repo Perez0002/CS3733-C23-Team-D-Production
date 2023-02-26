@@ -20,7 +20,6 @@ public class ComputerServiceRequestController extends ServiceRequestController
   @FXML private MFXComboBox urgencyBox;
   @FXML private Parent employeeBox;
   @FXML private EmployeeDropdownComboBoxController employeeBoxController;
-
   @FXML private MFXTextField descriptionBox;
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
@@ -32,46 +31,6 @@ public class ComputerServiceRequestController extends ServiceRequestController
     deviceType.add("Tablet");
     deviceType.add("Kiosk");
     deviceType.add("Other");
-  }
-
-  public void initialize() {
-    deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));
-    locationBoxController
-        .giveComboBox()
-        .setOnAction(
-            event ->
-                ServiceRequestMapController.getMapSingleton().mapCenters(locationBoxController));
-  }
-
-  @Override
-  public void clearTransportForms() {}
-
-  public boolean submit() {
-
-    if (descriptionBox.getText() != null
-        && urgencyBox.getText() != null
-        && deviceTypeBox.getText() != null
-        && employeeBoxController.getEmployeeName() != null
-        && locationBoxController.getLocation() != null) {
-      System.out.println("Submit computer request");
-
-      ComputerServiceRequest computerServiceRequest =
-          new ComputerServiceRequest(
-              descriptionBox.getText(),
-              employeeBoxController.getEmployee(),
-              urgencyBox.getText(),
-              deviceTypeBox.getText(),
-              locationBoxController.getLocation());
-      FDdb.getInstance().saveServiceRequest(computerServiceRequest);
-
-      return true;
-    }
-    return false;
-  }
-
-  @Override
-  public Node getVBox() {
-    return null;
   }
 
   @Override
@@ -93,6 +52,45 @@ public class ComputerServiceRequestController extends ServiceRequestController
       deviceTypeBox.setText(((ComputerServiceRequest) serviceRequest).getDeviceType());
       locationBoxController.setText(serviceRequest.getLocation().getLongName());
     }
+  }
+
+  public void initialize() {
+    deviceTypeBox.setItems(FXCollections.observableArrayList(deviceType));
+  }
+
+  @Override
+  public void clearTransportForms() {}
+
+  public boolean submit() {
+    // if the fields are full, go to submit item
+    if (checkFieldsFull()) {
+      System.out.println("Submit computer request");
+      ComputerServiceRequest computerServiceRequest =
+          new ComputerServiceRequest(
+              descriptionBox.getText(),
+              employeeBoxController.getEmployee(),
+              urgencyBox.getText(),
+              deviceTypeBox.getText(),
+              locationBoxController.getLocation());
+      FDdb.getInstance().saveServiceRequest(computerServiceRequest);
+      return true;
+    }
+    return false;
+  }
+
+  boolean checkFieldsFull() {
+    if (urgencyBox.getText() != null
+        && deviceTypeBox.getText() != null
+        && employeeBoxController.getEmployeeName() != null
+        && locationBoxController.getLocationLongName() != null) {
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public Node getVBox() {
+    return null;
   }
 
   // TODO: set the rest to clear
