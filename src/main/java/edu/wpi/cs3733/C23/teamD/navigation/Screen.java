@@ -13,7 +13,7 @@ public enum Screen {
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
   LOGIN_PAGE("views/LoginPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
-
+  ANALYTICS_PAGE("views/DatabaseTableInjections/AnalyticsPage.fxml"),
   DATABASE_HUB("views/DatabaseHub.fxml"),
   HELP_PAGE("views/ApplicationHelpPage.fxml"),
   REQUEST_FORM_HUB("views/RequestFormHub.fxml"),

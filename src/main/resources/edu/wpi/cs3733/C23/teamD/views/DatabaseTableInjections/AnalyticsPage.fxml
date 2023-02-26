@@ -1,15 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
-   <center>
-      <Label text="ANALYTICS :D">
-         <font>
-            <Font size="96.0" />
-         </font>
-      </Label>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.AnalyticsPageController">
+    <center>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="600.0" prefWidth="600.0">
+                    <children>
+                        <Label styleClass="hubLabel" stylesheets="@../updatedStyleGuide.css" text="Analytics Dashboard">
+                            <VBox.margin>
+                                <Insets left="30.0" top="30.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Line endX="315.0" startX="-100.0" stroke="#012d5a" strokeWidth="3.0">
+                            <VBox.margin>
+                                <Insets left="30.0" top="5.0" />
+                            </VBox.margin>
+                        </Line>
+                  <PieChart fx:id="pieChart" prefHeight="350.0" prefWidth="350.0" stylesheets="@../updatedStyleGuide.css" title="Types of Service Requests">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </PieChart>
+                        <BarChart fx:id="barChart" prefHeight="350.0" prefWidth="350.0" stylesheets="@../updatedStyleGuide.css" title="Requests by Day of the Week">
+                            <xAxis>
+                                <CategoryAxis label="Day of the Week" side="BOTTOM" fx:id="xAxis" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="yAxis" label="Percentage of Service Requests" side="LEFT" />
+                            </yAxis>
+                            <VBox.margin>
+                                <Insets left="30.0" right="20.0" top="10.0" />
+                            </VBox.margin>
+                        </BarChart>
+                    </children>
+               <HBox.margin>
+                  <Insets bottom="50.0" />
+               </HBox.margin>
+                </VBox>
+                <VBox alignment="TOP_RIGHT" prefHeight="600.0" prefWidth="600.0">
+               <children>
+                  <MFXButton fx:id="backButton" alignment="CENTER" maxWidth="145.0" minWidth="145.0" prefHeight="26.0" prefWidth="145.0" style="-fx-background-color: #012d5a; -fx-text-fill: white;" stylesheets="@../updatedStyleGuide.css" text="Back to Database Hub">
+                     <VBox.margin>
+                        <Insets right="30.0" top="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <VBox alignment="TOP_CENTER" prefHeight="350.0" prefWidth="350.0" style="-fx-border-color: black; -fx-border-width: 2;">
+                     <VBox.margin>
+                        <Insets bottom="10.0" right="30.0" top="65.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label prefHeight="23.0" prefWidth="353.0" text="In the past week">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Line endX="17.0" startX="-100.0" strokeWidth="2.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <HBox prefHeight="83.0" prefWidth="350.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="43.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 2;">
+                                       <children>
+                                          <Label alignment="CENTER" text="Completed  Requests">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="completedRequests" alignment="CENTER" text="Label">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="5.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="43.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 2;">
+                                       <children>
+                                          <Label alignment="CENTER" text="Pending Requests">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="pendingRequests" alignment="CENTER" text="Label">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="83.0" prefWidth="350.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="43.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 2;">
+                                       <children>
+                                          <Label alignment="CENTER" text="Unassigned Requests">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="completedRequests1" alignment="CENTER" text="Label">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="5.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="43.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 2;">
+                                       <children>
+                                          <Label alignment="CENTER" text="New Employees">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="pendingRequests1" alignment="CENTER" text="Label">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <LineChart fx:id="lineChart" prefHeight="350.0" prefWidth="350.0" title="Requests by Location">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                     <VBox.margin>
+                        <Insets right="30.0" />
+                     </VBox.margin>
+                  </LineChart>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="50.0" />
+               </HBox.margin></VBox>
+            </children>
+        </HBox>
+    </center>
 </BorderPane>
