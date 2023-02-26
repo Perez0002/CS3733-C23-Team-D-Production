@@ -30,15 +30,36 @@
 }
 
 .mfx-text-field {
-    -fx-border-color: #E4E1E6;
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
     -fx-background-color: #E4E1E6;
     -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-min-height: 40;
     -fx-min-width: 300;
 }
 
 .mfx-text-field:focus-within {
     -fx-border-color: #012D5A;
+}
+
+.text-area{
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+}
+
+.text-area .content:empty {
+    -fx-alignment: center ;
+}
+
+.text-area .content {
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: #E4E1E6;
+    -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
 

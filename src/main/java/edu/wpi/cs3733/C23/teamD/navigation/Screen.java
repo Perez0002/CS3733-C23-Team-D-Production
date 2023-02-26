@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.navigation;
 
 public enum Screen {
+  LOADING_PAGE("views/loadingPage.fxml"),
   ROOT("views/Root.fxml"),
   PATHFINDING_REQUEST_PAGE("views/PathfindingRequestForm.fxml"),
   HOME("views/Homepage.fxml"),
