@@ -63,7 +63,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="additionalField" maxWidth="1.7976931348623157E308" styleClass="requestDetailsField" text="Additional Field: ">
+                  <Label fx:id="additionalField" maxWidth="1.7976931348623157E308" styleClass="requestDetailsField">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

@@ -22,7 +22,7 @@ public class TransportRequestDetailsController implements RequestDetailsControll
 
   @Override
   public void setFields(ServiceRequest serviceRequest) {
-    System.out.println("activated Function");
+
     // replace type of request checker
     if (serviceRequest.getClass().equals(PatientTransportRequest.class)) {
       descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());

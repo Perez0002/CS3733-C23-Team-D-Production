@@ -23,7 +23,7 @@ public class ComputerRequestDetailsController implements RequestDetailsControlle
   @Override
   public void setFields(ServiceRequest serviceRequest) {
 
-    System.out.println("activated Function");
+
     // replace type of request checker
     if (serviceRequest.getClass().equals(ComputerServiceRequest.class)) {
       descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
@@ -35,7 +35,7 @@ public class ComputerRequestDetailsController implements RequestDetailsControlle
       urgencyBox.setText("Urgency: " + serviceRequest.getUrgency());
       // set additional field text
       additionalField.setText(
-          "DeviceType: " + ((ComputerServiceRequest) serviceRequest).getDeviceType());
+          "Device Type: " + ((ComputerServiceRequest) serviceRequest).getDeviceType());
       location1.setText("Location: " + serviceRequest.getLocation().getShortName());
       date.setText("Date: " + serviceRequest.getDateAndTime().toString());
       requestID.setText(

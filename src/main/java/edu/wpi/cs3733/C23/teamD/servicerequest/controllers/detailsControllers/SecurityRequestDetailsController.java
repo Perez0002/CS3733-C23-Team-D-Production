@@ -22,7 +22,7 @@ public class SecurityRequestDetailsController implements RequestDetailsControlle
 
   @Override
   public void setFields(ServiceRequest serviceRequest) {
-    System.out.println("activated Function");
+
     // replace type of request checker
     if (serviceRequest.getClass().equals(SecurityServiceRequest.class)) {
       descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());

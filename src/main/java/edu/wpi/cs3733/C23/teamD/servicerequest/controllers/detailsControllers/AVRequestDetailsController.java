@@ -23,7 +23,6 @@ public class AVRequestDetailsController implements RequestDetailsController {
   @Override
   public void setFields(ServiceRequest serviceRequest) {
 
-    System.out.println("activated Function");
     // replace type of request checker
     if (serviceRequest.getClass().equals(AVRequest.class)) {
       descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
