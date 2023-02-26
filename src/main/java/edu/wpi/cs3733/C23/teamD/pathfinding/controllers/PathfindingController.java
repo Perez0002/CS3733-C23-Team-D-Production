@@ -21,6 +21,7 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -273,7 +274,9 @@ public class PathfindingController {
           }
           mapNodes.add(pathNode);
           if (lastNode != null) {
-            MapEdge edge = new MapEdge(new PathEdge(lastNode.getNode(), node));
+            MapEdge edge =
+                new MapEdge(
+                    new PathEdge(lastNode.getNode(), node), new SimpleBooleanProperty(false));
             edge.setNodes(lastNode, pathNode);
             mapEdges.add(edge);
           }

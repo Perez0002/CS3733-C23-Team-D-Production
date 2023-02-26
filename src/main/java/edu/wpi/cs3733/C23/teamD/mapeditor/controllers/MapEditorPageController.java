@@ -16,12 +16,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -46,13 +51,18 @@ public class MapEditorPageController {
   private GesturePane gesturePane;
   private int currentFloor = -1;
   private boolean edgesShown = true;
+  Rectangle selectArea = null;
 
+  DoubleProperty rectStartX;
+  DoubleProperty rectStartY;
+  DoubleProperty rectEndX;
+  DoubleProperty rectEndY;
   private BooleanProperty nodeMode;
   private BooleanProperty edgeMode;
   private BooleanProperty multiNodeMode;
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
-
+  private ArrayList<MapNode> selected = new ArrayList<>();
   private MFXButton[] floorButtons = new MFXButton[6];
 
   public MapEditorPageController() {
@@ -62,6 +72,10 @@ public class MapEditorPageController {
     edgeMode.setValue(false);
     multiNodeMode = new SimpleBooleanProperty();
     multiNodeMode.setValue(false);
+    rectStartX = new SimpleDoubleProperty();
+    rectStartY = new SimpleDoubleProperty();
+    rectEndX = new SimpleDoubleProperty();
+    rectEndY = new SimpleDoubleProperty();
   }
 
   @FXML
@@ -106,6 +120,83 @@ public class MapEditorPageController {
 
         gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
 
+        ((AnchorPane) gesturePane.getContent())
+            .setOnMouseClicked(
+                e -> {
+                  if (e.isStillSincePress() && multiNodeMode.getValue()) {
+                    for (MapNode node : selected) {
+                      node.getNodeRepresentation().setFill(MapNode.NO_SELECTION);
+                    }
+                    selected.clear();
+                  }
+                });
+
+        ((AnchorPane) gesturePane.getContent())
+            .setOnMouseDragged(
+                e -> {
+                  if (multiNodeMode.getValue()) {
+                    gesturePane.setGestureEnabled(false);
+                    if (selectArea == null) {
+                      selectArea = new Rectangle();
+
+                      rectStartX.setValue(e.getX());
+                      rectStartY.setValue(e.getY());
+
+                      selectArea.layoutYProperty().setValue(e.getY());
+                      selectArea.layoutXProperty().setValue(e.getX());
+
+                      selectArea
+                          .heightProperty()
+                          .bind(rectEndY.subtract(selectArea.layoutYProperty()));
+                      selectArea
+                          .widthProperty()
+                          .bind(rectEndX.subtract(selectArea.layoutXProperty()));
+
+                      selectArea.setFill(Color.rgb(0xCD, 0xDF, 0xF6, 0.5));
+                      ((AnchorPane) gesturePane.getContent()).getChildren().add(selectArea);
+                    }
+
+                    if (rectStartX.getValue() > e.getX()) {
+                      selectArea.layoutXProperty().setValue(e.getX());
+                    } else {
+                      rectEndX.setValue(e.getX());
+                    }
+
+                    if (rectStartY.getValue() > e.getY()) {
+                      selectArea.layoutYProperty().setValue(e.getY());
+                    } else {
+                      rectEndY.setValue(e.getY());
+                    }
+                  }
+                });
+
+        ((AnchorPane) gesturePane.getContent())
+            .setOnMouseReleased(
+                e -> {
+                  if (multiNodeMode.getValue()) {
+                    gesturePane.setGestureEnabled(true);
+
+                    for (MapNode node : nodeList) {
+                      if (node.getNodeX().getValue() < rectEndX.getValue()
+                          && node.getNodeX().getValue() > selectArea.layoutXProperty().getValue()
+                          && node.getNodeY().getValue() < rectEndY.getValue()
+                          && node.getNodeY().getValue() > selectArea.layoutYProperty().getValue()) {
+                        selected.add(node);
+                        node.getNodeRepresentation().setFill(MapNode.SELECTED);
+                      }
+                    }
+
+                    if (selectArea != null) {
+                      selectArea.widthProperty().unbind();
+                      selectArea.heightProperty().unbind();
+                      ((AnchorPane) gesturePane.getContent()).getChildren().remove(selectArea);
+                      selectArea = null;
+                      rectEndX.setValue(0);
+                      rectEndY.setValue(0);
+                    }
+                  }
+                });
+
         mapPlacement.setCenter(gesturePane);
         mapPlacement.requestFocus();
         currentFloor = floor;
@@ -145,7 +236,7 @@ public class MapEditorPageController {
       pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
       pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
 
-      MapEdge tempMapEdge = new MapEdge(edge1);
+      MapEdge tempMapEdge = new MapEdge(edge1, edgeMode);
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(
@@ -182,8 +273,8 @@ public class MapEditorPageController {
     edgeButton.setOnAction(
         event -> {
           nodeMode.setValue(false);
-          edgeMode.setValue(false);
-          multiNodeMode.setValue(true);
+          edgeMode.setValue(true);
+          multiNodeMode.setValue(false);
 
           nodeButton.setDisable(false);
           edgeButton.setDisable(true);

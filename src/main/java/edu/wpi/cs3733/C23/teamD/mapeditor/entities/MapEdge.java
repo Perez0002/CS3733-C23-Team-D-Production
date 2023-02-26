@@ -3,6 +3,8 @@ package edu.wpi.cs3733.C23.teamD.mapeditor.entities;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.PopupFactory;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -19,12 +21,16 @@ public class MapEdge {
 
   private Tooltip tooltip;
   private boolean allowTooltip;
+  private BooleanProperty editMode;
   private PopOver popup;
   private final Color SELECTED = Color.rgb(0xCD, 0xDF, 0xF6);
   private final Color NO_SELECTION = Color.rgb(0x00, 0x00, 0x00);
 
-  public MapEdge(PathEdge edge) {
+  public MapEdge(PathEdge edge, BooleanProperty modeLink) {
     this.edge = edge;
+
+    this.editMode = new SimpleBooleanProperty();
+    this.editMode.bind(modeLink);
 
     /* This needs to be done a better way for the updating to work, but this temporarily assigns the MapNodes */
     this.toNode = null; // new MapNode(edge.getToNode());
@@ -57,7 +63,10 @@ public class MapEdge {
 
     this.edgeRepresentation.setOnMouseClicked(
         event -> {
-          this.MakePopup();
+          System.out.println(editMode.getValue());
+          if (editMode.getValue()) {
+            this.MakePopup();
+          }
         });
   }
 

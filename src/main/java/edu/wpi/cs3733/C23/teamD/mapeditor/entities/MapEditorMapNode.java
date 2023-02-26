@@ -55,9 +55,9 @@ public class MapEditorMapNode extends MapNode {
     this.multiNodeMode = new SimpleBooleanProperty();
     this.multiNodeMode.setValue(false);
 
-    this.nodeMode.bindBidirectional(nodeLink);
-    this.edgeMode.bindBidirectional(edgeLink);
-    this.multiNodeMode.bindBidirectional(multiNodeLink);
+    this.nodeMode.bind(nodeLink);
+    this.edgeMode.bind(edgeLink);
+    this.multiNodeMode.bind(multiNodeLink);
 
     nodeRepresentation.setOnMouseClicked(
         event -> {
@@ -84,7 +84,7 @@ public class MapEditorMapNode extends MapNode {
               ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
               PathEdge tempEdge = new PathEdge(FIRST_NODE.getNode(), this.getNode());
               tempEdge.setEdge(new Edge(FIRST_NODE.getNode().getNode(), this.getNode().getNode()));
-              MapEdge tempMapEdge = new MapEdge(tempEdge);
+              MapEdge tempMapEdge = new MapEdge(tempEdge, edgeMode);
 
               tempMapEdge.setNodes(FIRST_NODE, this);
               ((AnchorPane) this.nodeRepresentation.getParent())
@@ -362,7 +362,7 @@ public class MapEditorMapNode extends MapNode {
         Edge temp =
             new Edge(nodeList.get(i).getNode().getNode(), nodeList.get(j).getNode().getNode());
         PathEdge tempPathEdge = new PathEdge(nodeList.get(i).getNode(), nodeList.get(j).getNode());
-        MapEdge tempMapEdge = new MapEdge(tempPathEdge);
+        MapEdge tempMapEdge = new MapEdge(tempPathEdge, new SimpleBooleanProperty(false));
         tempMapEdge.setNodes(nodeList.get(i), nodeList.get(j));
         ((AnchorPane) node.getNodeRepresentation().getParent())
             .getChildren()
