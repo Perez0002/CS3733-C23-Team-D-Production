@@ -60,10 +60,9 @@
                         </HBox>
                         <VBox spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="homepageLabel" text="Hospital Notifications" />
-                              <TableView fx:id="notifTable">
+                              <TableView fx:id="notifTable" stylesheets="@notifStyle.css" VBox.vgrow="ALWAYS">
                                 <columns>
-                                  <TableColumn fx:id="notification" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="553.0" text="Notifications" />
+                                  <TableColumn fx:id="notification" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="553.0" text=" Notifications" />
                                 </columns>
                               </TableView>
                            </children>
@@ -107,7 +106,7 @@
             <MFXButton fx:id="helpButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" styleClass="helpButton" text="?" HBox.hgrow="SOMETIMES" />
          </children>
          <VBox.margin>
-            <Insets bottom="48.0" left="48.0" right="48.0" top="10.0" />
+            <Insets bottom="48.0" left="48.0" right="48.0" />
          </VBox.margin>
       </HBox>
    </children>
