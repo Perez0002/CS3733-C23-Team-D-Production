@@ -2,11 +2,11 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,7 +18,7 @@
    <center>
       <BorderPane BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="moveTable" minHeight="300.0" minWidth="700.0" style="-fx-border-color: #012D5A; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;" stylesheets="@updatedStyleGuide.css" BorderPane.alignment="CENTER">
+            <TableView fx:id="moveTable" minHeight="300.0" minWidth="700.0" stylesheets="@tableCSS.css" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="moveNodeID" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Node ID" />
                 <TableColumn fx:id="moveLongName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Location Name" />
@@ -95,17 +95,12 @@
                      </VBox.margin>
                   </Text>
                   <fx:include fx:id="nodeBox" source="VBoxInjections/Components/NodeComboBox.fxml" />
-                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text="Move Message">
+                  <Text fill="#012d5a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="serviceRequestMFXTextFieldLabel" text=" Move Message">
                      <VBox.margin>
                         <Insets bottom="5.0" top="16.0" />
                      </VBox.margin>
                   </Text>
-                  <MFXTextField fx:id="messageBox" floatMode="DISABLED" maxHeight="200.0" minHeight="200.0" prefHeight="200.0" prefWidth="200.0" promptText="Insert a message" />
-                  <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill out all fields before submitting." visible="false">
-                     <VBox.margin>
-                        <Insets top="16.0" />
-                     </VBox.margin>
-                  </Text>
+                  <TextArea fx:id="messageBox" maxWidth="300.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" styleClass="text-area" stylesheets="@updatedStyleGuide.css" wrapText="true" />
                </children>
                <BorderPane.margin>
                   <Insets left="50.0" />
@@ -115,6 +110,15 @@
          <bottom>
             <HBox alignment="BOTTOM_RIGHT" maxHeight="Infinity" maxWidth="Infinity" prefHeight="158.0" prefWidth="505.0" spacing="16.0" BorderPane.alignment="BOTTOM_RIGHT">
                <children>
+                  <VBox prefHeight="87.0" prefWidth="263.0">
+                     <children>
+                        <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="* Please fill out all fields before submitting." visible="false">
+                           <VBox.margin>
+                              <Insets top="55.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                  </VBox>
                   <MFXButton onAction="#displayMove" prefHeight="53.0" prefWidth="113.0" text="Display Move">
                      <HBox.margin>
                         <Insets bottom="70.0" />

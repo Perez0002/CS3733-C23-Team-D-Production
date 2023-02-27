@@ -32,8 +32,6 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import lombok.Getter;
-import lombok.Setter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MoveDisplayContainerController {
@@ -62,7 +60,6 @@ public class MoveDisplayContainerController {
   private Move futureMove;
   private ArrayList<Edge> edges = new ArrayList<Edge>();
   private ArrayList<Move> moves;
-  @Setter @Getter private MoveDisplayStackController moveDisplayStackController;
   TreeMap<String, Move> nodeToRoomMap;
   private ArrayList<Move> locationMoves = new ArrayList<>();
 
