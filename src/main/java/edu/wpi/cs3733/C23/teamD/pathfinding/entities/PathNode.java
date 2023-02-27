@@ -4,11 +4,12 @@ import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import java.util.ArrayList;
 import lombok.Getter;
+import lombok.Setter;
 
 public class PathNode {
-  @Getter private Node node;
+  @Getter @Setter private Node node;
 
-  @Getter private LocationName location;
+  @Getter @Setter private LocationName location;
 
   @Getter private ArrayList<PathEdge> edgeList;
 
