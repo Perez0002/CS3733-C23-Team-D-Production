@@ -10,6 +10,8 @@ import javafx.util.Duration;
 import org.controlsfx.control.PopOver;
 
 public class AboutController {
+
+  private int state;
   // pictures of each member of the team
   @FXML ImageView imageOne;
   @FXML ImageView imageTwo;
@@ -282,7 +284,11 @@ public class AboutController {
     // setting all of the popups for over the images
     imageOne.setOnMouseEntered(
         mouseEvent -> {
+          state = 0;
           photoSquare1.show(imageOne, 10);
+          while (state < 10000) {
+            state++;
+          }
         });
     imageOne.setOnMouseExited(
         mouseEvent -> {
