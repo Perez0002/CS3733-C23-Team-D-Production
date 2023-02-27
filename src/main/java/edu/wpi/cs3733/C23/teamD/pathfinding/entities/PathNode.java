@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class PathNode {
-  @Getter private Node node;
+  @Getter @Setter private Node node;
 
   @Getter @Setter private LocationName location;
 

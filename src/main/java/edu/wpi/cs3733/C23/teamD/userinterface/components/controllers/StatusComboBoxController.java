@@ -23,7 +23,6 @@ public class StatusComboBoxController {
 
   public ServiceRequest.Status getStatus() {
     String statusBoxVal = mfxFilterComboBox.getValue();
-    System.out.println(statusBoxVal);
     ServiceRequest.Status status = ServiceRequest.Status.BLANK;
     if (statusBoxVal.equals("DONE")) status = ServiceRequest.Status.DONE;
     else if (statusBoxVal.equals("PROCESSING")) status = ServiceRequest.Status.PROCESSING;
