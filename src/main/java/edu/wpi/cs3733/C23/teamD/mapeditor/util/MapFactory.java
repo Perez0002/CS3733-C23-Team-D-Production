@@ -11,10 +11,12 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
@@ -295,15 +297,16 @@ public class MapFactory {
 
       gesturePane.zoomTo(scale, Point2D.ZERO);
 
-      gesturePane.animate(Duration.millis(300))
-              .centreOn(
-                      new Point2D(
-                              ((minX + maxX) / 2
-                                      - App.getPrimaryStage().getWidth() * xAdjust * (Math.pow(2, (5 - scale))) / 32
-                                      - 50),
-                              ((minY + maxY) / 2
-                                      - App.getPrimaryStage().getHeight() * Math.pow(2, (5 - scale)) / 32
-                                      - 50)));
+      gesturePane
+          .animate(Duration.millis(300))
+          .centreOn(
+              new Point2D(
+                  ((minX + maxX) / 2
+                      - App.getPrimaryStage().getWidth() * xAdjust * (Math.pow(2, (5 - scale))) / 32
+                      - 50),
+                  ((minY + maxY) / 2
+                      - App.getPrimaryStage().getHeight() * Math.pow(2, (5 - scale)) / 32
+                      - 50)));
     }
 
     // Return the GesturePane
