@@ -2,14 +2,13 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.Query;
-
+import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
-import java.io.*;
 
 public class EmployeeIDaoImpl implements IDao<Employee> {
   private final Session session = DBSingleton.getSession();
@@ -107,17 +106,17 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
       DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
       for (Employee employee : this.employees) {
         String oneObject =
-                String.join(
-                        ",",
-                        Integer.toString(employee.getEmployeeID()),
-                        employee.getEmployeeType(),
-                        employee.getFirstName(),
-                        employee.getLastName(),
-                        employee.getPassword(),
-                        employee.getEmail(),
-                        employee.getPhoneNumber(),
-                        format.format(employee.getBirthday()),
-                        employee.getAddress());
+            String.join(
+                ",",
+                Integer.toString(employee.getEmployeeID()),
+                employee.getEmployeeType(),
+                employee.getFirstName(),
+                employee.getLastName(),
+                employee.getPassword(),
+                employee.getEmail(),
+                employee.getPhoneNumber(),
+                format.format(employee.getBirthday()),
+                employee.getAddress());
         fileWriter.write(oneObject + "\n");
       }
       fileWriter.flush();
@@ -131,8 +130,8 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
   public void uploadCSV(Employee emp) {
     try {
       BufferedReader fileReader =
-              new BufferedReader(
-                      new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Employee.csv"));
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Employee.csv"));
       session.beginTransaction();
       session.createQuery("DELETE FROM Setting ");
       session.createQuery("DELETE FROM Employee");
@@ -141,16 +140,16 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
         Employee employee =
-                new Employee(
-                        Integer.parseInt(data[0]),
-                        data[1],
-                        data[2],
-                        data[3],
-                        data[4],
-                        data[5],
-                        data[6],
-                        format.parse(data[7]),
-                        data[8]);
+            new Employee(
+                Integer.parseInt(data[0]),
+                data[1],
+                data[2],
+                data[3],
+                data[4],
+                data[5],
+                data[6],
+                format.parse(data[7]),
+                data[8]);
         this.save(employee);
       }
       fileReader.close();
@@ -158,5 +157,4 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
       e.printStackTrace();
     }
   }
-
 }

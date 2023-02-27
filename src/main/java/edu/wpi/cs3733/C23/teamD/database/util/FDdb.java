@@ -335,6 +335,7 @@ public class FDdb {
     locationNameIDao.downloadCSV(new LocationName());
     moveIDao.downloadCSV(new Move());
     edgeIDao.downloadCSV(new Edge());
+    serviceRequestIDao.downloadCSV(new ServiceRequest());
     employeeIDao.downloadCSV(new Employee());
     settingIDao.downloadCSV(new Setting());
   }

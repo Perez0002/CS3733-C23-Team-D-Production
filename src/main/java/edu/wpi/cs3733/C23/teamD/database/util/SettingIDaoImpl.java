@@ -1,12 +1,12 @@
 package edu.wpi.cs3733.C23.teamD.database.util;
 
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import jakarta.persistence.Query;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
-import java.io.*;
-import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 
 public class SettingIDaoImpl implements IDao<Setting> {
   private final Session session = DBSingleton.getSession();
@@ -103,11 +103,11 @@ public class SettingIDaoImpl implements IDao<Setting> {
       FileWriter fileWriter = new FileWriter(file, false);
       for (Setting set : this.settings) {
         String oneObject =
-                String.join(
-                        ",",
-                        Integer.toString(set.getEmployeeID().getEmployeeID()),
-                        Integer.toString(set.getConfetti()),
-                        Integer.toString(set.getDarkmode()));
+            String.join(
+                ",",
+                Integer.toString(set.getEmployeeID().getEmployeeID()),
+                Integer.toString(set.getConfetti()),
+                Integer.toString(set.getDarkmode()));
         fileWriter.write(oneObject + "\n");
       }
       fileWriter.flush();
@@ -121,8 +121,8 @@ public class SettingIDaoImpl implements IDao<Setting> {
   public void uploadCSV(Setting s) {
     try {
       BufferedReader fileReader =
-              new BufferedReader(
-                      new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Setting.csv"));
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Setting.csv"));
       session.beginTransaction();
       session.createQuery("DELETE FROM Setting");
       session.getTransaction().commit();
@@ -142,5 +142,4 @@ public class SettingIDaoImpl implements IDao<Setting> {
       e.printStackTrace();
     }
   }
-
 }
