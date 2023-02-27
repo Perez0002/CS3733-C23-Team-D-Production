@@ -65,7 +65,6 @@ public class NodeIDaoImpl implements IDao<Node> {
     this.save(newNode);
     objectList.addAll(this.nodeMoveSwap(n, newNode));
     objectList.addAll(this.nodeEdgeSwap(n, newNode));
-    //    System.out.println("Node ID: " + n.getNodeID());
     this.deleteOnlyNode(n);
     objectList.add(newNode);
 
@@ -125,7 +124,6 @@ public class NodeIDaoImpl implements IDao<Node> {
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();
-      //      System.out.println("node being deleted" + n.getNodeID());
       this.nodes.remove(n);
 
     } catch (Exception ex) {

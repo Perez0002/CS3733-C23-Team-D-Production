@@ -517,13 +517,6 @@ public class MapEditorMapNode extends MapNode {
     ((AnchorPane) node.getNodeRepresentation().getParent())
         .getChildren()
         .remove(node.getNodeRepresentation());
-    for (Edge e : FDdb.getInstance().getAllEdges()) {
-      if (e.getToNodeID() == null || e.getFromNode() == null || e.getEdgeID() == null) {
-        System.out.println("Edge to node: " + e.getToNodeID());
-        System.out.println("Edge from Node: " + e.getFromNodeID());
-        System.out.println("Edge id : " + e.getEdgeID());
-      }
-    }
   }
 
   private void addEdge(MapEdge edge) {

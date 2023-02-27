@@ -135,7 +135,6 @@ public class MapEditorPageController {
     HashMap<String, MapNode> mapNodes = new HashMap<>();
     for (String node : pathNodes.keySet().stream().toList()) {
       MapNode tempMapNode = new MapEditorMapNode(pathNodes.get(node));
-      // System.out.println(node);
       mapNodes.put(node, tempMapNode);
       nodeList.add(tempMapNode);
     }
@@ -160,14 +159,6 @@ public class MapEditorPageController {
       MapEdge tempMapEdge = new MapEdge(edge1);
       tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
-      if (mapNodes.get(edge.getFromNode().getNodeID()) == null) {
-        System.out.println("Edge " + edge.getFromNode().getNodeID());
-      }
-
-      if (mapNodes.get(edge.getToNode().getNodeID()) == null) {
-        System.out.println("Edge " + edge.getToNode().getNodeID());
-      }
-
       tempMapEdge.setNodes(
           mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
