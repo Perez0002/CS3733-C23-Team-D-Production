@@ -23,7 +23,6 @@ public class ComputerRequestDetailsController implements RequestDetailsControlle
   @Override
   public void setFields(ServiceRequest serviceRequest) {
 
-
     // replace type of request checker
     if (serviceRequest.getClass().equals(ComputerServiceRequest.class)) {
       descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
@@ -45,8 +44,6 @@ public class ComputerRequestDetailsController implements RequestDetailsControlle
               + serviceRequest.getStaffAssigning().getFirstName()
               + " "
               + serviceRequest.getStaffAssigning().getLastName());
-    } else {
-      System.out.println("You dumb idiot it returned false");
     }
   }
 

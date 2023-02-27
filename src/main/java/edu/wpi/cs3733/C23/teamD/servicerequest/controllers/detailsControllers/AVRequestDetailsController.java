@@ -33,17 +33,17 @@ public class AVRequestDetailsController implements RequestDetailsController {
               + serviceRequest.getAssociatedStaff().getLastName());
       urgencyBox.setText("Urgency: " + serviceRequest.getUrgency());
       // set additional field text
-      additionalField.setText(
-          "Date First Noticed: " + ((AVRequest) serviceRequest).getDateFirstSeen().toString());
+
       location1.setText("Location: " + serviceRequest.getLocation().getShortName());
       date.setText("Date: " + serviceRequest.getDateAndTime().toString());
-      requestID.setText(
-          "Request ID: " + ((String) Integer.toString(serviceRequest.getServiceRequestId())));
+      requestID.setText("Request ID: " + (Integer.toString(serviceRequest.getServiceRequestId())));
       assignedBy.setText(
           "Assigned By: "
               + serviceRequest.getStaffAssigning().getFirstName()
               + " "
               + serviceRequest.getStaffAssigning().getLastName());
+      additionalField.setText(
+          "Date First Noticed: " + ((AVRequest) serviceRequest).getDateFirstSeen().toString());
     }
   }
 
