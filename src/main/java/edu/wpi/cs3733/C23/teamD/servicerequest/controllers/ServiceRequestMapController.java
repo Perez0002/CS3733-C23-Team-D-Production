@@ -50,10 +50,11 @@ public class ServiceRequestMapController {
 
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllCurrentMoves(new Date());
     ArrayList<MapNode> nodeList = new ArrayList<>();
-
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
-      pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      if (move.getNode() != null) {
+        pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
+      }
     }
 
     int sumX = 0;
@@ -129,31 +130,31 @@ public class ServiceRequestMapController {
     if (locationController.getLocation() != null) {
       edu.wpi.cs3733.C23.teamD.database.entities.Node node =
           FDdb.getInstance().getAssociatedNode(locationController.getLocation());
-      int x = node.getXcoord();
-      int y = node.getYcoord();
-      String floor = node.getFloor();
+        int x = node.getXcoord();
+        int y = node.getYcoord();
+        String floor = node.getFloor();
 
-      switch (floor) {
-        case "L1":
-          changeFloor(1);
-          break;
-        case "L2":
-          changeFloor(2);
-          break;
-        case "1":
-          changeFloor(3);
-          break;
-        case "2":
-          changeFloor(4);
-          break;
-        case "3":
-          changeFloor(5);
-          break;
-        case "G":
-          System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
-          break;
-      }
-      centerOnNode(x, y);
+        switch (floor) {
+          case "L1":
+            changeFloor(1);
+            break;
+          case "L2":
+            changeFloor(2);
+            break;
+          case "1":
+            changeFloor(3);
+            break;
+          case "2":
+            changeFloor(4);
+            break;
+          case "3":
+            changeFloor(5);
+            break;
+          case "G":
+            System.out.println("You broke me. Find where I broke in Service Request Map. Despair.");
+            break;
+        }
+        centerOnNode(x, y);
     } else {
       System.out.println("DEV Error: The node was null in ServiceRequestMap");
     }
