@@ -347,8 +347,6 @@ public class MapEditorMapNode extends MapNode {
           if (!this.getNode().getLocation().getLocationType().equals("STAI")
               && !this.getNode().getLocation().getLocationType().equals("ELEV")) {
             this.deleteNodeEdges(this, true);
-
-            warning.hide();
           }
           warning.hide();
         });
@@ -358,7 +356,6 @@ public class MapEditorMapNode extends MapNode {
           if (!this.getNode().getLocation().getLocationType().equals("STAI")
               && !this.getNode().getLocation().getLocationType().equals("ELEV")) {
             this.deleteNodeEdges(this, false);
-            warning.hide();
           }
           warning.hide();
         });
