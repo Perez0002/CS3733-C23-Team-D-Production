@@ -9,7 +9,6 @@
    <center>
       <VBox fx:id="vBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Credits" VBox.vgrow="NEVER" />
             <VBox alignment="CENTER" spacing="10.0">
                <children>
                   <VBox alignment="CENTER">
@@ -30,8 +29,15 @@
             </VBox>
          </children>
          <BorderPane.margin>
-            <Insets top="500.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </center>
+   <top>
+      <VBox alignment="CENTER" prefHeight="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Credits" />
+         </children>
+      </VBox>
+   </top>
 </BorderPane>
