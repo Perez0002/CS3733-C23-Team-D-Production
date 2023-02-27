@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +8,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.LabRequestController">
     <children>
-        <Label text="Use this from to report any issues experienced regarding audio or visual systems throughout the hospital. This includes intercom, malfunctioning monitors or speakers, or any video screens displayed throughout the hospital. " wrapText="true">
+        <Label text="Submit a Lab Request" wrapText="true">
             <VBox.margin>
                 <Insets bottom="10.0" left="5.0" right="150.0" top="10.0" />
             </VBox.margin>
@@ -53,22 +52,22 @@
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Date First Noticed">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Lab Type">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXDatePicker fx:id="datePicker" prefWidth="300.0" />
+                        <fx:include fx:id="LabType" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/LabComboBox.fxml" />
                     </children>
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                     <children>
-                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="System *">
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Additional Details">
                             <VBox.margin>
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="systemFailureTextField" floatMode="DISABLED" prefHeight="134.0" prefWidth="300.0" promptText="Enter the system working incorrectly" styleClass="mfx-text-field" stylesheets="@../updatedStyleGuide.css" />
+                        <MFXTextField fx:id="systemFailureTextField" floatMode="DISABLED" prefHeight="402.0" prefWidth="300.0" promptText="..." styleClass="mfx-text-field" stylesheets="@../updatedStyleGuide.css" />
                     </children>
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />
