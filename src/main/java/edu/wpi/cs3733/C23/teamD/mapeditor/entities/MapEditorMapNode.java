@@ -495,6 +495,7 @@ public class MapEditorMapNode extends MapNode {
               && !FDdb.getInstance().getAllEdges().contains(newEdge)) {
             PathEdge newPathEdge =
                 new PathEdge(nodesToModify.get(i).getNode(), nodesToModify.get(c).getNode());
+            newPathEdge.setEdge(newEdge);
             MapEdge newMapEdge = new MapEdge(newPathEdge);
             newMapEdge.setNodes(nodesToModify.get(i), nodesToModify.get(c));
             MapEditorPageController.getEdgeList().add(newMapEdge);
