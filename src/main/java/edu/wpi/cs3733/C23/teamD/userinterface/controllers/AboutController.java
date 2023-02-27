@@ -185,6 +185,184 @@ public class AboutController {
     // CS Department
     imageFifteen.setViewport(new Rectangle2D(0, 0, 714, 714));
     imageFifteen.setFitHeight(150);
+
+    // setting all of the popups for over the images
+    imageOne.setOnMouseEntered(
+        mouseEvent -> {
+
+          photoSquare.show(imageOne, 3);
+        });
+    imageOne.setOnMouseExited(
+        mouseEvent -> {
+          if (photoSquare1.isShowing()) {
+            photoSquare1.hide();
+          }
+        });
+
+    imageTwo.setOnMouseEntered(
+        mouseEvent -> {
+          photoSquare2.show(imageTwo, -3);
+        });
+    imageTwo.setOnMouseExited(
+        mouseEvent -> {
+          if (photoSquare2.isShowing()) {
+            photoSquare2.hide();
+          }
+        });
+
+    imageThree.setOnMouseEntered(
+        mouseEvent -> {
+          photoSquare3.show(imageThree, -3);
+        });
+    imageThree.setOnMouseExited(
+        mouseEvent -> {
+          if (photoSquare3.isShowing()) {
+            photoSquare3.hide();
+          }
+        });
+
+    imageThree.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageThree, -3);
+        });
+    imageThree.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageFour.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageFour, -3);
+        });
+    imageFour.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageFive.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageFive, -3);
+        });
+    imageFive.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageSix.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageSix, -3);
+        });
+    imageSix.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageSeven.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageSeven, -3);
+        });
+    imageSeven.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageEight.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageEight, -3);
+        });
+    imageEight.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageNine.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageNine, -3);
+        });
+    imageNine.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageTen.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageTen, -3);
+        });
+    imageTen.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageEleven.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageEleven, -3);
+        });
+    imageEleven.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageTwelve.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageTwelve, -3);
+        });
+    imageTwelve.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageThirteen.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageThirteen, -3);
+        });
+    imageThirteen.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageFourteen.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageFourteen, -3);
+        });
+    imageFourteen.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
+
+    imageFifteen.setOnMouseEntered(
+        mouseEvent -> {
+          popOver.show(imageFifteen, -3);
+        });
+    imageFifteen.setOnMouseExited(
+        mouseEvent -> {
+          if (popOver.isShowing()) {
+            popOver.hide();
+          }
+        });
   }
   /*
    public AboutController() {
