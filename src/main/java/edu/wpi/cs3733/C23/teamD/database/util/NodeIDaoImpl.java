@@ -57,15 +57,18 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
   }
 
-  public void updatePK(Node n) {
-    // Node oldNode = new Node(n);
+  public ArrayList<Object> updatePK(Node n) {
+    ArrayList<Object> objectList = new ArrayList<>();
+
     Node newNode = new Node(n);
     newNode.setNodeID();
     this.save(newNode);
-    this.nodeMoveSwap(n, newNode);
-    this.nodeEdgeSwap(n, newNode);
-    System.out.println("Node ID: " + n.getNodeID());
+    objectList.addAll(this.nodeMoveSwap(n, newNode));
+    objectList.addAll(this.nodeEdgeSwap(n, newNode));
     this.deleteOnlyNode(n);
+    objectList.add(newNode);
+
+    return objectList;
   }
 
   @Override
@@ -92,13 +95,14 @@ public class NodeIDaoImpl implements IDao<Node> {
     FDdb dbFacade = FDdb.getInstance();
     ArrayList<Move> movesWithNode = new ArrayList<>();
     for (Move m : dbFacade.getAllMoves()) {
-      if (m.getNodeID().equals(n.getNodeID())) {
+      if (m.getNode().nodeEquals(n)) {
         movesWithNode.add(m);
       }
     }
     for (Move m : movesWithNode) {
       PastMoves tempMove = new PastMoves(n.getNodeID(), m.getLongName(), m.getMoveDate());
       dbFacade.savePastMove(tempMove);
+      dbFacade.deleteMove(m);
     }
 
     session.beginTransaction();
@@ -108,7 +112,6 @@ public class NodeIDaoImpl implements IDao<Node> {
     q.setParameter("tonode", n);
     ArrayList<Edge> edges = (ArrayList<Edge>) q.getResultList();
     session.getTransaction().commit();
-
     if (edges.size() > 0) {
       for (Edge oldEdge : edges) {
         dbFacade.deleteEdge(oldEdge);
@@ -121,7 +124,6 @@ public class NodeIDaoImpl implements IDao<Node> {
       q2.setParameter("id", n.getNodeID());
       int deleted = q2.executeUpdate();
       session.getTransaction().commit();
-
       this.nodes.remove(n);
 
     } catch (Exception ex) {
@@ -129,9 +131,10 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
   }
 
-  public void nodeEdgeSwap(Node oldNode, Node newNode) {
+  public ArrayList<Edge> nodeEdgeSwap(Node oldNode, Node newNode) {
     FDdb dbFacade = FDdb.getInstance();
 
+    ArrayList<Edge> edgeList = new ArrayList<>();
     session.beginTransaction();
     Query q =
         session.createQuery("SELECT e FROM Edge e WHERE fromNode=:fromnode OR toNode=:tonode");
@@ -144,16 +147,16 @@ public class NodeIDaoImpl implements IDao<Node> {
       Edge newEdge;
       if (oldEdge.getFromNode().nodeEquals(oldNode)) {
         newEdge = new Edge(newNode, oldEdge.getToNode());
-        System.out.println("From Node: " + newEdge.getFromNodeID());
       } else if (oldEdge.getToNode().nodeEquals(oldNode)) {
         newEdge = new Edge(oldEdge.getFromNode(), newNode);
-        System.out.println("To Node: " + newEdge.getToNodeID());
       } else {
         newEdge = new Edge();
       }
       dbFacade.deleteEdge(oldEdge);
       dbFacade.saveEdge(newEdge);
+      edgeList.add(newEdge);
     }
+    return edgeList;
   }
 
   private void deleteOnlyNode(Node n) {
@@ -171,7 +174,8 @@ public class NodeIDaoImpl implements IDao<Node> {
     }
   }
 
-  private void nodeMoveSwap(Node oldNode, Node newNode) {
+  private ArrayList<Move> nodeMoveSwap(Node oldNode, Node newNode) {
+    ArrayList<Move> moveList = new ArrayList<>();
     try {
       FDdb dbFacade = FDdb.getInstance();
       ArrayList<Move> moves = new ArrayList<>(dbFacade.getAllMoves());
@@ -179,6 +183,7 @@ public class NodeIDaoImpl implements IDao<Node> {
         Move m = moves.get(i);
         if (moves.get(i).getNode().nodeEquals(oldNode)) {
           Move move = new Move(newNode, m.getLocation(), m.getMoveDate());
+          moveList.add(move);
           FDdb.getInstance().deleteMove(m);
           FDdb.getInstance().saveMove(move);
         }
@@ -186,6 +191,8 @@ public class NodeIDaoImpl implements IDao<Node> {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+    return moveList;
   }
 
   @Override
