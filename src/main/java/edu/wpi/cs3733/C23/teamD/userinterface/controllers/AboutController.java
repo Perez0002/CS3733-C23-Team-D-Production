@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import org.controlsfx.control.PopOver;
 
 public class AboutController {
+  // pictures of each member of the team
   @FXML ImageView imageOne;
   @FXML ImageView imageTwo;
   @FXML ImageView imageThree;
@@ -24,14 +25,12 @@ public class AboutController {
   @FXML ImageView imageFourteen;
   @FXML ImageView imageFifteen;
 
-
-
+  // making the labels for each member and assigning them to the popover
   @FXML Label position = new Label("Position: Full Time Software Engineer");
   @FXML Label major = new Label("Major: Computer Science");
   @FXML Label hobby = new Label("Fun Fact: Badminton Master");
   @FXML VBox vBox = new VBox(position, major, hobby);
   private PopOver photoSquare = new PopOver(vBox);
-
 
   @FXML Label position1 = new Label("Position: Full Time Software Engineer");
   @FXML Label major1 = new Label("Major: Computer Science");
@@ -123,74 +122,71 @@ public class AboutController {
   @FXML VBox vBox15 = new VBox(position15, major15, hobby15);
   private PopOver photoSquare15 = new PopOver(vBox15);
 
-
-
   public void initialize() {
     // Abby
-    imageOne.setViewport(new Rectangle2D(2162, 724, 714, 714));
+    imageOne.setViewport(new Rectangle2D(2164, 724, 710, 710));
     imageOne.setFitHeight(150);
 
     // Mike
-    imageTwo.setViewport(new Rectangle2D(722, 4, 714, 714));
+    imageTwo.setViewport(new Rectangle2D(724, 4, 710, 710));
     imageTwo.setFitHeight(150);
 
     // Bryce
-    imageThree.setViewport(new Rectangle2D(722, 724, 714, 714));
+    imageThree.setViewport(new Rectangle2D(724, 724, 710, 710));
     imageThree.setFitHeight(150);
 
     // Gibson
-    imageFour.setViewport(new Rectangle2D(2882, 724, 714, 714));
+    imageFour.setViewport(new Rectangle2D(2884, 724, 710, 710));
     imageFour.setFitHeight(150);
 
     // Jonathan
-    imageFive.setViewport(new Rectangle2D(1442, 724, 714, 714));
+    imageFive.setViewport(new Rectangle2D(1444, 724, 710, 710));
     imageFive.setFitHeight(150);
 
     // Wyatt
-    imageSix.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageSix.setViewport(new Rectangle2D(1444, 4, 710, 710));
     imageSix.setFitHeight(150);
 
     // Annie
-    imageSeven.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageSeven.setViewport(new Rectangle2D(2164, 4, 710, 710));
     imageSeven.setFitHeight(150);
 
     // Theo
-    imageEight.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageEight.setViewport(new Rectangle2D(2884, 4, 710, 710));
     imageEight.setFitHeight(150);
 
     // Liv
-    imageNine.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageNine.setViewport(new Rectangle2D(4, 724, 710, 710));
     imageNine.setFitHeight(150);
 
     // Ari
-    imageTen.setViewport(new Rectangle2D(0, 0, 714, 720));
+    imageTen.setViewport(new Rectangle2D(4, 4, 710, 710));
     imageTen.setFitHeight(150);
 
     // Qui
-    imageEleven.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageEleven.setViewport(new Rectangle2D(4, 1444, 710, 710));
     imageEleven.setFitHeight(150);
 
     // Wong
-    imageTwelve.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageTwelve.setViewport(new Rectangle2D(724, 1444, 710, 710));
     imageTwelve.setFitHeight(150);
 
     // Andrew
-    imageThirteen.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageThirteen.setViewport(new Rectangle2D(1444, 1444, 710, 710));
     imageThirteen.setFitHeight(150);
 
     // Hospital
-    imageFourteen.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageFourteen.setViewport(new Rectangle2D(2164, 1444, 710, 710));
     imageFourteen.setFitHeight(150);
 
     // CS Department
-    imageFifteen.setViewport(new Rectangle2D(0, 0, 714, 714));
+    imageFifteen.setViewport(new Rectangle2D(2884, 1444, 710, 710));
     imageFifteen.setFitHeight(150);
 
     // setting all of the popups for over the images
     imageOne.setOnMouseEntered(
         mouseEvent -> {
-
-          photoSquare.show(imageOne, 3);
+          photoSquare1.show(imageOne, 10);
         });
     imageOne.setOnMouseExited(
         mouseEvent -> {
@@ -201,7 +197,7 @@ public class AboutController {
 
     imageTwo.setOnMouseEntered(
         mouseEvent -> {
-          photoSquare2.show(imageTwo, -3);
+          photoSquare2.show(imageTwo, 3);
         });
     imageTwo.setOnMouseExited(
         mouseEvent -> {
@@ -212,7 +208,7 @@ public class AboutController {
 
     imageThree.setOnMouseEntered(
         mouseEvent -> {
-          photoSquare3.show(imageThree, -3);
+          photoSquare3.show(imageThree, 3);
         });
     imageThree.setOnMouseExited(
         mouseEvent -> {
@@ -221,149 +217,155 @@ public class AboutController {
           }
         });
 
-    imageThree.setOnMouseEntered(
-        mouseEvent -> {
-          popOver.show(imageThree, -3);
-        });
-    imageThree.setOnMouseExited(
-        mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
-          }
-        });
+    //    imageThree.setOnMouseEntered(
+    //        mouseEvent -> {
+    //          photoSquare4.show(imageThree, -3);
+    //        });
+    //    imageThree.setOnMouseExited(
+    //        mouseEvent -> {
+    //          if (photoSquare4.isShowing()) {
+    //            photoSquare4.hide();
+    //          }
+    //        });
 
     imageFour.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageFour, -3);
+          photoSquare4.show(imageFour, 3);
         });
     imageFour.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare4.isShowing()) {
+            photoSquare4.hide();
           }
         });
 
     imageFive.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageFive, -3);
+          photoSquare5.setTitle("");
+          photoSquare5.isAutoFix();
+          photoSquare5.show(imageFive, 3);
         });
     imageFive.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare5.isShowing()) {
+            photoSquare5.hide();
           }
         });
 
     imageSix.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageSix, -3);
+          photoSquare6.show(imageSix, 3);
         });
     imageSix.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare6.isShowing()) {
+            photoSquare6.hide();
           }
         });
 
     imageSeven.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageSeven, -3);
+          photoSquare7.show(imageSeven, 3);
         });
     imageSeven.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare7.isShowing()) {
+            photoSquare7.hide();
           }
         });
 
     imageEight.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageEight, -3);
+          photoSquare8.show(imageEight, 3);
         });
     imageEight.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare8.isShowing()) {
+            photoSquare8.hide();
           }
         });
 
     imageNine.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageNine, -3);
+          photoSquare9.show(imageNine, 3);
         });
     imageNine.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare9.isShowing()) {
+            photoSquare9.hide();
           }
         });
 
     imageTen.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageTen, -3);
+            photoSquare10.detach();
+          photoSquare10.setTitle("Ari");
+          photoSquare10.setX(photoSquare10.getX() - 100);
+          photoSquare10.show(imageTen);
         });
     imageTen.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare10.isShowing()) {
+            photoSquare10.hide();
           }
         });
 
     imageEleven.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageEleven, -3);
+          photoSquare11.show(imageEleven, 3);
         });
     imageEleven.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare11.isShowing()) {
+            photoSquare11.hide();
           }
         });
 
     imageTwelve.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageTwelve, -3);
+          photoSquare12.show(imageTwelve, 3);
         });
     imageTwelve.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare12.isShowing()) {
+            photoSquare12.hide();
           }
         });
 
     imageThirteen.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageThirteen, -3);
+          photoSquare13.show(imageThirteen, 3);
         });
     imageThirteen.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare13.isShowing()) {
+            photoSquare13.hide();
           }
         });
 
     imageFourteen.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageFourteen, -3);
+          photoSquare14.show(imageFourteen);
         });
     imageFourteen.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare14.isShowing()) {
+            photoSquare14.hide();
           }
         });
 
     imageFifteen.setOnMouseEntered(
         mouseEvent -> {
-          popOver.show(imageFifteen, -3);
+          photoSquare15.show(imageFifteen, -3);
         });
     imageFifteen.setOnMouseExited(
         mouseEvent -> {
-          if (popOver.isShowing()) {
-            popOver.hide();
+          if (photoSquare15.isShowing()) {
+            photoSquare15.hide();
           }
         });
   }
+
   /*
    public AboutController() {
      imageOne.setOnMouseEntered(
