@@ -129,8 +129,8 @@ public class MapFactory {
     int totalY = 0;
     int maxX = 0;
     int maxY = 0;
-    int minX = 10000;
-    int minY = 10000;
+    int minX = 5000;
+    int minY = 3000;
     int totalNode = 0;
 
     converter.put("G", 0);
@@ -269,19 +269,25 @@ public class MapFactory {
     map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
 
     double scale = 0;
+    double xAdjust = 0.7;
 
     if (scaleMap) {
-      double temp =
-          Math.max(
-                      (double) (maxX - minX) / (App.getPrimaryStage().getWidth() * 0.9),
-                      (double) (maxY - minY) / (App.getPrimaryStage().getWidth() * 0.9))
-                  * 31
-              + 4;
-      scale = (Math.log(temp) / Math.log(2) / 5);
-      if (scale < 1) {
-        scale = 5 - 5 * scale;
-      } else {
-        scale = 0;
+      xAdjust = 1;
+      if (minX != 5000) {
+        double temp =
+            (Math.max(
+                        Math.max(
+                            ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.5),
+                            ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.5)),
+                        0)
+                    * 31)
+                + 1;
+        System.out.println(Math.log(temp));
+        if (temp < 32) {
+          scale = 5 - (Math.log(temp)) / Math.log(2);
+        } else {
+          scale = 0;
+        }
       }
     }
 
@@ -291,10 +297,10 @@ public class MapFactory {
         .centreOn(
             new Point2D(
                 ((minX + maxX) / 2
-                    - App.getPrimaryStage().getWidth() * (Math.pow(2, (5 - scale))) / 32
+                    - App.getPrimaryStage().getWidth() * xAdjust * (Math.pow(2, (5 - scale))) / 32
                     - 50),
                 ((minY + maxY) / 2
-                    - App.getPrimaryStage().getHeight() * 0.8 * Math.pow(2, (5 - scale)) / 32
+                    - App.getPrimaryStage().getHeight() * Math.pow(2, (5 - scale)) / 32
                     - 50)));
 
     // Return the GesturePane
