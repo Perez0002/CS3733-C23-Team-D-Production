@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.AboutController" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.AboutController">
+   <center>
       <VBox fx:id="creditsVbox1" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_CENTER">
                <children>
                   <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="aboutLabel" text="Team Members" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="20.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -34,7 +34,7 @@
                      <children>
                         <VBox alignment="BOTTOM_CENTER">
                            <children>
-                              <ImageView fx:id="imageOne" fitHeight="150.0" fitWidth="200.0"  preserveRatio="true" styleClass="imageBorder">
+                              <ImageView fx:id="imageOne" fitHeight="150.0" fitWidth="200.0" preserveRatio="true" styleClass="imageBorder">
                                  <image>
                                     <Image url="@images/teamPhotos/Team about page.png" />
                                  </image>
@@ -45,7 +45,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Abagail Albuquerque" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -63,7 +62,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -81,7 +79,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Bryce Lukens" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Assistant Lead Engineer" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -99,7 +96,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Gibson Phillips" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -117,7 +113,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Jonathan Asher" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Full Time Software Enginner" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -139,7 +134,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wyatt Harris" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Documentation Analyst" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -157,7 +151,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Annie Zimmerman" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Project Manager" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -175,7 +168,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Theo Winter" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Scrum Master" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -193,7 +185,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Liv Perez" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Assistant Lead Engineer" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -211,7 +202,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Ari Schecter" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Lead Software Engineer" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -246,7 +236,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Qui Nguyen" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Team Coach" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -264,7 +253,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wilson Wong" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="CS-3733-C23 Instructor" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -282,7 +270,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Andrew Shinn" textAlignment="CENTER" wrapText="true" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="BWH Representitive" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -300,7 +287,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="BWH Hospital" textAlignment="CENTER" wrapText="true" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sponsor" textAlignment="CENTER" />
                      </children>
                   </VBox>
                   <VBox prefWidth="200.0" spacing="10.0">
@@ -318,7 +304,6 @@
                            </children>
                         </VBox>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="WPI CS Department" textAlignment="CENTER" />
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -328,14 +313,10 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Esc To Close" textAlignment="CENTER">
-                     <HBox.margin>
-                        <Insets bottom="10.0" />
-                     </HBox.margin>
-                  </Label>
+                  <fx:include fx:id="cancelButton" prefHeight="53.0" prefWidth="128.0" source="cancelButton.fxml" text="Back" />
                </children>
             </HBox>
          </children>
       </VBox>
-   </top>
+   </center>
 </BorderPane>
