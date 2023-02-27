@@ -44,7 +44,7 @@ public class MapEditorPageController {
   private boolean edgesShown = true;
 
   private boolean labelsShown = true;
-
+  private boolean labelsVisible = true;
   private ArrayList<MapNode> nodeList = new ArrayList<>();
   private ArrayList<MapEdge> edgeList = new ArrayList<>();
 
@@ -77,7 +77,7 @@ public class MapEditorPageController {
   public EventHandler<ActionEvent> toggleLabels() {
     return event -> {
       labelsShown = !labelsShown;
-
+      labelsVisible = !labelsVisible;
       if (labelsShown) {
         toggleLabelsButton.getStyleClass().add("mapEditorFloorButtonSelected");
         toggleLabelsButton.getStyleClass().remove("mapEditorFloorButton");
@@ -111,7 +111,12 @@ public class MapEditorPageController {
           }
         }
 
-        gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+        gesturePane =
+            MapFactory.startBuild()
+                .withNodes(nodeList)
+                .setLabelsVisible(labelsVisible)
+                .withEdges(edgeList)
+                .build(floor);
         mapPlacement.setCenter(gesturePane);
         currentFloor = floor;
       }
