@@ -119,7 +119,7 @@
                         </Text>
                      </children>
                   </VBox>
-                  <MFXButton onAction="#displayMove" prefHeight="53.0" prefWidth="113.0" text="Display Move">
+                  <MFXButton onAction="#displayMove" prefHeight="53.0" prefWidth="121.0" styleClass="clearButton" text="Display Move">
                      <HBox.margin>
                         <Insets bottom="70.0" />
                      </HBox.margin>
