@@ -91,17 +91,19 @@ public class ServiceRequest {
     this.location = location;
     this.urgency = urgency;
   }
-  public ServiceRequest(Integer serviceRequestId,
+  public ServiceRequest(
+          int serviceRequestId,
           Status stat,
           Employee associatedStaff,
           String reason,
           String serviceRequestType,
           LocationName location,
           String urgency) {
-    this.serviceRequestId=serviceRequestId;
+    this.serviceRequestId = serviceRequestId;
+    this.stat = stat;
     this.staffAssigning = CurrentUserEnum._CURRENTUSER.getCurrentUser();
     this.associatedStaff = associatedStaff;
-    this.stat = stat;
+    this.stat = Status.PROCESSING;
     this.dateAndTime = new Date();
     this.reason = reason;
     this.serviceRequestType = serviceRequestType;

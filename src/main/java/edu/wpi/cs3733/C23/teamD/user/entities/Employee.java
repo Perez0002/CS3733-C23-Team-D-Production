@@ -72,13 +72,18 @@ public class Employee implements Comparable<Employee> {
           String firstName,
           String lastName,
           String password,
-          Date date,
-          String email) {
+          String email,
+          String phoneNumber,
+          Date birthday,
+          String address) {
     this.employeeID = employeeID;
     this.employeeType = employeeType;
     this.firstName = firstName;
     this.lastName = lastName;
     this.password = password;
     this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.Birthday = birthday;
+    this.address = address;
   }
 }
