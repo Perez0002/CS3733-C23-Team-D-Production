@@ -69,17 +69,13 @@ public class FDdb {
     nodeIDao.update(n);
   }
 
-  public void updateNodePK(Node n) {
-    nodeIDao.updatePK(n);
+  public ArrayList<Object> updateNodePK(Node n) {
+    return nodeIDao.updatePK(n);
   }
 
   public void deleteNode(Node n) {
     ArrayList<Move> moves = moveIDao.getAssociatedMoves(n);
     nodeIDao.delete(n);
-    for (Move m : moves) {
-      pastMovesIDao.save(new PastMoves(m));
-      moveIDao.delete(m);
-    }
   }
 
   public void nodeEdgeSwap(Node oldNode, Node newNode) {
@@ -346,5 +342,9 @@ public class FDdb {
     refreshNodes();
     refreshMoves();
     refreshLocationNames();
+  }
+
+  public void run() {
+    refreshAll();
   }
 }

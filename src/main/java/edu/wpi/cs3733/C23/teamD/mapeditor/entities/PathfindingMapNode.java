@@ -22,9 +22,6 @@ public class PathfindingMapNode extends MapNode {
     super(node);
     /* Creates popup on mouse click */
     recentMove = null;
-    if (this.getNodeType().getValue().equals("BLUBBERSNUFF")) {
-      nodeRepresentation.setVisible(false);
-    }
     nodeRepresentation.setOnMouseClicked(
         event -> {
           this.MakePopup();
@@ -45,6 +42,9 @@ public class PathfindingMapNode extends MapNode {
 
   public void addDirections(String directions) {
     this.directions = directions;
+    if (directions == null) {
+      nodeRepresentation.setVisible(false);
+    }
   }
 
   private void MakePopup() {
@@ -84,11 +84,15 @@ public class PathfindingMapNode extends MapNode {
       System.out.println("Switching Floor");
       nextNode.switchFloor();
     }
-    if (nextNode.getNodeType().getValue().equals("BLUBBERSNUFF")) {
+    if (nextNode.getDirections() == null) {
       nextNode.fastForward();
     } else {
       Platform.runLater(() -> nextNode.MakePopup());
     }
+  }
+
+  private String getDirections() {
+    return directions;
   }
 
   private void fastForward() {
@@ -108,7 +112,7 @@ public class PathfindingMapNode extends MapNode {
     if (!this.getNodeFloor().getValue().equals(prevNode.getNodeFloor().getValue())) {
       prevNode.switchFloor();
     }
-    if (prevNode.getNodeType().getValue().equals("BLUBBERSNUFF")) {
+    if (prevNode.getDirections() == null) {
       prevNode.rewind();
     } else {
       Platform.runLater(() -> prevNode.MakePopup());

@@ -22,6 +22,7 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
   private boolean onlyStartEnd;
+  private boolean labelsShown = false;
   private ArrayList<MapNode> nodeList;
   private ArrayList<MapEdge> edgeList;
   private Function<Node, EventHandler<MouseEvent>> nodeEvent;
@@ -96,6 +97,11 @@ public class MapFactory {
 
   public MapFactory withNodeMouseExitFunctions(Function<Node, EventHandler<MouseEvent>> event) {
     this.nodeMouseExitEvent = event;
+    return this;
+  }
+
+  public MapFactory setLabelsVisible(boolean labelsShown) {
+    this.labelsShown = labelsShown;
     return this;
   }
 
@@ -200,6 +206,7 @@ public class MapFactory {
         if (!node.getNodeType().getValue().equals("HALL")) {
           final TextArea nodeLabel = new TextArea();
           nodeLabel.setEditable(false);
+          nodeLabel.setVisible(labelsShown);
           nodeLabel.textProperty().bindBidirectional(node.getNodeLongName());
           nodeLabel.setFont(javafx.scene.text.Font.font("Nunito Sans", 5));
           Platform.runLater(

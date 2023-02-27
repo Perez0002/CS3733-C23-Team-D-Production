@@ -97,9 +97,14 @@ public class MoveIDaoImpl implements IDao<Move> {
       q.setParameter("location", m.getLocation());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();
-
-      this.moves.remove(m);
-
+      for (int i = 0; i < this.moves.size(); i++) {
+        if (m.getMoveDate().equals(this.moves.get(i).getMoveDate())
+            && m.getNode().nodeEquals(this.moves.get(i).getNode())
+            && m.getLongName().equals(this.moves.get(i).getLongName())) {
+          this.moves.remove(i);
+          break;
+        }
+      }
     } catch (Exception ex) {
       session.getTransaction().rollback();
     }
