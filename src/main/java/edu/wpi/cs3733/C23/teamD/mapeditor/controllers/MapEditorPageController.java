@@ -46,9 +46,6 @@ public class MapEditorPageController {
 
   private boolean labelsShown = true;
   private boolean labelsVisible = true;
-  private ArrayList<MapNode> nodeList = new ArrayList<>();
-  private ArrayList<MapEdge> edgeList = new ArrayList<>();
-
   @Getter public static ArrayList<MapNode> nodeList = new ArrayList<>();
   @Getter public static ArrayList<MapEdge> edgeList = new ArrayList<>();
 
