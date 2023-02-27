@@ -347,7 +347,10 @@ public class FDdb {
     refreshLocationNames();
   }
 
-  public void run() {
-    refreshAll();
+  public void saveKiosk(LocationName l) {
+    locationNameIDao.saveKiosk(l);
+  }
+  public LocationName getKiosk() {
+    return locationNameIDao.getKiosk();
   }
 }
