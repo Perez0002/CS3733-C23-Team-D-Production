@@ -21,6 +21,7 @@ public class RootController {
       pathfindingButton,
       dbButton,
       moveTableButton,
+      moveDisplayButton,
       mapEditorButton,
       helpPageButton,
       infoButton,
@@ -78,6 +79,9 @@ public class RootController {
 
     moveTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
     moveTableButton.setTooltip(new Tooltip("Office Moves"));
+
+    moveDisplayButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVE_DISPLAY));
+    moveDisplayButton.setTooltip(new Tooltip("Move Display"));
 
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     mapEditorButton.setTooltip(new Tooltip("Map Editor"));
