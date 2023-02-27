@@ -18,6 +18,7 @@ public class DatabaseHubController {
   @FXML private MFXButton edgeTableButton;
   @FXML private MFXButton moveTableButton;
   @FXML private MFXButton locationTableButton;
+  @FXML private MFXButton employeeTableButton;
 
   @FXML private MFXButton downloadButton;
 
@@ -62,6 +63,10 @@ public class DatabaseHubController {
         event ->
             switchVBox(
                 DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
+    employeeTableButton.setOnMouseClicked(
+        event ->
+            switchVBox(
+                DatabasesFXML.EMPLOYEE_TABLE, employeeTableButton, DatabasesFXML.ADD_EMPLOYEE));
   }
 
   void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {
