@@ -12,6 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <BorderPane fx:id="borderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayContainerController">
    <left>
       <VBox fx:id="move" prefHeight="200.0" prefWidth="350.0" spacing="16.0" BorderPane.alignment="CENTER">
@@ -66,8 +67,8 @@
                         <Insets left="16.0" />
                      </padding>
                   </HBox>
-                  <MFXButton fx:id="LoginButton" minWidth="80.0" prefHeight="48.0" prefWidth="75.0" text="Login" />
-                  <MFXButton fx:id="backButton" minWidth="80.0" prefHeight="48.0" prefWidth="75.0" text="Back" />
+                  <MFXButton fx:id="LoginButton" minWidth="80.0" prefHeight="48.0" prefWidth="75.0" styleClass="moveDisplayButton" text="Login" />
+                  <MFXButton fx:id="backButton" minWidth="80.0" prefHeight="48.0" prefWidth="75.0" styleClass="moveDisplayButton" text="Back" />
                </children>
                <padding>
                   <Insets left="32.0" right="32.0" top="32.0" />
@@ -91,7 +92,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                            <children>
-                              <Text fx:id="leftRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Left">
+                              <Text fx:id="leftRoomText" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -101,14 +102,14 @@
                               <Insets right="16.0" />
                            </padding>
                         </HBox>
-                        <MFXButton fx:id="swapButton" maxHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" text="Swap">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                        <MFXButton fx:id="swapButton" maxHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" styleClass="moveDisplayButton">
+                           <graphic>
+                              <FontIcon iconColor="WHITE" iconLiteral="fltral-arrow-swap-20" iconSize="50" />
+                           </graphic>
                         </MFXButton>
-                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                            <children>
-                              <Text fx:id="rightRoomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Right">
+                              <Text fx:id="rightRoomText" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>

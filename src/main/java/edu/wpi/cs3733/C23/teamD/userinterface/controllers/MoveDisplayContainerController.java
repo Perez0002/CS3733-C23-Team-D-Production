@@ -137,6 +137,8 @@ public class MoveDisplayContainerController {
 
           setMove(currentMove);
 
+          datePicker.clear();
+
           locationNameText.setText(currentMove.getLongName());
           messageText.setText(currentMove.getMessage());
           setRightAndLeft();
@@ -165,7 +167,9 @@ public class MoveDisplayContainerController {
         }
       }
     }
-    rightRoomText.setText("");
+    if (leftAssigned) {
+      rightRoomText.setText("");
+    }
   }
 
   EventHandler<ActionEvent> setDate =
