@@ -311,10 +311,13 @@
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" VBox.vgrow="NEVER">
                <children>
                   <fx:include fx:id="cancelButton" prefHeight="53.0" prefWidth="128.0" source="cancelButton.fxml" text="Back" />
                </children>
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
