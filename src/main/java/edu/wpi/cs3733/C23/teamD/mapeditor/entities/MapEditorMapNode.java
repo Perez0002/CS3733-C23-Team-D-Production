@@ -508,7 +508,7 @@ public class MapEditorMapNode extends MapNode {
             }
             ((AnchorPane) node.getNodeRepresentation().getParent())
                 .getChildren()
-                .add(newMapEdge.getEdgeRepresentation());
+                .add(1, newMapEdge.getEdgeRepresentation());
           }
         }
       }

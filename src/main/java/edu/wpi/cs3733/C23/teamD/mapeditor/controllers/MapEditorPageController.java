@@ -122,6 +122,9 @@ public class MapEditorPageController {
   @FXML
   public void initialize() {
 
+    nodeList.clear();
+    edgeList.clear();
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
