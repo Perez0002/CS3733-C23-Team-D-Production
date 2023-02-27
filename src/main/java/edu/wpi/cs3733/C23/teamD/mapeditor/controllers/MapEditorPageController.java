@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
@@ -22,6 +23,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
@@ -30,6 +32,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -59,7 +62,6 @@ public class MapEditorPageController {
   private boolean labelsShown = true;
   @Getter public static ArrayList<MapNode> nodeList = new ArrayList<>();
   @Getter public static ArrayList<MapEdge> edgeList = new ArrayList<>();
-
 
   Rectangle selectArea = null;
 
@@ -150,7 +152,12 @@ public class MapEditorPageController {
           }
         }
 
-        gesturePane = MapFactory.startBuild().setLabelsVisable(labelsShown).withNodes(nodeList).withEdges(edgeList).build(floor);
+        gesturePane =
+            MapFactory.startBuild()
+                .setLabelsVisible(labelsShown)
+                .withNodes(nodeList)
+                .withEdges(edgeList)
+                .build(floor);
         gesturePane.requestFocus();
         gesturePane.setOnKeyReleased(
             e -> {
@@ -184,12 +191,27 @@ public class MapEditorPageController {
                     for (MapNode node : selected) {
                       node.getNodeRepresentation().setFill(MapNode.NO_SELECTION);
                       try {
-                        // TODO when merge from saving is complete, need to save to DB
+                        ((MapEditorMapNode) node).saveNodeChanges(node);
                       } catch (Exception ex) {
                         ex.printStackTrace();
                       }
                     }
                     selected.clear();
+                  }
+
+                  if (e.isStillSincePress() && nodeMode.getValue()) {
+                    PathNode tempPathNode =
+                        new PathNode(
+                            new edu.wpi.cs3733.C23.teamD.database.entities.Node(
+                                (int) e.getX(), (int) e.getY(), "", ""),
+                            new LocationName("", "", ""));
+                    MapEditorMapNode tempMapNode =
+                        new MapEditorMapNode(tempPathNode, nodeMode, edgeMode, multiNodeMode);
+
+                    ((AnchorPane) gesturePane.getContent())
+                        .getChildren()
+                        .add(tempMapNode.getNodeRepresentation());
+                    tempMapNode.MakePopup(true);
                   }
                 });
 
@@ -436,8 +458,26 @@ public class MapEditorPageController {
                   + 5);
         });
 
+    double totalX = 0;
+    double totalY = 0;
+    double totalNum = 0;
+
+    for (MapNode node : nodeList) {
+      if (((MapEditorMapNode) node).getNodeFloor().getValue().equals("L1")) {
+        totalX += ((MapEditorMapNode) node).getNodeX().getValue();
+        totalY += ((MapEditorMapNode) node).getNodeY().getValue();
+        totalNum++;
+      }
+    }
     // Creating GesturePane to show
     this.changeFloor(1).handle(null);
+
+    final Point2D point = new Point2D(totalX / totalNum, totalY / totalNum);
+    Platform.runLater(
+        () -> {
+          gesturePane.zoomTo(0, point);
+          gesturePane.animate(Duration.millis(50)).centreOn(point);
+        });
     this.toggleLabels().handle(null);
     gesturePane.requestFocus();
   }

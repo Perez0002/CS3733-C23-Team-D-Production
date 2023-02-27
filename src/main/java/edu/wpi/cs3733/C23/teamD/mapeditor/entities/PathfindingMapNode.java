@@ -51,7 +51,7 @@ public class PathfindingMapNode extends MapNode {
     }
   }
 
-  private void MakePopup() {
+  public void MakePopup() {
     if (this.popup == null) {
       /* Color the node on the map to represent selection */
       this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));

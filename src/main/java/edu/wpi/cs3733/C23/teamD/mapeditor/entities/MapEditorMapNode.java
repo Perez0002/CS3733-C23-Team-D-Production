@@ -94,7 +94,7 @@ public class MapEditorMapNode extends MapNode {
                   .add(1, tempMapEdge.getEdgeRepresentation());
 
               try {
-                FDdb.getInstance().saveEdge(tempEdge.getEdge());
+                this.addEdge(tempMapEdge);
               } catch (Exception e) {
                 e.printStackTrace();
               }
@@ -125,6 +125,7 @@ public class MapEditorMapNode extends MapNode {
               return;
             }
           }
+          event.consume();
         });
 
     nodeRepresentation.setOnMouseEntered(
@@ -338,7 +339,6 @@ public class MapEditorMapNode extends MapNode {
     }
   }
 
-
   public void addNode() {
     this.addNodeToMap(this);
   }
@@ -519,7 +519,7 @@ public class MapEditorMapNode extends MapNode {
             PathEdge newPathEdge =
                 new PathEdge(nodesToModify.get(i).getNode(), nodesToModify.get(c).getNode());
             newPathEdge.setEdge(newEdge);
-            MapEdge newMapEdge = new MapEdge(newPathEdge);
+            MapEdge newMapEdge = new MapEdge(newPathEdge, edgeMode);
             newMapEdge.setNodes(nodesToModify.get(i), nodesToModify.get(c));
             MapEditorPageController.getEdgeList().add(newMapEdge);
             try {
