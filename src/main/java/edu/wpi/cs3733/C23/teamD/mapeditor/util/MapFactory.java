@@ -27,6 +27,7 @@ public class MapFactory {
   private Function<Node, EventHandler<MouseEvent>> nodeEvent;
   private Function<Node, EventHandler<MouseEvent>> nodeMouseEnterEvent;
   private Function<Node, EventHandler<MouseEvent>> nodeMouseExitEvent;
+  private boolean scaleMap = false;
 
   private boolean flipLabel = true;
   private AnchorPane holder;
@@ -83,6 +84,11 @@ public class MapFactory {
     return this;
   }
 
+  public MapFactory scaleMap() {
+    this.scaleMap = true;
+    return this;
+  }
+
   public MapFactory withNodeMouseEnterFunctions(Function<Node, EventHandler<MouseEvent>> event) {
     this.nodeMouseEnterEvent = event;
     return this;
@@ -126,6 +132,10 @@ public class MapFactory {
     HashMap<String, Integer> converter = new HashMap<String, Integer>();
     int totalX = 0;
     int totalY = 0;
+    int maxX = 0;
+    int maxY = 0;
+    int minX = 5000;
+    int minY = 3000;
     int totalNode = 0;
 
     converter.put("G", 0);
@@ -182,6 +192,10 @@ public class MapFactory {
 
         totalX += node.getNodeX().getValue();
         totalY += node.getNodeY().getValue();
+        maxY = (int) Math.max(maxY, node.getNodeY().getValue());
+        maxX = (int) Math.max(maxX, node.getNodeX().getValue());
+        minY = (int) Math.min(minY, node.getNodeY().getValue());
+        minX = (int) Math.min(minX, node.getNodeX().getValue());
         totalNode++;
         // Creates popup object
 
@@ -257,6 +271,40 @@ public class MapFactory {
 
     gesturePane.setContent(holder);
     gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+
+    double scale = 0;
+    double xAdjust = 0.7;
+
+    if (scaleMap) {
+      xAdjust = 1;
+      if (minX != 5000) {
+        double temp =
+            (Math.max(
+                        Math.max(
+                            ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.5),
+                            ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.5)),
+                        0)
+                    * 31)
+                + 1;
+        if (temp < 32) {
+          scale = 5 - (Math.log(temp)) / Math.log(2);
+        } else {
+          scale = 0;
+        }
+      }
+
+      gesturePane.zoomTo(scale, Point2D.ZERO);
+
+      gesturePane.animate(Duration.millis(300))
+              .centreOn(
+                      new Point2D(
+                              ((minX + maxX) / 2
+                                      - App.getPrimaryStage().getWidth() * xAdjust * (Math.pow(2, (5 - scale))) / 32
+                                      - 50),
+                              ((minY + maxY) / 2
+                                      - App.getPrimaryStage().getHeight() * Math.pow(2, (5 - scale)) / 32
+                                      - 50)));
+    }
 
     // Return the GesturePane
     return gesturePane;
