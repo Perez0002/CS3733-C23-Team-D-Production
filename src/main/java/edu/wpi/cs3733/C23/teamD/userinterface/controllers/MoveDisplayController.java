@@ -9,14 +9,10 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.TreeMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import lombok.Getter;
@@ -24,19 +20,13 @@ import lombok.Setter;
 
 public class MoveDisplayController {
   @FXML private MFXButton LoginButton;
-  @FXML private BorderPane moveDisplayborderPane;
   @FXML private Text locationNameText;
   @FXML private Text messageText;
-  @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
   @FXML private Text rightRoomText;
   @FXML private Text leftRoomText;
   @FXML private MFXButton swapButton;
   @FXML private MFXButton backButton;
-
   private ArrayList<Edge> edges = new ArrayList<Edge>();
-  TreeMap<String, String> nodeToRoomMap;
-  private Date currentDate;
-  private Node currentNode;
   private ArrayList<Move> moves;
   @FXML @Getter private HBox topHBox;
   @FXML @Getter private HBox bottomHBox;

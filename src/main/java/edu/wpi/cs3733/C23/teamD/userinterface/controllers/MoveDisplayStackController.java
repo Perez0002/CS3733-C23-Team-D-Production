@@ -55,11 +55,6 @@ public class MoveDisplayStackController {
         new FXMLLoader(App.class.getResource("/edu/wpi/cs3733/C23/teamD/views/MoveDisplay.fxml"));
     loader.load();
 
-    // stackPane.getChildren().add(loader.load());
-
-    // stage.setScene(scene);
-    // stage.show();
-
     moveDisplayController = loader.getController();
     HBox bottom = moveDisplayController.getBottomHBox();
     HBox top = moveDisplayController.getTopHBox();
