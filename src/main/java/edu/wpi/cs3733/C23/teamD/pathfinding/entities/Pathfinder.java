@@ -4,6 +4,7 @@ import static java.lang.Math.abs;
 import static java.lang.Math.atan2;
 
 import java.util.ArrayList;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class Pathfinder {
 
@@ -35,7 +36,9 @@ public class Pathfinder {
       int curY = pathList.get(i).getNode().getYcoord();
       int nextY = pathList.get(i + 1).getNode().getYcoord();
       int eucDistance = (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-
+      FontIcon rightArrow = new FontIcon("fltfal-arrow-right-28");
+      FontIcon leftArrow = new FontIcon("fltfal-arrow-left-28");
+      FontIcon icon = null;
       if (i == 0) {
         directions.add(
             "Starting at "
@@ -62,8 +65,10 @@ public class Pathfinder {
           double angle = findAngle(pathList.get(i - 1), pathList.get(i), pathList.get(i + 1));
           if (angle > 0.2) {
             angleText = "turn right";
+            icon = rightArrow;
           } else if (angle < -0.2) {
             angleText = "turn left";
+            icon = leftArrow;
           } else {
             directions.add(null);
           }
@@ -73,52 +78,16 @@ public class Pathfinder {
             nextX = nextNonStraight.getNode().getXcoord();
             eucDistance =
                 (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-            switch ((int) (Math.random() * 4)) {
-              case 0:
-                directions.add(
-                    "Thereafter, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + " and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-              case 1:
-                directions.add(
-                    "Next, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + "and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-              case 2:
-                directions.add(
-                    "Then, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + " and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-              case 3:
-                directions.add(
-                    "Subsequently, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + " and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-            }
+            directions.add(
+                    icon
+                    + " Next, from "
+                    + pathList.get(i).getLocation().getLongName()
+                    + " "
+                    + angleText
+                    + "and then go "
+                    + eucDistance
+                    + " meters to "
+                    + nextNonStraight.getLocation().getLongName());
           }
           ;
         }
