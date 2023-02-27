@@ -139,30 +139,34 @@ public class MoveDisplayContainerController {
 
           locationNameText.setText(currentMove.getLongName());
           messageText.setText(currentMove.getMessage());
-          Node currentNode = currentMove.getNode();
-
-          boolean leftAssigned = true;
-          for (Edge edge : edges) {
-            if (currentNode == edge.getToNode()) {
-              if (leftAssigned) {
-                leftRoomText.setText(getLocationName(edge.getFromNode()));
-                leftAssigned = false;
-              } else {
-                rightRoomText.setText(getLocationName(edge.getFromNode()));
-                break;
-              }
-            } else if (currentNode == edge.getFromNode()) {
-              if (leftAssigned) {
-                leftRoomText.setText(getLocationName(edge.getToNode()));
-                leftAssigned = false;
-              } else {
-                rightRoomText.setText(getLocationName(edge.getToNode()));
-                break;
-              }
-            }
-          }
+          setRightAndLeft();
         }
       };
+
+  private void setRightAndLeft() {
+    Node currentNode = currentMove.getNode();
+    boolean leftAssigned = true;
+    for (Edge edge : edges) {
+      if (currentNode == edge.getToNode()) {
+        if (leftAssigned) {
+          leftRoomText.setText(getLocationName(edge.getFromNode()));
+          leftAssigned = false;
+        } else {
+          rightRoomText.setText(getLocationName(edge.getFromNode()));
+          break;
+        }
+      } else if (currentNode == edge.getFromNode()) {
+        if (leftAssigned) {
+          leftRoomText.setText(getLocationName(edge.getToNode()));
+          leftAssigned = false;
+        } else {
+          rightRoomText.setText(getLocationName(edge.getToNode()));
+          break;
+        }
+      }
+    }
+    rightRoomText.setText("");
+  }
 
   EventHandler<ActionEvent> setDate =
       new EventHandler<ActionEvent>() {

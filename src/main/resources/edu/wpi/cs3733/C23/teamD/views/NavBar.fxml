@@ -69,6 +69,14 @@
                   <Insets left="15.0" right="15.0" />
                </padding>
             </MFXButton>
+            <MFXButton fx:id="moveDisplayButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fltral-arrow-swap-20" iconSize="30" />
+               </graphic>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </MFXButton>
             <MFXButton fx:id="mapEditorButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #012D5A;">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fltrmz-map-24" iconSize="30" />

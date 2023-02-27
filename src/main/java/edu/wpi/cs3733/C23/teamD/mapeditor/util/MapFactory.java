@@ -282,7 +282,6 @@ public class MapFactory {
                         0)
                     * 31)
                 + 1;
-        System.out.println(Math.log(temp));
         if (temp < 32) {
           scale = 5 - (Math.log(temp)) / Math.log(2);
         } else {
