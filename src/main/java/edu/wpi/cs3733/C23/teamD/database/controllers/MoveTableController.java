@@ -27,7 +27,6 @@ public class MoveTableController extends Application implements Initializable, D
   @FXML private TableColumn<Move, String> moveNodeID;
   @FXML private TableColumn<Move, Date> moveDate;
   @FXML private TableColumn<Move, String> moveLongName;
-
   @FXML private TableColumn<Move, String> message;
   @Setter private AddFormController addFormController;
 

@@ -63,12 +63,12 @@
             </VBox>
             <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
                <children>
-                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Type of problem">
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" text="Additional details">
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <MFXTextField fx:id="descriptionBox" floatMode="DISABLED" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter a Description" styleClass="serviceRequestMFXTextField" />
+                  <MFXTextField fx:id="descriptionBox" floatMode="DISABLED" minHeight="42.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter any additional details" styleClass="serviceRequestMFXTextField" />
                </children>
             </VBox>
          </children>

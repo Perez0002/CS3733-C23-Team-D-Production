@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -56,6 +57,9 @@ public class MapEditorPageController {
   private boolean edgesShown = true;
 
   private boolean labelsShown = true;
+  @Getter public static ArrayList<MapNode> nodeList = new ArrayList<>();
+  @Getter public static ArrayList<MapEdge> edgeList = new ArrayList<>();
+
 
   Rectangle selectArea = null;
 
@@ -69,8 +73,6 @@ public class MapEditorPageController {
   private BooleanProperty nodeMode;
   private BooleanProperty edgeMode;
   private BooleanProperty multiNodeMode;
-  private ArrayList<MapNode> nodeList = new ArrayList<>();
-  private ArrayList<MapEdge> edgeList = new ArrayList<>();
   private ArrayList<MapNode> selected = new ArrayList<>();
   private MFXButton[] floorButtons = new MFXButton[6];
 
@@ -148,7 +150,7 @@ public class MapEditorPageController {
           }
         }
 
-        gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
+        gesturePane = MapFactory.startBuild().setLabelsVisable(labelsShown).withNodes(nodeList).withEdges(edgeList).build(floor);
         gesturePane.requestFocus();
         gesturePane.setOnKeyReleased(
             e -> {
@@ -287,6 +289,10 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+
+    nodeList.clear();
+    edgeList.clear();
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
@@ -314,10 +320,16 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      }
+
+      if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      }
 
       MapEdge tempMapEdge = new MapEdge(edge1, edgeMode);
+      tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(

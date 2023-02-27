@@ -75,6 +75,7 @@ public class PathfindingController {
   @FXML private MFXToggleButton serviceRequestLocationToggle;
   @FXML private MFXToggleButton nodeNameToggle;
 
+  private boolean nodeNamesVisible = false;
   private RoomPickComboBoxController comboBox;
   private boolean helpVisible = false;
   HashMap<String, Integer> converter = new HashMap<String, Integer>();
@@ -122,7 +123,11 @@ public class PathfindingController {
           }
         }
         pathfindingBorderPane.setCenter(
-            MapFactory.startBuild().withNodes(mapNodes).withEdges(mapEdges).build(floor));
+            MapFactory.startBuild()
+                .withNodes(mapNodes)
+                .withEdges(mapEdges)
+                .setLabelsVisible(nodeNameToggle.isSelected())
+                .build(floor));
       }
     };
   }
