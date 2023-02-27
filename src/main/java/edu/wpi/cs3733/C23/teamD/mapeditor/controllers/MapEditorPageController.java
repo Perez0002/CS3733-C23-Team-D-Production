@@ -128,11 +128,6 @@ public class MapEditorPageController {
     HashMap<String, PathNode> pathNodes = new HashMap<>();
     for (Move move : baseMoveList) {
       if (move.getNode() != null) {
-        System.out.println("Move in baseMoveList: " + move.getNodeID());
-        pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
-      }
-      if (move.getNode() == null) {
-        System.out.println("Move in null: " + move.getNodeID());
         pathNodes.put(move.getNodeID(), new PathNode(move.getNode(), move.getLocation()));
       }
     }
