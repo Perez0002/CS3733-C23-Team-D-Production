@@ -379,4 +379,7 @@ public class MoveDisplayContainerController {
     a.setTranslateY(-mapPane.getHeight());
     a.setTranslateX(-mapPane.getWidth());
   }
+
+  @FXML
+  public void setDefaultLocation() {}
 }
