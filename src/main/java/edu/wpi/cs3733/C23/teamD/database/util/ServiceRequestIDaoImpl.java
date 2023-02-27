@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.database.util;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import jakarta.persistence.Query;
 import java.io.*;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
 import org.hibernate.TransactionException;
-
+import edu.wpi.cs3733.C23.teamD.user.entities.*;
 public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private final Session session = DBSingleton.getSession();
 
@@ -301,15 +302,37 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public void uploadCSV(ServiceRequest serv) {
     try {
       BufferedReader fileReader =
-          new BufferedReader(
-              new FileReader(
-                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+              new BufferedReader(
+                      new FileReader(
+                              "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
       session.beginTransaction();
       session.createQuery("DELETE FROM ServiceRequest");
       session.getTransaction().commit();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        ServiceRequest sans = new ServiceRequest();
+        Employee emp = null;
+        for (Employee e : FDdb.getInstance().getAllEmployees()) {
+          if (e.getEmployeeID() == Integer.parseInt(data[3])) {
+            emp = e;
+            break;
+          }
+        }
+        LocationName loc = null;
+        for (LocationName l : FDdb.getInstance().getAllLocationNames()) {
+          if (l.getLongName() == data[6]) {
+            loc = l;
+            break;
+          }
+        }
+        ServiceRequest sans =
+                new ServiceRequest(
+                        Integer.parseInt(data[0]),
+                        ServiceRequest.Status.valueOf(data[1].trim()),
+                        emp,
+                        data[4],
+                        data[5],
+                        loc,
+                        data[6]);
         FDdb.getInstance().saveServiceRequest(sans);
       }
       fileReader.close();
@@ -321,10 +344,21 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   @Override
   public void downloadCSV(ServiceRequest serv) {
     try {
-      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv");
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv");
       FileWriter fileWriter = new FileWriter(file, false);
-      for (SanitationRequest s : this.sanitationRequestList) {
-        fileWriter.write("");
+      for (ServiceRequest s : this.masterList) {
+        fileWriter.write(
+                String.join(
+                        ",",
+                        Integer.toString(s.getServiceRequestId()),
+                        s.getServiceRequestType(),
+                        s.getStat().name(),
+                        Integer.toString(s.getAssociatedStaff().getEmployeeID()),
+                        s.getReason(),
+                        s.getServiceRequestType(),
+                        s.getLocation().getLongName(),
+                        s.getUrgency())
+                        + "\n");
       }
       fileWriter.flush();
       fileWriter.close();

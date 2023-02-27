@@ -5,6 +5,8 @@ import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
+import java.io.*;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 
 public class SettingIDaoImpl implements IDao<Setting> {
   private final Session session = DBSingleton.getSession();
@@ -95,8 +97,50 @@ public class SettingIDaoImpl implements IDao<Setting> {
   }
 
   @Override
-  public void downloadCSV(Setting s) {}
+  public void downloadCSV(Setting s) {
+    try {
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Setting.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
+      for (Setting set : this.settings) {
+        String oneObject =
+                String.join(
+                        ",",
+                        Integer.toString(set.getEmployeeID().getEmployeeID()),
+                        Integer.toString(set.getConfetti()),
+                        Integer.toString(set.getDarkmode()));
+        fileWriter.write(oneObject + "\n");
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @Override
-  public void uploadCSV(Setting s) {}
+  public void uploadCSV(Setting s) {
+    try {
+      BufferedReader fileReader =
+              new BufferedReader(
+                      new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Setting.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM Setting");
+      session.getTransaction().commit();
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        Setting set = new Setting();
+        for (Employee e : FDdb.getInstance().getAllEmployees()) {
+          if (e.getEmployeeID() == Integer.parseInt(data[0])) {
+            set = new Setting(e, Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+            break;
+          }
+        }
+        this.update(set);
+      }
+      fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 }

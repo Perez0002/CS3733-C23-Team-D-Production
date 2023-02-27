@@ -2,9 +2,14 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.Query;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
+import java.io.*;
 
 public class EmployeeIDaoImpl implements IDao<Employee> {
   private final Session session = DBSingleton.getSession();
@@ -95,8 +100,63 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
   }
 
   @Override
-  public void downloadCSV(Employee emp) {}
+  public void downloadCSV(Employee emp) {
+    try {
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Employee.csv");
+      FileWriter fileWriter = new FileWriter(file, false);
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      for (Employee employee : this.employees) {
+        String oneObject =
+                String.join(
+                        ",",
+                        Integer.toString(employee.getEmployeeID()),
+                        employee.getEmployeeType(),
+                        employee.getFirstName(),
+                        employee.getLastName(),
+                        employee.getPassword(),
+                        employee.getEmail(),
+                        employee.getPhoneNumber(),
+                        format.format(employee.getBirthday()),
+                        employee.getAddress());
+        fileWriter.write(oneObject + "\n");
+      }
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @Override
-  public void uploadCSV(Employee emp) {}
+  public void uploadCSV(Employee emp) {
+    try {
+      BufferedReader fileReader =
+              new BufferedReader(
+                      new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Employee.csv"));
+      session.beginTransaction();
+      session.createQuery("DELETE FROM Setting ");
+      session.createQuery("DELETE FROM Employee");
+      session.getTransaction().commit();
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      while (fileReader.ready()) {
+        String[] data = fileReader.readLine().split(",");
+        Employee employee =
+                new Employee(
+                        Integer.parseInt(data[0]),
+                        data[1],
+                        data[2],
+                        data[3],
+                        data[4],
+                        data[5],
+                        data[6],
+                        format.parse(data[7]),
+                        data[8]);
+        this.save(employee);
+      }
+      fileReader.close();
+    } catch (IOException | ParseException e) {
+      e.printStackTrace();
+    }
+  }
+
 }
