@@ -150,40 +150,33 @@ public class LocationNameIDaoImpl implements IDao<LocationName> {
       e.printStackTrace();
     }
   }
-  public void saveKiosk(LocationName l){
+
+  public void saveKiosk(LocationName l) {
     try {
       File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Kiosk.csv");
       FileWriter fileWriter = new FileWriter(file, false);
-        String oneObject =
-                String.join(
-                        ",",
-                        l.getLongName(),
-                        l.getShortName(),
-                        l.getLocationType());
-        fileWriter.write(oneObject + "\n");
+      String oneObject = String.join(",", l.getLongName(), l.getShortName(), l.getLocationType());
+      fileWriter.write(oneObject + "\n");
       fileWriter.flush();
       fileWriter.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-  public LocationName getKiosk(){
+
+  public LocationName getKiosk() {
     try {
       BufferedReader fileReader =
-              new BufferedReader(
-                      new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Kiosk.csv"));
-      if(fileReader.ready()){
+          new BufferedReader(
+              new FileReader("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Kiosk.csv"));
+      if (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        LocationName l =
-                new LocationName(
-                        data[0],
-                        data[1],
-                        data[2]);
+        LocationName l = new LocationName(data[0], data[1], data[2]);
         fileReader.close();
         return l;
       }
-        fileReader.close();
-        return null;
+      fileReader.close();
+      return null;
     } catch (IOException e) {
       e.printStackTrace();
       return null;

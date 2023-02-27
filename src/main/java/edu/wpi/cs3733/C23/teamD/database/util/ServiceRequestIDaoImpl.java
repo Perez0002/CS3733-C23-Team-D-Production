@@ -5,6 +5,8 @@ import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.*;
 import jakarta.persistence.Query;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -28,43 +30,43 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public ServiceRequest get(ServiceRequest s) {
     if (s instanceof PatientTransportRequest) {
       return this.patientTransportRequestList.stream()
-          .filter(
-              patientTransportRequest ->
-                  s.getServiceRequestId() == (patientTransportRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      patientTransportRequest ->
+                              s.getServiceRequestId() == (patientTransportRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof SanitationRequest) {
       return this.sanitationRequestList.stream()
-          .filter(
-              sanitationRequest ->
-                  s.getServiceRequestId() == (sanitationRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      sanitationRequest ->
+                              s.getServiceRequestId() == (sanitationRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof ComputerServiceRequest) {
       return this.computerServiceRequests.stream()
-          .filter(
-              computerServiceRequest ->
-                  s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      computerServiceRequest ->
+                              s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof SecurityServiceRequest) {
       return this.securityServiceRequests.stream()
-          .filter(
-              securityServiceRequest ->
-                  s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      securityServiceRequest ->
+                              s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof AVRequest) {
       return this.avRequests.stream()
-          .filter(avRequest -> s.getServiceRequestId() == (avRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(avRequest -> s.getServiceRequestId() == (avRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else {
       return this.masterList.stream()
-          .filter(
-              serviceRequest -> s.getServiceRequestId() == (serviceRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      serviceRequest -> s.getServiceRequestId() == (serviceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     }
   }
 
@@ -121,11 +123,11 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       }
 
       int masterIndex =
-          IntStream.range(0, this.masterList.size())
-              .filter(
-                  i -> this.masterList.get(i).getServiceRequestId() == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.masterList.size())
+                      .filter(
+                              i -> this.masterList.get(i).getServiceRequestId() == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
 
       this.masterList.remove(masterIndex);
       this.masterList.add(s);
@@ -173,31 +175,31 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     session.beginTransaction();
     try {
       javaPatientTransportRequestList =
-          (ArrayList<PatientTransportRequest>)
-              session
-                  .createQuery(
-                      "SELECT p FROM PatientTransportRequest p", PatientTransportRequest.class)
-                  .getResultList();
+              (ArrayList<PatientTransportRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM PatientTransportRequest p", PatientTransportRequest.class)
+                              .getResultList();
       javaSanitationRequestList =
-          (ArrayList<SanitationRequest>)
-              session
-                  .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
-                  .getResultList();
+              (ArrayList<SanitationRequest>)
+                      session
+                              .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
+                              .getResultList();
       javaComputerServiceRequestList =
-          (ArrayList<ComputerServiceRequest>)
-              session
-                  .createQuery(
-                      "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
-                  .getResultList();
+              (ArrayList<ComputerServiceRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
+                              .getResultList();
       javaSecurityRequestList =
-          (ArrayList<SecurityServiceRequest>)
-              session
-                  .createQuery(
-                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
-                  .getResultList();
+              (ArrayList<SecurityServiceRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
+                              .getResultList();
       javaAVRequestList =
-          (ArrayList<AVRequest>)
-              session.createQuery("SELECT p FROM AVRequest p", AVRequest.class).getResultList();
+              (ArrayList<AVRequest>)
+                      session.createQuery("SELECT p FROM AVRequest p", AVRequest.class).getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
@@ -253,47 +255,47 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     int index = -1;
     if (s instanceof PatientTransportRequest) {
       index =
-          IntStream.range(0, this.patientTransportRequestList.size())
-              .filter(
-                  i ->
-                      this.patientTransportRequestList.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.patientTransportRequestList.size())
+                      .filter(
+                              i ->
+                                      this.patientTransportRequestList.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof SanitationRequest) {
       index =
-          IntStream.range(0, this.sanitationRequestList.size())
-              .filter(
-                  i ->
-                      this.sanitationRequestList.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.sanitationRequestList.size())
+                      .filter(
+                              i ->
+                                      this.sanitationRequestList.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof ComputerServiceRequest) {
       index =
-          IntStream.range(0, this.computerServiceRequests.size())
-              .filter(
-                  i ->
-                      this.computerServiceRequests.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.computerServiceRequests.size())
+                      .filter(
+                              i ->
+                                      this.computerServiceRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof SecurityServiceRequest) {
       index =
-          IntStream.range(0, this.securityServiceRequests.size())
-              .filter(
-                  i ->
-                      this.securityServiceRequests.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.securityServiceRequests.size())
+                      .filter(
+                              i ->
+                                      this.securityServiceRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof AVRequest) {
       index =
-          IntStream.range(0, this.avRequests.size())
-              .filter(
-                  i -> this.avRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.avRequests.size())
+                      .filter(
+                              i -> this.avRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     }
 
     return index;
@@ -303,9 +305,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public void uploadCSV(ServiceRequest serv) {
     try {
       BufferedReader fileReader =
-          new BufferedReader(
-              new FileReader(
-                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+              new BufferedReader(
+                      new FileReader(
+                              "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
       session.beginTransaction();
       session.createQuery("DELETE FROM ServiceRequest");
       session.getTransaction().commit();
@@ -313,28 +315,39 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         String[] data = fileReader.readLine().split(",");
         Employee emp = null;
         for (Employee e : FDdb.getInstance().getAllEmployees()) {
-          if (e.getEmployeeID() == Integer.parseInt(data[3])) {
+          if (e.getEmployeeID() == Integer.parseInt(data[2])) {
             emp = e;
             break;
           }
         }
         LocationName loc = null;
         for (LocationName l : FDdb.getInstance().getAllLocationNames()) {
-          if (l.getLongName() == data[6]) {
+          if (l.getLongName() == data[5]) {
             loc = l;
             break;
           }
         }
-        ServiceRequest sans =
-            new ServiceRequest(
-                Integer.parseInt(data[0]),
-                ServiceRequest.Status.valueOf(data[1].trim()),
-                emp,
-                data[4],
-                data[5],
-                loc,
-                data[6]);
-        FDdb.getInstance().saveServiceRequest(sans);
+        String type = data[3];
+        if(type.equals("ComputerService")){
+          ComputerServiceRequest sans = new ComputerServiceRequest();
+          FDdb.getInstance().saveServiceRequest(sans);
+        }
+        else if(type.equals("Security")){
+          SecurityServiceRequest sans = new SecurityServiceRequest();
+          FDdb.getInstance().saveServiceRequest(sans);
+        }
+        else if(type.equals("PatientTransportData")){
+          PatientTransportRequest sans = new PatientTransportRequest();
+          FDdb.getInstance().saveServiceRequest(sans);
+        }
+        else if(type.equals("AVRequest")){
+          AVRequest sans = new AVRequest();
+          FDdb.getInstance().saveServiceRequest(sans);
+        }
+        else if(type.equals("SanitationRequestData")){
+          SanitationRequest sans = new SanitationRequest();
+          FDdb.getInstance().saveServiceRequest(sans);
+        }
       }
       fileReader.close();
     } catch (IOException e) {
@@ -347,19 +360,39 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     try {
       File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv");
       FileWriter fileWriter = new FileWriter(file, false);
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
       for (ServiceRequest s : this.masterList) {
-        fileWriter.write(
-            String.join(
-                    ",",
-                    Integer.toString(s.getServiceRequestId()),
-                    s.getServiceRequestType(),
-                    s.getStat().name(),
-                    Integer.toString(s.getAssociatedStaff().getEmployeeID()),
-                    s.getReason(),
-                    s.getServiceRequestType(),
-                    s.getLocation().getLongName(),
-                    s.getUrgency())
-                + "\n");
+        String service = String.join(
+                ",",
+                Integer.toString(s.getServiceRequestId()),
+                s.getServiceRequestType(),
+                s.getStat().name(),
+                Integer.toString(s.getAssociatedStaff().getEmployeeID()),
+                s.getReason(),
+                s.getServiceRequestType(),
+                s.getLocation().getLongName(),
+                s.getUrgency());
+        if(s.getServiceRequestType().equals("ComputerService")){
+          service= String.join(
+                  ",",service,((ComputerServiceRequest)s).getDeviceType());
+        }
+        else if(s.getServiceRequestType().equals("Security")){
+          service= String.join(
+                  ",",service,((SecurityServiceRequest)s).getTypeOfSecurityRequest());
+        }
+        else if(s.getServiceRequestType().equals("PatientTransportData")){
+          service= String.join(
+                  ",",service,((PatientTransportRequest)s).getEndRoom());
+        }
+        else if(s.getServiceRequestType().equals("AVRequest")){
+          service= String.join(
+                  ",",service,format.format(((AVRequest)s).getDateFirstSeen()));
+        }
+        else if(s.getServiceRequestType().equals("SanitationRequestData")){
+          service= String.join(
+                  ",",service,format.format(((SanitationRequest)s).getBioLevel()));
+        }
+        fileWriter.write(service);
       }
       fileWriter.flush();
       fileWriter.close();

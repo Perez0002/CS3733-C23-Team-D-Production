@@ -23,4 +23,15 @@ public class SecurityServiceRequest extends ServiceRequest {
     super();
     this.typeOfSecurityRequest = "";
   }
+  public SecurityServiceRequest(int serviceRequestId,
+                                Status stat,
+                                Employee associatedStaff,
+                                String reason,
+                                String serviceRequestType,
+                                LocationName location,
+                                String urgency,
+                                String typeOfSecurityRequest) {
+    super(serviceRequestId, stat, associatedStaff, reason, serviceRequestType, location, urgency);
+    this.typeOfSecurityRequest = typeOfSecurityRequest;
+  }
 }

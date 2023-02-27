@@ -21,4 +21,15 @@ public class SanitationRequest extends ServiceRequest {
     super();
     this.bioLevel = 0;
   }
+  public SanitationRequest(int serviceRequestId,
+                           Status stat,
+                           Employee associatedStaff,
+                           String reason,
+                           String serviceRequestType,
+                           LocationName location,
+                           String urgency,
+                           int bioLevel) {
+    super(serviceRequestId, stat, associatedStaff, reason, serviceRequestType, location, urgency);
+    this.bioLevel = bioLevel;
+  }
 }

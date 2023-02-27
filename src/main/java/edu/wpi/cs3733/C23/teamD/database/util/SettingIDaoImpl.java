@@ -132,10 +132,10 @@ public class SettingIDaoImpl implements IDao<Setting> {
         for (Employee e : FDdb.getInstance().getAllEmployees()) {
           if (e.getEmployeeID() == Integer.parseInt(data[0])) {
             set = new Setting(e, Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+            this.update(set);
             break;
           }
         }
-        this.update(set);
       }
       fileReader.close();
     } catch (IOException e) {

@@ -110,405 +110,405 @@ Hallway Intersection 35 Level 2,Hallway B3502,HALL
 Comprehensive Breast Heath,DEPT B0102,DEPT
 Hallway Intersection 36 Level 2,Hallway B3602,HALL
 Hallway Intersection 37 Level 2,Hallway B3702,HALL
-Hallway Intersection 42 Level 2,Hallway B04202,HALL
-Hallway Intersection 44 Level 2,Hallway B4402,HALL
-Medical Records Conference Room Floor L1,Conf C002L1,CONF
-Day Surgery Family Waiting Floor L1,Department C002L1,DEPT
-Medical Records Film Library Floor L1,Department C004L1,DEPT
-Hallway K Elevator Floor L2,Hallway C001L2,HALL
-Hallway 2 Floor L2,Hallway C002L2,HALL
-Hallway 3 Floor L2,Hallway C003L2,HALL
-Hallway 4 Floor L2,Hallway C004L2,HALL
-Hallway 5 Floor L2,Hallway C005L2,HALL
-Hallway 6 Floor L2,Hallway C006L2,HALL
-Hallway 7 Floor L2,Hallway C007L2,HALL
-Hallway 8 Floor L2,Hallway C008L2,HALL
-Hallway 9 Floor L2,Hallway C009L2,HALL
-Hallway 10 Floor L2,Hallway C010L2,HALL
-Hallway 12 Floor L1,Hallway C012L1,HALL
-Hallway 14 Floor L1,Hallway C014L1,HALL
-Outpatient Fluoroscopy Floor L1,Lab C001L1,LABS
-Pre-Op PACU Floor L1,Lab C002L1,LABS
-Nuclear Medicine Floor L1,Lab C003L1,LABS
-CSIR MRI Floor L1,Lab C005L1,LABS
-Restroom K Elevator Floor L2,Restroom C001L2,REST
-Restroom L Elevator Floor L2,Restroom C002L2,REST
-Restroom H Elevator Floor L1,Restroom C004L1,REST
-Volunteers Floor L1,Service C001L1,SERV
-Elevator A Floor 2,Elevator A2,ELEV
-Elevator C Floor 2,Elevator C2,ELEV
-Restroom B elevator Floor 2,Restroom B,REST
-Restroom C-D elevator Floor 2,Restroom C-D,REST
-15 Francis Security Desk Floor 2,Information Desk,INFO
-Chest Diseases Floor 2,Chest Diseases,DEPT
-Brigham Health Floor 2,Brigham Health,DEPT
-MRI Associates Floor 2,MRI Associates,LABS
-Pats Place Floor 2,Pats Place,RETL
-Staircase1 Floor2,Staircase1,STAI
-Staircase3 Floor2,Staircase3,STAI
-Staircase5 Floor2,Staircase5,STAI
-Staircase7 Floor2,Staircase7,STAI
-Hallway 1 Floor 2,Hallway D0102,HALL
-Hallway 3 Floor 2,Hallway D0302,HALL
-Hallway 5 Floor 2,Hallway D0502,HALL
-Hallway 7 Floor 2,Hallway D0702,HALL
-Hallway 9 Floor 2,Hallway D0902,HALL
-Hallway 11 Floor 3,Hallway D1102,HALL
-Hallway 13 Floor 3,Hallway D1302,HALL
-Hallway 15 Floor 3,Hallway D1502,HALL
-Hallway 17 Floor 3,Hallway D1702,HALL
-Hallway 19 Floor 3,Hallway D1902,HALL
-Hallway 21 Floor 4,Hallway D2102,HALL
-Hallway 23 Floor 4,Hallway D2302,HALL
-Hallway 25 Floor 4,Hallway D2502,HALL
-Hallway 27 Floor 4,Hallway D2702,HALL
-Hallway 29 Floor 4,Hallway D2902,HALL
-Hallway 31 Floor 5,Hallway D3102,HALL
-Hallway 33 Floor 5,Hallway D3302,HALL
-Hallway 35 Floor 5,Hallway D3502,HALL
-Hallway 37 Floor 5,Hallway D3702,HALL
-Hallway 39 Floor 5,Hallway D3902,HALL
-Hallway 41 Floor 6,Hallway D4102,HALL
-Hallway 43 Floor 6,Hallway D4302,HALL
-Hallway 45 Floor 6,Hallway D4502,HALL
-Hallway 47 Floor 6,Hallway D4702,HALL
-Hallway 49 Floor 2,Hallway D4902,HALL
-Hallway 51 Floor 2,Hallway D5102,HALL
-Hallway 53 Floor 2,Hallway D5302,HALL
-Hallway 55 Floor 2,Hallway D5502,HALL
-Hallway 57 Floor 2,Hallway D5702,HALL
-Kiosk,HALL,HALL
-Hallway Node 1 Floor 1,Hall 01,HALL
-Staircase J1 Floor 1,Stair J1,STAI
-Hallway Node 3 Floor 1,HallE03,HALL
-Hallway Node 5 Floor 1,HallE05,HALL
-Hallway Node 6 Floor 1,HallE06,HALL
-Hallway Node 7 Floor 1,HallE07,HALL
-Hallway Node 9 Floor 1,HallE09,HALL
-Hallway Node 11 Floor 1,HallE11,HALL
-Hallway Node 13 Floor 1,HallE13,HALL
-Hallway Node 15 Floor 1,HallE15,HALL
-Hallway Node 17 Floor 1,HallE17,HALL
-Restroom G1 Floor 1,Restroom G1,REST
-Asthma Research Floor 1,Asthma 1,LABS
-Ocupational Health Floor 1,Ocupational 1,DEPT
-Hallway Node 20 Floor 1,HallE20,HALL
-Hallway Node 22 Floor 1,HallE22,HALL
-Restroom F1 Floor 1,Restroom F1,REST
-Hallway Node 25 Floor 1,HallE25,HALL
-Hallway Node 27 Floor 1,HallE27,HALL
-Staircase H1 Floor 1,Stair H1,STAI
-Ambulatory X-Ray Floor 1,X-Ray 1,LABS
-Hallway Node 29 Floor 1,HallE29,HALL
-Hallway Node 31 Floor 1,HallE31,HALL
-Hallway Node 32 Floor 1,HallE32,HALL
-Hallway Node 34 Floor 1,HallE34,HALL
-Lobby Shattuck Street,Hallway F00201,HALL
-Shattuck Street Lobby 1,Hallway F00301,HALL
-Shattuck Street Lobby 2,Hallway F00401,HALL
-Shattuck Street Lobby 3,Hallway F00501,HALL
-Tower Lobby Entrance 1,Tower Entrance,HALL
-Tower Hallway 1,Hallway F00801,HALL
-Tower Hallway 2,Hallway F00901,HALL
-Tower Stairway 1,Tower Stairs 1,STAI
-Tower Staff Entrance,Hallway F01201,HALL
-Spiritual Care Office,SCO,DEPT
-Tower Medical Cashier,Tower Cashier,SERV
-Tower Hallway 8,Hallway F01601,HALL
-Multifaith Chapel,Chapel,DEPT
-Tower Hallway 11,Hallway F01901,HALL
-Bretholtz Center for Patients and Families,Bretholtz WR,DEPT
-Elevator M Floor L2,Elevator ML2,ELEV
-Sharf Admitting Center,Sharf Center,DEPT
-Obstetrics Admitting,Obs Admitting,LABS
-Lobby Hallway 2,Hallway F02401,HALL
-Lobby Escalator,Lobby Escalator,STAI
-Lobby Hallway 7,Hallway F02701,HALL
 Hallway Intersection 41 Level 2,Hallway B04102,HALL
+Hallway Intersection 42 Level 2,Hallway B04202,HALL
 Hallway Intersection 43 level 2,Hallway B04302,HALL
+Hallway Intersection 44 Level 2,Hallway B4402,HALL
 Anesthesia Conf Floor L1,Conf C001L1,CONF
+Medical Records Conference Room Floor L1,Conf C002L1,CONF
 Abrams Conference Room,Conf C003L1,CONF
+Day Surgery Family Waiting Floor L1,Department C002L1,DEPT
 Day Surgery Family Waiting Exit Floor L1,Department C003L1,DEPT
+Medical Records Film Library Floor L1,Department C004L1,DEPT
 Hallway 1 Floor L1,Hallway C001L1,HALL
+Hallway K Elevator Floor L2,Hallway C001L2,HALL
 Hallway 2 Floor L1,Hallway C002L1,HALL
+Hallway 2 Floor L2,Hallway C002L2,HALL
 Hallway 3 Floor L1,Hallway C003L1,HALL
+Hallway 3 Floor L2,Hallway C003L2,HALL
 Hallway 4 Floor L1,Hallway C004L1,HALL
+Hallway 4 Floor L2,Hallway C004L2,HALL
 Hallway 5 Floor L1,Hallway C005L1,HALL
+Hallway 5 Floor L2,Hallway C005L2,HALL
 Hallway 6 Floor L1,Hallway C006L1,HALL
+Hallway 6 Floor L2,Hallway C006L2,HALL
 Hallway 7 Floor L1,Hallway C007L1,HALL
+Hallway 7 Floor L2,Hallway C007L2,HALL
 Hallway 8 Floor L1,Hallway C008L1,HALL
+Hallway 8 Floor L2,Hallway C008L2,HALL
 Hallway 9 Floor L1,Hallway C009L1,HALL
+Hallway 9 Floor L2,Hallway C009L2,HALL
 Hallway 10 Floor L1,Hallway C010L1,HALL
+Hallway 10 Floor L2,Hallway C010L2,HALL
 Hallway 11 Floor L1,Hallway C011L1,HALL
+Hallway 12 Floor L1,Hallway C012L1,HALL
 Hallway 13 Floor L1,Hallway C013L1,HALL
+Hallway 14 Floor L1,Hallway C014L1,HALL
 Hallway 15 Floor L1,Hallway C015L1,HALL
+Outpatient Fluoroscopy Floor L1,Lab C001L1,LABS
 Radiation Oncology TX Suite Floor L2,Lab C001L2,LABS
+Pre-Op PACU Floor L1,Lab C002L1,LABS
 Radiation Oncology Floor L2,Lab C002L2,LABS
+Nuclear Medicine Floor L1,Lab C003L1,LABS
 Ultrasound Floor L1,Lab C004L1,LABS
+CSIR MRI Floor L1,Lab C005L1,LABS
 Restroom L Elevator Floor L1,Restroom C001L1,REST
+Restroom K Elevator Floor L2,Restroom C001L2,REST
 Restroom M Elevator Floor L1,Restroom C002L1,REST
+Restroom L Elevator Floor L2,Restroom C002L2,REST
 Restroom K Elevator Floor L1,Restroom C003L1,REST
+Restroom H Elevator Floor L1,Restroom C004L1,REST
 Vending Machine 1 L1,Retail C001L1,RETL
+Volunteers Floor L1,Service C001L1,SERV
 Interpreter Services Floor L2,Service C001L2,SERV
+Elevator A Floor 2,Elevator A2,ELEV
 Elevator B Floor 2,Elevator B2,ELEV
+Elevator C Floor 2,Elevator C2,ELEV
 Elevator D Floor 2,Elevator D2,ELEV
+Restroom B elevator Floor 2,Restroom B,REST
 Restroom C elevator Floor 2,Restroom C,REST
+Restroom C-D elevator Floor 2,Restroom C-D,REST
 Restroom D elevator Floor 2,Restroom D,REST
+15 Francis Security Desk Floor 2,Information Desk,INFO
 Security Desk Thorn Floor 2,Security Desk,INFO
+Chest Diseases Floor 2,Chest Diseases,DEPT
 Thoracic Surgery Clinic Floor 2,Thoracic Surgery Clinic,DEPT
+Brigham Health Floor 2,Brigham Health,DEPT
 Waiting Room Floor 2,Waiting Room,DEPT
+MRI Associates Floor 2,MRI Associates,LABS
 Carrie M. Hall Conference Center Floor 2,Conference Center,CONF
+Pats Place Floor 2,Pats Place,RETL
 15 Lobby Entrance Floor 2,15 Lobby Entrance,EXIT
+Staircase1 Floor2,Staircase1,STAI
 Staircase2 Floor2,Staircase2,STAI
+Staircase3 Floor2,Staircase3,STAI
 Staircase4 Floor2,Staircase4,STAI
+Staircase5 Floor2,Staircase5,STAI
 Staircase6 Floor2,Staircase6,STAI
+Staircase7 Floor2,Staircase7,STAI
 Staircase8 Floor2,Staircase8,STAI
+Hallway 1 Floor 2,Hallway D0102,HALL
 Hallway 2 Floor 2,Hallway D0202,HALL
+Hallway 3 Floor 2,Hallway D0302,HALL
 Hallway 4 Floor 2,Hallway D0402,HALL
+Hallway 5 Floor 2,Hallway D0502,HALL
 Hallway 6 Floor 2,Hallway D0602,HALL
+Hallway 7 Floor 2,Hallway D0702,HALL
 Hallway 8 Floor 2,Hallway D0802,HALL
+Hallway 9 Floor 2,Hallway D0902,HALL
 Hallway 10 Floor 2,Hallway D1002,HALL
+Hallway 11 Floor 3,Hallway D1102,HALL
 Hallway 12 Floor 3,Hallway D1202,HALL
+Hallway 13 Floor 3,Hallway D1302,HALL
 Hallway 14 Floor 3,Hallway D1402,HALL
+Hallway 15 Floor 3,Hallway D1502,HALL
 Hallway 16 Floor 3,Hallway D1602,HALL
+Hallway 17 Floor 3,Hallway D1702,HALL
 Hallway 18 Floor 3,Hallway D1802,HALL
+Hallway 19 Floor 3,Hallway D1902,HALL
 Hallway 20 Floor 3,Hallway D2002,HALL
+Hallway 21 Floor 4,Hallway D2102,HALL
 Hallway 22 Floor 4,Hallway D2202,HALL
+Hallway 23 Floor 4,Hallway D2302,HALL
 Hallway 24 Floor 4,Hallway D2402,HALL
+Hallway 25 Floor 4,Hallway D2502,HALL
 Hallway 26 Floor 4,Hallway D2602,HALL
+Hallway 27 Floor 4,Hallway D2702,HALL
 Hallway 28 Floor 4,Hallway D2802,HALL
+Hallway 29 Floor 4,Hallway D2902,HALL
 Hallway 30 Floor 4,Hallway D3002,HALL
+Hallway 31 Floor 5,Hallway D3102,HALL
 Hallway 32 Floor 5,Hallway D3202,HALL
+Hallway 33 Floor 5,Hallway D3302,HALL
 Hallway 34 Floor 5,Hallway D3402,HALL
+Hallway 35 Floor 5,Hallway D3502,HALL
 Hallway 36 Floor 5,Hallway D3602,HALL
+Hallway 37 Floor 5,Hallway D3702,HALL
 Hallway 38 Floor 5,Hallway D3802,HALL
+Hallway 39 Floor 5,Hallway D3902,HALL
 Hallway 40 Floor 5,Hallway D4002,HALL
+Hallway 41 Floor 6,Hallway D4102,HALL
 Hallway 42 Floor 6,Hallway D4202,HALL
+Hallway 43 Floor 6,Hallway D4302,HALL
 Hallway 44 Floor 6,Hallway D4402,HALL
+Hallway 45 Floor 6,Hallway D4502,HALL
 Hallway 46 Floor 6,Hallway D4602,HALL
+Hallway 47 Floor 6,Hallway D4702,HALL
 Hallway 48 Floor 2,Hallway D4802,HALL
+Hallway 49 Floor 2,Hallway D4902,HALL
 Hallway 50 Floor 2,Hallway D5002,HALL
+Hallway 51 Floor 2,Hallway D5102,HALL
 Hallway 52 Floor 2,Hallway D5202,HALL
+Hallway 53 Floor 2,Hallway D5302,HALL
 Hallway 54 Floor 2,Hallway D5402,HALL
+Hallway 55 Floor 2,Hallway D5502,HALL
 Hallway 56 Floor 2,Hallway D5602,HALL
+Hallway 57 Floor 2,Hallway D5702,HALL
 Hallway 58 Floor 2,Hallway D5802,HALL
+Kiosk,HALL,HALL
 Staircase K1 Floor 1,Stair K1,STAI
+Hallway Node 1 Floor 1,Hall 01,HALL
 Hallway Node 2 Floor 1,HallE02,HALL
+Staircase J1 Floor 1,Stair J1,STAI
 Ambulance Parking Exit Floor 1,AmbExit 1,EXIT
+Hallway Node 3 Floor 1,HallE03,HALL
 Hallway Node 4 Floor 1,HallE04,HALL
+Hallway Node 5 Floor 1,HallE05,HALL
 Waiting Room 1 Floor 1,Wait 1,DEPT
+Hallway Node 6 Floor 1,HallE06,HALL
 Connors Center Security Desk Floor 1,Security 1,INFO
+Hallway Node 7 Floor 1,HallE07,HALL
 Hallway Node 8 Floor 1,HallE08,HALL
+Hallway Node 9 Floor 1,HallE09,HALL
 Hallway Node 10 Floor 1,HallE10,HALL
+Hallway Node 11 Floor 1,HallE11,HALL
 Hallway Node 12 Floor 1,HallE12,HALL
+Hallway Node 13 Floor 1,HallE13,HALL
 Hallway Node 14 Floor 1,HallE14,HALL
+Hallway Node 15 Floor 1,HallE15,HALL
 Hallway Node 16 Floor 1,HallE16,HALL
+Hallway Node 17 Floor 1,HallE17,HALL
 Hallway Node 18 Floor 1,HallE18,HALL
+Restroom G1 Floor 1,Restroom G1,REST
 Exit 2 Floor 1,Exit 2,EXIT
+Asthma Research Floor 1,Asthma 1,LABS
 Wound and Ambulatory 1,WCCAT 1,DEPT
+Ocupational Health Floor 1,Ocupational 1,DEPT
 Hallway Node 19 Floor 1,HallE19,HALL
+Hallway Node 20 Floor 1,HallE20,HALL
 Hallway Node 21 Floor 1,HallE21,HALL
+Hallway Node 22 Floor 1,HallE22,HALL
 Hallway Node 23 Floor 1,HallE23,HALL
+Restroom F1 Floor 1,Restroom F1,REST
 Hallway Node 24 Floor 1,HallE24,HALL
+Hallway Node 25 Floor 1,HallE25,HALL
 Hallway Node 26 Floor 1,HallE26,HALL
+Hallway Node 27 Floor 1,HallE27,HALL
 Hallway Node 28 Floor 1,HallE28,HALL
+Staircase H1 Floor 1,Stair H1,STAI
 Restroom H1 Floor 1,Restroom H1,REST
+Ambulatory X-Ray Floor 1,X-Ray 1,LABS
 Rehabilitation Services Floor 1,Rehab 1,DEPT
+Hallway Node 29 Floor 1,HallE29,HALL
 Hallway Node 30 Floor 1,HallE30,HALL
+Hallway Node 31 Floor 1,HallE31,HALL
 Staircase H2 Floor 1,Stair H2,STAI
+Hallway Node 32 Floor 1,HallE32,HALL
 Hallway Node 33 Floor 1,HallE33,HALL
+Hallway Node 34 Floor 1,HallE34,HALL
 Lower Pike Hallway Exit Lobby,Hallway F00101,HALL
+Lobby Shattuck Street,Hallway F00201,HALL
 Lobby Shattuck Street Stairs,Stairway F00101,STAI
+Shattuck Street Lobby 1,Hallway F00301,HALL
 Shattuck Street Lobby Exit,Shattuck St. Exit,EXIT
+Shattuck Street Lobby 2,Hallway F00401,HALL
 Lobby Vending Machine,VM Lobby,RETL
+Shattuck Street Lobby 3,Hallway F00501,HALL
 Shattuck Street Lobby ATM,Lobby ATM,SERV
+Tower Lobby Entrance 1,Tower Entrance,HALL
 Tower Elevator Entrance,Hallway F00701,HALL
+Tower Hallway 1,Hallway F00801,HALL
 Tower Hallway 5,Hallway F01301,HALL
+Tower Hallway 2,Hallway F00901,HALL
 Tower Hallway 3,Hallway F01001,HALL
+Tower Stairway 1,Tower Stairs 1,STAI
 Tower Hallway 4,Hallway F01101,HALL
+Tower Staff Entrance,Hallway F01201,HALL
 Center for International Medicine,CIM,DEPT
+Spiritual Care Office,SCO,DEPT
 Tower Hallway 6,Hallway F01401,HALL
+Tower Medical Cashier,Tower Cashier,SERV
 Tower Hallway 7,Hallway F01501,HALL
+Tower Hallway 8,Hallway F01601,HALL
 Tower Hallway 9,Hallway F01701,HALL
+Multifaith Chapel,Chapel,DEPT
 Tower Hallway 10,Hallway F01801,HALL
+Tower Hallway 11,Hallway F01901,HALL
 Tower Hallway 12,Hallway F02001,HALL
+Bretholtz Center for Patients and Families,Bretholtz WR,DEPT
 Kessler Library,Kessler Library,SERV
+Elevator M Floor L2,Elevator ML2,ELEV
 Tower Hallway Entrance,Tower Entrance 2,HALL
+Sharf Admitting Center,Sharf Center,DEPT
 Hallway Lobby Entrance,Entrance Hallway,HALL
+Obstetrics Admitting,Obs Admitting,LABS
 Lobby Hallway 1,Hallway F02301,HALL
+Lobby Hallway 2,Hallway F02401,HALL
 Lobby Hallway 3,Hallway F02501,HALL
+Lobby Escalator,Lobby Escalator,STAI
 Lobby Hallway 4,Hallway F02601,HALL
+Lobby Hallway 7,Hallway F02701,HALL
 Emergency Department,Emergency,DEPT
-75 Francis Valet Drop-off,75 Francis Exit,EXIT
-75 Lobby Information Desk,Lobby Info Desk,INFO
-Lobby Hallway 5,Hallway F02701,HALL
-Lobby Hallway 6,Hallway F02801,HALL
-Emergency Department Entrance,Emergency Entrance,EXIT
-International Patient Center,IPC,DEPT
-Shapiro Board Room MapNode 20 Floor 1,Shapiro Board Room,CONF
-Elevator N MapNode 26 Floor 1,Hall,ELEV
-Francis Street Exit MapNode 1 Floor 1,Francis Street Exit Floor 1,EXIT
-Hallway MapNode 3 Floor 1,Hall,HALL
-Hallway MapNode 7 Floor 1,Hall,HALL
-Hallway MapNode 9 Floor 1,Hall,HALL
-Hallway MapNode 14 Floor 1,Hall,HALL
-Hallway MapNode 16 Floor 1,Hall,HALL
-Hallway MapNode 21 Floor 1,Hall,HALL
-Hallway MapNode 24 Floor 1,Hall,HALL
-Hallway MapNode 29 Floor 1,Hall,HALL
-Hallway MapNode 31 Floor 1,Hall,HALL
-Hallway MapNode 34 Floor 1,Hall,HALL
-Random Room MapNode 35 Floor 1,Secret Room Floor 1,REST
-Stairway MapNode 5 Floor 1,Northbound Stairs Floor 2,STAI
-Waiting room? Node 7 Floor 2,Waiting Area Shapiro Floor 2,DEPT
-Watkins B Node 35 Floor 2,Watkins B,DEPT
-Elevator Q Node 31a Floor 2,Elevator Q Floor 2,ELEV
-Hall Node 2 Floor 2,Hall,HALL
-Hall Node 4 Floor 2,Hall,HALL
-Hall Node 10 Floor 2,Hall,HALL
-Hall Node 12 Floor 2,Hall,HALL
-Hall Node 14 Floor 2,Hall,HALL
-Hall Node 16 Floor 2,Hall,HALL
-Hall Node 18 Floor 2,Hall,HALL
-Hall Node 21 Floor 2,Hall,HALL
-Hall Node 23 Floor 2,Hall,HALL
-Hall Node 29 Floor 2,Hall,HALL
-Hall Node 32 Floor 2,Hall,HALL
-Hall Node 34 Floor 2,Hall,HALL
-Hall Node 37 Floor 2,Hall,HALL
-Info Node 19 Floor 2,Information Center Shapiro Floor 2,INFO
-Restroom Node 31 Floor 2,Handicap Accessible Restrooms Shapiro Floor 2,REST
-Stairs Node 28 Floor 2,Floor 2 Stairs Lower,STAI
-Watkins Clinic C Node 14 Floor 3,Watkins Clinic C,DEPT
-Elevator Q Node 5 Floor 3,Elevator Q Floor 3,ELEV
-Hallway Node 2 Floor 3,Hall,HALL
-Hallway Node 6 Floor 3,Hall,HALL
-Hallway Node 8 Floor 3,Hall,HALL
-Hallway Node 11 Floor 3,Hall,HALL
-Restroom Node 12 Floor 3,Restroom Shapiro Floor 3,REST
-Staircase Node 9 Floor 3,Floor 3 Stairs,STAI
-Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1,EXIT
-Hallway MapNode 3 Floor L1,Hall,HALL
-Hallway MapNode 5 Floor L1,Hall,HALL
-Stairs MapNode 8 Floor L1,L1 Stairs,STAI
-Hallway MapNode 1 Floor L2,Hall,HALL
-Hallway MapNode 7 Floor L2,Hall,HALL
-Hallway MapNode 9 Floor L2,Hall,HALL
-Hallway MapNode 11 Floor L2,Hall,HALL
-Hallway MapNode 13 Floor L2,Hall,HALL
-Hallway MapNode 17 Floor L2,Hall,HALL
-Cardiac Stress Test Lab Floor L2,Cardiac Stress Test Lab,LABS
-Restroom MapNode 4 Floor L2,Restroom Shapiro L2,REST
-Hallway Connector 12 Floor 2,Hallway H00202,HALL
-Hallway Connector 13 Floor 2,Hallway H00302,HALL
-Hallway Connector 14 Floor 2,Hallway H00402,HALL
-Vending Machine Floor 2,Vending Machine,RETL
-Gift Shop Tower Floor 2,Gift Shop,RETL
-Hallway Connector 18 Floor 2,Hallway H00702,HALL
-Hallway Connector 19 Floor 2,Hallway H00802,HALL
-Hallway Connector 15 Floor 2,Hallway H00902,HALL
-Endoscopy,Endoscopy,DEPT
-Stairwell 1 Floor 3,Stairwell,STAI
-Hallway Connector 3 Floor 3,Hallway H00303,HALL
-Reproductive Endocrine Labs,Reproductive Endocrine Labs,LABS
-Hallway Connector 6 Floor 3,Hallway H00603,HALL
-Dialysis Waiting Room,Dialysis WR,DEPT
-Nursing Room,Nursing Room,SERV
-Hallway Connector 10 Floor 3,Hallway H01003,HALL
-Hallway Connector 11 Floor 3,Hallway H01103,HALL
-Hallway Connector 12 Floor 3,Hallway H01203,HALL
-Hallway Connector 14 Floor 3,Hallway H01403,HALL
-Bathroom 2 Tower Floor 3,Bathroom 0203,BATH
-Hallway Node 2,H2,HALL
-Hallway Node 4,H4,HALL
-Hallway Node 6,H6,HALL
-Hallway Node 8,H8,HALL
-Hallway Node 10,H10,HALL
 Lobby Entrance Hallway,HallwayF02801,HALL
+75 Francis Valet Drop-off,75 Francis Exit,EXIT
 75 Lobby,75 Lobby,HALL
+75 Lobby Information Desk,Lobby Info Desk,INFO
 75 Lobby Valet Cashier,Valet Cashier,SERV
+Lobby Hallway 5,Hallway F02701,HALL
 Au Bon Pain,ABP,RETL
+Lobby Hallway 6,Hallway F02801,HALL
 Bathroom 75 Lobby,Bathroom Lobby,REST
+Emergency Department Entrance,Emergency Entrance,EXIT
 Tower Hallway 13,Hallway F03201,HALL
+International Patient Center,IPC,DEPT
 Emergency Hallway,Hallway F03301,HALL
+Shapiro Board Room MapNode 20 Floor 1,Shapiro Board Room,CONF
 Zinner Breakout Room MapNode 19 Floor 1,Zinner Breakout Room,DEPT
+Elevator N MapNode 26 Floor 1,Hall,ELEV
 Elevator Q MapNode 18 Floor 1,Elevator Q Floor 1,ELEV
+Francis Street Exit MapNode 1 Floor 1,Francis Street Exit Floor 1,EXIT
 Hallway MapNode 2 Floor 1,Hall,HALL
+Hallway MapNode 3 Floor 1,Hall,HALL
 Hallway MapNode 6 Floor 1,Hall,HALL
+Hallway MapNode 7 Floor 1,Hall,HALL
 Hallway MapNode 8 Floor 1,Hall,HALL
+Hallway MapNode 9 Floor 1,Hall,HALL
 Hallway MapNode 10 Floor 1,Hall,HALL
+Hallway MapNode 14 Floor 1,Hall,HALL
 Hallway MapNode 15 Floor 1,Hall,HALL
+Hallway MapNode 16 Floor 1,Hall,HALL
 Hallway MapNode 17 Floor 1,Hall,HALL
+Hallway MapNode 21 Floor 1,Hall,HALL
 Hallway MapNode 22 Floor 1,Hall,HALL
+Hallway MapNode 24 Floor 1,Hall,HALL
 Hallway MapNode 28 Floor 1,Hall,HALL
+Hallway MapNode 29 Floor 1,Hall,HALL
 Hallway MapNode 30 Floor 1,Hall,HALL
+Hallway MapNode 31 Floor 1,Hall,HALL
 Hallway MapNode 33 Floor 1,Hall,HALL
+Hallway MapNode 34 Floor 1,Hall,HALL
 Bathroom MapNode 12 Floor 1,Restroom Shapiro Floor 1,REST
+Random Room MapNode 35 Floor 1,Secret Room Floor 1,REST
 ATM MapNode 23 Floor 1,ATM Floor 1,SERV
+Stairway MapNode 5 Floor 1,Northbound Stairs Floor 2,STAI
 Staircase MapNode 13 Floor 1,Southbound Stairs Floor 1,STAI
+Waiting room? Node 7 Floor 2,Waiting Area Shapiro Floor 2,DEPT
 Watkins A Node 24 Floor 2 Floor 2,Watkins A,DEPT
+Watkins B Node 35 Floor 2,Watkins B,DEPT
 Elevator N Node 25 Floor 2,Elevator N Floor 1,ELEV
+Elevator Q Node 31a Floor 2,Elevator Q Floor 2,ELEV
 Hall Node 1 Floor 2,Hall,HALL
+Hall Node 2 Floor 2,Hall,HALL
 Hall Node 3 Floor 2,Hall,HALL
+Hall Node 4 Floor 2,Hall,HALL
 Hall Node 5 Floor 2,Hall,HALL
+Hall Node 10 Floor 2,Hall,HALL
 Hall Node 11 Floor 2,Hall,HALL
+Hall Node 12 Floor 2,Hall,HALL
 Hall Node 13 Floor 2,Hall,HALL
+Hall Node 14 Floor 2,Hall,HALL
 Hall Node 15 Floor 2,Hall,HALL
+Hall Node 16 Floor 2,Hall,HALL
 Hall Node 17 (Exit?) Floor 2,Hall,HALL
+Hall Node 18 Floor 2,Hall,HALL
 Hall Node 20 Floor 2,Hall,HALL
+Hall Node 21 Floor 2,Hall,HALL
 Hall Node 22 Floor 2,Hall,HALL
+Hall Node 23 Floor 2,Hall,HALL
 Hall Node 27 Floor 2,Hall,HALL
+Hall Node 29 Floor 2,Hall,HALL
 Hall Node 30 Floor 2,Hall,HALL
+Hall Node 32 Floor 2,Hall,HALL
 Hall Node 33 Floor 2,Hall,HALL
+Hall Node 34 Floor 2,Hall,HALL
 Hall Node 36 Floor 2,Hall,HALL
+Hall Node 37 Floor 2,Hall,HALL
 Hall Node 38 Floor 2,Hall,HALL
+Info Node 19 Floor 2,Information Center Shapiro Floor 2,INFO
 Restroom Node 6 Floor 2,Restroom 1 Shapiro Floor 2,REST
+Restroom Node 31 Floor 2,Handicap Accessible Restrooms Shapiro Floor 2,REST
 Stairs Node 26 Floor 2,Floor 2 Stairs Upper,STAI
+Stairs Node 28 Floor 2,Floor 2 Stairs Lower,STAI
 Brigham Circle Medical Associates Node 4 Floor 3,Brigham Circle Medical Associates,DEPT
+Watkins Clinic C Node 14 Floor 3,Watkins Clinic C,DEPT
 Elevator N Node 15 Floor 3,Elevator N Floor 3,ELEV
+Elevator Q Node 5 Floor 3,Elevator Q Floor 3,ELEV
 Hallway Node 1 Floor 3,Hall,HALL
+Hallway Node 2 Floor 3,Hall,HALL
 Hallway Node 3 Floor 3,Hall,HALL
+Hallway Node 6 Floor 3,Hall,HALL
 Hallway Node 7 Floor 3,Hall,HALL
+Hallway Node 8 Floor 3,Hall,HALL
 Hallway Node 10 Floor 3,Hall,HALL
+Hallway Node 11 Floor 3,Hall,HALL
 Hallway Node 13 Floor 3,Hall,HALL
+Restroom Node 12 Floor 3,Restroom Shapiro Floor 3,REST
 The Porch Node 16 Floor 3,The Porch,SERV
+Staircase Node 9 Floor 3,Floor 3 Stairs,STAI
 Elevator Q MapNode 7 Floor L1,Elevator Q L1,ELEV
+Fenwood Road Exit MapNode 1 Floor L1,Fenwood Road EntranceExit L1,EXIT
 Hallway MapNode 2 Floor L1,Hall,HALL
+Hallway MapNode 3 Floor L1,Hall,HALL
 Hallway MapNode 4 Floor L1,Hall,HALL
+Hallway MapNode 5 Floor L1,Hall,HALL
 Hallway MapNode 6 Floor L1,Hall,HALL
+Stairs MapNode 8 Floor L1,L1 Stairs,STAI
 Elevator Q MapNode 6 Floor L2,Elevator Q L2,ELEV
+Hallway MapNode 1 Floor L2,Hall,HALL
 Hallway MapNode 5 Floor L2,Hall,HALL
+Hallway MapNode 7 Floor L2,Hall,HALL
 Hallway MapNode 8 Floor L2,Hall,HALL
+Hallway MapNode 9 Floor L2,Hall,HALL
 Hallway MapNode 10 Floor L2,Hall,HALL
+Hallway MapNode 11 Floor L2,Hall,HALL
 Hallway MapNode 12 Floor L2,Hall,HALL
+Hallway MapNode 13 Floor L2,Hall,HALL
 Hallway MapNode 16 Floor L2,Hall,HALL
+Hallway MapNode 17 Floor L2,Hall,HALL
 Cardiovascular Imaging Center Floor L2,Cardiovascular Imaging Center,LABS
+Cardiac Stress Test Lab Floor L2,Cardiac Stress Test Lab,LABS
 CVRR Floor L2,CVRR,LABS
+Restroom MapNode 4 Floor L2,Restroom Shapiro L2,REST
 Hallway Connector 11 Floor 2,Hallway H00102,HALL
+Hallway Connector 12 Floor 2,Hallway H00202,HALL
 Garden Cafe,Garden Cafe,RETL
+Hallway Connector 13 Floor 2,Hallway H00302,HALL
 Stairwell 1 Floor 2,Stairwell 0102,STAI
+Hallway Connector 14 Floor 2,Hallway H00402,HALL
 Hallway Connector 16 Floor 2,Hallway H00502,HALL
+Vending Machine Floor 2,Vending Machine,RETL
 Bathroom 1 Tower Floor 2,Bathroom 0102,BATH
+Gift Shop Tower Floor 2,Gift Shop,RETL
 Hallway Connector 17 Floor 2,Hallway H00602,HALL
+Hallway Connector 18 Floor 2,Hallway H00702,HALL
 Stairwell 2 Tower Floor 2,Stairwell 0202,STAI
+Hallway Connector 19 Floor 2,Hallway H00802,HALL
 Escalator 1 Floor 2,Escalator 1 Floor 2,STAI
+Hallway Connector 15 Floor 2,Hallway H00902,HALL
 Hallway Connector 20 Floor 2,Hallway H01002,HALL
+Endoscopy,Endoscopy,DEPT
 Hallway Connector 5 Floor 3,Hallway H00502,HALL
+Stairwell 1 Floor 3,Stairwell,STAI
 Hallway Connector 4 Floor 3,Hallway H00403,HALL
+Hallway Connector 3 Floor 3,Hallway H00303,HALL
 Hallway Connector 16 Floor 3,Hallway H00203,HALL
+Reproductive Endocrine Labs,Reproductive Endocrine Labs,LABS
 Hallway Connector 17 Floor 3,Hallway H00103,HALL
+Hallway Connector 6 Floor 3,Hallway H00603,HALL
 Hallway Connector 7 Floor 3,Hallway H00703,HALL
+Dialysis Waiting Room,Dialysis WR,DEPT
 Hallway Connector 8 Floor 3,Hallway H00803,HALL
+Nursing Room,Nursing Room,SERV
 Hallway Connector 9 Floor 3,Hallway H00903,HALL
+Hallway Connector 10 Floor 3,Hallway H01003,HALL
 Bathroom 1 Tower Floor 3,Bathroom 0103,BATH
+Hallway Connector 11 Floor 3,Hallway H01103,HALL
 MICU 3BC Waiting Room,MICU 3BC WR,DEPT
+Hallway Connector 12 Floor 3,Hallway H01203,HALL
 Hallway Connector 13 Floor 3,Hallway H01303,HALL
+Hallway Connector 14 Floor 3,Hallway H01403,HALL
 Hallway Connector 15 Floor 3,Hallway H01503,HALL
+Bathroom 2 Tower Floor 3,Bathroom 0203,BATH
 Hallway Node 1,H1,HALL
+Hallway Node 2,H2,HALL
 Hallway Node 3,H3,HALL
+Hallway Node 4,H4,HALL
 Hallway Node 5,H5,HALL
+Hallway Node 6,H6,HALL
 Hallway Node 7,H7,HALL
+Hallway Node 8,H8,HALL
 Hallway Node 9,H9,HALL
+Hallway Node 10,H10,HALL
 Hallway Node 11,H11,HALL
 Hallway Node 12,H12,HALL
 Hallway Node 13,H13,HALL
@@ -543,39 +543,39 @@ Elevator G Floor 2,Elevator G2,ELEV
 Elevator H Floor L1,Elevator HL1,ELEV
 Elevator H Floor 1,Elevator H1,ELEV
 Elevator H Floor 2,Elevator H2,ELEV
-Elevator J Floor L2,Elevator JL2,ELEV
-Elevator J Floor 1,Elevator J1,ELEV
-Elevator J Floor 3,Elevator J3,ELEV
-Elevator K Floor L1,Elevator KL1,ELEV
-Elevator K Floor 2,Elevator K2,ELEV
-Elevator L Floor L2,Elevator LL2,ELEV
-Elevator L Floor 1,Elevator L1,ELEV
-Elevator L Floor 3,Elevator L3,ELEV
-Elevator M Floor 1,Elevator M1,ELEV
-Elevator M Floor 3,Elevator M3,ELEV
-Hallway Connector 2 Floor L2,Hallway W02L2,HALL
-Hallway Connector 2 Floor 1,Hallway W0201,HALL
-Hallway Connector 2 Floor 3,Hallway W0203,HALL
-Hallway Connector 2 Floor 2,Hallway W0202,HALL
-Hallway Connector 4 Floor 2,Hallway W0402,HALL
-Hallway Connector 6 Floor 2,Hallway W0602,HALL
-Hallway Connector 8 Floor 2,Hallway W0802,HALL
-Hallway Connector 10 Floor 2,Hallway W1002,HALL
 Elevator H Floor 3,Elevator H3,ELEV
+Elevator J Floor L2,Elevator JL2,ELEV
 Elevator J Floor L1,Elevator JL1,ELEV
+Elevator J Floor 1,Elevator J1,ELEV
 Elevator J Floor 2,Elevator J2,ELEV
+Elevator J Floor 3,Elevator J3,ELEV
 Elevator K Floor L2,Elevator KL2,ELEV
+Elevator K Floor L1,Elevator KL1,ELEV
 Elevator K Floor 1,Elevator K1,ELEV
+Elevator K Floor 2,Elevator K2,ELEV
 Elevator K Floor 3,Elevator K3,ELEV
+Elevator L Floor L2,Elevator LL2,ELEV
 Elevator L Floor L1,Elevator LL1,ELEV
+Elevator L Floor 1,Elevator L1,ELEV
 Elevator L Floor 2,Elevator L2,ELEV
+Elevator L Floor 3,Elevator L3,ELEV
 Elevator M Floor L1,Elevator ML1,ELEV
+Elevator M Floor 1,Elevator M1,ELEV
 Elevator M Floor 2,Elevator M2,ELEV
+Elevator M Floor 3,Elevator M3,ELEV
 Hallway Connector 1 Floor L2,Hallway W01L2,HALL
+Hallway Connector 2 Floor L2,Hallway W02L2,HALL
 Hallway Connector 1 Floor 1,Hallway W0101,HALL
+Hallway Connector 2 Floor 1,Hallway W0201,HALL
 Hallway Connector 1 Floor 3,Hallway W0103,HALL
+Hallway Connector 2 Floor 3,Hallway W0203,HALL
 Hallway Connector 1 Floor 2,Hallway W0102,HALL
+Hallway Connector 2 Floor 2,Hallway W0202,HALL
 Hallway Connector 3 Floor 2,Hallway W0302,HALL
+Hallway Connector 4 Floor 2,Hallway W0402,HALL
 Hallway Connector 5 Floor 2,Hallway W0502,HALL
+Hallway Connector 6 Floor 2,Hallway W0602,HALL
 Hallway Connector 7 Floor 2,Hallway W0702,HALL
+Hallway Connector 8 Floor 2,Hallway W0802,HALL
 Hallway Connector 9 Floor 2,Hallway W0902,HALL
+Hallway Connector 10 Floor 2,Hallway W1002,HALL

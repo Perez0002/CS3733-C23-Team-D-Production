@@ -341,15 +341,16 @@ public class FDdb {
     locationNameIDao.uploadCSV(new LocationName());
     moveIDao.uploadCSV(new Move());
     edgeIDao.uploadCSV(new Edge());
-    refreshEdges();
-    refreshNodes();
-    refreshMoves();
-    refreshLocationNames();
+    employeeIDao.uploadCSV(new Employee());
+    settingIDao.uploadCSV(new Setting());
+    serviceRequestIDao.uploadCSV(new ServiceRequest());
+    refreshAll();
   }
 
   public void saveKiosk(LocationName l) {
     locationNameIDao.saveKiosk(l);
   }
+
   public LocationName getKiosk() {
     return locationNameIDao.getKiosk();
   }

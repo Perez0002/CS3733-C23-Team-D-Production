@@ -32,4 +32,16 @@ public class PatientTransportRequest extends ServiceRequest {
   }
 
   public PatientTransportRequest() {}
+
+  public PatientTransportRequest(int serviceRequestId,
+                                 Status stat,
+                                 Employee associatedStaff,
+                                 String reason,
+                                 String serviceRequestType,
+                                 LocationName location,
+                                 String urgency,
+                                 String endRoom){
+    super(serviceRequestId,stat,associatedStaff,reason,serviceRequestType,location,urgency);
+    this.endRoom=endRoom;
+  }
 }

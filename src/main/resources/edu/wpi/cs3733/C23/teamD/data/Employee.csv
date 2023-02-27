@@ -4,7 +4,6 @@
 34,ADMIN,Liv,Perez,password,lperez@wpi.edu,9999555955,26-02-2023 23:08:39.711,Cowboy House
 35,STAFF,Abby,Albuquerque,password,aralbuquerque@wpi.edu,9999555955,26-02-2023 23:08:39.711,Dorm
 36,STAFF,Annie,Zimmerman,password,azimmerman@wpi.edu,9999555955,26-02-2023 23:08:39.711,Dorm
-37,ADMIN,Admin,Admin,admin,admin,9999555955,26-02-2023 23:08:39.711,Homeless
 38,STAFF,Staff,Staff,admin,staff,9999555955,26-02-2023 23:08:39.711,Homeless
 39,STAFF,Gibson,Philips,password,gphilips@wpi.edu,9999555955,26-02-2023 23:08:39.711,100 Institute Road
 40,STAFF,Wyatt,Harris,password,wharris@wpi.edu,9845077315,26-02-2023 23:08:39.711,Wyatt House
@@ -13,3 +12,4 @@
 43,STAFF,Mike,Wilkinson,password,mwilkinson@wpi.edu,9845077315,26-02-2023 23:08:39.711,Mike House
 44,ADMIN,Qui,Nguyen,password,qnguyen@wpi.edu,234798234,26-02-2023 23:08:39.711,Qui House
 45,ADMIN,Michael,Connor,password,mconnor@wpi.edu,234798234,26-02-2023 23:08:39.711,Michael House
+37,ADMIN,Admin,Admin,admin,admin,9999555955,26-02-2023 23:08:39.711,Homeless
