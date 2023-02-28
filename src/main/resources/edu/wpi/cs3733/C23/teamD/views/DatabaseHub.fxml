@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
+<BorderPane fx:id="requestFormHubBorderPane" onMouseClicked="#dataToChange" prefHeight="600.0" prefWidth="800.0" stylesheets="@updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.DatabaseHubController">
     <center>
         <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
             <BorderPane.margin>
@@ -36,24 +36,32 @@
                         <Insets top="10.0" />
                     </padding>
                 </HBox>
-            <BorderPane fx:id="requestFormHubPane" maxHeight="Infinity" maxWidth="Infinity" prefHeight="1000.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 5; -fx-border-radius: 5;" />
+            <BorderPane fx:id="requestFormHubPane" maxHeight="Infinity" maxWidth="Infinity" prefHeight="1000.0" style="-fx-border-color: #041140; -fx-border-width: 3; -fx-background-radius: 5; -fx-border-radius: 5;" stylesheets="@tableCSS.css" />
                 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
                     <children>
                   <MFXButton fx:id="DownloadButton" onAction="#downloadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin>
                      <graphic>
                         <FontIcon iconColor="#fffdfd" iconLiteral="fltfal-cloud-download-24" iconSize="30" wrappingWidth="20.0" />
                      </graphic>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
                   </MFXButton>
                   <MFXButton fx:id="UploadButton" onAction="#uploadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="fltfal-cloud-backup-24" iconSize="30" wrappingWidth="20.0" />
                      </graphic>
                                  <HBox.margin>
-                        <Insets right="50.0" />
+                        <Insets />
                      </HBox.margin>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="analyticsButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" stylesheets="@updatedStyleGuide.css" text="Analytics">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fltral-document-landscape-data-24" iconSize="30" />
+                     </graphic>
                   </MFXButton>
                     </children>
                 </HBox>
@@ -66,4 +74,7 @@
    <right>
       <BorderPane fx:id="mapPaneContainer" maxWidth="-Infinity" prefHeight="1500.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
    </right>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="60.0" />
+   </padding>
 </BorderPane>

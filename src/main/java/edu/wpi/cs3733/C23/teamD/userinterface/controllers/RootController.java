@@ -9,7 +9,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import org.controlsfx.control.PopOver;
 
@@ -22,19 +21,16 @@ public class RootController {
       pathfindingButton,
       dbButton,
       moveTableButton,
+      moveDisplayButton,
       mapEditorButton,
       helpPageButton,
       infoButton,
       creditsButton,
       logOutButton;
 
-  @FXML private ScrollPane navbarScrollPane;
-
   @FXML
   public void initialize() {
     checkAccessLevel(CurrentUserEnum._CURRENTUSER.getCurrentUser());
-    navbarScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-    navbarScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     setButtons();
   }
 
@@ -84,10 +80,13 @@ public class RootController {
     moveTableButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVES_TABLE));
     moveTableButton.setTooltip(new Tooltip("Office Moves"));
 
+    moveDisplayButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MOVE_DISPLAY));
+    moveDisplayButton.setTooltip(new Tooltip("Move Display"));
+
     mapEditorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_EDITOR));
     mapEditorButton.setTooltip(new Tooltip("Map Editor"));
 
-    helpPageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HELP_PAGE));
+    helpPageButton.setOnMouseClicked(event -> showHelp());
     helpPageButton.setTooltip(new Tooltip("Help"));
 
     infoButton.setOnMouseClicked(event -> showAbout());
@@ -98,6 +97,19 @@ public class RootController {
 
     logOutButton.setOnMouseClicked(event -> openLoginPage());
     logOutButton.setTooltip(new Tooltip("Sign Out"));
+  }
+
+  private void showHelp() {
+    try {
+      final var resource = App.class.getResource("views/ApplicationHelpPage.fxml");
+      final FXMLLoader loader = new FXMLLoader(resource);
+      PopOver popover = new PopOver(loader.load());
+      popover.setArrowSize(0);
+      popover.setTitle("Help");
+      popover.show(App.getPrimaryStage());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   void showAbout() {

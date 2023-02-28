@@ -30,15 +30,36 @@
 }
 
 .mfx-text-field {
-    -fx-border-color: #E4E1E6;
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
     -fx-background-color: #E4E1E6;
     -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-min-height: 40;
     -fx-min-width: 300;
 }
 
 .mfx-text-field:focus-within {
     -fx-border-color: #012D5A;
+}
+
+.text-area{
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+}
+
+.text-area .content:empty {
+    -fx-alignment: center ;
+}
+
+.text-area .content {
+    -fx-border-color: #E4E1E6;
+    -fx-background-color: #E4E1E6;
+    -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
 
@@ -207,6 +228,14 @@
 
 }
 
+.moveDisplayButton {
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-font-family: 'Nunito Sans Regular';
+    -fx-max-width: 300px;
+    -fx-max-height: 100px;
+}
 .deleteButton { /* defines the format for the delete button */
     -fx-background-color: transparent;
     -fx-text-fill: #CC2222;
@@ -254,6 +283,12 @@
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
+}
+
+#moveDisplayborderPane {
+    /*-fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;*/
 }
 
 .helpButton {
@@ -320,5 +355,12 @@
     -fx-text-alignment: center;
 
 }
+
+.default-color0.chart-bar { -fx-bar-fill: #1D4E8D }
+
+.default-color0.chart-area-symbol { -fx-background-color: #98AABC, #98AABC; }
+.default-color0.chart-series-area-line { -fx-stroke: #0F2A4C; }
+.default-color0.chart-series-area-fill { -fx-fill: #98AABC; }
+
 
 

@@ -35,11 +35,9 @@ public class Node {
   @Transient private ArrayList<Edge> nodeEdges;
 
   public Node(int xcoord, int ycoord, String floor, String building) {
-    String xString = String.format("%04d", xcoord);
-    String yString = String.format("%04d", ycoord);
-    this.nodeID = (floor + "X" + xString + "Y" + yString);
     this.xcoord = xcoord;
     this.ycoord = ycoord;
+    this.setNodeID();
     this.floor = floor;
     this.building = building;
     this.nodeEdges = new ArrayList<Edge>();
@@ -121,8 +119,8 @@ public class Node {
   }
 
   public void setNodeID() {
-    String xString = String.format("%04d", this.xcoord);
-    String yString = String.format("%04d", this.ycoord);
+    String xString = String.format("%d", this.xcoord);
+    String yString = String.format("%d", this.ycoord);
     this.nodeID = (this.floor + "X" + xString + "Y" + yString);
   }
 

@@ -17,7 +17,11 @@ import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorPageController {
@@ -34,12 +38,15 @@ public class MapEditorPageController {
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
   @FXML private MFXButton toggleEdgesButton;
+  @FXML private MFXButton toggleLabelsButton;
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
   private boolean edgesShown = true;
-  private ArrayList<MapNode> nodeList = new ArrayList<>();
-  private ArrayList<MapEdge> edgeList = new ArrayList<>();
+
+  private boolean labelsShown = true;
+  @Getter public static ArrayList<MapNode> nodeList = new ArrayList<>();
+  @Getter public static ArrayList<MapEdge> edgeList = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[6];
 
@@ -67,6 +74,27 @@ public class MapEditorPageController {
     };
   }
 
+  public EventHandler<ActionEvent> toggleLabels() {
+    return event -> {
+      labelsShown = !labelsShown;
+
+      if (labelsShown) {
+        toggleLabelsButton.getStyleClass().add("mapEditorFloorButtonSelected");
+        toggleLabelsButton.getStyleClass().remove("mapEditorFloorButton");
+      } else {
+        toggleLabelsButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+        toggleLabelsButton.getStyleClass().add("mapEditorFloorButton");
+      }
+
+      AnchorPane holder = (AnchorPane) ((GesturePane) mapPlacement.getCenter()).getContent();
+      for (Node node : holder.getChildren()) {
+        if (node instanceof TextArea) {
+          node.setVisible(labelsShown);
+        }
+      }
+    };
+  }
+
   public EventHandler<ActionEvent> changeFloor(int floor) {
 
     return event -> {
@@ -83,8 +111,12 @@ public class MapEditorPageController {
           }
         }
 
-        gesturePane = MapFactory.startBuild().withNodes(nodeList).withEdges(edgeList).build(floor);
-
+        gesturePane =
+            MapFactory.startBuild()
+                .withNodes(nodeList)
+                .setLabelsVisible(labelsShown)
+                .withEdges(edgeList)
+                .build(floor);
         mapPlacement.setCenter(gesturePane);
         currentFloor = floor;
       }
@@ -93,6 +125,10 @@ public class MapEditorPageController {
 
   @FXML
   public void initialize() {
+
+    nodeList.clear();
+    edgeList.clear();
+
     ArrayList<Edge> baseEdgeList = FDdb.getInstance().getAllEdges();
     ArrayList<Move> baseMoveList = FDdb.getInstance().getAllMoves();
 
@@ -119,10 +155,16 @@ public class MapEditorPageController {
           new PathEdge(
               pathNodes.get(edge.getToNode().getNodeID()),
               pathNodes.get(edge.getFromNode().getNodeID()));
-      pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
-      pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      if (pathNodes.get(edge.getFromNode().getNodeID()) != null) {
+        pathNodes.get(edge.getFromNode().getNodeID()).getEdgeList().add(edge1);
+      }
+
+      if (pathNodes.get(edge.getToNode().getNodeID()) != null) {
+        pathNodes.get(edge.getToNode().getNodeID()).getEdgeList().add(edge2);
+      }
 
       MapEdge tempMapEdge = new MapEdge(edge1);
+      tempMapEdge.getEdge().setEdge(edge);
       edgeList.add(tempMapEdge);
 
       tempMapEdge.setNodes(
@@ -131,6 +173,7 @@ public class MapEditorPageController {
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
     toggleEdgesButton.getStyleClass().add("mapEditorFloorButtonSelected");
+    toggleLabelsButton.getStyleClass().add("mapEditorFloorButtonSelected");
 
     // Setup for calculating average x and y
     double totalX = 0;
@@ -151,8 +194,10 @@ public class MapEditorPageController {
     floor2Button.setOnAction(changeFloor(4));
     floor3Button.setOnAction(changeFloor(5));
     toggleEdgesButton.setOnAction(toggleEdges());
+    toggleLabelsButton.setOnAction(toggleLabels());
 
     // Creating GesturePane to show
     this.changeFloor(1).handle(null);
+    this.toggleLabels().handle(null);
   }
 }
