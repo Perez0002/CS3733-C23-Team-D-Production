@@ -79,11 +79,6 @@ public class MoveDisplayContainerController {
     }
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
-
-    if (FDdb.getInstance().getKiosk() != null) {
-      currentMove = nodeToRoomMap.get(FDdb.getInstance().getKiosk().getLongName());
-      mfxFilterComboBox.setValue(currentMove.getLocation().getLongName());
-    }
     // set up mapPane
     mapPane.setCenter(MapFactory.startBuild().scaleMap().build(1));
     mapPane.setBorder(
@@ -110,7 +105,6 @@ public class MoveDisplayContainerController {
     swapButton.setOnAction(event -> switchLocations());
     edges = FDdb.getInstance().getAllEdges();
     moves = FDdb.getInstance().getAllMoves();
-
     floorL1Button.setOnAction(event -> switchFloor(1));
     floorL2Button.setOnAction(event -> switchFloor(2));
     floor1Button.setOnAction(event -> switchFloor(3));
@@ -122,6 +116,13 @@ public class MoveDisplayContainerController {
     floorButtons[3] = floor2Button;
     floorButtons[4] = floor3Button;
     setFloorButtons(1);
+
+    if (FDdb.getInstance().getKiosk() != null) {
+      currentMove = nodeToRoomMap.get(FDdb.getInstance().getKiosk().getLongName());
+      mfxFilterComboBox.setText(currentMove.getLocation().getLongName());
+      mfxFilterComboBox.setValue(currentMove.getLocation().getLongName());
+      setRightAndLeft(currentMove);
+    }
   }
 
   public void switchLocations() {
@@ -145,12 +146,11 @@ public class MoveDisplayContainerController {
 
           locationNameText.setText(currentMove.getLongName());
           messageText.setText(currentMove.getMessage());
-          setRightAndLeft();
         }
       };
 
-  private void setRightAndLeft() {
-    Node currentNode = currentMove.getNode();
+  private void setRightAndLeft(Move m) {
+    Node currentNode = m.getNode();
     boolean leftAssigned = true;
     for (Edge edge : edges) {
       if (currentNode == edge.getToNode()) {
