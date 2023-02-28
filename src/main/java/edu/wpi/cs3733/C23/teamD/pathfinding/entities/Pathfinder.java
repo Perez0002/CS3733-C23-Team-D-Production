@@ -47,7 +47,8 @@ public class Pathfinder {
                 + ", first go "
                 + eucDistance
                 + " meters to "
-                + pathList.get(i + 1).getLocation().getLongName());
+                + pathList.get(i + 1).getLocation().getLongName()
+                + ".");
       } else if (i < pathList.size() - 1) {
         if (!pathList
             .get(i)
@@ -55,7 +56,10 @@ public class Pathfinder {
             .getFloor()
             .equals(pathList.get(i + 1).getNode().getFloor())) {
           directions.add(
-              upArrow + " Take the elevator to floor " + pathList.get(i + 1).getNode().getFloor());
+              upArrow
+                  + " Take the elevator to floor "
+                  + pathList.get(i + 1).getNode().getFloor()
+                  + ".");
         } else if (!pathList
             .get(i)
             .getNode()
@@ -64,7 +68,8 @@ public class Pathfinder {
           directions.add(
               upArrow
                   + " From the elevator go to "
-                  + pathList.get(i + 1).getLocation().getLongName());
+                  + pathList.get(i + 1).getLocation().getLongName()
+                  + ".");
         } else {
           double angle = findAngle(pathList.get(i - 1), pathList.get(i), pathList.get(i + 1));
           if (angle > 0.2) {
@@ -91,7 +96,8 @@ public class Pathfinder {
                     + " and then go "
                     + eucDistance
                     + " meters to "
-                    + nextNonStraight.getLocation().getLongName());
+                    + nextNonStraight.getLocation().getLongName()
+                    + ".");
           }
         }
       } else {
@@ -104,7 +110,7 @@ public class Pathfinder {
         //                + pathList.get(i + 1).getLocation().getLongName());
       }
     }
-    directions.add("   You have reached your destination");
+    directions.add("   You have reached your destination.");
 
     return directions;
   }
