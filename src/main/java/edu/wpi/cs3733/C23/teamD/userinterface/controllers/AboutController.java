@@ -32,26 +32,26 @@ public class AboutController {
 
   // making the labels for each member and assigning them to the popover
   @FXML Label position = new Label("Position: Full Time Software Engineer");
-  @FXML Label major = new Label("Major: Computer Science");
-  @FXML Label hobby = new Label("Fun Fact: Badminton Master");
+  @FXML Label major = new Label("Major: Data Science");
+  @FXML Label hobby = new Label("Fun Fact: Minesweeper Master");
   @FXML VBox vBox = new VBox(position, major, hobby);
   private PopOver photoSquare = new PopOver(vBox);
 
-  @FXML Label position1 = new Label("Position: Full Time Software Engineer");
+  @FXML Label position1 = new Label("Position: Product Owner");
   @FXML Label major1 = new Label("Major: Computer Science");
-  @FXML Label hobby1 = new Label("Fun Fact: Badminton Master");
+  @FXML Label hobby1 = new Label("Fun Fact: Nintendo Fan");
   @FXML VBox vBox1 = new VBox(position1, major1, hobby1);
   private PopOver photoSquare1 = new PopOver(vBox1);
 
-  @FXML Label position2 = new Label("Position: Part Time Front-End Developer");
-  @FXML Label major2 = new Label("Major: Web Design");
-  @FXML Label hobby2 = new Label("Fun Fact: Plays Guitar");
+  @FXML Label position2 = new Label("Position: Assistant Lead Software Engineer");
+  @FXML Label major2 = new Label("Major: Computer Science");
+  @FXML Label hobby2 = new Label("Fun Fact: Middle name is \"Cowboy\"");
   @FXML VBox vBox2 = new VBox(position2, major2, hobby2);
   private PopOver photoSquare2 = new PopOver(vBox2);
 
-  @FXML Label position3 = new Label("Position: Full Time UX Designer");
-  @FXML Label major3 = new Label("Major: Graphic Design");
-  @FXML Label hobby3 = new Label("Fun Fact: Can Solve a Rubik's Cube in Under a Minute");
+  @FXML Label position3 = new Label("Position: Full Time Software Engineer");
+  @FXML Label major3 = new Label("Major: Computer Science");
+  @FXML Label hobby3 = new Label("Fun Fact: Plays too many instruments");
   @FXML VBox vBox3 = new VBox(position3, major3, hobby3);
   private PopOver photoSquare3 = new PopOver(vBox3);
 
