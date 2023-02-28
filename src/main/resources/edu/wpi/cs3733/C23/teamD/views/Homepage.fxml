@@ -58,14 +58,22 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+                        <VBox VBox.vgrow="ALWAYS">
                            <children>
+                              <Label fx:id="outgoingIncoming1" styleClass="homepageLabel" text="Notifications">
+                                 <VBox.margin>
+                                    <Insets bottom="-10.0" />
+                                 </VBox.margin>
+                              </Label>
                               <TableView fx:id="notifTable" stylesheets="@notifStyle.css" VBox.vgrow="ALWAYS">
                                 <columns>
-                                  <TableColumn fx:id="notification" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="553.0" text=" Notifications" />
+                                  <TableColumn fx:id="notification" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="553.0" />
                                 </columns>
                               </TableView>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </VBox>
                      </children>
                   </VBox>
