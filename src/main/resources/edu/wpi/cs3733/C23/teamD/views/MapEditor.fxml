@@ -51,8 +51,14 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXButton fx:id="toggleEdgesButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="200.0" text="Toggle Edges" />
-                        <MFXButton fx:id="toggleLabelsButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="200.0" text="Toggle Labels" />
+                        <MFXButton fx:id="toggleEdgesButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="44.0" prefHeight="70.0" prefWidth="200.0" text="Toggle Edges">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin></MFXButton>
+                        <MFXButton fx:id="toggleLabelsButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="44.0" prefHeight="70.0" prefWidth="200.0" text="Toggle Labels">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin></MFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="160.0" prefWidth="250.0">
