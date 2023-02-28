@@ -14,8 +14,12 @@ public class TextDirectionsController {
     for (String direction : directions) {
       if (direction != null) {
         directionStr = directionStr.concat(direction + "\n");
+        if (direction.contains("floor")) {
+          directionStr = directionStr.concat("\n");
+        }
       }
     }
     textDirectionsTextBox.setText(directionStr);
+    textDirectionsTextBox.setStyle("-fx-font-size: 20pt");
   }
 }

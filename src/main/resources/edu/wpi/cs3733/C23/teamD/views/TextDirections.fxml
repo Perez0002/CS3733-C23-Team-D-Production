@@ -13,7 +13,7 @@
          <children>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="400.0" styleClass="aboutLabel" text="Text Directions" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="homepageLabel" text="Text Directions" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
@@ -27,9 +27,13 @@
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin></HBox>
-            <MFXScrollPane>
+            <MFXScrollPane fitToWidth="true" maxHeight="-Infinity" prefHeight="600.0" prefWidth="600.0">
                <content>
-                  <Label fx:id="textDirectionsTextBox" text="Label" wrapText="true" />
+                  <Label fx:id="textDirectionsTextBox" text="Label" wrapText="true">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
                </content>
             </MFXScrollPane>
          </children>

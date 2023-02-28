@@ -35,12 +35,14 @@ public class Pathfinder {
       int curY = pathList.get(i).getNode().getYcoord();
       int nextY = pathList.get(i + 1).getNode().getYcoord();
       int eucDistance = (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-      String rightArrow = "→→→→→→→→→→→→→→→→→→→→→→→→→";
-      String leftArrow = "←←←←←←←←←←←←←←←←←←←←←←←←←";
-      String icon = "";
+      char rightArrow = 0x2190;
+      char leftArrow = 0x2192;
+      char upArrow = 0x2191;
+      char icon = ' ';
       if (i == 0) {
         directions.add(
-            "Starting at "
+            upArrow
+                + " Starting at "
                 + pathList.get(i).getLocation().getLongName()
                 + ", first go "
                 + eucDistance
@@ -52,14 +54,17 @@ public class Pathfinder {
             .getNode()
             .getFloor()
             .equals(pathList.get(i + 1).getNode().getFloor())) {
-          directions.add("Take the elevator to floor " + pathList.get(i + 1).getNode().getFloor());
+          directions.add(
+              upArrow + " Take the elevator to floor " + pathList.get(i + 1).getNode().getFloor());
         } else if (!pathList
             .get(i)
             .getNode()
             .getFloor()
             .equals(pathList.get(i - 1).getNode().getFloor())) {
           directions.add(
-              "From the elevator go to " + pathList.get(i + 1).getLocation().getLongName());
+              upArrow
+                  + " From the elevator go to "
+                  + pathList.get(i + 1).getLocation().getLongName());
         } else {
           double angle = findAngle(pathList.get(i - 1), pathList.get(i), pathList.get(i + 1));
           if (angle > 0.2) {
@@ -79,7 +84,6 @@ public class Pathfinder {
                 (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
             directions.add(
                 icon
-                    + "\n"
                     + " Next, from "
                     + pathList.get(i).getLocation().getLongName()
                     + " "
@@ -87,9 +91,7 @@ public class Pathfinder {
                     + " and then go "
                     + eucDistance
                     + " meters to "
-                    + nextNonStraight.getLocation().getLongName()
-                    + "\n"
-                    + icon);
+                    + nextNonStraight.getLocation().getLongName());
           }
         }
       } else {
@@ -102,7 +104,7 @@ public class Pathfinder {
         //                + pathList.get(i + 1).getLocation().getLongName());
       }
     }
-    directions.add("You have reached your destination");
+    directions.add("   You have reached your destination");
 
     return directions;
   }
