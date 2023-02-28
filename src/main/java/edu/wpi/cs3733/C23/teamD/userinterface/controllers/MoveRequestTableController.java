@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
@@ -24,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import org.controlsfx.control.PopOver;
 
 public class MoveRequestTableController implements Initializable {
   @FXML private MFXDatePicker datePicker;
@@ -109,6 +112,12 @@ public class MoveRequestTableController implements Initializable {
     }
     ObservableList<Move> moveList = FXCollections.observableArrayList(futureMoveList);
     moveTable.setItems(moveList);
+
+    try {
+      generateRequestsPopup();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private boolean checkFields() {
@@ -177,5 +186,15 @@ public class MoveRequestTableController implements Initializable {
                 column.setMinWidth(moveTable.getMaxWidth() / size);
               column.setMinWidth(currentMax);
             });
+  }
+
+  private void generateRequestsPopup() throws IOException {
+    final var resource = App.class.getResource("views/AutoGeneratePopup.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    PopOver popover = new PopOver(loader.load());
+    popover.setArrowSize(0);
+    popover.setCornerRadius(32);
+    popover.setTitle("Generated Service Request Editor");
+    popover.show(App.getPrimaryStage());
   }
 }
