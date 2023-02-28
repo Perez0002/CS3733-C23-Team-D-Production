@@ -18,13 +18,13 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
                <children>
-                  <Label styleClass="homepageLabel" text="Request Details" />
-                  <MFXButton contentDisplay="GRAPHIC_ONLY">
+                  <Label styleClass="homepageLabel" text="Request Details" HBox.hgrow="ALWAYS" />
+                  <MFXButton contentDisplay="GRAPHIC_ONLY" onAction="#left" styleClass="arrowButton">
                      <graphic>
                         <FontIcon iconLiteral="fltfal-arrow-left-24" iconSize="20" />
                      </graphic>
                   </MFXButton>
-                  <MFXButton contentDisplay="GRAPHIC_ONLY">
+                  <MFXButton contentDisplay="GRAPHIC_ONLY" onAction="#right" styleClass="arrowButton">
                      <graphic>
                         <FontIcon iconLiteral="fltfal-arrow-right-24" iconSize="20" />
                      </graphic>

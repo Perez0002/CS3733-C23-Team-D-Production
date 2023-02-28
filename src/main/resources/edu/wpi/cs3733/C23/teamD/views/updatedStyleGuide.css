@@ -259,6 +259,13 @@
 
 }
 
+.arrowButton { /* defines the format for the arrow button */
+    -fx-background-color: transparent;
+    -fx-max-height: 40;
+    -fx-max-width: 40;
+
+}
+
 .moveDisplayButton {
     -fx-background-color: #012D5A;
     -fx-text-fill: white;

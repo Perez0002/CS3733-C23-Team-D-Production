@@ -38,4 +38,10 @@ public class RequestDetailsPopupController {
       currentController.setFields(sanitationRequest);
     }
   }
+
+  @FXML
+  public void left() {}
+
+  @FXML
+  public void right() {}
 }
