@@ -42,6 +42,7 @@ public class MoveRequestTableController implements Initializable {
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
   @FXML private TextArea messageBox;
+  PopOver popOver;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -196,13 +197,18 @@ public class MoveRequestTableController implements Initializable {
     System.out.println("generate popup");
     final var resource = App.class.getResource("views/AutoGeneratePopup.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
-    PopOver popover = new PopOver(loader.load());
+    popOver = new PopOver(loader.load());
     AutoGeneratePopupController autoGeneratePopupController = loader.getController();
     autoGeneratePopupController.setMove(move);
+    autoGeneratePopupController.setMoveRequestTableController(this);
     autoGeneratePopupController.fillFields();
-    popover.setArrowSize(0);
-    popover.setCornerRadius(32);
-    popover.setTitle("Generated Service Request Editor");
-    popover.show(App.getPrimaryStage());
+    popOver.setArrowSize(0);
+    popOver.setCornerRadius(32);
+    popOver.setTitle("Generated Service Request Editor");
+    popOver.show(App.getPrimaryStage());
+  }
+
+  public void closePopOver() {
+    popOver.hide();
   }
 }

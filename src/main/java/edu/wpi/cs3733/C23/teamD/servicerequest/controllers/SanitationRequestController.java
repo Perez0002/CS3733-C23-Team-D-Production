@@ -14,6 +14,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -138,8 +139,29 @@ public class SanitationRequestController implements ServiceRequestVBoxController
             .atZone(ZoneId.systemDefault())
             .toLocalDate();
     fieldReason.setText(localDate + ";" + move.getLongName() + ";" + move.getNodeID());
-    System.out.println(staffIDTextFieldController.getEmployee().getEmployeeID());
-    System.out.println(fieldLocationController.getLocation().getLongName());
-    System.out.println(urgencyBox.getValue());
+  }
+
+  public void autoSubmit(Date date) {
+    int i = 0;
+    if (radioBSL1.isSelected()) {
+      i = 1;
+    } else if (radioBSL2.isSelected()) {
+      i = 2;
+    } else if (radioBSL3.isSelected()) {
+      i = 3;
+    } else if (radioBSL4.isSelected()) {
+      i = 4;
+    }
+    SanitationRequest requestData =
+        new SanitationRequest(
+            fieldReason.getText(),
+            i,
+            staffIDTextFieldController.getEmployee(),
+            fieldLocationController.getLocation(),
+            urgencyBox.getValue().toString());
+
+    FDdb.getInstance().saveServiceRequest(requestData);
+    requestData.setDateAndTime(date);
+    FDdb.getInstance().updateServiceRequest(requestData);
   }
 }

@@ -12,6 +12,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -227,9 +228,34 @@ public class MoveDisplayContainerController {
   }
 
   private void generateRequestsPopup() throws IOException {
+    SanitationRequest sanitationRequest = null;
+
+    String moveDate =
+        Instant.ofEpochMilli(futureMove.getMoveDate().getTime())
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+            .toString();
+    String moveLocation = futureMove.getLongName();
+    String moveNode = futureMove.getNodeID();
+    System.out.println(moveDate + " " + moveLocation + " " + moveNode);
+    ArrayList<SanitationRequest> sanitationRequests = FDdb.getInstance().getAllSanitationRequests();
+    for (SanitationRequest s : sanitationRequests) {
+      String[] items = s.getReason().split(";");
+      if (items.length > 2) {
+        System.out.println(items[0] + " " + items[1] + " " + items[2]);
+        if (items[0].equals(moveDate)
+            && items[1].equals(moveLocation)
+            && items[2].equals(moveNode)) {
+          sanitationRequest = s;
+        }
+      }
+    }
+
     final var resource = App.class.getResource("views/RequestDetailsPopup.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
     PopOver popover = new PopOver(loader.load());
+    RequestDetailsPopupController requestDetailsPopupController = loader.getController();
+    requestDetailsPopupController.setfields(sanitationRequest);
     popover.setArrowSize(0);
     popover.setCornerRadius(32);
     popover.setTitle("Generated Request Details");

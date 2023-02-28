@@ -18,7 +18,7 @@
                   <Insets left="5.0" right="5.0" />
                </VBox.margin>
                <children>
-                  <Label styleClass="homepageLabel" text="Associated Service Requests" />
+                  <Label styleClass="autoRequestLable" text="Associated Service Requests" />
                </children>
             </VBox>
             <VBox spacing="15.0" styleClass="changePassword" VBox.vgrow="ALWAYS">
