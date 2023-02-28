@@ -43,9 +43,46 @@ public class AutoGeneratePopupController {
 
   @FXML
   void submitChanges() throws IOException {
-    SanitationRequestController sanitationRequestController =
-        (SanitationRequestController) currentController;
-    sanitationRequestController.autoSubmit(move.getMoveDate());
-    moveRequestTableController.closePopOver();
+    if (currentController.getClass() == SanitationRequestController.class) {
+      SanitationRequestController sanitationRequestController =
+          (SanitationRequestController) currentController;
+      sanitationRequestController.autoSubmit(move.getMoveDate());
+      switchVBox(ServiceRequests.COMPUTER_REQUEST);
+
+      ComputerServiceRequestController computerRequestController =
+          (ComputerServiceRequestController) currentController;
+      computerRequestController.fillFields(move);
+    } else if (currentController.getClass() == ComputerServiceRequestController.class) {
+      ComputerServiceRequestController computerRequestController =
+          (ComputerServiceRequestController) currentController;
+      computerRequestController.autoSubmit(move.getMoveDate());
+      switchVBox(ServiceRequests.AV_REQUEST);
+
+      AVRequestController avRequestController = (AVRequestController) currentController;
+      avRequestController.fillFields(move);
+    } else if (currentController.getClass() == AVRequestController.class) {
+      AVRequestController avRequestController = (AVRequestController) currentController;
+      avRequestController.autoSubmit(move.getMoveDate());
+      switchVBox(ServiceRequests.SECURITY_REQUEST);
+
+      SecurityServiceRequestController securityServiceRequestController =
+          (SecurityServiceRequestController) currentController;
+      securityServiceRequestController.fillFields(move);
+    } else if (currentController.getClass() == SecurityServiceRequestController.class) {
+      SecurityServiceRequestController securityServiceRequestController =
+          (SecurityServiceRequestController) currentController;
+      securityServiceRequestController.autoSubmit(move.getMoveDate());
+      switchVBox(ServiceRequests.PATIENT_TRANSPORT);
+
+      PatientTransportVBoxController patientTransportVBoxController =
+          (PatientTransportVBoxController) currentController;
+      patientTransportVBoxController.fillFields(move);
+
+    } else if (currentController.getClass() == PatientTransportVBoxController.class) {
+      PatientTransportVBoxController patientTransportVBoxController =
+          (PatientTransportVBoxController) currentController;
+      patientTransportVBoxController.autoSubmit(move.getMoveDate());
+      moveRequestTableController.closePopOver();
+    }
   }
 }

@@ -15,6 +15,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -162,16 +163,12 @@ public class SanitationRequestController implements ServiceRequestVBoxController
         }
       }
     }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     fieldReason.setText(
-        localDate
-            + ";"
-            + move.getLongName()
-            + ";"
-            + move.getNodeID()
-            + "; Please clean "
+        "Please clean "
             + locationName.getLongName()
             + " in preperation for a move on the "
-            + localDate
+            + formatter.format(localDate)
             + ".");
     fieldReason.setDisable(true);
     fieldLocationController.setDisable(true);
