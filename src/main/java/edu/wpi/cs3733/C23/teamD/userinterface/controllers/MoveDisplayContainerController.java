@@ -206,10 +206,10 @@ public class MoveDisplayContainerController {
       if (localDate.isBefore(datePicker.getValue())) {
         latest = m;
       }
-        if (localDate.equals(datePicker.getValue())) {
-          setFutureMove(m);
-          exactDate = true;
-        }
+      if (localDate.equals(datePicker.getValue())) {
+        setFutureMove(m);
+        exactDate = true;
+      }
     }
     if (!exactDate) {
       System.out.println("new move");
