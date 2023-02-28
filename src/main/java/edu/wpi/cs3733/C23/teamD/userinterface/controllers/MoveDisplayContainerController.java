@@ -9,6 +9,7 @@ import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.pathfinding.controllers.TextDirectionsController;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
@@ -36,6 +37,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class MoveDisplayContainerController {
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
@@ -58,12 +60,18 @@ public class MoveDisplayContainerController {
   @FXML private MFXButton floor3Button;
   @FXML private MFXToggleButton nodeNameToggle;
 
+  private ArrayList<String> directions = new ArrayList<>();
+
+
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
   private Move futureMove;
   private ArrayList<Edge> edges = new ArrayList<Edge>();
   private ArrayList<Move> moves;
+  private PopOver popover;
+  private TextDirectionsController textDirectionsController;
+
   TreeMap<String, Move> nodeToRoomMap;
   private ArrayList<Move> locationMoves = new ArrayList<>();
 
@@ -125,6 +133,19 @@ public class MoveDisplayContainerController {
     floorButtons[2] = floor1Button;
     floorButtons[3] = floor2Button;
     floorButtons[4] = floor3Button;
+
+    try {
+      final var resource = App.class.getResource("views/TextDirections.fxml");
+      final FXMLLoader loader = new FXMLLoader(resource);
+      popover = new PopOver(loader.load());
+      textDirectionsController = loader.getController();
+      popover.setArrowSize(0);
+      popover.setTitle("Text Directions");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+
     setFloorButtons(1);
   }
 
@@ -329,6 +350,13 @@ public class MoveDisplayContainerController {
       lastNode = pathNode;
     }
 
+    // TODO generate text directions
+    ArrayList<String> text = pathfinder.textPath(path);
+    for (String t : text) {
+      directions.add(t);
+    }
+
+
     mapPane.setCenter(
         MapFactory.startBuild()
             .scaleMap()
@@ -419,4 +447,10 @@ public class MoveDisplayContainerController {
 
   @FXML
   public void setDefaultLocation() {}
+
+  @FXML
+  public void getDirections() {
+    popover.show(App.getPrimaryStage());
+    textDirectionsController.setDirections(directions);
+  }
 }

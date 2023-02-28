@@ -48,6 +48,7 @@
             <BorderPane fx:id="mapPane" prefHeight="200.0" prefWidth="200.0" />
             <HBox fx:id="topHBox" maxHeight="43.0" prefHeight="43.0" prefWidth="573.0" spacing="16.0" StackPane.alignment="TOP_CENTER">
                <children>
+                  <MFXButton minWidth="100.0" prefHeight="48.0" prefWidth="100.0" styleClass="moveDisplayButton" text="Text Directions" onAction="#getDirections"/>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: EEEEEE; -fx-border-color: #041140; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                      <children>
                         <Text fx:id="locationNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">
