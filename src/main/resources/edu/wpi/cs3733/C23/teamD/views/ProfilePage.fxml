@@ -41,11 +41,7 @@
                               </ImageView>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity">
                                  <children>
-                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity">
-                                       <children>
-                                          <MFXButton fx:id="changeProfilePicture21" minHeight="54.0" minWidth="270.0" prefHeight="54.0" prefWidth="270.0" styleClass="submitButton" text="Change Profile Picture" />
-                                       </children>
-                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" />
                                  </children>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity">
@@ -223,7 +219,7 @@
                                        </font></Label>
                                     <TableView fx:id="serviceRequestHistory" maxHeight="584.0" maxWidth="400.0" minWidth="375.0" prefHeight="504.0" prefWidth="375.0" stylesheets="@tableCSS.css" VBox.vgrow="ALWAYS">
                                        <placeholder>
-                                          <Label text="No content in table"  alignment="center"/>
+                                          <Label alignment="center" text="No content in table" />
                                        </placeholder>
                                        <columns>
                                           <TableColumn fx:id="requestID" editable="false" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Service Request ID" />
