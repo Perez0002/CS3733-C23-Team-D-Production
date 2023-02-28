@@ -96,6 +96,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
 
     } catch (Exception ex) {
       session.getTransaction().rollback();
+      ex.printStackTrace();
     }
   }
 
@@ -332,8 +333,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
             break;
           }
         }
-        String type = data[3];
-        if (type.equals("ComputerService")) {
+        String type = data[4];
+        if (type.trim().equals("ComputerService")) {
           ComputerServiceRequest sans =
               new ComputerServiceRequest(
                   Integer.parseInt(data[0]),
@@ -343,10 +344,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   data[4] == null ? "null" : data[4],
                   loc,
                   data[6],
-                  format.parse(data[8]),
-                  data[7]);
-          FDdb.getInstance().saveServiceRequest(sans);
-        } else if (type.equals("Security")) {
+                  format.parse(data[7]),
+                  data[8]);
+          this.save(sans);
+        } else if (type.trim().equals("Security")) {
           SecurityServiceRequest sans =
               new SecurityServiceRequest(
                   Integer.parseInt(data[0]),
@@ -356,10 +357,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   data[4] == null ? "null" : data[4],
                   loc,
                   data[6],
-                  format.parse(data[8]),
-                  data[7]);
-          FDdb.getInstance().saveServiceRequest(sans);
-        } else if (type.equals("PatientTransportData")) {
+                  format.parse(data[7]),
+                  data[8]);
+          this.save(sans);
+        } else if (type.trim().equals("PatientTransportData")) {
           PatientTransportRequest sans =
               new PatientTransportRequest(
                   Integer.parseInt(data[0]),
@@ -369,10 +370,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   data[4] == null ? "null" : data[4],
                   loc,
                   data[6],
-                  format.parse(data[8]),
-                  data[7]);
-          FDdb.getInstance().saveServiceRequest(sans);
-        } else if (type.equals("AVRequest")) {
+                  format.parse(data[7]),
+                  data[8]);
+          this.save(sans);
+        } else if (type.trim().equals("AVRequest")) {
           AVRequest sans =
               new AVRequest(
                   Integer.parseInt(data[0]),
@@ -382,10 +383,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   data[4] == null ? "null" : data[4],
                   loc,
                   data[6],
-                  format.parse(data[8]),
-                  LocalDate.parse(data[7]));
-          FDdb.getInstance().saveServiceRequest(sans);
-        } else if (type.equals("SanitationRequestData")) {
+                  format.parse(data[7]),
+                  LocalDate.now());
+          this.save(sans);
+        } else if (type.trim().equals("SanitationRequestData")) {
           SanitationRequest sans =
               new SanitationRequest(
                   Integer.parseInt(data[0]),
@@ -395,9 +396,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
                   data[4] == null ? "null" : data[4],
                   loc,
                   data[6],
-                  format.parse(data[8]),
-                  Integer.parseInt(data[7]));
-          FDdb.getInstance().saveServiceRequest(sans);
+                  format.parse(data[7]),
+                  Integer.parseInt(data[8]));
+          this.save(sans);
         }
       }
       fileReader.close();
@@ -418,7 +419,6 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
             String.join(
                 ",",
                 Integer.toString(s.getServiceRequestId()),
-                s.getServiceRequestType(),
                 s.getStat().name(),
                 Integer.toString(s.getAssociatedStaff().getEmployeeID()),
                 s.getReason(),

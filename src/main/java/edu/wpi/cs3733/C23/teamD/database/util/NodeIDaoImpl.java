@@ -41,6 +41,7 @@ public class NodeIDaoImpl implements IDao<Node> {
       this.nodes.add(n);
 
     } catch (Exception ex) {
+      ex.printStackTrace();
       session.getTransaction().rollback();
     }
   }
@@ -222,19 +223,18 @@ public class NodeIDaoImpl implements IDao<Node> {
       query.executeUpdate();
       query = session.createQuery("DELETE FROM Node");
       query.executeUpdate();
+      session.clear();
       session.getTransaction().commit();
-      Node n = new Node();
+      int i = 0;
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        n = new Node();
-        n.setNodeID(data[0]);
-        n.setXcoord(Integer.parseInt(data[1]));
-        n.setYcoord(Integer.parseInt(data[2]));
-        n.setFloor(data[3]);
-        n.setBuilding(data[4]);
+        Node n = new Node(Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4]);
         this.save(n);
+        if (i == 0) {
+          this.save(n);
+        }
+        i++;
       }
-      FDdb.getInstance().saveNode(n);
       fileReader.close();
     } catch (IOException e) {
       e.printStackTrace();
