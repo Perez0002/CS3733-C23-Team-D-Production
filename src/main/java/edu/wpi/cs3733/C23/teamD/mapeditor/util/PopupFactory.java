@@ -259,14 +259,14 @@ public class PopupFactory {
                 + "-fx-background-color: #EEEEEE;\n"
                 + "-fx-background-radius: 10;\n"
                 + "-fx-border-radius: 10;\n"
-                + "-fx-min-width: 250;";
+                + "-fx-min-width: 270;";
         String cssSettingsVBox =
             "-fx-border-radius: 10;\n"
                 + "-fx-border-width: 2;\n"
                 + "-fx-background-color: #FFFFFF;\n"
                 + "-fx-background-radius: 10;\n"
                 + "-fx-border-radius: 10;\n"
-                + "-fx-min-width: 250;";
+                + "-fx-min-width: 270;";
         xCoordTextField.setStyle(cssSettings);
         yCoordTextField.setStyle(cssSettings);
         buildingTextField.setStyle(cssSettings);
