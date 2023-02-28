@@ -16,6 +16,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
@@ -355,8 +356,11 @@ public class MapEditorMapNode extends MapNode {
     MFXButton noButton = new MFXButton();
     noButton.getStyleClass().add("cancelButton");
     HBox buttonHolder = new HBox(yesButton, noButton);
+    HBox.setMargin(yesButton, new Insets(5, 5, 5, 5));
+    HBox.setMargin(noButton, new Insets(5, 5, 5, 5));
     buttonHolder.setAlignment(Pos.CENTER);
     Text prompt = new Text("Do you want to auto repair edges?");
+    VBox.setMargin(prompt, new Insets(5, 5, 0, 5));
     warning.setContentNode(new VBox(prompt, buttonHolder));
     warning.show(App.getPrimaryStage());
     /* End Making Warning */
