@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <BorderPane fx:id="borderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayContainerController">
    <left>
       <VBox fx:id="move" prefHeight="200.0" prefWidth="350.0" spacing="16.0" BorderPane.alignment="CENTER">
@@ -22,8 +23,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
             <MFXFilterComboBox fx:id="mfxFilterComboBox" floatMode="DISABLED" minWidth="237.0" prefHeight="40.0" prefWidth="300.0" promptText="Pick a Room" styleClass="mfx-text-field" stylesheets="@updatedStyleGuide.css" />
+            <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
             <MFXButton minHeight="52.0" onAction="#display" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Display" />
             <MFXButton minHeight="52.0" onAction="#viewServiceRequests" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="View Service Requests" />
             <MFXButton minHeight="52.0" onAction="#setDefaultLocation" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Set Default Location" />
@@ -74,8 +75,9 @@
                   <Insets left="32.0" right="32.0" top="32.0" />
                </padding>
             </HBox>
-            <VBox maxHeight="150.0" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="BOTTOM_CENTER">
+            <VBox maxHeight="150.0" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="BOTTOM_CENTER" alignment="BOTTOM_CENTER">
                <children>
+                  <MFXToggleButton fx:id="nodeNameToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="185.0" text="Toggle Names" />
                   <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0" spacing="24.0">
                      <children>
                         <MFXButton fx:id="floorL1Button" prefWidth="100.0" styleClass="mapEditorFloorButton" text="Floor L1" />
