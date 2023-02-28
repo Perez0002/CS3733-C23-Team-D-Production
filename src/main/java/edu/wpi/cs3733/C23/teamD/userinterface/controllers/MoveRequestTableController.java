@@ -66,7 +66,7 @@ public class MoveRequestTableController implements Initializable {
         if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
           ConfettiController.makeConfetti(1500, 50, 100);
         }
-        ToastController.makeText("Move Request Submitted!", 3000, 50, 100, 200, 720);
+        ToastController.makeText("Move Request Submitted!", 3000, 50, 100);
       } else {
         Move move =
             new Move(
@@ -79,7 +79,7 @@ public class MoveRequestTableController implements Initializable {
         if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
           ConfettiController.makeConfetti(1500, 50, 100);
         }
-        ToastController.makeText("Move Request Submitted!", 3000, 50, 100, 200, 720);
+        ToastController.makeText("Move Request Submitted!", 3000, 50, 100);
       }
     } else {
       errorText.setVisible(true);

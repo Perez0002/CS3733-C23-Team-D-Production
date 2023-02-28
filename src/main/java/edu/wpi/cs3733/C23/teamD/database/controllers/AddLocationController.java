@@ -8,7 +8,6 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import lombok.Setter;
 
 public class AddLocationController implements AddFormController<LocationName> {
@@ -36,13 +35,7 @@ public class AddLocationController implements AddFormController<LocationName> {
 
   private void deleteRow() {
     databaseController.delete();
-    ToastController.makeText(
-        "the location has been deleted!",
-        1500,
-        50,
-        100,
-        (int) Screen.getPrimary().getBounds().getWidth() - 375,
-        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    ToastController.makeText("The location has been deleted!", 1500, 50, 100);
     dataToChange(null);
   }
 
@@ -66,13 +59,7 @@ public class AddLocationController implements AddFormController<LocationName> {
                     shortNameTextField.getText(),
                     nodeTypeTextField.getText()));
         databaseController.refresh();
-        ToastController.makeText(
-            "Your location has been added!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your location has been added!", 1500, 50, 100);
         clearFields();
       } else {
         LocationName newLocation = new LocationName();
@@ -87,13 +74,7 @@ public class AddLocationController implements AddFormController<LocationName> {
 
         databaseController.refresh();
         dataToChange(null);
-        ToastController.makeText(
-            "Your location has been changed!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your location has been changed!", 1500, 50, 100);
       }
     } else {
       errorText.setVisible(true);

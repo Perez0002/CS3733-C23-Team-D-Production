@@ -61,7 +61,7 @@
                         <MFXTextField fx:id="problemTextField" floatMode="DISABLED" minHeight="100.0" prefHeight="42.0" prefWidth="300.0" promptText="Enter any additional details" styleClass="serviceRequestMFXTextField" />
                     </children>
                 </VBox>
-            <Label text="Select one of the fields below *">
+            <Label text="Select atleast one of the fields below *">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin></Label>

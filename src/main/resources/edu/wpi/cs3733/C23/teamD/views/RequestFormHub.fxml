@@ -39,7 +39,7 @@
             <Pane fx:id="requestFormHubPane" prefHeight="546.0" prefWidth="660.0" />
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="550.0" spacing="10.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="requiredFieldsText" minWidth="189.0" prefHeight="40.0" prefWidth="189.0" text="* Required Fields" textFill="#012dfa">
                            <HBox.margin>

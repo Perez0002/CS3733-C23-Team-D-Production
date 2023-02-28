@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.Label?>
 
 <BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="703.0" stylesheets="@tableCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.PatientTransportTable">
    <center>
       <TableView fx:id="patientTable" prefHeight="362.0" prefWidth="681.0" stylesheets="@../tableCSS.css" BorderPane.alignment="CENTER">
           <placeholder>
-              <Label text="No content in table"  alignment="center"/>
+              <Label alignment="center" text="No content in table" />
           </placeholder>
           <columns>
-          <TableColumn fx:id="formID" prefWidth="118.0" text="PatientTranportID" />
-          <TableColumn fx:id="patientID" prefWidth="90.66668701171875" text="patientID" />
-            <TableColumn fx:id="startRoom" prefWidth="76.6666259765625" text="startRoom" />
-            <TableColumn fx:id="endRoom" prefWidth="81.99993896484375" text="endRoom" />
+          <TableColumn fx:id="formID" prefWidth="125.0" text="Patient Transport ID" />
+          <TableColumn fx:id="patientID" prefWidth="84.0" text="Patient ID" />
+            <TableColumn fx:id="startRoom" prefWidth="76.6666259765625" text="Start Room" />
+            <TableColumn fx:id="endRoom" prefWidth="81.99993896484375" text="End Room" />
             <TableColumn fx:id="urgency" prefWidth="82.66668701171875" text="Urgency" />
             <TableColumn fx:id="reason" prefWidth="58.0" text="Reason" />
-            <TableColumn fx:id="status" prefWidth="72.00003051757812" text="status" />
+            <TableColumn fx:id="status" prefWidth="72.00003051757812" text="Status" />
             <TableColumn fx:id="sendTo" minWidth="0.0" prefWidth="60.0" text="Contact" />
             <TableColumn fx:id="date" minWidth="0.0" prefWidth="60.0" text="Date" />
         </columns>

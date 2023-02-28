@@ -7,14 +7,14 @@
 
 <BorderPane fx:id="EdgeTableBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.EdgeTableController">
     <center>
-        <TableView fx:id="edgeTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;">
+        <TableView fx:id="edgeTable" maxHeight="500.0" minHeight="500.0" onMouseClicked="#getSelectedRow" prefHeight="500.0" style="-fx-background-radius: 5; -fx-border-radius: 5;">
             <placeholder>
-                <Label text="No content in table"  alignment="center"/>
+                <Label alignment="center" text="No content in table" />
             </placeholder>
             <columns>
-                <TableColumn fx:id="edgeID" prefWidth="134.0" styleClass="tableCSS.css" text="EdgeID" />
-                <TableColumn fx:id="startNode" prefWidth="133.0" styleClass="tableCSS.css" text="startNode" />
-                <TableColumn fx:id="endNode" prefWidth="133.0" styleClass="tableCSS.css" text="endNode" />
+                <TableColumn fx:id="edgeID" editable="false" prefWidth="134.0" styleClass="tableCSS.css" text="Edge ID" />
+                <TableColumn fx:id="startNode" editable="false" prefWidth="133.0" styleClass="tableCSS.css" text="Start Node" />
+                <TableColumn fx:id="endNode" editable="false" prefWidth="133.0" styleClass="tableCSS.css" text="End Node" />
             </columns>
         </TableView>
     </center>
