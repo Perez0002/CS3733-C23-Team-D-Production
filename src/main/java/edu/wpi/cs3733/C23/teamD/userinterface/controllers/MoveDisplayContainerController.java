@@ -108,7 +108,7 @@ public class MoveDisplayContainerController {
             throw new RuntimeException(e);
           }
         });
-    datePicker.setOnAction(setDate);
+    datePicker.setOnAction(handleDate);
     LoginButton.setOnAction(event -> Navigation.navigate(Screen.LOGIN_PAGE));
     swapButton.setOnAction(event -> switchLocations());
     edges = FDdb.getInstance().getAllEdges();
@@ -153,11 +153,9 @@ public class MoveDisplayContainerController {
 
           setMove(currentMove);
 
-          datePicker.clear();
-
-          locationNameText.setText(currentMove.getLongName());
-          messageText.setText(currentMove.getMessage());
           setRightAndLeft();
+
+          setDate();
         }
       };
 
@@ -188,22 +186,35 @@ public class MoveDisplayContainerController {
     }
   }
 
-  EventHandler<ActionEvent> setDate =
+  EventHandler<ActionEvent> handleDate =
       new EventHandler<ActionEvent>() {
         public void handle(ActionEvent e) {
-
-          for (Move m : locationMoves) {
-
-            LocalDate localDate =
-                Instant.ofEpochMilli(m.getMoveDate().getTime())
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-            if (localDate.equals(datePicker.getValue())) {
-              setFutureMove(m);
-            }
-          }
+          setDate();
         }
       };
+
+  private void setDate() {
+    boolean exactDate = false;
+    Move latest = currentMove;
+    for (Move m : locationMoves) {
+
+      LocalDate localDate =
+          Instant.ofEpochMilli(m.getMoveDate().getTime())
+              .atZone(ZoneId.systemDefault())
+              .toLocalDate();
+      if (localDate.isBefore(datePicker.getValue())) {
+        latest = m;
+      }
+        if (localDate.equals(datePicker.getValue())) {
+          setFutureMove(m);
+          exactDate = true;
+        }
+    }
+    if (!exactDate) {
+      System.out.println("new move");
+      setMove(latest);
+    }
+  }
 
   @FXML
   public void logout() {
@@ -335,7 +346,8 @@ public class MoveDisplayContainerController {
   }
 
   public void setMove(Move m) {
-    currentMove = m;
+    locationNameText.setText(m.getLongName());
+    messageText.setText(m.getMessage());
     mapNodes.clear();
     PathNode temp = new PathNode(m.getNode(), m.getLocation());
     mapNodes.add(new MapNode(temp));
