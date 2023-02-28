@@ -224,24 +224,29 @@ public class MoveDisplayContainerController {
   private void setDate() {
     boolean exactDate = false;
     Move latest = currentMove;
+    ArrayList<Move> movesToRemove = new ArrayList<Move>();
     for (Move m : locationMoves) {
-
-      LocalDate localDate =
-          Instant.ofEpochMilli(m.getMoveDate().getTime())
-              .atZone(ZoneId.systemDefault())
-              .toLocalDate();
-      if (localDate.isBefore(datePicker.getValue())) {
-        latest = m;
+      if (m.getMoveDate() == null) {
+        movesToRemove.add(m);
+      } else {
+        LocalDate localDate =
+            Instant.ofEpochMilli(m.getMoveDate().getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        if (localDate.isBefore(datePicker.getValue())) {
+          latest = m;
+        }
+        if (localDate.equals(datePicker.getValue())) {
+          setFutureMove(m);
+          exactDate = true;
+        }
       }
-      if (localDate.equals(datePicker.getValue())) {
-        setFutureMove(m);
-        exactDate = true;
+      if (!exactDate) {
+        System.out.println("new move");
+        setMove(latest);
       }
     }
-    if (!exactDate) {
-      System.out.println("new move");
-      setMove(latest);
-    }
+    locationMoves.removeAll(movesToRemove);
   }
 
   @FXML
