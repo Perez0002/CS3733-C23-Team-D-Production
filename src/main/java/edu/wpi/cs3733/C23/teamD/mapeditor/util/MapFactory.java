@@ -33,6 +33,7 @@ public class MapFactory {
 
   private boolean flipLabel = true;
   private AnchorPane holder;
+  public static boolean needsRefresh = true;
 
   /** Creates a new MapFactory Object */
   private MapFactory() {
@@ -150,8 +151,9 @@ public class MapFactory {
     ImageView image = new ImageView();
     AnchorPane holder = new AnchorPane();
 
-    if (scaleMap) {
+    if (scaleMap || needsRefresh) {
       gesturePane = new GesturePane();
+      needsRefresh = false;
     }
 
     if (floor == 0) {
@@ -282,6 +284,7 @@ public class MapFactory {
     double xAdjust = 0.7;
 
     if (scaleMap) {
+      needsRefresh = true;
       xAdjust = 1;
       if (minX != 5000) {
         double temp =

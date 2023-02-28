@@ -159,7 +159,7 @@ public class MapEditorPageController {
                 .withNodes(nodeList)
                 .withEdges(edgeList)
                 .build(floor);
-        gesturePane.requestFocus();
+
         gesturePane.setOnKeyReleased(
             e -> {
               System.out.println("Here!");
@@ -478,6 +478,7 @@ public class MapEditorPageController {
     Platform.runLater(
         () -> {
           modeHolder.setMaxHeight(nodeButton.getHeight());
+          System.out.println(modeHolder.getHeight());
           modeHolder.setMaxWidth(
               5
                   + nodeButton.getWidth()
@@ -509,6 +510,5 @@ public class MapEditorPageController {
           gesturePane.animate(Duration.millis(50)).centreOn(point);
         });
     this.toggleLabels().handle(null);
-    gesturePane.requestFocus();
   }
 }
