@@ -16,22 +16,21 @@ import javafx.util.Duration;
 public class ToastController {
   static Stage currentstage = App.getPrimaryStage();
 
-  public static void makeText(
-      String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay, int x, int y) {
+  public static void makeText(String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay) {
 
     Stage toastStage = new Stage();
     toastStage.initOwner(currentstage);
     toastStage.setResizable(false);
     toastStage.initStyle(StageStyle.TRANSPARENT);
-    toastStage.setX(x);
-    toastStage.setY(y);
+    toastStage.setX(640);
+    toastStage.setY(80);
 
     Text text = new Text(toastMsg);
-    text.setFont(Font.font("Nunito Sans", 12));
+    text.setFont(Font.font("Nunito Sans", 16));
     text.setFill(Color.DARKGREEN);
 
     StackPane root = new StackPane(text);
-    root.setStyle("-fx-background-radius: 15; -fx-background-color: #BBF391; -fx-padding: 12px;");
+    root.setStyle("-fx-background-radius: 15; -fx-background-color: #BBF391; -fx-padding: 20px;");
     root.setOpacity(0);
 
     Scene scene = new Scene(root);

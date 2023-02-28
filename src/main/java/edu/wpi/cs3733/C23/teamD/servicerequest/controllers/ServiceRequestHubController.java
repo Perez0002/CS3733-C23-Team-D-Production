@@ -142,7 +142,7 @@ public class ServiceRequestHubController {
 
     if (submission) {
       clearFields();
-      ToastController.makeText("Your form has been submitted!", 1500, 50, 100, 225, 740);
+      ToastController.makeText("Your form has been submitted!", 1500, 50, 100);
       if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
         ConfettiController.makeConfetti(1500, 50, 100);
       }

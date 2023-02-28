@@ -5,51 +5,40 @@
 }
 
 .table-view{
-    -fx-border-radius: 10;
     -fx-background-color: transparent;
 }
 
 .table-row-cell:focused{
     -fx-alignment: center;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
 .table-row-cell:hover {
     -fx-alignment: center;
-    -fx-background-radius: 10;
+    -fx-background-radius: 5;
     -fx-background-color: #98AABC;
     -fx-text-background-color: white;
     -fx-text-fill: white;
     -fx-border-color: #012D5A;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
 }
 
-.table-view .column-header {
+.table-view .column-header{
+    -fx-border-color: #012D5A;
+    -fx-border-width: 0 0 2 0;
     -fx-font-size: 14;
-    -fx-text-background-color: black;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
+    -fx-text-background-color: transparent;
     -fx-background-color: transparent;
-}
-
-.table-view .column-header-background{
-    -fx-background-color: transparent
 }
 
 .table-view .cell{
     -fx-border-color: transparent;
 }
 
-.table-view .column-header-background .label{
-    -fx-text-background-color: black;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
+.table-view .column-header-background{
     -fx-background-color: transparent;
-    -fx-border-color: #012D5A;
-    -fx-border-width: 0 0 2 0;
-    -fx-alignment: CENTER_LEFT;
 }
 
 .table-view .column-header .label{
@@ -57,6 +46,8 @@
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-alignment: center;
+    -fx-text-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .table-view .cell:filled{
@@ -66,10 +57,10 @@
 
 .table-view .cell:selected{
     -fx-border-color: transparent;
-    -fx-background-radius: 10;
+    -fx-background-radius: 5;
     -fx-background-color: #012D5A;
     -fx-text-background-color: white;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     -fx-border-color: transparent;
 }
 
@@ -88,28 +79,28 @@
 
 .table-row-cell{
     -fx-background-color: transparent;
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
     -fx-text-fill: black;
 }
 
 .table-row-cell:odd{
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
     -fx-text-fill: black;
     -fx-border-color: transparent;
 }
 
 .table-row-cell:even{
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
     -fx-text-fill: black;
     -fx-border-color: transparent;
     -fx-background-color: #E4E1E6;
 }
 
 .table-view:focused {
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     -fx-background-color: transparent;
     -fx-padding: 0;
     -fx-text-background-color: black;
@@ -117,35 +108,32 @@
 }
 
 .table-row-cell:focused {
-    -fx-alignment: center;
-    -fx-background-radius: 10;
-    -fx-background-color: #012D5A;
-    -fx-text-background-color: white;
-    -fx-border-radius: 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: black;
     -fx-border-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
+    -fx-background-color: #E4E1E6;
 }
 
 .table-row-cell:selected {
     -fx-alignment: center;
-    -fx-background-radius: 10;
+    -fx-background-radius: 5;
     -fx-background-color: #012D5A;
     -fx-text-background-color: white;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     -fx-border-color: transparent;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 .table-row-cell:hover {
-    -fx-background-radius: 10;
+    -fx-background-radius: 5;
     -fx-background-color: #98AABC;
     -fx-text-background-color: white;
     -fx-text-fill: white;
     -fx-border-width: 2;
     -fx-border-color: #012D5A;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
 }
 
 .table-view .corner {
@@ -167,7 +155,7 @@
 .table-view .virtual-flow .scroll-bar .increment-button,
 .table-view .virtual-flow .scroll-bar .decrement-button {
     -fx-opacity: 0;
-    -fx-padding: 2;
+    -fx-padding: 0;
 }
 
 .default-color0.chart-pie { -fx-pie-color: #33567A; }
