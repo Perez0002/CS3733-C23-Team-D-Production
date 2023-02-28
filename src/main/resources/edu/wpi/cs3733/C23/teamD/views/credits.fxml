@@ -8,34 +8,34 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.CreditsController">
+<BorderPane maxHeight="720.0" maxWidth="1280.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.CreditsController">
    <center>
       <HBox alignment="TOP_CENTER">
          <children>
             <VBox alignment="TOP_CENTER">
                <children>
-                  <Label text="JavaFX Extensions">
+                  <Label alignment="CENTER" text="JavaFX Extensions">
                      <font>
                         <Font size="24.0" />
                      </font></Label>
-                  <Line endX="100.0" startX="-100.0">
+                  <Line endX="100.0" startX="-100.0" stroke="#01265a">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </Line>
-                  <Label text="GestureFX">
+                  <Label alignment="CENTER" text="GestureFX">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Label text="Hibernate">
+                  <Label alignment="CENTER" text="Hibernate">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Label text="Material FX">
+                  <Label alignment="CENTER" text="Material FX">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Label text="FluentUI pack">
+                  <Label alignment="CENTER" text="FluentUI pack">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
@@ -43,20 +43,20 @@
             </VBox>
             <VBox alignment="TOP_CENTER" layoutX="109.0" layoutY="10.0">
                <children>
-                  <Label text="Images">
+                  <Label alignment="CENTER" text="Images">
                      <font>
                         <Font size="24.0" />
                      </font></Label>
-                  <Line endX="100.0" startX="-100.0">
+                  <Line endX="100.0" startX="-100.0" stroke="#01265a">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </Line>
-                  <Label maxWidth="100.0" text="https://lh3.googleusercontent.com/p/AF1QipNWQH-zc4Ed6IMnelbb9wrS39HAQ4Ev13BkZhan=s680-w680-h510">
+                  <Label alignment="CENTER" maxWidth="300.0" text="https://lh3.googleusercontent.com/p/AF1QipNWQH-zc4Ed6IMnelbb9wrS39HAQ4Ev13BkZhan=s680-w680-h510">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Label text="Material FX">
+                  <Label alignment="CENTER" maxWidth="300.0" text="https://www.massgeneralbrigham.org/content/mgb-global/global/en/patient-care/international/about/brigham-and-womens-hospital/_jcr_content/root/container_924996778/hero_banner.coreimg.jpeg/1667229588893/international-bwh-1428x1110.jpeg">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
@@ -64,16 +64,16 @@
             </VBox>
             <VBox alignment="TOP_CENTER">
                <children>
-                  <Label text="Icons">
+                  <Label alignment="CENTER" text="Icons">
                      <font>
                         <Font size="24.0" />
                      </font></Label>
-                  <Line endX="100.0" startX="-100.0">
+                  <Line endX="100.0" startX="-100.0" stroke="#01265a">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </Line>
-                  <Label layoutX="58.0" layoutY="28.0" text="Ikonli">
+                  <Label alignment="CENTER" layoutX="58.0" layoutY="28.0" text="Ikonli">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
@@ -96,8 +96,11 @@
       <VBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <fx:include fx:id="cancelButton" prefHeight="53.0" prefWidth="128.0" source="cancelButton.fxml" text="Back" />
          <BorderPane.margin>
-            <Insets right="40.0" />
+            <Insets bottom="20.0" right="40.0" />
          </BorderPane.margin>
+         <opaqueInsets>
+            <Insets bottom="30.0" />
+         </opaqueInsets>
       </VBox>
 </bottom>
 </BorderPane>

@@ -31,101 +31,103 @@ public class AboutController {
   Duration duration = new Duration(500);
 
   // making the labels for each member and assigning them to the popover
-  @FXML Label position = new Label("Position: Full Time Software Engineer");
-  @FXML Label major = new Label("Major: Data Science");
-  @FXML Label hobby = new Label("Fun Fact: Minesweeper Master");
-  @FXML VBox vBox = new VBox(position, major, hobby);
-  private PopOver photoSquare = new PopOver(vBox);
+  //  @FXML Label position = new Label("Position: Full Time Software Engineer");
+  //  @FXML Label major = new Label("Major: Data Science");
+  //  @FXML Label hobby = new Label("Fun Fact: Minesweeper Master");
+  //  @FXML VBox vBox = new VBox(position, major, hobby);
+  //  private PopOver photoSquare = new PopOver(vBox);
 
-  @FXML Label position1 = new Label("Position: Product Owner");
-  @FXML Label major1 = new Label("Major: Computer Science");
-  @FXML Label hobby1 = new Label("Fun Fact: Nintendo Fan");
+  @FXML Label position1 = new Label("Position: Full Time Software Engineer");
+  @FXML Label major1 = new Label("Major: Data Science");
+  @FXML Label hobby1 = new Label("Fun Fact: Minesweeper Master");
   @FXML VBox vBox1 = new VBox(position1, major1, hobby1);
   private PopOver photoSquare1 = new PopOver(vBox1);
 
-  @FXML Label position2 = new Label("Position: Assistant Lead Software Engineer");
+  @FXML Label position2 = new Label("Position: Product Owner");
   @FXML Label major2 = new Label("Major: Computer Science");
-  @FXML Label hobby2 = new Label("Fun Fact: Middle name is \"Cowboy\"");
+  @FXML Label hobby2 = new Label("Fun Fact: Nintendo Fan");
   @FXML VBox vBox2 = new VBox(position2, major2, hobby2);
   private PopOver photoSquare2 = new PopOver(vBox2);
 
-  @FXML Label position3 = new Label("Position: Full Time Software Engineer");
+  @FXML Label position3 = new Label("Position: Assistant Lead Software Engineer");
   @FXML Label major3 = new Label("Major: Computer Science");
-  @FXML Label hobby3 = new Label("Fun Fact: Plays too many instruments");
+  @FXML Label hobby3 = new Label("Fun Fact: Middle name is \"Cowboy\"");
   @FXML VBox vBox3 = new VBox(position3, major3, hobby3);
   private PopOver photoSquare3 = new PopOver(vBox3);
 
-  @FXML Label position4 = new Label("Position: Part Time Content Creator");
-  @FXML Label major4 = new Label("Major: Creative Writing");
-  @FXML Label hobby4 = new Label("Fun Fact: Fluent in Spanish");
+  @FXML Label position4 = new Label("Position: Full Time Software Engineer");
+  @FXML Label major4 = new Label("Major: Computer Science");
+  @FXML Label hobby4 = new Label("Fun Fact: Plays too many instruments");
   @FXML VBox vBox4 = new VBox(position4, major4, hobby4);
   private PopOver photoSquare4 = new PopOver(vBox4);
 
-  @FXML Label position5 = new Label("Position: Full Time Data Analyst");
-  @FXML Label major5 = new Label("Major: Mathematics");
-  @FXML Label hobby5 = new Label("Fun Fact: Loves Hiking");
+  @FXML Label position5 = new Label("Position: Full Time Software Engineer");
+  @FXML Label major5 = new Label("Major: Computer Science");
+  @FXML Label hobby5 = new Label("Fun Fact: Likes to Hike");
   @FXML VBox vBox5 = new VBox(position5, major5, hobby5);
   private PopOver photoSquare5 = new PopOver(vBox5);
 
-  @FXML Label position6 = new Label("Position: Part Time Customer Support Specialist");
-  @FXML Label major6 = new Label("Major: Communications");
-  @FXML Label hobby6 = new Label("Fun Fact: Can Juggle Three Balls");
+  @FXML
+  Label position6 = new Label("Position: Documentation Analyst, Part Time Front End Developer");
+
+  @FXML Label major6 = new Label("Major: Robotics Engineering");
+  @FXML Label hobby6 = new Label("Fun Fact: I've all 9 continents");
   @FXML VBox vBox6 = new VBox(position6, major6, hobby6);
   private PopOver photoSquare6 = new PopOver(vBox6);
 
-  @FXML Label position7 = new Label("Position: Full Time Software Developer");
-  @FXML Label major7 = new Label("Major: Computer Engineering");
-  @FXML Label hobby7 = new Label("Fun Fact: Has a Collection of Over 50 Board Games");
+  @FXML Label position7 = new Label("Position: Project Manager");
+  @FXML Label major7 = new Label("Major: Computer Science");
+  @FXML Label hobby7 = new Label("Fun Fact: If I was an animal, I would be a monkey.\n");
   @FXML VBox vBox7 = new VBox(position7, major7, hobby7);
   private PopOver photoSquare7 = new PopOver(vBox7);
 
-  @FXML Label position8 = new Label("Position: Part Time Graphic Designer");
-  @FXML Label major8 = new Label("Major: Digital Media");
-  @FXML Label hobby8 = new Label("Fun Fact: Has Traveled to 10 Different Countries");
+  @FXML Label position8 = new Label("Position: Scrum Master");
+  @FXML Label major8 = new Label("Major: Robotics Engineering");
+  @FXML Label hobby8 = new Label("Fun Fact: I race sailboats on occasion");
   @FXML VBox vBox8 = new VBox(position8, major8, hobby8);
   private PopOver photoSquare8 = new PopOver(vBox8);
 
-  @FXML Label position9 = new Label("Position: Full Time Quality Assurance Engineer");
-  @FXML Label major9 = new Label("Major: Software Testing");
-  @FXML Label hobby9 = new Label("Fun Fact: Has a Pet Parrot");
+  @FXML Label position9 = new Label("Position: Assistant Lead, Frontend");
+  @FXML Label major9 = new Label("Major: Computer Science");
+  @FXML Label hobby9 = new Label("Fun Fact: black belt in karate");
   @FXML VBox vBox9 = new VBox(position9, major9, hobby9);
   private PopOver photoSquare9 = new PopOver(vBox9);
 
-  @FXML Label position10 = new Label("Position: Full Time Data Scientist");
-  @FXML Label major10 = new Label("Major: Statistics");
-  @FXML Label hobby10 = new Label("Fun Fact: Enjoys Playing Chess");
+  @FXML Label position10 = new Label("Position: Lead Developer");
+  @FXML Label major10 = new Label("Major: Computer Scientist");
+  @FXML Label hobby10 = new Label("Fun Fact: Part of Rowing Team");
   @FXML VBox vBox10 = new VBox(position10, major10, hobby10);
   private PopOver photoSquare10 = new PopOver(vBox10);
 
-  @FXML Label position11 = new Label("Position: Part Time Marketing Coordinator");
-  @FXML Label major11 = new Label("Major: Business Administration");
-  @FXML Label hobby11 = new Label("Fun Fact: Can Speak French Fluently");
-  @FXML VBox vBox11 = new VBox(position11, major11, hobby11);
-  private PopOver photoSquare11 = new PopOver(vBox11);
-
-  @FXML Label position12 = new Label("Position: Full Time Project Manager");
-  @FXML Label major12 = new Label("Major: Engineering Management");
-  @FXML Label hobby12 = new Label("Fun Fact: Enjoys Playing Tennis");
-  @FXML VBox vBox12 = new VBox(position12, major12, hobby12);
-  private PopOver photoSquare12 = new PopOver(vBox12);
-
-  @FXML Label position13 = new Label("Position: Part Time Sales Representative");
-  @FXML Label major13 = new Label("Major: Marketing");
-  @FXML Label hobby13 = new Label("Fun Fact: Loves Watching Football");
-  @FXML VBox vBox13 = new VBox(position13, major13, hobby13);
-  private PopOver photoSquare13 = new PopOver(vBox13);
-
-  @FXML Label position14 = new Label("Position: Full Time Database Administrator");
-  @FXML Label major14 = new Label("Major: Database Management");
-  @FXML Label hobby14 = new Label("Fun Fact: Enjoys Playing Video Games");
-  @FXML VBox vBox14 = new VBox(position14, major14, hobby14);
-  private PopOver photoSquare14 = new PopOver(vBox14);
-
-  @FXML Label position15 = new Label("Position: Part Time HR Coordinator");
-  @FXML Label major15 = new Label("Major: Human Resource Management");
-  @FXML Label hobby15 = new Label("Fun Fact: Enjoys Reading Mystery Novels");
-  @FXML VBox vBox15 = new VBox(position15, major15, hobby15);
-  private PopOver photoSquare15 = new PopOver(vBox15);
+  //  @FXML Label position11 = new Label("Position: Part Time Marketing Coordinator");
+  //  @FXML Label major11 = new Label("Major: Business Administration");
+  //  @FXML Label hobby11 = new Label("Fun Fact: Can Speak French Fluently");
+  //  @FXML VBox vBox11 = new VBox(position11, major11, hobby11);
+  //  private PopOver photoSquare11 = new PopOver(vBox11);
+  //
+  //  @FXML Label position12 = new Label("Position: Full Time Project Manager");
+  //  @FXML Label major12 = new Label("Major: Engineering Management");
+  //  @FXML Label hobby12 = new Label("Fun Fact: Enjoys Playing Tennis");
+  //  @FXML VBox vBox12 = new VBox(position12, major12, hobby12);
+  //  private PopOver photoSquare12 = new PopOver(vBox12);
+  //
+  //  @FXML Label position13 = new Label("Position: Part Time Sales Representative");
+  //  @FXML Label major13 = new Label("Major: Marketing");
+  //  @FXML Label hobby13 = new Label("Fun Fact: Loves Watching Football");
+  //  @FXML VBox vBox13 = new VBox(position13, major13, hobby13);
+  //  private PopOver photoSquare13 = new PopOver(vBox13);
+  //
+  //  @FXML Label position14 = new Label("Position: Full Time Database Administrator");
+  //  @FXML Label major14 = new Label("Major: Database Management");
+  //  @FXML Label hobby14 = new Label("Fun Fact: Enjoys Playing Video Games");
+  //  @FXML VBox vBox14 = new VBox(position14, major14, hobby14);
+  //  private PopOver photoSquare14 = new PopOver(vBox14);
+  //
+  //  @FXML Label position15 = new Label("Position: Part Time HR Coordinator");
+  //  @FXML Label major15 = new Label("Major: Human Resource Management");
+  //  @FXML Label hobby15 = new Label("Fun Fact: Enjoys Reading Mystery Novels");
+  //  @FXML VBox vBox15 = new VBox(position15, major15, hobby15);
+  //  private PopOver photoSquare15 = new PopOver(vBox15);
 
   public void initialize() {
 
@@ -251,35 +253,35 @@ public class AboutController {
     photoSquare10.setArrowSize(0);
     photoSquare10.setFadeOutDuration(duration);
 
-    position11.setPadding(new Insets(10, 5, 5, 10));
-    major11.setPadding(new Insets(5, 5, 5, 10));
-    hobby11.setPadding(new Insets(5, 5, 10, 10));
-    photoSquare11.setArrowSize(0);
-    photoSquare11.setFadeOutDuration(duration);
-
-    position12.setPadding(new Insets(10, 5, 5, 10));
-    major12.setPadding(new Insets(5, 5, 5, 10));
-    hobby12.setPadding(new Insets(5, 5, 10, 10));
-    photoSquare12.setArrowSize(0);
-    photoSquare12.setFadeOutDuration(duration);
-
-    position13.setPadding(new Insets(10, 5, 5, 10));
-    major13.setPadding(new Insets(5, 5, 5, 10));
-    hobby13.setPadding(new Insets(5, 5, 10, 10));
-    photoSquare13.setArrowSize(0);
-    photoSquare13.setFadeOutDuration(duration);
-
-    position14.setPadding(new Insets(10, 5, 5, 10));
-    major14.setPadding(new Insets(5, 5, 5, 10));
-    hobby14.setPadding(new Insets(5, 5, 10, 10));
-    photoSquare14.setArrowSize(0);
-    photoSquare14.setFadeOutDuration(duration);
-
-    position15.setPadding(new Insets(10, 5, 5, 10));
-    major15.setPadding(new Insets(5, 5, 5, 10));
-    hobby15.setPadding(new Insets(5, 5, 10, 10));
-    photoSquare15.setArrowSize(0);
-    photoSquare15.setFadeOutDuration(duration);
+    //    position11.setPadding(new Insets(10, 5, 5, 10));
+    //    major11.setPadding(new Insets(5, 5, 5, 10));
+    //    hobby11.setPadding(new Insets(5, 5, 10, 10));
+    //    photoSquare11.setArrowSize(0);
+    //    photoSquare11.setFadeOutDuration(duration);
+    //
+    //    position12.setPadding(new Insets(10, 5, 5, 10));
+    //    major12.setPadding(new Insets(5, 5, 5, 10));
+    //    hobby12.setPadding(new Insets(5, 5, 10, 10));
+    //    photoSquare12.setArrowSize(0);
+    //    photoSquare12.setFadeOutDuration(duration);
+    //
+    //    position13.setPadding(new Insets(10, 5, 5, 10));
+    //    major13.setPadding(new Insets(5, 5, 5, 10));
+    //    hobby13.setPadding(new Insets(5, 5, 10, 10));
+    //    photoSquare13.setArrowSize(0);
+    //    photoSquare13.setFadeOutDuration(duration);
+    //
+    //    position14.setPadding(new Insets(10, 5, 5, 10));
+    //    major14.setPadding(new Insets(5, 5, 5, 10));
+    //    hobby14.setPadding(new Insets(5, 5, 10, 10));
+    //    photoSquare14.setArrowSize(0);
+    //    photoSquare14.setFadeOutDuration(duration);
+    //
+    //    position15.setPadding(new Insets(10, 5, 5, 10));
+    //    major15.setPadding(new Insets(5, 5, 5, 10));
+    //    hobby15.setPadding(new Insets(5, 5, 10, 10));
+    //    photoSquare15.setArrowSize(0);
+    //    photoSquare15.setFadeOutDuration(duration);
 
     // setting all of the popups for over the images
     imageOne.setOnMouseEntered(
@@ -412,60 +414,60 @@ public class AboutController {
           }
         });
 
-    imageEleven.setOnMouseEntered(
-        mouseEvent -> {
-          photoSquare11.show(imageEleven);
-        });
-    imageEleven.setOnMouseExited(
-        mouseEvent -> {
-          if (photoSquare11.isShowing()) {
-            photoSquare11.hide();
-          }
-        });
-
-    imageTwelve.setOnMouseEntered(
-        mouseEvent -> {
-          photoSquare12.show(imageTwelve);
-        });
-    imageTwelve.setOnMouseExited(
-        mouseEvent -> {
-          if (photoSquare12.isShowing()) {
-            photoSquare12.hide();
-          }
-        });
-
-    imageThirteen.setOnMouseEntered(
-        mouseEvent -> {
-          photoSquare13.show(imageThirteen);
-        });
-    imageThirteen.setOnMouseExited(
-        mouseEvent -> {
-          if (photoSquare13.isShowing()) {
-            photoSquare13.hide();
-          }
-        });
-
-    imageFourteen.setOnMouseEntered(
-        mouseEvent -> {
-          photoSquare14.show(imageFourteen);
-        });
-    imageFourteen.setOnMouseExited(
-        mouseEvent -> {
-          if (photoSquare14.isShowing()) {
-            photoSquare14.hide();
-          }
-        });
-
-    imageFifteen.setOnMouseEntered(
-        mouseEvent -> {
-          photoSquare15.show(imageFifteen);
-        });
-    imageFifteen.setOnMouseExited(
-        mouseEvent -> {
-          if (photoSquare15.isShowing()) {
-            photoSquare15.hide();
-          }
-        });
+    //    imageEleven.setOnMouseEntered(
+    //        mouseEvent -> {
+    //          photoSquare11.show(imageEleven);
+    //        });
+    //    imageEleven.setOnMouseExited(
+    //        mouseEvent -> {
+    //          if (photoSquare11.isShowing()) {
+    //            photoSquare11.hide();
+    //          }
+    //        });
+    //
+    //    imageTwelve.setOnMouseEntered(
+    //        mouseEvent -> {
+    //          photoSquare12.show(imageTwelve);
+    //        });
+    //    imageTwelve.setOnMouseExited(
+    //        mouseEvent -> {
+    //          if (photoSquare12.isShowing()) {
+    //            photoSquare12.hide();
+    //          }
+    //        });
+    //
+    //    imageThirteen.setOnMouseEntered(
+    //        mouseEvent -> {
+    //          photoSquare13.show(imageThirteen);
+    //        });
+    //    imageThirteen.setOnMouseExited(
+    //        mouseEvent -> {
+    //          if (photoSquare13.isShowing()) {
+    //            photoSquare13.hide();
+    //          }
+    //        });
+    //
+    //    imageFourteen.setOnMouseEntered(
+    //        mouseEvent -> {
+    //          photoSquare14.show(imageFourteen);
+    //        });
+    //    imageFourteen.setOnMouseExited(
+    //        mouseEvent -> {
+    //          if (photoSquare14.isShowing()) {
+    //            photoSquare14.hide();
+    //          }
+    //        });
+    //
+    //    imageFifteen.setOnMouseEntered(
+    //        mouseEvent -> {
+    //          photoSquare15.show(imageFifteen);
+    //        });
+    //    imageFifteen.setOnMouseExited(
+    //        mouseEvent -> {
+    //          if (photoSquare15.isShowing()) {
+    //            photoSquare15.hide();
+    //          }
+    //        });
   }
 
   /*
