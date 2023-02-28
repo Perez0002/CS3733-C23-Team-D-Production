@@ -54,7 +54,33 @@ public class AutoGeneratePopupController {
 
   @FXML
   void resetChanges() {
-    moveRequestTableController.closePopOver();
+    if (currentController.getClass() == SanitationRequestController.class) {
+      switchVBox(ServiceRequests.COMPUTER_REQUEST);
+      ComputerServiceRequestController computerRequestController =
+          (ComputerServiceRequestController) currentController;
+      computerRequestController.fillFields(move);
+    } else if (currentController.getClass() == ComputerServiceRequestController.class) {
+      switchVBox(ServiceRequests.AV_REQUEST);
+
+      AVRequestController avRequestController = (AVRequestController) currentController;
+      avRequestController.fillFields(move);
+    } else if (currentController.getClass() == AVRequestController.class) {
+      switchVBox(ServiceRequests.SECURITY_REQUEST);
+
+      SecurityServiceRequestController securityServiceRequestController =
+          (SecurityServiceRequestController) currentController;
+      securityServiceRequestController.fillFields(move);
+    } else if (currentController.getClass() == SecurityServiceRequestController.class) {
+      switchVBox(ServiceRequests.PATIENT_TRANSPORT);
+
+      PatientTransportVBoxController patientTransportVBoxController =
+          (PatientTransportVBoxController) currentController;
+      patientTransportVBoxController.fillFields(move);
+
+    } else if (currentController.getClass() == PatientTransportVBoxController.class) {
+      moveRequestTableController.closePopOver();
+    }
+    turnCurrentX();
   }
 
   @FXML
@@ -100,6 +126,7 @@ public class AutoGeneratePopupController {
       patientTransportVBoxController.autoSubmit(move.getMoveDate());
       moveRequestTableController.closePopOver();
     }
+    turnCurrentCheck();
   }
 
   private void turnCurrentCheck() {
