@@ -5,7 +5,7 @@ CREATE TABLE teamdSchema.Move();
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 
 -- update employee set password = 'admin' where employeeid = 37;
--- update employee set password = 'staff' where employeeid = 38;
+-- update employee set password = 'staff' where firstname = 'Staff';
 
 
 
@@ -33,7 +33,7 @@ ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'admin', 'ADMIN', 'Admin', 'Admin', 'admin', 9999555955);
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
--- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff', 'STAFF', 'Staff', 'Staff', 'admin', 9999555955);
+-- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Homeless', 'staff', 'STAFF', 'Staff', 'Staff', 'staff', 9999555955);
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '100 Institute Road', 'gphilips@wpi.edu', 'STAFF', 'Gibson', 'Philips', 'password', 9999555955);
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
@@ -49,21 +49,21 @@ ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Michael House', 'mconnor@wpi.edu', 'ADMIN', 'Michael', 'Connor', 'password', 234798234);
 --
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,31);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,32);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,33);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,34);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,35);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,36);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,37);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,38);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,39);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,40);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,41);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,42);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,43);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,44);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,45);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,16);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,17);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,18);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,19);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,20);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,21);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,22);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,23);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,24);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,25);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,26);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,27);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,28);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,29);
+-- insert into setting (confetti, darkmode, employeeid)  values (1,0,30);
 
 /*
 drop table Move;

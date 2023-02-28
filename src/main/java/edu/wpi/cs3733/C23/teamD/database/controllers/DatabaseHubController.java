@@ -88,7 +88,7 @@ public class DatabaseHubController {
     if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
       ConfettiController.makeConfetti(1500, 50, 100);
     }
-    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50, 275, 770);
+    ToastController.makeText("Your data has been downloaded!", 1000, 50, 50);
   }
 
   @FXML
@@ -97,7 +97,7 @@ public class DatabaseHubController {
     if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
       ConfettiController.makeConfetti(1500, 50, 100);
     }
-    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50, 275, 770);
+    ToastController.makeText("Your data has been uploaded!", 1000, 50, 50);
   }
 
   @FXML
