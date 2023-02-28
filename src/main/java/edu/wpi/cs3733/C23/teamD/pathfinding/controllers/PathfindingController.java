@@ -23,10 +23,13 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -35,6 +38,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
@@ -346,7 +350,9 @@ public class PathfindingController {
           }
           mapNodes.add(pathNode);
           if (lastNode != null) {
-            MapEdge edge = new MapEdge(new PathEdge(lastNode.getNode(), node));
+            MapEdge edge =
+                new MapEdge(
+                    new PathEdge(lastNode.getNode(), node), new SimpleBooleanProperty(false));
             edge.setNodes(lastNode, pathNode);
             mapEdges.add(edge);
           }
@@ -378,6 +384,20 @@ public class PathfindingController {
         this.mapNodes.addAll(mapNodes);
 
         changeFloor(converter.get(pathNodes.get(startNode).getNode().getFloor())).handle(null);
+        final Point2D centerPoint =
+            new Point2D(
+                mapNodes.get(0).getNodeX().getValue(), mapNodes.get(0).getNodeY().getValue());
+        Platform.runLater(
+            () -> {
+              ((GesturePane) pathfindingBorderPane.getCenter())
+                  .animate(Duration.millis(50))
+                  .centreOn(centerPoint);
+            });
+
+        Platform.runLater(
+            () -> {
+              ((PathfindingMapNode) mapNodes.get(0)).MakePopup();
+            });
       }
     } else {
       pathResultText.setText("Incorrect Node Data Entered");

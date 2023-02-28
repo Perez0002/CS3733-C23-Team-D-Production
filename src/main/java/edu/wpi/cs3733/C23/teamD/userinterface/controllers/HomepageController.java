@@ -143,7 +143,7 @@ public class HomepageController {
                     + aNewMove.getMoveDate()
                     + ", here is the attached message: \n"
                     + aNewMove.getMessage());
-        futureMoveList.add(notif);
+        futureMoveList.add(0, notif);
       }
     }
 

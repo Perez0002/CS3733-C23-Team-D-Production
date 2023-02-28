@@ -6,8 +6,12 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import lombok.Getter;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingMapNode extends MapNode {
   private PathfindingMapNode prevNode = null;
@@ -47,8 +51,11 @@ public class PathfindingMapNode extends MapNode {
     }
   }
 
-  private void MakePopup() {
+  public void MakePopup() {
     if (this.popup == null) {
+      /* Color the node on the map to represent selection */
+      this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));
+
       /* Assuming the popup does not exist, build a new one from the factory */
       this.popup =
           PopupFactory.startBuild()
@@ -71,8 +78,13 @@ public class PathfindingMapNode extends MapNode {
                   })
               .assignDirections(directions)
               .build();
-      /* Color the node on the map to represent selection */
-      this.nodeRepresentation.setFill(Color.rgb(0xCC, 0x22, 0x22));
+
+      Platform.runLater(
+          () -> {
+            ((GesturePane) ((AnchorPane) this.nodeRepresentation.getParent()).getParent())
+                .animate(Duration.millis(100))
+                .centreOn(new Point2D(this.getNodeX().getValue(), this.getNodeY().getValue()));
+          });
       /* Prevent this Node's tooltip from popping up */
       this.allowTooltip = false;
     }

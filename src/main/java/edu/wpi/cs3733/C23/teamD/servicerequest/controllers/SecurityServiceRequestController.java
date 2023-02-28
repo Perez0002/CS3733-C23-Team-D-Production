@@ -26,7 +26,13 @@ public class SecurityServiceRequestController extends ServiceRequestController
 
   public SecurityServiceRequestController() {}
 
-  public void initialize() {}
+  public void initialize() {
+    locationBoxController
+        .giveComboBox()
+        .setOnAction(
+            event ->
+                ServiceRequestMapController.getMapSingleton().mapCenters(locationBoxController));
+  }
 
   public void clearFields() {
     employeeBoxController.clearForm();
@@ -70,10 +76,16 @@ public class SecurityServiceRequestController extends ServiceRequestController
 
   private boolean checkFields() {
     if (employeeBoxController.getEmployeeName() != null
-        && locationBoxController.getLocationLongName() != null
+        && locationBoxController.getLocation() != null
+        && problemTextField.getText() != null
         && urgencyBoxController.getUrgency() != null) {
       return true;
     } else return false;
+  }
+
+  @Override
+  public Node getVBox() {
+    return null;
   }
 
   @Override
@@ -113,10 +125,5 @@ public class SecurityServiceRequestController extends ServiceRequestController
               + " "
               + serviceRequest.getAssociatedStaff().getLastName());
     }
-  }
-
-  @Override
-  public Node getVBox() {
-    return null;
   }
 }
