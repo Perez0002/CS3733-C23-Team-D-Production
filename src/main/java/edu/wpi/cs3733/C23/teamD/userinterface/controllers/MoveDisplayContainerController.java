@@ -171,8 +171,6 @@ public class MoveDisplayContainerController {
 
           setMove(currentMove);
 
-          setRightAndLeft(currentMove);
-
           setDate();
         }
       };
