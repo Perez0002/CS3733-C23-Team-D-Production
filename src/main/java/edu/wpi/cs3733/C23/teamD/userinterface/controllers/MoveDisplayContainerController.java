@@ -15,6 +15,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -54,6 +56,7 @@ public class MoveDisplayContainerController {
   @FXML private MFXButton floor1Button;
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
+  @FXML private MFXToggleButton nodeNameToggle;
 
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
@@ -78,6 +81,10 @@ public class MoveDisplayContainerController {
         nodeToRoomMap.put(locName, m);
       }
     }
+
+    nodeNameToggle.setOnAction(event -> toggleNodeNames());
+    nodeNameToggle.setSelected(true);
+
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
 
@@ -102,7 +109,7 @@ public class MoveDisplayContainerController {
             throw new RuntimeException(e);
           }
         });
-    datePicker.setOnAction(setDate);
+    datePicker.setOnAction(handleDate);
     LoginButton.setOnAction(event -> Navigation.navigate(Screen.LOGIN_PAGE));
     swapButton.setOnAction(event -> switchLocations());
     edges = FDdb.getInstance().getAllEdges();
@@ -127,6 +134,15 @@ public class MoveDisplayContainerController {
     leftRoomText.setText(temp);
   }
 
+  public void toggleNodeNames() {
+    AnchorPane holder = (AnchorPane) ((GesturePane) mapPane.getCenter()).getContent();
+    for (javafx.scene.Node node : holder.getChildren()) {
+      if (node instanceof TextArea) {
+        node.setVisible(nodeNameToggle.isSelected());
+      }
+    }
+  }
+
   EventHandler<ActionEvent> setLocation =
       new EventHandler<ActionEvent>() {
         public void handle(ActionEvent e) {
@@ -138,11 +154,9 @@ public class MoveDisplayContainerController {
 
           setMove(currentMove);
 
-          datePicker.clear();
-
-          locationNameText.setText(currentMove.getLongName());
-          messageText.setText(currentMove.getMessage());
           setRightAndLeft();
+
+          setDate();
         }
       };
 
@@ -173,22 +187,35 @@ public class MoveDisplayContainerController {
     }
   }
 
-  EventHandler<ActionEvent> setDate =
+  EventHandler<ActionEvent> handleDate =
       new EventHandler<ActionEvent>() {
         public void handle(ActionEvent e) {
-
-          for (Move m : locationMoves) {
-
-            LocalDate localDate =
-                Instant.ofEpochMilli(m.getMoveDate().getTime())
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-            if (localDate.equals(datePicker.getValue())) {
-              setFutureMove(m);
-            }
-          }
+          setDate();
         }
       };
+
+  private void setDate() {
+    boolean exactDate = false;
+    Move latest = currentMove;
+    for (Move m : locationMoves) {
+
+      LocalDate localDate =
+          Instant.ofEpochMilli(m.getMoveDate().getTime())
+              .atZone(ZoneId.systemDefault())
+              .toLocalDate();
+      if (localDate.isBefore(datePicker.getValue())) {
+        latest = m;
+      }
+        if (localDate.equals(datePicker.getValue())) {
+          setFutureMove(m);
+          exactDate = true;
+        }
+    }
+    if (!exactDate) {
+      System.out.println("new move");
+      setMove(latest);
+    }
+  }
 
   @FXML
   public void logout() {
@@ -205,9 +232,10 @@ public class MoveDisplayContainerController {
     borderPane.setPadding(new Insets(0, 0, 0, 0));
     move.setManaged(false);
     App.getRootPane().setLeft(null);
-    mapPane.setDisable(true);
     stackPane.setPadding(new Insets(0, 0, 0, 0));
     mapPane.setBorder(null);
+    GesturePane g = (GesturePane) mapPane.getCenter();
+    g.setGestureEnabled(false);
     LoginButton.setManaged(false);
     LoginButton.setVisible(false);
     swapButton.setManaged(false);
@@ -229,7 +257,8 @@ public class MoveDisplayContainerController {
     swapButton.setManaged(true);
     move.setManaged(true);
     borderPane.setPadding(new Insets(32, 32, 32, 0));
-    mapPane.setDisable(false);
+    GesturePane g = (GesturePane) mapPane.getCenter();
+    g.setGestureEnabled(true);
     mapPane.setBorder(
         new Border(
             new BorderStroke(
@@ -319,7 +348,8 @@ public class MoveDisplayContainerController {
   }
 
   public void setMove(Move m) {
-    currentMove = m;
+    locationNameText.setText(m.getLongName());
+    messageText.setText(m.getMessage());
     mapNodes.clear();
     PathNode temp = new PathNode(m.getNode(), m.getLocation());
     mapNodes.add(new MapNode(temp));
