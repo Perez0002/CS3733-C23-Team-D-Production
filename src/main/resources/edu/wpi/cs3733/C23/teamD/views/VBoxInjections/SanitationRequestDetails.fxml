@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" spacing="16.0" stylesheets="@../updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.SanitationRequestDetailsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="16.0" stylesheets="@../updatedStyleGuide.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.SanitationRequestDetailsController">
    <children>
       <HBox>
          <children>
@@ -17,7 +17,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="urgencyBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsTopMenu" text="Urgency: " textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+            <Label fx:id="urgencyBox" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsTopMenu" text="Urgency: " textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

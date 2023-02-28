@@ -50,4 +50,8 @@ public class LocationComboBoxController {
   public void setText(String s) {
     mfxFilterComboBox.setText(s);
   }
+
+  public MFXFilterComboBox giveComboBox() {
+    return mfxFilterComboBox;
+  }
 }

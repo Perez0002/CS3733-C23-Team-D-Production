@@ -99,7 +99,7 @@
     -fx-text-fill: #011830;
 }
 .aboutLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 36pt;
+    -fx-font-size: 20pt;
     -fx-pref-width: 1350px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
@@ -270,7 +270,7 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-max-width: 200px;
-    -fx-max-height: 100px;
+    -fx-max-height: 50px;
     -fx-font-family: 'Nunito Sans Bold';
 }
 
@@ -281,7 +281,7 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-max-width: 200px;
-    -fx-max-height: 100px;
+    -fx-max-height: 50px;
     -fx-font-family: 'Nunito Sans Bold';
 }
 

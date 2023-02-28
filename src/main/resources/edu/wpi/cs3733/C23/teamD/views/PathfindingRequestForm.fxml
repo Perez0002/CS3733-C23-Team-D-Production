@@ -98,8 +98,9 @@
                   </VBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="215.0" text="Toggle Service Request Locations" />
-                        <MFXToggleButton fx:id="nodeNameToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="185.0" text="Toggle Names" />
+                        <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="133.0" text="View Service Requests" />
+                        <MFXToggleButton fx:id="nodeNameToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="133.0" text="Toggle Names" />
+                        <MFXToggleButton fx:id="textDirectionsToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="133.0" text="Show All Text Directions" />
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />

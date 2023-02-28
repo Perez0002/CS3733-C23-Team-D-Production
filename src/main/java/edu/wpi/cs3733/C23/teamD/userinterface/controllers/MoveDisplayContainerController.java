@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.TreeMap;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -333,7 +334,8 @@ public class MoveDisplayContainerController {
       PathfindingMapNode pathNode = new PathfindingMapNode(node);
       mapNodes.add(pathNode);
       if (lastNode != null) {
-        MapEdge edge = new MapEdge(new PathEdge(lastNode.getNode(), node));
+        MapEdge edge =
+            new MapEdge(new PathEdge(lastNode.getNode(), node), new SimpleBooleanProperty());
         edge.setNodes(lastNode, pathNode);
         mapEdges.add(edge);
       }

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.ApplicationHelpPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="420.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.ApplicationHelpPageController">
    <center>
       <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -78,6 +78,17 @@
                </children>
             </VBox>
             <HBox layoutX="70.0" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
+            <VBox alignment="CENTER" layoutX="10.0" layoutY="424.0">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Screen Display">
+                     <graphic>
+                        <FontIcon iconColor="#012d5a" iconLiteral="fltral-desktop-20" iconSize="25" />
+                     </graphic>
+                  </Label>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" text="Display upcoming moves and nearby rooms on a tv. Can be logged in or logged out while screen displays." wrapText="true" />
+               </children>
+            </VBox>
+            <HBox layoutX="70.0" layoutY="452.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="300.0" style="-fx-border-color: #012D5A; -fx-border-width: 2;" />
             <VBox alignment="CENTER">
                <children>
                   <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Map Editor">
