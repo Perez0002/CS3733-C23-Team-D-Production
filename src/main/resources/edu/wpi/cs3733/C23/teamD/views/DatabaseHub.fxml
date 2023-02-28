@@ -31,6 +31,7 @@
                         <MFXButton fx:id="edgeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Edge" />
                         <MFXButton fx:id="moveTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Move" />
                         <MFXButton fx:id="locationTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Location" />
+                        <MFXButton fx:id="employeeTableButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="tabButton" text="Employee" />
                     </children>
                     <padding>
                         <Insets top="10.0" />
@@ -40,20 +41,28 @@
                 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="62.0" prefWidth="171.0" spacing="5.0">
                     <children>
                   <MFXButton fx:id="DownloadButton" onAction="#downloadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin>
                      <graphic>
                         <FontIcon iconColor="#fffdfd" iconLiteral="fltfal-cloud-download-24" iconSize="30" wrappingWidth="20.0" />
                      </graphic>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
                   </MFXButton>
                   <MFXButton fx:id="UploadButton" onAction="#uploadData" prefHeight="45.0" prefWidth="50.0" styleClass="Button" stylesheets="@tableCSS.css" text=" " textFill="#012d5a">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="fltfal-cloud-backup-24" iconSize="30" wrappingWidth="20.0" />
                      </graphic>
                                  <HBox.margin>
-                        <Insets right="50.0" />
+                        <Insets />
                      </HBox.margin>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="analyticsButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="128.0" styleClass="submitButton" stylesheets="@updatedStyleGuide.css" text="Analytics">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fltral-document-landscape-data-24" iconSize="30" />
+                     </graphic>
                   </MFXButton>
                     </children>
                 </HBox>

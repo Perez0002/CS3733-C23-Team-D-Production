@@ -268,8 +268,10 @@ public class NodeIDaoImpl implements IDao<Node> {
     FDdb dbFacade = FDdb.getInstance();
     ArrayList<Move> moves = dbFacade.getAllCurrentMoves(new Date());
     for (Move m : moves) {
-      if (m.getLocation().getLongName().equals(loc.getLongName())) {
-        return m.getNode();
+      if (m.getLocation() != null) {
+        if (m.getLocation().getLongName().equals(loc.getLongName())) {
+          return m.getNode();
+        }
       }
     }
     return null;

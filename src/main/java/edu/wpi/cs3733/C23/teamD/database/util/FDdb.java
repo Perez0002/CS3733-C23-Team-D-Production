@@ -346,6 +346,9 @@ public class FDdb {
     serviceRequestIDao.uploadCSV(new ServiceRequest());
     refreshAll();
   }
+  public Node getAssociatedNode(LocationName l) {
+    return nodeIDao.getAssociatedNode(l);
+  }
 
   public void saveKiosk(LocationName l) {
     locationNameIDao.saveKiosk(l);
