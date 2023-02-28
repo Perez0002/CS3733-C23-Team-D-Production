@@ -69,6 +69,10 @@
     -fx-min-width: 300;
 }
 
+.fontSize16{
+    -fx-font-size: 14pt;
+}
+
 .root {
     -fx-font-family: "Nunito Sans Regular";
 }
