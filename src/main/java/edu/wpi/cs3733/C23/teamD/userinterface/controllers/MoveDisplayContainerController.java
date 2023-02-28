@@ -139,9 +139,11 @@ public class MoveDisplayContainerController {
     }
     if (FDdb.getInstance().getKiosk(defaultKiosk) != null) {
       defaultKiosk = FDdb.getInstance().getKiosk(defaultKiosk);
-      roomComboBoxController.setLocationName(
-          nodeToRoomMap.get(defaultKiosk.getLocation()).getLocation().getLongName());
-      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+      if (nodeToRoomMap.get(defaultKiosk.getLocation()) != null) {
+        roomComboBoxController.setLocationName(
+            nodeToRoomMap.get(defaultKiosk.getLocation()).getLocation().getLongName());
+        setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+      }
     }
   }
 
@@ -341,22 +343,34 @@ public class MoveDisplayContainerController {
         pathfinder.pathfind(
             pathNodes.get(currentMove.getNodeID()), pathNodes.get(m.getNodeID()), "AStar");
     mapNodes = new ArrayList<MapNode>();
-
+    ArrayList<String> text = pathfinder.textPath(path);
     mapEdges = new ArrayList<>();
     MapNode lastNode = null;
+    int i = 0;
     for (PathNode node : path) {
       PathfindingMapNode pathNode = new PathfindingMapNode(node);
       mapNodes.add(pathNode);
+      if (text.size() > 0) {
+        if (i == 0) {
+          pathNode.addDirections(text.get(0));
+        } else if (i == path.size()) {
+          pathNode.addDirections(text.get(text.size() - 1));
+        } else if (node.getLocation().getLocationType().equals("ELEV")
+            || node.getLocation().getLocationType().equals("STAI")) {
+          pathNode.addDirections(text.get(i));
+        } else {
+          pathNode.addDirections(null);
+        }
+      }
       if (lastNode != null) {
         MapEdge edge =
             new MapEdge(new PathEdge(lastNode.getNode(), node), new SimpleBooleanProperty());
         edge.setNodes(lastNode, pathNode);
         mapEdges.add(edge);
       }
-
       lastNode = pathNode;
+      ++i;
     }
-
     mapPane.setCenter(
         MapFactory.startBuild()
             .scaleMap()
