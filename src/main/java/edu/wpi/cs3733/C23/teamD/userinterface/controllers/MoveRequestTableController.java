@@ -118,7 +118,7 @@ public class MoveRequestTableController implements Initializable {
     moveTable.setItems(moveList);
     if (newMove != null) {
       try {
-        generateRequestsPopup(newMove);
+        generateConfirmationPopup(newMove);
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
@@ -193,7 +193,7 @@ public class MoveRequestTableController implements Initializable {
             });
   }
 
-  private void generateRequestsPopup(Move move) throws IOException {
+  public void generateAutomaticServiceRequestPopup(Move move) throws IOException {
     System.out.println("generate popup");
     final var resource = App.class.getResource("views/AutoGeneratePopup.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
@@ -202,6 +202,20 @@ public class MoveRequestTableController implements Initializable {
     autoGeneratePopupController.setMove(move);
     autoGeneratePopupController.setMoveRequestTableController(this);
     autoGeneratePopupController.fillFields();
+    popOver.setArrowSize(0);
+    popOver.setCornerRadius(32);
+    popOver.setTitle("Generated Service Request Editor");
+    popOver.show(App.getPrimaryStage());
+  }
+
+  private void generateConfirmationPopup(Move move) throws IOException {
+    System.out.println("generate popup");
+    final var resource = App.class.getResource("views/VBoxInjections/AddServiceRequests.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    popOver = new PopOver(loader.load());
+    AddServiceRequestsController addServiceRequestsController = loader.getController();
+    addServiceRequestsController.setMoveRequestTableController(this);
+    addServiceRequestsController.setMove(move);
     popOver.setArrowSize(0);
     popOver.setCornerRadius(32);
     popOver.setTitle("Generated Service Request Editor");

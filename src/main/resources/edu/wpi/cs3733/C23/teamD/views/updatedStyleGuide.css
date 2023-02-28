@@ -126,13 +126,21 @@
     -fx-font-family: "Nunito Sans Bold";
 }
 
-.autoRequestLable { /* defines the format for the header on Service Request page */
+.autoRequestLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
     -fx-max-width: 500px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
 }
 
+
+.popupLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 24pt;
+    /*-fx-max-width: 400px;*/
+    -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-wrap-text: "true";
+}
 
 .homepageLabelBig { /* defines the format for the header on Service Request page */
     -fx-font-size: 30pt;
