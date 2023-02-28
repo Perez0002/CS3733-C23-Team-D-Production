@@ -127,7 +127,7 @@ public class ServiceRequestMapController {
 
   public void mapCenters(LocationComboBoxController locationController) {
 
-    if (locationController.getLocation() != null) {
+    if (locationController.getLocationLongName() != null) {
       edu.wpi.cs3733.C23.teamD.database.entities.Node node =
           FDdb.getInstance().getAssociatedNode(locationController.getLocation());
       int x = node.getXcoord();
