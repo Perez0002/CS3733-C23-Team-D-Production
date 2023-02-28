@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.pathfinding.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
@@ -17,6 +18,7 @@ import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickCom
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import java.io.IOException;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +28,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -37,6 +40,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class PathfindingController {
 
@@ -77,6 +81,8 @@ public class PathfindingController {
   @FXML private MFXButton DFSButton;
   @FXML private MFXToggleButton serviceRequestLocationToggle;
   @FXML private MFXToggleButton nodeNameToggle;
+  @FXML private MFXToggleButton textDirectionsToggle;
+  private TextDirectionsController textDirectionsController;
 
   private boolean nodeNamesVisible = false;
   private RoomPickComboBoxController comboBox;
@@ -86,6 +92,9 @@ public class PathfindingController {
   private ArrayList<PathNode> path = new ArrayList<>();
   private ArrayList<MapNode> mapNodes = new ArrayList<>();
   private ArrayList<MapEdge> mapEdges = new ArrayList<>();
+
+  private ArrayList<String> directions = new ArrayList<>();
+  private PopOver popover = null;
 
   public PathfindingController() {}
 
@@ -172,6 +181,21 @@ public class PathfindingController {
     };
   }
 
+  private EventHandler<ActionEvent> showTextDirections() {
+    return new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        if (textDirectionsToggle.isSelected()) {
+          System.out.println("HERE ARE THE DIRECTIONS HERE" + directions);
+          popover.show(App.getPrimaryStage());
+          textDirectionsController.setDirections(directions);
+        } else {
+          popover.hide();
+        }
+      }
+    };
+  }
+
   private EventHandler<ActionEvent> toggleNodeNames() {
     return new EventHandler<ActionEvent>() {
       @Override
@@ -216,6 +240,19 @@ public class PathfindingController {
     floorButtons[3] = floor3Button;
     floorButtons[4] = floor4Button;
     floorButtons[5] = floor5Button;
+    try {
+      final var resource = App.class.getResource("views/TextDirections.fxml");
+      final FXMLLoader loader = new FXMLLoader(resource);
+      popover = new PopOver(loader.load());
+      textDirectionsController = loader.getController();
+      popover.setArrowSize(0);
+      popover.setTitle("Text Directions");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    textDirectionsToggle.setDisable(true);
+    textDirectionsToggle.setOnAction(showTextDirections());
 
     datePicker.setValue(datePicker.getCurrentDate());
     datePicker.setOnAction(
@@ -298,6 +335,11 @@ public class PathfindingController {
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         MapNode lastNode = null;
         ArrayList<String> text = pathfinder.textPath(path);
+        for (String t : text) {
+          System.out.println("t + " + t);
+          directions.add(t);
+        }
+
         for (PathNode node : path) {
           PathfindingMapNode pathNode = new PathfindingMapNode(node);
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
@@ -362,6 +404,7 @@ public class PathfindingController {
     }
     serviceRequestLocationToggle.setDisable(false);
     nodeNameToggle.setDisable(false);
+    textDirectionsToggle.setDisable(false);
     toggleNodeNames().handle(null);
   }
 }

@@ -35,35 +35,49 @@ public class Pathfinder {
       int curY = pathList.get(i).getNode().getYcoord();
       int nextY = pathList.get(i + 1).getNode().getYcoord();
       int eucDistance = (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-
+      char leftArrow = 0x2190;
+      char rightArrow = 0x2192;
+      char upArrow = 0x2191;
+      char icon = ' ';
       if (i == 0) {
         directions.add(
-            "Starting at "
+            upArrow
+                + " Starting at "
                 + pathList.get(i).getLocation().getLongName()
                 + ", first go "
                 + eucDistance
                 + " meters to "
-                + pathList.get(i + 1).getLocation().getLongName());
+                + pathList.get(i + 1).getLocation().getLongName()
+                + ".");
       } else if (i < pathList.size() - 1) {
         if (!pathList
             .get(i)
             .getNode()
             .getFloor()
             .equals(pathList.get(i + 1).getNode().getFloor())) {
-          directions.add("Take the elevator to floor " + pathList.get(i + 1).getNode().getFloor());
+          directions.add(
+              upArrow
+                  + " Take the elevator to floor "
+                  + pathList.get(i + 1).getNode().getFloor()
+                  + ".");
         } else if (!pathList
             .get(i)
             .getNode()
             .getFloor()
             .equals(pathList.get(i - 1).getNode().getFloor())) {
           directions.add(
-              "From the elevator go to " + pathList.get(i + 1).getLocation().getLongName());
+              upArrow
+                  + " From the elevator go to "
+                  + pathList.get(i + 1).getLocation().getLongName()
+                  + ".");
         } else {
           double angle = findAngle(pathList.get(i - 1), pathList.get(i), pathList.get(i + 1));
           if (angle > 0.2) {
             angleText = "turn right";
+            icon = rightArrow;
           } else if (angle < -0.2) {
             angleText = "turn left";
+            icon = leftArrow;
           } else {
             directions.add(null);
           }
@@ -73,54 +87,18 @@ public class Pathfinder {
             nextX = nextNonStraight.getNode().getXcoord();
             eucDistance =
                 (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-            switch ((int) (Math.random() * 4)) {
-              case 0:
-                directions.add(
-                    "Thereafter, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + " and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-              case 1:
-                directions.add(
-                    "Next, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + "and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-              case 2:
-                directions.add(
-                    "Then, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + " and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-              case 3:
-                directions.add(
-                    "Subsequently, from "
-                        + pathList.get(i).getLocation().getLongName()
-                        + " "
-                        + angleText
-                        + " and then go "
-                        + eucDistance
-                        + " meters to "
-                        + nextNonStraight.getLocation().getLongName());
-                break;
-            }
+            directions.add(
+                icon
+                    + " Next, from "
+                    + pathList.get(i).getLocation().getLongName()
+                    + " "
+                    + angleText
+                    + " and then go "
+                    + eucDistance
+                    + " meters to "
+                    + nextNonStraight.getLocation().getLongName()
+                    + ".");
           }
-          ;
         }
       } else {
         //        directions.add(
@@ -132,7 +110,7 @@ public class Pathfinder {
         //                + pathList.get(i + 1).getLocation().getLongName());
       }
     }
-    directions.add("You have reached your destination");
+    directions.add("   You have reached your destination.");
 
     return directions;
   }
