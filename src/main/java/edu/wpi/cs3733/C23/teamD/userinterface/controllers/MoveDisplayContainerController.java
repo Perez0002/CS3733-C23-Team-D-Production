@@ -15,6 +15,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -53,6 +55,7 @@ public class MoveDisplayContainerController {
   @FXML private MFXButton floor1Button;
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
+  @FXML private MFXToggleButton nodeNameToggle;
 
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
@@ -77,6 +80,10 @@ public class MoveDisplayContainerController {
         nodeToRoomMap.put(locName, m);
       }
     }
+
+    nodeNameToggle.setOnAction(event -> toggleNodeNames());
+    nodeNameToggle.setSelected(false);
+
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
 
@@ -124,6 +131,15 @@ public class MoveDisplayContainerController {
     String temp = rightRoomText.getText();
     rightRoomText.setText(leftRoomText.getText());
     leftRoomText.setText(temp);
+  }
+
+  public void toggleNodeNames() {
+    AnchorPane holder = (AnchorPane) ((GesturePane) mapPane.getCenter()).getContent();
+    for (javafx.scene.Node node : holder.getChildren()) {
+      if (node instanceof TextArea) {
+        node.setVisible(nodeNameToggle.isSelected());
+      }
+    }
   }
 
   EventHandler<ActionEvent> setLocation =
@@ -204,7 +220,6 @@ public class MoveDisplayContainerController {
     borderPane.setPadding(new Insets(0, 0, 0, 0));
     move.setManaged(false);
     App.getRootPane().setLeft(null);
-    mapPane.setDisable(true);
     stackPane.setPadding(new Insets(0, 0, 0, 0));
     mapPane.setBorder(null);
     LoginButton.setManaged(false);

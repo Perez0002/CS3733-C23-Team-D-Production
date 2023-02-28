@@ -284,8 +284,8 @@ public class MapFactory {
         double temp =
             (Math.max(
                         Math.max(
-                            ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.5),
-                            ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.5)),
+                            ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.9),
+                            ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.9)),
                         0)
                     * 31)
                 + 1;
