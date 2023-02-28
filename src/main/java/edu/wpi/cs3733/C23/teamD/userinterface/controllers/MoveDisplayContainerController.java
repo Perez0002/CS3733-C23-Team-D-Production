@@ -141,7 +141,7 @@ public class MoveDisplayContainerController {
       defaultKiosk = FDdb.getInstance().getKiosk(defaultKiosk);
       roomComboBoxController.setLocationName(
           nodeToRoomMap.get(defaultKiosk.getLocation()).getLocation().getLongName());
-      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()));
+      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
     }
   }
 
@@ -175,9 +175,11 @@ public class MoveDisplayContainerController {
         }
       };
 
-  private void setRightAndLeft(Move m) {
+  private void setRightAndLeft(Move m, boolean bool) {
     Node currentNode = m.getNode();
     boolean leftAssigned = true;
+    leftRoomText.setText("");
+    rightRoomText.setText("");
     for (Edge edge : edges) {
       if (currentNode == edge.getToNode()) {
         if (leftAssigned) {
@@ -199,6 +201,14 @@ public class MoveDisplayContainerController {
     }
     if (leftAssigned) {
       rightRoomText.setText("");
+    }
+    if (!bool) {
+      if (leftRoomText.getText() != null) {
+        leftRoomText.setText(String.format("%1.15s", leftRoomText.getText()) + "...");
+      }
+      if (rightRoomText.getText() != null) {
+        rightRoomText.setText(String.format("%1.15s", rightRoomText.getText()) + "...");
+      }
     }
   }
 
@@ -258,6 +268,8 @@ public class MoveDisplayContainerController {
     backButton.setManaged(true);
     backButton.setVisible(true);
     backButton.setDisable(false);
+    if (defaultKiosk.getLocation() != null)
+      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), true);
   }
 
   @FXML
@@ -454,6 +466,6 @@ public class MoveDisplayContainerController {
         }
       }
     }
-    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()));
+    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
   }
 }
