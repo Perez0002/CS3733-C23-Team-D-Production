@@ -198,9 +198,7 @@ public class ServiceRequestTableController extends Application
               }
               if (serviceTable.getMaxWidth() / size > currentMax)
                 column.setMinWidth(serviceTable.getMaxWidth() / size);
-              if (currentMax < 350) {
-                column.setMinWidth(currentMax);
-              }
+              column.setMinWidth(currentMax);
             });
   }
 }

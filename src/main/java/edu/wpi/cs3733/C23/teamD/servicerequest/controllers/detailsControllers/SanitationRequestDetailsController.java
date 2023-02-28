@@ -25,12 +25,7 @@ public class SanitationRequestDetailsController implements RequestDetailsControl
 
     // replace type of request checker
     if (serviceRequest.getClass().equals(SanitationRequest.class)) {
-      String[] reason = serviceRequest.getReason().split(";");
-      if (reason.length == 4) {
-        descriptionBox.setText("Additional Details: \n" + reason[3]);
-      } else {
-        descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
-      }
+      descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
       employeeBox.setText(
           "Assigned Staff: "
               + serviceRequest.getAssociatedStaff().getFirstName()

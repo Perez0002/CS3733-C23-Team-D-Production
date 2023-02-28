@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
-import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
@@ -15,8 +14,6 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -152,26 +149,7 @@ public class SanitationRequestController implements ServiceRequestVBoxController
         Instant.ofEpochMilli(move.getMoveDate().getTime())
             .atZone(ZoneId.systemDefault())
             .toLocalDate();
-    ArrayList<Move> moves = FDdb.getInstance().getAllCurrentMoves(new Date());
-    LocationName locationName = null;
-    for (Move m : moves) {
-      if (m.getNodeID().equals(move.getNodeID())) {
-        locationName = move.getLocation();
-      }
-    }
-    fieldReason.setText(
-        localDate
-            + ";"
-            + move.getLongName()
-            + ";"
-            + move.getNodeID()
-            + "; Please clean "
-            + locationName.getLongName()
-            + " in preperation for a move on the "
-            + localDate
-            + ".");
-    fieldReason.setDisable(true);
-    fieldLocationController.setDisable(true);
+    fieldReason.setText(localDate + ";" + move.getLongName() + ";" + move.getNodeID());
   }
 
   public void autoSubmit(Date date) {
@@ -193,15 +171,8 @@ public class SanitationRequestController implements ServiceRequestVBoxController
             fieldLocationController.getLocation(),
             urgencyBox.getValue().toString());
 
-    Calendar calendar = Calendar.getInstance();
-
-    calendar.setTime(date);
-    calendar.add(Calendar.DATE, -1);
-    System.out.println(date.toString());
-    System.out.println(calendar.getTime().toString());
-
     FDdb.getInstance().saveServiceRequest(requestData);
-    requestData.setDateAndTime(calendar.getTime());
+    requestData.setDateAndTime(date);
     FDdb.getInstance().updateServiceRequest(requestData);
   }
 }

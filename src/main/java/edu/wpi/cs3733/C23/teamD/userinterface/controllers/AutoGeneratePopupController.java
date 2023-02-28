@@ -37,9 +37,7 @@ public class AutoGeneratePopupController {
   }
 
   @FXML
-  void resetChanges() {
-    moveRequestTableController.closePopOver();
-  }
+  void resetChanges() {}
 
   @FXML
   void submitChanges() throws IOException {
