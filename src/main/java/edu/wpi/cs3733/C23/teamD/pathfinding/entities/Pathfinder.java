@@ -79,7 +79,7 @@ public class Pathfinder {
             eucDistance =
                 (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
             directions.add(
-                    icon
+                icon
                     + " Next, from "
                     + pathList.get(i).getLocation().getLongName()
                     + " "
@@ -89,7 +89,6 @@ public class Pathfinder {
                     + " meters to "
                     + nextNonStraight.getLocation().getLongName());
           }
-          ;
         }
       } else {
         //        directions.add(
