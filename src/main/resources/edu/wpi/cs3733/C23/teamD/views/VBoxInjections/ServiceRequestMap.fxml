@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestMapController">
+   <bottom>
+       <VBox prefWidth="850.0" BorderPane.alignment="CENTER">
+           <children>
+               <HBox alignment="CENTER" prefWidth="850.0" spacing="24.0">
+                   <children>
+                       <MFXButton fx:id="floor1Button" styleClass="floorSwitchButton" text="L1" />
+                       <MFXButton fx:id="floor2Button" styleClass="floorSwitchButton" text="L2" />
+                       <MFXButton fx:id="floor3Button" styleClass="floorSwitchButton" text="Floor 1" />
+                       <MFXButton fx:id="floor4Button" styleClass="floorSwitchButton" text="Floor 2" />
+                       <MFXButton fx:id="floor5Button" styleClass="floorSwitchButton" text="Floor 3" />
+                   </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               </HBox>
+           </children>
+       </VBox>
+   </bottom>
+   <center>
+      <BorderPane fx:id="mapPaneContainer" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #041140; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
