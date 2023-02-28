@@ -1,59 +1,63 @@
 .table-view{
-    -fx-border-radius: 10;
+    -fx-border-radius: 0;
     -fx-background-color: transparent;
+
 }
 
-.table-row-cell:odd{
-    -fx-alignment: center;
-    -fx-background-color: #EEEEEE;
+
+.table-view .table-cell{
     -fx-border-color: transparent transparent transparent #012D5A;
     -fx-border-width: 3;
+    -fx-text-fill: black;
+    -fx-text-background-color: black;
+    -fx-min-height: 70;
+    -fx-wrap-text: "true";
+
 }
 
-.table-row-cell:even{
-    -fx-alignment: center;
-    -fx-background-color: #EEEEEE;
-    -fx-border-color: transparent transparent transparent #012D5A;
-    -fx-border-width: 3;
+
+.table-row-cell {
+    /*-fx-alignment: center;*/
+    /*-fx-background-color: #EEEEEE;*/
+    /*-fx-border-color: transparent transparent transparent transparent;*/
+    /*-fx-border-width: 0;*/
+
+
 }
 
 .table-row-cell:hover {
     -fx-background-color: #CFCFCF;
     -fx-text-background-color: black;
     -fx-text-fill: black;
+
+
 }
 
 .table-row-cell:selected {
     -fx-background-color: #CFCFCF;
-    -fx-border-color: transparent transparent transparent #012D5A;
-    -fx-border-width: 3;
     -fx-text-fill: black;
     -fx-text-background-color: black;
 }
 
-/*.table-view .cell:selected {*/
-/*    -fx-background-color: #CFCFCF;*/
-/*    -fx-border-color: transparent transparent transparent #012D5A;*/
-/*    -fx-border-width: 3;*/
-/*    -fx-text-fill: black;*/
-/*    -fx-text-background-color: black;*/
-/*}*/
+.table-view .cell:selected {
+    -fx-background-color: #CFCFCF;
+    -fx-text-fill: black;
+    -fx-text-background-color: black;
+}
 
 .table-view .scroll-bar * {
-    -fx-min-width: 10;
-    -fx-pref-width: 10;
-    -fx-max-width: 10;
-    -fx-min-height: 10;
-    -fx-pref-height: 10;
-    -fx-max-height: 10;
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
 }
 
 .table-view .table-cell{
-    -fx-padding: 10;
-}
+    -fx-padding: 0 10 0 10;
+    -fx-font-size: 14;
 
-.table-view .cell{
-    -fx-border-color: transparent;
 }
 
 .table-view .column-header-background{
@@ -61,7 +65,7 @@
 }
 
 .table-view .column-header {
-    -fx-font-size: 20;
+    -fx-font-size: 24;
     -fx-text-background-color: black;
     -fx-text-fill: black;
     -fx-font-weight: bold;
