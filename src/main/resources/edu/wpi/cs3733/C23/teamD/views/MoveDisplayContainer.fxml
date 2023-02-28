@@ -27,6 +27,7 @@
             <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
             <MFXButton minHeight="52.0" onAction="#display" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Display" />
             <MFXButton minHeight="52.0" onAction="#viewServiceRequests" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="View Service Requests" />
+            <fx:include fx:id="roomComboBox" prefWidth="300.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
             <MFXButton minHeight="52.0" onAction="#setDefaultLocation" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Set Default Location" />
             <VBox alignment="BOTTOM_LEFT" prefHeight="800.0" prefWidth="100.0">
                <children>
