@@ -35,8 +35,8 @@ public class Pathfinder {
       int curY = pathList.get(i).getNode().getYcoord();
       int nextY = pathList.get(i + 1).getNode().getYcoord();
       int eucDistance = (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-      char rightArrow = 0x2190;
-      char leftArrow = 0x2192;
+      char leftArrow = 0x2190;
+      char rightArrow = 0x2192;
       char upArrow = 0x2191;
       char icon = ' ';
       if (i == 0) {
