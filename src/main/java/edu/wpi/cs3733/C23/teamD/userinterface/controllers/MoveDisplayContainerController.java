@@ -294,6 +294,7 @@ public class MoveDisplayContainerController {
                 CornerRadii.EMPTY,
                 new BorderWidths(3, 3, 3, 3))));
     stackPane.setPadding(new Insets(32, 32, 32, 32));
+    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
   }
 
   public void setFutureMove(Move m) {
