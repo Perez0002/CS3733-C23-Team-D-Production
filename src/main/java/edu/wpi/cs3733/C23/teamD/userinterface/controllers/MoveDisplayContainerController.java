@@ -80,6 +80,10 @@ public class MoveDisplayContainerController {
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
 
+    if (FDdb.getInstance().getKiosk() != null) {
+      currentMove = nodeToRoomMap.get(FDdb.getInstance().getKiosk().getLongName());
+      mfxFilterComboBox.setValue(currentMove.getLocation().getLongName());
+    }
     // set up mapPane
     mapPane.setCenter(MapFactory.startBuild().scaleMap().build(1));
     mapPane.setBorder(
@@ -386,5 +390,7 @@ public class MoveDisplayContainerController {
   }
 
   @FXML
-  public void setDefaultLocation() {}
+  public void setDefaultLocation() {
+    FDdb.getInstance().saveKiosk(currentMove.getLocation());
+  }
 }
