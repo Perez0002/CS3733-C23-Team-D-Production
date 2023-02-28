@@ -21,7 +21,7 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
 
-  private static final GesturePane gesturePane = new GesturePane();
+  private static GesturePane gesturePane = new GesturePane();
   private boolean onlyStartEnd;
   private boolean labelsShown = false;
   private ArrayList<MapNode> nodeList;
@@ -149,6 +149,10 @@ public class MapFactory {
 
     ImageView image = new ImageView();
     AnchorPane holder = new AnchorPane();
+
+    if (scaleMap) {
+      gesturePane = new GesturePane();
+    }
 
     if (floor == 0) {
       image =

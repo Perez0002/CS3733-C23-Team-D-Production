@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -358,12 +359,38 @@ public class MapEditorPageController {
           mapNodes.get(edge.getFromNode().getNodeID()), mapNodes.get(edge.getToNode().getNodeID()));
     }
 
-    nodeButton.setDisable(true);
-    edgeButton.setDisable(false);
-    multiNodeButton.setDisable(false);
     nodeButton.getStyleClass().add("mapEditorFloorButtonSelected");
     edgeButton.getStyleClass().add("mapEditorFloorButton");
     multiNodeButton.getStyleClass().add("mapEditorFloorButton");
+    Tooltip nodeButtonToolTip =
+        new Tooltip(
+            "Click on a Node to edit the node \n" + "Click on the map to create a new Node");
+    nodeButtonToolTip.setShowDuration(Duration.INDEFINITE);
+    nodeButtonToolTip.setShowDelay(Duration.millis(250));
+    nodeButtonToolTip.setHideDelay(Duration.ZERO);
+    nodeButtonToolTip.setStyle("-fx-font-size: 20");
+    nodeButton.setTooltip(nodeButtonToolTip);
+    Tooltip edgeButtonToolTip =
+        new Tooltip(
+            "Click on an Edge to remove the Edge \n"
+                + "Click on a Node to begin adding an Edge with that Node as a start point. \n"
+                + "Click on another Node to complete the Edge, and click on the same Node again to cancel");
+    edgeButtonToolTip.setShowDuration(Duration.INDEFINITE);
+    edgeButtonToolTip.setShowDelay(Duration.millis(250));
+    edgeButtonToolTip.setHideDelay(Duration.ZERO);
+    edgeButtonToolTip.setStyle("-fx-font-size: 20");
+    edgeButton.setTooltip(edgeButtonToolTip);
+    Tooltip multiNodeButtonToolTip =
+        new Tooltip(
+            "Click and drag to select multiple Nodes \n"
+                + "Once selected, click and drag to move the nodes \n"
+                + "Once Selected, press left or right arrows to align Nodes on the X axis, \n"
+                + "or press up or down arrows to align on Y axis");
+    multiNodeButtonToolTip.setShowDuration(Duration.INDEFINITE);
+    multiNodeButtonToolTip.setShowDelay(Duration.millis(250));
+    multiNodeButtonToolTip.setHideDelay(Duration.ZERO);
+    multiNodeButtonToolTip.setStyle("-fx-font-size: 20");
+    multiNodeButton.setTooltip(multiNodeButtonToolTip);
 
     nodeButton.setOnAction(
         event -> {
@@ -371,17 +398,18 @@ public class MapEditorPageController {
           edgeMode.setValue(false);
           multiNodeMode.setValue(false);
 
-          nodeButton.setDisable(true);
-          edgeButton.setDisable(false);
-          multiNodeButton.setDisable(false);
+          // nodeButton.setDisable(true);
+          // edgeButton.setDisable(false);
+          // multiNodeButton.setDisable(false);
 
+          nodeButton.getStyleClass().clear();
+          edgeButton.getStyleClass().clear();
+          multiNodeButton.getStyleClass().clear();
+          nodeButton.getStyleClass().add("button");
+          edgeButton.getStyleClass().add("button");
+          multiNodeButton.getStyleClass().add("button");
           nodeButton.getStyleClass().add("mapEditorFloorButtonSelected");
-          nodeButton.getStyleClass().remove("mapEditorFloorButton");
-
-          edgeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           edgeButton.getStyleClass().add("mapEditorFloorButton");
-
-          multiNodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           multiNodeButton.getStyleClass().add("mapEditorFloorButton");
         });
 
@@ -391,17 +419,18 @@ public class MapEditorPageController {
           edgeMode.setValue(true);
           multiNodeMode.setValue(false);
 
-          nodeButton.setDisable(false);
-          edgeButton.setDisable(true);
-          multiNodeButton.setDisable(false);
+          // nodeButton.setDisable(false);
+          // edgeButton.setDisable(true);
+          // multiNodeButton.setDisable(false);
 
-          nodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          nodeButton.getStyleClass().clear();
+          edgeButton.getStyleClass().clear();
+          multiNodeButton.getStyleClass().clear();
+          nodeButton.getStyleClass().add("button");
+          edgeButton.getStyleClass().add("button");
+          multiNodeButton.getStyleClass().add("button");
           nodeButton.getStyleClass().add("mapEditorFloorButton");
-
           edgeButton.getStyleClass().add("mapEditorFloorButtonSelected");
-          edgeButton.getStyleClass().remove("mapEditorFloorButton");
-
-          multiNodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           multiNodeButton.getStyleClass().add("mapEditorFloorButton");
         });
 
@@ -411,18 +440,19 @@ public class MapEditorPageController {
           edgeMode.setValue(false);
           multiNodeMode.setValue(true);
 
-          nodeButton.setDisable(false);
-          edgeButton.setDisable(false);
-          multiNodeButton.setDisable(true);
+          // nodeButton.setDisable(false);
+          // edgeButton.setDisable(false);
+          // multiNodeButton.setDisable(true);
 
-          nodeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
+          nodeButton.getStyleClass().clear();
+          edgeButton.getStyleClass().clear();
+          multiNodeButton.getStyleClass().clear();
+          nodeButton.getStyleClass().add("button");
+          edgeButton.getStyleClass().add("button");
+          multiNodeButton.getStyleClass().add("button");
           nodeButton.getStyleClass().add("mapEditorFloorButton");
-
-          edgeButton.getStyleClass().remove("mapEditorFloorButtonSelected");
           edgeButton.getStyleClass().add("mapEditorFloorButton");
-
           multiNodeButton.getStyleClass().add("mapEditorFloorButtonSelected");
-          multiNodeButton.getStyleClass().remove("mapEditorFloorButton");
         });
 
     mapPlacement.getStyleClass().add("mapEditorMapHolder");
