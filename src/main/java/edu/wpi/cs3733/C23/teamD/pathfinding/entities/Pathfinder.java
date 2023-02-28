@@ -4,7 +4,6 @@ import static java.lang.Math.abs;
 import static java.lang.Math.atan2;
 
 import java.util.ArrayList;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 public class Pathfinder {
 
@@ -36,9 +35,9 @@ public class Pathfinder {
       int curY = pathList.get(i).getNode().getYcoord();
       int nextY = pathList.get(i + 1).getNode().getYcoord();
       int eucDistance = (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
-      FontIcon rightArrow = new FontIcon("fltfal-arrow-right-28");
-      FontIcon leftArrow = new FontIcon("fltfal-arrow-left-28");
-      FontIcon icon = null;
+      String rightArrow = "→→→→→→→→→→→→→→→→→→→→→→→→→";
+      String leftArrow = "←←←←←←←←←←←←←←←←←←←←←←←←←";
+      String icon = "";
       if (i == 0) {
         directions.add(
             "Starting at "
@@ -80,14 +79,17 @@ public class Pathfinder {
                 (int) Math.sqrt(abs(Math.pow(curX - nextX, 2) - Math.pow(curY - nextY, 2)));
             directions.add(
                 icon
+                    + "\n"
                     + " Next, from "
                     + pathList.get(i).getLocation().getLongName()
                     + " "
                     + angleText
-                    + "and then go "
+                    + " and then go "
                     + eucDistance
                     + " meters to "
-                    + nextNonStraight.getLocation().getLongName());
+                    + nextNonStraight.getLocation().getLongName()
+                    + "\n"
+                    + icon);
           }
         }
       } else {
