@@ -20,6 +20,8 @@ public class DatabaseHubController {
   @FXML private MFXButton edgeTableButton;
   @FXML private MFXButton moveTableButton;
   @FXML private MFXButton locationTableButton;
+  @FXML private MFXButton employeeTableButton;
+
   @FXML private MFXButton analyticsButton;
   @FXML private MFXButton downloadButton;
   @FXML private MFXButton uploadButton;
@@ -61,6 +63,10 @@ public class DatabaseHubController {
         event ->
             switchVBox(
                 DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
+    employeeTableButton.setOnMouseClicked(
+        event ->
+            switchVBox(
+                DatabasesFXML.EMPLOYEE_TABLE, employeeTableButton, DatabasesFXML.ADD_EMPLOYEE));
     analyticsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ANALYTICS_PAGE));
   }
 
