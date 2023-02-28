@@ -18,6 +18,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private ArrayList<SecurityServiceRequest> securityServiceRequests = new ArrayList<>();
   private ArrayList<AVRequest> avRequests = new ArrayList<>();
 
+  private ArrayList<LabRequest> labRequests = new ArrayList<>();
   public ServiceRequestIDaoImpl() {
     this.refresh();
   }
@@ -26,43 +27,49 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public ServiceRequest get(ServiceRequest s) {
     if (s instanceof PatientTransportRequest) {
       return this.patientTransportRequestList.stream()
-          .filter(
-              patientTransportRequest ->
-                  s.getServiceRequestId() == (patientTransportRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      patientTransportRequest ->
+                              s.getServiceRequestId() == (patientTransportRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof SanitationRequest) {
       return this.sanitationRequestList.stream()
-          .filter(
-              sanitationRequest ->
-                  s.getServiceRequestId() == (sanitationRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      sanitationRequest ->
+                              s.getServiceRequestId() == (sanitationRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof ComputerServiceRequest) {
       return this.computerServiceRequests.stream()
-          .filter(
-              computerServiceRequest ->
-                  s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      computerServiceRequest ->
+                              s.getServiceRequestId() == (computerServiceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof SecurityServiceRequest) {
       return this.securityServiceRequests.stream()
-          .filter(
-              securityServiceRequest ->
-                  s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      securityServiceRequest ->
+                              s.getServiceRequestId() == (securityServiceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     } else if (s instanceof AVRequest) {
       return this.avRequests.stream()
-          .filter(avRequest -> s.getServiceRequestId() == (avRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
-    } else {
+              .filter(avRequest -> s.getServiceRequestId() == (avRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
+    } else if(s instanceof LabRequest){
+      return this.labRequests.stream()
+              .filter(labRequest -> s.getServiceRequestId() == (labRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
+    }
+    else {
       return this.masterList.stream()
-          .filter(
-              serviceRequest -> s.getServiceRequestId() == (serviceRequest.getServiceRequestId()))
-          .findFirst()
-          .orElse(null);
+              .filter(
+                      serviceRequest -> s.getServiceRequestId() == (serviceRequest.getServiceRequestId()))
+              .findFirst()
+              .orElse(null);
     }
   }
 
@@ -83,6 +90,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.securityServiceRequests.add((SecurityServiceRequest) s);
       } else if (s instanceof AVRequest) {
         this.avRequests.add((AVRequest) s);
+      }
+      else if(s instanceof LabRequest){
+        this.labRequests.add((LabRequest) s);
       }
 
       this.masterList.add(s);
@@ -117,13 +127,17 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.avRequests.remove(index);
         this.avRequests.add((AVRequest) s);
       }
+      else if (s instanceof LabRequest) {
+        this.labRequests.remove(index);
+        this.labRequests.add((LabRequest) s);
+      }
 
       int masterIndex =
-          IntStream.range(0, this.masterList.size())
-              .filter(
-                  i -> this.masterList.get(i).getServiceRequestId() == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.masterList.size())
+                      .filter(
+                              i -> this.masterList.get(i).getServiceRequestId() == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
 
       this.masterList.remove(masterIndex);
       this.masterList.add(s);
@@ -159,6 +173,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     return this.avRequests;
   }
 
+  public ArrayList<LabRequest> getAllLabRequests() {
+    return this.labRequests;
+  }
+
   @Override
   public void refresh() {
     ArrayList<ServiceRequest> javaMasterList = new ArrayList<>();
@@ -167,35 +185,38 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     ArrayList<ComputerServiceRequest> javaComputerServiceRequestList;
     ArrayList<SecurityServiceRequest> javaSecurityRequestList;
     ArrayList<AVRequest> javaAVRequestList;
-
+    ArrayList<LabRequest> javaLabRequestList;
     session.beginTransaction();
     try {
       javaPatientTransportRequestList =
-          (ArrayList<PatientTransportRequest>)
-              session
-                  .createQuery(
-                      "SELECT p FROM PatientTransportRequest p", PatientTransportRequest.class)
-                  .getResultList();
+              (ArrayList<PatientTransportRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM PatientTransportRequest p", PatientTransportRequest.class)
+                              .getResultList();
       javaSanitationRequestList =
-          (ArrayList<SanitationRequest>)
-              session
-                  .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
-                  .getResultList();
+              (ArrayList<SanitationRequest>)
+                      session
+                              .createQuery("SELECT p FROM SanitationRequest p", SanitationRequest.class)
+                              .getResultList();
       javaComputerServiceRequestList =
-          (ArrayList<ComputerServiceRequest>)
-              session
-                  .createQuery(
-                      "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
-                  .getResultList();
+              (ArrayList<ComputerServiceRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM ComputerServiceRequest p", ComputerServiceRequest.class)
+                              .getResultList();
       javaSecurityRequestList =
-          (ArrayList<SecurityServiceRequest>)
-              session
-                  .createQuery(
-                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
-                  .getResultList();
+              (ArrayList<SecurityServiceRequest>)
+                      session
+                              .createQuery(
+                                      "SELECT p FROM SecurityServiceRequest p", SecurityServiceRequest.class)
+                              .getResultList();
       javaAVRequestList =
-          (ArrayList<AVRequest>)
-              session.createQuery("SELECT p FROM AVRequest p", AVRequest.class).getResultList();
+              (ArrayList<AVRequest>)
+                      session.createQuery("SELECT p FROM AVRequest p", AVRequest.class).getResultList();
+      javaLabRequestList =
+              (ArrayList<LabRequest>)
+                      session.createQuery("SELECT p FROM LabRequest p", LabRequest.class).getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
@@ -203,12 +224,14 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       javaMasterList.addAll(javaComputerServiceRequestList);
       javaMasterList.addAll(javaSecurityRequestList);
       javaMasterList.addAll(javaAVRequestList);
+      javaMasterList.addAll(javaLabRequestList);
 
       this.patientTransportRequestList = javaPatientTransportRequestList;
       this.sanitationRequestList = javaSanitationRequestList;
       this.computerServiceRequests = javaComputerServiceRequestList;
       this.securityServiceRequests = javaSecurityRequestList;
       this.avRequests = javaAVRequestList;
+      this.labRequests=javaLabRequestList;
 
       this.masterList = javaMasterList;
 
@@ -238,6 +261,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       } else if (s instanceof AVRequest) {
         this.avRequests.remove(s);
       }
+      else if (s instanceof LabRequest) {
+        this.labRequests.remove(s);
+      }
 
       this.masterList.remove(s);
 
@@ -251,47 +277,57 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     int index = -1;
     if (s instanceof PatientTransportRequest) {
       index =
-          IntStream.range(0, this.patientTransportRequestList.size())
-              .filter(
-                  i ->
-                      this.patientTransportRequestList.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.patientTransportRequestList.size())
+                      .filter(
+                              i ->
+                                      this.patientTransportRequestList.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof SanitationRequest) {
       index =
-          IntStream.range(0, this.sanitationRequestList.size())
-              .filter(
-                  i ->
-                      this.sanitationRequestList.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.sanitationRequestList.size())
+                      .filter(
+                              i ->
+                                      this.sanitationRequestList.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof ComputerServiceRequest) {
       index =
-          IntStream.range(0, this.computerServiceRequests.size())
-              .filter(
-                  i ->
-                      this.computerServiceRequests.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.computerServiceRequests.size())
+                      .filter(
+                              i ->
+                                      this.computerServiceRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof SecurityServiceRequest) {
       index =
-          IntStream.range(0, this.securityServiceRequests.size())
-              .filter(
-                  i ->
-                      this.securityServiceRequests.get(i).getServiceRequestId()
-                          == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.securityServiceRequests.size())
+                      .filter(
+                              i ->
+                                      this.securityServiceRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     } else if (s instanceof AVRequest) {
       index =
-          IntStream.range(0, this.avRequests.size())
-              .filter(
-                  i -> this.avRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
-              .findFirst()
-              .orElse(-1);
+              IntStream.range(0, this.avRequests.size())
+                      .filter(
+                              i -> this.avRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
+    }
+    else if (s instanceof LabRequest) {
+      index =
+              IntStream.range(0, this.labRequests.size())
+                      .filter(
+                              i ->
+                                      this.labRequests.get(i).getServiceRequestId()
+                                              == (s.getServiceRequestId()))
+                      .findFirst()
+                      .orElse(-1);
     }
 
     return index;
@@ -301,9 +337,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   public void uploadCSV(ServiceRequest serv) {
     try {
       BufferedReader fileReader =
-          new BufferedReader(
-              new FileReader(
-                  "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+              new BufferedReader(
+                      new FileReader(
+                              "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
       session.beginTransaction();
       session.createQuery("DELETE FROM ServiceRequest");
       session.getTransaction().commit();
