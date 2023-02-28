@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.mapeditor.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Edge;
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
@@ -13,6 +14,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Platform;
@@ -23,6 +25,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
@@ -36,6 +39,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class MapEditorPageController {
 
@@ -55,6 +59,7 @@ public class MapEditorPageController {
   @FXML private MFXButton floor3Button;
   @FXML private MFXButton toggleEdgesButton;
   @FXML private MFXButton toggleLabelsButton;
+  @FXML private MFXButton helpButton;
 
   private GesturePane gesturePane;
   private int currentFloor = -1;
@@ -310,8 +315,26 @@ public class MapEditorPageController {
     };
   }
 
+  void help() throws IOException {
+    final var resource = App.class.getResource("views/MapEditorHelp.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    PopOver popover = new PopOver(loader.load());
+    popover.setArrowSize(0);
+    popover.setTitle("Help");
+    popover.show(App.getPrimaryStage());
+  }
+
   @FXML
   public void initialize() {
+
+    helpButton.setOnMouseClicked(
+        event -> {
+          try {
+            help();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     nodeList.clear();
     edgeList.clear();
