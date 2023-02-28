@@ -3,10 +3,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
 
 <BorderPane fx:id="ServiceRequestTableBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ServiceRequestTableController">
     <center>
         <TableView fx:id="serviceTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
+            <placeholder>
+                <Label text="No content in table"  alignment="center"/>
+            </placeholder>
             <columns>
                 <TableColumn fx:id="formID" minWidth="100.0" prefWidth="-1.0" text="serviceRequestID" />
                 <TableColumn fx:id="staff" minWidth="100.0" prefWidth="-1.0" text="associatedStaff" />

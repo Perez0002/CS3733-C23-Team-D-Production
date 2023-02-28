@@ -3,10 +3,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
 
 <BorderPane fx:id="MoveTableBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.MoveTableController">
     <center>
     <TableView fx:id="moveTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;">
+        <placeholder>
+            <Label text="No content in table"  alignment="center"/>
+        </placeholder>
     <columns>
     <TableColumn fx:id="moveNodeID" prefWidth="144.0" styleClass="tableCSS.css" text="nodeID" />
     <TableColumn fx:id="moveLongName" prefWidth="133.0" styleClass="tableCSS.css" text="longName" />

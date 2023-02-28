@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -7,6 +8,9 @@
 <BorderPane fx:id="EdgeTableBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.EdgeTableController">
     <center>
         <TableView fx:id="edgeTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;">
+            <placeholder>
+                <Label text="No content in table"  alignment="center"/>
+            </placeholder>
             <columns>
                 <TableColumn fx:id="edgeID" prefWidth="134.0" styleClass="tableCSS.css" text="EdgeID" />
                 <TableColumn fx:id="startNode" prefWidth="133.0" styleClass="tableCSS.css" text="startNode" />

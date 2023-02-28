@@ -20,6 +20,9 @@
       <BorderPane BorderPane.alignment="CENTER">
          <center>
             <TableView fx:id="moveTable" maxHeight="500.0" maxWidth="750.0" minHeight="500.0" minWidth="750.0" prefHeight="500.0" prefWidth="750.0" stylesheets="@tableCSS.css" BorderPane.alignment="CENTER">
+               <placeholder>
+                  <Label text="No content in table"  alignment="center"/>
+               </placeholder>
               <columns>
                 <TableColumn fx:id="moveNodeID" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Node ID" />
                 <TableColumn fx:id="moveLongName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Location Name" />
