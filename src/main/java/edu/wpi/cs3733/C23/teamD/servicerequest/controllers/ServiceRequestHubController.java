@@ -128,16 +128,16 @@ public class ServiceRequestHubController {
     boolean submission = false;
     if (currentController instanceof PatientTransportVBoxController) {
       submission = currentController.submit();
-
     } else if (currentController instanceof ComputerServiceRequestController) {
-      System.out.println("Submitting");
       submission = currentController.submit();
     } else if (currentController instanceof SecurityServiceRequestController) {
-      System.out.println("Submitting");
+      submission = currentController.submit();
+    } else if (currentController instanceof SanitationRequestController) {
+      submission = currentController.submit();
+    } else if (currentController instanceof AVRequestController) {
       submission = currentController.submit();
     } else {
       submission = currentController.submit();
-      System.out.println("Submitting");
     }
 
     if (submission) {

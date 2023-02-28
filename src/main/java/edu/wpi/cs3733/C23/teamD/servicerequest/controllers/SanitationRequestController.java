@@ -120,9 +120,8 @@ public class SanitationRequestController implements ServiceRequestVBoxController
 
   private boolean isFieldsSaturated() {
     // System.out.print("Submit Success2: ");
-    return (fieldReason.getText() != ""
-        && (fieldLocationController.getLocation() != null)
-        && staffIDTextFieldController.getEmployeeName() != null
+    return ((fieldLocationController.getLocation() != null)
+        && (staffIDTextFieldController.getEmployeeName() != null)
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()
             || radioBSL3.isSelected()
