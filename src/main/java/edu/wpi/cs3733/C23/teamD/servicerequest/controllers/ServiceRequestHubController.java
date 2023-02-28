@@ -27,6 +27,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton securityButton;
   @FXML private MFXButton avButton;
 
+  @FXML private MFXButton labButton;
+
   @FXML private Pane requestFormHubPane;
   @FXML private BorderPane mapPaneContainer;
 
@@ -64,6 +66,7 @@ public class ServiceRequestHubController {
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
     securityButton.setOnMouseClicked(event -> switchVBox(SECURITY_REQUEST, securityButton));
     avButton.setOnMouseClicked(event -> switchVBox(AV_REQUEST, avButton));
+    labButton.setOnMouseClicked(event -> switchVBox(LAB_REQUEST, labButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -112,6 +115,8 @@ public class ServiceRequestHubController {
       ((SecurityServiceRequestController) currentController).clearFields();
     } else if (currentController instanceof SanitationRequestController) {
       ((SanitationRequestController) currentController).clearSanitationForms();
+    } else if (currentController instanceof LabRequestController) {
+      ((LabRequestController) currentController).clearTransportForms();
     } else {
       currentController.clearTransportForms();
     }

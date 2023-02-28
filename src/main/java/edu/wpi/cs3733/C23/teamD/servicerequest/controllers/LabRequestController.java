@@ -33,9 +33,7 @@ public class LabRequestController implements ServiceRequestVBoxController {
   }
 
   public boolean submit() {
-    System.out.print("Hello");
     if (checkFields()) {
-      System.out.print("Hola");
       LabRequest request =
           new LabRequest(
               employeeBoxController.getEmployee(),
@@ -45,12 +43,6 @@ public class LabRequestController implements ServiceRequestVBoxController {
               locationBoxController.getLocation(),
               urgencyBox.getValue().toString());
       FDdb.getInstance().saveServiceRequest(request);
-
-      System.out.print(request.getAssociatedStaff());
-      System.out.print(request.getReason());
-      System.out.print(request.getServiceRequestType());
-      System.out.print(request.getLocation());
-      System.out.print(request.getUrgency());
       return true;
     } else {
       return false;
