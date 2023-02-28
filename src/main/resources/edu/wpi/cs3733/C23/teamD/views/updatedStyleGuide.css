@@ -235,6 +235,14 @@
 
 }
 
+.moveDisplayButton {
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-font-family: 'Nunito Sans Regular';
+    -fx-max-width: 300px;
+    -fx-max-height: 100px;
+}
 .deleteButton { /* defines the format for the delete button */
     -fx-background-color: transparent;
     -fx-text-fill: #CC2222;
@@ -282,6 +290,12 @@
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
+}
+
+#moveDisplayborderPane {
+    /*-fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;*/
 }
 
 .helpButton {

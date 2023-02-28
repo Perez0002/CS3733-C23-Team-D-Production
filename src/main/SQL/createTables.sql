@@ -4,17 +4,18 @@ CREATE TABLE teamdSchema.Move();
 
 ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 
-update employee set password = 'admin' where employeeid = 37;
-update employee set password = 'staff' where employeeid = 38;
+-- update employee set password = 'admin' where employeeid = 37;
+-- update employee set password = 'staff' where employeeid = 38;
 
---
+
+
 -- delete from securityservicerequest;
 -- delete from avrequest;
 -- delete from computerservicerequest;
 -- delete from patienttransportrequest;
 -- delete from sanitationrequest;
 -- delete from servicerequest;
---
+
 -- delete from servicerequest;
 -- delete from employee;
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
@@ -47,7 +48,7 @@ update employee set password = 'staff' where employeeid = 38;
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Qui House', 'qnguyen@wpi.edu', 'ADMIN', 'Qui', 'Nguyen', 'password', 234798234);
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Michael House', 'mconnor@wpi.edu', 'ADMIN', 'Michael', 'Connor', 'password', 234798234);
-
+--
 -- insert into setting (confetti, darkmode, employeeid)  values (1,0,31);
 -- insert into setting (confetti, darkmode, employeeid)  values (1,0,32);
 -- insert into setting (confetti, darkmode, employeeid)  values (1,0,33);
