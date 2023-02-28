@@ -177,7 +177,7 @@ public class ProfilePageController {
     currentUser.setAddress(address.getText());
     currentUser.setPhoneNumber(phoneNumber.getText());
     FDdb.getInstance().updateEmployee(currentUser);
-    ToastController.makeText("Changes Saved.", 1500, 50, 50, 675, 750);
+    ToastController.makeText("Changes Saved.", 1500, 50, 50);
     resetChanges();
   }
 

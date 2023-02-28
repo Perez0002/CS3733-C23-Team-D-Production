@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane fx:id="NodeTableBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.NodeTableController">
     <center>
-        <TableView fx:id="nodeTable" onMouseClicked="#getSelectedRow" stylesheets="@../tableCSS.css" BorderPane.alignment="CENTER">
+        <TableView fx:id="nodeTable" maxHeight="500.0" minHeight="500.0" onMouseClicked="#getSelectedRow" prefHeight="500.0" stylesheets="@../tableCSS.css" BorderPane.alignment="CENTER">
+            <placeholder>
+                <Label alignment="center" text="No content in table" />
+            </placeholder>
             <columns>
-                <TableColumn fx:id="nodeID" prefWidth="100.0" styleClass="tableCSS.css" text="nodeID" />
-                <TableColumn prefWidth="100.0" styleClass="tableCSS.css" text="x Coord" fx:id="xCoord" />
-                <TableColumn fx:id="yCoord" prefWidth="100.0" styleClass="tableCSS.css" text="y Coord" />
-                <TableColumn fx:id="building" prefWidth="100.0" styleClass="tableCSS.css" text="building" />
-                <TableColumn fx:id="floor" prefWidth="100.0" styleClass="tableCSS.css" text="floor" />
+                <TableColumn fx:id="nodeID" editable="false" prefWidth="100.0" styleClass="tableCSS.css" text="Node ID" />
+                <TableColumn editable="false" prefWidth="100.0" styleClass="tableCSS.css" text="X Coordinate" fx:id="xCoord" />
+                <TableColumn fx:id="yCoord" editable="false" prefWidth="100.0" styleClass="tableCSS.css" text="Y Coordinate" />
+                <TableColumn fx:id="building" editable="false" prefWidth="100.0" styleClass="tableCSS.css" text="Building" />
+                <TableColumn fx:id="floor" editable="false" prefWidth="100.0" styleClass="tableCSS.css" text="Floor" />
             </columns>
         </TableView>
     </center>

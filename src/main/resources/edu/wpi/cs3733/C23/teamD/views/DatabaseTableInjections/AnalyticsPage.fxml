@@ -60,7 +60,7 @@
                         </BarChart>
                     </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets left="30.0" />
                </HBox.margin>
                 </VBox>
                 <VBox alignment="TOP_RIGHT" maxHeight="720.0" maxWidth="700.0" minHeight="720.0" minWidth="700.0" prefHeight="720.0" prefWidth="700.0">
