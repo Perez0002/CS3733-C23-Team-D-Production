@@ -76,7 +76,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </HBox.margin>
             </VBox>
-            <Label fx:id="descriptionBox" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsField" text="Type of problem: " HBox.hgrow="ALWAYS">
+            <Label fx:id="descriptionBox" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" styleClass="requestDetailsField" text="Type of problem: " HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="5.0" />
                </padding>
