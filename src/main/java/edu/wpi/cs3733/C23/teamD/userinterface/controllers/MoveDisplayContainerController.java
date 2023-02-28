@@ -83,7 +83,7 @@ public class MoveDisplayContainerController {
     }
 
     nodeNameToggle.setOnAction(event -> toggleNodeNames());
-    nodeNameToggle.setSelected(false);
+    nodeNameToggle.setDisable(true);
 
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
@@ -151,6 +151,8 @@ public class MoveDisplayContainerController {
               FDdb.getInstance()
                   .getFutureMoves(
                       nodeToRoomMap.get(mfxFilterComboBox.getValue()).getLocation(), new Date());
+
+          nodeNameToggle.setDisable(false);
 
           setMove(currentMove);
 
