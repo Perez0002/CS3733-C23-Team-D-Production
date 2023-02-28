@@ -43,5 +43,7 @@
         <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.RefreshSession"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.user.entities.Setting"/>
         <mapping class="edu.wpi.cs3733.C23.teamD.database.entities.PastMoves"/>
+        <mapping class="edu.wpi.cs3733.C23.teamD.servicerequest.entities.LabRequest"/>
+
     </session-factory>
 </hibernate-configuration>
