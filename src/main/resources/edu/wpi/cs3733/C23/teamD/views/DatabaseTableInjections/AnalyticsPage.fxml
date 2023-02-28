@@ -4,11 +4,11 @@
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -77,7 +77,7 @@
                      <children>
                         <VBox alignment="CENTER_LEFT" maxHeight="300.0" maxWidth="687.0" minHeight="300.0" minWidth="218.0" prefHeight="300.0" prefWidth="687.0" style="-fx-background-color: #DCE2E8; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #0123d5a;">
                            <children>
-                              <Label maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="178.0" text="Request Form Statistics">
+                              <Label maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="178.0" stylesheets="@../updatedStyleGuide.css" text="Request Form Statistics">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -85,25 +85,20 @@
                                     <Insets bottom="5.0" left="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Line endX="-40.0" startX="-220.0" strokeWidth="2.0">
-                                 <VBox.margin>
-                                    <Insets left="10.0" />
-                                 </VBox.margin>
-                              </Line>
                               <HBox prefHeight="0.0" prefWidth="670.0" spacing="20.0">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                        <children>
-                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10;">
+                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #012d5a; -fx-border-width: 2; -fx-border-radius: 10;">
                                              <children>
-                                                <Label alignment="CENTER" text="Completed  Requests">
+                                                <Label alignment="CENTER" style="-fx-text-fill: #012d5a;" text="Completed  Requests">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="completedLabel" alignment="CENTER" text="Label">
+                                                <Label fx:id="completedLabel" alignment="CENTER" style="-fx-text-fill: #004D97;" text="Label">
                                                    <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="16.0" />
                                                    </font>
                                                    <VBox.margin>
                                                       <Insets top="5.0" />
@@ -114,16 +109,16 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </VBox>
-                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10;">
+                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #012d5a; -fx-border-width: 2; -fx-border-radius: 10;">
                                              <children>
-                                                <Label alignment="CENTER" text="Pending Requests">
+                                                <Label alignment="CENTER" style="-fx-text-fill: #012d5a;" text="Pending Requests">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="pendingLabel" alignment="CENTER" text="Label">
+                                                <Label fx:id="pendingLabel" alignment="CENTER" style="-fx-text-fill: #004D97;" text="Label">
                                                    <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="16.0" />
                                                    </font>
                                                    <VBox.margin>
                                                       <Insets top="5.0" />
@@ -135,16 +130,16 @@
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                        <children>
-                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10;">
+                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #012d5a; -fx-border-width: 2; -fx-border-radius: 10;">
                                              <children>
-                                                <Label alignment="CENTER" text="Blank Status Requests">
+                                                <Label alignment="CENTER" style="-fx-text-fill: #012d5a;" text="Blank Status Requests">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="unassignedLabel" alignment="CENTER" text="Label">
+                                                <Label fx:id="unassignedLabel" alignment="CENTER" style="-fx-text-fill: #004D97;" text="Label">
                                                    <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="16.0" />
                                                    </font>
                                                    <VBox.margin>
                                                       <Insets top="5.0" />
@@ -152,9 +147,9 @@
                                                 </Label>
                                              </children>
                                           </VBox>
-                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10;">
+                                          <VBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #012d5a; -fx-border-width: 2; -fx-border-radius: 10;">
                                              <children>
-                                                <Label alignment="CENTER" text="High Urgency Requests *">
+                                                <Label alignment="CENTER" style="-fx-text-fill: #012d5a;" text="High Urgency Requests *">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -162,15 +157,15 @@
                                                       <Insets top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="urgentLabel" alignment="CENTER" text="Label">
+                                                <Label fx:id="urgentLabel" alignment="CENTER" style="-fx-text-fill: #004D97;" text="Label">
                                                    <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="16.0" />
                                                    </font>
                                                    <VBox.margin>
                                                       <Insets top="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Label alignment="CENTER" text="* only incomplete requests">
+                                                <Label alignment="CENTER" style="-fx-text-fill: #012d5a;" text="* only incomplete requests">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
@@ -179,14 +174,22 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER_LEFT" maxHeight="200.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                                    <VBox alignment="CENTER_LEFT" maxHeight="200.0" maxWidth="200.0" minHeight="100.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" spacing="5.0">
                                        <children>
-                                          <Label text="Filter Request Stats">
+                                          <Label minWidth="199.0" prefHeight="19.0" prefWidth="199.0" stylesheets="@../updatedStyleGuide.css" text="Filter Request Stats">
                                              <font>
-                                                <Font size="14.0" />
+                                                <Font size="15.0" />
                                              </font>
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </VBox.margin>
                                           </Label>
-                                          <MFXFilterComboBox fx:id="timeFilter" floatMode="DISABLED" onAction="#setLabels" prefHeight="42.0" prefWidth="204.0" style="-fx-pref-height: 50; -fx-pref-width: 204; -fx-max-height: 50; -fx-min-height: 50; -fx-min-width: 204; -fx-max-width: 204; -fx-background-color: white;" text="Pick a Time Filter" />
+                                          <Label stylesheets="@../updatedStyleGuide.css" text="Pick a Range of Time " />
+                                          <MFXFilterComboBox fx:id="timeFilter" floatMode="DISABLED" onAction="#setLabels" prefHeight="42.0" prefWidth="204.0" style="-fx-pref-height: 50; -fx-pref-width: 204; -fx-max-height: 50; -fx-min-height: 50; -fx-min-width: 204; -fx-max-width: 204; -fx-background-color: white;" text="Pick a Time">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </VBox.margin></MFXFilterComboBox>
+                                          <Label stylesheets="@../updatedStyleGuide.css" text="Pick an Employee" />
                                           <MFXFilterComboBox fx:id="employeeFilter" floatMode="DISABLED" onAction="#setLabels" prefHeight="42.0" prefWidth="204.0" style="-fx-pref-height: 50; -fx-pref-width: 204; -fx-min-height: 50; -fx-max-height: 50; -fx-min-width: 204; -fx-max-width: 204; -fx-background-color: white;" text="Pick an Employee" />
                                        </children>
                                     </VBox>
@@ -202,20 +205,23 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <StackedAreaChart fx:id="chart3" animated="false" maxHeight="300.0" maxWidth="670.0" minHeight="300.0" minWidth="670.0" prefHeight="300.0" prefWidth="670.0" style="-fx-background-color: #DCE2E8; -fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../updatedStyleGuide.css" title="Request Completion vs Placement">
+                  <AreaChart fx:id="chart3" maxHeight="300.0" maxWidth="670.0" minHeight="300.0" minWidth="670.0" prefHeight="300.0" prefWidth="670.0" style="-fx-background-color: #DCE2E8; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../updatedStyleGuide.css" title="Requests By Month">
                     <xAxis>
-                      <CategoryAxis label="Date" prefHeight="48.0" prefWidth="593.0" side="BOTTOM" tickLabelGap="4.0" fx:id="xaxis1" />
+                      <CategoryAxis label="Month" side="BOTTOM" fx:id="xaxis1">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </padding></CategoryAxis>
                     </xAxis>
                     <yAxis>
-                      <NumberAxis fx:id="yaxis1" label="Number of Requests" prefHeight="203.0" prefWidth="37.0" side="LEFT" />
+                      <NumberAxis fx:id="yaxis1" label="Number of Requests" side="LEFT" />
                     </yAxis>
+                     <VBox.margin>
+                        <Insets bottom="30.0" right="30.0" top="28.0" />
+                     </VBox.margin>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets right="30.0" top="28.0" />
-                     </VBox.margin>
-                  </StackedAreaChart>
+                  </AreaChart>
                </children>
                <HBox.margin>
                   <Insets right="10.0" />
