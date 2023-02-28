@@ -29,6 +29,7 @@ import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
 
 public class MoveRequestTableController implements Initializable {
+  private Move newMove;
   @FXML private MFXDatePicker datePicker;
   @FXML private TableView<Move> moveTable;
   @FXML private TableColumn<Move, String> moveNodeID;
@@ -59,32 +60,34 @@ public class MoveRequestTableController implements Initializable {
       ZoneId defaultZoneId = ZoneId.systemDefault();
       Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
       if (messageBox.getText() == null) {
-        Move move =
+        newMove =
             new Move(
                 FDdb.getInstance().getNode(nodeBoxController.getNode()),
                 FDdb.getInstance().getNode(locationBoxController.getLocation()),
                 date);
-        FDdb.getInstance().saveMove(move);
+        FDdb.getInstance().saveMove(newMove);
         clearFields();
         if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
           ConfettiController.makeConfetti(1500, 50, 100);
         }
         ToastController.makeText("Move Request Submitted!", 3000, 50, 100, 200, 720);
       } else {
-        Move move =
+        newMove =
             new Move(
                 FDdb.getInstance().getNode(nodeBoxController.getNode()),
                 FDdb.getInstance().getNode(locationBoxController.getLocation()),
                 date,
                 messageBox.getText());
-        FDdb.getInstance().saveMove(move);
+        FDdb.getInstance().saveMove(newMove);
         clearFields();
+
         if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
           ConfettiController.makeConfetti(1500, 50, 100);
         }
         ToastController.makeText("Move Request Submitted!", 3000, 50, 100, 200, 720);
       }
     } else {
+      newMove = null;
       errorText.setVisible(true);
     }
     moveTable.getItems().clear();
@@ -112,11 +115,12 @@ public class MoveRequestTableController implements Initializable {
     }
     ObservableList<Move> moveList = FXCollections.observableArrayList(futureMoveList);
     moveTable.setItems(moveList);
-
-    try {
-      generateRequestsPopup();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    if (newMove != null) {
+      try {
+        generateRequestsPopup(newMove);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
     }
   }
 
@@ -188,10 +192,14 @@ public class MoveRequestTableController implements Initializable {
             });
   }
 
-  private void generateRequestsPopup() throws IOException {
+  private void generateRequestsPopup(Move move) throws IOException {
+    System.out.println("generate popup");
     final var resource = App.class.getResource("views/AutoGeneratePopup.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
     PopOver popover = new PopOver(loader.load());
+    AutoGeneratePopupController autoGeneratePopupController = loader.getController();
+    autoGeneratePopupController.setMove(move);
+    autoGeneratePopupController.fillFields();
     popover.setArrowSize(0);
     popover.setCornerRadius(32);
     popover.setTitle("Generated Service Request Editor");

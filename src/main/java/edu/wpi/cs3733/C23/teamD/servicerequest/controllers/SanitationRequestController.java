@@ -1,13 +1,19 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -116,5 +122,24 @@ public class SanitationRequestController implements ServiceRequestVBoxController
             || radioBSL3.isSelected()
             || radioBSL4.isSelected())
         && urgencyBox.getValue() != null);
+  }
+
+  public void fillFields(Move move) {
+    radioBSL1.setSelected(true);
+    fieldLocationController.setLocationName(move.getLongName());
+    fieldLocationController.setText(move.getLongName());
+    Employee e = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    staffIDTextFieldController.setEmployeeName(e.getFirstName() + " " + e.getLastName());
+    staffIDTextFieldController.setText(e.getFirstName() + " " + e.getLastName());
+    urgencyBox.setValue("Low");
+    urgencyBox.setText("Low");
+    LocalDate localDate =
+        Instant.ofEpochMilli(move.getMoveDate().getTime())
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
+    fieldReason.setText(localDate + ";" + move.getLongName() + ";" + move.getNodeID());
+    System.out.println(staffIDTextFieldController.getEmployee().getEmployeeID());
+    System.out.println(fieldLocationController.getLocation().getLongName());
+    System.out.println(urgencyBox.getValue());
   }
 }
