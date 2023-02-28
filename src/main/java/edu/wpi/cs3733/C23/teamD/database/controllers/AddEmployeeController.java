@@ -45,7 +45,7 @@ public class AddEmployeeController implements AddFormController<Employee> {
   private void deleteRow() {
     databaseController.delete();
     ToastController.makeText(
-        "the edge has been deleted!",
+        "the employee has been deleted!",
         1500,
         50,
         100,
