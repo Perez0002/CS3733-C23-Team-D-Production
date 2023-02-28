@@ -2,6 +2,8 @@ package edu.wpi.cs3733.C23.teamD.database.controllers;
 
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -18,21 +20,18 @@ public class DatabaseHubController {
   @FXML private MFXButton edgeTableButton;
   @FXML private MFXButton moveTableButton;
   @FXML private MFXButton locationTableButton;
-
+  @FXML private MFXButton analyticsButton;
   @FXML private MFXButton downloadButton;
-
   @FXML private MFXButton uploadButton;
-
   @FXML private ServiceRequestTableController ServiceRequestTableBorderPane;
   @FXML private BorderPane requestFormHubPane;
   @FXML private Parent patientTransportVBox;
   @FXML private BorderPane mapPaneContainer;
   @FXML private BorderPane requestFormHubBorderPane;
   @Setter @Getter private DatabaseController currentController; // tracks current VBox pane
-
   @Setter private AddFormController addFormController;
 
-  private MFXButton currentTab;
+  @Getter private MFXButton currentTab;
 
   BorderPane getRequestFormHubPane() {
     return requestFormHubPane;
@@ -62,9 +61,10 @@ public class DatabaseHubController {
         event ->
             switchVBox(
                 DatabasesFXML.LOCATION_TABLE, locationTableButton, DatabasesFXML.ADD_LOCATION));
+    analyticsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ANALYTICS_PAGE));
   }
 
-  void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {
+  public void switchVBox(DatabasesFXML switchTo, MFXButton button, DatabasesFXML addPage) {
     if (currentTab != null) {
       currentTab.getStyleClass().clear();
       currentTab.getStyleClass().add("tabButton");

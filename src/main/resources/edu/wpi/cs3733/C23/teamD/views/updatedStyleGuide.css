@@ -356,4 +356,11 @@
 
 }
 
+.default-color0.chart-bar { -fx-bar-fill: #1D4E8D }
+
+.default-color0.chart-area-symbol { -fx-background-color: #98AABC, #98AABC; }
+.default-color0.chart-series-area-line { -fx-stroke: #0F2A4C; }
+.default-color0.chart-series-area-fill { -fx-fill: #98AABC; }
+
+
 
