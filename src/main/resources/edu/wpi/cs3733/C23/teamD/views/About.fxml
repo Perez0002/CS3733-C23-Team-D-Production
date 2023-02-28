@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.AboutController">
+   <center>
+      <VBox fx:id="creditsVbox1" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="aboutLabel" text="Team Members" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox styleClass="imageBorder">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER">
+                           <children>
+                              <ImageView fx:id="imageOne" fitHeight="150.0" fitWidth="200.0" preserveRatio="true" styleClass="imageBorder">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Abagail Albuquerque" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageTwo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mike Wilkinson" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Bryce Lukens" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageFour" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Gibson Phillips" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageFive" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Jonathan Asher" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageSix" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wyatt Harris" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageSeven" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Annie Zimmerman" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageEight" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Theo Winter" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageNine" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Liv Perez" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageTen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Ari Schecter" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="1500.0" styleClass="aboutLabel" text="Special Thanks" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox styleClass="imageBorder">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageEleven" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Qui Nguyen" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageTwelve" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wilson Wong" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageThirteen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Andrew Shinn" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageFourteen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="BWH Hospital" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="imageFifteen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/teamPhotos/Team about page.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="WPI CS Department" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" VBox.vgrow="NEVER">
+               <children>
+                  <fx:include fx:id="cancelButton" prefHeight="53.0" prefWidth="128.0" source="cancelButton.fxml" text="Back" HBox.hgrow="NEVER" />
+               </children>
+               <padding>
+                  <Insets right="150.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

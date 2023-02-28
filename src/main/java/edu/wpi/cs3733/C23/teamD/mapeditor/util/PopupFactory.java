@@ -253,6 +253,28 @@ public class PopupFactory {
           vBox.getChildren().add(typeVBox);
         }
 
+        String cssSettings =
+            "-fx-border-radius: 10;\n"
+                + "-fx-border-width: 2;\n"
+                + "-fx-background-color: #EEEEEE;\n"
+                + "-fx-background-radius: 10;\n"
+                + "-fx-border-radius: 10;\n"
+                + "-fx-min-width: 270;";
+        String cssSettingsVBox =
+            "-fx-border-radius: 10;\n"
+                + "-fx-border-width: 2;\n"
+                + "-fx-background-color: #FFFFFF;\n"
+                + "-fx-background-radius: 10;\n"
+                + "-fx-border-radius: 10;\n"
+                + "-fx-min-width: 270;";
+        xCoordTextField.setStyle(cssSettings);
+        yCoordTextField.setStyle(cssSettings);
+        buildingTextField.setStyle(cssSettings);
+        floorTextField.setStyle(cssSettings);
+        longNameTextField.setStyle(cssSettings);
+        shortNameTextField.setStyle(cssSettings);
+        typeTextField.setStyle(cssSettings);
+        vBox.setStyle(cssSettingsVBox);
       } else {
         popover.setTitle(mapNode.getNodeLongName().getValue());
         xCoordTextField.setEditable(false);

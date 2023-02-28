@@ -7,10 +7,11 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.NavigationServiceRequests;
-import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestVBoxController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.RequestDetailsController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.userinterface.entities.Notif;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,13 +22,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
 
 public class HomepageController {
@@ -53,8 +52,6 @@ public class HomepageController {
 
   @FXML private Label outgoingIncoming;
 
-  @FXML private ScrollPane scrollPane;
-
   @FXML private Pane pane;
 
   @FXML private TableColumn<ServiceRequest, String> serviceRequests;
@@ -62,6 +59,9 @@ public class HomepageController {
   @FXML private TableColumn<ServiceRequest, Integer> requestID;
 
   @FXML private TableView<ServiceRequest> serviceRequestHistory;
+  @FXML private TableView<Notif> notifTable;
+
+  @FXML private TableColumn<Notif, String> notification;
 
   @FXML
   public void setDetails() {
@@ -69,7 +69,7 @@ public class HomepageController {
     switchVBox(request);
   }
 
-  private ServiceRequestVBoxController currentController;
+  private RequestDetailsController currentController;
 
   Pane getPane() {
     return pane;
@@ -88,8 +88,15 @@ public class HomepageController {
       initializeStaffStats();
     }
 
+    notificationTableHandling();
+
+    currentController =
+        NavigationServiceRequests.navigateHomepage(
+            ServiceRequests.TEMPLATE_REQUEST_DETAILS, getPane(), new ServiceRequest());
+
     welcomeText.setText("Hello, " + CurrentUserEnum._CURRENTUSER.getCurrentUser().getFirstName());
     profileButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
+
     helpButton.setOnMouseClicked(
         event -> {
           try {
@@ -110,6 +117,40 @@ public class HomepageController {
     firstStat.setText(total);
     secondStat.setText(toDo);
     thirdStat.setText(done);
+  }
+
+  public void notificationTableHandling() {
+    ArrayList<Move> allmoves = FDdb.getInstance().getAllMoves();
+    ArrayList<Notif> futureMoveList = new ArrayList<>();
+
+    long millis = System.currentTimeMillis();
+    Date todayDate = new java.sql.Date(millis);
+    for (Move m : allmoves) {
+      Move aNewMove = new Move();
+      if (m.getMoveDate().after(todayDate)) {
+        aNewMove.setMoveDate(m.getMoveDate());
+        aNewMove.setLocation(m.getLocation());
+        aNewMove.setNode(m.getNode());
+        if (m.getMessage() == null) {
+          aNewMove.setMessage("null");
+        } else {
+          aNewMove.setMessage(m.getMessage());
+        }
+        Notif notif =
+            new Notif(
+                aNewMove.getLocation().getShortName()
+                    + " will be moving on "
+                    + aNewMove.getMoveDate()
+                    + ", here is the attached message: \n"
+                    + aNewMove.getMessage());
+        futureMoveList.add(0, notif);
+      }
+    }
+
+    ObservableList<Notif> notificationList = FXCollections.observableArrayList(futureMoveList);
+
+    notification.setCellValueFactory(new PropertyValueFactory<Notif, String>("notification"));
+    notifTable.setItems(notificationList);
   }
 
   private void initializeAdminStats() {
@@ -197,23 +238,23 @@ public class HomepageController {
     if (request.getClass().equals(AVRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.AV_REQUEST, getPane(), request);
+              ServiceRequests.AV_REQUEST_DETAILS, getPane(), request);
     } else if (request.getClass().equals(ComputerServiceRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.COMPUTER_REQUEST, getPane(), request);
+              ServiceRequests.COMPUTER_REQUEST_DETAILS, getPane(), request);
     } else if (request.getClass().equals(PatientTransportRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.PATIENT_TRANSPORT, getPane(), request);
+              ServiceRequests.PATIENT_TRANSPORT_DETAILS, getPane(), request);
     } else if (request.getClass().equals(SanitationRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.SANITATION_REQUEST, getPane(), request);
+              ServiceRequests.SANITATION_REQUEST_DETAILS, getPane(), request);
     } else if (request.getClass().equals(SecurityServiceRequest.class)) {
       currentController =
           NavigationServiceRequests.navigateHomepage(
-              ServiceRequests.SECURITY_REQUEST, getPane(), request);
+              ServiceRequests.SECURITY_REQUEST_DETAILS, getPane(), request);
     }
   }
 
@@ -243,19 +284,6 @@ public class HomepageController {
         new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
 
     serviceRequestHistory.setItems(listserviceRequests);
-    serviceRequestHistory.getColumns().stream()
-        .forEach(
-            (column) -> {
-              double size = serviceRequestHistory.getColumns().size();
-              Text serviceTableValue = new Text(column.getText());
-              Object cellData;
-              for (int i = 0; i < serviceRequestHistory.getItems().size(); i++) {
-                cellData = column.getCellData(i);
-                if (cellData != null) {
-                  serviceTableValue = new Text(cellData.toString());
-                }
-              }
-            });
   }
 
   public void serviceRequestTableOutgoing() {
@@ -283,18 +311,5 @@ public class HomepageController {
         new PropertyValueFactory<ServiceRequest, Integer>("serviceRequestId"));
 
     serviceRequestHistory.setItems(listserviceRequests);
-    serviceRequestHistory.getColumns().stream()
-        .forEach(
-            (column) -> {
-              double size = serviceRequestHistory.getColumns().size();
-              Text serviceTableValue = new Text(column.getText());
-              Object cellData;
-              for (int i = 0; i < serviceRequestHistory.getItems().size(); i++) {
-                cellData = column.getCellData(i);
-                if (cellData != null) {
-                  serviceTableValue = new Text(cellData.toString());
-                }
-              }
-            });
   }
 }

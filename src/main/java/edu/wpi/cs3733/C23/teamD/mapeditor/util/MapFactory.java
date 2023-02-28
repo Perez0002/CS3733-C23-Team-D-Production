@@ -4,7 +4,6 @@ import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
@@ -21,6 +20,8 @@ import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapFactory {
+
+  private static GesturePane gesturePane = new GesturePane();
   private boolean onlyStartEnd;
   private boolean labelsShown = false;
   private ArrayList<MapNode> nodeList;
@@ -147,8 +148,11 @@ public class MapFactory {
     converter.put("3", 5);
 
     ImageView image = new ImageView();
-    holder = new AnchorPane();
-    final GesturePane map = new GesturePane();
+    AnchorPane holder = new AnchorPane();
+
+    if (scaleMap) {
+      gesturePane = new GesturePane();
+    }
 
     if (floor == 0) {
       image =
@@ -271,9 +275,8 @@ public class MapFactory {
       holder.getChildren().add(nodeList.get(nodeList.size() - 1).getNodeRepresentation());
     }
 
-    map.setContent(holder);
-
-    map.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    gesturePane.setContent(holder);
+    gesturePane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
 
     double scale = 0;
     double xAdjust = 0.7;
@@ -295,21 +298,22 @@ public class MapFactory {
           scale = 0;
         }
       }
+
+      gesturePane.zoomTo(scale, Point2D.ZERO);
+
+      gesturePane
+          .animate(Duration.millis(300))
+          .centreOn(
+              new Point2D(
+                  ((minX + maxX) / 2
+                      - App.getPrimaryStage().getWidth() * xAdjust * (Math.pow(2, (5 - scale))) / 32
+                      - 50),
+                  ((minY + maxY) / 2
+                      - App.getPrimaryStage().getHeight() * Math.pow(2, (5 - scale)) / 32
+                      - 50)));
     }
 
-    map.zoomTo(scale, Point2D.ZERO);
-
-    map.animate(Duration.millis(300))
-        .centreOn(
-            new Point2D(
-                ((minX + maxX) / 2
-                    - App.getPrimaryStage().getWidth() * xAdjust * (Math.pow(2, (5 - scale))) / 32
-                    - 50),
-                ((minY + maxY) / 2
-                    - App.getPrimaryStage().getHeight() * Math.pow(2, (5 - scale)) / 32
-                    - 50)));
-
     // Return the GesturePane
-    return map;
+    return gesturePane;
   }
 }

@@ -98,7 +98,7 @@
     -fx-text-fill: #011830;
 }
 .aboutLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 36pt;
+    -fx-font-size: 20pt;
     -fx-pref-width: 1350px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-text-fill: #011830;
@@ -120,6 +120,13 @@
 
 .homepageLabel { /* defines the format for the header on Service Request page */
     -fx-font-size: 24pt;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
+}
+
+.homepageLabelBig { /* defines the format for the header on Service Request page */
+    -fx-font-size: 30pt;
     -fx-max-width: 400px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
@@ -253,7 +260,7 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-max-width: 200px;
-    -fx-max-height: 100px;
+    -fx-max-height: 50px;
     -fx-font-family: 'Nunito Sans Bold';
 }
 
@@ -264,7 +271,7 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-max-width: 200px;
-    -fx-max-height: 100px;
+    -fx-max-height: 50px;
     -fx-font-family: 'Nunito Sans Bold';
 }
 
@@ -354,6 +361,14 @@
 
 }
 
+
+.requestDetailsField
+{
+    -fx-border-color: transparent #CFCFCF transparent transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+}
+
 .default-color0.chart-bar { -fx-bar-fill: #1D4E8D }
 
 .default-color0.chart-area-symbol { -fx-background-color: #98AABC, #98AABC; }
@@ -362,3 +377,20 @@
 
 
 
+
+.requestDetailsTopMenu
+{
+    -fx-border-color: transparent #CFCFCF #CFCFCF transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: 0;
+}
+
+.requestDetailsTopMenuTopRight
+{
+    -fx-border-color: transparent transparent #CFCFCF transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: 0;
+
+}

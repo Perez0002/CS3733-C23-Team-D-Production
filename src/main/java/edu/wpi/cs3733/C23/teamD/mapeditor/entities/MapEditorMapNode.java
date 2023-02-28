@@ -12,8 +12,11 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
@@ -35,38 +38,56 @@ public class MapEditorMapNode extends MapNode {
   private static Line CURRENT_EDGE = null;
   private DoubleProperty oldX = new SimpleDoubleProperty(-1);
   private DoubleProperty oldY = new SimpleDoubleProperty(-1);
+  private BooleanProperty nodeMode;
+  private BooleanProperty edgeMode;
+  private BooleanProperty multiNodeMode;
   protected final Color EDGE_CREATION = Color.rgb(0x00, 0xFF, 0x00);
 
-  public MapEditorMapNode(PathNode node) {
+  public MapEditorMapNode(
+      PathNode node,
+      BooleanProperty nodeLink,
+      BooleanProperty edgeLink,
+      BooleanProperty multiNodeLink) {
     /* Superclass object */
     super(node);
 
+    this.nodeMode = new SimpleBooleanProperty();
+    this.nodeMode.setValue(true);
+    this.edgeMode = new SimpleBooleanProperty();
+    this.edgeMode.setValue(false);
+    this.multiNodeMode = new SimpleBooleanProperty();
+    this.multiNodeMode.setValue(false);
+
+    this.nodeMode.bind(nodeLink);
+    this.edgeMode.bind(edgeLink);
+    this.multiNodeMode.bind(multiNodeLink);
+
     nodeRepresentation.setOnMouseClicked(
         event -> {
-          /* Creates popup on mouse click, assuming an edge is not being made and shift is not being pressed */
-          if (!event.isShiftDown() && !IS_MAKING_EDGE) {
+          /* Creates popup on mouse click, assuming an edge is not being made and editing nodes */
+          if (nodeMode.getValue() && !IS_MAKING_EDGE) {
             this.MakePopup();
           }
 
-          /* If shift is being pressed... */
-          if (event.isShiftDown()) {
+          /* ...deselect the first node selected assuming that it was the node that was clicked  */
+          if (IS_MAKING_EDGE && FIRST_NODE == this) {
+            ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
+            FIRST_NODE.nodeRepresentation.setFill(this.NO_SELECTION);
+            IS_MAKING_EDGE = false;
+            CURRENT_EDGE = null;
+            FIRST_NODE = null;
+            return;
+          }
 
-            /* ...deselect the first node selected assuming that it was the node that was clicked  */
-            if (IS_MAKING_EDGE && FIRST_NODE == this) {
-              ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
-              FIRST_NODE.nodeRepresentation.setFill(this.NO_SELECTION);
-              IS_MAKING_EDGE = false;
-              CURRENT_EDGE = null;
-              FIRST_NODE = null;
-              return;
-            }
+          /* If editing edges... */
+          if (edgeMode.getValue()) {
 
             /* ...create an edge between first selected node and this node assuming this node is not first node  */
             if (IS_MAKING_EDGE && FIRST_NODE != this) {
               ((AnchorPane) this.nodeRepresentation.getParent()).getChildren().remove(CURRENT_EDGE);
               PathEdge tempEdge = new PathEdge(FIRST_NODE.getNode(), this.getNode());
               tempEdge.setEdge(new Edge(FIRST_NODE.getNode().getNode(), this.getNode().getNode()));
-              MapEdge tempMapEdge = new MapEdge(tempEdge);
+              MapEdge tempMapEdge = new MapEdge(tempEdge, edgeMode);
 
               tempMapEdge.setNodes(FIRST_NODE, this);
               ((AnchorPane) this.nodeRepresentation.getParent())
@@ -74,7 +95,7 @@ public class MapEditorMapNode extends MapNode {
                   .add(1, tempMapEdge.getEdgeRepresentation());
 
               try {
-                FDdb.getInstance().saveEdge(tempEdge.getEdge());
+                this.addEdge(tempMapEdge);
               } catch (Exception e) {
                 e.printStackTrace();
               }
@@ -105,6 +126,7 @@ public class MapEditorMapNode extends MapNode {
               return;
             }
           }
+          event.consume();
         });
 
     nodeRepresentation.setOnMouseEntered(
@@ -116,7 +138,7 @@ public class MapEditorMapNode extends MapNode {
           }
 
           /* If we are making an edge, preview the edge */
-          if (IS_MAKING_EDGE && FIRST_NODE != this) {
+          if (edgeMode.getValue() && IS_MAKING_EDGE && FIRST_NODE != this) {
             CURRENT_EDGE.endXProperty().bindBidirectional(this.getNodeX());
             CURRENT_EDGE.endYProperty().bindBidirectional(this.getNodeY());
             this.nodeRepresentation.setFill(this.EDGE_CREATION);
@@ -161,10 +183,11 @@ public class MapEditorMapNode extends MapNode {
                     gesturePaneStartPoint.getY() + gesturePane.getViewportBound().getHeight());
 
             /* If mouse goes past specific bounds, fail to place past map */
-            if (event.getSceneX() < gesturePaneStartPoint.getX()
-                || event.getSceneX() > gesturePaneEndPoint.getX()
-                || event.getSceneY() < gesturePaneStartPoint.getY()
-                || event.getSceneY() > gesturePaneEndPoint.getY()) {
+            if (nodeMode.getValue()
+                && (event.getSceneX() < gesturePaneStartPoint.getX()
+                    || event.getSceneX() > gesturePaneEndPoint.getX()
+                    || event.getSceneY() < gesturePaneStartPoint.getY()
+                    || event.getSceneY() > gesturePaneEndPoint.getY())) {
               this.getNodeX().setValue(this.oldX.getValue());
               this.getNodeY().setValue(this.oldY.getValue());
             }
@@ -173,7 +196,7 @@ public class MapEditorMapNode extends MapNode {
 
     nodeRepresentation.setOnMouseDragged(
         event -> {
-          if (!event.isShiftDown() && !IS_MAKING_EDGE) {
+          if (nodeMode.getValue() && !IS_MAKING_EDGE) {
 
             /* If oldX and oldY are not set, set them */
             if (oldX.getValue() == -1 && oldY.getValue() == -1) {
@@ -333,8 +356,11 @@ public class MapEditorMapNode extends MapNode {
     MFXButton noButton = new MFXButton();
     noButton.getStyleClass().add("cancelButton");
     HBox buttonHolder = new HBox(yesButton, noButton);
+    HBox.setMargin(yesButton, new Insets(5, 5, 5, 5));
+    HBox.setMargin(noButton, new Insets(5, 5, 5, 5));
     buttonHolder.setAlignment(Pos.CENTER);
     Text prompt = new Text("Do you want to auto repair edges?");
+    VBox.setMargin(prompt, new Insets(5, 5, 0, 5));
     warning.setContentNode(new VBox(prompt, buttonHolder));
     warning.show(App.getPrimaryStage());
     /* End Making Warning */
@@ -348,6 +374,7 @@ public class MapEditorMapNode extends MapNode {
               && !this.getNode().getLocation().getLocationType().equals("ELEV")) {
             this.deleteNodeEdges(this, true);
           }
+
           warning.hide();
         });
 
@@ -496,7 +523,7 @@ public class MapEditorMapNode extends MapNode {
             PathEdge newPathEdge =
                 new PathEdge(nodesToModify.get(i).getNode(), nodesToModify.get(c).getNode());
             newPathEdge.setEdge(newEdge);
-            MapEdge newMapEdge = new MapEdge(newPathEdge);
+            MapEdge newMapEdge = new MapEdge(newPathEdge, edgeMode);
             newMapEdge.setNodes(nodesToModify.get(i), nodesToModify.get(c));
             MapEditorPageController.getEdgeList().add(newMapEdge);
             try {

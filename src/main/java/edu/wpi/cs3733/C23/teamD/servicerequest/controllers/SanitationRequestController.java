@@ -26,40 +26,18 @@ public class SanitationRequestController implements ServiceRequestVBoxController
   @FXML private Parent fieldLocation;
   @FXML private LocationComboBoxController fieldLocationController;
   @FXML private MFXComboBox urgencyBox;
+  private boolean helpDisplayed = false;
+
+  public void initialize() {
+    fieldLocationController
+        .giveComboBox()
+        .setOnAction(
+            event ->
+                ServiceRequestMapController.getMapSingleton().mapCenters(fieldLocationController));
+  }
 
   @Override
   public void clearTransportForms() {}
-
-  @Override
-  public void setFieldsDisable(ServiceRequest serviceRequest) {
-    fieldLocationController.setDisable(true);
-    fieldReason.setDisable(true);
-    staffIDTextFieldController.setDisable(true);
-    radioBSL1.setDisable(true);
-    radioBSL2.setDisable(true);
-    radioBSL3.setDisable(true);
-    radioBSL4.setDisable(true);
-    urgencyBox.setDisable(true);
-
-    // TODO set the radio buttions and check the employeebox
-    if (serviceRequest.getClass().equals(SanitationRequest.class)) {
-      fieldLocationController.setText(serviceRequest.getLocation().getLongName());
-      fieldReason.setText(serviceRequest.getReason());
-      staffIDTextFieldController.setText(
-          serviceRequest.getAssociatedStaff().getFirstName()
-              + " "
-              + serviceRequest.getAssociatedStaff().getLastName());
-      SanitationRequest sRequest = (SanitationRequest) serviceRequest;
-      staffIDTextFieldController.setEmployeeName(
-          serviceRequest.getAssociatedStaff().getFirstName());
-      radioBSL1.setSelected(sRequest.getBioLevel() == 1);
-      radioBSL2.setSelected(sRequest.getBioLevel() == 2);
-      radioBSL3.setSelected(sRequest.getBioLevel() == 3);
-      radioBSL4.setSelected(sRequest.getBioLevel() == 4);
-
-      urgencyBox.setText(serviceRequest.getUrgency());
-    }
-  }
 
   @FXML
   public boolean submit() {
@@ -95,6 +73,37 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     return null;
   }
 
+  @Override
+  public void setFieldsDisable(ServiceRequest serviceRequest) {
+    fieldLocationController.setDisable(true);
+    fieldReason.setDisable(true);
+    staffIDTextFieldController.setDisable(true);
+    radioBSL1.setDisable(true);
+    radioBSL2.setDisable(true);
+    radioBSL3.setDisable(true);
+    radioBSL4.setDisable(true);
+    urgencyBox.setDisable(true);
+
+    // TODO set the radio buttions and check the employeebox
+    if (serviceRequest.getClass().equals(SanitationRequest.class)) {
+      fieldLocationController.setText(serviceRequest.getLocation().getLongName());
+      fieldReason.setText(serviceRequest.getReason());
+      staffIDTextFieldController.setText(
+          serviceRequest.getAssociatedStaff().getFirstName()
+              + " "
+              + serviceRequest.getAssociatedStaff().getLastName());
+      SanitationRequest sRequest = (SanitationRequest) serviceRequest;
+      staffIDTextFieldController.setEmployeeName(
+          serviceRequest.getAssociatedStaff().getFirstName());
+      radioBSL1.setSelected(sRequest.getBioLevel() == 1);
+      radioBSL2.setSelected(sRequest.getBioLevel() == 2);
+      radioBSL3.setSelected(sRequest.getBioLevel() == 3);
+      radioBSL4.setSelected(sRequest.getBioLevel() == 4);
+
+      urgencyBox.setText(serviceRequest.getUrgency());
+    }
+  }
+
   @FXML
   public boolean clearSanitationForms() {
     fieldLocationController.clearForm();
@@ -106,11 +115,13 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     radioBSL4.setSelected(false);
     urgencyBox.clearSelection();
     return true;
+    // System.out.print("Fields Cleared\n");
   }
 
   private boolean isFieldsSaturated() {
-    return ((fieldLocationController.getLocationLongName() != null)
-        && staffIDTextFieldController.getEmployeeName() != null
+    // System.out.print("Submit Success2: ");
+    return ((fieldLocationController.getLocation() != null)
+        && (staffIDTextFieldController.getEmployeeName() != null)
         && (radioBSL1.isSelected()
             || radioBSL2.isSelected()
             || radioBSL3.isSelected()
