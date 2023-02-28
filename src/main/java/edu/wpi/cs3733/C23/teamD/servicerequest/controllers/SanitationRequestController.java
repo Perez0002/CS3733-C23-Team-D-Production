@@ -155,8 +155,11 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     ArrayList<Move> moves = FDdb.getInstance().getAllCurrentMoves(new Date());
     LocationName locationName = null;
     for (Move m : moves) {
-      if (m.getNodeID().equals(move.getNodeID())) {
-        locationName = move.getLocation();
+      if (m.getNode() != null) {
+        if (m.getNodeID().equals(move.getNodeID())) {
+          System.out.println(move.getLongName());
+          locationName = move.getLocation();
+        }
       }
     }
     fieldReason.setText(

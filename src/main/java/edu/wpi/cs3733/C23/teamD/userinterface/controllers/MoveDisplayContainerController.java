@@ -63,7 +63,6 @@ public class MoveDisplayContainerController {
 
   private ArrayList<String> directions = new ArrayList<>();
 
-
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
@@ -146,7 +145,6 @@ public class MoveDisplayContainerController {
       e.printStackTrace();
     }
 
-
     setFloorButtons(1);
   }
 
@@ -228,10 +226,10 @@ public class MoveDisplayContainerController {
       if (localDate.isBefore(datePicker.getValue())) {
         latest = m;
       }
-        if (localDate.equals(datePicker.getValue())) {
-          setFutureMove(m);
-          exactDate = true;
-        }
+      if (localDate.equals(datePicker.getValue())) {
+        setFutureMove(m);
+        exactDate = true;
+      }
     }
     if (!exactDate) {
       System.out.println("new move");
@@ -397,7 +395,6 @@ public class MoveDisplayContainerController {
     for (String t : text) {
       directions.add(t);
     }
-
 
     mapPane.setCenter(
         MapFactory.startBuild()
