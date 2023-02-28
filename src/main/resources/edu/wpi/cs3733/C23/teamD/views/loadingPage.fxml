@@ -18,7 +18,7 @@
                   <Image url="@images/Brigham_and_Women's_Hospital_Logo.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" text="Welcome to the Kiosk Application!" textFill="#012d5a">
+            <Label alignment="CENTER" styleClass="ourText" stylesheets="@updatedStyleGuide.css" text="Welcome to the Kiosk Application!" textFill="#012d5a">
                <font>
                   <Font size="24.0" />
                </font>
@@ -37,9 +37,9 @@
                   <Image url="@images/loading-gif.gif" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: white;" text="Application loading..." textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: white;" styleClass="ourText" stylesheets="@updatedStyleGuide.css" text="Application loading..." textFill="WHITE">
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="24.0" />
