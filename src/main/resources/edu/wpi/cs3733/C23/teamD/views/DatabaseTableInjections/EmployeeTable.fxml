@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="LocationTableBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.EmployeeTableController">
+   <center>
+      <TableView fx:id="employeeTable" onMouseClicked="#getSelectedRow" style="-fx-background-radius: 5; -fx-border-radius: 5;">
+         <columns>
+            <TableColumn fx:id="firstName" prefWidth="144.0" styleClass="tableCSS.css" text="First Name" />
+            <TableColumn fx:id="lastName" prefWidth="133.0" styleClass="tableCSS.css" text="Last Name" />
+            <TableColumn fx:id="employeeType" prefWidth="133.0" styleClass="tableCSS.css" text="Employee Type" />
+            <TableColumn fx:id="email" prefWidth="133.0" styleClass="tableCSS.css" text="Email" />
+         </columns>
+      </TableView>
+   </center>
+</BorderPane>

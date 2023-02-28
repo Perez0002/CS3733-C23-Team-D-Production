@@ -7,7 +7,14 @@ public enum ServiceRequests {
   COMPUTER_REQUEST("views/VBoxInjections/ComputerServiceRequest.fxml"),
   SECURITY_REQUEST("views/VBoxInjections/SecurityServiceRequest.fxml"),
   AV_REQUEST("views/VBoxInjections/AVRequestForm.fxml"),
-  LAB_REQUEST("views/VBoxInjections/LabRequestForm.fxml");
+  LAB_REQUEST("views/VBoxInjections/LabRequestForm.fxml"),
+
+  PATIENT_TRANSPORT_DETAILS("views/VBoxInjections/TransportRequestDetails.fxml"),
+  SANITATION_REQUEST_DETAILS("views/VBoxInjections/SanitationRequestDetails.fxml"),
+  SECURITY_REQUEST_DETAILS("views/VBoxInjections/SecurityRequestDetails.fxml"),
+  AV_REQUEST_DETAILS("views/VBoxInjections/AVRequestDetails.fxml"),
+  COMPUTER_REQUEST_DETAILS("views/VBoxInjections/ComputerRequestDetails.fxml"),
+  TEMPLATE_REQUEST_DETAILS("views/VBoxInjections/TemplateRequestDetails.fxml");
 
   private final String filename;
 

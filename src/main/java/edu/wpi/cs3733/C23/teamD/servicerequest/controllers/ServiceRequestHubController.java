@@ -4,7 +4,6 @@ import static edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequest
 
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
-import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ConfettiController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.ToastController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -15,12 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
 public class ServiceRequestHubController {
 
-  @FXML private MFXButton hubButton;
   @FXML private MFXButton transportButton;
   @FXML private MFXButton sanitationButton;
   @FXML private MFXButton computerButton;
@@ -30,7 +27,6 @@ public class ServiceRequestHubController {
   @FXML private MFXButton labButton;
 
   @FXML private Pane requestFormHubPane;
-  @FXML private BorderPane mapPaneContainer;
 
   @FXML private MFXButton clearButton;
 
@@ -38,10 +34,15 @@ public class ServiceRequestHubController {
 
   @FXML private MFXButton helpButton;
 
+  @FXML private BorderPane theContainerForMap;
+
   @FXML private Label requiredFieldsText;
+
   private ServiceRequestVBoxController currentController; // tracks current VBox pane
 
   private MFXButton currentTab;
+
+  private boolean hubMapCreated = false;
 
   Pane getRequestFormHubPane() {
     return requestFormHubPane;
@@ -56,7 +57,6 @@ public class ServiceRequestHubController {
 
   public void initialize() {
 
-    createHubMap();
     switchVBox(PATIENT_TRANSPORT, transportButton);
     // TODO: set BUTTON functionality here. Add your buton. Set the onMouseClick to switchVBox(HUB,
     // hubButton);
@@ -89,9 +89,10 @@ public class ServiceRequestHubController {
           }
         });
     clearButton.setOnMouseClicked(event -> clearFields());
+    System.out.println("changeFloor CALL");
   }
 
-  // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALZE.
+  // DO NOT TOUCH THIS FUNCTION. JUST CALL IN INITIALIZE
   void switchVBox(ServiceRequests switchTo, MFXButton button) {
 
     if (currentTab != null) {
@@ -130,23 +131,22 @@ public class ServiceRequestHubController {
   }
 
   void submit() throws IOException {
+    System.out.println("Submit Pressed");
     boolean submission = false;
-
-    if (currentController instanceof HubBoxController) {
-    } else if (currentController instanceof PatientTransportVBoxController) {
-      submission = ((PatientTransportVBoxController) currentController).submit();
+    if (currentController instanceof PatientTransportVBoxController) {
+      submission = currentController.submit();
     } else if (currentController instanceof ComputerServiceRequestController) {
-      submission = ((ComputerServiceRequestController) currentController).submit();
+      submission = currentController.submit();
     } else if (currentController instanceof SecurityServiceRequestController) {
-      submission = ((SecurityServiceRequestController) currentController).submit();
+      submission = currentController.submit();
     } else if (currentController instanceof SanitationRequestController) {
-      submission = ((SanitationRequestController) currentController).submit();
+      submission = currentController.submit();
     } else if (currentController instanceof AVRequestController) {
       submission = ((AVRequestController) currentController).submit();
     } else if (currentController instanceof LabRequestController) {
       submission = ((LabRequestController) currentController).submit();
     } else {
-      currentController.submit();
+      submission = currentController.submit();
     }
 
     if (submission) {
@@ -161,13 +161,10 @@ public class ServiceRequestHubController {
       requiredFieldsText.setText("* Please fill out the required fields.");
       requiredFieldsText.setTextFill(Color.color(1, 0, 0));
     }
-  }
 
-  void createHubMap() {
-    GesturePane map = MapFactory.startBuild().build(0);
-    map.setStyle("-fx-border-color: #012D5A;");
-    map.setMaxSize(700, 500);
-    mapPaneContainer.setCenter(map);
+    // TODO: add your submit function here in the exact same format as the PatientVBoxController
+    // same as ClearFields. This function calls the controller class function for submission.
+
   }
 
   void help() throws IOException {

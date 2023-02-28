@@ -170,3 +170,21 @@
     -fx-padding: 2;
 }
 
+.default-color0.chart-pie { -fx-pie-color: #33567A; }
+.default-color1.chart-pie { -fx-pie-color: #98AABC; }
+.default-color2.chart-pie { -fx-pie-color: #0F2A4C; }
+.default-color3.chart-pie { -fx-pie-color: #1D4E8D; }
+.default-color4.chart-pie { -fx-pie-color: #79AAE8; }
+
+.chart {
+    -fx-pref-width: 530;
+    -fx-pref-height: 300;
+    -fx-min-width: 530;
+    -fx-min-height: 300;
+    -fx-max-width: 530;
+    -fx-max-height: 300;
+}
+
+.chart-content {
+    -fx-padding: -100 px;
+}
