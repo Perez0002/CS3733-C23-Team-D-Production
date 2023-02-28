@@ -12,7 +12,9 @@ public class TextDirectionsController {
   public void setDirections(ArrayList<String> directions) {
     String directionStr = "";
     for (String direction : directions) {
-      directionStr.concat(direction);
+      if (direction != null) {
+        directionStr = directionStr.concat(direction + "\n");
+      }
     }
     textDirectionsTextBox.setText(directionStr);
   }

@@ -182,6 +182,7 @@ public class PathfindingController {
       @Override
       public void handle(ActionEvent event) {
         if (textDirectionsToggle.isSelected()) {
+          System.out.println("HERE ARE THE DIRECTIONS HERE" + directions);
           popover.show(App.getPrimaryStage());
           textDirectionsController.setDirections(directions);
         } else {
@@ -330,7 +331,11 @@ public class PathfindingController {
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         MapNode lastNode = null;
         ArrayList<String> text = pathfinder.textPath(path);
-        directions = text;
+        for (String t : text) {
+          System.out.println("t + " + t);
+          directions.add(t);
+        }
+
         for (PathNode node : path) {
           PathfindingMapNode pathNode = new PathfindingMapNode(node);
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
