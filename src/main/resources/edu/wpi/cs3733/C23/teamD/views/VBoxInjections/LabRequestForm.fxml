@@ -57,7 +57,7 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <fx:include fx:id="LabType" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/LabComboBox.fxml" />
+                        <fx:include fx:id="LabTypeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/LabComboBox.fxml" />
                     </children>
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
@@ -67,7 +67,7 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="systemFailureTextField" floatMode="DISABLED" prefHeight="402.0" prefWidth="300.0" promptText="..." styleClass="mfx-text-field" stylesheets="@../updatedStyleGuide.css" />
+                        <MFXTextField fx:id="descriptionTextField" floatMode="DISABLED" prefHeight="402.0" prefWidth="300.0" promptText="..." styleClass="mfx-text-field" stylesheets="@../updatedStyleGuide.css" />
                     </children>
                 </VBox>
                 <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />

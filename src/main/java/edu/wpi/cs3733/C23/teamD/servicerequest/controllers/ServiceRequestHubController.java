@@ -138,6 +138,8 @@ public class ServiceRequestHubController {
       submission = ((SanitationRequestController) currentController).submit();
     } else if (currentController instanceof AVRequestController) {
       submission = ((AVRequestController) currentController).submit();
+    } else if (currentController instanceof LabRequestController) {
+      submission = ((LabRequestController) currentController).submit();
     } else {
       currentController.submit();
     }
