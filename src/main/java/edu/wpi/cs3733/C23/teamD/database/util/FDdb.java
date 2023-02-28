@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.user.entities.Kiosk;
 import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 public class FDdb {
   private static final FDdb instance = new FDdb();
   private final EdgeIDaoImpl edgeIDao;
+
+  private final KioskDaoImpl kioskIDao;
   private final NodeIDaoImpl nodeIDao;
   private final LocationNameIDaoImpl locationNameIDao;
   private final MoveIDaoImpl moveIDao;
@@ -30,6 +33,7 @@ public class FDdb {
     this.pastMovesIDao = new PastMovesIDaoImpl();
     this.employeeIDao = new EmployeeIDaoImpl();
     this.settingIDao = new SettingIDaoImpl();
+    this.kioskIDao= new KioskDaoImpl();
   }
 
   public boolean refreshAll() {
@@ -351,11 +355,18 @@ public class FDdb {
     return nodeIDao.getAssociatedNode(l);
   }
 
-  public void saveKiosk(LocationName l) {
-    locationNameIDao.saveKiosk(l);
+  public void saveKiosk(Kiosk k) {
+    kioskIDao.save(k);
   }
 
-  public LocationName getKiosk() {
-    return locationNameIDao.getKiosk();
+  public Kiosk getKiosk(Kiosk k) {
+    return kioskIDao.get(k);
+  }
+
+  public void deleteKiosk(Kiosk k){
+    kioskIDao.delete(k);
+  }
+  public void updateKiosk(Kiosk k){
+    kioskIDao.delete(k);
   }
 }

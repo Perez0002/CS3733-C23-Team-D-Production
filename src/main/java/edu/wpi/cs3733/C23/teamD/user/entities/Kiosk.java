@@ -10,4 +10,9 @@ public class Kiosk {
   @Id @Getter @Setter String IPaddress;
 
   @Getter @Setter String location;
+
+  public Kiosk(String IPaddress, String location){
+    this.IPaddress=IPaddress;
+    this.location=location;
+  }
 }
