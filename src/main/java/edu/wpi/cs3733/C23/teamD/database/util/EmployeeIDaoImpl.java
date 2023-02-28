@@ -103,7 +103,7 @@ public class EmployeeIDaoImpl implements IDao<Employee> {
     try {
       File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/Employee.csv");
       FileWriter fileWriter = new FileWriter(file, false);
-      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
       for (Employee employee : this.employees) {
         String oneObject =
             String.join(

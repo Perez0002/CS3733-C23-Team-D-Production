@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.entities;
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.*;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,15 +34,25 @@ public class PatientTransportRequest extends ServiceRequest {
 
   public PatientTransportRequest() {}
 
-  public PatientTransportRequest(int serviceRequestId,
-                                 Status stat,
-                                 Employee associatedStaff,
-                                 String reason,
-                                 String serviceRequestType,
-                                 LocationName location,
-                                 String urgency,
-                                 String endRoom){
-    super(serviceRequestId,stat,associatedStaff,reason,serviceRequestType,location,urgency);
-    this.endRoom=endRoom;
+  public PatientTransportRequest(
+      int serviceRequestId,
+      Status stat,
+      Employee associatedStaff,
+      String reason,
+      String serviceRequestType,
+      LocationName location,
+      String urgency,
+      Date date,
+      String endRoom) {
+    super(
+        serviceRequestId,
+        stat,
+        associatedStaff,
+        reason,
+        serviceRequestType,
+        location,
+        urgency,
+        date);
+    this.endRoom = endRoom;
   }
 }

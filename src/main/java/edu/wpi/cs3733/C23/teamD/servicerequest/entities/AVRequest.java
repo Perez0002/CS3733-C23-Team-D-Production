@@ -5,7 +5,6 @@ import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.Entity;
 import java.time.LocalDate;
 import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,15 +25,26 @@ public class AVRequest extends ServiceRequest {
   }
 
   public AVRequest() {}
-  public AVRequest(int serviceRequestId,
-                   Status stat,
-                   Employee associatedStaff,
-                   String reason,
-                   String serviceRequestType,
-                   LocationName location,
-                   String urgency,
-                   LocalDate dateFirstSeen) {
-    super(serviceRequestId, stat, associatedStaff, reason, serviceRequestType, location, urgency);
+
+  public AVRequest(
+      int serviceRequestId,
+      Status stat,
+      Employee associatedStaff,
+      String reason,
+      String serviceRequestType,
+      LocationName location,
+      String urgency,
+      Date date,
+      LocalDate dateFirstSeen) {
+    super(
+        serviceRequestId,
+        stat,
+        associatedStaff,
+        reason,
+        serviceRequestType,
+        location,
+        urgency,
+        date);
     this.dateFirstSeen = dateFirstSeen;
   }
 }
