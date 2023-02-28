@@ -12,6 +12,7 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -29,6 +30,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -53,6 +55,8 @@ public class MoveDisplayContainerController {
   @FXML private MFXButton floor1Button;
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
+  @FXML private Parent roomComboBox;
+  @FXML private RoomPickComboBoxController roomComboBoxController;
 
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
@@ -391,6 +395,11 @@ public class MoveDisplayContainerController {
 
   @FXML
   public void setDefaultLocation() {
-    FDdb.getInstance().saveKiosk(currentMove.getLocation());
+    ArrayList<LocationName> locationNames = FDdb.getInstance().getAllLocationNames();
+    for (LocationName l : locationNames) {
+      if (l.getLongName().equals(roomComboBoxController.getLocationName())) {
+        FDdb.getInstance().saveKiosk(l);
+      }
+    }
   }
 }
