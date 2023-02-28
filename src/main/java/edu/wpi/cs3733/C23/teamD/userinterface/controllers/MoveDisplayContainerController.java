@@ -82,7 +82,7 @@ public class MoveDisplayContainerController {
     }
 
     nodeNameToggle.setOnAction(event -> toggleNodeNames());
-    nodeNameToggle.setSelected(false);
+    nodeNameToggle.setSelected(true);
 
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
@@ -222,6 +222,8 @@ public class MoveDisplayContainerController {
     App.getRootPane().setLeft(null);
     stackPane.setPadding(new Insets(0, 0, 0, 0));
     mapPane.setBorder(null);
+    GesturePane g = (GesturePane) mapPane.getCenter();
+    g.setGestureEnabled(false);
     LoginButton.setManaged(false);
     LoginButton.setVisible(false);
     swapButton.setManaged(false);
@@ -243,7 +245,8 @@ public class MoveDisplayContainerController {
     swapButton.setManaged(true);
     move.setManaged(true);
     borderPane.setPadding(new Insets(32, 32, 32, 0));
-    mapPane.setDisable(false);
+    GesturePane g = (GesturePane) mapPane.getCenter();
+    g.setGestureEnabled(true);
     mapPane.setBorder(
         new Border(
             new BorderStroke(

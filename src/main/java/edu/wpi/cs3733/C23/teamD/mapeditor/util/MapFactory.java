@@ -287,8 +287,8 @@ public class MapFactory {
                             ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.9),
                             ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.9)),
                         0)
-                    * 31)
-                + 1;
+                    * 16)
+                + 16;
         if (temp < 32) {
           scale = 5 - (Math.log(temp)) / Math.log(2);
         } else {
