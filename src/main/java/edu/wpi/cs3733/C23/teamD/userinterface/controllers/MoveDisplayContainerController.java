@@ -33,6 +33,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class MoveDisplayContainerController {
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
@@ -217,7 +218,23 @@ public class MoveDisplayContainerController {
   }
 
   @FXML
-  public void viewServiceRequests() {}
+  public void viewServiceRequests() {
+    try {
+      generateRequestsPopup();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void generateRequestsPopup() throws IOException {
+    final var resource = App.class.getResource("views/RequestDetailsPopup.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    PopOver popover = new PopOver(loader.load());
+    popover.setArrowSize(0);
+    popover.setCornerRadius(32);
+    popover.setTitle("Generated Request Details");
+    popover.show(App.getPrimaryStage());
+  }
 
   public void back() throws IOException {
     App.getRootPane()

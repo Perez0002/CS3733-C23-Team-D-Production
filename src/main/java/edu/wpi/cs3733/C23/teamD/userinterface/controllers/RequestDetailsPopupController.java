@@ -1,21 +1,20 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.NavigationServiceRequests;
-import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequestVBoxController;
 import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.ServiceRequests;
+import edu.wpi.cs3733.C23.teamD.servicerequest.controllers.detailsControllers.RequestDetailsController;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
-
-import java.io.IOException;
 
 public class RequestDetailsPopupController {
 
   @FXML private Pane pane;
 
-  private ServiceRequestVBoxController currentController;
+  private RequestDetailsController currentController;
 
   public void initialize() {
-    switchVBox(ServiceRequests.SANITATION_REQUEST);
+    switchVBox(ServiceRequests.SANITATION_REQUEST_DETAILS);
   }
 
   public Pane getPane() {
@@ -23,6 +22,7 @@ public class RequestDetailsPopupController {
   }
 
   void switchVBox(ServiceRequests switchTo) {
-    currentController = NavigationServiceRequests.navigate(switchTo, getPane());
+    currentController =
+        NavigationServiceRequests.navigateHomepage(switchTo, getPane(), new ServiceRequest());
   }
 }
