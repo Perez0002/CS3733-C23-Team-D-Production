@@ -78,6 +78,7 @@ public class PathfindingController {
   @FXML private MFXToggleButton serviceRequestLocationToggle;
   @FXML private MFXToggleButton nodeNameToggle;
   @FXML private MFXToggleButton textDirectionsToggle;
+  private TextDirectionsController textDirectionsController;
 
   private boolean nodeNamesVisible = false;
   private RoomPickComboBoxController comboBox;
@@ -88,6 +89,7 @@ public class PathfindingController {
   private ArrayList<MapNode> mapNodes = new ArrayList<>();
   private ArrayList<MapEdge> mapEdges = new ArrayList<>();
 
+  private ArrayList<String> directions = new ArrayList<>();
   private PopOver popover = null;
 
   public PathfindingController() {}
@@ -181,6 +183,7 @@ public class PathfindingController {
       public void handle(ActionEvent event) {
         if (textDirectionsToggle.isSelected()) {
           popover.show(App.getPrimaryStage());
+          textDirectionsController.setDirections(directions);
         } else {
           popover.hide();
         }
@@ -225,8 +228,7 @@ public class PathfindingController {
     nodeNameToggle.setOnAction(toggleNodeNames());
     nodeNameToggle.setSelected(false);
     nodeNameToggle.setDisable(true);
-    textDirectionsToggle.setDisable(true);
-    textDirectionsToggle.setOnAction(showTextDirections());
+
     floorButtons[0] = floorGButton;
     floorButtons[1] = floor1Button;
     floorButtons[2] = floor2Button;
@@ -237,11 +239,16 @@ public class PathfindingController {
       final var resource = App.class.getResource("views/TextDirections.fxml");
       final FXMLLoader loader = new FXMLLoader(resource);
       popover = new PopOver(loader.load());
+      textDirectionsController = loader.getController();
       popover.setArrowSize(0);
       popover.setTitle("Text Directions");
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    textDirectionsToggle.setDisable(true);
+    textDirectionsToggle.setOnAction(showTextDirections());
+
     datePicker.setValue(datePicker.getCurrentDate());
     datePicker.setOnAction(
         event -> {
@@ -323,6 +330,7 @@ public class PathfindingController {
         ArrayList<MapEdge> mapEdges = new ArrayList<>();
         MapNode lastNode = null;
         ArrayList<String> text = pathfinder.textPath(path);
+        directions = text;
         for (PathNode node : path) {
           PathfindingMapNode pathNode = new PathfindingMapNode(node);
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));

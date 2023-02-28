@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,7 +13,7 @@
          <children>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="800.0" styleClass="aboutLabel" text="Text Directions" textAlignment="CENTER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="400.0" styleClass="aboutLabel" text="Text Directions" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
@@ -30,7 +29,7 @@
                </VBox.margin></HBox>
             <MFXScrollPane>
                <content>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="textDirectionsTextBox" text="Label" wrapText="true" />
                </content>
             </MFXScrollPane>
          </children>
