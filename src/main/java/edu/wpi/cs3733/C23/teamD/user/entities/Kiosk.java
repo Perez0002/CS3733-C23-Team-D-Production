@@ -11,8 +11,10 @@ public class Kiosk {
 
   @Getter @Setter String location;
 
-  public Kiosk(String IPaddress, String location){
-    this.IPaddress=IPaddress;
-    this.location=location;
+  public Kiosk(String IPaddress, String location) {
+    this.IPaddress = IPaddress;
+    this.location = location;
   }
+
+  public Kiosk() {}
 }

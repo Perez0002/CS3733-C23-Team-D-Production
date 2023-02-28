@@ -33,7 +33,7 @@ public class FDdb {
     this.pastMovesIDao = new PastMovesIDaoImpl();
     this.employeeIDao = new EmployeeIDaoImpl();
     this.settingIDao = new SettingIDaoImpl();
-    this.kioskIDao= new KioskDaoImpl();
+    this.kioskIDao = new KioskDaoImpl();
   }
 
   public boolean refreshAll() {
@@ -363,10 +363,11 @@ public class FDdb {
     return kioskIDao.get(k);
   }
 
-  public void deleteKiosk(Kiosk k){
+  public void deleteKiosk(Kiosk k) {
     kioskIDao.delete(k);
   }
-  public void updateKiosk(Kiosk k){
+
+  public void updateKiosk(Kiosk k) {
     kioskIDao.delete(k);
   }
 }

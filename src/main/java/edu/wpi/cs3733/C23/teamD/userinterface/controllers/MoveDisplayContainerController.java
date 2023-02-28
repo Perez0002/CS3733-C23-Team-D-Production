@@ -12,11 +12,13 @@ import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.user.entities.Kiosk;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -120,12 +122,19 @@ public class MoveDisplayContainerController {
     floorButtons[3] = floor2Button;
     floorButtons[4] = floor3Button;
     setFloorButtons(1);
-
-    if (FDdb.getInstance().getKiosk() != null) {
-      currentMove = nodeToRoomMap.get(FDdb.getInstance().getKiosk().getLongName());
-      mfxFilterComboBox.setText(currentMove.getLocation().getLongName());
-      mfxFilterComboBox.setValue(currentMove.getLocation().getLongName());
-      setRightAndLeft(currentMove);
+    Kiosk k = new Kiosk();
+    try {
+      k.setIPaddress(InetAddress.getLocalHost().toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    if (FDdb.getInstance().getKiosk(k) != null) {
+      roomComboBoxController.setLocationName(
+          nodeToRoomMap
+              .get(FDdb.getInstance().getKiosk(k).getLocation())
+              .getLocation()
+              .getLongName());
+      setRightAndLeft(nodeToRoomMap.get(FDdb.getInstance().getKiosk(k).getLocation()));
     }
   }
 
@@ -398,7 +407,12 @@ public class MoveDisplayContainerController {
     ArrayList<LocationName> locationNames = FDdb.getInstance().getAllLocationNames();
     for (LocationName l : locationNames) {
       if (l.getLongName().equals(roomComboBoxController.getLocationName())) {
-        FDdb.getInstance().saveKiosk(l);
+        try {
+          FDdb.getInstance()
+              .saveKiosk(new Kiosk(InetAddress.getLocalHost().toString(), l.getLongName()));
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     }
   }

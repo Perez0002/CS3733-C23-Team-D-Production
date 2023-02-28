@@ -12,14 +12,15 @@ public class KioskDaoImpl implements IDao<Kiosk> {
   public Kiosk get(Kiosk k) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE Kiosk where IPAddress=:id");
+      Query q = session.createQuery("SELECT k From Kiosk k where IPaddress=:id");
       q.setParameter("id", k.getIPaddress());
-      int deleted = q.executeUpdate();
+      k = (Kiosk) q.getSingleResult();
       session.getTransaction().commit();
+      return k;
     } catch (Exception e) {
-      e.printStackTrace();
+      session.getTransaction().rollback();
+      return null;
     }
-    return null;
   }
 
   @Override
@@ -56,7 +57,7 @@ public class KioskDaoImpl implements IDao<Kiosk> {
   public void delete(Kiosk k) {
     session.beginTransaction();
     try {
-      Query q = session.createQuery("DELETE Kiosk where IPAddress=:id");
+      Query q = session.createQuery("DELETE Kiosk where IPaddress=:id");
       q.setParameter("id", k.getIPaddress());
       int deleted = q.executeUpdate();
       session.getTransaction().commit();

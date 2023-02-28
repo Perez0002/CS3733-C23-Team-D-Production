@@ -56,6 +56,7 @@ public class RoomPickComboBoxController {
   }
 
   public void setLocationName(String s) {
+    this.mfxFilterComboBox.setText(s);
     this.mfxFilterComboBox.setValue(s);
   }
 
