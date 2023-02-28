@@ -4,9 +4,10 @@ import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
+import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.*;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
@@ -20,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
@@ -35,12 +37,16 @@ public class MoveRequestTableController implements Initializable {
   @FXML private Parent locationBox;
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
-
-  @FXML private MFXTextField messageBox;
+  @FXML private TextArea messageBox;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     tablehandling();
+  }
+
+  @FXML
+  public void displayMove() {
+    Navigation.navigate(Screen.MOVE_DISPLAY);
   }
 
   @FXML
