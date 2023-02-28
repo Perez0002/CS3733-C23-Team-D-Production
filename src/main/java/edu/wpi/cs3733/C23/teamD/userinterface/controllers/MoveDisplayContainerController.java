@@ -300,6 +300,8 @@ public class MoveDisplayContainerController {
       lastNode = pathNode;
     }
 
+    // TODO generate text directions
+
     mapPane.setCenter(
         MapFactory.startBuild()
             .scaleMap()
@@ -389,4 +391,7 @@ public class MoveDisplayContainerController {
 
   @FXML
   public void setDefaultLocation() {}
+
+  @FXML
+  public void getDirections() {}
 }
