@@ -126,6 +126,13 @@
     -fx-font-family: "Nunito Sans Bold";
 }
 
+.homepageLabelBig { /* defines the format for the header on Service Request page */
+    -fx-font-size: 30pt;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
+}
+
 .imageBorder {
     -fx-border-color: #012D5A;
     /*-fx-border-radius: 16;*/
@@ -228,6 +235,14 @@
 
 }
 
+.moveDisplayButton {
+    -fx-background-color: #012D5A;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-font-family: 'Nunito Sans Regular';
+    -fx-max-width: 300px;
+    -fx-max-height: 100px;
+}
 .deleteButton { /* defines the format for the delete button */
     -fx-background-color: transparent;
     -fx-text-fill: #CC2222;
@@ -275,6 +290,12 @@
     -fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
+}
+
+#moveDisplayborderPane {
+    /*-fx-background-image: url('images/Shapiro-Center-at-dusk-.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;*/
 }
 
 .helpButton {
@@ -343,3 +364,35 @@
 }
 
 
+.requestDetailsField
+{
+    -fx-border-color: transparent #CFCFCF transparent transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+}
+
+.default-color0.chart-bar { -fx-bar-fill: #1D4E8D }
+
+.default-color0.chart-area-symbol { -fx-background-color: #98AABC, #98AABC; }
+.default-color0.chart-series-area-line { -fx-stroke: #0F2A4C; }
+.default-color0.chart-series-area-fill { -fx-fill: #98AABC; }
+
+
+
+
+.requestDetailsTopMenu
+{
+    -fx-border-color: transparent #CFCFCF #CFCFCF transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: 0;
+}
+
+.requestDetailsTopMenuTopRight
+{
+    -fx-border-color: transparent transparent #CFCFCF transparent;
+    -fx-border-width: 3pt;
+    -fx-background-color: #EEEEEE;
+    -fx-min-width: 0;
+
+}

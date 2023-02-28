@@ -14,7 +14,7 @@ public enum Screen {
   SANITATION_TABLE("views/SanitationRequestTable.fxml"),
   LOGIN_PAGE("views/LoginPage.fxml"),
   DATABASE_EDITOR("views/DatabaseLandingPage.fxml"),
-
+  ANALYTICS_PAGE("views/DatabaseTableInjections/AnalyticsPage.fxml"),
   DATABASE_HUB("views/DatabaseHub.fxml"),
   REQUEST_FORM_HUB("views/RequestFormHub.fxml"),
   SERVICE_TABLE("views/ServiceRequestTable.fxml"),
@@ -22,6 +22,7 @@ public enum Screen {
   PROFILE_PAGE("views/ProfilePage.fxml"),
   ABOUT_PAGE("views/About.fxml"),
   CREDITS_PAGE("views/Credits.fxml");
+  MOVE_DISPLAY("views/MoveDisplayContainer.fxml");
 
   private final String filename;
 
