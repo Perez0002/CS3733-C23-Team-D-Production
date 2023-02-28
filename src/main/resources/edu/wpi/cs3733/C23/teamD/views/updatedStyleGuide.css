@@ -127,9 +127,8 @@
 }
 
 .autoRequestLabel { /* defines the format for the header on Service Request page */
-    -fx-font-size: 24pt;
-    -fx-max-width: 500px;
-    -fx-max-height: 100px;
+    -fx-font-size: 22pt;
+    -fx-max-width: 600px;
     -fx-font-family: "Nunito Sans Bold";
 }
 
@@ -140,6 +139,11 @@
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
     -fx-wrap-text: "true";
+}
+
+.serviceIcon {
+    -fx-stroke-width: 2;
+    -fx-stroke: #CFCFCF;
 }
 
 .homepageLabelBig { /* defines the format for the header on Service Request page */
