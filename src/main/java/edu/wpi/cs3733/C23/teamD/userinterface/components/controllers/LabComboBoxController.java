@@ -9,11 +9,23 @@ public class LabComboBoxController {
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
   ArrayList<String> Labs = new ArrayList<String>();
 
+  /*
+  Complete Blood Count (CBC)
+Comprehensive Metabolic Panel (CMP)
+Hemoglobin A1C (HbA1C)
+Lipid Panel.
+Thyroid Panel.
+Vitamin D.
+Anemia Panel.
+How to understand your results.
+   */
   public LabComboBoxController() {
-    Labs.add("Blood Oxygen Levels");
-    Labs.add("Stool Test");
-    Labs.add("Skin Sample");
-    Labs.add("Mouth Swab");
+    Labs.add("Complete Blood Count (CBC)");
+    Labs.add("Comprehensive Metabolic Panel (CMP)\n");
+    Labs.add("Hemoglobin A1C (HbA1C)");
+    Labs.add("Lipid Panel");
+    Labs.add("Thyroid Panel");
+    Labs.add("Vitamin D");
     Labs.add("Shotgun");
   }
 
