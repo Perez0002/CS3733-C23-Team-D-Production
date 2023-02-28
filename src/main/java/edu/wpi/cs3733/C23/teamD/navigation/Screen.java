@@ -21,7 +21,7 @@ public enum Screen {
   MOVES_TABLE("views/MoveRequestTable.fxml"),
   PROFILE_PAGE("views/ProfilePage.fxml"),
   ABOUT_PAGE("views/About.fxml"),
-  CREDITS_PAGE("views/Credits.fxml");
+  CREDITS_PAGE("views/Credits.fxml"),
   MOVE_DISPLAY("views/MoveDisplayContainer.fxml");
 
   private final String filename;
