@@ -3,9 +3,9 @@ package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.*;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
-import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
@@ -34,8 +34,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.TextArea;
 import javafx.scene.Parent;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -68,6 +68,7 @@ public class MoveDisplayContainerController {
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
   private Move futureMove;
+  private Kiosk defaultKiosk;
   private ArrayList<Edge> edges = new ArrayList<Edge>();
   private ArrayList<Move> moves;
   TreeMap<String, Move> nodeToRoomMap;
@@ -130,19 +131,17 @@ public class MoveDisplayContainerController {
     floorButtons[3] = floor2Button;
     floorButtons[4] = floor3Button;
     setFloorButtons(1);
-    Kiosk k = new Kiosk();
+    defaultKiosk = new Kiosk();
     try {
-      k.setIPaddress(InetAddress.getLocalHost().toString());
+      defaultKiosk.setIPaddress(InetAddress.getLocalHost().toString());
     } catch (Exception e) {
       e.printStackTrace();
     }
-    if (FDdb.getInstance().getKiosk(k) != null) {
+    if (FDdb.getInstance().getKiosk(defaultKiosk) != null) {
+      defaultKiosk = FDdb.getInstance().getKiosk(defaultKiosk);
       roomComboBoxController.setLocationName(
-          nodeToRoomMap
-              .get(FDdb.getInstance().getKiosk(k).getLocation())
-              .getLocation()
-              .getLongName());
-      setRightAndLeft(nodeToRoomMap.get(FDdb.getInstance().getKiosk(k).getLocation()));
+          nodeToRoomMap.get(defaultKiosk.getLocation()).getLocation().getLongName());
+      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()));
     }
   }
 
@@ -224,10 +223,10 @@ public class MoveDisplayContainerController {
       if (localDate.isBefore(datePicker.getValue())) {
         latest = m;
       }
-        if (localDate.equals(datePicker.getValue())) {
-          setFutureMove(m);
-          exactDate = true;
-        }
+      if (localDate.equals(datePicker.getValue())) {
+        setFutureMove(m);
+        exactDate = true;
+      }
     }
     if (!exactDate) {
       System.out.println("new move");
@@ -366,7 +365,7 @@ public class MoveDisplayContainerController {
   }
 
   public void setMove(Move m) {
-    currentMove=m;
+    currentMove = m;
     locationNameText.setText(m.getLongName());
     messageText.setText(m.getMessage());
     mapNodes.clear();
@@ -442,12 +441,21 @@ public class MoveDisplayContainerController {
     for (LocationName l : locationNames) {
       if (l.getLongName().equals(roomComboBoxController.getLocationName())) {
         try {
-          FDdb.getInstance()
-              .saveKiosk(new Kiosk(InetAddress.getLocalHost().toString(), l.getLongName()));
+          if (defaultKiosk.getLocation() == null) {
+            FDdb.getInstance()
+                .saveKiosk(
+                    defaultKiosk =
+                        new Kiosk(InetAddress.getLocalHost().toString(), l.getLongName()));
+
+          } else {
+            defaultKiosk.setLocation(l.getLongName());
+            FDdb.getInstance().updateKiosk(defaultKiosk);
+          }
         } catch (Exception e) {
           e.printStackTrace();
         }
       }
     }
+    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()));
   }
 }

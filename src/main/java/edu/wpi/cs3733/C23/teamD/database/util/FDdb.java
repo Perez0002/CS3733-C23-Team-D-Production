@@ -368,6 +368,6 @@ public class FDdb {
   }
 
   public void updateKiosk(Kiosk k) {
-    kioskIDao.delete(k);
+    kioskIDao.update(k);
   }
 }
