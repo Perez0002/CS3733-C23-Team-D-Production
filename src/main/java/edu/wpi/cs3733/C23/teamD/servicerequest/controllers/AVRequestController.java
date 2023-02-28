@@ -45,23 +45,23 @@ public class AVRequestController implements ServiceRequestVBoxController {
     if (checkFields()) {
       if (datePicker.getValue() == null) {
         AVRequest request =
-                new AVRequest(
-                        employeeBoxController.getEmployee(),
-                        systemFailureTextField.getText(),
-                        "AVRequest",
-                        null,
-                        locationBoxController.getLocation(),
-                        urgencyBox.getValue().toString());
+            new AVRequest(
+                employeeBoxController.getEmployee(),
+                systemFailureTextField.getText(),
+                "AVRequest",
+                null,
+                locationBoxController.getLocation(),
+                urgencyBox.getValue().toString());
         FDdb.getInstance().saveServiceRequest(request);
       } else {
         AVRequest request =
-                new AVRequest(
-                        employeeBoxController.getEmployee(),
-                        systemFailureTextField.getText(),
-                        "AVRequest",
-                        datePicker.getValue(),
-                        locationBoxController.getLocation(),
-                        urgencyBox.getValue().toString());
+            new AVRequest(
+                employeeBoxController.getEmployee(),
+                systemFailureTextField.getText(),
+                "AVRequest",
+                datePicker.getValue(),
+                locationBoxController.getLocation(),
+                urgencyBox.getValue().toString());
         FDdb.getInstance().saveServiceRequest(request);
       }
       return true;
@@ -72,9 +72,9 @@ public class AVRequestController implements ServiceRequestVBoxController {
 
   private boolean checkFields() {
     return !(employeeBoxController.getEmployeeName().isEmpty()
-            || systemFailureTextField.getText().isEmpty()
-            || urgencyBox.getText().isEmpty()
-            || locationBoxController.getLocationLongName().isEmpty());
+        || systemFailureTextField.getText().isEmpty()
+        || urgencyBox.getText().isEmpty()
+        || locationBoxController.getLocationLongName().isEmpty());
   }
 
   public Node getVBox() {
