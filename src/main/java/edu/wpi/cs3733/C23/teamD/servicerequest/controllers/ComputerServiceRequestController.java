@@ -49,8 +49,8 @@ public class ComputerServiceRequestController extends ServiceRequestController
   public boolean submit() {
 
     if (descriptionBox.getText() != null
-        && urgencyBox.getText() != null
-        && deviceTypeBox.getText() != null
+        && urgencyBox.getValue() != null
+        && deviceTypeBox.getValue() != null
         && employeeBoxController.getEmployeeName() != null
         && locationBoxController.getLocation() != null) {
       System.out.println("Submit computer request");
