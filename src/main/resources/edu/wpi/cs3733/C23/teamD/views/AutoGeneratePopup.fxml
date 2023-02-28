@@ -17,11 +17,11 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="NEVER">
                <children>
                   <Label styleClass="autoRequestLabel" text="Associated Service Requests" HBox.hgrow="ALWAYS" />
-                  <FontIcon fx:id="icon1" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" stroke="#cfcfcf" strokeWidth="0.0" styleClass="serviceIcon" />
-                  <FontIcon fx:id="icon2" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" styleClass="serviceIcon" />
-                  <FontIcon fx:id="icon3" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" styleClass="serviceIcon" />
-                  <FontIcon fx:id="icon4" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" styleClass="serviceIcon" />
-                  <FontIcon fx:id="icon5" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" styleClass="serviceIcon" />
+                  <FontIcon fx:id="icon1" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" iconSize="16" stroke="#cfcfcf" strokeWidth="0.0" styleClass="serviceIcon" text="" />
+                  <FontIcon fx:id="icon2" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" iconSize="16" styleClass="serviceIcon" />
+                  <FontIcon fx:id="icon3" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" iconSize="16" styleClass="serviceIcon" />
+                  <FontIcon fx:id="icon4" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" iconSize="16" styleClass="serviceIcon" />
+                  <FontIcon fx:id="icon5" iconColor="#cfcfcf" iconLiteral="fltfal-circle-24" iconSize="16" styleClass="serviceIcon" />
                </children>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" />
@@ -33,7 +33,7 @@
                   <Pane fx:id="pane" />
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <MFXButton minHeight="53.0" minWidth="128.0" onAction="#resetChanges" text="Delete">
+                        <MFXButton minHeight="53.0" minWidth="128.0" onAction="#resetChanges" text="Skip">
                            <styleClass>
                               <String fx:value="cancelButton" />
                               <String fx:value="button" />

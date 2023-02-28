@@ -268,13 +268,13 @@ public class MoveDisplayContainerController {
   @FXML
   public void viewServiceRequests() {
     try {
-      generateRequestsPopup();
+      generateRequestDetailsPopup();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
 
-  private void generateRequestsPopup() throws IOException {
+  private void generateRequestDetailsPopup() throws IOException {
     SanitationRequest sanitationRequest = null;
 
     String moveDate =
@@ -300,11 +300,13 @@ public class MoveDisplayContainerController {
 
     final var resource = App.class.getResource("views/RequestDetailsPopup.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
-    PopOver popover = new PopOver(loader.load());
+    popover = new PopOver(loader.load());
     RequestDetailsPopupController requestDetailsPopupController = loader.getController();
     requestDetailsPopupController.setfields(sanitationRequest);
     popover.setArrowSize(0);
     popover.setCornerRadius(32);
+    requestDetailsPopupController.setMoveDisplayContainerController(this);
+    requestDetailsPopupController.setMove(futureMove);
     popover.setTitle("Generated Request Details");
     popover.show(App.getPrimaryStage());
   }
