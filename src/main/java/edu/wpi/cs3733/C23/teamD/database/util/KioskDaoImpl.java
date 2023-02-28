@@ -30,6 +30,7 @@ public class KioskDaoImpl implements IDao<Kiosk> {
       session.persist(k);
       session.getTransaction().commit();
     } catch (Exception e) {
+      session.getTransaction().rollback();
       e.printStackTrace();
     }
   }
@@ -41,6 +42,7 @@ public class KioskDaoImpl implements IDao<Kiosk> {
       session.merge(k);
       session.getTransaction().commit();
     } catch (Exception e) {
+      session.getTransaction().rollback();
       e.printStackTrace();
     }
   }
