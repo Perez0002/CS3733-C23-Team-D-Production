@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.servicerequest.entities;
 import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import jakarta.persistence.*;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +21,27 @@ public class SanitationRequest extends ServiceRequest {
   public SanitationRequest() {
     super();
     this.bioLevel = 0;
+  }
+
+  public SanitationRequest(
+      int serviceRequestId,
+      Status stat,
+      Employee associatedStaff,
+      String reason,
+      String serviceRequestType,
+      LocationName location,
+      String urgency,
+      Date date,
+      int bioLevel) {
+    super(
+        serviceRequestId,
+        stat,
+        associatedStaff,
+        reason,
+        serviceRequestType,
+        location,
+        urgency,
+        date);
+    this.bioLevel = bioLevel;
   }
 }

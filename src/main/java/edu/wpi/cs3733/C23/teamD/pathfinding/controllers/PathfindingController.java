@@ -345,7 +345,6 @@ public class PathfindingController {
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
           if (text.size() > 0) {
             pathNode.addDirections(text.get(0));
-
             text.remove(0);
           }
           mapNodes.add(pathNode);
