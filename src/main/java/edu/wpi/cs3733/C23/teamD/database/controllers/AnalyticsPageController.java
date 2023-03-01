@@ -285,17 +285,18 @@ public class AnalyticsPageController implements Initializable {
       pieChartData =
           FXCollections.observableArrayList(
               new PieChart.Data(
-                  "Sanitation Request (" + df.format(sanitationRequest / total) + " %)",
+                  "Sanitation Request (" + df.format((sanitationRequest / total) * 100) + " %)",
                   sanitationRequest),
               new PieChart.Data(
-                  "Security Request (" + df.format(securityRequest / total) + " %)",
+                  "Security Request (" + df.format((securityRequest / total) * 100) + " %)",
                   securityRequest),
               new PieChart.Data(
-                  "Computer Request (" + df.format(computerRequest / total) + " %)",
+                  "Computer Request (" + df.format((computerRequest / total) * 100) + " %)",
                   computerRequest),
-              new PieChart.Data("AV Request (" + df.format(avRequest / total) + " %)", avRequest),
               new PieChart.Data(
-                  "Patient Transport Request (" + df.format(patientRequest / total) + " %)",
+                  "AV Request (" + df.format((avRequest / total) * 100) + " %)", avRequest),
+              new PieChart.Data(
+                  "Patient Transport Request (" + df.format((patientRequest / total) * 100) + " %)",
                   patientRequest));
     }
 
