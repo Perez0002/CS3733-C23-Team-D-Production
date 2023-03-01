@@ -34,6 +34,10 @@ public class UrgencySelectorBoxController {
     mfxComboBox.setText(s);
   }
 
+  public void setValue(String s) {
+    mfxComboBox.setValue(s);
+  }
+
   public void setDisable(boolean b) {
     mfxComboBox.setDisable(b);
   }

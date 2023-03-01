@@ -69,6 +69,10 @@
     -fx-min-width: 300;
 }
 
+.fontSize16{
+    -fx-font-size: 14pt;
+}
+
 .root {
     -fx-font-family: "Nunito Sans Regular";
 }
@@ -123,6 +127,26 @@
     -fx-max-width: 400px;
     -fx-max-height: 100px;
     -fx-font-family: "Nunito Sans Bold";
+}
+
+.autoRequestLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 22pt;
+    -fx-max-width: 600px;
+    -fx-font-family: "Nunito Sans Bold";
+}
+
+
+.popupLabel { /* defines the format for the header on Service Request page */
+    -fx-font-size: 24pt;
+    /*-fx-max-width: 400px;*/
+    -fx-max-height: 100px;
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-wrap-text: "true";
+}
+
+.serviceIcon {
+    -fx-stroke-width: 2;
+    -fx-stroke: #CFCFCF;
 }
 
 .homepageLabelBig { /* defines the format for the header on Service Request page */
@@ -230,6 +254,13 @@
     -fx-text-fill: #012D5A;
     -fx-border-color: #012D5A;
     -fx-font-family: 'Nunito Sans Bold';
+
+}
+
+.arrowButton { /* defines the format for the arrow button */
+    -fx-background-color: transparent;
+    -fx-max-height: 40;
+    -fx-max-width: 40;
 
 }
 

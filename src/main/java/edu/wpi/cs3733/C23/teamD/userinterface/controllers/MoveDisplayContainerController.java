@@ -14,6 +14,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.controllers.TextDirectionsController
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import edu.wpi.cs3733.C23.teamD.user.entities.Kiosk;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -73,6 +74,8 @@ public class MoveDisplayContainerController {
   private ArrayList<String> directions = new ArrayList<>();
 
   private ArrayList<PathfindingMapNode> pathDirections = new ArrayList<PathfindingMapNode>();
+
+  private ArrayList<String> directions = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
@@ -340,7 +343,53 @@ public class MoveDisplayContainerController {
   }
 
   @FXML
-  public void viewServiceRequests() {}
+  public void viewServiceRequests() {
+    try {
+      generateRequestDetailsPopup();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void generateRequestDetailsPopup() throws IOException {
+    ArrayList<ServiceRequest> moveServiceRequests = new ArrayList<ServiceRequest>();
+
+    String moveDate =
+        Instant.ofEpochMilli(futureMove.getMoveDate().getTime())
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+            .toString();
+    String moveLocation = futureMove.getLongName();
+    String moveNode = futureMove.getNodeID();
+    System.out.println(moveDate + " " + moveLocation + " " + moveNode);
+    ArrayList<ServiceRequest> serviceRequests = FDdb.getInstance().getAllGenericServiceRequests();
+    for (ServiceRequest s : serviceRequests) {
+      String[] items = s.getReason().split(";");
+      if (items.length > 2) {
+        System.out.println(items[0] + " " + items[1] + " " + items[2]);
+        if (items[0].equals(moveDate)
+            && items[1].equals(moveLocation)
+            && items[2].equals(moveNode)) {
+          moveServiceRequests.add(s);
+        }
+      }
+    }
+
+    System.out.println("moveServiceRequests size: " + moveServiceRequests.size());
+
+    final var resource = App.class.getResource("views/RequestDetailsPopup.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    popover = new PopOver(loader.load());
+    RequestDetailsPopupController requestDetailsPopupController = loader.getController();
+    requestDetailsPopupController.setServiceRequests(moveServiceRequests);
+    popover.setArrowSize(0);
+    popover.setCornerRadius(32);
+    requestDetailsPopupController.setMoveDisplayContainerController(this);
+    requestDetailsPopupController.setMove(futureMove);
+    requestDetailsPopupController.setFields(0);
+    popover.setTitle("Generated Request Details");
+    popover.show(App.getPrimaryStage());
+  }
 
   public void back() throws IOException {
     System.out.println(switched);

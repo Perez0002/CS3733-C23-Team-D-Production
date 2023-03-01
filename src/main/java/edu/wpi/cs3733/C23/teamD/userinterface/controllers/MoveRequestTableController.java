@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 
+import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
 import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.entities.Node;
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
@@ -24,8 +26,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import org.controlsfx.control.PopOver;
 
 public class MoveRequestTableController implements Initializable {
+  private Move newMove;
   @FXML private MFXDatePicker datePicker;
   @FXML private TableView<Move> moveTable;
   @FXML private TableColumn<Move, String> moveNodeID;
@@ -38,6 +42,7 @@ public class MoveRequestTableController implements Initializable {
   @FXML private LocationComboBoxController locationBoxController;
   @FXML private Text errorText;
   @FXML private TextArea messageBox;
+  PopOver popOver;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -56,32 +61,34 @@ public class MoveRequestTableController implements Initializable {
       ZoneId defaultZoneId = ZoneId.systemDefault();
       Date date = Date.from(datePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
       if (messageBox.getText() == null) {
-        Move move =
+        newMove =
             new Move(
                 FDdb.getInstance().getNode(nodeBoxController.getNode()),
                 FDdb.getInstance().getNode(locationBoxController.getLocation()),
                 date);
-        FDdb.getInstance().saveMove(move);
+        FDdb.getInstance().saveMove(newMove);
         clearFields();
         if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
           ConfettiController.makeConfetti(1500, 50, 100);
         }
         ToastController.makeText("Move Request Submitted!", 3000, 50, 100);
       } else {
-        Move move =
+        newMove =
             new Move(
                 FDdb.getInstance().getNode(nodeBoxController.getNode()),
                 FDdb.getInstance().getNode(locationBoxController.getLocation()),
                 date,
                 messageBox.getText());
-        FDdb.getInstance().saveMove(move);
+        FDdb.getInstance().saveMove(newMove);
         clearFields();
+
         if (CurrentUserEnum._CURRENTUSER.getSetting().getConfetti() == 1) {
           ConfettiController.makeConfetti(1500, 50, 100);
         }
         ToastController.makeText("Move Request Submitted!", 3000, 50, 100);
       }
     } else {
+      newMove = null;
       errorText.setVisible(true);
     }
     moveTable.getItems().clear();
@@ -109,6 +116,13 @@ public class MoveRequestTableController implements Initializable {
     }
     ObservableList<Move> moveList = FXCollections.observableArrayList(futureMoveList);
     moveTable.setItems(moveList);
+    if (newMove != null) {
+      try {
+        generateConfirmationPopup(newMove);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 
   private boolean checkFields() {
@@ -177,5 +191,38 @@ public class MoveRequestTableController implements Initializable {
                 column.setMinWidth(moveTable.getMaxWidth() / size);
               column.setMinWidth(currentMax);
             });
+  }
+
+  public void generateAutomaticServiceRequestPopup(Move move) throws IOException {
+    System.out.println("generate popup");
+    final var resource = App.class.getResource("views/AutoGeneratePopup.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    popOver = new PopOver(loader.load());
+    AutoGeneratePopupController autoGeneratePopupController = loader.getController();
+    autoGeneratePopupController.setMove(move);
+    autoGeneratePopupController.setMoveRequestTableController(this);
+    autoGeneratePopupController.fillFields();
+    popOver.setArrowSize(0);
+    popOver.setCornerRadius(32);
+    popOver.setTitle("Generated Service Request Editor");
+    popOver.show(App.getPrimaryStage());
+  }
+
+  private void generateConfirmationPopup(Move move) throws IOException {
+    System.out.println("generate popup");
+    final var resource = App.class.getResource("views/VBoxInjections/AddServiceRequests.fxml");
+    final FXMLLoader loader = new FXMLLoader(resource);
+    popOver = new PopOver(loader.load());
+    AddServiceRequestsController addServiceRequestsController = loader.getController();
+    addServiceRequestsController.setMoveRequestTableController(this);
+    addServiceRequestsController.setMove(move);
+    popOver.setArrowSize(0);
+    popOver.setCornerRadius(32);
+    popOver.setTitle("Generated Service Request Editor");
+    popOver.show(App.getPrimaryStage());
+  }
+
+  public void closePopOver() {
+    popOver.hide();
   }
 }

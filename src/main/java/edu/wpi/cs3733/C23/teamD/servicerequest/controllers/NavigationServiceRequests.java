@@ -31,6 +31,7 @@ public class NavigationServiceRequests {
   public static RequestDetailsController navigateHomepage(
       final ServiceRequests serviceRequest, Pane requestFormHubPane, ServiceRequest data) {
     final String filename = serviceRequest.getFilename();
+    RequestDetailsController controller = null;
     try {
       final var resource = App.class.getResource(filename);
       final FXMLLoader loader = new FXMLLoader(resource);
@@ -38,13 +39,11 @@ public class NavigationServiceRequests {
       System.out.println("LOAD " + filename);
       requestFormHubPane.getChildren().add(loader.load());
       System.out.println("CONTROLLER" + loader.getController());
-      RequestDetailsController controller = loader.getController();
+      controller = loader.getController();
       controller.setFields(data);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
-    final var resource = App.class.getResource("views/VBoxInjections/hubVBox.fxml");
-    final FXMLLoader loader = new FXMLLoader(resource);
-    return loader.getController();
+    return controller;
   }
 }

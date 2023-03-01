@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="ServiceRequestTableBorderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ServiceRequestTableController">
+<BorderPane fx:id="ServiceRequestTableBorderPane" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.database.controllers.ServiceRequestTableController">
     <center>
         <TableView fx:id="serviceTable" maxHeight="500.0" maxWidth="735.0" minHeight="500.0" minWidth="735.0" onMouseClicked="#getSelectedRow" prefHeight="500.0" prefWidth="735.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
             <placeholder>

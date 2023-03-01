@@ -1,13 +1,24 @@
 package edu.wpi.cs3733.C23.teamD.servicerequest.controllers;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.CurrentUserEnum;
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
+import edu.wpi.cs3733.C23.teamD.database.entities.Move;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
+import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.EmployeeDropdownComboBoxController;
 import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.LocationComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -122,5 +133,75 @@ public class SanitationRequestController implements ServiceRequestVBoxController
             || radioBSL3.isSelected()
             || radioBSL4.isSelected())
         && urgencyBox.getValue() != null);
+  }
+
+  public void fillFields(Move move) {
+    radioBSL1.setSelected(true);
+    fieldLocationController.setLocationName(move.getLongName());
+    fieldLocationController.setText(move.getLongName());
+    Employee e = CurrentUserEnum._CURRENTUSER.getCurrentUser();
+    staffIDTextFieldController.setEmployeeName(e.getFirstName() + " " + e.getLastName());
+    staffIDTextFieldController.setText(e.getFirstName() + " " + e.getLastName());
+    urgencyBox.setValue("Low");
+    urgencyBox.setText("Low");
+    LocalDate localDate =
+        Instant.ofEpochMilli(move.getMoveDate().getTime())
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
+    ArrayList<Move> moves = FDdb.getInstance().getAllCurrentMoves(new Date());
+    LocationName locationName = null;
+    for (Move m : moves) {
+      if (m.getNode() != null) {
+        if (m.getNodeID().equals(move.getNodeID())) {
+          locationName = m.getLocation();
+        }
+      }
+    }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+    fieldReason.setText(
+        localDate
+            + ";"
+            + move.getLongName()
+            + ";"
+            + move.getNodeID()
+            + ";"
+            + "Please clean "
+            + locationName.getLongName()
+            + " in preperation for a move on the "
+            + formatter.format(localDate)
+            + ".");
+    fieldLocationController.setLocationName(locationName.getLongName());
+    fieldLocationController.setText(locationName.getLongName());
+    fieldReason.setDisable(true);
+    fieldLocationController.setDisable(true);
+  }
+
+  public void autoSubmit(Date date) {
+    int i = 0;
+    if (radioBSL1.isSelected()) {
+      i = 1;
+    } else if (radioBSL2.isSelected()) {
+      i = 2;
+    } else if (radioBSL3.isSelected()) {
+      i = 3;
+    } else if (radioBSL4.isSelected()) {
+      i = 4;
+    }
+    SanitationRequest requestData =
+        new SanitationRequest(
+            fieldReason.getText(),
+            i,
+            staffIDTextFieldController.getEmployee(),
+            fieldLocationController.getLocation(),
+            urgencyBox.getValue().toString());
+
+    Calendar calendar = Calendar.getInstance();
+
+    calendar.setTime(date);
+    calendar.add(Calendar.DATE, -1);
+
+    FDdb.getInstance().saveServiceRequest(requestData);
+    requestData.setDateAndTime(calendar.getTime());
+    FDdb.getInstance().updateServiceRequest(requestData);
   }
 }

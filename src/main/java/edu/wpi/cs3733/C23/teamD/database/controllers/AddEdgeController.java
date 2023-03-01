@@ -14,6 +14,7 @@ import lombok.Setter;
 public class AddEdgeController implements AddFormController<Edge> {
 
   @Setter DatabaseController databaseController;
+
   @FXML private Parent fromNodeBox;
   @FXML private NodeComboBoxController fromNodeBoxController;
   @FXML private Parent toNodeBox;
