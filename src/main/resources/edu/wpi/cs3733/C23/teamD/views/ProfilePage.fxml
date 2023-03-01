@@ -99,11 +99,6 @@
                                                 <Insets left="-75.0" top="-10.0" />
                                              </VBox.margin>
                                           </MFXToggleButton>
-                                          <MFXToggleButton fx:id="darkModeButton" alignment="CENTER" contentDisplay="CENTER" contentDisposition="RIGHT" gap="20.0" onAction="#setNightModeDatabase" text="Dark Mode         " textFill="#012d5a">
-                                             <VBox.margin>
-                                                <Insets left="-75.0" top="-20.0" />
-                                             </VBox.margin>
-                                          </MFXToggleButton>
                                        </children>
                                        <padding>
                                           <Insets top="30.0" />

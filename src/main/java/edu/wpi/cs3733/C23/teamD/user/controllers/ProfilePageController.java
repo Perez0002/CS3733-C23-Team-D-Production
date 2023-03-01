@@ -43,7 +43,6 @@ public class ProfilePageController {
   @FXML private MFXTextField phoneNumber;
   @FXML private MFXTextField address;
   @Getter @FXML private MFXToggleButton confettiButton;
-  @FXML private MFXToggleButton darkModeButton;
   @FXML private MFXButton helpButton;
   @FXML private TableView<ServiceRequest> serviceRequestHistory;
   @FXML private TableColumn<ServiceRequest, String> serviceRequests;
@@ -155,18 +154,18 @@ public class ProfilePageController {
     }
   }
 
-  @FXML
-  private void setNightModeDatabase() {
-    Setting currentSetting = CurrentUserEnum._CURRENTUSER.getSetting();
-
-    if (darkModeButton.isSelected()) {
-      currentSetting.setConfetti(1);
-      FDdb.getInstance().updateSetting(currentSetting);
-    } else {
-      currentSetting.setConfetti(0);
-      FDdb.getInstance().updateSetting(currentSetting);
-    }
-  }
+  //  @FXML
+  //  private void setNightModeDatabase() {
+  //    Setting currentSetting = CurrentUserEnum._CURRENTUSER.getSetting();
+  //
+  //    if (darkModeButton.isSelected()) {
+  //      currentSetting.setConfetti(1);
+  //      FDdb.getInstance().updateSetting(currentSetting);
+  //    } else {
+  //      currentSetting.setConfetti(0);
+  //      FDdb.getInstance().updateSetting(currentSetting);
+  //    }
+  //  }
 
   @FXML
   private void saveChanges() {
