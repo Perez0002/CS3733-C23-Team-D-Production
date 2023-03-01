@@ -25,7 +25,12 @@ public class AVRequestDetailsController implements RequestDetailsController {
 
     // replace type of request checker
     if (serviceRequest.getClass().equals(AVRequest.class)) {
-      descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
+      String[] reason = serviceRequest.getReason().split(";");
+      if (reason.length == 4) {
+        descriptionBox.setText("Additional Details: \n" + reason[3]);
+      } else {
+        descriptionBox.setText("Additional Details: \n" + serviceRequest.getReason());
+      }
       employeeBox.setText(
           "Assigned Staff: "
               + serviceRequest.getAssociatedStaff().getFirstName()
