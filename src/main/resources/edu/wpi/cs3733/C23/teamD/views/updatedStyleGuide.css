@@ -367,6 +367,8 @@
     -fx-border-color: transparent #CFCFCF transparent transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
+    -fx-wrap-text: true;
+    -fx-max-width: 400;
 }
 
 .default-color0.chart-bar { -fx-bar-fill: #1D4E8D }
