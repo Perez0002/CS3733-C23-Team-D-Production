@@ -177,9 +177,6 @@ public class SecurityServiceRequestController extends ServiceRequestController
             + formatter.format(localDate)
             + ".");
     addRequestSecurityNode.setSelected(true);
-    addSecurityNode.setDisable(true);
-    addSecurityNode.setSelected(false);
-    addSecurityNode.setDisable(true);
     problemTextField.setDisable(true);
     locationBoxController.setDisable(true);
   }
@@ -188,12 +185,19 @@ public class SecurityServiceRequestController extends ServiceRequestController
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(date);
     calendar.add(Calendar.DATE, -1);
-    addRequestSecurityNode.setSelected(true);
-    addRequestSecurityNode.setDisable(true);
+
+    String typeOfRequest = "";
+    if (addRequestSecurityNode.isSelected() && addSecurityNode.isSelected()) {
+      typeOfRequest = "Add Security,Request Security";
+    } else if (addSecurityNode.isSelected()) {
+      typeOfRequest = "Add Security";
+    } else if (addRequestSecurityNode.isSelected()) {
+      typeOfRequest = "Request Security";
+    }
 
     SecurityServiceRequest requestData =
         new SecurityServiceRequest(
-            "Request Security",
+            typeOfRequest,
             employeeBoxController.getEmployee(),
             problemTextField.getText(),
             locationBoxController.getLocation(),

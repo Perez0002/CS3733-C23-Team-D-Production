@@ -48,67 +48,66 @@ ALTER ROLE teamd SET search_path TO teamdschema, teamdtestschema,public;
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Qui House', 'qnguyen@wpi.edu', 'ADMIN', 'Qui', 'Nguyen', 'password', 234798234);
 -- insert into employee (BIRTHDAY, ACCOUNTCREATED, ADDRESS, EMAIL, EMPLOYEETYPE, FIRSTNAME, LASTNAME, PASSWORD, PHONENUMBER)
 -- values (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Michael House', 'mconnor@wpi.edu', 'ADMIN', 'Michael', 'Connor', 'password', 234798234);
+-- --
+insert into setting (confetti, darkmode, employeeid)  values (1,0,1);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,2);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,3);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,4);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,5);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,6);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,7);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,8);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,9);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,10);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,11);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,12);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,13);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,14);
+insert into setting (confetti, darkmode, employeeid)  values (1,0,15);
 --
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,16);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,17);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,18);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,19);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,20);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,21);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,22);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,23);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,24);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,25);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,26);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,27);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,28);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,29);
--- insert into setting (confetti, darkmode, employeeid)  values (1,0,30);
-
-/*
-drop table Move;
-drop table Edge;
-drop table Node;
-drop table LocationName;
-drop table PatientTransportData;
-create table Node(
-                     nodeID varchar(12) primary key,
-                     xcoord integer NOT NULL,
-                     ycoord integer NOT NULL,
-                     floor varchar(2) NOT NULL,
-                     building varchar(255) NOT NULL
-);
-create table LocationName(
-                             longName varchar(255) primary key,
-                             shortName varchar(255) NOT NULL,
-                             locationType char(4) NOT NULL
-);
-create table Move(
-                     nodeID varchar(12),
-                     longName varchar(255),
-                     moveDate timestamp primary key,
-                     CONSTRAINT fkey_nodeID
-                         FOREIGN KEY (nodeID) REFERENCES Node(nodeID),
-                     CONSTRAINT fkey_longName
-                         FOREIGN KEY (longName) REFERENCES LocationName(longName)
-);
-create table Edge(
-                     node1 varchar(12),
-                     node2 varchar(12),
-                     CONSTRAINT fkey_node1
-                         FOREIGN KEY (node1) REFERENCES Node(nodeID),
-                     CONSTRAINT fkey_node2
-                         FOREIGN KEY (node2) REFERENCES Node(nodeID)
-);
-create type stat as enum ('DONE', 'BLANK', 'PROCESSING');
-create table PatientTransportData(
-                                     patientID varchar(255) NOT NULL,
-                                     patientTransportID SERIAL primary key,
-                                     startRoom varchar(255) NOT NULL,
-                                     endRoom varchar(255) NOT NULL,
-                                     equipment varchar(255) NOT NULL,
-                                     reason varchar(255) NOT NULL,
-                                     sendTo varchar(255) NOT NULL,
-                                     status stat NOT NULL,
-);
-*/
+-- -- /*
+-- drop table Move;
+-- drop table Edge;
+-- drop table Node;
+-- drop table LocationName;
+-- drop table PatientTransportData;
+-- create table Node(
+--                      nodeID varchar(12) primary key,
+--                      xcoord integer NOT NULL,
+--                      ycoord integer NOT NULL,
+--                      floor varchar(2) NOT NULL,
+--                      building varchar(255) NOT NULL
+-- );
+-- create table LocationName(
+--                              longName varchar(255) primary key,
+--                              shortName varchar(255) NOT NULL,
+--                              locationType char(4) NOT NULL
+-- );
+-- create table Move(
+--                      nodeID varchar(12),
+--                      longName varchar(255),
+--                      moveDate timestamp primary key,
+--                      CONSTRAINT fkey_nodeID
+--                          FOREIGN KEY (nodeID) REFERENCES Node(nodeID),
+--                      CONSTRAINT fkey_longName
+--                          FOREIGN KEY (longName) REFERENCES LocationName(longName)
+-- );
+-- create table Edge(
+--                      node1 varchar(12),
+--                      node2 varchar(12),
+--                      CONSTRAINT fkey_node1
+--                          FOREIGN KEY (node1) REFERENCES Node(nodeID),
+--                      CONSTRAINT fkey_node2
+--                          FOREIGN KEY (node2) REFERENCES Node(nodeID)
+-- );
+-- create type stat as enum ('DONE', 'BLANK', 'PROCESSING');
+-- create table PatientTransportData(
+--                                      patientID varchar(255) NOT NULL,
+--                                      patientTransportID SERIAL primary key,
+--                                      startRoom varchar(255) NOT NULL,
+--                                      endRoom varchar(255) NOT NULL,
+--                                      equipment varchar(255) NOT NULL,
+--                                      reason varchar(255) NOT NULL,
+--                                      sendTo varchar(255) NOT NULL,
+--                                      status stat NOT NULL,
+-- );
