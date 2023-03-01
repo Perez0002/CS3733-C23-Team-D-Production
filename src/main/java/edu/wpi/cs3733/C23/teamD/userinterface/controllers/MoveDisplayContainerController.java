@@ -137,6 +137,8 @@ public class MoveDisplayContainerController {
       e.printStackTrace();
     }
 
+    stackPane.setPadding(new Insets(32, 32, 32, 32));
+
     setFloorButtons(1);
   }
 
@@ -161,9 +163,10 @@ public class MoveDisplayContainerController {
 
           locationNameText.setText(
               String.format(
-                  "%21.21s" + (currentMove.getLongName().length() > 21 ? "..." : ""),
+                  "%.18s" + (currentMove.getLongName().length() > 18 ? "..." : ""),
                   currentMove.getLongName()));
           messageText.setText(currentMove.getMessage());
+          stackPane.setPadding(new Insets(32, 32, 32, 32));
           setRightAndLeft();
         }
       };
@@ -224,6 +227,8 @@ public class MoveDisplayContainerController {
 
   @FXML
   public void display() {
+    String string = currentMove == null ? "Location Name" : currentMove.getLongName();
+    locationNameText.setText(string);
     borderPane.setPadding(new Insets(0, 0, 0, 0));
     move.setManaged(false);
     App.getRootPane().setLeft(null);
@@ -260,6 +265,11 @@ public class MoveDisplayContainerController {
                 CornerRadii.EMPTY,
                 new BorderWidths(3, 3, 3, 3))));
     stackPane.setPadding(new Insets(32, 32, 32, 32));
+    String string = currentMove == null ? "Location Name" : currentMove.getLongName();
+    locationNameText.setText(
+        string.equals("Location Name")
+            ? string
+            : String.format("%.18s" + (string.length() > 18 ? "..." : ""), string));
   }
 
   public void setFutureMove(Move m) {
