@@ -10,15 +10,15 @@ public class LabComboBoxController {
   ArrayList<String> Labs = new ArrayList<String>();
 
   /*
-  Complete Blood Count (CBC)
-Comprehensive Metabolic Panel (CMP)
-Hemoglobin A1C (HbA1C)
-Lipid Panel.
-Thyroid Panel.
-Vitamin D.
-Anemia Panel.
-How to understand your results.
-   */
+    Complete Blood Count (CBC)
+  Comprehensive Metabolic Panel (CMP)
+  Hemoglobin A1C (HbA1C)
+  Lipid Panel.
+  Thyroid Panel.
+  Vitamin D.
+  Anemia Panel.
+  How to understand your results.
+     */
   public LabComboBoxController() {
     Labs.add("Complete Blood Count (CBC)");
     Labs.add("Comprehensive Metabolic Panel (CMP)\n");
