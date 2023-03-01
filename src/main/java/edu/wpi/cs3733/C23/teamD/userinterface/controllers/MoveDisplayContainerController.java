@@ -67,7 +67,6 @@ public class MoveDisplayContainerController {
   @FXML private Parent roomComboBox;
   @FXML private RoomPickComboBoxController roomComboBoxController;
 
-
   private ArrayList<String> directions = new ArrayList<>();
 
   private MFXButton[] floorButtons = new MFXButton[5];
@@ -197,7 +196,6 @@ public class MoveDisplayContainerController {
           setMove(currentMove);
 
           setDate();
-          datePicker.clear();
 
           locationNameText.setText(
               String.format(
@@ -264,12 +262,14 @@ public class MoveDisplayContainerController {
             Instant.ofEpochMilli(m.getMoveDate().getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-        if (localDate.isBefore(datePicker.getValue())) {
-          latest = m;
-        }
-        if (localDate.equals(datePicker.getValue())) {
-          setFutureMove(m);
-          exactDate = true;
+        if (datePicker.getValue() != null) {
+          if (localDate.isBefore(datePicker.getValue())) {
+            latest = m;
+          }
+          if (localDate.equals(datePicker.getValue())) {
+            setFutureMove(m);
+            exactDate = true;
+          }
         }
       }
       if (!exactDate) {
@@ -334,7 +334,9 @@ public class MoveDisplayContainerController {
                 CornerRadii.EMPTY,
                 new BorderWidths(3, 3, 3, 3))));
     stackPane.setPadding(new Insets(32, 32, 32, 32));
-    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    if (defaultKiosk.getLocation() != null) {
+      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    }
     String string = currentMove == null ? "Location Name" : currentMove.getLongName();
     locationNameText.setText(
         string.equals("Location Name")
@@ -417,8 +419,8 @@ public class MoveDisplayContainerController {
     }
 
     // TODO generate text directions
-    ArrayList<String> text = pathfinder.textPath(path);
-    for (String t : text) {
+    ArrayList<String> text2 = pathfinder.textPath(path);
+    for (String t : text2) {
       directions.add(t);
     }
 
@@ -442,7 +444,8 @@ public class MoveDisplayContainerController {
 
   public void setMove(Move m) {
     currentMove = m;
-    locationNameText.setText(m.getLongName());
+    locationNameText.setText(
+        String.format("%.18s" + (m.getLongName().length() > 18 ? "..." : ""), m.getLongName()));
     messageText.setText(m.getMessage());
     mapNodes.clear();
     PathNode temp = new PathNode(m.getNode(), m.getLocation());
