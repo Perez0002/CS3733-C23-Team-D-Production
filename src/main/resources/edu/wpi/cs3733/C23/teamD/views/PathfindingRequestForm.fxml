@@ -96,7 +96,7 @@
                         <Insets top="20.0" />
                      </padding>
                   </VBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                      <children>
                         <MFXToggleButton fx:id="serviceRequestLocationToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="100.0" text="View Service Requests" />
                         <MFXToggleButton fx:id="nodeNameToggle" alignment="CENTER" contentDisplay="CENTER" contentDisposition="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="100.0" text="Toggle Names" />
