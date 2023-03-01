@@ -75,8 +75,6 @@ public class MoveDisplayContainerController {
 
   private ArrayList<PathfindingMapNode> pathDirections = new ArrayList<PathfindingMapNode>();
 
-  private ArrayList<String> directions = new ArrayList<>();
-
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
