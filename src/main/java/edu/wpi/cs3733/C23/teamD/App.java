@@ -6,6 +6,11 @@ import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -19,10 +24,23 @@ public class App extends Application {
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
+  private BooleanProperty loadApp = new SimpleBooleanProperty(false);
 
   @Override
   public void init() {
     log.info("Starting Up");
+  }
+
+  private class LoadDB implements Runnable {
+    @Override
+    public void run() {
+      Boolean startApp = FDdb.getInstance().refreshAll();
+      DBSingleton.refreshSession();
+      Platform.runLater(
+          () -> {
+            loadApp.setValue(true);
+          });
+    }
   }
 
   @Override
@@ -48,11 +66,19 @@ public class App extends Application {
     rootPane.setLeft(null);
     Navigation.navigate(Screen.LOADING_PAGE);
     primaryStage.show();
-    Boolean startApp = FDdb.getInstance().refreshAll();
-    DBSingleton.refreshSession();
-    if (startApp) {
-      Navigation.navigate(Screen.LOGIN_PAGE);
-    }
+
+    Thread thread1 = new Thread(new LoadDB());
+    loadApp.addListener(
+        new ChangeListener<Boolean>() {
+          @Override
+          public void changed(
+              ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if (newValue) {
+              Navigation.navigate(Screen.LOGIN_PAGE);
+            }
+          }
+        });
+    thread1.start();
   }
 
   @Override
