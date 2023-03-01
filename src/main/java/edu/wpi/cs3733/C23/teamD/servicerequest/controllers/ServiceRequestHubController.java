@@ -115,7 +115,7 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof SecurityServiceRequestController) {
       ((SecurityServiceRequestController) currentController).clearFields();
     } else if (currentController instanceof SanitationRequestController) {
-      ((SanitationRequestController) currentController).clearSanitationForms();
+      ((SanitationRequestController) currentController).clearTransportForms();
     } else if (currentController instanceof LabRequestController) {
       ((LabRequestController) currentController).clearTransportForms();
     } else {

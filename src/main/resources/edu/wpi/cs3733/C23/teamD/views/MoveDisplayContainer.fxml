@@ -103,7 +103,7 @@
                   </HBox>
                   <HBox fx:id="bottomHBox" maxHeight="109.0" prefHeight="109.0" prefWidth="905.0" spacing="32.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+                        <HBox fx:id="leftRoomHBox" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                            <children>
                               <Text fx:id="leftRoomText" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
@@ -120,7 +120,7 @@
                               <FontIcon iconColor="WHITE" iconLiteral="fltral-arrow-swap-20" iconSize="50" />
                            </graphic>
                         </MFXButton>
-                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
+                        <HBox fx:id="rightRoomHBox" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: #CDDFF6; -fx-border-color: #011830; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                            <children>
                               <Text fx:id="rightRoomText" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
