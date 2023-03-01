@@ -13,7 +13,7 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.controllers.TextDirectionsController
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
-import edu.wpi.cs3733.C23.teamD.servicerequest.entities.SanitationRequest;
+import edu.wpi.cs3733.C23.teamD.servicerequest.entities.ServiceRequest;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -275,7 +275,7 @@ public class MoveDisplayContainerController {
   }
 
   private void generateRequestDetailsPopup() throws IOException {
-    SanitationRequest sanitationRequest = null;
+    ArrayList<ServiceRequest> moveServiceRequests = new ArrayList<ServiceRequest>();
 
     String moveDate =
         Instant.ofEpochMilli(futureMove.getMoveDate().getTime())
@@ -285,28 +285,31 @@ public class MoveDisplayContainerController {
     String moveLocation = futureMove.getLongName();
     String moveNode = futureMove.getNodeID();
     System.out.println(moveDate + " " + moveLocation + " " + moveNode);
-    ArrayList<SanitationRequest> sanitationRequests = FDdb.getInstance().getAllSanitationRequests();
-    for (SanitationRequest s : sanitationRequests) {
+    ArrayList<ServiceRequest> serviceRequests = FDdb.getInstance().getAllGenericServiceRequests();
+    for (ServiceRequest s : serviceRequests) {
       String[] items = s.getReason().split(";");
       if (items.length > 2) {
         System.out.println(items[0] + " " + items[1] + " " + items[2]);
         if (items[0].equals(moveDate)
             && items[1].equals(moveLocation)
             && items[2].equals(moveNode)) {
-          sanitationRequest = s;
+          moveServiceRequests.add(s);
         }
       }
     }
+
+    System.out.println("moveServiceRequests size: " + moveServiceRequests.size());
 
     final var resource = App.class.getResource("views/RequestDetailsPopup.fxml");
     final FXMLLoader loader = new FXMLLoader(resource);
     popover = new PopOver(loader.load());
     RequestDetailsPopupController requestDetailsPopupController = loader.getController();
-    requestDetailsPopupController.setfields(sanitationRequest);
+    requestDetailsPopupController.setServiceRequests(moveServiceRequests);
     popover.setArrowSize(0);
     popover.setCornerRadius(32);
     requestDetailsPopupController.setMoveDisplayContainerController(this);
     requestDetailsPopupController.setMove(futureMove);
+    requestDetailsPopupController.setFields(0);
     popover.setTitle("Generated Request Details");
     popover.show(App.getPrimaryStage());
   }
@@ -392,7 +395,6 @@ public class MoveDisplayContainerController {
       lastNode = pathNode;
     }
 
-    // TODO generate text directions
     ArrayList<String> text = pathfinder.textPath(path);
     for (String t : text) {
       directions.add(t);

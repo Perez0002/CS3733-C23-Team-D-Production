@@ -142,7 +142,13 @@ public class PatientTransportVBoxController implements ServiceRequestVBoxControl
     }
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     descriptionBox.setText(
-        "Please move patient in  "
+        localDate
+            + ";"
+            + move.getLongName()
+            + ";"
+            + move.getNodeID()
+            + ";"
+            + "Please move patient in  "
             + locationName.getLongName()
             + " in preperation for a move on "
             + formatter.format(localDate)

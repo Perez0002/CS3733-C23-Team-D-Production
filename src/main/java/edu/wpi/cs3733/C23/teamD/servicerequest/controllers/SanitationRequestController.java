@@ -158,18 +158,25 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     for (Move m : moves) {
       if (m.getNode() != null) {
         if (m.getNodeID().equals(move.getNodeID())) {
-          System.out.println(move.getLongName());
-          locationName = move.getLocation();
+          locationName = m.getLocation();
         }
       }
     }
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     fieldReason.setText(
-        "Please clean "
+        localDate
+            + ";"
+            + move.getLongName()
+            + ";"
+            + move.getNodeID()
+            + ";"
+            + "Please clean "
             + locationName.getLongName()
             + " in preperation for a move on the "
             + formatter.format(localDate)
             + ".");
+    fieldLocationController.setLocationName(locationName.getLongName());
+    fieldLocationController.setText(locationName.getLongName());
     fieldReason.setDisable(true);
     fieldLocationController.setDisable(true);
   }
@@ -197,8 +204,6 @@ public class SanitationRequestController implements ServiceRequestVBoxController
 
     calendar.setTime(date);
     calendar.add(Calendar.DATE, -1);
-    System.out.println(date.toString());
-    System.out.println(calendar.getTime().toString());
 
     FDdb.getInstance().saveServiceRequest(requestData);
     requestData.setDateAndTime(calendar.getTime());

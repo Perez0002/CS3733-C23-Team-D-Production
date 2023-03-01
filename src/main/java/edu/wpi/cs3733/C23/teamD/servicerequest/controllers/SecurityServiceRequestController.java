@@ -162,7 +162,13 @@ public class SecurityServiceRequestController extends ServiceRequestController
     }
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     problemTextField.setText(
-        "Please check security in  "
+        localDate
+            + ";"
+            + move.getLongName()
+            + ";"
+            + move.getNodeID()
+            + ";"
+            + "Please check security in  "
             + locationName.getLongName()
             + " in preperation for a move on "
             + formatter.format(localDate)

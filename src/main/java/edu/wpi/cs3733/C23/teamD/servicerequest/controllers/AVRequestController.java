@@ -135,7 +135,13 @@ public class AVRequestController implements ServiceRequestVBoxController {
     }
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     systemFailureTextField.setText(
-        "Please check AV in  "
+        localDate
+            + ";"
+            + move.getLongName()
+            + ";"
+            + move.getNodeID()
+            + ";"
+            + "Please check AV in  "
             + locationName.getLongName()
             + " in preperation for a move on "
             + formatter.format(localDate)

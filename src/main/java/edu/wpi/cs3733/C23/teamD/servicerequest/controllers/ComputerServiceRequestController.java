@@ -140,7 +140,13 @@ public class ComputerServiceRequestController extends ServiceRequestController
     }
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     descriptionBox.setText(
-        "Please check computer in  "
+        localDate
+            + ";"
+            + move.getLongName()
+            + ";"
+            + move.getNodeID()
+            + ";"
+            + "Please check computer in  "
             + locationName.getLongName()
             + " in preperation for a move on "
             + formatter.format(localDate)
