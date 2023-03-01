@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.database.util;
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
 import edu.wpi.cs3733.C23.teamD.user.entities.Employee;
+import edu.wpi.cs3733.C23.teamD.user.entities.Kiosk;
 import edu.wpi.cs3733.C23.teamD.user.entities.Setting;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 public class FDdb {
   private static final FDdb instance = new FDdb();
   private final EdgeIDaoImpl edgeIDao;
+
+  private final KioskDaoImpl kioskIDao;
   private final NodeIDaoImpl nodeIDao;
   private final LocationNameIDaoImpl locationNameIDao;
   private final MoveIDaoImpl moveIDao;
@@ -30,6 +33,7 @@ public class FDdb {
     this.pastMovesIDao = new PastMovesIDaoImpl();
     this.employeeIDao = new EmployeeIDaoImpl();
     this.settingIDao = new SettingIDaoImpl();
+    this.kioskIDao = new KioskDaoImpl();
   }
 
   public boolean refreshAll() {
@@ -331,6 +335,9 @@ public class FDdb {
     locationNameIDao.downloadCSV(new LocationName());
     moveIDao.downloadCSV(new Move());
     edgeIDao.downloadCSV(new Edge());
+    serviceRequestIDao.downloadCSV(new ServiceRequest());
+    employeeIDao.downloadCSV(new Employee());
+    settingIDao.downloadCSV(new Setting());
   }
 
   public void uploadCSV() {
@@ -338,17 +345,29 @@ public class FDdb {
     locationNameIDao.uploadCSV(new LocationName());
     moveIDao.uploadCSV(new Move());
     edgeIDao.uploadCSV(new Edge());
-    refreshEdges();
-    refreshNodes();
-    refreshMoves();
-    refreshLocationNames();
+    employeeIDao.uploadCSV(new Employee());
+    settingIDao.uploadCSV(new Setting());
+    serviceRequestIDao.uploadCSV(new ServiceRequest());
+    refreshAll();
   }
 
   public Node getAssociatedNode(LocationName l) {
     return nodeIDao.getAssociatedNode(l);
   }
 
-  public void run() {
-    refreshAll();
+  public void saveKiosk(Kiosk k) {
+    kioskIDao.save(k);
+  }
+
+  public Kiosk getKiosk(Kiosk k) {
+    return kioskIDao.get(k);
+  }
+
+  public void deleteKiosk(Kiosk k) {
+    kioskIDao.delete(k);
+  }
+
+  public void updateKiosk(Kiosk k) {
+    kioskIDao.update(k);
   }
 }

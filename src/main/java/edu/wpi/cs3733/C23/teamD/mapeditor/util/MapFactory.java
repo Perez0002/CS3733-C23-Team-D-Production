@@ -33,6 +33,7 @@ public class MapFactory {
 
   private boolean flipLabel = true;
   private AnchorPane holder;
+  public static boolean needsRefresh = true;
 
   /** Creates a new MapFactory Object */
   private MapFactory() {
@@ -150,8 +151,9 @@ public class MapFactory {
     ImageView image = new ImageView();
     AnchorPane holder = new AnchorPane();
 
-    if (scaleMap) {
+    if (scaleMap || needsRefresh) {
       gesturePane = new GesturePane();
+      needsRefresh = false;
     }
 
     if (floor == 0) {
@@ -282,16 +284,17 @@ public class MapFactory {
     double xAdjust = 0.7;
 
     if (scaleMap) {
+      needsRefresh = true;
       xAdjust = 1;
       if (minX != 5000) {
         double temp =
             (Math.max(
                         Math.max(
-                            ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.5),
-                            ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.5)),
+                            ((double) (maxX - minX)) / (App.getPrimaryStage().getWidth() * 0.9),
+                            ((double) (maxY - minY)) / (App.getPrimaryStage().getWidth() * 0.9)),
                         0)
-                    * 31)
-                + 1;
+                    * 16)
+                + 16;
         if (temp < 32) {
           scale = 5 - (Math.log(temp)) / Math.log(2);
         } else {

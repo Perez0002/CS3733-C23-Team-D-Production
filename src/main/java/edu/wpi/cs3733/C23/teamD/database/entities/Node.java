@@ -37,8 +37,8 @@ public class Node {
   public Node(int xcoord, int ycoord, String floor, String building) {
     this.xcoord = xcoord;
     this.ycoord = ycoord;
-    this.setNodeID();
     this.floor = floor;
+    this.setNodeID();
     this.building = building;
     this.nodeEdges = new ArrayList<Edge>();
   }

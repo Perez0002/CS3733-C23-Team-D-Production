@@ -88,7 +88,6 @@
     -fx-max-width: 128px;
     -fx-max-height: 53px;
     -fx-font-family: "Nunito Sans Regular";
-
 }
 
 
@@ -216,7 +215,6 @@
     -fx-border-color: #012D5A;
     -fx-pref-height: 40px;
     -fx-font-family: 'Nunito Sans Bold';
-
 }
 
 .submitButton { /* defines the format for the submit button */
@@ -369,6 +367,8 @@
     -fx-border-color: transparent #CFCFCF transparent transparent;
     -fx-border-width: 3pt;
     -fx-background-color: #EEEEEE;
+    -fx-wrap-text: true;
+    -fx-max-width: 400;
 }
 
 .default-color0.chart-bar { -fx-bar-fill: #1D4E8D }

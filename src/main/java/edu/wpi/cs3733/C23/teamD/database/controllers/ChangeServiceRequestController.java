@@ -14,7 +14,6 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import lombok.Setter;
 
 public class ChangeServiceRequestController implements AddFormController<ServiceRequest> {
@@ -44,13 +43,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
 
   private void deleteRow() {
     databaseController.delete();
-    ToastController.makeText(
-        "the service request has been deleted!",
-        1500,
-        50,
-        100,
-        (int) Screen.getPrimary().getBounds().getWidth() - 375,
-        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    ToastController.makeText("The service request has been deleted!", 1500, 50, 100);
     dataToChange(null);
   }
 
@@ -67,13 +60,7 @@ public class ChangeServiceRequestController implements AddFormController<Service
         FDdb.getInstance().updateServiceRequest(currentRequest);
         databaseController.refresh();
         dataToChange(null);
-        ToastController.makeText(
-            "Your service request has been changed!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your service request has been changed!", 1500, 50, 100);
       }
     } else {
       errorText.setVisible(true);

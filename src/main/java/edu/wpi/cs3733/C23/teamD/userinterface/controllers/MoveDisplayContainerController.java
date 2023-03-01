@@ -3,6 +3,7 @@ package edu.wpi.cs3733.C23.teamD.userinterface.controllers;
 import edu.wpi.cs3733.C23.teamD.App;
 import edu.wpi.cs3733.C23.teamD.database.entities.*;
 import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.*;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
@@ -13,10 +14,14 @@ import edu.wpi.cs3733.C23.teamD.pathfinding.controllers.TextDirectionsController
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
+import edu.wpi.cs3733.C23.teamD.user.entities.Kiosk;
+import edu.wpi.cs3733.C23.teamD.userinterface.components.controllers.RoomPickComboBoxController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -31,6 +36,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -56,6 +63,10 @@ public class MoveDisplayContainerController {
   @FXML private MFXButton floor1Button;
   @FXML private MFXButton floor2Button;
   @FXML private MFXButton floor3Button;
+  @FXML private MFXToggleButton nodeNameToggle;
+  @FXML private Parent roomComboBox;
+  @FXML private RoomPickComboBoxController roomComboBoxController;
+
 
   private ArrayList<String> directions = new ArrayList<>();
 
@@ -63,6 +74,7 @@ public class MoveDisplayContainerController {
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
   private Move futureMove;
+  private Kiosk defaultKiosk;
   private ArrayList<Edge> edges = new ArrayList<Edge>();
   private ArrayList<Move> moves;
   private PopOver popover;
@@ -85,6 +97,10 @@ public class MoveDisplayContainerController {
         nodeToRoomMap.put(locName, m);
       }
     }
+
+    nodeNameToggle.setOnAction(event -> toggleNodeNames());
+    nodeNameToggle.setDisable(true);
+
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
 
@@ -109,7 +125,7 @@ public class MoveDisplayContainerController {
             throw new RuntimeException(e);
           }
         });
-    datePicker.setOnAction(setDate);
+    datePicker.setOnAction(handleDate);
     LoginButton.setOnAction(event -> Navigation.navigate(Screen.LOGIN_PAGE));
     swapButton.setOnAction(event -> switchLocations());
     edges = FDdb.getInstance().getAllEdges();
@@ -125,16 +141,26 @@ public class MoveDisplayContainerController {
     floorButtons[2] = floor1Button;
     floorButtons[3] = floor2Button;
     floorButtons[4] = floor3Button;
-
+    setFloorButtons(1);
+    defaultKiosk = new Kiosk();
     try {
+      defaultKiosk.setIPaddress(InetAddress.getLocalHost().toString());
       final var resource = App.class.getResource("views/TextDirections.fxml");
       final FXMLLoader loader = new FXMLLoader(resource);
       popover = new PopOver(loader.load());
       textDirectionsController = loader.getController();
       popover.setArrowSize(0);
       popover.setTitle("Text Directions");
-    } catch (IOException e) {
+    } catch (Exception e) {
       e.printStackTrace();
+    }
+    if (FDdb.getInstance().getKiosk(defaultKiosk) != null) {
+      defaultKiosk = FDdb.getInstance().getKiosk(defaultKiosk);
+      if (nodeToRoomMap.get(defaultKiosk.getLocation()) != null) {
+        roomComboBoxController.setLocationName(
+            nodeToRoomMap.get(defaultKiosk.getLocation()).getLocation().getLongName());
+        setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+      }
     }
 
     stackPane.setPadding(new Insets(32, 32, 32, 32));
@@ -148,6 +174,15 @@ public class MoveDisplayContainerController {
     leftRoomText.setText(temp);
   }
 
+  public void toggleNodeNames() {
+    AnchorPane holder = (AnchorPane) ((GesturePane) mapPane.getCenter()).getContent();
+    for (javafx.scene.Node node : holder.getChildren()) {
+      if (node instanceof TextArea) {
+        node.setVisible(nodeNameToggle.isSelected());
+      }
+    }
+  }
+
   EventHandler<ActionEvent> setLocation =
       new EventHandler<ActionEvent>() {
         public void handle(ActionEvent e) {
@@ -157,8 +192,11 @@ public class MoveDisplayContainerController {
                   .getFutureMoves(
                       nodeToRoomMap.get(mfxFilterComboBox.getValue()).getLocation(), new Date());
 
+          nodeNameToggle.setDisable(false);
+
           setMove(currentMove);
 
+          setDate();
           datePicker.clear();
 
           locationNameText.setText(
@@ -167,13 +205,14 @@ public class MoveDisplayContainerController {
                   currentMove.getLongName()));
           messageText.setText(currentMove.getMessage());
           stackPane.setPadding(new Insets(32, 32, 32, 32));
-          setRightAndLeft();
         }
       };
 
-  private void setRightAndLeft() {
-    Node currentNode = currentMove.getNode();
+  private void setRightAndLeft(Move m, boolean bool) {
+    Node currentNode = m.getNode();
     boolean leftAssigned = true;
+    leftRoomText.setText("");
+    rightRoomText.setText("");
     for (Edge edge : edges) {
       if (currentNode == edge.getToNode()) {
         if (leftAssigned) {
@@ -196,24 +235,50 @@ public class MoveDisplayContainerController {
     if (leftAssigned) {
       rightRoomText.setText("");
     }
+    if (!bool) {
+      if (leftRoomText.getText() != null) {
+        leftRoomText.setText(String.format("%1.15s", leftRoomText.getText()) + "...");
+      }
+      if (rightRoomText.getText() != null) {
+        rightRoomText.setText(String.format("%1.15s", rightRoomText.getText()) + "...");
+      }
+    }
   }
 
-  EventHandler<ActionEvent> setDate =
+  EventHandler<ActionEvent> handleDate =
       new EventHandler<ActionEvent>() {
         public void handle(ActionEvent e) {
-
-          for (Move m : locationMoves) {
-
-            LocalDate localDate =
-                Instant.ofEpochMilli(m.getMoveDate().getTime())
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-            if (localDate.equals(datePicker.getValue())) {
-              setFutureMove(m);
-            }
-          }
+          setDate();
         }
       };
+
+  private void setDate() {
+    boolean exactDate = false;
+    Move latest = currentMove;
+    ArrayList<Move> movesToRemove = new ArrayList<Move>();
+    for (Move m : locationMoves) {
+      if (m.getMoveDate() == null) {
+        movesToRemove.add(m);
+      } else {
+        LocalDate localDate =
+            Instant.ofEpochMilli(m.getMoveDate().getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        if (localDate.isBefore(datePicker.getValue())) {
+          latest = m;
+        }
+        if (localDate.equals(datePicker.getValue())) {
+          setFutureMove(m);
+          exactDate = true;
+        }
+      }
+      if (!exactDate) {
+        System.out.println("new move");
+        setMove(latest);
+      }
+    }
+    locationMoves.removeAll(movesToRemove);
+  }
 
   @FXML
   public void logout() {
@@ -232,9 +297,10 @@ public class MoveDisplayContainerController {
     borderPane.setPadding(new Insets(0, 0, 0, 0));
     move.setManaged(false);
     App.getRootPane().setLeft(null);
-    mapPane.setDisable(true);
     stackPane.setPadding(new Insets(0, 0, 0, 0));
     mapPane.setBorder(null);
+    GesturePane g = (GesturePane) mapPane.getCenter();
+    g.setGestureEnabled(false);
     LoginButton.setManaged(false);
     LoginButton.setVisible(false);
     swapButton.setManaged(false);
@@ -242,6 +308,8 @@ public class MoveDisplayContainerController {
     backButton.setManaged(true);
     backButton.setVisible(true);
     backButton.setDisable(false);
+    if (defaultKiosk.getLocation() != null)
+      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), true);
   }
 
   @FXML
@@ -256,7 +324,8 @@ public class MoveDisplayContainerController {
     swapButton.setManaged(true);
     move.setManaged(true);
     borderPane.setPadding(new Insets(32, 32, 32, 0));
-    mapPane.setDisable(false);
+    GesturePane g = (GesturePane) mapPane.getCenter();
+    g.setGestureEnabled(true);
     mapPane.setBorder(
         new Border(
             new BorderStroke(
@@ -265,6 +334,7 @@ public class MoveDisplayContainerController {
                 CornerRadii.EMPTY,
                 new BorderWidths(3, 3, 3, 3))));
     stackPane.setPadding(new Insets(32, 32, 32, 32));
+    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
     String string = currentMove == null ? "Location Name" : currentMove.getLongName();
     locationNameText.setText(
         string.equals("Location Name")
@@ -316,12 +386,25 @@ public class MoveDisplayContainerController {
         pathfinder.pathfind(
             pathNodes.get(currentMove.getNodeID()), pathNodes.get(m.getNodeID()), "AStar");
     mapNodes = new ArrayList<MapNode>();
-
+    ArrayList<String> text = pathfinder.textPath(path);
     mapEdges = new ArrayList<>();
     MapNode lastNode = null;
+    int i = 0;
     for (PathNode node : path) {
       PathfindingMapNode pathNode = new PathfindingMapNode(node);
       mapNodes.add(pathNode);
+      if (text.size() > 0) {
+        if (i == 0) {
+          pathNode.addDirections(text.get(0));
+        } else if (i == path.size()) {
+          pathNode.addDirections(text.get(text.size() - 1));
+        } else if (node.getLocation().getLocationType().equals("ELEV")
+            || node.getLocation().getLocationType().equals("STAI")) {
+          pathNode.addDirections(text.get(i));
+        } else {
+          pathNode.addDirections(null);
+        }
+      }
       if (lastNode != null) {
         MapEdge edge =
             new MapEdge(new PathEdge(lastNode.getNode(), node), new SimpleBooleanProperty());
@@ -330,6 +413,7 @@ public class MoveDisplayContainerController {
       }
 
       lastNode = pathNode;
+      ++i;
     }
 
     // TODO generate text directions
@@ -358,6 +442,8 @@ public class MoveDisplayContainerController {
 
   public void setMove(Move m) {
     currentMove = m;
+    locationNameText.setText(m.getLongName());
+    messageText.setText(m.getMessage());
     mapNodes.clear();
     PathNode temp = new PathNode(m.getNode(), m.getLocation());
     mapNodes.add(new MapNode(temp));
@@ -426,7 +512,28 @@ public class MoveDisplayContainerController {
   }
 
   @FXML
-  public void setDefaultLocation() {}
+  public void setDefaultLocation() {
+    ArrayList<LocationName> locationNames = FDdb.getInstance().getAllLocationNames();
+    for (LocationName l : locationNames) {
+      if (l.getLongName().equals(roomComboBoxController.getLocationName())) {
+        try {
+          if (defaultKiosk.getLocation() == null) {
+            FDdb.getInstance()
+                .saveKiosk(
+                    defaultKiosk =
+                        new Kiosk(InetAddress.getLocalHost().toString(), l.getLongName()));
+
+          } else {
+            defaultKiosk.setLocation(l.getLongName());
+            FDdb.getInstance().updateKiosk(defaultKiosk);
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+  }
 
   @FXML
   public void getDirections() {

@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import lombok.Setter;
 
 public class AddEdgeController implements AddFormController<Edge> {
@@ -31,13 +30,7 @@ public class AddEdgeController implements AddFormController<Edge> {
 
   private void deleteRow() {
     databaseController.delete();
-    ToastController.makeText(
-        "the edge has been deleted!",
-        1500,
-        50,
-        100,
-        (int) Screen.getPrimary().getBounds().getWidth() - 375,
-        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    ToastController.makeText("The edge has been deleted!", 1500, 50, 100);
     dataToChange(null);
   }
 
@@ -51,13 +44,7 @@ public class AddEdgeController implements AddFormController<Edge> {
             .saveEdge(new Edge(fromNodeBoxController.getNode(), toNodeBoxController.getNode()));
         databaseController.refresh();
         dataToChange(null);
-        ToastController.makeText(
-            "Your edge has been added!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your edge has been added!", 1500, 50, 100);
       } else {
         Edge newEdge = new Edge();
         newEdge.setFromNode(fromNodeBoxController.getNode());
@@ -66,13 +53,7 @@ public class AddEdgeController implements AddFormController<Edge> {
         FDdb.getInstance().updateEdgePK(currentEdge, newEdge);
         databaseController.refresh();
         clearFields();
-        ToastController.makeText(
-            "Your edge has been changed!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your edge has been changed!", 1500, 50, 100);
       }
     } else {
       errorText.setVisible(true);
