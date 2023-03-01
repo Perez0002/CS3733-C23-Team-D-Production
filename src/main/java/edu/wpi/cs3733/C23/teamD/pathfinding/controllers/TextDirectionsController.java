@@ -23,7 +23,14 @@ public class TextDirectionsController {
     for (PathfindingMapNode pathfindingMapNode : pathfindingMapNodes) {
       if (pathfindingMapNode.getDirections() != null) {
         directionStr = directionStr.concat(pathfindingMapNode.getDirections() + "\n");
-        if (!pathfindingMapNode.getNode().getNode().getFloor().equals(pathfindingMapNode.getNextNode().getNode().getNode().getFloor())) {
+        if (pathfindingMapNode.getNextNode()==null){
+          Label label=new Label(directionStr);
+          VBox box=new VBox(label);
+          label.setWrapText(true);
+          VBox.setMargin(box, new Insets(0, 0, 0, 10));
+          paneDirections.getChildren().add(box);
+        }
+        else if (!pathfindingMapNode.getNode().getNode().getFloor().equals(pathfindingMapNode.getNextNode().getNode().getNode().getFloor())) {
           directionStr = directionStr.concat("\n");
           Label label=new Label(directionStr);
           VBox box=new VBox(label);
