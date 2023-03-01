@@ -83,7 +83,7 @@ public class PathfindingController {
   @FXML private MFXToggleButton nodeNameToggle;
   @FXML private MFXToggleButton textDirectionsToggle;
   private TextDirectionsController textDirectionsController;
-  private ArrayList<PathfindingMapNode> pathfindingMapNodes;
+  private ArrayList<PathfindingMapNode> pathfindingMapNodes = new ArrayList<>();
 
   private boolean nodeNamesVisible = false;
   private RoomPickComboBoxController comboBox;
@@ -283,7 +283,8 @@ public class PathfindingController {
   @FXML
   void submit() {
     Pathfinder pathfinder = new Pathfinder();
-
+    pathfindingMapNodes.clear();
+    directions.clear();
     Date dateToRun =
         datePicker.getValue() == null
             ? new Date()
