@@ -69,6 +69,8 @@ public class MoveDisplayContainerController {
 
   private ArrayList<String> directions = new ArrayList<>();
 
+  private ArrayList<PathfindingMapNode> pathDirections = new ArrayList<PathfindingMapNode>();
+
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
@@ -395,6 +397,7 @@ public class MoveDisplayContainerController {
     for (PathNode node : path) {
       PathfindingMapNode pathNode = new PathfindingMapNode(node);
       mapNodes.add(pathNode);
+      pathDirections.add(pathNode);
       if (text.size() > 0) {
         if (i == 0) {
           pathNode.addDirections(text.get(0));
@@ -541,6 +544,6 @@ public class MoveDisplayContainerController {
   @FXML
   public void getDirections() {
     popover.show(App.getPrimaryStage());
-    textDirectionsController.setDirections(directions);
+    textDirectionsController.setDirections(pathDirections);
   }
 }
