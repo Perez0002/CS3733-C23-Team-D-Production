@@ -7,6 +7,7 @@ public enum ServiceRequests {
   COMPUTER_REQUEST("views/VBoxInjections/ComputerServiceRequest.fxml"),
   SECURITY_REQUEST("views/VBoxInjections/SecurityServiceRequest.fxml"),
   AV_REQUEST("views/VBoxInjections/AVRequestForm.fxml"),
+  LAB_REQUEST("views/VBoxInjections/LabRequestForm.fxml"),
 
   PATIENT_TRANSPORT_DETAILS("views/VBoxInjections/TransportRequestDetails.fxml"),
   SANITATION_REQUEST_DETAILS("views/VBoxInjections/SanitationRequestDetails.fxml"),

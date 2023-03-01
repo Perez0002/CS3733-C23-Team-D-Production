@@ -24,6 +24,8 @@ public class ServiceRequestHubController {
   @FXML private MFXButton securityButton;
   @FXML private MFXButton avButton;
 
+  @FXML private MFXButton labButton;
+
   @FXML private Pane requestFormHubPane;
 
   @FXML private MFXButton clearButton;
@@ -64,6 +66,7 @@ public class ServiceRequestHubController {
     sanitationButton.setOnMouseClicked(event -> switchVBox(SANITATION_REQUEST, sanitationButton));
     securityButton.setOnMouseClicked(event -> switchVBox(SECURITY_REQUEST, securityButton));
     avButton.setOnMouseClicked(event -> switchVBox(AV_REQUEST, avButton));
+    labButton.setOnMouseClicked(event -> switchVBox(LAB_REQUEST, labButton));
 
     // TODO: set BUTTON functionality here. Add your button. Set the onMouseClick to
     // switchVBox(YOUR_REQUEST)
@@ -111,6 +114,10 @@ public class ServiceRequestHubController {
       ((ComputerServiceRequestController) currentController).clearComputerForms();
     } else if (currentController instanceof SecurityServiceRequestController) {
       ((SecurityServiceRequestController) currentController).clearFields();
+    } else if (currentController instanceof SanitationRequestController) {
+      ((SanitationRequestController) currentController).clearSanitationForms();
+    } else if (currentController instanceof LabRequestController) {
+      ((LabRequestController) currentController).clearTransportForms();
     } else {
       currentController.clearTransportForms();
     }
@@ -135,7 +142,9 @@ public class ServiceRequestHubController {
     } else if (currentController instanceof SanitationRequestController) {
       submission = currentController.submit();
     } else if (currentController instanceof AVRequestController) {
-      submission = currentController.submit();
+      submission = ((AVRequestController) currentController).submit();
+    } else if (currentController instanceof LabRequestController) {
+      submission = ((LabRequestController) currentController).submit();
     } else {
       submission = currentController.submit();
     }

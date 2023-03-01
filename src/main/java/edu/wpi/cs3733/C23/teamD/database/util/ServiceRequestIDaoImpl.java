@@ -25,6 +25,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   private ArrayList<SecurityServiceRequest> securityServiceRequests = new ArrayList<>();
   private ArrayList<AVRequest> avRequests = new ArrayList<>();
 
+  private ArrayList<LabRequest> labRequests = new ArrayList<>();
+
   public ServiceRequestIDaoImpl() {
     this.refresh();
   }
@@ -64,6 +66,11 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
           .filter(avRequest -> s.getServiceRequestId() == (avRequest.getServiceRequestId()))
           .findFirst()
           .orElse(null);
+    } else if (s instanceof LabRequest) {
+      return this.labRequests.stream()
+          .filter(labRequest -> s.getServiceRequestId() == (labRequest.getServiceRequestId()))
+          .findFirst()
+          .orElse(null);
     } else {
       return this.masterList.stream()
           .filter(
@@ -90,6 +97,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.securityServiceRequests.add((SecurityServiceRequest) s);
       } else if (s instanceof AVRequest) {
         this.avRequests.add((AVRequest) s);
+      } else if (s instanceof LabRequest) {
+        this.labRequests.add((LabRequest) s);
       }
 
       this.masterList.add(s);
@@ -124,6 +133,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       } else if (s instanceof AVRequest) {
         this.avRequests.remove(index);
         this.avRequests.add((AVRequest) s);
+      } else if (s instanceof LabRequest) {
+        this.labRequests.remove(index);
+        this.labRequests.add((LabRequest) s);
       }
 
       int masterIndex =
@@ -167,6 +179,10 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     return this.avRequests;
   }
 
+  public ArrayList<LabRequest> getAllLabRequests() {
+    return this.labRequests;
+  }
+
   @Override
   public void refresh() {
     ArrayList<ServiceRequest> javaMasterList = new ArrayList<>();
@@ -175,7 +191,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
     ArrayList<ComputerServiceRequest> javaComputerServiceRequestList;
     ArrayList<SecurityServiceRequest> javaSecurityRequestList;
     ArrayList<AVRequest> javaAVRequestList;
-
+    ArrayList<LabRequest> javaLabRequestList;
     session.beginTransaction();
     try {
       javaPatientTransportRequestList =
@@ -204,6 +220,9 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       javaAVRequestList =
           (ArrayList<AVRequest>)
               session.createQuery("SELECT p FROM AVRequest p", AVRequest.class).getResultList();
+      javaLabRequestList =
+          (ArrayList<LabRequest>)
+              session.createQuery("SELECT p FROM LabRequest p", LabRequest.class).getResultList();
       session.getTransaction().commit();
 
       javaMasterList.addAll(javaPatientTransportRequestList);
@@ -211,12 +230,14 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
       javaMasterList.addAll(javaComputerServiceRequestList);
       javaMasterList.addAll(javaSecurityRequestList);
       javaMasterList.addAll(javaAVRequestList);
+      javaMasterList.addAll(javaLabRequestList);
 
       this.patientTransportRequestList = javaPatientTransportRequestList;
       this.sanitationRequestList = javaSanitationRequestList;
       this.computerServiceRequests = javaComputerServiceRequestList;
       this.securityServiceRequests = javaSecurityRequestList;
       this.avRequests = javaAVRequestList;
+      this.labRequests = javaLabRequestList;
 
       this.masterList = javaMasterList;
 
@@ -245,6 +266,8 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
         this.securityServiceRequests.remove(s);
       } else if (s instanceof AVRequest) {
         this.avRequests.remove(s);
+      } else if (s instanceof LabRequest) {
+        this.labRequests.remove(s);
       }
 
       this.masterList.remove(s);
@@ -298,6 +321,13 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
           IntStream.range(0, this.avRequests.size())
               .filter(
                   i -> this.avRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
+              .findFirst()
+              .orElse(-1);
+    } else if (s instanceof LabRequest) {
+      index =
+          IntStream.range(0, this.labRequests.size())
+              .filter(
+                  i -> this.labRequests.get(i).getServiceRequestId() == (s.getServiceRequestId()))
               .findFirst()
               .orElse(-1);
     }

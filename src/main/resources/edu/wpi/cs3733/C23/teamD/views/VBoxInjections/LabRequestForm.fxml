@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.servicerequest.controllers.LabRequestController">
+    <children>
+        <Label text="Submit a Lab Request" wrapText="true">
+            <VBox.margin>
+                <Insets bottom="10.0" left="5.0" right="150.0" top="10.0" />
+            </VBox.margin>
+        </Label>
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+            <children>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Employee *">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="employeeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/EmployeeDropdownComboBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Urgency *">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="urgencyBox" prefWidth="300.0" source="Components/UrgencySelectorBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Location *">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="locationBox" prefWidth="300.0" source="Components/LocationPickComboBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Line endX="200.0" startX="-100.0" stroke="#012d5a" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Lab Type *">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <fx:include fx:id="LabTypeBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" snapToPixel="false" source="Components/LabComboBox.fxml" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox">
+                    <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" text="Additional Details">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <MFXTextField fx:id="descriptionTextField" floatMode="DISABLED" prefHeight="402.0" prefWidth="300.0" promptText="..." styleClass="mfx-text-field" stylesheets="@../updatedStyleGuide.css" />
+                    </children>
+                </VBox>
+                <VBox spacing="3.0" styleClass="individualServiceRequestTextFieldVBox" />
+            </children>
+        </VBox>
+    </children>
+</VBox>
