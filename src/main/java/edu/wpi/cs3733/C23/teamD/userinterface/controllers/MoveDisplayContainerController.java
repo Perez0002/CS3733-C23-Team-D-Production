@@ -471,7 +471,7 @@ public class MoveDisplayContainerController {
       if (text.size() > 0) {
         if (i == 0) {
           pathNode.addDirections(text.get(0));
-        } else if (i == path.size()) {
+        } else if (i == path.size() - 1) {
           pathNode.addDirections(text.get(text.size() - 1));
         } else if (node.getLocation().getLocationType().equals("ELEV")
             || node.getLocation().getLocationType().equals("STAI")) {
