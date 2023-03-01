@@ -59,7 +59,6 @@ public class MoveDisplayContainerController {
 
   private ArrayList<String> directions = new ArrayList<>();
 
-
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
@@ -138,7 +137,6 @@ public class MoveDisplayContainerController {
       e.printStackTrace();
     }
 
-
     setFloorButtons(1);
   }
 
@@ -161,7 +159,10 @@ public class MoveDisplayContainerController {
 
           datePicker.clear();
 
-          locationNameText.setText(currentMove.getLongName());
+          locationNameText.setText(
+              String.format(
+                  "%21.21s" + (currentMove.getLongName().length() > 21 ? "..." : ""),
+                  currentMove.getLongName()));
           messageText.setText(currentMove.getMessage());
           setRightAndLeft();
         }
@@ -326,7 +327,6 @@ public class MoveDisplayContainerController {
     for (String t : text) {
       directions.add(t);
     }
-
 
     mapPane.setCenter(
         MapFactory.startBuild()
