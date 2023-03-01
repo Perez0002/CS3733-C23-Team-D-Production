@@ -83,6 +83,7 @@ public class PathfindingController {
   @FXML private MFXToggleButton nodeNameToggle;
   @FXML private MFXToggleButton textDirectionsToggle;
   private TextDirectionsController textDirectionsController;
+  private ArrayList<PathfindingMapNode> pathfindingMapNodes = new ArrayList<>();
 
   private boolean nodeNamesVisible = false;
   private RoomPickComboBoxController comboBox;
@@ -188,7 +189,7 @@ public class PathfindingController {
         if (textDirectionsToggle.isSelected()) {
           System.out.println("HERE ARE THE DIRECTIONS HERE" + directions);
           popover.show(App.getPrimaryStage());
-          textDirectionsController.setDirections(directions);
+          textDirectionsController.setDirections(pathfindingMapNodes);
         } else {
           popover.hide();
         }
@@ -282,7 +283,8 @@ public class PathfindingController {
   @FXML
   void submit() {
     Pathfinder pathfinder = new Pathfinder();
-
+    pathfindingMapNodes.clear();
+    directions.clear();
     Date dateToRun =
         datePicker.getValue() == null
             ? new Date()
@@ -345,6 +347,7 @@ public class PathfindingController {
           pathNode.setFloorSwitchEvent(changeFloor(converter.get(node.getNode().getFloor())));
           if (text.size() > 0) {
             pathNode.addDirections(text.get(0));
+            pathfindingMapNodes.add(pathNode);
             text.remove(0);
           }
           mapNodes.add(pathNode);
