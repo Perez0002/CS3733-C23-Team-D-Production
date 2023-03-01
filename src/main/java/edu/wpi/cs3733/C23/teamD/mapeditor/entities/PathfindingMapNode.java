@@ -39,6 +39,10 @@ public class PathfindingMapNode extends MapNode {
   public void addNextNode(PathfindingMapNode nextNode) {
     this.nextNode = nextNode;
   }
+  public PathfindingMapNode getNextNode() {
+    return nextNode;
+  }
+
 
   public void addPrevNode(PathfindingMapNode prevNode) {
     this.prevNode = prevNode;
@@ -103,7 +107,7 @@ public class PathfindingMapNode extends MapNode {
     }
   }
 
-  private String getDirections() {
+  public String getDirections() {
     return directions;
   }
 
