@@ -66,6 +66,9 @@ public class MoveDisplayContainerController {
   @FXML private MFXToggleButton nodeNameToggle;
   @FXML private Parent roomComboBox;
   @FXML private RoomPickComboBoxController roomComboBoxController;
+  @FXML private HBox rightRoomHBox;
+  @FXML private HBox leftRoomHBox;
+  boolean oneBorder;
 
   private ArrayList<String> directions = new ArrayList<>();
 
@@ -86,6 +89,7 @@ public class MoveDisplayContainerController {
 
   ArrayList<MapNode> mapNodes = new ArrayList<MapNode>();
   ArrayList<MapEdge> mapEdges = new ArrayList<MapEdge>();
+  private boolean switched = false;
 
   @FXML
   public void initialize() {
@@ -161,6 +165,7 @@ public class MoveDisplayContainerController {
         roomComboBoxController.setLocationName(
             nodeToRoomMap.get(defaultKiosk.getLocation()).getLocation().getLongName());
         setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+        switched = false;
       }
     }
 
@@ -170,9 +175,15 @@ public class MoveDisplayContainerController {
   }
 
   public void switchLocations() {
+    if (oneBorder) {
+      boolean right = rightRoomHBox.isVisible();
+      rightRoomHBox.setVisible(!right);
+      leftRoomHBox.setVisible(right);
+    }
     String temp = rightRoomText.getText();
     rightRoomText.setText(leftRoomText.getText());
     leftRoomText.setText(temp);
+    switched = !switched;
   }
 
   public void toggleNodeNames() {
@@ -209,6 +220,7 @@ public class MoveDisplayContainerController {
       };
 
   private void setRightAndLeft(Move m, boolean bool) {
+    oneBorder = true;
     Node currentNode = m.getNode();
     boolean leftAssigned = true;
     leftRoomText.setText("");
@@ -220,6 +232,7 @@ public class MoveDisplayContainerController {
           leftAssigned = false;
         } else {
           rightRoomText.setText(getLocationName(edge.getFromNode()));
+          oneBorder = false;
           break;
         }
       } else if (currentNode == edge.getFromNode()) {
@@ -228,10 +241,18 @@ public class MoveDisplayContainerController {
           leftAssigned = false;
         } else {
           rightRoomText.setText(getLocationName(edge.getToNode()));
+          oneBorder = false;
           break;
         }
       }
     }
+    leftRoomHBox.setVisible(true);
+    if (oneBorder) {
+      rightRoomHBox.setVisible(false);
+    } else {
+      rightRoomHBox.setVisible(true);
+    }
+
     if (leftAssigned) {
       rightRoomText.setText("");
     }
@@ -312,12 +333,17 @@ public class MoveDisplayContainerController {
     backButton.setDisable(false);
     if (defaultKiosk.getLocation() != null)
       setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), true);
+    if (switched) {
+      switchLocations();
+      switched = true;
+    }
   }
 
   @FXML
   public void viewServiceRequests() {}
 
   public void back() throws IOException {
+    System.out.println(switched);
     App.getRootPane()
         .setLeft(
             FXMLLoader.load(getClass().getResource("/edu/wpi/cs3733/C23/teamD/views/NavBar.fxml")));
@@ -336,14 +362,11 @@ public class MoveDisplayContainerController {
                 CornerRadii.EMPTY,
                 new BorderWidths(3, 3, 3, 3))));
     stackPane.setPadding(new Insets(32, 32, 32, 32));
-    if (defaultKiosk.getLocation() != null) {
-      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    if (switched) {
+      switchLocations();
+      switched = true;
     }
-    String string = currentMove == null ? "Location Name" : currentMove.getLongName();
-    locationNameText.setText(
-        string.equals("Location Name")
-            ? string
-            : String.format("%.18s" + (string.length() > 18 ? "..." : ""), string));
   }
 
   public void setFutureMove(Move m) {
@@ -539,6 +562,7 @@ public class MoveDisplayContainerController {
       }
     }
     setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    switched = false;
   }
 
   @FXML
