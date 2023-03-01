@@ -6,9 +6,11 @@ import edu.wpi.cs3733.C23.teamD.database.util.FDdb;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.*;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapEdge;
 import edu.wpi.cs3733.C23.teamD.mapeditor.entities.MapNode;
+import edu.wpi.cs3733.C23.teamD.mapeditor.entities.PathfindingMapNode;
 import edu.wpi.cs3733.C23.teamD.mapeditor.util.MapFactory;
 import edu.wpi.cs3733.C23.teamD.navigation.Navigation;
 import edu.wpi.cs3733.C23.teamD.navigation.Screen;
+import edu.wpi.cs3733.C23.teamD.pathfinding.controllers.TextDirectionsController;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathEdge;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.PathNode;
 import edu.wpi.cs3733.C23.teamD.pathfinding.entities.Pathfinder;
@@ -40,6 +42,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class MoveDisplayContainerController {
   @FXML private MFXFilterComboBox<String> mfxFilterComboBox;
@@ -64,6 +67,8 @@ public class MoveDisplayContainerController {
   @FXML private Parent roomComboBox;
   @FXML private RoomPickComboBoxController roomComboBoxController;
 
+  private ArrayList<String> directions = new ArrayList<>();
+
   private MFXButton[] floorButtons = new MFXButton[5];
   private Pathfinder pathfinder = new Pathfinder();
   private Move currentMove;
@@ -71,6 +76,9 @@ public class MoveDisplayContainerController {
   private Kiosk defaultKiosk;
   private ArrayList<Edge> edges = new ArrayList<Edge>();
   private ArrayList<Move> moves;
+  private PopOver popover;
+  private TextDirectionsController textDirectionsController;
+
   TreeMap<String, Move> nodeToRoomMap;
   private ArrayList<Move> locationMoves = new ArrayList<>();
 
@@ -94,6 +102,7 @@ public class MoveDisplayContainerController {
 
     mfxFilterComboBox.setItems(FXCollections.observableArrayList(nodeToRoomMap.keySet()));
     mfxFilterComboBox.setOnAction(setLocation);
+
     // set up mapPane
     mapPane.setCenter(MapFactory.startBuild().scaleMap().build(1));
     mapPane.setBorder(
@@ -120,6 +129,7 @@ public class MoveDisplayContainerController {
     swapButton.setOnAction(event -> switchLocations());
     edges = FDdb.getInstance().getAllEdges();
     moves = FDdb.getInstance().getAllMoves();
+
     floorL1Button.setOnAction(event -> switchFloor(1));
     floorL2Button.setOnAction(event -> switchFloor(2));
     floor1Button.setOnAction(event -> switchFloor(3));
@@ -134,6 +144,12 @@ public class MoveDisplayContainerController {
     defaultKiosk = new Kiosk();
     try {
       defaultKiosk.setIPaddress(InetAddress.getLocalHost().toString());
+      final var resource = App.class.getResource("views/TextDirections.fxml");
+      final FXMLLoader loader = new FXMLLoader(resource);
+      popover = new PopOver(loader.load());
+      textDirectionsController = loader.getController();
+      popover.setArrowSize(0);
+      popover.setTitle("Text Directions");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -145,6 +161,10 @@ public class MoveDisplayContainerController {
         setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
       }
     }
+
+    stackPane.setPadding(new Insets(32, 32, 32, 32));
+
+    setFloorButtons(1);
   }
 
   public void switchLocations() {
@@ -176,6 +196,13 @@ public class MoveDisplayContainerController {
           setMove(currentMove);
 
           setDate();
+
+          locationNameText.setText(
+              String.format(
+                  "%.18s" + (currentMove.getLongName().length() > 18 ? "..." : ""),
+                  currentMove.getLongName()));
+          messageText.setText(currentMove.getMessage());
+          stackPane.setPadding(new Insets(32, 32, 32, 32));
         }
       };
 
@@ -235,12 +262,14 @@ public class MoveDisplayContainerController {
             Instant.ofEpochMilli(m.getMoveDate().getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-        if (localDate.isBefore(datePicker.getValue())) {
-          latest = m;
-        }
-        if (localDate.equals(datePicker.getValue())) {
-          setFutureMove(m);
-          exactDate = true;
+        if (datePicker.getValue() != null) {
+          if (localDate.isBefore(datePicker.getValue())) {
+            latest = m;
+          }
+          if (localDate.equals(datePicker.getValue())) {
+            setFutureMove(m);
+            exactDate = true;
+          }
         }
       }
       if (!exactDate) {
@@ -263,6 +292,8 @@ public class MoveDisplayContainerController {
 
   @FXML
   public void display() {
+    String string = currentMove == null ? "Location Name" : currentMove.getLongName();
+    locationNameText.setText(string);
     borderPane.setPadding(new Insets(0, 0, 0, 0));
     move.setManaged(false);
     App.getRootPane().setLeft(null);
@@ -303,7 +334,14 @@ public class MoveDisplayContainerController {
                 CornerRadii.EMPTY,
                 new BorderWidths(3, 3, 3, 3))));
     stackPane.setPadding(new Insets(32, 32, 32, 32));
-    setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    if (defaultKiosk.getLocation() != null) {
+      setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+    }
+    String string = currentMove == null ? "Location Name" : currentMove.getLongName();
+    locationNameText.setText(
+        string.equals("Location Name")
+            ? string
+            : String.format("%.18s" + (string.length() > 18 ? "..." : ""), string));
   }
 
   public void setFutureMove(Move m) {
@@ -375,9 +413,17 @@ public class MoveDisplayContainerController {
         edge.setNodes(lastNode, pathNode);
         mapEdges.add(edge);
       }
+
       lastNode = pathNode;
       ++i;
     }
+
+    // TODO generate text directions
+    ArrayList<String> text2 = pathfinder.textPath(path);
+    for (String t : text2) {
+      directions.add(t);
+    }
+
     mapPane.setCenter(
         MapFactory.startBuild()
             .scaleMap()
@@ -398,7 +444,8 @@ public class MoveDisplayContainerController {
 
   public void setMove(Move m) {
     currentMove = m;
-    locationNameText.setText(m.getLongName());
+    locationNameText.setText(
+        String.format("%.18s" + (m.getLongName().length() > 18 ? "..." : ""), m.getLongName()));
     messageText.setText(m.getMessage());
     mapNodes.clear();
     PathNode temp = new PathNode(m.getNode(), m.getLocation());
@@ -489,5 +536,11 @@ public class MoveDisplayContainerController {
       }
     }
     setRightAndLeft(nodeToRoomMap.get(defaultKiosk.getLocation()), false);
+  }
+
+  @FXML
+  public void getDirections() {
+    popover.show(App.getPrimaryStage());
+    textDirectionsController.setDirections(directions);
   }
 }
