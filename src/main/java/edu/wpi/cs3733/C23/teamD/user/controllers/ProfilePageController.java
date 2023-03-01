@@ -200,7 +200,8 @@ public class ProfilePageController {
       if (s.getAssociatedStaff() == null) {
         continue;
       } else if (s.getAssociatedStaff().getEmployeeID() == currentuser.getEmployeeID()
-          && s.getStat().equals(ServiceRequest.Status.DONE)) {
+          && s.getStat().equals(ServiceRequest.Status.DONE)
+          && !employeeServiceRequests.contains(s)) {
         employeeServiceRequests.add(s);
       }
     }
