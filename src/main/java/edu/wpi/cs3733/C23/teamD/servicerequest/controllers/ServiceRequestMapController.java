@@ -78,6 +78,7 @@ public class ServiceRequestMapController {
 
     map = MapFactory.startBuild().withNodes(nodeList).build(currentFloor);
     map.setMaxSize(700, 500);
+    MapFactory.needsRefresh = true;
     mapPaneContainer.setCenter(map);
     //    mapPaneContainer.setStyle("-fx-border-color: #012D5A;");
     //    mapPaneContainer.setStyle("fx-border-width: 3px");
@@ -127,7 +128,7 @@ public class ServiceRequestMapController {
 
   public void mapCenters(LocationComboBoxController locationController) {
 
-    if (locationController.getLocation() != null) {
+    if (locationController.getLocationLongName() != null) {
       edu.wpi.cs3733.C23.teamD.database.entities.Node node =
           FDdb.getInstance().getAssociatedNode(locationController.getLocation());
       int x = node.getXcoord();

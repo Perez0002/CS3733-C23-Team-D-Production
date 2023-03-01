@@ -14,6 +14,7 @@
 
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.scene.shape.Line?>
 <BorderPane fx:id="borderPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.C23.teamD.userinterface.controllers.MoveDisplayContainerController">
    <left>
       <VBox fx:id="move" prefHeight="200.0" prefWidth="350.0" spacing="16.0" BorderPane.alignment="CENTER">
@@ -27,6 +28,16 @@
             <MFXDatePicker fx:id="datePicker" prefHeight="38.0" prefWidth="300.0" />
             <MFXButton minHeight="52.0" onAction="#display" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Display" />
             <MFXButton minHeight="52.0" onAction="#viewServiceRequests" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="View Service Requests" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Line endX="200.0" startX="-100.0" stroke="#012d5a">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Line>
+               </children>
+            </VBox>
+            <fx:include fx:id="roomComboBox" prefWidth="300.0" source="VBoxInjections/Components/RoomPickComboBox.fxml" />
             <MFXButton minHeight="52.0" onAction="#setDefaultLocation" prefHeight="52.0" prefWidth="300.0" styleClass="moveDisplayButton" text="Set Default Location" />
             <VBox alignment="BOTTOM_LEFT" prefHeight="800.0" prefWidth="100.0">
                <children>
@@ -48,7 +59,6 @@
             <BorderPane fx:id="mapPane" prefHeight="200.0" prefWidth="200.0" />
             <HBox fx:id="topHBox" maxHeight="43.0" prefHeight="43.0" prefWidth="573.0" spacing="16.0" StackPane.alignment="TOP_CENTER">
                <children>
-                  <MFXButton minWidth="100.0" prefHeight="48.0" prefWidth="100.0" styleClass="moveDisplayButton" text="Text Directions" onAction="#getDirections"/>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: EEEEEE; -fx-border-color: #041140; -fx-border-width: 2; -fx-background-radius: 16; -fx-border-radius: 16;">
                      <children>
                         <Text fx:id="locationNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">

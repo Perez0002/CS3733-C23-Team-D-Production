@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import lombok.Setter;
 
 public class MoveRequestController implements AddFormController<Move> {
@@ -40,13 +39,7 @@ public class MoveRequestController implements AddFormController<Move> {
 
   private void deleteRow() {
     databaseController.delete();
-    ToastController.makeText(
-        "the move has been deleted!",
-        1500,
-        50,
-        100,
-        (int) Screen.getPrimary().getBounds().getWidth() - 375,
-        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    ToastController.makeText("The move has been deleted!", 1500, 50, 100);
     dataToChange(null);
   }
 
@@ -66,13 +59,7 @@ public class MoveRequestController implements AddFormController<Move> {
                 messageTextField.getText());
         FDdb.getInstance().saveMove(move);
         databaseController.refresh();
-        ToastController.makeText(
-            "Your move has been added!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your move has been added!", 1500, 50, 100);
       } else {
         currentMove.setLocation(locationBoxController.getLocation());
         currentMove.setMoveDate(
@@ -81,13 +68,7 @@ public class MoveRequestController implements AddFormController<Move> {
         currentMove.setMessage(messageTextField.getText());
         FDdb.getInstance().updateMove(currentMove);
         databaseController.refresh();
-        ToastController.makeText(
-            "Your move has been changed!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your move has been changed!", 1500, 50, 100);
         dataToChange(null);
       }
     } else {

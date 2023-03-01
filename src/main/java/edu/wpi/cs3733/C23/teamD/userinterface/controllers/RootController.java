@@ -39,16 +39,20 @@ public class RootController {
     if (type != null && type.equals("ADMIN")) {
       dbButton.setDisable(false);
       moveTableButton.setDisable(false);
+      moveDisplayButton.setDisable(false);
       mapEditorButton.setDisable(false);
       dbButton.setManaged(true);
       moveTableButton.setManaged(true);
+      moveDisplayButton.setManaged(true);
       mapEditorButton.setManaged(true);
     } else {
       dbButton.setDisable(true);
       moveTableButton.setDisable(true);
+      moveDisplayButton.setDisable(true);
       mapEditorButton.setDisable(true);
       dbButton.setManaged(false);
       moveTableButton.setManaged(false);
+      moveDisplayButton.setManaged(false);
       mapEditorButton.setManaged(false);
     }
   }

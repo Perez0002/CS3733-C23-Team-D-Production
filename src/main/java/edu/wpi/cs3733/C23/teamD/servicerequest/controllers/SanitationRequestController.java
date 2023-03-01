@@ -47,9 +47,6 @@ public class SanitationRequestController implements ServiceRequestVBoxController
                 ServiceRequestMapController.getMapSingleton().mapCenters(fieldLocationController));
   }
 
-  @Override
-  public void clearTransportForms() {}
-
   @FXML
   public boolean submit() {
     if (isFieldsSaturated()) {
@@ -115,8 +112,8 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     }
   }
 
-  @FXML
-  public boolean clearSanitationForms() {
+  @Override
+  public void clearTransportForms() {
     fieldLocationController.clearForm();
     fieldReason.clear();
     staffIDTextFieldController.clearForm();
@@ -125,8 +122,6 @@ public class SanitationRequestController implements ServiceRequestVBoxController
     radioBSL3.setSelected(false);
     radioBSL4.setSelected(false);
     urgencyBox.clearSelection();
-    return true;
-    // System.out.print("Fields Cleared\n");
   }
 
   private boolean isFieldsSaturated() {

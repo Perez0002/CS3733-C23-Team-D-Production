@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import lombok.Setter;
 
 public class AddEmployeeController implements AddFormController<Employee> {
@@ -44,13 +43,7 @@ public class AddEmployeeController implements AddFormController<Employee> {
 
   private void deleteRow() {
     databaseController.delete();
-    ToastController.makeText(
-        "the employee has been deleted!",
-        1500,
-        50,
-        100,
-        (int) Screen.getPrimary().getBounds().getWidth() - 375,
-        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    ToastController.makeText("The employee has been deleted!", 1500, 50, 100);
     dataToChange(null);
   }
 
@@ -69,13 +62,7 @@ public class AddEmployeeController implements AddFormController<Employee> {
         FDdb.getInstance().saveEmployee(employee);
         databaseController.refresh();
         dataToChange(null);
-        ToastController.makeText(
-            "Your edge has been added!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("The employee has been added!", 1500, 50, 100);
       } else {
         currentEmployee.setFirstName(firstNameTextField.getText());
         currentEmployee.setLastName(lastNameTextField.getText());
@@ -85,13 +72,7 @@ public class AddEmployeeController implements AddFormController<Employee> {
 
         FDdb.getInstance().updateEmployee(currentEmployee);
         clearFields();
-        ToastController.makeText(
-            "The Employee has been changed!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("The employee has been changed!", 1500, 50, 100);
         databaseController.refresh();
       }
     } else {

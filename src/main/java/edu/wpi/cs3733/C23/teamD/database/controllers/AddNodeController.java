@@ -9,7 +9,6 @@ import java.time.ZoneId;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import lombok.Setter;
 
 public class AddNodeController implements AddFormController<Node> {
@@ -38,13 +37,7 @@ public class AddNodeController implements AddFormController<Node> {
 
   private void deleteRow() {
     databaseController.delete();
-    ToastController.makeText(
-        "the node has been deleted!",
-        1500,
-        50,
-        100,
-        (int) Screen.getPrimary().getBounds().getWidth() - 375,
-        (int) Screen.getPrimary().getBounds().getHeight() - 275);
+    ToastController.makeText("The node has been deleted!", 1500, 50, 100);
     dataToChange(null);
   }
 
@@ -79,13 +72,7 @@ public class AddNodeController implements AddFormController<Node> {
                     Integer.parseInt(yCoordTextField.getText()),
                     floorTextField.getText(),
                     buildingTextField.getText()));
-        ToastController.makeText(
-            "Your node has been added!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your node has been added!", 1500, 50, 100);
         databaseController.refresh();
         dataToChange(null);
       } else {
@@ -94,13 +81,7 @@ public class AddNodeController implements AddFormController<Node> {
         currentNode.setYcoord(Integer.parseInt(yCoordTextField.getText()));
         currentNode.setXcoord(Integer.parseInt(xCoordTextField.getText()));
 
-        ToastController.makeText(
-            "Your node has been changed!",
-            1500,
-            50,
-            100,
-            (int) Screen.getPrimary().getBounds().getWidth() - 375,
-            (int) Screen.getPrimary().getBounds().getHeight() - 275);
+        ToastController.makeText("Your node has been changed!", 1500, 50, 100);
 
         FDdb.getInstance().updateNodePK(currentNode);
         databaseController.refresh();

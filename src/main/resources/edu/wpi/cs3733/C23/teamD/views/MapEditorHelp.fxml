@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label stylesheets="@updatedStyleGuide.css" text="Editing The Map" underline="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Node:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label prefWidth="300.0" text="Clicking an existing node allows you to edit the node's location and information." wrapText="true" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="50.0">
+                     <children>
+                        <Circle fill="#012d5a" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <Circle fill="#cc2222" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Coords  /  Name  /  Location  /  ect" />
+                        <MFXTextField disable="true" floatMode="DISABLED" promptText="Node information" styleClass="text-fi" stylesheets="@updatedStyleGuide.css" />
+                     </children>
+                  </VBox>
+                  <Label prefWidth="300.0" text="Clicking an empty space on the map will create a new node. Fill in the emptytext to create and save a new node." wrapText="true" />
+                  <Label prefWidth="300.0" text="Click and drag a node to update a node's location on the map. Pressing 'Submit' will save these changes to the database instantly." wrapText="true" />
+               </children>
+            </VBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" styleClass="tabHBox" stylesheets="@updatedStyleGuide.css">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Edge:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label prefWidth="300.0" text="Clicking an existing node highlights it green. When selected, clicking other nodes allows you to add edges to a node." wrapText="true" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="50.0">
+                     <children>
+                        <Circle fill="#012d5a" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <Circle fill="#17f417" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                     </children>
+                  </HBox>
+                  <Label prefWidth="300.0" text="Clicking an existing edge allows you to delete an edge between two nodes." wrapText="true" />
+               </children>
+            </VBox>
+            <HBox layoutX="70.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" styleClass="tabHBox" stylesheets="@updatedStyleGuide.css">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label styleClass="serviceRequestMFXTextFieldLabel" stylesheets="@updatedStyleGuide.css" text="Multi-Node:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label prefWidth="300.0" text="Click and drag the screen to highlight multiple nodes. Click and drag the screen to move the highlights nodes around. The new locations saves instantly." wrapText="true" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="50.0">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Circle fill="#012d5a" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle fill="#012d5a" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle fill="#012d5a" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Circle fill="#cc2222" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle fill="#cc2222" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle fill="#cc2222" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Label alignment="CENTER" text="Press 'esc' To Close" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="15.0" />
+         </BorderPane.margin>
+      </Label>
+   </bottom>
+</BorderPane>

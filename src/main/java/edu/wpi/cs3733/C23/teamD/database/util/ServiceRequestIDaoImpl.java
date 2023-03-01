@@ -1,8 +1,15 @@
 package edu.wpi.cs3733.C23.teamD.database.util;
 
+import edu.wpi.cs3733.C23.teamD.database.entities.LocationName;
 import edu.wpi.cs3733.C23.teamD.servicerequest.entities.*;
+import edu.wpi.cs3733.C23.teamD.user.entities.*;
 import jakarta.persistence.Query;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import org.hibernate.Session;
@@ -89,6 +96,7 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
 
     } catch (Exception ex) {
       session.getTransaction().rollback();
+      ex.printStackTrace();
     }
   }
 
@@ -304,16 +312,97 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
           new BufferedReader(
               new FileReader(
                   "src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv"));
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
       session.beginTransaction();
       session.createQuery("DELETE FROM ServiceRequest");
       session.getTransaction().commit();
       while (fileReader.ready()) {
         String[] data = fileReader.readLine().split(",");
-        ServiceRequest sans = new ServiceRequest();
-        FDdb.getInstance().saveServiceRequest(sans);
+        Employee emp = null;
+        for (Employee e : FDdb.getInstance().getAllEmployees()) {
+          if (e.getEmployeeID() == Integer.parseInt(data[2])) {
+            emp = e;
+            break;
+          }
+        }
+        LocationName loc = null;
+        for (LocationName l : FDdb.getInstance().getAllLocationNames()) {
+          if (l.getLongName() == data[5]) {
+            loc = l;
+            break;
+          }
+        }
+        String type = data[4];
+        if (type.trim().equals("ComputerService")) {
+          ComputerServiceRequest sans =
+              new ComputerServiceRequest(
+                  Integer.parseInt(data[0]),
+                  ServiceRequest.Status.valueOf(data[1].trim()),
+                  emp,
+                  data[3],
+                  data[4] == null ? "null" : data[4],
+                  loc,
+                  data[6],
+                  format.parse(data[7]),
+                  data[8]);
+          this.save(sans);
+        } else if (type.trim().equals("Security")) {
+          SecurityServiceRequest sans =
+              new SecurityServiceRequest(
+                  Integer.parseInt(data[0]),
+                  ServiceRequest.Status.valueOf(data[1].trim()),
+                  emp,
+                  data[3],
+                  data[4] == null ? "null" : data[4],
+                  loc,
+                  data[6],
+                  format.parse(data[7]),
+                  data[8]);
+          this.save(sans);
+        } else if (type.trim().equals("PatientTransportData")) {
+          PatientTransportRequest sans =
+              new PatientTransportRequest(
+                  Integer.parseInt(data[0]),
+                  ServiceRequest.Status.valueOf(data[1].trim()),
+                  emp,
+                  data[3],
+                  data[4] == null ? "null" : data[4],
+                  loc,
+                  data[6],
+                  format.parse(data[7]),
+                  data[8]);
+          this.save(sans);
+        } else if (type.trim().equals("AVRequest")) {
+          AVRequest sans =
+              new AVRequest(
+                  Integer.parseInt(data[0]),
+                  ServiceRequest.Status.valueOf(data[1].trim()),
+                  emp,
+                  data[3],
+                  data[4] == null ? "null" : data[4],
+                  loc,
+                  data[6],
+                  format.parse(data[7]),
+                  LocalDate.now());
+          this.save(sans);
+        } else if (type.trim().equals("SanitationRequestData")) {
+          SanitationRequest sans =
+              new SanitationRequest(
+                  Integer.parseInt(data[0]),
+                  ServiceRequest.Status.valueOf(data[1].trim()),
+                  emp,
+                  data[3],
+                  data[4] == null ? "null" : data[4],
+                  loc,
+                  data[6],
+                  format.parse(data[7]),
+                  Integer.parseInt(data[8]));
+          this.save(sans);
+        }
       }
       fileReader.close();
-    } catch (IOException e) {
+    } catch (IOException | ParseException e) {
       e.printStackTrace();
     }
   }
@@ -321,10 +410,36 @@ public class ServiceRequestIDaoImpl implements IDao<ServiceRequest> {
   @Override
   public void downloadCSV(ServiceRequest serv) {
     try {
-      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/LocationName.csv");
+      File file = new File("src/main/resources/edu/wpi/cs3733/C23/teamD/data/ServiceRequest.csv");
       FileWriter fileWriter = new FileWriter(file, false);
-      for (SanitationRequest s : this.sanitationRequestList) {
-        fileWriter.write("");
+      DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+      for (ServiceRequest s : this.masterList) {
+        String service =
+            String.join(
+                ",",
+                Integer.toString(s.getServiceRequestId()),
+                s.getStat().name(),
+                Integer.toString(s.getAssociatedStaff().getEmployeeID()),
+                s.getReason(),
+                s.getServiceRequestType(),
+                s.getLocation().getLongName(),
+                s.getUrgency(),
+                format.format(s.getDateAndTime()));
+        if (s.getServiceRequestType().equals("ComputerService")) {
+          service = String.join(",", service, ((ComputerServiceRequest) s).getDeviceType());
+        } else if (s.getServiceRequestType().equals("Security")) {
+          service =
+              String.join(",", service, ((SecurityServiceRequest) s).getTypeOfSecurityRequest());
+        } else if (s.getServiceRequestType().equals("PatientTransportData")) {
+          service = String.join(",", service, ((PatientTransportRequest) s).getEndRoom());
+        } else if (s.getServiceRequestType().equals("AVRequest")) {
+          service = String.join(",", service, ((AVRequest) s).getDateFirstSeen().format(formatter));
+        } else if (s.getServiceRequestType().equals("SanitationRequestData")) {
+          service =
+              String.join(",", service, Integer.toString(((SanitationRequest) s).getBioLevel()));
+        }
+        fileWriter.write(service + "\n");
       }
       fileWriter.flush();
       fileWriter.close();

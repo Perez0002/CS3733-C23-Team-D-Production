@@ -82,14 +82,17 @@ public class SecurityServiceRequestController extends ServiceRequestController
         ex.printStackTrace();
         return false;
       }
-    } else return false;
+    } else {
+      return false;
+    }
   }
 
   private boolean checkFields() {
     if (employeeBoxController.getEmployeeName() != null
-        && locationBoxController.getLocation() != null
+        && locationBoxController.getLocationLongName() != null
         && problemTextField.getText() != null
-        && urgencyBoxController.getUrgency() != null) {
+        && urgencyBoxController.getUrgency() != null
+        && (addSecurityNode.isSelected() || addRequestSecurityNode.isSelected())) {
       return true;
     } else return false;
   }
