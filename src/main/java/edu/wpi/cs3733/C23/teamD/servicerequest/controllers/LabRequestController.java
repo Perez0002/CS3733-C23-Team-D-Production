@@ -24,6 +24,14 @@ public class LabRequestController implements ServiceRequestVBoxController {
 
   @FXML private MFXComboBox LabTypeBox;
 
+  public void initialize() {
+    locationBoxController
+        .giveComboBox()
+        .setOnAction(
+            event ->
+                ServiceRequestMapController.getMapSingleton().mapCenters(locationBoxController));
+  }
+
   public void clearTransportForms() {
     employeeBoxController.clearForm();
     locationBoxController.clearForm();
@@ -42,8 +50,13 @@ public class LabRequestController implements ServiceRequestVBoxController {
               LabTypeBox.getValue().toString(),
               locationBoxController.getLocation(),
               urgencyBox.getValue().toString());
-      FDdb.getInstance().saveServiceRequest(request);
-      return true;
+      try {
+        FDdb.getInstance().saveServiceRequest(request);
+        return true;
+      } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+      }
     } else {
       return false;
     }
@@ -51,10 +64,9 @@ public class LabRequestController implements ServiceRequestVBoxController {
 
   private boolean checkFields() {
     return !(employeeBoxController.getEmployeeName().isEmpty()
-            || descriptionTextField.getText().isEmpty()
-            || urgencyBox.getText().isEmpty()
-            || locationBoxController.getLocationLongName().isEmpty())
-        || LabTypeBox.getValue().toString().isEmpty();
+        || urgencyBox.getText().isEmpty()
+        || locationBoxController.getLocationLongName().isEmpty()
+        || LabTypeBox.getValue() == null);
   }
 
   public Node getVBox() {
